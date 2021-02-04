@@ -49,7 +49,8 @@
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-        If Request.QueryString("ida") = "" Then
+        If Not UC_HERB.check_infor() Then
+        ElseIf Request.QueryString("ida") = "" Then
             Dim IDA As Integer = 0
             Dim bao As New BAO.AppSettings
             bao.RunAppSettings()

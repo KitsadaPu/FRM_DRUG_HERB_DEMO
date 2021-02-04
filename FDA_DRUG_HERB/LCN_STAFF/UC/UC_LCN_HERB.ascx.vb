@@ -299,4 +299,42 @@ Public Class UC_LCN_HERB
     Private Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
     End Sub
+    Function check_infor() As Boolean
+        If cb_Personal_Type1.Checked Then
+            If txt_PASSPORT_NO.Text = "" Or txt_BS_NO.Text = "" Or txt_FRGN_NO.Text = "" Or txt_DOC_NO.Text = "" Or txt_WORK_LICENSE_NO.Text = "" Or RDP_PASSPORT_EXPDATE.IsEmpty Or RDP_DOC_DATE.IsEmpty Or RDP_WORK_LICENSE_EXPDATE.IsEmpty Or RDP_BS_DATE.IsEmpty Or RDP_FRGN_DATE.IsEmpty Then
+                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
+                Return False
+            End If
+        ElseIf cb_Personal_Type2.Checked Then
+            If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
+                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
+                Return False
+            End If
+        ElseIf rdl_sanchaat.SelectedValue = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกสัญชาติ');</script> ")
+            Return False
+        ElseIf txt_da_opentime.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเวลาทำการของร้าน');</script> ")
+            Return False
+
+        ElseIf txt_c_thaaddr.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
+            Return False
+
+        ElseIf ddl_Province.SelectedValue = "0" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกจังหวัด');</script> ")
+            Return False
+
+        ElseIf ddl_amphor.SelectedValue = "0" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกอำเภอ');</script> ")
+            Return False
+
+        ElseIf ddl_tambol.SelectedValue = "0" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกตำบล');</script> ")
+            Return False
+
+        Else
+            Return True
+        End If
+    End Function
 End Class
