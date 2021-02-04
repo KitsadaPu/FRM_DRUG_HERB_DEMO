@@ -15,29 +15,30 @@
 </style>
 <div>
     <table>
-        <tr>
-            <td class="auto-style1"></td>
-            <td class="auto-style3"></td>
-            <td colspan="5" class="auto-style3">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
                 สถานที่เก็บรักษาผลิตภัณฆ์สมุนไพร (ถ้ามี) ชื่อ
-            </td>
-            <td class="auto-style3">
+            </div>
+            <div class="col-lg-3">
                     <asp:DropDownList ID="ddl_placename" runat="server" Width="300px" AutoPostBack="True"> </asp:DropDownList>     
-            </td>
-            <td class="auto-style3">&ensp;
+            </div>
+            <div class="col-lg-3">&ensp;
                 ใช้ที่สถานที่เก็บเดียวกันกับสถานที่ตั้ง
                 <asp:CheckBox ID="cb_location" runat="server" AutoPostBack="True" />
-            </td>
+            </div>
+            <div class="col-lg-2"></div>
         
-        </tr>
-            <td class="auto-style3"></td>
-            <td class="auto-style3">
+        </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1">
                 ที่อยู่
-            </td>
+            </div>
             
-            <td colspan="7" class="auto-style3">
+            <div class="col-lg-8">
                 <asp:Label ID="lbl_location_new" runat="server" Text="-"></asp:Label>
-            </td>
+            </div>
+        <div class="col-lg-2"></div>
             
         
             <%--<td></td>

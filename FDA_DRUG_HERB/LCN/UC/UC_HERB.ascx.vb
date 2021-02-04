@@ -745,8 +745,14 @@
     Sub set_date_current_addr(ByRef dao As DAO_DRUG.TB_DALCN_CURRENT_ADDRESS)
 
         With dao.fields
-            .amphrcd = ddl_amphor.SelectedValue
-            .chngwtcd = ddl_Province.SelectedValue
+            Try
+                .chngwtcd = ddl_Province.SelectedValue
+                .amphrcd = ddl_amphor.SelectedValue
+                .thmblcd = ddl_tambol.SelectedValue
+            Catch ex As Exception
+
+            End Try
+
             .email = txt_c_email.Text
             .fax = txt_c_fax.Text
             '.FK_IDA = 
@@ -759,7 +765,7 @@
             .tharoad = txt_c_tharoad.Text
             .tharoom = txt_c_room.Text
             .thasoi = txt_c_thasoi.Text
-            .thmblcd = ddl_tambol.SelectedValue
+
             .zipcode = txt_c_zipcode.Text
 
         End With
