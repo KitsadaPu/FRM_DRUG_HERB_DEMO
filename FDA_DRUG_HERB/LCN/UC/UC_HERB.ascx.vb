@@ -820,6 +820,7 @@
                 ddl_amphor.DropDownInsertDataFirstRow("-", "")
                 ddl_amphor.Items.FindByText("-").Selected = True
             End Try
+
             'ddl_amphor.SelectedItem.Text = lbl_BSN_AMPHR_NAME.Text
             Try
                 load_ddl_thambol()
