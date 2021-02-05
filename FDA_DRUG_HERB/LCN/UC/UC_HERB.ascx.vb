@@ -927,4 +927,30 @@
             Return True
         End If
     End Function
+    Sub Chek_information()
+        If cb_Personal_Type1.Checked Then
+            If txt_PASSPORT_NO.Text = "" Or txt_BS_NO.Text = "" Or txt_FRGN_NO.Text = "" Or txt_DOC_NO.Text = "" Or txt_WORK_LICENSE_NO.Text = "" Or RDP_PASSPORT_EXPDATE.IsEmpty Or RDP_DOC_DATE.IsEmpty Or RDP_WORK_LICENSE_EXPDATE.IsEmpty Or RDP_BS_DATE.IsEmpty Or RDP_FRGN_DATE.IsEmpty Then
+                Label62.Style.Add("display", "initial")
+            End If
+        ElseIf cb_Personal_Type2.Checked Then
+            If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
+                Label63.Style.Add("display", "initial")
+            End If
+        End If
+        If rdl_sanchaat.SelectedValue = "" Then
+            Label60.Style.Add("display", "initial")
+        End If
+        If txt_da_opentime.Text = "" Then
+            Label61.Style.Add("display", "initial")
+        End If
+        If txt_c_thaaddr.Text = "" Then
+            Label64.Style.Add("display", "initial")
+        End If
+
+        If ddl_Province.SelectedValue = "0" Then
+            Label65.Style.Add("display", "initial")
+
+        End If
+
+    End Sub
 End Class

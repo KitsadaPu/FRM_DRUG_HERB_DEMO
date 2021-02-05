@@ -104,11 +104,13 @@ Public Class UC_LCN_HERB_PHESAJ
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
         If ddl_prefix.Text = "0" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+            Check_infor()
         ElseIf ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
-
+            Check_infor()
         ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+            Check_infor()
         Else
             set_data(dao)
             dao.fields.FK_IDA = Request.QueryString("ida")
@@ -116,6 +118,18 @@ Public Class UC_LCN_HERB_PHESAJ
             Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
             rgphr.Rebind()
             CLEAR_DATA()
+        End If
+    End Sub
+    Sub Check_infor()
+        If ddl_prefix.Text = "0" Then
+            Label1.Style.Add("display", "initial")
+        End If
+        If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+            Label2.Style.Add("display", "initial")
+            Label3.Style.Add("display", "initial")
+        End If
+        If txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Label4.Style.Add("display", "initial")
         End If
     End Sub
 

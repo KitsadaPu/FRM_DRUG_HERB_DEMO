@@ -234,7 +234,7 @@ Public Class UC_HERB_KEEP
 
             End Try
         Else Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลสถานที่');</script> ")
-
+            Label1.Style.Add("display", "initial")
         End If
     End Sub
     Private Sub RadGrid2_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles RadGrid2.ItemCommand

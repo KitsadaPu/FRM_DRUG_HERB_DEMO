@@ -36,7 +36,9 @@
         </div>
         <div class="col-lg-3" style="text-align: left">
             <asp:CheckBox ID="cb_location" runat="server" AutoPostBack="True" />
-            ใช้ที่สถานที่เก็บเดียวกันกับสถานที่ตั้ง               
+            ใช้ที่สถานที่เก็บเดียวกันกับสถานที่ตั้ง                    
+            <asp:Label ID="Label1" runat="server" Text="" style="display:none"><p style="color:red">*กรุณากรอกที่อยู่</p>
+</asp:Label>          
         </div>
         <div class="col-lg-2"></div>
     </div>

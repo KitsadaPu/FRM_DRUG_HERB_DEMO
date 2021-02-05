@@ -37,6 +37,7 @@
         </div>
         <div class="col-lg-3">
             <asp:DropDownList ID="ddl_prefix" runat="server" AutoPostBack="True" DataTextField="thanm" DataValueField="prefixcd"></asp:DropDownList>
+            <asp:Label ID="Label1" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาเลือกคำนำหน้า</p></asp:Label>
         </div>
         <div class="col-lg-9"></div>
     </div>
@@ -50,6 +51,8 @@
         </div>
         <div class="col-lg-2">
             <asp:DropDownList ID="ddl_phr_type" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:Label ID="Label3" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
+
         </div>
         <div class="col-lg-4"></div>
     </div>
@@ -73,6 +76,8 @@
         </div>
         <div class="col-lg-2">
             <asp:TextBox ID="txt_STUDY_LEVEL" runat="server" Height="20px" Width="100%"></asp:TextBox>
+                                    <asp:Label ID="Label2" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
+
         </div>
         <div class="col-lg-1" style="text-align: center">
             สาขา
@@ -118,13 +123,16 @@
                 </DateInput>
 
                 <DatePopupButton ImageUrl="" HoverImageUrl=""></DatePopupButton>
-            </telerik:RadDatePicker>
+            </telerik:RadDatePicker>                        
+
         </div>
         <div class="col-lg-1" style="text-align: center">
             เวลาทำการ
         </div>
         <div class="col-lg-2">
             <asp:TextBox ID="txt_PHR_TEXT_WORK_TIME" runat="server" Height="20px" Width="100%"></asp:TextBox>
+                        <asp:Label ID="Label4" runat="server" Text="" style="display:none" ><p style="color:red">*กรุณากรอกเวลาทำการ</p> </asp:Label>
+
         </div>
         <div class="col-lg-5">&nbsp;</div>
     </div>
