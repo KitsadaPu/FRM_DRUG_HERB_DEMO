@@ -89,6 +89,7 @@ Public Class UC_HERB_PHESAJ
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
             Check_infor()
         Else
+            Check_infor()
             set_data(dao)
             dao.fields.FK_IDA = Request.QueryString("ida")
             dao.insert()

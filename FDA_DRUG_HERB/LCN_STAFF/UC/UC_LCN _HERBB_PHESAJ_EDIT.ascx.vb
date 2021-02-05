@@ -320,6 +320,7 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
             Check_infor()
         Else
+            Check_infor()
             set_data(dao)
             dao.update()
             Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
