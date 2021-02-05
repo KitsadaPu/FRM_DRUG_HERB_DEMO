@@ -305,6 +305,33 @@
 
         Next
 
+        Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
+        dao_frgn.GetDataby_FK_IDA(Request.QueryString("ida"))
+
+        If dao_frgn.fields.addr_status = 1 Then
+
+
+            Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
+            dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
+            cb_addr.Checked = True
+            ddl_amphor.SelectedValue = dao_curent.fields.amphrcd
+            ddl_Province.SelectedValue = dao_curent.fields.chngwtcd
+            txt_c_email.Text = dao_curent.fields.email
+            txt_c_fax.Text = dao_curent.fields.fax
+            '.FK_IDA = 
+            txt_c_tel.Text = dao_curent.fields.tel
+            txt_c_thaaddr.Text = dao_curent.fields.thaaddr
+            txt_c_floor.Text = dao_curent.fields.thafloor
+            txt_c_thabuilding.Text = dao_curent.fields.thabuilding
+            txt_c_thamu.Text = dao_curent.fields.thamu
+            '.thanameplace = ""
+            txt_c_tharoad.Text = dao_curent.fields.tharoad
+            txt_c_room.Text = dao_curent.fields.tharoom
+            txt_c_thasoi.Text = dao_curent.fields.thasoi
+            ddl_tambol.SelectedValue = dao_curent.fields.thmblcd
+            txt_c_zipcode.Text = dao_curent.fields.zipcode
+        End If
+
     End Sub
     Private Function set_lcntpcd() As String
         Dim dao As New DAO_DRUG.ClsDBPROCESS_NAME
@@ -890,23 +917,24 @@
         End If
     End Sub
     Function check_infor() As Boolean
-        If cb_Personal_Type1.Checked Then
-            If txt_PASSPORT_NO.Text = "" Or txt_BS_NO.Text = "" Or txt_FRGN_NO.Text = "" Or txt_DOC_NO.Text = "" Or txt_WORK_LICENSE_NO.Text = "" Or RDP_PASSPORT_EXPDATE.IsEmpty Or RDP_DOC_DATE.IsEmpty Or RDP_WORK_LICENSE_EXPDATE.IsEmpty Or RDP_BS_DATE.IsEmpty Or RDP_FRGN_DATE.IsEmpty Then
-                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
-                Return False
-            End If
-        ElseIf cb_Personal_Type2.Checked Then
-            If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
-                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
-                Return False
-            End If
-        ElseIf rdl_sanchaat.SelectedValue = "" Then
+        If rdl_sanchaat.SelectedValue = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกสัญชาติ');</script> ")
             Return False
         ElseIf txt_da_opentime.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเวลาทำการของร้าน');</script> ")
             Return False
-
+        ElseIf rdl_sanchaat.SelectedValue = "2" Then
+            If cb_Personal_Type1.Checked Then
+                If txt_PASSPORT_NO.Text = "" Or txt_BS_NO.Text = "" Or txt_FRGN_NO.Text = "" Or txt_DOC_NO.Text = "" Or txt_WORK_LICENSE_NO.Text = "" Or RDP_PASSPORT_EXPDATE.IsEmpty Or RDP_DOC_DATE.IsEmpty Or RDP_WORK_LICENSE_EXPDATE.IsEmpty Or RDP_BS_DATE.IsEmpty Or RDP_FRGN_DATE.IsEmpty Then
+                    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
+                    Return False
+                End If
+            ElseIf cb_Personal_Type2.Checked Then
+                If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
+                    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
+                    Return False
+                End If
+            End If
         ElseIf txt_c_thaaddr.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
             Return False
@@ -929,11 +957,13 @@
     End Function
     Sub Chek_information()
         If cb_Personal_Type1.Checked Then
+            Label63.Style.Add("display", "none")
             If txt_PASSPORT_NO.Text = "" Or txt_BS_NO.Text = "" Or txt_FRGN_NO.Text = "" Or txt_DOC_NO.Text = "" Or txt_WORK_LICENSE_NO.Text = "" Or RDP_PASSPORT_EXPDATE.IsEmpty Or RDP_DOC_DATE.IsEmpty Or RDP_WORK_LICENSE_EXPDATE.IsEmpty Or RDP_BS_DATE.IsEmpty Or RDP_FRGN_DATE.IsEmpty Then
                 Label62.Style.Add("display", "initial")
             Else Label62.Style.Add("display", "none")
             End If
         ElseIf cb_Personal_Type2.Checked Then
+            Label62.Style.Add("display", "none")
             If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
                 Label63.Style.Add("display", "initial")
             Else Label63.Style.Add("display", "none")

@@ -29,6 +29,7 @@
     Sub token()
         Dim token As String = _TOKEN
         Dim urls As String = ""
+
         Try
             urls = Request.UrlReferrer.AbsoluteUri 'ตรวจสอบว่าเป็นการส่งมาจาก privus หรือไม่
             If urls.Contains("privus.fda.moph.go.th") Then
