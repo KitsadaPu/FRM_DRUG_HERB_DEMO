@@ -311,16 +311,12 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
         set_data(dao)
         If ddl_prefix.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
-            Check_infor()
         ElseIf ddl_phr_type.SelectedValue = "" And txt_STUDY_LEVEL.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
-            Check_infor()
 
         ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
-            Check_infor()
         Else
-            Check_infor()
             set_data(dao)
             dao.update()
             Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
@@ -330,6 +326,7 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
             KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขผู้ปฏิบัติการจาก " & dao.fields.PHR_NAME & " เป็น " & PHR_NAME, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
             Response.Redirect("../LCN_STAFF/POPUP_STAFF_LCN_INSERT.aspx?IDA=" & IDA & "&process=" & _ProcessID)
         End If
+        Check_infor()
 
     End Sub
 
