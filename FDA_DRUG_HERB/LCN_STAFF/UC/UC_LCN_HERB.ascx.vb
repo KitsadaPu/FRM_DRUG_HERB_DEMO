@@ -66,6 +66,7 @@ Public Class UC_LCN_HERB
     End Sub
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         If ddl_placename.SelectedValue <> "" Or cb_location.Checked Then
+            Label1.Style.Add("display", "none")
             Try
                 'Dim dao_keep As New DAO_DRUG.TB_DALCN_DETAIL_LOCATION_KEEP
                 'dao_keep.GetData_by_LCN_IDA(Request.QueryString("ida"))

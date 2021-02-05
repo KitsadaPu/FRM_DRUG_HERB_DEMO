@@ -311,11 +311,14 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
         set_data(dao)
         If ddl_prefix.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+            Check_infor()
         ElseIf ddl_phr_type.SelectedValue = "" And txt_STUDY_LEVEL.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+            Check_infor()
 
         ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+            Check_infor()
         Else
             set_data(dao)
             dao.update()
@@ -332,13 +335,17 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
     Sub Check_infor()
         If ddl_prefix.Text = "0" Then
             Label1.Style.Add("display", "initial")
+        Else Label1.Style.Add("display", "none")
         End If
         If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
             Label2.Style.Add("display", "initial")
             Label3.Style.Add("display", "initial")
+        Else Label2.Style.Add("display", "none")
+            Label3.Style.Add("display", "none")
         End If
         If txt_PHR_TEXT_WORK_TIME.Text = "" Then
             Label4.Style.Add("display", "initial")
+        Else Label4.Style.Add("display", "none")
         End If
     End Sub
 End Class
