@@ -309,7 +309,14 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
         dao.GetDataby_IDA(PHR_IDA)
         set_data(dao)
-        If txt_PHR_TEXT_WORK_TIME.Text <> "" And txt_PHR_TEXT_NUM.Text <> "" Or txt_STUDY_LEVEL.Text <> "" Then
+        If ddl_prefix.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+        ElseIf ddl_phr_type.SelectedValue = "" And txt_STUDY_LEVEL.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+
+        ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+        Else
             set_data(dao)
             dao.update()
             Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
@@ -318,9 +325,25 @@ Public Class UC_LCN__HERBB_PHESAJ_EDIT
 
             KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขผู้ปฏิบัติการจาก " & dao.fields.PHR_NAME & " เป็น " & PHR_NAME, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
             Response.Redirect("../LCN_STAFF/POPUP_STAFF_LCN_INSERT.aspx?IDA=" & IDA & "&process=" & _ProcessID)
-        Else
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลให้ครบถ้วน');</script> ")
         End If
+        Check_infor()
 
+    End Sub
+
+    Sub Check_infor()
+        If ddl_prefix.Text = "0" Then
+            Label1.Style.Add("display", "initial")
+        Else Label1.Style.Add("display", "none")
+        End If
+        If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+            Label2.Style.Add("display", "initial")
+            Label3.Style.Add("display", "initial")
+        Else Label2.Style.Add("display", "none")
+            Label3.Style.Add("display", "none")
+        End If
+        If txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Label4.Style.Add("display", "initial")
+        Else Label4.Style.Add("display", "none")
+        End If
     End Sub
 End Class

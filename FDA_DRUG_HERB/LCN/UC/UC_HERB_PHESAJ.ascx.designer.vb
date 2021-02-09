@@ -41,6 +41,15 @@ Partial Public Class UC_HERB_PHESAJ
     Protected WithEvents ddl_prefix As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txt_PHR_NAME control.
     '''</summary>
     '''<remarks>
@@ -59,6 +68,15 @@ Partial Public Class UC_HERB_PHESAJ
     Protected WithEvents ddl_phr_type As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txt_PHR_TEXT_NUM control.
     '''</summary>
     '''<remarks>
@@ -75,6 +93,15 @@ Partial Public Class UC_HERB_PHESAJ
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_STUDY_LEVEL As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_PHR_VETERINARY_FIELD control.
@@ -111,6 +138,15 @@ Partial Public Class UC_HERB_PHESAJ
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_PHR_TEXT_WORK_TIME As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdl_mastra control.

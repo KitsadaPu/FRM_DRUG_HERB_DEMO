@@ -79,12 +79,39 @@ Public Class UC_HERB_PHESAJ
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
-        set_data(dao)
-        dao.fields.FK_IDA = Request.QueryString("ida")
-        dao.insert()
+        If ddl_prefix.Text = "0" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+        ElseIf ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+        ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+        Else
+            set_data(dao)
+            dao.fields.FK_IDA = Request.QueryString("ida")
+            dao.insert()
 
-        Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
-        rgphr.Rebind()
+            Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
+            rgphr.Rebind()
+        End If
+        Check_infor()
+
+    End Sub
+
+    Public Sub Check_infor()
+        If ddl_prefix.Text = "0" Then
+            Label1.Style.Add("display", "initial")
+        Else Label1.Style.Add("display", "none")
+        End If
+        If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+            Label2.Style.Add("display", "initial")
+            Label3.Style.Add("display", "initial")
+        Else Label2.Style.Add("display", "none")
+            Label3.Style.Add("display", "none")
+        End If
+        If txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Label4.Style.Add("display", "initial")
+        Else Label4.Style.Add("display", "none")
+        End If
     End Sub
     Public Sub bind_ddl_prefix()
         Dim bao As New BAO_SHOW

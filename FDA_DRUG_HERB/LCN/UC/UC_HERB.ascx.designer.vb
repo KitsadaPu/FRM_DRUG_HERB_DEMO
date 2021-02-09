@@ -32,6 +32,15 @@ Partial Public Class UC_HERB
     Protected WithEvents rdl_sanchaat As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
+    '''Label60 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label60 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbl_lcn_name control.
     '''</summary>
     '''<remarks>
@@ -212,6 +221,15 @@ Partial Public Class UC_HERB
     Protected WithEvents txt_da_opentime As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Label61 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label61 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''TB_Personal control.
     '''</summary>
     '''<remarks>
@@ -237,6 +255,15 @@ Partial Public Class UC_HERB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cb_Personal_Type1 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''Label62 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label62 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_PASSPORT_NO control.
@@ -345,6 +372,15 @@ Partial Public Class UC_HERB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cb_Personal_Type2 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''Label63 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label63 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_BS_NO1 control.
@@ -563,6 +599,15 @@ Partial Public Class UC_HERB
     Protected WithEvents txt_c_thaaddr As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Label64 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label64 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txt_c_floor control.
     '''</summary>
     '''<remarks>
@@ -642,6 +687,15 @@ Partial Public Class UC_HERB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_Province As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Label65 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label65 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_c_zipcode control.

@@ -49,10 +49,7 @@
         width: 185px;
         height: 29px;
     }
-    .auto-style18 {
-        width: 282px;
-    }
-</style>
+    </style>
 
 <div>
    <form name="form" method="post" align="center;">
@@ -105,6 +102,9 @@
                         <asp:ListItem Value="1">&ensp;ไทย&ensp;</asp:ListItem>
                         <asp:ListItem Value="2">&ensp;ต่างด้าว&ensp;</asp:ListItem>
                     </asp:RadioButtonList> 
+               
+              
+                    <asp:Label ID="Label60" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาเลือกสัญชาติ</p></asp:Label>
                
               
                 </td>
@@ -256,6 +256,7 @@
                     <td class="auto-style5">เวลาทำการรวมของร้าน&nbsp;</td>
                     <td>
                         <asp:TextBox ID="txt_da_opentime" runat="server"></asp:TextBox>
+                        <asp:Label ID="Label61" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาระบุเวลาทำการ</p></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -277,7 +278,9 @@
                <tr>
                    <td class="auto-style3"></td>
                    <td><asp:CheckBox ID="cb_Personal_Type1" text ="บุคคลธรรมดา " runat="server" AutoPostBack="True"/></td>
-                   <td></td>
+                   <td>
+                       <asp:Label ID="Label62" runat="server" Text="" style="display:none"><p style="color:red">*กรุณากรอกข้อมูลให้ครบทุกช่อง</p></asp:Label>
+                   </td>
                    <td></td>
                    <td>&nbsp;</td>
                </tr>
@@ -353,7 +356,9 @@
                    <td class="auto-style3"></td>
                    <td>
            <asp:CheckBox ID="cb_Personal_Type2" text ="นิติบุคคลต่างด้าว " runat="server" AutoPostBack="True" /></td>
-                   <td>&nbsp;</td>
+                   <td>
+                       <asp:Label ID="Label63" runat="server" Text="" style="display:none"><p style="color:red">*กรุณากรอกข้อมูลให้ครบทุกช่อง</p></asp:Label>
+                   </td>
                    <td>&nbsp;</td>
                    <td>&nbsp;</td>
                </tr>
@@ -603,6 +608,7 @@
                        อยู่เลขที่</td>
                    <td>
                        <asp:TextBox ID="txt_c_thaaddr" runat="server" ></asp:TextBox>
+                       <asp:Label ID="Label64" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาใส่เลขที่</p></asp:Label>
                    </td>
                    <td>ชั้นที่</td>
                    <td>
@@ -685,6 +691,7 @@
                    <td>
 
             <asp:DropDownList ID="ddl_Province" runat="server" AutoPostBack="True" DataTextField="thachngwtnm" DataValueField="chngwtcd"></asp:DropDownList>
+                       <asp:Label ID="Label65" runat="server" Text="" style="display:none" ><p style="color:red">*กรุณาเลือกจังหวัด</p></asp:Label>
                    </td>
                     <td>
 

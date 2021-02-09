@@ -31,6 +31,8 @@
                     <td>
                         <asp:DropDownList ID="ddl_prefix" runat="server"  DataTextField ="thanm" DataValueField="prefixcd"></asp:DropDownList>
                     </td>
+                    <td>  <asp:Label ID="Label1" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาเลือกคำนำหน้า</p></asp:Label>
+</td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
@@ -42,6 +44,7 @@
                     </td> 
                     <td>
                         <asp:DropDownList ID="ddl_phr_type"  runat="server"></asp:DropDownList>
+                        <asp:Label ID="Label3" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +67,9 @@
                     <td>
                          <asp:TextBox ID="txt_STUDY_LEVEL" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
@@ -102,7 +107,9 @@
                     <td>
                         <asp:TextBox ID="txt_PHR_TEXT_WORK_TIME" runat="server"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Label ID="Label4" runat="server" Text="" style="display:none" ><p style="color:red">*กรุณากรอกเวลาทำการ</p> </asp:Label>
+                    </td>
                 </tr>
             </table>
     <table>
