@@ -2007,7 +2007,7 @@ Public Class POPUP_DR_CONFIRM_STAFF
         Dim tamrap_id As Integer = 0
         Dim class_xml As New CLASS_DR
 
-        Dim dao_e As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_PRODUCT_GROUP_ESUB
+        Dim dao_e As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
         dao_e.GetDataby_u1_frn_no(newcode)
         Dim dao As New DAO_DRUG.ClsDBdrrgt
         ' dao.GetDataby_IDA(_IDA)
@@ -2163,7 +2163,7 @@ Public Class POPUP_DR_CONFIRM_STAFF
 
         End Try
 
-        Dim dao_lcn As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_DRUG_LCN_ESUB
+        Dim dao_lcn As New DAO_XML_DRUG_HERB.TB_XML_DRUG_LCN_HERB
         Try
             dao_lcn.GetDataby_u1(dao_e.fields.Newcode_not)
             lcntpcd = dao_lcn.fields.lcntpcd
