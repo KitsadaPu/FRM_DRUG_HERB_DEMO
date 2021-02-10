@@ -326,7 +326,7 @@
                     RDP_DOC_DATE.SelectedDate = dao_frgn.fields.DOC_DATE
                     txt_WORK_LICENSE_NO.Text = dao_frgn.fields.WORK_LICENSE_NO
                     RDP_WORK_LICENSE_EXPDATE.SelectedDate = dao_frgn.fields.WORK_LICENSE_EXPDATE
-                    txt_BS_NO1.Text = dao_frgn.fields.BS_NO1
+                    txt_BS_NO.Text = dao_frgn.fields.BS_NO
                     RDP_BS_DATE.SelectedDate = dao_frgn.fields.BS_DATE
                     txt_FRGN_NO.Text = dao_frgn.fields.FRGN_NO
                     RDP_FRGN_DATE.SelectedDate = dao_frgn.fields.FRGN_DATE
