@@ -150,13 +150,13 @@
                         <form name="form" method="post" align="center;" id="smp1">
 
                             <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
+                                <div class="col-lg-12" style="text-align: center;">
                                     <h1>คำขอรับใบอนูญาต
                                     </h1>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
+                                <div class="col-lg-12" style="text-align: center;">
                                     <label>
                                         ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร                     
                                     </label>
@@ -165,7 +165,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
+                                <div class="col-lg-12" style="text-align: center;">
                                     <label>
                                         คำขอใบอนุญาต                    
                                     </label>
@@ -173,7 +173,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-12" style="text-align: left">
+                                <div class="col-lg-12" style="text-align: left">
                                     <center>
                    <asp:RadioButtonList ID="rdl_lcn_type" runat="server" Enabled="False">
                     <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
