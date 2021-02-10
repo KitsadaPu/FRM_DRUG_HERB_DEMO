@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class FRM_LCN_CONFIRM_DRUG
 
     '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
     '''hl_reader control.
     '''</summary>
     '''<remarks>
@@ -723,6 +732,15 @@ Partial Public Class FRM_LCN_CONFIRM_DRUG
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label59 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''RadGrid2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''lbl_PHR_prefix control.

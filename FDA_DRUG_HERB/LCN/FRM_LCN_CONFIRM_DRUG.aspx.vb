@@ -2,7 +2,7 @@
 Imports System.Xml.Serialization
 Imports iTextSharp.text.pdf
 Imports FDA_DRUG_HERB.XML_CENTER
-
+Imports Telerik.Web.UI
 Public Class FRM_LCN_CONFIRM_DRUG
     Inherits System.Web.UI.Page
 
@@ -2177,6 +2177,20 @@ Public Class FRM_LCN_CONFIRM_DRUG
         Return imgBin
     End Function
 
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        Dim bao_mas As New BAO_MASTER
+        Dim dt As New DataTable
+        Try
+            'Dim dao As New DAO_DRUG.ClsDBdalcn
+            'dao.GetDataby_IDA(Request.QueryString("IDA"))
+            dt = bao_mas.SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA(Request.QueryString("_IDA"))
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count > 0 Then
+            RadGrid2.DataSource = dt
+        End If
+    End Sub
     Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
         Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
     End Sub
