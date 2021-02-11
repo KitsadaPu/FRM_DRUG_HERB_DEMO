@@ -315,6 +315,8 @@
             dao_frgn.GetDataby_FK_IDA(Request.QueryString("ida"))
             If dao_frgn.fields.PERSONAL_TYPE_MENU = 1 Then
                 rdl_sanchaat.SelectedValue = 1
+                TB_Personal_Type1.Visible = False
+                TB_Personal_Type2.Visible = False
             ElseIf dao_frgn.fields.PERSONAL_TYPE_MENU = 2 Then
                 rdl_sanchaat.SelectedValue = 2
                 If dao_frgn.fields.PASSPORT_NO <> "" Then

@@ -528,16 +528,17 @@
                                 &ensp;&ensp;--%>
                             </div>
                             <div>
-                                <table id="TB_Personal" runat="server">
+                                <asp:Panel id="TB_Personal" runat="server">
                                     <div class="row">
                                         <div class="col-lg-1" ></div>
-                                        <div class="col-lg-1" colspan="8">
-                                            <caption>
+                                        <div class="col-lg-10" colspan="8">
+                                            
                                                 <h4>กรณีผู้ขออนนุญาตเป็นบุคคลต่างด้าว ระบุ</h4>
-                                            </caption>
+                                            
                                         </div>
+                                        <div class="col-lg-1" ></div>
                                     </div>
-                                </table>
+                                </asp:Panel>
                                 <asp:Panel ID="TB_Personal_Type1" runat="server">
                                     <div runat="server">
 

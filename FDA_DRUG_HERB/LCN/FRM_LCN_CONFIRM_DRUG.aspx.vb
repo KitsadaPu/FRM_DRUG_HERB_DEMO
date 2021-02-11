@@ -748,10 +748,11 @@ Public Class FRM_LCN_CONFIRM_DRUG
             If rdl_sanchaat.SelectedValue = 1 Then
                 TB_Personal_Type1.Visible = False
                 TB_Personal_Type2.Visible = False
-                TB_Personal.Visible = False
+                TB_Personal.Style.Add("display", "none")
             ElseIf rdl_sanchaat.SelectedValue = 2 Then
                 TB_Personal_Type1.Visible = True
                 TB_Personal_Type2.Visible = True
+                TB_Personal.Style.Add("display", "initial")
             End If
 
         Catch ex As Exception

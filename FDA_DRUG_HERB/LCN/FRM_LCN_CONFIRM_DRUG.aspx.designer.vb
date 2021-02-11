@@ -245,7 +245,7 @@ Partial Public Class FRM_LCN_CONFIRM_DRUG
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TB_Personal As Global.System.Web.UI.HtmlControls.HtmlTable
+    Protected WithEvents TB_Personal As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''TB_Personal_Type1 control.
