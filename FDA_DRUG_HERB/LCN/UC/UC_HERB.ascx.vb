@@ -315,6 +315,7 @@
             dao_frgn.GetDataby_FK_IDA(Request.QueryString("ida"))
             If dao_frgn.fields.PERSONAL_TYPE_MENU = 1 Then
                 rdl_sanchaat.SelectedValue = 1
+                TB_Personal.Visible = False
                 TB_Personal_Type1.Visible = False
                 TB_Personal_Type2.Visible = False
             ElseIf dao_frgn.fields.PERSONAL_TYPE_MENU = 2 Then
@@ -370,7 +371,7 @@
     End Function
     Sub setdata(ByRef dao As DAO_DRUG.ClsDBdalcn, ByVal TR_ID As Integer)
         With dao.fields
-            
+
             .GIVE_PASSPORT_NO = txt_GIVE_PASSPORT_NO.Text
             Try
                 .GIVE_PASSPORT_EXPDATE = rdp_GIVE_PASSPORT_EXPDATE.SelectedDate
