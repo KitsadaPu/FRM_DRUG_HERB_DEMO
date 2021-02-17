@@ -98,7 +98,7 @@
                                                <table>
                                                    <tr>
                                                        <td>&nbsp;</td>
-                                                       <td width="40%">
+                                                       <td width="37%">
                                                            <%--<asp:DropDownList ID="ddl_phr_name" runat="server">
                                                            </asp:DropDownList>--%>
 
