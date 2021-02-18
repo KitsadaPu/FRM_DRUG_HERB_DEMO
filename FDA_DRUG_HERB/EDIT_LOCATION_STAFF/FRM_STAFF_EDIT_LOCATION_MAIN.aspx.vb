@@ -116,11 +116,11 @@ Public Class FRM_STAFF_EDIT_LOCATION_MAIN
         Catch ex As Exception
 
         End Try
-        If IDGroup = 21020 Or IDGroup = 303077 Then
+        If IDGroup = 21020 Then
             RadGrid1.DataSource = dt
         ElseIf IDGroup = 63346 Then
             RadGrid1.DataSource = dt.Select("STATUS_ID = 2")
-        ElseIf IDGroup = 63347 Then
+        ElseIf IDGroup = 63347 Or IDGroup = 296688 Then
             RadGrid1.DataSource = dt.Select("STATUS_ID >= 2 and STATUS_ID <= 6")
         ElseIf IDGroup = 63348 Then
             RadGrid1.DataSource = dt.Select("STATUS_ID > 6")
