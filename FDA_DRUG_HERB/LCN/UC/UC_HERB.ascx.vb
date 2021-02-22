@@ -305,33 +305,64 @@
 
         Next
 
-        Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
-        dao_frgn.GetDataby_FK_IDA(Request.QueryString("ida"))
 
-        If dao_frgn.fields.addr_status = 1 Then
+        If Request.QueryString("ida") IsNot Nothing Then
+            Dim dao_dal As New DAO_DRUG.ClsDBdalcn
+            dao_dal.GetDataby_IDA(Request.QueryString("ida"))
+            txt_da_opentime.Text = dao_dal.fields.opentime
 
-
-            Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
-            dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
-            cb_addr.Checked = True
-            ddl_amphor.SelectedValue = dao_curent.fields.amphrcd
-            ddl_Province.SelectedValue = dao_curent.fields.chngwtcd
-            txt_c_email.Text = dao_curent.fields.email
-            txt_c_fax.Text = dao_curent.fields.fax
-            '.FK_IDA = 
-            txt_c_tel.Text = dao_curent.fields.tel
-            txt_c_thaaddr.Text = dao_curent.fields.thaaddr
-            txt_c_floor.Text = dao_curent.fields.thafloor
-            txt_c_thabuilding.Text = dao_curent.fields.thabuilding
-            txt_c_thamu.Text = dao_curent.fields.thamu
-            '.thanameplace = ""
-            txt_c_tharoad.Text = dao_curent.fields.tharoad
-            txt_c_room.Text = dao_curent.fields.tharoom
-            txt_c_thasoi.Text = dao_curent.fields.thasoi
-            ddl_tambol.SelectedValue = dao_curent.fields.thmblcd
-            txt_c_zipcode.Text = dao_curent.fields.zipcode
+            Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
+            dao_frgn.GetDataby_FK_IDA(Request.QueryString("ida"))
+            If dao_frgn.fields.PERSONAL_TYPE_MENU = 1 Then
+                rdl_sanchaat.SelectedValue = 1
+                TB_Personal.Visible = False
+                TB_Personal_Type1.Visible = False
+                TB_Personal_Type2.Visible = False
+            ElseIf dao_frgn.fields.PERSONAL_TYPE_MENU = 2 Then
+                rdl_sanchaat.SelectedValue = 2
+                If dao_frgn.fields.PASSPORT_NO <> "" Then
+                    cb_Personal_Type1.Checked = True
+                    TB_Personal_Type2.Visible = False
+                    txt_PASSPORT_NO.Text = dao_frgn.fields.PASSPORT_NO
+                    RDP_PASSPORT_EXPDATE.SelectedDate = dao_frgn.fields.PASSPORT_EXPDATE
+                    txt_DOC_NO.Text = dao_frgn.fields.DOC_NO
+                    RDP_DOC_DATE.SelectedDate = dao_frgn.fields.DOC_DATE
+                    txt_WORK_LICENSE_NO.Text = dao_frgn.fields.WORK_LICENSE_NO
+                    RDP_WORK_LICENSE_EXPDATE.SelectedDate = dao_frgn.fields.WORK_LICENSE_EXPDATE
+                    txt_BS_NO.Text = dao_frgn.fields.BS_NO
+                    RDP_BS_DATE.SelectedDate = dao_frgn.fields.BS_DATE
+                    txt_FRGN_NO.Text = dao_frgn.fields.FRGN_NO
+                    RDP_FRGN_DATE.SelectedDate = dao_frgn.fields.FRGN_DATE
+                ElseIf dao_frgn.fields.BS_NO1 <> "" Then
+                    cb_Personal_Type2.Checked = True
+                    TB_Personal_Type1.Visible = False
+                    txt_BS_NO1.Text = dao_frgn.fields.BS_NO1
+                    RDP_BS_DATE1.SelectedDate = dao_frgn.fields.BS_DATE1
+                    RDP_FRGN_DATE1.SelectedDate = dao_frgn.fields.FRGN_DATE1
+                End If
+            End If
+            If dao_frgn.fields.addr_status = 1 Then
+                Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
+                dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
+                cb_addr.Checked = True
+                ddl_amphor.SelectedValue = dao_curent.fields.amphrcd
+                ddl_Province.SelectedValue = dao_curent.fields.chngwtcd
+                txt_c_email.Text = dao_curent.fields.email
+                txt_c_fax.Text = dao_curent.fields.fax
+                '.FK_IDA = 
+                txt_c_tel.Text = dao_curent.fields.tel
+                txt_c_thaaddr.Text = dao_curent.fields.thaaddr
+                txt_c_floor.Text = dao_curent.fields.thafloor
+                txt_c_thabuilding.Text = dao_curent.fields.thabuilding
+                txt_c_thamu.Text = dao_curent.fields.thamu
+                '.thanameplace = ""
+                txt_c_tharoad.Text = dao_curent.fields.tharoad
+                txt_c_room.Text = dao_curent.fields.tharoom
+                txt_c_thasoi.Text = dao_curent.fields.thasoi
+                ddl_tambol.SelectedValue = dao_curent.fields.thmblcd
+                txt_c_zipcode.Text = dao_curent.fields.zipcode
+            End If
         End If
-
     End Sub
     Private Function set_lcntpcd() As String
         Dim dao As New DAO_DRUG.ClsDBPROCESS_NAME
@@ -340,7 +371,7 @@
     End Function
     Sub setdata(ByRef dao As DAO_DRUG.ClsDBdalcn, ByVal TR_ID As Integer)
         With dao.fields
-            
+
             .GIVE_PASSPORT_NO = txt_GIVE_PASSPORT_NO.Text
             Try
                 .GIVE_PASSPORT_EXPDATE = rdp_GIVE_PASSPORT_EXPDATE.SelectedDate
@@ -929,11 +960,13 @@
                     Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
                     Return False
                 End If
+                Return True
             ElseIf cb_Personal_Type2.Checked Then
                 If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
                     Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
                     Return False
                 End If
+                Return True
             End If
         ElseIf txt_c_thaaddr.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
