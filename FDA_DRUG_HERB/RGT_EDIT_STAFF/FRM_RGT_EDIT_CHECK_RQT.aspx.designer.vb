@@ -122,15 +122,6 @@ Partial Public Class FRM_RGT_EDIT_CHECK_RQT
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lbl_staff_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_staff_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Label1 control.
     '''</summary>
     '''<remarks>

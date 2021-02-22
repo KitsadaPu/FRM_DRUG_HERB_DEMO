@@ -73,10 +73,9 @@
                         <asp:TextBox ID="txt_iden_staff" runat="server" CssClass="input-lg"></asp:TextBox>
                         <asp:Button ID="btn_search" runat="server" Text="ค้นหาจนท." CssClass="btn-lg" />
                         <br />
-                        <asp:Label ID="lbl_staff_name" runat="server" Text="-"></asp:Label>
                         </td></tr>
                    <tr ><td><asp:Label ID="Label1" runat="server" Text="รูปแบบเอกสาร" style="display:none;"></asp:Label>
-                       เลขรับ สนบ (เฉพาะกรณีที่เป็นเจ้าหน้าที่ สนบ)</td><td>
+                       เลขรับ (สำหรับเจ้าหน้าที่ สนบ)</td><td>
                         <asp:DropDownList ID="ddl_template" runat="server" Width="80%" style="display:none;">
                             <asp:ListItem Value="1">แบบปกติ</asp:ListItem>
                             <asp:ListItem Value="2">แบบที่ 1</asp:ListItem>
