@@ -73,6 +73,7 @@
                         <asp:TextBox ID="txt_iden_staff" runat="server" CssClass="input-lg"></asp:TextBox>
                         <asp:Button ID="btn_search" runat="server" Text="ค้นหาจนท." CssClass="btn-lg" />
                         <br />
+                        <asp:Label ID="lbl_staff_name" runat="server" Text="-"></asp:Label>
                         </td></tr>
                    <tr ><td><asp:Label ID="Label1" runat="server" Text="รูปแบบเอกสาร" style="display:none;"></asp:Label>
                        เลขรับ (สำหรับเจ้าหน้าที่ สนบ)</td><td>
