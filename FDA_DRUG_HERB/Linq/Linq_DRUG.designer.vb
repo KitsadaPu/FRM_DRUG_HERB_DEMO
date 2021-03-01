@@ -2119,6 +2119,12 @@ Partial Public Class Linq_DRUGDataContext
     End Sub
   Partial Private Sub DeleteTRANSACTION_UPLOAD(instance As TRANSACTION_UPLOAD)
     End Sub
+  Partial Private Sub Insertlcn_request_edit(instance As lcn_request_edit)
+    End Sub
+  Partial Private Sub Updatelcn_request_edit(instance As lcn_request_edit)
+    End Sub
+  Partial Private Sub Deletelcn_request_edit(instance As lcn_request_edit)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -4267,6 +4273,12 @@ Partial Public Class Linq_DRUGDataContext
 	Public ReadOnly Property TRANSACTION_UPLOADs() As System.Data.Linq.Table(Of TRANSACTION_UPLOAD)
 		Get
 			Return Me.GetTable(Of TRANSACTION_UPLOAD)
+		End Get
+	End Property
+	
+	Public ReadOnly Property lcn_request_edits() As System.Data.Linq.Table(Of lcn_request_edit)
+		Get
+			Return Me.GetTable(Of lcn_request_edit)
 		End Get
 	End Property
 End Class
@@ -137185,6 +137197,223 @@ Partial Public Class TRANSACTION_UPLOAD
 				Me._PROCESS_ID_STR = value
 				Me.SendPropertyChanged("PROCESS_ID_STR")
 				Me.OnPROCESS_ID_STRChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.lcn_request_edit")>  _
+Partial Public Class lcn_request_edit
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _IDA As Integer
+	
+	Private _ID_DALCN As System.Nullable(Of Integer)
+	
+	Private _ID_DALCN_LOCATION_ADDRESS As System.Nullable(Of Integer)
+	
+	Private _ID_DALCN_FIX As System.Nullable(Of Integer)
+	
+	Private _ID_DALCN_LOCATION_ADDRESS_FIX As System.Nullable(Of Integer)
+	
+	Private _TR_ID As System.Nullable(Of Integer)
+	
+	Private _STATUS As System.Nullable(Of Integer)
+	
+	Private _rcbno As Integer
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDAChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDAChanged()
+    End Sub
+    Partial Private Sub OnID_DALCNChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnID_DALCNChanged()
+    End Sub
+    Partial Private Sub OnID_DALCN_LOCATION_ADDRESSChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnID_DALCN_LOCATION_ADDRESSChanged()
+    End Sub
+    Partial Private Sub OnID_DALCN_FIXChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnID_DALCN_FIXChanged()
+    End Sub
+    Partial Private Sub OnID_DALCN_LOCATION_ADDRESS_FIXChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnID_DALCN_LOCATION_ADDRESS_FIXChanged()
+    End Sub
+    Partial Private Sub OnTR_IDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnTR_IDChanged()
+    End Sub
+    Partial Private Sub OnSTATUSChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSTATUSChanged()
+    End Sub
+    Partial Private Sub OnrcbnoChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnrcbnoChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDA", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property IDA() As Integer
+		Get
+			Return Me._IDA
+		End Get
+		Set
+			If ((Me._IDA = value)  _
+						= false) Then
+				Me.OnIDAChanging(value)
+				Me.SendPropertyChanging
+				Me._IDA = value
+				Me.SendPropertyChanged("IDA")
+				Me.OnIDAChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID_DALCN", DbType:="Int")>  _
+	Public Property ID_DALCN() As System.Nullable(Of Integer)
+		Get
+			Return Me._ID_DALCN
+		End Get
+		Set
+			If (Me._ID_DALCN.Equals(value) = false) Then
+				Me.OnID_DALCNChanging(value)
+				Me.SendPropertyChanging
+				Me._ID_DALCN = value
+				Me.SendPropertyChanged("ID_DALCN")
+				Me.OnID_DALCNChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID_DALCN_LOCATION_ADDRESS", DbType:="Int")>  _
+	Public Property ID_DALCN_LOCATION_ADDRESS() As System.Nullable(Of Integer)
+		Get
+			Return Me._ID_DALCN_LOCATION_ADDRESS
+		End Get
+		Set
+			If (Me._ID_DALCN_LOCATION_ADDRESS.Equals(value) = false) Then
+				Me.OnID_DALCN_LOCATION_ADDRESSChanging(value)
+				Me.SendPropertyChanging
+				Me._ID_DALCN_LOCATION_ADDRESS = value
+				Me.SendPropertyChanged("ID_DALCN_LOCATION_ADDRESS")
+				Me.OnID_DALCN_LOCATION_ADDRESSChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID_DALCN_FIX", DbType:="Int")>  _
+	Public Property ID_DALCN_FIX() As System.Nullable(Of Integer)
+		Get
+			Return Me._ID_DALCN_FIX
+		End Get
+		Set
+			If (Me._ID_DALCN_FIX.Equals(value) = false) Then
+				Me.OnID_DALCN_FIXChanging(value)
+				Me.SendPropertyChanging
+				Me._ID_DALCN_FIX = value
+				Me.SendPropertyChanged("ID_DALCN_FIX")
+				Me.OnID_DALCN_FIXChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID_DALCN_LOCATION_ADDRESS_FIX", DbType:="Int")>  _
+	Public Property ID_DALCN_LOCATION_ADDRESS_FIX() As System.Nullable(Of Integer)
+		Get
+			Return Me._ID_DALCN_LOCATION_ADDRESS_FIX
+		End Get
+		Set
+			If (Me._ID_DALCN_LOCATION_ADDRESS_FIX.Equals(value) = false) Then
+				Me.OnID_DALCN_LOCATION_ADDRESS_FIXChanging(value)
+				Me.SendPropertyChanging
+				Me._ID_DALCN_LOCATION_ADDRESS_FIX = value
+				Me.SendPropertyChanged("ID_DALCN_LOCATION_ADDRESS_FIX")
+				Me.OnID_DALCN_LOCATION_ADDRESS_FIXChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TR_ID", DbType:="Int")>  _
+	Public Property TR_ID() As System.Nullable(Of Integer)
+		Get
+			Return Me._TR_ID
+		End Get
+		Set
+			If (Me._TR_ID.Equals(value) = false) Then
+				Me.OnTR_IDChanging(value)
+				Me.SendPropertyChanging
+				Me._TR_ID = value
+				Me.SendPropertyChanged("TR_ID")
+				Me.OnTR_IDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_STATUS", DbType:="Int")>  _
+	Public Property STATUS() As System.Nullable(Of Integer)
+		Get
+			Return Me._STATUS
+		End Get
+		Set
+			If (Me._STATUS.Equals(value) = false) Then
+				Me.OnSTATUSChanging(value)
+				Me.SendPropertyChanging
+				Me._STATUS = value
+				Me.SendPropertyChanged("STATUS")
+				Me.OnSTATUSChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rcbno", DbType:="Int NOT NULL")>  _
+	Public Property rcbno() As Integer
+		Get
+			Return Me._rcbno
+		End Get
+		Set
+			If ((Me._rcbno = value)  _
+						= false) Then
+				Me.OnrcbnoChanging(value)
+				Me.SendPropertyChanging
+				Me._rcbno = value
+				Me.SendPropertyChanged("rcbno")
+				Me.OnrcbnoChanged
 			End If
 		End Set
 	End Property
