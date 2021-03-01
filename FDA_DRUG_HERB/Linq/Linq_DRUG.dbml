@@ -6847,4 +6847,16 @@
       <Column Name="URL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.lcn_request_edit" Member="lcn_request_edits">
+    <Type Name="lcn_request_edit">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_DALCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_DALCN_LOCATION_ADDRESS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_DALCN_FIX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_DALCN_LOCATION_ADDRESS_FIX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rcbno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

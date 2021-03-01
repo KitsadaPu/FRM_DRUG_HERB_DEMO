@@ -10,6 +10,36 @@ Namespace DAO_DRUG
 
     End Class
     '
+    Public Class ClsDBlcn_request
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New LCN_REQUEST_EDIT            'ใส่ชื่อ Table   (dh15rqt)
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.lcn_request_edits Where p.IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub insert()
+            db.lcn_request_edits.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.lcn_request_edits.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.lcn_request_edits Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class ClsDBdrdrgtype
         Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
 

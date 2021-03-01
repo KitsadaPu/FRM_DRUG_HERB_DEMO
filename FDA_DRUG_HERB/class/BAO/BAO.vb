@@ -488,7 +488,7 @@ Namespace BAO
                     .CONDITION1 = dao_conq.fields.CONDITION1
                     .CONDITION2 = dao_conq.fields.CONDITION2
                     .FK_IDA = IDA_rgt
-                    
+
                 End With
                 dao_cong.insert()
             Next
@@ -687,6 +687,14 @@ Namespace BAO
                 dao_no.insert()
             Next
         End Sub
+        Public Function SP_LIST_LCN_REQUEST() As DataTable
+
+            Dim sql As String = "exec SP_LIST_LCN_REQUEST"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
         Public Function SP_TEMP_CASE1441() As DataTable
 
             Dim sql As String = "exec SP_TEMP_CASE1441"
@@ -5444,6 +5452,14 @@ Namespace BAO
         Public Function SP_CUSTOMER_LCN_BY_IDEN(ByVal iden As String) As DataTable
             Dim clsds As New ClassDataset
             Dim sql As String = "exec SP_CUSTOMER_LCN_BY_IDEN @iden='" & iden & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
+        Public Function SP_CUSTOMER_LCN_LISTREQUEST_BY_IDEN(ByVal iden As String) As DataTable
+            Dim clsds As New ClassDataset
+            Dim sql As String = "exec SP_CUSTOMER_LCN_LISTREQUEST_BY_IDEN @iden='" & iden & "'"
             Dim dta As New DataTable
             dta = Queryds(sql)
             Return dta
