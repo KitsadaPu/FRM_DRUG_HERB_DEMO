@@ -164,6 +164,21 @@
         Catch ex As Exception
 
         End Try
+        'dao_rqt.fields.RCV_SORNORBOR = rcv_sornorbor.Text
+        'Dim sornorbor_no As Integer
+        'sornorbor_no = Convert.ToInt32(rcv_sornorbor.Text)
+        Try
+            dao_rqt.fields.RCV_SORNORBOR = rcv_sornorbor.Text
+        Catch ex As Exception
+
+        End Try
+        Try
+            If rcv_sornorbor.Text <> "" Then
+                dao_rqt.fields.RCV_SORNORBOR_COUNT = 1
+            End If
+        Catch ex As Exception
+
+        End Try
         Try
             dao_rqt.fields.TYPE_REQUESTS_ID = ddl_req_type.SelectedValue
         Catch ex As Exception
@@ -315,5 +330,9 @@
 
     Protected Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
         lbl_staff_name.Text = set_name_company(txt_iden_staff.Text)
+    End Sub
+
+    Protected Sub rcv_sornorbor_TextChanged(sender As Object, e As EventArgs) Handles rcv_sornorbor.TextChanged
+        Dim dao_rqt As New DAO_DRUG.TB_DRRGT_EDIT_REQUEST
     End Sub
 End Class

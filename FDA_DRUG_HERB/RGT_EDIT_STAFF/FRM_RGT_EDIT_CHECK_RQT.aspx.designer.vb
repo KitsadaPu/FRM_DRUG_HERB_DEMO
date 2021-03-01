@@ -149,6 +149,15 @@ Partial Public Class FRM_RGT_EDIT_CHECK_RQT
     Protected WithEvents ddl_template As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''rcv_sornorbor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rcv_sornorbor As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btn_save control.
     '''</summary>
     '''<remarks>
