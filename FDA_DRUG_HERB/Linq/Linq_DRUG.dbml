@@ -570,21 +570,6 @@
       <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TRANSACTION_UPLOAD" Member="TRANSACTION_UPLOADs">
-    <Type Name="TRANSACTION_UPLOAD">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CITIEZEN_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CITIEZEN_ID_AUTHORIZE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="UPLOAD_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="REF_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="DOWNLOAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="YEAR" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.PROCESS_NAME" Member="PROCESS_NAMEs">
     <Type Name="PROCESS_NAME">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -6845,8 +6830,25 @@
       <Column Name="drgtpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="RQT_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="RQT_IDENTIFY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="RCV_SORNORBOR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RCV_SORNORBOR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="RCV_SORNORBOR_COUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TRANSACTION_UPLOAD" Member="TRANSACTION_UPLOADs">
+    <Type Name="TRANSACTION_UPLOAD">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CITIEZEN_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CITIEZEN_ID_AUTHORIZE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPLOAD_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REF_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOWNLOAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="GEN_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID_STR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -118,6 +118,9 @@
                        <telerik:GridBoundColumn DataField="PURPOSE" FilterControlAltText="Filter PURPOSE column"
                            HeaderText="เหตุผล" SortExpression="PURPOSE" UniqueName="PURPOSE">
                        </telerik:GridBoundColumn>
+                       <telerik:GridBoundColumn DataField="newcode" FilterControlAltText="Filter newcode column"
+                           HeaderText="newcode" SortExpression="newcode" UniqueName="newcode" Display="false">
+                       </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
                            HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
                        </telerik:GridBoundColumn>

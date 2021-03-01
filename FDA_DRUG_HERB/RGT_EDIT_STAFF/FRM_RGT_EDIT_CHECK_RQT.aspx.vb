@@ -164,13 +164,18 @@
         Catch ex As Exception
 
         End Try
+        'dao_rqt.fields.RCV_SORNORBOR = rcv_sornorbor.Text
+        'Dim sornorbor_no As Integer
+        'sornorbor_no = Convert.ToInt32(rcv_sornorbor.Text)
         Try
             dao_rqt.fields.RCV_SORNORBOR = rcv_sornorbor.Text
         Catch ex As Exception
 
         End Try
         Try
-            dao_rqt.fields.RCV_SORNORBOR_COUNT = 1
+            If rcv_sornorbor.Text <> "" Then
+                dao_rqt.fields.RCV_SORNORBOR_COUNT = 1
+            End If
         Catch ex As Exception
 
         End Try
