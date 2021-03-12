@@ -3,9 +3,30 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+                    <script type="text/javascript">
+
+                    function Popups2(url) { // สำหรับทำ Div Popup
+                        $('#myModal').modal('toggle'); // เป็นคำสั่งเปิดปิด
+                        var i = $('#f1'); // ID ของ iframe   
+                        i.attr("src", url); //  url ของ form ที่จะเปิด
+                    }
+                    function close_modal() { // คำสั่งสั่งปิด PopUp
+                        $('#myModal').modal('hide');
+                        $('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
+                    }
+                    </script>
+        <style>
+        .panel {
+            margin-bottom:0px;
+            background: white;
+        }
+        .panel-body {
+            background: white;
+        }
+    </style>
                 <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10"><h1>รายการคำขอจัดการสถานที่</h1></div>
+                <div class="col-lg-10"><h1>รายการคำขอใบแทนใบสำคัญ</h1></div>
                 <div class="col-lg-1"></div>
             </div>
             <div class="row">
@@ -21,30 +42,40 @@
                                <telerik:GridBoundColumn DataField="IDA" FilterControlAltText="Filter IDA column"
                                    HeaderText="IDA" SortExpression="IDA" UniqueName="IDA" Display="false">
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="LCNNO_MANUAL" HeaderText="เลขที่ใบอนุญาต" FilterControlAltText="Filter SIMINAR_DATE column"
-                                    SortExpression="SIMINAR_DATE" UniqueName="LCNNO_MANUAL" >
+                               <telerik:GridBoundColumn DataField="ID_DALCN" FilterControlAltText="Filter IDA column"
+                                   HeaderText="ID_DALCN" SortExpression="ID_DALCN" UniqueName="ID_DALCN" Display="false">
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="PROCESS_NAME" HeaderText="ประเภท" FilterControlAltText="Filter PROCESS_NAME column"
-                                   SortExpression="NAME_SIMINAR" UniqueName="NAME_SIMINAR" >
+                               <telerik:GridBoundColumn DataField="rcbno" HeaderText="เลขรับ" FilterControlAltText="Filter SIMINAR_DATE column"
+                                    SortExpression="rcbno" UniqueName="rcbno" >
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="thanameplace" HeaderText="ชื่อสถานที่" FilterControlAltText="Filter thanameplace column"
-                                    SortExpression="SIMINAR_DATE" UniqueName="SIMINAR_DATE" >
+                               <telerik:GridBoundColumn DataField="TR_ID" HeaderText="เลขดำเนินการ" FilterControlAltText="Filter TR_ID column"
+                                   SortExpression="TR_ID" UniqueName="NAME_SIMINAR" >
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn  DataField="fulladdr" HeaderText="ที่อยู่" FilterControlAltText="Filter fulladdr column"
-                                    SortExpression="SIMINAR_DATE" UniqueName="SIMINAR_DATE" >
+                               <telerik:GridBoundColumn DataField="NOTE" HeaderText="หมายเหตุ" FilterControlAltText="Filter thanameplace column"
+                                    SortExpression="NOTE" UniqueName="NOTE" >
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="lcnsid" HeaderText="รหัสผู้ประกอบการ" FilterControlAltText="Filter lcnsid column"
-                                  SortExpression="SIMINAR_DATE" UniqueName="SIMINAR_DATE" >
+                               <telerik:GridBoundColumn  DataField="STATUS_NAME" HeaderText="สถานะ" FilterControlAltText="Filter fulladdr column"
+                                    SortExpression="STATUS_NAME" UniqueName="SIMINAR_DATE" >
                                </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="HOUSENO" HeaderText="เลขสถานที่" FilterControlAltText="Filter HOUSENO column"
-                                    SortExpression="SIMINAR_DATE" UniqueName="SIMINAR_DATE" >
-                               </telerik:GridBoundColumn>
-                               <telerik:GridBoundColumn DataField="TRANSECTION_ID_UPLOAD" HeaderText="เลขดำเนินการ" FilterControlAltText="Filter TRANSECTION_ID_UPLOAD column"
-                                    SortExpression="SIMINAR_DATE" UniqueName="SIMINAR_DATE" >
-                               </telerik:GridBoundColumn>
+                              <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sele"
+                                   CommandName="sele" Text="เลือกข้อมูล">
+                                   <HeaderStyle Width="70px"/>
+                               </telerik:GridButtonColumn>
 
                            </Columns>
                        </MasterTableView>
  </telerik:radgrid>
-
+        <asp:Button ID="btn_reload" runat="server" Text="" style="display:none" />
+                  <div class="modal fade" id="myModal">              
+               <div class="panel panel-info" style="width:100%;">
+                   <div class="panel-heading  text-center"><h1>
+                       <asp:label id="lbl_title" runat="server" text=""></asp:label> </h1>
+                   </div>
+                  <%--<button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>--%>
+                   <div class="panel-body">
+                             <iframe id="f1"  style="width:100%; height:550px;" ></iframe>
+                   </div>
+                   <div class="panel-footer"></div>
+               </div>       
+       </div>
 </asp:Content>

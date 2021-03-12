@@ -1,4 +1,5 @@
-﻿Public Class UC_CONFIRM_REQUEST
+﻿Imports Telerik.Web.UI
+Public Class UC_CONFIRM_REQUEST
     Inherits System.Web.UI.UserControl
 
     Private _IDA As String
@@ -9,11 +10,12 @@
     Private _lct_ida As String
     Sub RunQuery()
         Try
-            _ProcessID = Request.QueryString("Process")
-            _lct_ida = Request.QueryString("lct_ida")
-            _IDA = Request.QueryString("IDA")
-            _TR_ID = Request.QueryString("TR_ID")
-            _iden = Request.QueryString("identify")
+
+            _ProcessID = Session("Process")
+            _lct_ida = Session("lct_ida")
+            _IDA = Session("ID_DAL_FIX")
+            '_TR_ID = Request.QueryString("TR_ID")
+            _iden = Session("identify")
             ' _CLS = Session("CLS")
 
         Catch ex As Exception
@@ -142,7 +144,7 @@
         Dim dt_bsn As New DataTable
         'Dim dao As New DAO_DRUG.ClsDBdalcn
         'dao.GetDataby_IDA(_IDA)
-        dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA)
+        dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(Session("_IDA_DAL"))
         For Each dr As DataRow In dt_bsn.Rows
 
             'Try
@@ -228,7 +230,7 @@
         Next
 
         Dim dt_lct As New DataTable
-        dt_lct = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(Request.QueryString("lct_ida"))
+        dt_lct = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(_lct_ida)
         For Each dr As DataRow In dt_lct.Rows
             Try
                 lbl_lct_HOUSENO.Text = dr("HOUSENO")
@@ -303,7 +305,7 @@
 
     End Sub
     Sub setdata_DALCN()
-        Dim dao As New DAO_DRUG.ClsDBdalcn
+        Dim dao As New DAO_DRUG.ClsDBdalcn_fix
         dao.GetDataby_IDA(_IDA)
         Try
             lbl_GIVE_PASSPORT_NO.Text = dao.fields.GIVE_PASSPORT_NO
@@ -325,19 +327,25 @@
         Catch ex As Exception
 
         End Try
+        Try
+            lbl_da_opentime.Text = dao.fields.opentime
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Sub setdata_current_data()
-        Dim dao As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
+        Dim dao As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS_FIX
         dao.GetData_By_FK_IDA(_IDA)
 
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt_bsn As New DataTable
-        Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+        Dim dao_lcn As New DAO_DRUG.ClsDBdalcn_fix
         dao_lcn.GetDataby_IDA(_IDA)
         dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA)
 
-        Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
+        Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA_FIX
         dao_frgn.GetDataby_FK_IDA(_IDA)
         If dao_frgn.fields.addr_status Is Nothing Then
             dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA)
@@ -417,7 +425,7 @@
 
 
         ElseIf dao_frgn.fields.addr_status IsNot Nothing Then
-            dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA)
+            dt_bsn = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(Session("_IDA_DAL"))
             For Each dr As DataRow In dt_bsn.Rows
 
                 Try
@@ -506,7 +514,7 @@
 
     'End Sub
     Sub setdata_frgn_data()
-        Dim dao As New DAO_DRUG.TB_DALCN_FRGN_DATA
+        Dim dao As New DAO_DRUG.TB_DALCN_FRGN_DATA_FIX
         dao.GetDataby_FK_IDA(_IDA)
         Try
             lbl_PASSPORT_NO.Text = dao.fields.PASSPORT_NO
@@ -618,6 +626,32 @@
         End Try
 
     End Sub
+    Private Sub rgphr_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgphr.NeedDataSource
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+        Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("ID_DAL_FIX").ToString())
 
+        dt = bao.SP_CLONE_DALCN_PHR_BY_FK_IDA_2(ida_fk_dalcn_fix)
+
+
+        If dt.Rows.Count > 0 Then
+            rgphr.DataSource = dt
+        End If
+    End Sub
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("ID_DAL_FIX").ToString())
+        Dim bao_mas As New BAO_MASTER
+        Dim dt As New DataTable
+        Try
+            'Dim dao As New DAO_DRUG.ClsDBdalcn
+            'dao.GetDataby_IDA(Request.QueryString("IDA"))
+            dt = bao_mas.SP_CLONE_DALCN_DETAIL_LOCATION_KEEP_FIX_BY_IDA(ida_fk_dalcn_fix)
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count > 0 Then
+            RadGrid2.DataSource = dt
+        End If
+    End Sub
 
 End Class

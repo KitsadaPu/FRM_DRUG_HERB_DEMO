@@ -9,6 +9,282 @@ Namespace DAO_DRUG
         Public datas                            'ประกาศเ
 
     End Class
+    Public Class TB_DALCN_DETAIL_LOCATION_KEEP_FIX
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New DALCN_DETAIL_LOCATION_KEEP_FIX           'ใส่ชื่อ Table   (dh15rqt)
+        Private _Details As New List(Of DALCN_DETAIL_LOCATION_KEEP_FIX)
+        Public Property Details() As List(Of DALCN_DETAIL_LOCATION_KEEP_FIX)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_DETAIL_LOCATION_KEEP_FIX))
+                _Details = value
+            End Set
+        End Property
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_DETAIL_LOCATION_KEEP_FIX
+        End Sub
+        Public Sub insert()
+            db.DALCN_DETAIL_LOCATION_KEEP_FIXes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_DETAIL_LOCATION_KEEP_FIXes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_DETAIL_LOCATION_KEEP_FIXes Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.DALCN_DETAIL_LOCATION_KEEP_FIXes Where p.IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_BY_FK(ByVal ida As String)
+
+            datas = (From p In db.DALCN_DETAIL_LOCATION_KEEP_FIXes Where p.FK_IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+                AddDetails()
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_CURRENT_ADDRESS_FIX
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New DALCN_CURRENT_ADDRESS_FIX           'ใส่ชื่อ Table   (dh15rqt)
+
+        Public Sub insert()
+            db.DALCN_CURRENT_ADDRESS_FIXes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_CURRENT_ADDRESS_FIXes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_CURRENT_ADDRESS_FIXes Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.DALCN_CURRENT_ADDRESS_FIXes Where p.IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_By_FK_IDA(ByVal IDA As String)
+            datas = (From p In db.DALCN_CURRENT_ADDRESS_FIXes Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA_DALCN(ByVal IDA As String)
+            datas = (From p In db.DALCN_CURRENT_ADDRESS_FIXes Where p.ID_DALCN = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_DALCN_FRGN_DATA_FIX
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New DALCN_FRGN_DATA_FIX           'ใส่ชื่อ Table   (dh15rqt)
+
+        Public Sub insert()
+            db.DALCN_FRGN_DATA_FIXes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_FRGN_DATA_FIXes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_FRGN_DATA_FIXes Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.DALCN_FRGN_DATA_FIXes Where p.IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
+
+            datas = (From p In db.DALCN_FRGN_DATA_FIXes Where p.FK_IDA = FK_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_IDA_DALCN(ByVal _IDA As Integer)
+
+            datas = (From p In db.DALCN_FRGN_DATA_FIXes Where p.ID_DALCN = _IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class ClsDBDALCN_PHR_FIX
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New DALCN_PHR_FIX           'ใส่ชื่อ Table   (dh15rqt)
+        Private _Details As New List(Of DALCN_PHR_FIX)
+        Public Property Details() As List(Of DALCN_PHR_FIX)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_PHR_FIX))
+                _Details = value
+            End Set
+        End Property
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_PHR_FIX
+        End Sub
+        Public Sub insert()
+            db.DALCN_PHR_FIXes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_PHR_FIXes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_PHR_FIXes Select p)
+            For Each Me.fields In datas
+                AddDetails()
+            Next
+        End Sub
+
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.DALCN_PHR_FIXes Where p.PHR_IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_BY_FK(ByVal ida As String)
+
+            datas = (From p In db.DALCN_PHR_FIXes Where p.FK_IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+                AddDetails()
+            Next
+        End Sub
+
+    End Class
+    Public Class ClsDBdalcn_fix
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New dalcn_fix           'ใส่ชื่อ Table   (dh15rqt)
+
+        Public Sub insert()
+            db.dalcn_fixes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.dalcn_fixes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.dalcn_fixes Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.dalcn_fixes Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_ID_DALCN(ByVal IDA As Integer)
+
+            datas = (From p In db.dalcn_fixes Where p.FK_DALCN = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_FK_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.dalcn_fixes Where p.FK_DALCN = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+
+
+
+    End Class
+    Public Class ClsDBlcn_represent
+        Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New lcn_represent           'ใส่ชื่อ Table   (dh15rqt)
+
+        Public Sub insert()
+            db.lcn_represents.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.lcn_represents.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.lcn_represents Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_id(ByVal ida As String)
+
+            datas = (From p In db.lcn_represents Where p.IDA = ida Select p) 'การ Where   table(dh15rqts)เติม s เพื่อไม่ให้ชื่อซ้ำกับ Table   (P คือ ประกาศตัวแปรเป็น Table)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
     '
     Public Class ClsDBlcn_request
         Inherits MAINCONTEXT                    'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
@@ -261,7 +537,7 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-        
+
     End Class
     Public Class ClsDBdramluse
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
@@ -549,16 +825,16 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-        Public Sub GetDataAll_v2(ByVal addr As String, ByVal cntcd As String, ByVal district As String, ByVal fax As String, ByVal mu As String, ByVal province As String, _
+        Public Sub GetDataAll_v2(ByVal addr As String, ByVal cntcd As String, ByVal district As String, ByVal fax As String, ByVal mu As String, ByVal province As String,
                                  ByVal road As String, ByVal soi As String, ByVal subdiv As String, ByVal tel As String, ByVal zipcode As String, ByVal frgncd As String)
-            datas = (From p In db.drfrgnaddrs Where p.addr = addr And p.cntcd = cntcd And p.district = district And p.fax = fax And p.mu = mu And p.province = province And p.road = road And _
+            datas = (From p In db.drfrgnaddrs Where p.addr = addr And p.cntcd = cntcd And p.district = district And p.fax = fax And p.mu = mu And p.province = province And p.road = road And
                 p.soi = soi And p.subdiv = subdiv And p.tel = tel And p.zipcode = zipcode And p.frgncd = frgncd Select p)
             For Each Me.fields In datas
             Next
         End Sub
-        Public Sub GetDataAll_v3(ByVal addr As String, ByVal cntcd As String, ByVal district As String, ByVal province As String, _
+        Public Sub GetDataAll_v3(ByVal addr As String, ByVal cntcd As String, ByVal district As String, ByVal province As String,
                                   ByVal subdiv As String, ByVal frgncd As String)
-            datas = (From p In db.drfrgnaddrs Where p.addr = addr And p.cntcd = cntcd And p.district = district And p.province = province And _
+            datas = (From p In db.drfrgnaddrs Where p.addr = addr And p.cntcd = cntcd And p.district = district And p.province = province And
                  p.frgncd = frgncd Select p)
             For Each Me.fields In datas
             Next
@@ -2401,6 +2677,7 @@ Namespace DAO_DRUG
 
             datas = (From p In db.DALCN_PHRs Where p.FK_IDA = FK_IDA Select p)
             For Each Me.fields In datas
+                AddDetails()
             Next
         End Sub
         Public Sub GetDataby_CTZNO(ByVal CTZNO As String)
@@ -4904,6 +5181,19 @@ Namespace DAO_DRUG
 
         Public fields As New DALCN_DETAIL_LOCATION_KEEP
 
+        Private _Details As New List(Of DALCN_DETAIL_LOCATION_KEEP)
+        Public Property Details() As List(Of DALCN_DETAIL_LOCATION_KEEP)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_DETAIL_LOCATION_KEEP))
+                _Details = value
+            End Set
+        End Property
+        Public Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_DETAIL_LOCATION_KEEP
+        End Sub
         Public Sub insert()
             db.DALCN_DETAIL_LOCATION_KEEPs.InsertOnSubmit(fields)
             db.SubmitChanges()
@@ -4948,6 +5238,14 @@ Namespace DAO_DRUG
 
             datas = (From p In db.DALCN_DETAIL_LOCATION_KEEPs Where p.IDA = IDA Select p)
             For Each Me.fields In datas
+
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK(ByVal IDA As String)
+            datas = (From p In db.DALCN_DETAIL_LOCATION_KEEPs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+                AddDetails()
             Next
         End Sub
     End Class
@@ -11042,7 +11340,7 @@ Namespace DAO_DRUG
 
             Next
         End Sub
-       
+
     End Class
     Public Class TB_DRUG_REGISTRATION_EQTO
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
@@ -11163,7 +11461,7 @@ Namespace DAO_DRUG
 
             Next
         End Sub
-        
+
     End Class
     Public Class TB_DRRQT_COLOR
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
@@ -11945,7 +12243,7 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-        
+
     End Class
 
     Public Class TB_drclass
@@ -12386,7 +12684,7 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-       
+
     End Class
 
     Public Class TB_15_TAMRAP_ATC
@@ -13599,7 +13897,7 @@ Namespace DAO_DRUG
             Next
 
         End Sub
-     
+
         ''' <summary>
         ''' เพิ่มข้อมูล
         ''' </summary>

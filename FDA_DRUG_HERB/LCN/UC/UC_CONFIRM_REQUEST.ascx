@@ -970,189 +970,141 @@
                    <div class="col-lg-6">&nbsp;</div>
                </div>
            </div>
+                                <div class="row">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10"> 
+                                        <h3>สถานที่เก็บ</h3>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                </div>
                                 <div class="row"> 
                                     <div class="col-lg-1"></div>
                                     <div class="col-lg-10">
                                 <telerik:RadGrid ID="RadGrid2" runat="server">
-                                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
-                                        <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
+                <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                    <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
-                                        <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
-                                            <HeaderStyle Width="20px"></HeaderStyle>
-                                        </RowIndicatorColumn>
+                    <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
+                        <HeaderStyle Width="20px"></HeaderStyle>
+                    </RowIndicatorColumn>
 
-                                        <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
-                                            <HeaderStyle Width="20px"></HeaderStyle>
-                                        </ExpandCollapseColumn>
+                    <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
+                        <HeaderStyle Width="20px"></HeaderStyle>
+                    </ExpandCollapseColumn>
 
-                                        <Columns>
-                                            <telerik:GridBoundColumn DataField="lcnsid" DataType="System.Int32" FilterControlAltText="Filter lcnsid column" HeaderText="lcnsid"
-                                                SortExpression="lcnsid" UniqueName="lcnsid" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="rcvno" DataType="System.Int32" FilterControlAltText="Filter rcvno column"
-                                                HeaderText="เลขรับ" SortExpression="rcvno" UniqueName="rcvno">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="rcvdate" DataFormatString="{0:d}" DataType="System.DateTime" FilterControlAltText="Filter rcvdate column" HeaderText="วันที่รับ" SortExpression="rcvdate" UniqueName="rcvdate">
-                                            </telerik:GridBoundColumn>
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="lcnsid" DataType="System.Int32" FilterControlAltText="Filter lcnsid column" HeaderText="lcnsid"
+                            SortExpression="lcnsid" UniqueName="lcnsid" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="rcvno" DataType="System.Int32" FilterControlAltText="Filter rcvno column"
+                            HeaderText="เลขรับ" SortExpression="rcvno" UniqueName="rcvno">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="rcvdate" DataFormatString="{0:d}" DataType="System.DateTime" FilterControlAltText="Filter rcvdate column" HeaderText="วันที่รับ" SortExpression="rcvdate" UniqueName="rcvdate">
+                        </telerik:GridBoundColumn>
 
-                                            <telerik:GridBoundColumn DataField="thanameplace" FilterControlAltText="Filter thanameplace column"
-                                                HeaderText="ชื่อสถานที่" SortExpression="thanameplace" UniqueName="thanameplace">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่" ReadOnly="True" SortExpression="fulladdr" UniqueName="fulladdr">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="XMLNAME" FilterControlAltText="Filter XMLNAME column" HeaderText="TranscestionID" SortExpression="XMLNAME" UniqueName="XMLNAME">
-                                            </telerik:GridBoundColumn>
-
-
-                                            <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column"
-                                                HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column"
-                                                HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="TR_ID" DataType="System.Int32" FilterControlAltText="Filter TR_ID column"
-                                                HeaderText="TR_ID" SortExpression="TR_ID" UniqueName="TR_ID" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="DOWN_ID" DataType="System.Int32" FilterControlAltText="Filter DOWN_ID column"
-                                                HeaderText="DOWN_ID" SortExpression="DOWN_ID" UniqueName="DOWN_ID" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="CITIZEN_ID" FilterControlAltText="Filter CITIZEN_ID column" HeaderText="CITIZEN_ID"
-                                                SortExpression="CITIZEN_ID" UniqueName="CITIZEN_ID" Display="false">
-                                            </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="CITIZEN_ID_UPLOAD" FilterControlAltText="Filter CITIZEN_ID_UPLOAD column"
-                                                HeaderText="CITIZEN_ID_UPLOAD" SortExpression="CITIZEN_ID_UPLOAD" UniqueName="CITIZEN_ID_UPLOAD" Display="false">
-                                            </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="thanameplace" FilterControlAltText="Filter thanameplace column"
+                            HeaderText="ชื่อสถานที่" SortExpression="thanameplace" UniqueName="thanameplace">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่" ReadOnly="True" SortExpression="fulladdr" UniqueName="fulladdr">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="XMLNAME" FilterControlAltText="Filter XMLNAME column" HeaderText="TranscestionID" SortExpression="XMLNAME" UniqueName="XMLNAME">
+                        </telerik:GridBoundColumn>
 
 
-                                            <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
-                                                HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
-                                            </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column"
+                            HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column"
+                            HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="TR_ID" DataType="System.Int32" FilterControlAltText="Filter TR_ID column"
+                            HeaderText="TR_ID" SortExpression="TR_ID" UniqueName="TR_ID" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="DOWN_ID" DataType="System.Int32" FilterControlAltText="Filter DOWN_ID column"
+                            HeaderText="DOWN_ID" SortExpression="DOWN_ID" UniqueName="DOWN_ID" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="CITIZEN_ID" FilterControlAltText="Filter CITIZEN_ID column" HeaderText="CITIZEN_ID"
+                            SortExpression="CITIZEN_ID" UniqueName="CITIZEN_ID" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="CITIZEN_ID_UPLOAD" FilterControlAltText="Filter CITIZEN_ID_UPLOAD column"
+                            HeaderText="CITIZEN_ID_UPLOAD" SortExpression="CITIZEN_ID_UPLOAD" UniqueName="CITIZEN_ID_UPLOAD" Display="false">
+                        </telerik:GridBoundColumn>
 
-                                            <telerik:GridBoundColumn DataField="lctcd" DataType="System.Int32" FilterControlAltText="Filter lctcd column" HeaderText="lctcd"
-                                                SortExpression="lctcd" UniqueName="lctcd" Display="false">
-                                            </telerik:GridBoundColumn>
 
+                        <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
+                            HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
+                        </telerik:GridBoundColumn>
 
-                                        </Columns>
+                        <telerik:GridBoundColumn DataField="lctcd" DataType="System.Int32" FilterControlAltText="Filter lctcd column" HeaderText="lctcd"
+                            SortExpression="lctcd" UniqueName="lctcd" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_del"
+                            CommandName="_del" Text="ลบ" ConfirmText="ยืนยันการลบข้อมูล">
 
-                                        <EditFormSettings>
-                                            <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
-                                        </EditFormSettings>
+                            <HeaderStyle Width="70px" />
+                        </telerik:GridButtonColumn>
 
-                                        <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
-                                    </MasterTableView>
+                    </Columns>
 
-                                    <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                    <EditFormSettings>
+                        <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
+                    </EditFormSettings>
 
-                                    <FilterMenu EnableImageSprites="False"></FilterMenu>
-                                </telerik:RadGrid>
+                    <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                </MasterTableView>
+
+                <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+
+                <FilterMenu EnableImageSprites="False"></FilterMenu>
+            </telerik:RadGrid>
                                     </div>
                                     <div class="col-lg-1"></div>
                                 </div>
-                                <div>
-                                    <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-                ๔. &ensp;ข้อมูลผุ้มีหน้าที่ปฎิบัติการในสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร
-                                    </h4>
-
-                                    <div>
-<%--                                        <div class="row">
-                                           
-                                                <div class="col-lg-2" class="auto-style2"></div>
-                                                <td>บัตรประชาชน</td>
-                                                <td><asp:Label ID="lbl_PHR_CTZNO" runat="server"></asp:Label></td>
-                                                <td><asp:Button ID="btn_search" runat="server" Text="ค้นหา" /> </td>
-                                            
-                                        </div>--%>
-                                        <div class="row">
-                                           
-                                                <div class="col-lg-1" class="auto-style2"></div>
-                                                <div class="col-lg-6">&nbsp; ๔.๑ กรณีผู้ประกอบวิชาชีพ/ผู้ประกอบโรคศิลปะ ชื่อ </div>
-                                                <div class="col-lg-3">
-                                                    <asp:Label ID="lbl_PHR_prefix" runat="server"></asp:Label>
-                                                    <asp:Label ID="lbl_PHR_NAME" runat="server"></asp:Label>
-                                                </div>
-                                                <div class="col-lg-1">
-                                                    <asp:Label ID="lbl_phr_type" runat="server"></asp:Label>
-                                                </div>
-                                            <div class="col-lg-1"></div>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            
-                                                <div class="col-lg-1" class="auto-style2"></div>
-                                                <div class="col-lg-6">ใบอนุญาตประกอบการวิชาชีพ/โรคศิลปะเลขที่ </div>
-                                                <div class="col-lg-3">
-                                                    <asp:Label ID="lbl_PHR_TEXT_NUM" runat="server"></asp:Label>
-                                                </div>
-                                                <div class="col-lg-1">หรือ </div>
-                                            <div class="col-lg-1"></div>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-1" class="auto-style2"></div>
-                                            <div class="col-lg-6">กรณีที่ไม่ไช้ผู้ประกอบวิชาชีพหรือผู้ปรกอบโรคคิลปะ ให้ระบุคุณวุฒิ
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="lbl_STUDY_LEVEL" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="col-lg-2">&nbsp;</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-1" class="auto-style2"></div>
-                                            <div class="col-lg-6">สาขา
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="lbl_PHR_VETERINARY_FIELD" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="col-lg-2">&nbsp;</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-1" class="auto-style2"></div>
-                                            <div class="col-lg-10 colspan="3">&nbsp;
-                            ๔.๒  ผ่านการอบรมหลักสูตรจากสำนักงานคณะกรรมการอาหารและยา โปรดระบุชื่อหลักสูตร
-                                            </div>
-                                            <div class="col-lg-1"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-1" class="auto-style2"></div>
-                                            <div class="col-lg-5">
-                                                <asp:Label ID="lbl_NAME_SIMINAR" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="col-lg-2">วันที่อบรม
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="lbl_SIMINAR_DATE" runat="server"></asp:Label>
-                                                <%--<telerik:raddatepicker ID="rdp_SIMINAR_DATE" Runat="server"> </telerik:raddatepicker>--%>
-                                            </div>
-                                            <div class="col-lg-1"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-1" class="auto-style2"></div>
-                                            <div class="col-lg-5">เวลาทำการ
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="lbl_PHR_TEXT_WORK_TIME" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="col-lg-3"></div>
-                                        </div>
+                                                                <div class="row">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10"> 
+                                        <h3>รายชื่อผู้ปฏิบัติหน้าที่</h3>
                                     </div>
-                                    <div>
-                                        <div class="row">
-                                            
-                                                <div class="col-lg-1" class="auto-style2"></div>
-                                                <div class="col-lg-3">เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม </div>
-                                                <div class="col-lg-4">
-                                                    <asp:RadioButtonList ID="rdl_mastra" runat="server" Enabled="False" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="1">มาตรา ๓๑</asp:ListItem>
-                                                        <asp:ListItem Value="2">มาตรา ๓๒</asp:ListItem>
-                                                        <asp:ListItem Value="3">มาตรา ๓๓</asp:ListItem>
-                                                    </asp:RadioButtonList>
-                                                </div>
-                                                <div class="col-lg-4">แห่ง พ.ร.บ.ผลิตภัณฆ์สมุนไพร พ.ศ.๒๕๖๒ </div>
-                                            
-                                        </div>
-                                    </div>
+                                    <div class="col-lg-1"></div>
                                 </div>
+                                
+                                <div class="row">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10">
+                                        <telerik:RadGrid ID="rgphr" runat="server" Width="90%">
+                <MasterTableView AutoGenerateColumns="False" DataKeyNames="PHR_IDA" NoMasterRecordsText="ไม่พบข้อมูล">
+                    <Columns>
+
+                        <telerik:GridBoundColumn DataField="PHR_IDA" FilterControlAltText="Filter PHR_IDA column"
+                            HeaderText="PHR_IDA" SortExpression="PHR_IDA" UniqueName="PHR_IDA" Display="false">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="PHR_CTZNO" FilterControlAltText="Filter PHR_CTZNO column"
+                            HeaderText="เลขบัตรปชช." SortExpression="PHR_CTZNO" UniqueName="PHR_CTZNO">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="PHR_FULLNAME" FilterControlAltText="Filter PHR_FULLNAME column"
+                            HeaderText="ชื่อผู้มีหน้าที่ปฏิบัติการ" SortExpression="PHR_FULLNAME" UniqueName="PHR_FULLNAME">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="PHR_TEXT_WORK_TIME" FilterControlAltText="Filter PHR_TEXT_WORK_TIME column"
+                            HeaderText="เวลาทำการ" SortExpression="PHR_TEXT_WORK_TIME" UniqueName="PHR_TEXT_WORK_TIME">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="STUDY_LEVEL" FilterControlAltText="Filter STUDY_LEVEL column"
+                            HeaderText="คุณวุฒิ" SortExpression="STUDY_LEVEL" UniqueName="STUDY_LEVEL">
+                        </telerik:GridBoundColumn>
+<%--                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt"
+                            CommandName="edt" Text="แก้ไข">
+                            <HeaderStyle Width="70px" />
+                        </telerik:GridButtonColumn>--%>
+                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
+                            CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="ยืนยันการลบ">
+                            <HeaderStyle Width="70px" />
+                        </telerik:GridButtonColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
+                                    </div>
+                                    <div class="col-lg-1">
+                                </div>
+                               
                             </div>
                         </form>
                     </asp:Panel>

@@ -69,7 +69,7 @@
             dao_dal.fields.PROCESS_ID = Request.QueryString("process")
             dao_dal.fields.REVOCATION = "999"
             dao_dal.fields.lcnno = 0
-            dao_dal.fields.rcvno = 0
+            dao_dal.fields.rcvno = 0 
             Try
                 dao_dal.fields.lcnsid = _CLS.LCNSID_CUSTOMER
             Catch ex As Exception
