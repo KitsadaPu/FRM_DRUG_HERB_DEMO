@@ -707,7 +707,7 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-        Public Sub GetDataby_4key(ByVal rgtno As String, ByVal drgtpcd As String, ByVal rgttpcd As String, ByVal pvncd As String)
+        Public Sub GetDataby_4key(ByVal rgtno As String, ByVal rgttpcd As String, ByVal drgtpcd As String, ByVal pvncd As Integer)
 
             datas = (From p In db.drrgts Where p.rgtno = rgtno And p.drgtpcd = drgtpcd And p.rgttpcd = rgttpcd And p.pvncd = pvncd Select p)
             For Each Me.fields In datas

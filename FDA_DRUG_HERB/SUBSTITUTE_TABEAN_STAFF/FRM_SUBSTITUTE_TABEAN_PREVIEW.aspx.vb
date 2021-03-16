@@ -925,7 +925,8 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Dim tamrap_id As Integer = 0
         Dim class_xml As New CLASS_DR
 
-        Dim dao_e As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
+        Dim dao_e As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_PRODUCT_GROUP_ESUB
+        'Dim dao_e As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
         dao_e.GetDataby_u1_frn_no(newcode)
         Dim dao As New DAO_DRUG.ClsDBdrrgt
         'dao.GetDataby_IDA(_IDA)
@@ -959,6 +960,8 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         End Try
         Try
             If dao.fields.lcntpcd.Contains("ผย") Then
+                LCNTPCD_GROUP = "2"
+            ElseIf dao.fields.lcntpcd = "ผย" Then
                 LCNTPCD_GROUP = "2"
             Else
                 LCNTPCD_GROUP = "1"
@@ -1081,7 +1084,8 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
 
         End Try
 
-        Dim dao_lcn As New DAO_XML_DRUG_HERB.TB_XML_DRUG_LCN_HERB
+        Dim dao_lcn As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_DRUG_LCN_ESUB
+        'Dim dao_lcn As New DAO_XML_DRUG_HERB.TB_XML_DRUG_LCN_HERB
         Try
             dao_lcn.GetDataby_u1(dao_e.fields.Newcode_not)
             lcntpcd = dao_lcn.fields.lcntpcd

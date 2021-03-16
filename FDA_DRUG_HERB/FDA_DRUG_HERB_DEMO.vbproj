@@ -640,6 +640,9 @@
     <Content Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx" />
     <Content Include="LCN_STAFF\UC\UC_LCN_HERB.ascx" />
     <Content Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx" />
+    <Content Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx" />
+    <Content Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx" />
+    <Content Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx" />
     <Content Include="PDF.aspx" />
     <Content Include="PULL_Q_TO_G%28PACKET DETAIL%29\PULL_PACKET_DETAIL.aspx" />
     <Content Include="SV_REQUEST_NO.asmx" />
@@ -5133,6 +5136,27 @@
     <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.vb">
       <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER_SEARCH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER_SEARCH.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx.designer.vb">
+      <DependentUpon>POPUP_LCN_TRANSFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx.vb">
+      <DependentUpon>POPUP_LCN_TRANSFER.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Linq\LINQ_BOOKING.designer.vb">
       <AutoGen>True</AutoGen>
