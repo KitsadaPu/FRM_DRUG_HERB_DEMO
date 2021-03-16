@@ -55,6 +55,56 @@ Namespace BAO
         Dim strSQL As String = String.Empty
         '
         ''
+        Public Function SP_MAX_DALCN_FIX() As DataTable
+
+            Dim sql As String = "exec SP_MAX_IDA_DALCN_FIX "
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_CLONE_DALCN_FIX(ByVal _IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_CLONE_DALCN_FIX @IDA=" & _IDA
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_UPDATE_CLONE(ByVal _IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_UPDATE_CLONE @IDA=" & _IDA 
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
+        Public Function SP_CLONE_DALCN_FRGN_DATA_FIX(ByVal _IDA As String, ByVal _FK_IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_CLONE_DALCN_FRGN_DATA_FIX @IDA=" & _IDA & ",@FK_IDA= '" & _FK_IDA & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_CLONE_DALCN_DETAIL_LOCATION_KEEP_FIX(ByVal _IDA As String, ByVal _FK_IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_CLONE_DALCN_DETAIL_LOCATION_KEEP_FIX @IDA=" & _IDA & ",@FK_IDA= '" & _FK_IDA & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_CLONE_DALCN_PHR_FIX(ByVal _IDA As String, ByVal _FK_IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_CLONE_DALCN_PHR_FIX @IDA=" & _IDA & ",@FK_IDA= '" & _FK_IDA & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_CLONE_DALCN_CURRENT_ADDRESS_FIX(ByVal _IDA As String, ByVal _FK_IDA As String) As DataTable
+
+            Dim sql As String = "exec SP_CLONE_DALCN_CURRENT_ADDRESS_FIX @IDA=" & _IDA & ",@FK_IDA= '" & _FK_IDA & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
         Public Function SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDENTITY(ByVal LOCATION_TYPE_ID As Integer, ByVal IDENTITY As String) As DataTable
 
             Dim sql As String = "exec SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDENTITY @LOCATION_TYPE_ID=" & LOCATION_TYPE_ID & ",@IDENTITY= '" & IDENTITY & "'"
@@ -488,7 +538,7 @@ Namespace BAO
                     .CONDITION1 = dao_conq.fields.CONDITION1
                     .CONDITION2 = dao_conq.fields.CONDITION2
                     .FK_IDA = IDA_rgt
-                    
+
                 End With
                 dao_cong.insert()
             Next
@@ -687,6 +737,35 @@ Namespace BAO
                 dao_no.insert()
             Next
         End Sub
+        Public Function SP_LIST_LCN_REPRESENT(ByVal ida As String) As DataTable
+
+            Dim sql As String = "exec SP_LIST_LCN_REPRESENT @IDA = " & ida
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_STAFF_LIST_LCN_REPRESENT() As DataTable
+
+            Dim sql As String = "exec SP_STAFF_LIST_LCN_REPRESENT"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_LIST_LCN_REQUEST(ByVal ida As String) As DataTable
+
+            Dim sql As String = "exec SP_LIST_LCN_REQUEST @IDA = " & ida
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_STAFF_LIST_LCN_REQUEST() As DataTable
+
+            Dim sql As String = "exec SP_STAFF_LIST_LCN_REQUEST "
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
         Public Function SP_TEMP_CASE1441() As DataTable
 
             Dim sql As String = "exec SP_TEMP_CASE1441"
@@ -5444,6 +5523,14 @@ Namespace BAO
         Public Function SP_CUSTOMER_LCN_BY_IDEN(ByVal iden As String) As DataTable
             Dim clsds As New ClassDataset
             Dim sql As String = "exec SP_CUSTOMER_LCN_BY_IDEN @iden='" & iden & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
+        Public Function SP_CUSTOMER_LCN_LISTREQUEST_BY_IDEN(ByVal iden As String) As DataTable
+            Dim clsds As New ClassDataset
+            Dim sql As String = "exec SP_CUSTOMER_LCN_LISTREQUEST_BY_IDEN @iden='" & iden & "'"
             Dim dta As New DataTable
             dta = Queryds(sql)
             Return dta
