@@ -2026,7 +2026,8 @@ Public Class POPUP_DR_CONFIRM_STAFF
 
         End Try
         Try
-            Dim dao_color As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_DRUG_COLOR
+            ' Dim dao_color As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_DRUG_COLOR
+            Dim dao_color As New DAO_XML_DRUG_HERB.TB_XML_DRUG_COLOR_HERB
             dao_color.GetDataby_Newcode(newcode)
             class_xml.DRUG_PROPERTIES_AND_DETAIL = dao_color.fields.drgchrtha
         Catch ex As Exception
@@ -2398,7 +2399,8 @@ Public Class POPUP_DR_CONFIRM_STAFF
 
         End Try
 
-        Dim dao_det_prop As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_DRUG_COLOR
+        'Dim dao_det_prop As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_DRUG_COLOR
+        Dim dao_det_prop As New DAO_XML_DRUG_HERB.TB_XML_DRUG_COLOR_HERB
         dao_det_prop.GetDataby_Newcode(newcode)
         Try
             class_xml.DRUG_PROPERTIES_AND_DETAIL = dao_det_prop.fields.drgchrtha
