@@ -108,7 +108,7 @@
             Else
                 dao.fields.LCNNO_DISPLAY = bao.FORMAT_NUMBER_YEAR_FULL(con_year(Date.Now.Year), LCNNO) ' & " (ขย." & GROUP_NUMBER & ")"
             End If
-            dao.fields.LCNNO_DISPLAY_NEW = "HB" & _CLS.PVCODE & "-" & _type_da & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & LCNNO
+            dao.fields.LCNNO_DISPLAY_NEW = "HB " & _CLS.PVCODE & "-" & _type_da & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & LCNNO
             '---------------------------------------
 
             dao.fields.remark = Txt_Remark.Text
