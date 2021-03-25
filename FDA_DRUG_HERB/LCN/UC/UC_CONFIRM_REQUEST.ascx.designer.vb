@@ -725,92 +725,11 @@ Partial Public Class UC_CONFIRM_REQUEST
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''lbl_PHR_prefix control.
+    '''rgphr control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_PHR_prefix As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_PHR_NAME control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_PHR_NAME As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_phr_type control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_phr_type As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_PHR_TEXT_NUM control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_PHR_TEXT_NUM As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_STUDY_LEVEL control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_STUDY_LEVEL As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_PHR_VETERINARY_FIELD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_PHR_VETERINARY_FIELD As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_NAME_SIMINAR control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_NAME_SIMINAR As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_SIMINAR_DATE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_SIMINAR_DATE As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_PHR_TEXT_WORK_TIME control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_PHR_TEXT_WORK_TIME As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rdl_mastra control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdl_mastra As Global.System.Web.UI.WebControls.RadioButtonList
+    Protected WithEvents rgphr As Global.Telerik.Web.UI.RadGrid
 End Class

@@ -59,6 +59,7 @@ Public Class FRM_TABEAN_SEARCH
                 End Try
 
                 lbl_titlename.Text = "พิจารณาคำขอขึ้นทะเบียนตำรับ"
+
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../TABEAN_YA_STAFF/POPUP_DR_CONFIRM_STAFF.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&process=" & _process_id & "&newcode=" & item("Newcode_U").Text & "&STATUS_ID=8" & "&status=8" & "');", True)
             ElseIf e.CommandName = "add" Then
                 lbl_titlename.Text = "แก้ไขข้อมูลส่วนที่ 2"

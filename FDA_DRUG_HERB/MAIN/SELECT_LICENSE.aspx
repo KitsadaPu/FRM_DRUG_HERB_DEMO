@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" CodeBehind="SELECT_REQUEST_LICENSE.aspx.vb" Inherits="FDA_DRUG_HERB.LCN_REQUEST" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" CodeBehind="SELECT_LICENSE.aspx.vb" Inherits="FDA_DRUG_HERB.LCN_REQUEST" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -40,6 +40,9 @@
                                <telerik:GridBoundColumn DataField="PROCESS_ID" FilterControlAltText="Filter PROCESS_ID column"
                                    HeaderText="PROCESS_ID" SortExpression="PROCESS_ID" UniqueName="PROCESS_ID" Display="false">
                                </telerik:GridBoundColumn>
+                               <telerik:GridBoundColumn DataField="syslcnsnm_identify" FilterControlAltText="Filter IDA column"
+                                   HeaderText="IDA" SortExpression="IDA" UniqueName="_identify" Display="false">
+                               </telerik:GridBoundColumn>
                                <telerik:GridBoundColumn DataField="LOCATION_ADDRESS_IDA" FilterControlAltText="Filter LOCATION_ADDRESS_IDA column"
                                    HeaderText="LOCATION_ADDRESS_IDA" SortExpression="LOCATION_ADDRESS_IDA" UniqueName="LOCATION_ADDRESS_IDA" Display="false">
                                </telerik:GridBoundColumn>
@@ -75,15 +78,6 @@
                            </Columns>
                        </MasterTableView>
  </telerik:radgrid>
-        
-
-
-       
-        
-
-    <div class="h5" style="padding-left: 87%;">
-        
-    </div>
 
 
 </asp:Content>

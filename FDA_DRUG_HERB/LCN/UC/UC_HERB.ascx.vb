@@ -146,7 +146,7 @@
             Catch ex As Exception
 
             End Try
-        Next
+        Next 'set ข้อ1
 
 
         Dim dt_bsn As New DataTable
@@ -232,7 +232,7 @@
             Catch ex As Exception
 
             End Try
-        Next
+        Next 'set ข้อ2
 
         Dim dt_lct As New DataTable
         dt_lct = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(Request.QueryString("lct_ida"))
@@ -303,7 +303,7 @@
 
             End Try
 
-        Next
+        Next 'set ข้อ 3
 
 
         If Request.QueryString("ida") IsNot Nothing Then
@@ -318,7 +318,7 @@
                 TB_Personal.Visible = False
                 TB_Personal_Type1.Visible = False
                 TB_Personal_Type2.Visible = False
-            ElseIf dao_frgn.fields.PERSONAL_TYPE_MENU = 2 Then
+            ElseIf dao_frgn.fields.PERSONAL_TYPE_MENU = 2 Then 'set ต่างด้าว
                 rdl_sanchaat.SelectedValue = 2
                 If dao_frgn.fields.PASSPORT_NO <> "" Then
                     cb_Personal_Type1.Checked = True
@@ -341,7 +341,7 @@
                     RDP_FRGN_DATE1.SelectedDate = dao_frgn.fields.FRGN_DATE1
                 End If
             End If
-            If dao_frgn.fields.addr_status = 1 Then
+            If dao_frgn.fields.addr_status = 1 Then 'set ที่อยู่ที่ติดต่อ
                 Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
                 dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
                 cb_addr.Checked = True
@@ -421,7 +421,7 @@
             End Try
             .pvnabbr = chw
         End With
-        Dim dao_syslcnsnm As New DAO_CPN.clsDBsyslcnsnm
+        Dim dao_syslcnsnm As New DAO_CPN.clsDBsyslcnsnm 'insert ข้อ2
         dao_syslcnsnm.GetDataby_identify(_CLS.CITIZEN_ID_AUTHORIZE)
         dao.fields.thanm = dao_syslcnsnm.fields.thanm
         dao.fields.syslcnsnm_ID = dao_syslcnsnm.fields.ID
@@ -449,18 +449,18 @@
         dao.fields.syslcnsnm_create_date = dao_syslcnsnm.fields.create_date
 
 
-        Dim dao_location_address As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        Dim dao_location_address As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS 'insert ข้อ3
         dao_location_address.GetDataby_IDA(Request.QueryString("lct_ida"))
-        dao.fields.LOCATION_ADDRESS_thathmblnm = dao_location_address.fields.thanameplace
-        dao.fields.LOCATION_ADDRESS_thaaddr = dao_location_address.fields.thaaddr
-        dao.fields.LOCATION_ADDRESS_thasoi = dao_location_address.fields.thasoi
-        dao.fields.LOCATION_ADDRESS_tharoad = dao_location_address.fields.tharoad
-        dao.fields.LOCATION_ADDRESS_thamu = dao_location_address.fields.thamu
-        dao.fields.LOCATION_ADDRESS_thathmblnm = dao_location_address.fields.thathmblnm
-        dao.fields.LOCATION_ADDRESS_thaamphrnm = dao_location_address.fields.thaamphrnm
-        dao.fields.LOCATION_ADDRESS_thachngwtnm = dao_location_address.fields.thachngwtnm
-        dao.fields.LOCATION_ADDRESS_tel = dao_location_address.fields.tel
-        dao.fields.LOCATION_ADDRESS_fax = dao_location_address.fields.fax
+        'dao.fields.LOCATION_ADDRESS_thathmblnm = dao_location_address.fields.thanameplace
+        'dao.fields.LOCATION_ADDRESS_thaaddr = dao_location_address.fields.thaaddr
+        'dao.fields.LOCATION_ADDRESS_thasoi = dao_location_address.fields.thasoi
+        'dao.fields.LOCATION_ADDRESS_tharoad = dao_location_address.fields.tharoad
+        'dao.fields.LOCATION_ADDRESS_thamu = dao_location_address.fields.thamu
+        'dao.fields.LOCATION_ADDRESS_thathmblnm = dao_location_address.fields.thathmblnm
+        'dao.fields.LOCATION_ADDRESS_thaamphrnm = dao_location_address.fields.thaamphrnm
+        'dao.fields.LOCATION_ADDRESS_thachngwtnm = dao_location_address.fields.thachngwtnm
+        'dao.fields.LOCATION_ADDRESS_tel = dao_location_address.fields.tel
+        'dao.fields.LOCATION_ADDRESS_fax = dao_location_address.fields.fax
         dao.fields.LOCATION_ADDRESS_thanameplace = dao_location_address.fields.thanameplace
         dao.fields.LOCATION_ADDRESS_thaaddr = dao_location_address.fields.thaaddr
         dao.fields.LOCATION_ADDRESS_thasoi = dao_location_address.fields.thasoi
@@ -510,7 +510,7 @@
         dao.fields.LOCATION_ADDRESS_REMARK = dao_location_address.fields.REMARK
 
     End Sub
-    Sub setdata_frgn_data(ByRef dao As DAO_DRUG.TB_DALCN_FRGN_DATA)
+    Sub setdata_frgn_data(ByRef dao As DAO_DRUG.TB_DALCN_FRGN_DATA) 'set บุคคลต่างด้าว
         With dao.fields
             Try
                 .BS_DATE = CDate(RDP_BS_DATE.SelectedDate)
@@ -603,7 +603,7 @@
         Dim bao_show11 As New BAO_SHOW
         Dim dt_bsn As DataTable = bao_show11.SP_LOCATION_BSN_BY_IDENTIFY(Request.QueryString("bsn"))
         For Each dr As DataRow In dt_bsn.Rows
-            Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN 'insert ข้อสอง
             Try
                 dao_bsn.fields.BSN_THAIFULLNAME = dr("BSN_THAIFULLNAME")
             Catch ex As Exception
@@ -800,7 +800,7 @@
         Next
 
     End Sub
-    Sub set_date_current_addr(ByRef dao As DAO_DRUG.TB_DALCN_CURRENT_ADDRESS)
+    Sub set_date_current_addr(ByRef dao As DAO_DRUG.TB_DALCN_CURRENT_ADDRESS) 'insert ที่อยู่ติดต่อได้
 
         With dao.fields
             Try
@@ -960,13 +960,11 @@
                     Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
                     Return False
                 End If
-                Return True
             ElseIf cb_Personal_Type2.Checked Then
                 If txt_BS_NO1.Text = "" Or txt_FRGN_NO1.Text = "" Or RDP_BS_DATE1.IsEmpty Or RDP_FRGN_DATE1.IsEmpty Then
                     Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลบุคคลให้ครบ');</script> ")
                     Return False
                 End If
-                Return True
             End If
         ElseIf txt_c_thaaddr.Text = "" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
@@ -983,10 +981,8 @@
         ElseIf ddl_tambol.SelectedValue = "0" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกตำบล');</script> ")
             Return False
-
-        Else
-            Return True
         End If
+        Return True
     End Function
     Sub Chek_information()
         If cb_Personal_Type1.Checked Then

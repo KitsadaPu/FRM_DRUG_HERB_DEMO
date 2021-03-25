@@ -12,15 +12,52 @@
                     }
                     function close_modal() { // คำสั่งสั่งปิด PopUp
                         $('#myModal').modal('hide');
-                        //$('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
+                        $('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
                     }
 
                     </script>
-                <telerik:radgrid ID="rgns" runat="server" Width ="90%" >
+            <style>
+        .panel {
+            margin-bottom:0px;
+        }
+    </style>
+        <table class="table" style="width:100%;">
+        <tr>
+            <td style="width:25%;"></td>
+            <td style="width:25%;">เลขนิติบุคคล/เลขบัตรประชาชน</td>
+            <td style="width:25%;">
+                <asp:TextBox ID="TextBox1" runat="server"  CssClass="input-lg" ></asp:TextBox></td>
+            <td style="width:25%;"> </td>
+               
+        </tr>
+          <tr>
+            <td style="width:25%;"></td>
+            <td style="width:25%;">เลขที่ใบอนุญาต</td>
+            <td style="width:25%;">
+                <asp:TextBox ID="TextBox2" runat="server"  CssClass="input-lg" ></asp:TextBox></td>
+            <td style="width:25%;"> (ตัวอย่าง กท 1/2555)
+                </td>
+        </tr>
+          <tr>
+            <td  colspan="4" style="text-align:center;">
+                 <asp:Button ID="Button3" runat="server" Text="ค้นหาข้อมูล" CssClass="input-lg" />
+
+            </td>
+          
+        </tr>
+            </table>
+
+
+
+
+                <telerik:radgrid ID="rgns" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True" >
                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA" NoMasterRecordsText="ไม่พบข้อมูล">
                            <Columns>
                                <telerik:GridBoundColumn DataField="IDA" FilterControlAltText="Filter IDA column"
                                    HeaderText="IDA" SortExpression="IDA" UniqueName="IDA" Display="false">
+                               </telerik:GridBoundColumn>
+                               <telerik:GridBoundColumn DataField="ID_DALCN_FIX" FilterControlAltText="Filter IDA column"
+                                   HeaderText="ID_DALCN_FIX" SortExpression="ID_DALCN_FIX" UniqueName="ID_DALCN_FIX" Display="false">
                                </telerik:GridBoundColumn>
                                <telerik:GridBoundColumn DataField="rcbno" FilterControlAltText="Filter PROCESS_ID column"
                                    HeaderText="เลขรับ" SortExpression="PROCESS_ID" UniqueName="PROCESS_ID" >
@@ -39,16 +76,17 @@
                            </Columns>
                        </MasterTableView>
  </telerik:radgrid>
+                    <asp:Button ID="btn_reload" runat="server" Text="" style="display:none" />
                   <div class=" modal fade" id="myModal">              
-              <%-- <div class="panel panel-info" style="width:100%;">
+               <div class="panel panel-info" style="width:100%;">
                    <div class="panel-heading  text-center"><h1>
-                       <asp:Label ID="lbl_title" runat="server" Text=""></asp:Label> </h1>
+                       <asp:label id="lbl_title" runat="server" text=""></asp:label> </h1>
                    </div>
-                  <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>--%>
+                  <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
                    <div class="panel-body">
                              <iframe id="f1"  style="width:100%; height:550px;" ></iframe>
                    </div>
-                   <%--<div class="panel-footer"></div>
-               </div>       --%>
+                   <div class="panel-footer"></div>
+               </div>       
        </div>
 </asp:Content>

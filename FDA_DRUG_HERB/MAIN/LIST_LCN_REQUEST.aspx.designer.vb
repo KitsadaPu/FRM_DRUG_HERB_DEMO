@@ -32,6 +32,15 @@ Partial Public Class LIST_LCN_REQUEST
     Protected WithEvents rgns As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''btn_reload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_reload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lbl_title control.
     '''</summary>
     '''<remarks>

@@ -629,26 +629,20 @@
     <Content Include="GEN_XML_BC.aspx" />
     <Content Include="LCN\POPUP_LCN_ADD.aspx" />
     <Content Include="LCN\POPUP_LCN_DRUG_GROUP_HERB.aspx" />
-    <Content Include="LCN\UC\UC_CONFIRM_REQUEST.ascx" />
     <Content Include="LCN\UC\UC_HERB.ascx" />
     <Content Include="LCN\UC\UC_HERB_KEEP.ascx" />
     <Content Include="LCN\UC\UC_HERB_PHESAJ.ascx" />
     <Content Include="LCN\UC\UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx" />
-    <Content Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx" />
     <Content Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx" />
     <Content Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx" />
     <Content Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx" />
     <Content Include="LCN_STAFF\UC\UC_LCN_HERB.ascx" />
     <Content Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx" />
-    <Content Include="MAIN\LIST_LCN_REPRESENT.aspx" />
-    <Content Include="MAIN\LIST_LCN_REQUEST.aspx" />
-    <Content Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx" />
-    <Content Include="MAIN\SELECT_REQUEST_LICENSE.aspx" />
-    <Content Include="MAIN\POPUP_LCN_REPRESENT.aspx" />
-    <Content Include="MAIN\POPUP_LCN_REQUEST_EDIT.aspx" />
+    <Content Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx" />
+    <Content Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx" />
+    <Content Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx" />
     <Content Include="PDF.aspx" />
     <Content Include="PULL_Q_TO_G%28PACKET DETAIL%29\PULL_PACKET_DETAIL.aspx" />
     <Content Include="SV_REQUEST_NO.asmx" />
@@ -2314,7 +2308,7 @@
     <Compile Include="class\DAO\DAO_SPECIAL_PAYMENT.vb" />
     <Compile Include="class\DAO\DAO_SP_PAYMENT.vb" />
     <Compile Include="class\DAO\DAO_XML_SEARCH_DRUG_LCN_ESUB.vb" />
-    <Compile Include="class\DAO\XML_DRUG_HERB.vb" />
+    <Compile Include="class\DAO\DAO_XML_DRUG_HERB.vb" />
     <Compile Include="class\GEN_BC\LGT_ANIMAL_CONSUME_DRUGS_TO.vb" />
     <Compile Include="class\GEN_BC\LGT_ANIMAL_DRUGS_TO.vb" />
     <Compile Include="class\GEN_BC\LGT_IOW_E.vb" />
@@ -4835,13 +4829,6 @@
       <DependentUpon>POPUP_LCN_UPLOAD_NCT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LCN\UC\UC_CONFIRM_REQUEST.ascx.designer.vb">
-      <DependentUpon>UC_CONFIRM_REQUEST.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN\UC\UC_CONFIRM_REQUEST.ascx.vb">
-      <DependentUpon>UC_CONFIRM_REQUEST.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="LCN\UC\UC_HERB.ascx.designer.vb">
       <DependentUpon>UC_HERB.ascx</DependentUpon>
     </Compile>
@@ -5024,13 +5011,6 @@
       <DependentUpon>FRM_STAFF_LCN_CONSIDER_UPDATE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.vb">
-      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx.designer.vb">
       <DependentUpon>POPUP_STAFF_LCN_EDIT.aspx</DependentUpon>
     </Compile>
@@ -5136,13 +5116,6 @@
       <DependentUpon>FRM_UPLOAD_ATTACH2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx.designer.vb">
       <DependentUpon>UC_LCN _HERBB_PHESAJ_EDIT.ascx</DependentUpon>
     </Compile>
@@ -5163,6 +5136,27 @@
     <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.vb">
       <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER_SEARCH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\FRM_LCN_DRUG_TRANSFER_SEARCH.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG_TRANSFER_SEARCH.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx.designer.vb">
+      <DependentUpon>POPUP_LCN_TRANSFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx.vb">
+      <DependentUpon>POPUP_LCN_TRANSFER.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Linq\LINQ_BOOKING.designer.vb">
       <AutoGen>True</AutoGen>
@@ -5413,54 +5407,12 @@
       <DependentUpon>FRM_NEWS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MAIN\LIST_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>LIST_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\LIST_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>LIST_LCN_REPRESENT.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\LIST_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>LIST_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\LIST_LCN_REQUEST.aspx.vb">
-      <DependentUpon>LIST_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\SELECT_REQUEST_LICENSE.aspx.designer.vb">
-      <DependentUpon>SELECT_REQUEST_LICENSE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\SELECT_REQUEST_LICENSE.aspx.vb">
-      <DependentUpon>SELECT_REQUEST_LICENSE.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="MAIN\MAIN_PRODUCTS.aspx.designer.vb">
       <DependentUpon>MAIN_PRODUCTS.aspx</DependentUpon>
     </Compile>
     <Compile Include="MAIN\MAIN_PRODUCTS.aspx.vb">
       <DependentUpon>MAIN_PRODUCTS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>POPUP_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>POPUP_LCN_REPRESENT.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REQUEST_EDIT.aspx.designer.vb">
-      <DependentUpon>POPUP_LCN_REQUEST_EDIT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REQUEST_EDIT.aspx.vb">
-      <DependentUpon>POPUP_LCN_REQUEST_EDIT.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="MAIN_STAFF\FRM_AUTHEN_STAFF.aspx.designer.vb">
       <DependentUpon>FRM_AUTHEN_STAFF.aspx</DependentUpon>

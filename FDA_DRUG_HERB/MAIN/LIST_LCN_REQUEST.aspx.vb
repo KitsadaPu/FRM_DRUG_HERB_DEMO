@@ -30,7 +30,7 @@ Public Class LIST_LCN_REQUEST
     Protected Sub rgns_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgns.NeedDataSource
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt As New DataTable        'ประกาศชื่อตัวแปร BAO.ClsDBSqlcommand
-        dt = bao.SP_LIST_LCN_REQUEST
+        dt = bao.SP_LIST_LCN_REQUEST(_IDA)
         rgns.DataSource = dt                'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
         'rgns.DataBind()                         'นำข้อมูลมโชใน Gridview ชื่อ Gridview ว่า GV_lcnno   เพื่อให้ข้อมูลวิ่ง
     End Sub
@@ -39,6 +39,9 @@ Public Class LIST_LCN_REQUEST
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
             Dim id As String = item("IDA").Text
+            Dim id_dal_fix As String = item("ID_DALCN_FIX").Text
+
+
             'Dim id_lcn As String = item("LCNNO_MANUAL").Text
             'Dim _process As String = item("PROCESS_ID").Text
             'Dim _lct_ida As String = item("LOCATION_ADDRESS_IDA").Text
@@ -48,7 +51,7 @@ Public Class LIST_LCN_REQUEST
                 'Response.Redirect("POPUP_CONFIRM_LCN_REQUEST.aspx?IDA=" & id & "&ID_LCN=" & id_lcn & "&identify=" & _iden & "&TR_ID=" & _TRANSECTION & " &Process=" & _process & " &lct_ida=" & _lct_ida & "")
                 'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_CONFIRM_LCN_REQUEST.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "');", True)
 
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_CONFIRM_LCN_REQUEST.aspx?ID=" & id & "');", True)
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_CONFIRM_LCN_REQUEST.aspx?ID=" & id & "&ID_DAL_FIX=" & id_dal_fix & "');", True)
 
             End If
 
@@ -59,5 +62,8 @@ Public Class LIST_LCN_REQUEST
         'Response.Redirect("POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "")
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "');", True)
 
+    End Sub
+    Protected Sub btn_reload_Click(sender As Object, e As EventArgs) Handles btn_reload.Click
+        rgns.Rebind()
     End Sub
 End Class

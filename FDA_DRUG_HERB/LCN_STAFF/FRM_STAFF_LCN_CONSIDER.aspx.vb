@@ -102,12 +102,13 @@
             'Convert.ToInt32(LCNNO_V2)
             dao.fields.lcnno = LCNNO_V2
 
-            'If chw <> "" Then
-            'dao.fields.LCNNO_DISPLAY = _CLS.PVCODE & "-" & _type_da & "-" & Left(LCNNO, 2) & "-" & Right(LCNNO, Len(LCNNO) - 2)  'chw & " " & bao.FORMAT_NUMBER_YEAR_FULL(con_year(Date.Now.Year), LCNNO) ' & " (ขย." & GROUP_NUMBER & ")"
-            dao.fields.LCNNO_DISPLAY_NEW = _CLS.PVCODE & "-" & _type_da & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & LCNNO
-            'Else
-            '    dao.fields.LCNNO_DISPLAY = bao.FORMAT_NUMBER_YEAR_FULL(con_year(Date.Now.Year), LCNNO) ' & " (ขย." & GROUP_NUMBER & ")"
-            'End If
+            If chw <> "" Then
+                dao.fields.LCNNO_DISPLAY = _CLS.PVCODE & "-" & _type_da & "-" & Left(LCNNO, 2) & "-" & Right(LCNNO, Len(LCNNO) - 2)  'chw & " " & bao.FORMAT_NUMBER_YEAR_FULL(con_year(Date.Now.Year), LCNNO) ' & " (ขย." & GROUP_NUMBER & ")"
+                'dao.fields.LCNNO_DISPLAY_NEW = "HB" & _CLS.PVCODE & "-" & _type_da & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & LCNNO
+            Else
+                dao.fields.LCNNO_DISPLAY = bao.FORMAT_NUMBER_YEAR_FULL(con_year(Date.Now.Year), LCNNO) ' & " (ขย." & GROUP_NUMBER & ")"
+            End If
+            dao.fields.LCNNO_DISPLAY_NEW = "HB " & _CLS.PVCODE & "-" & _type_da & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & LCNNO
             '---------------------------------------
 
             dao.fields.remark = Txt_Remark.Text
