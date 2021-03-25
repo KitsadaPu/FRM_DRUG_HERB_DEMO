@@ -1601,9 +1601,9 @@ Public Class FRM_LCN_CONFIRM_DRUG
                 If Len(lcnno_auto) > 0 Then
 
                     If Right(Left(lcnno_auto, 3), 1) = "5" Then
-                        lcnno_format = "จ. " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
+                        lcnno_format = CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
                     Else
-                        lcnno_format = dao.fields.pvnabbr & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        lcnno_format = dao.fields.pvnabbr & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
                     End If
                     'lcnno_format = dao.fields.pvnabbr & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
                 End If
@@ -1680,9 +1680,9 @@ Public Class FRM_LCN_CONFIRM_DRUG
                         'class_xml.HEAD_LCNNO = CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
 
                         If Right(Left(dao_main3.fields.lcnno, 3), 1) = "5" Then
-                            class_xml.HEAD_LCNNO_NCT = "จ. " & CStr(CInt(Right(dao_main3.fields.lcnno, 4))) & "/25" & Left(dao_main3.fields.lcnno, 2)
+                            class_xml.HEAD_LCNNO_NCT = CStr(CInt(Right(dao_main3.fields.lcnno, 4))) & "/25" & Left(dao_main3.fields.lcnno, 2)
                         Else
-                            class_xml.HEAD_LCNNO_NCT = dao_main3.fields.pvnabbr & " " & CStr(CInt(Right(dao_main3.fields.lcnno, 5))) & "/25" & Left(dao_main3.fields.lcnno, 2)
+                            class_xml.HEAD_LCNNO_NCT = dao_main3.fields.pvnabbr & CStr(CInt(Right(dao_main3.fields.lcnno, 5))) & "/25" & Left(dao_main3.fields.lcnno, 2)
                         End If
 
                         class_xml.HEAD_LCNNO_NCT = NumEng2Thai(class_xml.HEAD_LCNNO_NCT)
@@ -1703,9 +1703,9 @@ Public Class FRM_LCN_CONFIRM_DRUG
                     'class_xml.HEAD_LCNNO = CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
 
                     If Right(Left(dao_main2.fields.lcnno, 3), 1) = "5" Then
-                        class_xml.HEAD_LCNNO_NCT = "จ. " & CStr(CInt(Right(dao_main2.fields.lcnno, 4))) & "/25" & Left(dao_main2.fields.lcnno, 2)
+                        class_xml.HEAD_LCNNO_NCT = CStr(CInt(Right(dao_main2.fields.lcnno, 4))) & "/25" & Left(dao_main2.fields.lcnno, 2)
                     Else
-                        class_xml.HEAD_LCNNO_NCT = dao_main2.fields.pvnabbr & " " & CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
+                        class_xml.HEAD_LCNNO_NCT = dao_main2.fields.pvnabbr & CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
                     End If
 
                     class_xml.HEAD_LCNNO_NCT = NumEng2Thai(class_xml.HEAD_LCNNO_NCT)

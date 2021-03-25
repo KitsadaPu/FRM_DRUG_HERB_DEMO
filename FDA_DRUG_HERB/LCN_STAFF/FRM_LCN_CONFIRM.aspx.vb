@@ -1890,7 +1890,7 @@ Public Class WebForm35
                 'class_xml.HEAD_LCNNO = CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
 
                 If Right(Left(dao_main2.fields.lcnno, 3), 1) = "5" Then
-                    class_xml.HEAD_LCNNO = "จ. " & CStr(CInt(Right(dao_main2.fields.lcnno, 4))) & "/25" & Left(dao_main2.fields.lcnno, 2)
+                    class_xml.HEAD_LCNNO = " " & CStr(CInt(Right(dao_main2.fields.lcnno, 4))) & "/25" & Left(dao_main2.fields.lcnno, 2)
                 Else
                     class_xml.HEAD_LCNNO = dao_main2.fields.pvnabbr & " " & CStr(CInt(Right(dao_main2.fields.lcnno, 5))) & "/25" & Left(dao_main2.fields.lcnno, 2)
                 End If
@@ -1930,9 +1930,12 @@ Public Class WebForm35
         dao_main.GetDataby_IDA(MAIN_LCN_IDA)
         ' If MAIN_LCN_IDA = 0 Then
 
-        class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)
-        class_xml.LCNNO_SHOW_NEW = NumEng2Thai(lcnno_format_NEW)
+        'class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)
+        'class_xml.LCNNO_SHOW_NEW = NumEng2Thai(lcnno_format_NEW)
         class_xml.SHOW_LCNNO = NumEng2Thai(lcnno_text)
+
+        class_xml.LCNNO_SHOW = lcnno_format
+        class_xml.LCNNO_SHOW_NEW = lcnno_format_NEW
 
         Try
 
@@ -2220,6 +2223,8 @@ Public Class WebForm35
                 End Try
                 If template_id = 2 Then
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                ElseIf template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
                 Else
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                     dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
@@ -2233,6 +2238,8 @@ Public Class WebForm35
                 End Try
                 If template_id = 2 Then
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                ElseIf template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
                 Else
                     dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
                 End If
@@ -2255,6 +2262,8 @@ Public Class WebForm35
             If _group = 1 Then
                 If template_id = 2 Then
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                ElseIf template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
                 Else
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
@@ -2262,8 +2271,13 @@ Public Class WebForm35
 
             Else
 
+                If template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                Else
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                End If
 
-                dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
 
 
                 'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
