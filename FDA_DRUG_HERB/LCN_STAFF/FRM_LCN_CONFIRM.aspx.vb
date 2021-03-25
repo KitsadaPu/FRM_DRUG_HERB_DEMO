@@ -1846,7 +1846,7 @@ Public Class WebForm35
                 If Len(lcnno_auto) > 0 Then
 
                     If Right(Left(lcnno_auto, 3), 1) = "5" Then
-                        lcnno_format = "จ. " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
+                        lcnno_format = "" & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
                         'lcnno_format_NEW = dao.fields.LCNNO_DISPLAY_NEW
                     Else
                         'lcnno_format_NEW = dao.fields.LCNNO_DISPLAY_NEW
