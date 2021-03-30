@@ -67,11 +67,11 @@ Public Class FRM_STAFF_LCN_SEARCH
                 If str_where = "" Then
                     If str_where <> "" Then
                         If txt_lcnno_no.Text <> "" Then
-                            str_where &= " and lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                            str_where &= " and lcnno_no like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
                         End If
                     Else
                         If txt_lcnno_no.Text <> "" Then
-                            str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                            str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
 
                         End If
                     End If
@@ -79,7 +79,7 @@ Public Class FRM_STAFF_LCN_SEARCH
                     command &= str_where
                 Else
                     If txt_lcnno_no.Text <> "" Then
-                        str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                        str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
 
                     End If
                     'r_result = dt.Select(str_where)

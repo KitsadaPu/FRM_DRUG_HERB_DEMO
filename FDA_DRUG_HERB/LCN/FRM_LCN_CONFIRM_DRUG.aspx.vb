@@ -1622,7 +1622,7 @@ Public Class FRM_LCN_CONFIRM_DRUG
                 End If
 
                 If Not dao.fields.LCNNO_DISPLAY_NEW Is Nothing Then
-                    lcnno_format = dao.fields.LCNNO_DISPLAY_NEW
+                    lcnno_format_new = dao.fields.LCNNO_DISPLAY_NEW
                 Else
                     lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
                 End If
@@ -1719,9 +1719,13 @@ Public Class FRM_LCN_CONFIRM_DRUG
 
 
         'If MAIN_LCN_IDA = 0 Then
-        class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)
-        class_xml.LCNNO_SHOW_NEW = NumEng2Thai(lcnno_format_new)
-        class_xml.SHOW_LCNNO = NumEng2Thai(lcnno_text)
+        class_xml.LCNNO_SHOW = (lcnno_format)
+        class_xml.LCNNO_SHOW_NUMTHAI = NumEng2Thai(lcnno_format)
+        class_xml.LCNNO_SHOW_NEW = (lcnno_format_new)
+        class_xml.LCNNO_SHOW_NEW_NUMTHAI = NumEng2Thai(lcnno_format_new)
+        class_xml.SHOW_LCNNO = (lcnno_text)
+        class_xml.SHOW_LCNNO_NUMTHAI = NumEng2Thai(lcnno_text)
+
         Try
             If dao.fields.lcntpcd = "ขสม" Then
                 class_xml.LCN_TYPE = "ขาย"
@@ -1741,14 +1745,20 @@ Public Class FRM_LCN_CONFIRM_DRUG
             Dim dao_pph As New DAO_DRUG.ClsDBDALCN_PHR
             dao_pph.GetDataby_FK_IDA(_IDA)
             If dao_pph.fields.PHR_LAW_SECTION = "1" Then
-                class_xml.MASTRA = "มาตรา ๓๑"
-                class_xml.MASTRA_NO = "๓๑"
+                class_xml.MASTRA = "มาตรา 31"
+                class_xml.MASTRA_NUMTHAI = "มาตรา ๓๑"
+                class_xml.MASTRA_NO = "31"
+                class_xml.MASTRA_NO_NUMTHAI = "๓๑"
             ElseIf dao_pph.fields.PHR_LAW_SECTION = "2" Then
-                class_xml.MASTRA = "มาตรา ๓๒"
-                class_xml.MASTRA_NO = "๓๒"
+                class_xml.MASTRA = "มาตรา 32"
+                class_xml.MASTRA_NUMTHAI = "มาตรา ๓๒"
+                class_xml.MASTRA_NO = "32"
+                class_xml.MASTRA_NO_NUMTHAI = "๓๒"
             ElseIf dao_pph.fields.PHR_LAW_SECTION = "3" Then
-                class_xml.MASTRA = "มาตรา ๓๓"
-                class_xml.MASTRA_NO = "๓๓"
+                class_xml.MASTRA = "มาตรา 33"
+                class_xml.MASTRA_NUMTHAI = "มาตรา ๓๓"
+                class_xml.MASTRA_NO = "33"
+                class_xml.MASTRA_NO_NUMTHAI = "๓๓"
             End If
         Catch ex As Exception
 
@@ -1788,9 +1798,13 @@ Public Class FRM_LCN_CONFIRM_DRUG
                 class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
 
 
-                class_xml.RCVDAY = NumEng2Thai(appdate.Day.ToString())
+                class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
+                class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
+                class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+
+                class_xml.RCVDAY = appdate.Day.ToString()
                 class_xml.RCVMONTH = appdate.ToString("MMMM")
-                class_xml.RCVYEAR = NumEng2Thai(con_year(appdate.Year))
+                class_xml.RCVYEAR = con_year(appdate.Year)
                 'Try
                 '    class_xml.EXP_YEAR = dao.fields.expyear 'con_year(appdate.Year)
                 'Catch ex As Exception
@@ -1818,9 +1832,13 @@ Public Class FRM_LCN_CONFIRM_DRUG
         If IsNothing(dao.fields.expdate) = False Then
             Dim expdate As Date
             If Date.TryParse(dao.fields.expdate, expdate) = True Then
-                class_xml.SHOW_EXPDATE_DAY = NumEng2Thai(expdate.Day)
+                class_xml.SHOW_EXPDATE_DAY = expdate.Day
                 class_xml.SHOW_EXPDATE_MONTH = expdate.ToString("MMMM")
-                class_xml.SHOW_EXPDATE_YEAR = NumEng2Thai(con_year(expdate.Year))
+                class_xml.SHOW_EXPDATE_YEAR = con_year(expdate.Year)
+
+                class_xml.SHOW_EXPDATE_DAY_NUMTHAI = NumEng2Thai(expdate.Day)
+                class_xml.SHOW_EXPDATE_MONTH = expdate.ToString("MMMM")
+                class_xml.SHOW_EXPDATE_YEAR_NUMTHAI = NumEng2Thai(con_year(expdate.Year))
 
 
                 class_xml.EXPDAY = NumEng2Thai(expdate.Day.ToString())

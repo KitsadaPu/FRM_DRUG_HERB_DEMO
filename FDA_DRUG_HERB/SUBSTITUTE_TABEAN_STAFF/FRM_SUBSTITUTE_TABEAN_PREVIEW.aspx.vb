@@ -82,9 +82,9 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Return dao.fields.STATUS_ID.ToString()
     End Function
 
-    Sub alert(ByVal text As String)
-        Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
-    End Sub
+    'Sub alert(ByVal text As String)
+    '    Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
+    'End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
         Dim clsds As New ClassDataset
@@ -1308,7 +1308,11 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         class_xml.TABEAN_TYPE2 = TABEAN_TYPE2
 
         Dim bao_show As New BAO_SHOW
-        class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Try
+            class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Catch ex As Exception
+            Response.Write("<script type='text/javascript'>alert('" + "ไม่เจอ NEWCODE หรือ NEWCODE ไม่ตรงกัน" + "'); parent.close_modal();</script> ")
+        End Try
 
         Try
             Dim dt_thanm As DataTable = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao_e.fields.Identify, _CLS.LCNSID_CUSTOMER) 'ข้อมูลบริษัท
@@ -1478,6 +1482,9 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         dao_sub.fields.TEMPLATE_ID = ddl_template.SelectedValue
         dao_sub.update()
         BindData_PDF()
+    End Sub
+    Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "'); parent.close_modal();</script> ")
     End Sub
 
     Private Sub FRM_SUBSTITUTE_TABEAN_PREVIEW_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
