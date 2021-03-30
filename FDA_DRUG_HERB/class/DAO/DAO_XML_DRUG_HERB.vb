@@ -87,6 +87,7 @@
             For Each Me.fields In datas
             Next
         End Sub
+        '
         Public Sub GetDataby_identify(ByVal iden As String)
 
             datas = (From p In db.XML_DRUG_PRODUCT_HERBs Where p.CITIZEN_AUTHORIZE = iden Select p)
