@@ -164,9 +164,9 @@
         </tr>
 
         <tr>
-            <td>ปีที่หมดอายุ</td>
+            <td>ใบอนุญาตฉบับนี้ให้ใช้ได้จนถึง (วันที่/เดือน/พ.ศ.) = วันที่ให้ไว้ +5ปี-1วัน</td>
             <td style="width:30%;">
-                <asp:TextBox ID="txt_expyear" runat="server" CssClass="input-sm" Width="250px"></asp:TextBox>
+                <asp:TextBox ID="txt_expdate" runat="server" CssClass="input-sm" Width="250px"></asp:TextBox>
             </td>
             <td>
                 <asp:Button ID="btn_expyear" runat="server" Text="เปลี่ยนปีที่หมดอายุ" CssClass="btn-sm" Width="144px" />

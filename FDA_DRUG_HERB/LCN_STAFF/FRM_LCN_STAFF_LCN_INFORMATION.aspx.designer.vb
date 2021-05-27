@@ -149,13 +149,13 @@ Partial Public Class FRM_LCN_STAFF_LCN_INFORMATION
     Protected WithEvents btn_appdate As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''txt_expyear control.
+    '''txt_expdate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_expyear As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_expdate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_expyear control.

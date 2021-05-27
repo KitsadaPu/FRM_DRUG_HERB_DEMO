@@ -32,6 +32,7 @@
             dao.GetDataby_IDA(_IDA)
             dao.fields.STATUS_ID = 11
             dao.fields.comment = TextBox1.Text
+            dao.fields.frtappdate = Date.Now
             dao.update()
 
             Dim cls_sop As New CLS_SOP

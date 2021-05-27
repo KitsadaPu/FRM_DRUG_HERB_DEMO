@@ -1797,14 +1797,24 @@ Public Class FRM_LCN_CONFIRM_DRUG
                 class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
                 class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
 
+                If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
 
-                class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
-                class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
-                class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+                    class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
+                    class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
 
-                class_xml.RCVDAY = appdate.Day.ToString()
-                class_xml.RCVMONTH = appdate.ToString("MMMM")
-                class_xml.RCVYEAR = con_year(appdate.Year)
+                    class_xml.RCVDAY_NEW = appdate.Day.ToString()
+                    class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NEW = con_year(appdate.Year)
+
+                End If
+                'class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
+                'class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
+                'class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+
+                'class_xml.RCVDAY = appdate.Day.ToString()
+                'class_xml.RCVMONTH = appdate.ToString("MMMM")
+                'class_xml.RCVYEAR = con_year(appdate.Year)
                 'Try
                 '    class_xml.EXP_YEAR = dao.fields.expyear 'con_year(appdate.Year)
                 'Catch ex As Exception

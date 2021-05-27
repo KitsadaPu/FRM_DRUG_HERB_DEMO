@@ -47,10 +47,11 @@ Public Class WebForm35
             HiddenField2.Value = 0
 
             Try
-                'BindData_PDF()
-
                 Dim dao1 As New DAO_DRUG.ClsDBdalcn
                 dao1.GetDataby_IDA(_IDA)
+                'BindData_PDF()
+
+
                 If dao1.fields.STATUS_ID >= 8 And dao1.fields.STATUS_ID <> 11 Then
                     BindData_PDF()
                     Panel1.Style.Add("display", "none")
@@ -110,6 +111,12 @@ Public Class WebForm35
 
             End Try
 
+        End If
+
+        If _ProcessID = 120 Or _ProcessID = 121 Or _ProcessID = 122 Then
+            btn_sormorpo1.Style.Add("display", "block")
+        Else
+            btn_sormorpo1.Style.Add("display", "none")
         End If
         set_lbl()
         show_btn(_IDA)
@@ -970,6 +977,7 @@ Public Class WebForm35
 
             End Try
             dao.fields.RCVDATE_DISPLAY = Date.Now.ToShortDateString()
+            'dao.fields.frtappdate = Date.Now
             dao.update()
 
             'Dim cls_sop As New CLS_SOP
@@ -1076,15 +1084,19 @@ Public Class WebForm35
 
             'End Try
 
-            AddLogStatus(8, dao.fields.PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
-            dao.update()
-            '-----------------ลิ้งไปหน้าคีย์มือ----------
-            'Response.Redirect("FRM_STAFF_LCN_LCNNO_MANUAL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
-            '--------------------------------
-            Dim cls_sop As New CLS_SOP
-            cls_sop.BLOCK_STAFF(_CLS.CITIZEN_ID, "STAFF", PROCESS_ID, _CLS.PVCODE, 8, "อนุมัติ", "SOP-DRUG-10-" & PROCESS_ID & "-3", "อนุมัติ", "เจ้าหน้าที่อนุมัติคำขอแล้ว", "STAFF", _TR_ID, SOP_STATUS:="อนุมัติ")
+            'Dim ws_update As New WS_DRUG.WS_DRUG
+            'ws_update.HERB_INSERT_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+            Response.Redirect("POPUP_STAFF_LCN_APPDATE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+            'ws_update.DRUG_INSERT_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+            'AddLogStatus(8, dao.fields.PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
 
-            alert("ดำเนินการอนุมัติเรียบร้อยแล้ว")
+            ''-----------------ลิ้งไปหน้าคีย์มือ----------
+            ''Response.Redirect("FRM_STAFF_LCN_LCNNO_MANUAL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+            ''--------------------------------
+            'Dim cls_sop As New CLS_SOP
+            'cls_sop.BLOCK_STAFF(_CLS.CITIZEN_ID, "STAFF", PROCESS_ID, _CLS.PVCODE, 8, "อนุมัติ", "SOP-DRUG-10-" & PROCESS_ID & "-3", "อนุมัติ", "เจ้าหน้าที่อนุมัติคำขอแล้ว", "STAFF", _TR_ID, SOP_STATUS:="อนุมัติ")
+
+            'alert("ดำเนินการอนุมัติเรียบร้อยแล้ว")
             'alert_reload("ดำเนินการอนุมัติเรียบร้อยแล้ว")
         ElseIf STATUS_ID = 7 Then
             Response.Redirect("FRM_STAFF_LCN_REMARK.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
@@ -1312,10 +1324,13 @@ Public Class WebForm35
         End If
         If tt = 1 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
         ElseIf tt = 2 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB_V3(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
         ElseIf tt = 3 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB2(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
         End If
 
         Dim dt9 As New DataTable
@@ -1496,12 +1511,19 @@ Public Class WebForm35
         Catch ex As Exception
 
         End Try
-       
+
         Try
             'class_xml.DT_SHOW.DT12 = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao_up.fields.CITIEZEN_ID_AUTHORIZE, dao.fields.lcnsid) 'ข้อมูลบริษัท
             ' class_xml.DT_SHOW.DT12 = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao.fields.CITIZEN_ID_AUTHORIZE, dao.fields.lcnsid) 'ข้อมูลบริษัท
             'SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFYV2
             class_xml.DT_SHOW.DT12 = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFYV2(dao.fields.CITIZEN_ID_AUTHORIZE, dao.fields.lcnsid)
+        Catch ex As Exception
+
+        End Try
+
+        'Dim bao_lisense_neme As New BAO.ClsDBSqlcommand
+        Try
+            class_xml.DT_MASTER.DT38 = bao_show.SP_Lisense_Name_and_Addr(_iden) 'ผู้ขออนุญาติ
         Catch ex As Exception
 
         End Try
@@ -1614,9 +1636,37 @@ Public Class WebForm35
         '    'dao_mn.GetDataby_IDA(MAIN_LCN_IDA)
         '    'lcnno_auto = dao_mn.fields.lcnno
         'Else
+
         class_xml.DT_SHOW.DT14 = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
         'End If
         Dim dt14 As New DataTable
+        Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
+        dao_frgn.GetDataby_FK_IDA(_IDA)
+        Try
+            If dao_frgn.fields.addr_status = 0 Or dao_frgn.fields.addr_status = 1 Then
+                class_xml.DT_MASTER.DT39 = bao_show.SP_DALCN_CURRENT_ADDRESS(_IDA)
+            ElseIf dao_frgn.fields.addr_status = Nothing Then
+                class_xml.DT_MASTER.DT39 = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+        'Dim DT39 As New DataTable
+        'Try
+        '    DT39 = class_xml.DT_MASTER.DT39
+        '    For Each drr As DataRow In DT39.Rows
+        '        drr("BSN_IDENTIFY") = NumEng2Thai(drr("BSN_IDENTIFY"))
+        '        drr("CREATE_DATE") = NumEng2Thai(drr("CREATE_DATE"))
+        '        drr("AGE") = NumEng2Thai(drr("AGE"))
+        '        drr("thaaddr") = NumEng2Thai(drr("thaaddr"))
+        '        drr("fulladdr") = NumEng2Thai(drr("fulladdr"))
+        '        drr("fulladdr_no") = NumEng2Thai(drr("fulladdr_no"))
+        '        'fulladdr
+        '    Next
+        'Catch ex As Exception
+
+        'End Try
         Try
             dt14 = class_xml.DT_SHOW.DT14
             For Each drr As DataRow In dt14.Rows
@@ -1628,7 +1678,7 @@ Public Class WebForm35
         class_xml.DT_SHOW.DT14.TableName = "SP_LOCATION_BSN_BY_LOCATION_ADDRESS_IDA"
         Dim bao_master As New BAO_MASTER
 
-        class_xml.DT_MASTER.DT18 = bao_master.SP_PHR_BY_FK_IDA(dao.fields.IDA)
+        class_xml.DT_MASTER.DT18 = bao_master.SP_PHR_BY_FK_IDA(dao.fields.IDA) 'ผู้มีหน้าที่ปฎิบัติการ
         'Dim DT18 As New DataTable
 
         'DT18 = class_xml.DT_MASTER.DT18
@@ -1650,6 +1700,7 @@ Public Class WebForm35
         '    End Try
 
         'Next
+        class_xml.DT_SHOW.DT35 = bao_master.SP_DALCN_FRGN_DATA(_IDA)
 
         class_xml.DT_MASTER.DT24 = bao_master.SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA(dao.fields.IDA)
         Dim DT24 As New DataTable
@@ -1973,6 +2024,20 @@ Public Class WebForm35
                 class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
                 class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
 
+                If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
+
+                    class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
+                    class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
+
+                    class_xml.RCVDAY_NEW = appdate.Day.ToString()
+                    class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NEW = con_year(appdate.Year)
+
+
+                End If
+
+
                 class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
                 class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
                 class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
@@ -1981,22 +2046,22 @@ Public Class WebForm35
                 class_xml.RCVMONTH = appdate.ToString("MMMM")
                 class_xml.RCVYEAR = con_year(appdate.Year)
                 Dim expyear As Integer = 0
-                Try
-                    expyear = dao.fields.expyear
-                    If expyear <> 0 Then
-                        If expyear < 2500 Then
-                            expyear += 543
+                    Try
+                        expyear = dao.fields.expyear
+                        If expyear <> 0 Then
+                            If expyear < 2500 Then
+                                expyear += 543
+                            End If
                         End If
-                    End If
-                Catch ex As Exception
+                    Catch ex As Exception
 
-                End Try
-                If expyear = 0 Then
-                    expyear = con_year(appdate.Year)
+                    End Try
+                    If expyear = 0 Then
+                        expyear = con_year(appdate.Year)
+                    End If
+                    class_xml.EXP_YEAR = NumEng2Thai(expyear)
                 End If
-                class_xml.EXP_YEAR = NumEng2Thai(expyear)
-            End If
-        Else
+            Else
             If IsNothing(dao.fields.expyear) = False Then
                 Dim expyear As Integer = 0
                 Try
@@ -2245,6 +2310,13 @@ Public Class WebForm35
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                     dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
                 End If
+            ElseIf _group = 2 Or _group = 3 Then
+                If template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                Else
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                End If
             Else
 
                 Try
@@ -2284,7 +2356,20 @@ Public Class WebForm35
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
-
+            ElseIf _group = 2 Then
+                If template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                Else
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                End If
+            ElseIf _group = 3 Then
+                If template_id = 1 Then
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                Else
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                End If
             Else
 
                 If template_id = 1 Then
@@ -2450,4 +2535,17 @@ Public Class WebForm35
         End Try
         Return imgBin
     End Function
+
+    Protected Sub btn_sormorpo1_Click(sender As Object, e As EventArgs) Handles btn_sormorpo1.Click
+        Dim _group As Integer = 0
+        If HiddenField2.Value = 0 Then
+            HiddenField2.Value = 1
+            _group = 2
+        ElseIf HiddenField2.Value = 1 Then
+            HiddenField2.Value = 0
+            _group = 3
+        End If
+
+        BindData_PDF(_group:=_group)
+    End Sub
 End Class

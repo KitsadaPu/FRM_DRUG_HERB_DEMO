@@ -112,6 +112,30 @@ Public Class BAO_SHOW
         dta.TableName = "SP_DRUG_GROUP_BY_LCN_IDA"
         Return dta
     End Function
+    Public Function SP_DALCN_CURRENT_ADDRESS(ByVal FK_IDA As Integer) As DataTable
+
+        Dim sql As String = "exec SP_DALCN_CURRENT_ADDRESS @FK_IDA=" & FK_IDA
+        Dim dta As New DataTable
+        dta = Queryds(sql)
+        dta.TableName = "SP_DALCN_CURRENT_ADDRESS"
+        Return dta
+    End Function
+    'Public Function SP_DRUG_GROUP_LCN_HERB_SMP1(ByVal LCN_IDA As Integer, ByVal type_lcn As Integer) As DataTable
+
+    '    Dim sql As String = "exec SP_DRUG_GROUP_LCN_HERB_SMP1 @identify= '" & LCN_IDA & " ,@type_lcn=" & type_lcn
+    '    Dim dta As New DataTable
+    '    dta = Queryds(sql)
+    '    dta.TableName = "SP_DRUG_GROUP_LCN_HERB_SMP1"
+    '    Return dta
+    'End Function
+    Public Function SP_Lisense_Name_and_Addr(ByVal IDENTITY As String) As DataTable
+
+        Dim sql As String = "exec SP_Lisense_Name_and_Addr @identify= '" & IDENTITY & "'"
+        Dim dta As New DataTable
+        dta = Queryds(sql)
+        dta.TableName = "SP_DRUG_GROUP_BY_LCN_IDA"
+        Return dta
+    End Function
     Public Function SP_DRUG_GROUP_BY_LCN_IDA2(ByVal lcn_ida As Integer) As DataTable
         Dim sql As String = "exec SP_DRUG_GROUP_BY_LCN_IDA2 @LCN_IDA=" & lcn_ida
         Dim dta As New DataTable
@@ -1287,6 +1311,24 @@ Public Class BAO_SHOW
             dt = AddDatatable(dt)
         End If
         dt.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSID"
+        Return dt
+    End Function
+    Public Function SP_DRUG_GROUP_LCN_HERB_SMP1(ByVal LCN_IDA As Integer, ByVal type_lcn As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DRUG_GROUP_LCN_HERB_SMP1 @lcn_ida= " & LCN_IDA & " ,@type_lcn= '" & type_lcn & "'"
+        Dim dt As New DataTable
+        Try
+            dt = clsds.dsQueryselect(sql, conn_DRUG).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        dt.TableName = "SP_DRUG_GROUP_LCN_HERB_SMP1"
         Return dt
     End Function
     '

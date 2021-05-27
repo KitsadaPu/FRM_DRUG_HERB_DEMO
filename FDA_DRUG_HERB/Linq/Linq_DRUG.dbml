@@ -1027,20 +1027,6 @@
       <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MAS_TEMPLATE_PROCESS" Member="MAS_TEMPLATE_PROCESSes">
-    <Type Name="MAS_TEMPLATE_PROCESS">
-      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LCNTYPECD" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GROUPS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PREVIEW" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PDF_TEMPLATE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="XML_PATH" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="PDF_OUTPUT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.MAS_STATUS" Member="MAS_STATUS">
     <Type Name="MAS_STATUS">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -7400,6 +7386,20 @@
       <Column Name="STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rcbno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LCNNO_DISPLAY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TEMPLATE_PROCESS" Member="MAS_TEMPLATE_PROCESSes">
+    <Type Name="MAS_TEMPLATE_PROCESS">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LCNTYPECD" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GROUPS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PREVIEW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PDF_TEMPLATE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="XML_PATH" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PDF_OUTPUT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

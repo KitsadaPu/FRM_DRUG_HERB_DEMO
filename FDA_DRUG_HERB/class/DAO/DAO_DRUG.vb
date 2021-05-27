@@ -2677,7 +2677,7 @@ Namespace DAO_DRUG
 
             datas = (From p In db.DALCN_PHRs Where p.FK_IDA = FK_IDA Select p)
             For Each Me.fields In datas
-                AddDetails()
+                'AddDetails()
             Next
         End Sub
         Public Sub GetDataby_CTZNO(ByVal CTZNO As String)

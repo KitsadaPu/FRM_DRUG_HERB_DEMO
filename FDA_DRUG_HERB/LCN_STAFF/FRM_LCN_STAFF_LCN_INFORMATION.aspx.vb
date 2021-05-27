@@ -100,15 +100,20 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
             Catch ex As Exception
 
             End Try
-            If expyear <> 0 Then
-                If expyear < 2500 Then
-                    expyear = expyear + 543
-                    txt_expyear.Text = expyear
-                Else
-                    expyear = expyear
-                    txt_expyear.Text = expyear
-                End If
-            End If
+            'If expyear <> 0 Then
+            '    If expyear < 2500 Then
+            '        expyear = expyear + 543
+            '        txt_expyear.Text = expyear
+            '    Else
+            '        expyear = expyear
+            '        txt_expyear.Text = expyear
+            '    End If
+            'End If
+            Try
+                txt_expdate.Text = CDate(dao.fields.expdate).ToShortDateString
+            Catch ex As Exception
+
+            End Try
             bind_ddl_stat()
 
             Try
@@ -911,26 +916,50 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
     Private Sub btn_expyear_Click(sender As Object, e As EventArgs) Handles btn_expyear.Click
         Dim dao As New DAO_DRUG.ClsDBdalcn
         Dim expyear As Integer = 0
+        Dim expdate As Date = Nothing
         Try
-            expyear = Trim(txt_expyear.Text)
+            expdate = Trim(txt_expdate.Text)
         Catch ex As Exception
 
         End Try
+        'Try
+        '    expyear = Trim(txt_expdate.Text)
+        'Catch ex As Exception
+
+        'End Try
+        'Try
+        '    If expyear <> 0 Then
+        '        dao.GetDataby_IDA(Request.QueryString("ida"))
+        '        If expyear < 2500 Then
+        '            dao.fields.expyear = expyear + 543
+        '        Else
+        '            dao.fields.expyear = expyear
+        '        End If
+        '        dao.update()
+        '        Run_Service(Request.QueryString("IDA"))
+        '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+        '    Else
+        '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
+        '    End If
+
+        'Catch ex As Exception
+
+        'End Try
         Try
-            If expyear <> 0 Then
+            dao.fields.expdate = CDate(txt_expdate.Text) 'Date.Now 'CDate(txt_app_date.Text)
+            If expdate <> Nothing Then
                 dao.GetDataby_IDA(Request.QueryString("ida"))
-                If expyear < 2500 Then
-                    dao.fields.expyear = expyear + 543
-                Else
-                    dao.fields.expyear = expyear
-                End If
+                'If expyear < 2500 Then
+                '    dao.fields.expyear = expyear + 543
+                'Else
+                '    dao.fields.expyear = expyear
+                'End If
                 dao.update()
-                Run_Service(Request.QueryString("IDA"))
+                'Run_Service(Request.QueryString("IDA"))
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
             Else
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
             End If
-
         Catch ex As Exception
 
         End Try

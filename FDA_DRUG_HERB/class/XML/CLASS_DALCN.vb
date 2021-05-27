@@ -328,6 +328,65 @@
                 _RCVYEAR_NUMTHAI = value
             End Set
         End Property
+        Private _RCVDAY_NEW As String
+        Public Property RCVDAY_NEW() As String
+            Get
+                Return _RCVDAY_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVDAY_NEW = value
+            End Set
+        End Property
+
+        Private _RCVMONTH_NEW As String
+        Public Property RCVMONTH_NEW() As String
+            Get
+                Return _RCVMONTH_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVMONTH_NEW = value
+            End Set
+        End Property
+
+        Private _RCVYEAR_NEW As String
+        Public Property RCVYEAR_NEW() As String
+            Get
+                Return _RCVYEAR_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVYEAR_NEW = value
+            End Set
+        End Property
+
+        Private _RCVDAY_NUMTHAI_NEW As String
+        Public Property RCVDAY_NUMTHAI_NEW() As String
+            Get
+                Return _RCVDAY_NUMTHAI_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVDAY_NUMTHAI_NEW = value
+            End Set
+        End Property
+
+        Private _RCVMONTH_NUMTHAI_NEW As String
+        Public Property RCVMONTH_NUMTHAI_NEW() As String
+            Get
+                Return _RCVMONTH_NUMTHAI_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVMONTH_NUMTHAI_NEW = value
+            End Set
+        End Property
+
+        Private _RCVYEAR_NUMTHAI_NEW As String
+        Public Property RCVYEAR_NUMTHAI_NEW() As String
+            Get
+                Return _RCVYEAR_NUMTHAI_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVYEAR_NUMTHAI_NEW = value
+            End Set
+        End Property
 
         Private _CHK_VALUE As String
         Public Property CHK_VALUE() As String
