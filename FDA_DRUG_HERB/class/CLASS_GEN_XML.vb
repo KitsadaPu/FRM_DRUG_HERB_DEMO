@@ -119,6 +119,14 @@ Namespace CLASS_GEN_XML
             objStreamWriter.Close()
 
         End Sub
+        Public Sub GEN_XML_DALCN_SUBTITUTE(ByVal PATH As String, ByVal p2 As CLASS_DALCN_SUBSTITUTE)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
         Public Sub GEN_XML_DH(ByVal PATH As String, ByVal p2 As CLASS_DH)
 
             Dim objStreamWriter As New StreamWriter(PATH)
@@ -3474,4 +3482,77 @@ Namespace CLASS_GEN_XML
 
         End Function
     End Class
+    Public Class DALCN_SUB
+            Inherits Center
+
+            Private _cityzen_id As String
+            Private _lcnsid As Integer
+            Private _lcnno As String
+            Private _p4 As String
+            Private _p5 As String
+            Private _CHK_SELL_TYPE As String
+            'Private _CHK_SELL_TYPE1 As String
+            Private _phr_medical_type As String
+            Private _opentime As String
+            Public Sub New()
+                _CITIEZEN_ID = ""
+                _lcnsid_customer = 0
+                _lcnno = ""
+                _fdtypecd = ""
+                _fdtypenm = ""
+                _PVNCD = "10"
+                _CHK_SELL_TYPE = ""
+                '_CHK_SELL_TYPE1 = ""
+                _phr_medical_type = ""
+                _opentime = ""
+            End Sub
+
+            Public Sub New(Optional citizen_id As String = "", Optional lcnsid As Integer = 0,
+                           Optional lcnno As String = "", Optional lcntpcd As String = "", Optional pvncd As String = "10", Optional CHK_SELL_TYPE As String = "", Optional phr_medical_type As String = "", Optional opentime As String = "")
+                _CITIEZEN_ID = citizen_id
+                _lcnsid_customer = lcnsid
+                _lcntpcd = lcntpcd
+                _lcnno = lcnno
+                _opentime = opentime
+                '_fdtypenm = fdtypenm
+                _PVNCD = pvncd
+                _CHK_SELL_TYPE = CHK_SELL_TYPE
+                '_CHK_SELL_TYPE1 = CHK_SELL_TYPE1
+                _phr_medical_type = phr_medical_type
+            End Sub
+
+            ''' <summary>
+            ''' ใบอนุญาต
+            ''' </summary>
+            ''' <param name="rows"></param>
+            ''' <returns></returns>
+            ''' <remarks></remarks>
+            Public Function gen_xml(Optional rows As Integer = 0) As CLASS_DALCN_SUBSTITUTE
+                Dim class_xml As New CLASS_DALCN_SUBSTITUTE
+                Dim dao_dalcn_edit As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+                class_xml.DALCN_SUBSTITUTEs = AddValue(class_xml.DALCN_SUBSTITUTEs)
+                class_xml.DALCN_SUBSTITUTEs.rcvno = 0
+                '_______________SHOW___________________
+                Dim bao_show As New BAO_SHOW
+                'class_xml.DT_SHOW.DT1 = bao_show.SP_SP_SYSCHNGWT
+                'class_xml.DT_SHOW.DT2 = bao_show.SP_SP_SYSAMPHR
+                'class_xml.DT_SHOW.DT3 = bao_show.SP_SP_SYSTHMBL
+                'class_xml.DT_SHOW.DT4 = bao_show.SP_MAINPERSON_CTZNO(_CITIEZEN_ID)
+                'class_xml.DT_SHOW.DT10 = bao_show.SP_SYSPREFIX
+
+                '_______________MASTER_________________
+                Dim bao_master As New BAO_MASTER
+
+                class_xml.EXP_YEAR = ""
+                'class_xml.LCNNO_SHOW = ""
+                class_xml.RCVDAY = ""
+                class_xml.RCVMONTH = ""
+                class_xml.RCVYEAR = ""
+                class_xml.SHOW_LCNNO = ""
+                class_xml.phr_medical_type = ""
+                Return class_xml
+
+
+            End Function
+        End Class
 End Namespace

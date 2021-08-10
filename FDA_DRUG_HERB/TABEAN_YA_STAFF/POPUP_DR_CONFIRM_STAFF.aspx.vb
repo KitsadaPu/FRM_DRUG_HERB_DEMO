@@ -1205,7 +1205,11 @@ Public Class POPUP_DR_CONFIRM_STAFF
         Catch ex As Exception
 
         End Try
-        Dim cls As New CLASS_GEN_XML.DR(_CLS.CITIZEN_ID, lcnsid, dao_lcn.fields.lcnno, pvncd, dao_lcn.fields.IDA)
+        Try
+            Dim cls As New CLASS_GEN_XML.DR(_CLS.CITIZEN_ID, lcnsid, dao_lcn.fields.lcnno, pvncd, dao_lcn.fields.IDA)
+        Catch ex As Exception
+
+        End Try
         Dim _process As Integer = 0
         Try
             Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
@@ -1564,7 +1568,12 @@ Public Class POPUP_DR_CONFIRM_STAFF
 
 
         Dim bao_show As New BAO_SHOW
-        class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA) 'ข้อมูลสถานที่จำลอง
+        Try
+            class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA) 'ข้อมูลสถานที่จำลอง
+        Catch ex As Exception
+
+        End Try
+
         'class_xml.DT_SHOW.DT17 = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao_lcn.fields.CITIZEN_ID_AUTHORIZE, dao_lcn.fields.lcnsid) 'ข้อมูลบริษัท
         Try
             If STATUS_ID = "8" Then
@@ -1638,9 +1647,13 @@ Public Class POPUP_DR_CONFIRM_STAFF
 
             class_xml.DT_SHOW.DT16 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 10)
             class_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3_2NO"
+            Try
+                class_xml.DT_SHOW.DT18 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_MUTI_LOCATION(dao_lcn.fields.FK_IDA)
+                class_xml.DT_SHOW.DT18.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_FULLADDR"
+            Catch ex As Exception
 
-            class_xml.DT_SHOW.DT18 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_MUTI_LOCATION(dao_lcn.fields.FK_IDA)
-            class_xml.DT_SHOW.DT18.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_FULLADDR"
+            End Try
+
             class_xml.DT_SHOW.DT23 = bao_show.SP_drrqt_cas(_IDA)
             class_xml.DT_SHOW.DT23.TableName = "SP_regis"
 
@@ -2333,12 +2346,17 @@ Public Class POPUP_DR_CONFIRM_STAFF
             '    End If
 
             'Else
-            lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
+            If lcntpcd.Contains("สม") Then
+                lcnno_format = dao_lcn.fields.lcnno_display_new
+            Else
+                lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
+            End If
+
             'End If
 
 
         Catch ex As Exception
-
+            lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
         End Try
         'dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
 
@@ -2382,7 +2400,12 @@ Public Class POPUP_DR_CONFIRM_STAFF
         class_xml.TABEAN_TYPE2 = TABEAN_TYPE2
 
         Dim bao_show As New BAO_SHOW
-        class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Try
+            class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Catch ex As Exception
+
+        End Try
+
 
         Try
             Dim dt_thanm As DataTable = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao_e.fields.Identify, _CLS.LCNSID_CUSTOMER) 'ข้อมูลบริษัท

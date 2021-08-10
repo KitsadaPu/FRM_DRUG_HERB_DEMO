@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class FRM_CHANGE_DRUG_GROUP
 
     '''<summary>
-    '''UC_TABLE_DRUG_GROUP_CHANGE control.
+    '''UC_TABLE_DRUG_GROUP_CHANGE_HERB control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_TABLE_DRUG_GROUP_CHANGE As Global.FDA_DRUG_HERB.UC_TABLE_DRUG_GROUP_CHANGE
+    Protected WithEvents UC_TABLE_DRUG_GROUP_CHANGE_HERB As Global.FDA_DRUG_HERB.UC_TABLE_DRUG_GROUP_CHANGE_HERB
 
     '''<summary>
     '''UpdatePanel1 control.

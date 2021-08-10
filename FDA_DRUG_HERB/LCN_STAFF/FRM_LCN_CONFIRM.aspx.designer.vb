@@ -950,6 +950,15 @@ Partial Public Class WebForm35
     Protected WithEvents btn_preview As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btn_sormorpo1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_sormorpo1 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btn_load0 control.
     '''</summary>
     '''<remarks>

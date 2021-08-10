@@ -219,6 +219,15 @@ Module BAO_COMMON
             _p_dalcn = value
         End Set
     End Property
+    Private _p_dalcn_subtitute As New XML_CENTER.CLASS_DALCN_SUBSTITUTE
+    Public Property p_dalcn_subtitute() As XML_CENTER.CLASS_DALCN_SUBSTITUTE
+        Get
+            Return _p_dalcn_subtitute
+        End Get
+        Set(ByVal value As XML_CENTER.CLASS_DALCN_SUBSTITUTE)
+            _p_dalcn_subtitute = value
+        End Set
+    End Property
     Private _p_dalcn_sub As New XML_CENTER.CLASS_DALCN_NCT_SUBSTITUTE
     Public Property p_dalcn_sub() As XML_CENTER.CLASS_DALCN_NCT_SUBSTITUTE
         Get
@@ -480,6 +489,9 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = "1400093" Then
                     Dim cls_xml As New CLASS_GEN_XML.DRRGT_PIL_GEN
                     cls_xml.GEN_DRRGT_PIL(PATH_XML, p_PIL)
+                ElseIf PROSESS_ID = 10401 Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
+                    cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
                 End If
 
 
@@ -505,6 +517,9 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                     cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
+                ElseIf PROSESS_ID = 10401 Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
+                    cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
                     'ElseIf SUBSTITUTE <> "" And PROSESS_ID = "1400001" Then ' ทะเบียนยา
                     '    Dim cls_xml As New CLASS_GEN_XML.Center
                     '    cls_xml.GEN_XML_DR(PATH_XML, p_dr)
@@ -634,6 +649,16 @@ Module BAO_COMMON
             ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                 cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "10401" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
+                cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
                     Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
                         Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)

@@ -29,7 +29,7 @@ Public Class FRM_TABEAN_SEARCH
 
             End Try
             Dim dao As New DAO_DRUG.ClsDBdrrgt
-            dao.GetDataby_4key(item("rgtno").Text, item("drgtpcd").Text, item("rgttpcd").Text, item("pvncd").Text)
+            dao.GetDataby_4key(item("rgtno").Text, item("rgttpcd").Text, item("drgtpcd").Text, item("pvncd").Text)
             Try
                 STATUS_ID = dao.fields.STATUS_ID
             Catch ex As Exception

@@ -82,9 +82,9 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Return dao.fields.STATUS_ID.ToString()
     End Function
 
-    Sub alert(ByVal text As String)
-        Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
-    End Sub
+    'Sub alert(ByVal text As String)
+    '    Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
+    'End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
         Dim clsds As New ClassDataset
@@ -493,16 +493,20 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
                 'Else
                 '    lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
                 'End If
-                If dao4.fields.USE_PVNABBR2 IsNot Nothing Then
-
-                    'lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                    If Right(Left(lcnno_auto, 3), 1) = "5" Then
-                        lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
-                    Else
-                        lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                    End If
+                If dao_lcn.fields.lcnno < 1000000 Then
+                    lcnno_format = dao_lcn.fields.LCNNO_DISPLAY_NEW
                 Else
-                    lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                    If dao4.fields.USE_PVNABBR2 IsNot Nothing Then
+
+                        'lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        If Right(Left(lcnno_auto, 3), 1) = "5" Then
+                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
+                        Else
+                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        End If
+                    Else
+                        lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -1085,6 +1089,9 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
 
         End Try
 
+        'Dim dao_lcn168 As New DAO_DRUG.ClsDBdalcn
+        'dao_lcn168.GetDataby_IDA(dao.fields.FK_LCN_IDA)
+
         'Dim dao_lcn As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_DRUG_LCN_ESUB  		เก่า
         Dim dao_lcn As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
         Try
@@ -1259,7 +1266,12 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
             '    End If
 
             'Else
-            lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
+            If dao_lcn.fields.lcnno_display_new Is Nothing Then
+                lcnno_format = dao.fields.pvnabbr & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+            Else
+                lcnno_format = dao_lcn.fields.lcnno_display_new
+            End If
+            'lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
             'End If
 
 
@@ -1308,7 +1320,11 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         class_xml.TABEAN_TYPE2 = TABEAN_TYPE2
 
         Dim bao_show As New BAO_SHOW
-        class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Try
+            class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
+        Catch ex As Exception
+            'Response.Write("<script type='text/javascript'>alert('" + "ไม่เจอ NEWCODE หรือ NEWCODE ไม่ตรงกัน" + "'); parent.close_modal();</script> ")
+        End Try
 
         Try
             Dim dt_thanm As DataTable = bao_show.SP_SYSLCNSNM_BY_LCNSID_AND_IDENTIFY(dao_e.fields.Identify, _CLS.LCNSID_CUSTOMER) 'ข้อมูลบริษัท
@@ -1477,7 +1493,11 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         dao_sub.GetDatabyIDA(Request.QueryString("IDA"))
         dao_sub.fields.TEMPLATE_ID = ddl_template.SelectedValue
         dao_sub.update()
-        BindData_PDF()
+        'BindData_PDF()
+        BindData_PDF_SAI(Request.QueryString("newcode"))
+    End Sub
+    Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "'); parent.close_modal();</script> ")
     End Sub
 
     Private Sub FRM_SUBSTITUTE_TABEAN_PREVIEW_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete

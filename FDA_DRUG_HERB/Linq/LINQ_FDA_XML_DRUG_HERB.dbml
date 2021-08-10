@@ -19,47 +19,6 @@
       <Column Name="IDA_dalcn" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.XML_SEARCH_DRUG_LCN_LICEN_HEAB" Member="XML_SEARCH_DRUG_LCN_LICEN_HEABs">
-    <Type Name="XML_SEARCH_DRUG_LCN_LICEN_HEAB">
-      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="lcnno" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="pvncd" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcntpcd" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcnsid" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="GROUPNAME" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="CITIZEN_AUTHORIZE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Identify" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcnno_no" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcnno_noo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcnno_not_pvnabbr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="typee" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="licen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="licen_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="licen_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="licen_time" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="grannm_lo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="grannm_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="grannm_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thanm_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thanm_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thaamphrnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thachngwtnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="cncnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="appdate" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="expyear" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lmdfdate" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="grouptype" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="Newcode_not" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="IDA_dalcn" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="chngwtcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="thachngwtnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="amphrcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="thaamphrnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="thmblcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="thathmblnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.XML_DRUG_AGENT_HERB" Member="XML_DRUG_AGENT_HERBs">
     <Type Name="XML_DRUG_AGENT_HERB">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -848,6 +807,48 @@
       <Column Name="Newcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.XML_SEARCH_DRUG_LCN_LICEN_HERB" Member="XML_SEARCH_DRUG_LCN_LICEN_HERBs">
+    <Type Name="XML_SEARCH_DRUG_LCN_LICEN_HERB">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lcnno" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="pvncd" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcntpcd" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnsid" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="GROUPNAME" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CITIZEN_AUTHORIZE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Identify" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnno_no" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnno_noo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnno_not_pvnabbr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="typee" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="licen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="licen_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="licen_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="licen_time" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="grannm_lo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="grannm_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="grannm_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thanm_addr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thanm_address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaamphrnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thachngwtnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="cncnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="appdate" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="expyear" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lmdfdate" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="grouptype" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Newcode_not" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IDA_dalcn" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="chngwtcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="thachngwtnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="amphrcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="thaamphrnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="thmblcd" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="thathmblnm_thanm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnno_display_new" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.XML_SEARCH_DRUG_LCN_HERB" Member="XML_SEARCH_DRUG_LCN_HERBs">
     <Type Name="XML_SEARCH_DRUG_LCN_HERB">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -901,6 +902,7 @@
       <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="cnccd" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CER_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="lcnno_display_new" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

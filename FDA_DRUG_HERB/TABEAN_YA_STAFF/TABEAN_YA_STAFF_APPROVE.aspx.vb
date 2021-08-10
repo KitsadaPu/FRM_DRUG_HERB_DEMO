@@ -8,14 +8,14 @@
 
     Sub RunQuery()
         Try
-           
+
             _CLS = Session("CLS")
         Catch ex As Exception
             Response.Redirect("http://privus.fda.moph.go.th/")
         End Try
         Try
             _ProcessID = Request.QueryString("Process")
-            
+
         Catch ex As Exception
 
         End Try
@@ -119,7 +119,7 @@
 
         Return bool
     End Function
-  
+
     'Sub bind_tabean_group()
     '    Dim dao As New DAO_DRUG.ClsDBdrdrgtype
     '    dao.GetDataAll()
@@ -346,14 +346,14 @@
         '
         'alert("ดำเนินการอนุมัติเรียบร้อยแล้ว")
     End Sub
-    
+
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
     End Sub
     Sub alert_only(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
     End Sub
-    
+
 
     Private Sub btn_close_Click(sender As Object, e As EventArgs) Handles btn_close.Click
         Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")

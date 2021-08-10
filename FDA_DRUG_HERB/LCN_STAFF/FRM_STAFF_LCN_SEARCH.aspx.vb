@@ -55,9 +55,9 @@ Public Class FRM_STAFF_LCN_SEARCH
                 str_where = "where CITIZEN_ID_AUTHORIZE='" & txt_CITIZEN_AUTHORIZE.Text & "'"
                 If txt_lcnno_no.Text <> "" Then
                     If str_where <> "" Then
-                        str_where &= " and lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                        str_where &= " and LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%'"
                     Else
-                        str_where &= "lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                        str_where &= "LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%'"
                     End If
 
                 End If
@@ -67,11 +67,11 @@ Public Class FRM_STAFF_LCN_SEARCH
                 If str_where = "" Then
                     If str_where <> "" Then
                         If txt_lcnno_no.Text <> "" Then
-                            str_where &= " and lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                            str_where &= " and LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
                         End If
                     Else
                         If txt_lcnno_no.Text <> "" Then
-                            str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                            str_where = "where LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
 
                         End If
                     End If
@@ -79,7 +79,7 @@ Public Class FRM_STAFF_LCN_SEARCH
                     command &= str_where
                 Else
                     If txt_lcnno_no.Text <> "" Then
-                        str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                        str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
 
                     End If
                     'r_result = dt.Select(str_where)
@@ -168,8 +168,14 @@ Public Class FRM_STAFF_LCN_SEARCH
     Private Sub RadGrid1_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles RadGrid1.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
+            Dim PAGE_MENU As String = Request.QueryString("PAGE_MENU")
             If e.CommandName = "sel" Then
-                Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
+                If PAGE_MENU = 1 Then
+                    Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
+                Else
+                    Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx?IDA=" & item("IDA").Text)
+                End If
+                'Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
             ElseIf e.CommandName = "_trid" Then
                 Dim TR_ID As String = ""
                 Dim _ProcessID As String = ""

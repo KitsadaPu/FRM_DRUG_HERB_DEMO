@@ -167,6 +167,24 @@ Partial Public Class FRM_EDIT_LOCATION_EDIT_PAGE_V2
     Protected WithEvents UC_BSN_SUSTAIN1 As Global.FDA_DRUG_HERB.UC_BSN_SUSTAIN
 
     '''<summary>
+    '''Panel9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel9 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''UC_BSN_SUSTAIN_V2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_BSN_SUSTAIN_V2 As Global.FDA_DRUG_HERB.UC_BSN_SUSTAIN_V2
+
+    '''<summary>
     '''txt_select_date_edit control.
     '''</summary>
     '''<remarks>

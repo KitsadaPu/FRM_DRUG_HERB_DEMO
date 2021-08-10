@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POPUP_DR_STAFF_CHECK_RQT.aspx.vb" Inherits="FDA_DRUG_HERB.POPUP_DR_STAFF_CHECK_RQT" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 209px;
+        }
+        .auto-style2 {
+            height: 93px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <div class="panel" style="width:100%">
@@ -60,10 +68,10 @@
                     <tr ><td>เลขรับ</td><td>
                         <asp:TextBox ID="Txt_rcvno_no" runat="server" CssClass="input-lg"></asp:TextBox>
                         (เช่น 1/62)</td></tr>
-                   <tr ><td>วันที่ตรวจคำขอ</td><td>
-                        <asp:TextBox ID="txt_rcvdate" runat="server" CssClass="input-lg"></asp:TextBox>
-                        </td></tr>
-
+                   <tr ><td class="auto-style2">วันที่ตรวจคำขอ</td><td class="auto-style2">
+                        <asp:TextBox ID="txt_rcvdate" runat="server" CssClass="input-lg">
+                        </asp:TextBox>(วัน/เดือน/ปี พ.ศ. =&gt; 1/10/2563)</td></tr>
+                    <%--<p style="color:red;" class="auto-style1">(วัน/เดือน/ปี พ.ศ. =&gt; 1/10/2563)</p>--%>
                  <%--  <tr ><td>ผู้รับคำขอ</td><td>
                         <asp:DropDownList ID="ddl_receiver" runat="server"  Width="70%">
                         </asp:DropDownList>

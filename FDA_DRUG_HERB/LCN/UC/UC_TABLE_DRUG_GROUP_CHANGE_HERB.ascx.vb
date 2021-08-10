@@ -1422,6 +1422,8 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                         If cb1.Checked Then
                             dao.fields.COL1 = 1
                             jj += 1
+                        Else
+                            dao.fields.COL1 = 0
                         End If
                     Catch ex As Exception
 

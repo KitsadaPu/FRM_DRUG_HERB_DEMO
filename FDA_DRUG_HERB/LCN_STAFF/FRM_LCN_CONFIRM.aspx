@@ -1034,7 +1034,7 @@
 
 
        </div>
-            </div>
+            
                 <%--<uc1:UC_CONFIRM ID="UC_CONFIRM1" runat="server" />--%>
             <div >
                   <asp:Literal ID="lr_preview" runat="server" ></asp:Literal>
@@ -1114,9 +1114,11 @@
                      <tr><td> <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg"   Width="80%"/></td></tr>
                      <tr><td>  <asp:Button ID="btn_load" runat="server" Text="Download PDF" CssClass="btn-lg"   Width="80%" /></td></tr>
                      <tr><td>  <asp:Button ID="btn_preview" runat="server" Text="Preview ใบอนุญาต" CssClass="btn-lg"   Width="80%" /></td></tr>
+                     <tr><td>  <asp:Button ID="btn_sormorpo1" runat="server" Text="PDF สมพ๑" CssClass="btn-lg"   Width="80%" /></td></tr>
                      <tr><td>  <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg"   Width="80%" /></td></tr>
 
-                     <tr><td>  <asp:Button ID="btn_drug_group" runat="server" Text="หมวดยา" CssClass="btn-lg" style="display:none;"   Width="80%" /></td></tr>
+                     <tr><td>  <asp:Button ID="btn_drug_group" runat="server" Text="หมวดยา" CssClass="btn-lg" style="display:none;"   Width="80%" />                        
+                         </td></tr>
 
                  </table>
                  
