@@ -57,11 +57,11 @@
            <div class ="row">
                <div class ="col-md-12"  style="text-align:center;">
                    <h1>
-                       คำขอรับใบอนูญาต
+                       คำขอแก้ไขใบอนูญาต
                    </h1>
                </div>
            </div>
-           <div class ="row">
+           <div class ="row" style="display:none;>
                <div class = "col-md-12" style="text-align:center;">
                    <label>
                        ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร                     
@@ -79,7 +79,7 @@
 
            </div>
  
-           <div class ="row">                            
+           <div class ="row" style="display:none;">                            
                <div class = "col-md-12" style="text-align:left"> <center>
                    <asp:RadioButtonList ID="rdl_lcn_type" runat="server">
                     <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
@@ -267,7 +267,7 @@
                <tr>
                    <td class="auto-style3"></td>
                    <td colspan="8"><h4>
-               กรณีผู้ขออนนุญาตเป็นบุคคลต่างด้าว ระบุ</h4></td>                
+               กรณีผู้ขออนุญาตเป็นบุคคลต่างด้าว ระบุ</h4></td>                
                </tr>
            </table>
            <asp:Panel ID="TB_Personal_Type1" runat="server">
@@ -320,7 +320,7 @@
                </tr>
                <tr>
                    <td class="auto-style3"></td>
-                   <td colspan="4">หรือใบอนุญาาตประกอบธุรกิจตามบัญชีสาม(๑๖)หรือ(๑๕)ตามกฎหมายว่าด้วยการประกอบธุรกิจของคนต่างด้าว</td>
+                   <td colspan="4">หรือใบอนุญาตประกอบธุรกิจตามบัญชีสาม(๑๖)หรือ(๑๕)ตามกฎหมายว่าด้วยการประกอบธุรกิจของคนต่างด้าว</td>
                </tr>
                <tr>
                    <td class="auto-style3"></td>
@@ -401,7 +401,7 @@
        </div>
        <div>
            <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการหรือดำเนนินกิจการเกี่ยวกับใบอนุญาต</h4>
+               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเกี่ยวกับใบอนุญาต</h4>
            <table>
                <tr>
                    <td class="auto-style3"></td>
@@ -580,6 +580,7 @@
 
                        &nbsp;</td>
                </tr>
+              <thead style="display:none;">
                <tr>
                    <td class="auto-style3"></td>
                    <td>
@@ -735,13 +736,14 @@
 
                        &nbsp;</td>
                </tr>
+                   </thead> 
            </table>
 
 
        </div>
        <div>
            <h4>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-               กรณีผู้ได้รับมอบหมายหรือแต่งตั้งให้กำหนดกิจการเป็นบุคคลต่างด้าว ระบุ</h4>&ensp;
+               กรณีผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินกิจการเป็นบุคคลต่างด้าว ระบุ</h4>&ensp;
            <table>
                <tr>
                    <td class="auto-style12"></td>

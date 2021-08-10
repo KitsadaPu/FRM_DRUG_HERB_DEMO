@@ -11,13 +11,13 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <h3>เพิ่มข้อมูลผุ้มีหน้าที่ปฎิบัติการในสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร
+            <h3>เพิ่มข้อมูลผู้มีหน้าที่ปฎิบัติการในสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร
             </h3>
         </div>
         <div class="col-lg-1"></div>
     </div>
 
-    <div class="row">
+<%--    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-1">
             บัตรประชาชน
@@ -40,7 +40,7 @@
             <asp:Label ID="Label1" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาเลือกคำนำหน้า</p></asp:Label>
         </div>
         <div class="col-lg-9"></div>
-    </div>
+    </div>--%>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            ใบอนุญาตประกออนบการวิชาชีพ/โรคศิลปะเลขที่
+            ใบอนุญาตประกอบการวิชาชีพ/โรคศิลปะเลขที่
         </div>
         <div class="col-lg-2">
             <asp:TextBox ID="txt_PHR_TEXT_NUM" runat="server" Height="20px" Width="100%"></asp:TextBox>
@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            กรณีที่ไม่ไช้ผู้ประกอบวิชาชีพหรือผู้ปรกอบโรคคิลปะ ให้ระบุคุณวุฒิ
+            กรณีที่ไม่ไช้ผู้ประกอบวิชาชีพหรือผู้ประกอบโรคคิลปะ ให้ระบุคุณวุฒิ
         </div>
         <div class="col-lg-2">
             <asp:TextBox ID="txt_STUDY_LEVEL" runat="server" Height="20px" Width="100%"></asp:TextBox>
@@ -149,7 +149,7 @@
                 <asp:ListItem Value="3">&nbsp;มาตรา ๓๓ &nbsp;</asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div class="col-lg-3">แห่ง พ.ร.บ.ผลิตภัณฆ์สมุนไพร พ.ศ.๒๕๖๒</div>
+        <div class="col-lg-3">แห่ง พ.ร.บ.ผลิตภัณฑ์สมุนไพร พ.ศ.๒๕๖๒</div>
         <div class="col-lg-3"></div>
     </div>
 

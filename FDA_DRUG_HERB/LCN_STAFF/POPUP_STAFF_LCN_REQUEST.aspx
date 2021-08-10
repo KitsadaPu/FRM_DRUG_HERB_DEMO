@@ -14,11 +14,7 @@
                     <tr>
                         <td>
                             <asp:DropDownList ID="DropDownList1" runat="server" Height="16px" Width="242px">
-                                <asp:ListItem Value="5">อยู่ระหว่างตรวจรับคำขอ</asp:ListItem>
-                                <asp:ListItem Value="3">รอส่งเอกสารให้กลุ่มงานพิจารณา</asp:ListItem>
-                                <asp:ListItem Value="79">เจ้าหน้าที่ยกเลิกคำขอฯ เนื่องจากบันทึกข้อมูลผิดพลาด</asp:ListItem>
-                                <asp:ListItem Value="77">ผู้ประกอบการขอยกเลิกคำขอฯ</asp:ListItem>
-                                <asp:ListItem Value="99">ได้รับอนุญาตแล้ว</asp:ListItem>
+
                             </asp:DropDownList>
                         </td>
                     </tr>

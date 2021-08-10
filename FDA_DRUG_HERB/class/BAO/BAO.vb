@@ -71,7 +71,7 @@ Namespace BAO
         End Function
         Public Function SP_UPDATE_CLONE(ByVal _IDA As String) As DataTable
 
-            Dim sql As String = "exec SP_UPDATE_CLONE @IDA=" & _IDA 
+            Dim sql As String = "exec SP_UPDATE_CLONE @IDA=" & _IDA
             Dim dta As New DataTable
             dta = Queryds(sql)
             Return dta
@@ -7681,7 +7681,7 @@ Namespace BAO
             End If
             Return no_return
         End Function
-        Public Function WS_INSERT_R_NO(ByVal process_no As String, ByVal CITIZEN_AUTHIRIZE As String, ByVal CITIZEN_ID As String, ByVal nameplace As String, _
+        Public Function WS_INSERT_R_NO(ByVal process_no As String, ByVal CITIZEN_AUTHIRIZE As String, ByVal CITIZEN_ID As String, ByVal nameplace As String,
                         ByVal addr As String, ByVal pvncd As Integer, ByVal ref_no As String) As String
             'Dim bool As Boolean = chk_r_exist(r_no)
             Dim no_return As String = ""
@@ -7746,7 +7746,7 @@ Namespace BAO
             End If
             Return result
         End Function
-        Public Sub set_data(ByRef dao As DAO_DRUG.TB_DRUG_REQUEST_CENTER, ByVal CITIZEN_AUTHIRIZE As String, ByVal CITIZEN_ID As String, ByVal nameplace As String, _
+        Public Sub set_data(ByRef dao As DAO_DRUG.TB_DRUG_REQUEST_CENTER, ByVal CITIZEN_AUTHIRIZE As String, ByVal CITIZEN_ID As String, ByVal nameplace As String,
                             ByVal addr As String, ByVal pvncd As Integer)
             dao.fields.CITIZEN_AUTHIRIZE = CITIZEN_AUTHIRIZE
             dao.fields.CITIZEN_ID = CITIZEN_ID

@@ -31,6 +31,7 @@
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
+        Bind_ddl_Status_staff()
     End Sub
 
     Protected Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
@@ -207,6 +208,12 @@
         Else dao.fields.rcbno = 1
         End If
         dao.update()
+        Dim dao_log As New DAO_DRUG.TB_LOG_STATUS
+        dao_log.fields.PROCESS_ID = "10201"
+        dao_log.fields.STATUS_ID = DropDownList1.ToString()
+        dao_log.fields.STATUS_DATE = Date.Now.ToString()
+        dao_log.fields.IDENTIFY = _iden 'หาเลขจาก token
+        dao_log.insert()
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
 
     End Sub
@@ -215,4 +222,40 @@
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ยกเลิกเรียบร้อย');parent.close_modal();", True)
 
     End Sub
+    Public Sub Bind_ddl_Status_staff()
+        Dim dt As New DataTable
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim int_group_ddl As Integer = 0
+
+        Dim dao As New DAO_DRUG.ClsDBlcn_request
+        dao.GetDataby_id(_IDA)
+
+        If dao.fields.STATUS <= 2 Then
+            int_group_ddl = 1
+        ElseIf dao.fields.STATUS = 11 Then
+            int_group_ddl = 2
+        ElseIf dao.fields.STATUS > 2 And dao.fields.STATUS < 6 Then
+            int_group_ddl = 3
+        ElseIf dao.fields.STATUS >= 6 And dao.fields.STATUS < 11 Then
+            int_group_ddl = 4
+        End If
+
+
+        bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL(2, int_group_ddl)
+        dt = bao.dt
+
+        DropDownList1.DataSource = dt
+        DropDownList1.DataValueField = "STATUS_ID"
+        DropDownList1.DataTextField = "STATUS_NAME"
+        DropDownList1.DataBind()
+    End Sub
+    Function Get_DDL_DATA(ByVal stat_g As Integer, ByVal group1 As Integer, ByVal group2 As Integer) As DataTable
+        'Dim dt As New DataTable
+        'Dim sql As String = "exec SP_MAS_STATUS_STAFF_BY_GROUP_DDL_V2 @stat_group=" & stat_g & ", @group1=" & group1 & " , @group2=" & group2
+        Dim sql As String = "exec SP_MAS_STATUS_STAFF_BY_GROUP_DDL @stat_group=" & stat_g & ", @group1=" & group1
+        Dim dta As New DataTable
+        Dim bao As New BAO.ClsDBSqlcommand
+        dta = bao.Queryds(sql)
+        Return dta
+    End Function
 End Class

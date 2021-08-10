@@ -2673,9 +2673,9 @@ Namespace DAO_DRUG
             Next
         End Sub
 
-        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
+        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As String)
 
-            datas = (From p In db.DALCN_PHRs Where p.FK_IDA = FK_IDA Select p)
+            datas = (From p In db.DALCN_PHRs Where p.FK_IDA = CInt(FK_IDA) Select p)
             For Each Me.fields In datas
                 AddDetails()
             Next

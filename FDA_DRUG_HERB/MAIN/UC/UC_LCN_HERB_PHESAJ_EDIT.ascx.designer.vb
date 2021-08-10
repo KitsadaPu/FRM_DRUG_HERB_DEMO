@@ -14,42 +14,6 @@ Option Explicit On
 Partial Public Class UC_LCN_HERB_PHESAJ_EDIT
 
     '''<summary>
-    '''txt_PHR_CTZNO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_PHR_CTZNO As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btn_search control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''ddl_prefix control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddl_prefix As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txt_PHR_NAME control.
     '''</summary>
     '''<remarks>

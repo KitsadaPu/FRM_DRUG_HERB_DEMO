@@ -70,49 +70,50 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
 
 
     End Sub
-    Protected Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
-        Dim CITIZEN_ID_AUTHORIZE As String = ""
-        Try
-            CITIZEN_ID_AUTHORIZE = txt_PHR_CTZNO.Text
-        Catch ex As Exception
+    'Protected Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+    '    Dim CITIZEN_ID_AUTHORIZE As String = ""
+    '    Try
+    '        CITIZEN_ID_AUTHORIZE = txt_PHR_CTZNO.Text
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-        Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
-        Dim ws_taxno = ws2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
+    '    Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
+    '    Dim ws_taxno = ws2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
 
-        Dim dao_syslcnsid As New DAO_CPN.clsDBsyslcnsid
-        dao_syslcnsid.GetDataby_identify(CITIZEN_ID_AUTHORIZE)
-        If dao_syslcnsid.fields.IDA = 0 Then
-            Response.Write("<script type='text/javascript'>alert('ไม่พบข้อมูล');</script> ")
-        Else
-            Try
-                txt_PHR_NAME.Text = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
-            Catch ex As Exception
+    '    Dim dao_syslcnsid As New DAO_CPN.clsDBsyslcnsid
+    '    dao_syslcnsid.GetDataby_identify(CITIZEN_ID_AUTHORIZE)
+    '    If dao_syslcnsid.fields.IDA = 0 Then
+    '        Response.Write("<script type='text/javascript'>alert('ไม่พบข้อมูล');</script> ")
+    '    Else
+    '        Try
+    '            txt_PHR_NAME.Text = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
+    '        Catch ex As Exception
 
-            End Try
-            'Try
-            '    ddl_prefix.DropDownSelectData(ws_taxno.SYSLCNSNMs.prefixcd)
-            'Catch ex As Exception
+    '        End Try
+    '        'Try
+    '        '    ddl_prefix.DropDownSelectData(ws_taxno.SYSLCNSNMs.prefixcd)
+    '        'Catch ex As Exception
 
-            'End Try
-        End If
-    End Sub
+    '        'End Try
+    '    End If
+    'End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("IDA_FK_DLCN_FIx").ToString())
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR_FIX
-        If ddl_prefix.Text = "0" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
-            Check_infor()
-        ElseIf ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
-            Check_infor()
-        ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
-            Check_infor()
-        Else
-            set_data(dao)
+        'If ddl_prefix.Text = "0" Then
+        '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+        '    Check_infor()
+        'Else
+        If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+                Check_infor()
+            ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
+                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+                Check_infor()
+            Else
+                set_data(dao)
             dao.fields.FK_IDA = ida_fk_dalcn_fix
             dao.fields.ID_DALCN = Request.QueryString("ida")
             dao.fields.ACTIVE = 1
@@ -126,10 +127,10 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
 
     End Sub
     Sub Check_infor()
-        If ddl_prefix.Text = "0" Then
-            Label1.Style.Add("display", "initial")
-        Else Label1.Style.Add("display", "none")
-        End If
+        'If ddl_prefix.Text = "0" Then
+        '    Label1.Style.Add("display", "initial")
+        'Else Label1.Style.Add("display", "none")
+        'End If
         If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
             Label2.Style.Add("display", "initial")
             Label3.Style.Add("display", "initial")
@@ -145,10 +146,10 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
     Public Sub set_data(ByRef dao As DAO_DRUG.ClsDBDALCN_PHR_FIX)
         With dao.fields
             .PHR_NAME = txt_PHR_NAME.Text
-            '.PHR_LEVEL = txt_PHR_LEVEL.Text
-            .PHR_PREFIX_ID = ddl_prefix.SelectedValue
-            .PHR_PREFIX_NAME = ddl_prefix.SelectedItem.Text
-            .PHR_CTZNO = txt_PHR_CTZNO.Text
+            ''.PHR_LEVEL = txt_PHR_LEVEL.Text
+            '.PHR_PREFIX_ID = ddl_prefix.SelectedValue
+            '.PHR_PREFIX_NAME = ddl_prefix.SelectedItem.Text
+            '.PHR_CTZNO = txt_PHR_CTZNO.Text
             .PHR_TEXT_NUM = txt_PHR_TEXT_NUM.Text
             .PHR_TEXT_WORK_TIME = txt_PHR_TEXT_WORK_TIME.Text
             If ddl_phr_type.SelectedValue = "0" Then
@@ -215,11 +216,11 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
         With dao.fields
             txt_PHR_NAME.Text = .PHR_NAME
             'txt_PHR_LEVEL.Text = .PHR_LEVEL
-            Try
-                ddl_prefix.DropDownSelectData(.PHR_PREFIX_ID)
-            Catch ex As Exception
+            'Try
+            '    ddl_prefix.DropDownSelectData(.PHR_PREFIX_ID)
+            'Catch ex As Exception
 
-            End Try
+            'End Try
             'Try
             '    ddl_job.DropDownSelectData(.PHR_JOB_TYPE)
             'Catch ex As Exception
@@ -231,7 +232,7 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
 
             'End Try
             txt_PHR_VETERINARY_FIELD.Text = .PHR_VETERINARY_FIELD
-            txt_PHR_CTZNO.Text = .PHR_CTZNO
+            'txt_PHR_CTZNO.Text = .PHR_CTZNO
             txt_PHR_TEXT_NUM.Text = .PHR_TEXT_NUM
             txt_PHR_TEXT_WORK_TIME.Text = .PHR_TEXT_WORK_TIME
             txt_STUDY_LEVEL.Text = .STUDY_LEVEL
@@ -273,13 +274,13 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
         End Try
 
     End Sub
-    Public Sub bind_ddl_prefix()
-        Dim bao As New BAO_SHOW
-        Dim dt As DataTable = bao.SP_SYSPREFIX_DDL()
+    'Public Sub bind_ddl_prefix()
+    '    Dim bao As New BAO_SHOW
+    '    Dim dt As DataTable = bao.SP_SYSPREFIX_DDL()
 
-        ddl_prefix.DataSource = dt
-        ddl_prefix.DataBind()
-    End Sub
+    '    ddl_prefix.DataSource = dt
+    '    ddl_prefix.DataBind()
+    'End Sub
 
     Private Sub rgphr_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgphr.NeedDataSource
         Dim bao As New BAO_MASTER
@@ -322,9 +323,9 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
     Public Sub CLEAR_DATA()
         txt_PHR_NAME.Text = ""
         ' txt_PHR_LEVEL.Text = ""
-        ddl_prefix.SelectedValue = Nothing
-        'ddl_prefix.SelectedItem.Text = Noting
-        txt_PHR_CTZNO.Text = ""
+        'ddl_prefix.SelectedValue = Nothing
+        ''ddl_prefix.SelectedItem.Text = Noting
+        'txt_PHR_CTZNO.Text = ""
         txt_PHR_TEXT_NUM.Text = ""
         txt_PHR_TEXT_WORK_TIME.Text = ""
         ddl_phr_type.SelectedValue = Nothing

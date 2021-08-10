@@ -87,7 +87,7 @@
             UC_HERB_EDIT.load_ddl_chwt()
             UC_HERB_EDIT.load_ddl_amp()
             UC_HERB_EDIT.load_ddl_thambol()
-            UC_LCN_HERB_PHESAJ_EDIT.bind_ddl_prefix()
+            'UC_LCN_HERB_PHESAJ_EDIT.bind_ddl_prefix()
             UC_LCN_HERB_PHESAJ_EDIT.bind_ddl_phr_type()
 
             'If Request.QueryString("ida") <> "" Then
