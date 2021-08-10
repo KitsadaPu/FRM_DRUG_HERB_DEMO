@@ -1034,7 +1034,7 @@
 
 
        </div>
-            </div>
+            
                 <%--<uc1:UC_CONFIRM ID="UC_CONFIRM1" runat="server" />--%>
             <div >
                   <asp:Literal ID="lr_preview" runat="server" ></asp:Literal>

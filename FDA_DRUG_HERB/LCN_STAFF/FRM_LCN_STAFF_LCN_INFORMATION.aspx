@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN_STAFF.Master" CodeBehind="FRM_LCN_STAFF_LCN_INFORMATION.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_LCN_STAFF_LCN_INFORMATION" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN_STAFF.Master" CodeBehind="FRM_LCN_STAFF_LCN_INFORMATION.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_LCN_STAFF_LCN_INFORMATION_EDIT" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/css_radgrid.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
              $('#spinner').fadeOut('slow');
              $('#ContentPlaceHolder1_Button1').click();
          }
-        </script> 
+     </script> 
     <div id="spinner" style="background-color: transparent;display:none;">
         <img src="../imgs/spinner.gif" alt="Loading" style="position: absolute; top: 120px; left: 293px; height: 185px; width: 207px;" />
     </div>
@@ -83,41 +83,59 @@
     <h2>
         สถานะใบอนุญาต
     </h2>
-    <table class="table">
+  <table class="table">
                 <tr>
                     <td> สถานะปัจจุบัน :</td>
                     <td>  <asp:Label ID="lbl_statname" runat="server" Text=""></asp:Label></td>
                 </tr>
-                <tr>
+               <%-- <tr>
                     <td> &nbsp;</td>
                     <td>  &nbsp;</td>
                 </tr>
-                <tr>
-                    <td colspan="2"> 
+                <tr>--%>
+                    <%--<td colspan="2"> 
                         <h2>การขอเปลี่ยนแปลงสถานะ&nbsp;</h2>
                     </td>
                 </tr>
         <tr>
                     <td> เลือกสถานะใหม่ :</td>
                     <td>  
-                        <asp:DropDownList ID="ddl_stat" runat="server">
+                        <asp:DropDownList ID="ddl_stat" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td> วันที่มีผล :</td>
-                    <td>  
-                        <telerik:RadDatePicker ID="rdp_cncdate" Runat="server">
-                        </telerik:RadDatePicker>
-                    </td>
+                    <td>  --%>
+                        <%--<telerik:RadDatePicker ID="rdp_cncdate" Runat="server" AutoPostBack="True">
+<Calendar UseRowHeadersAsSelectors="False" UseColumnHeadersAsSelectors="False"></Calendar>
+
+<DateInput DisplayDateFormat="d/M/yyyy" DateFormat="d/M/yyyy" LabelWidth="40%" AutoPostBack="True">
+<EmptyMessageStyle Resize="None"></EmptyMessageStyle>
+
+<ReadOnlyStyle Resize="None"></ReadOnlyStyle>
+
+<FocusedStyle Resize="None"></FocusedStyle>
+
+<DisabledStyle Resize="None"></DisabledStyle>
+
+<InvalidStyle Resize="None"></InvalidStyle>
+
+<HoveredStyle Resize="None"></HoveredStyle>
+
+<EnabledStyle Resize="None"></EnabledStyle>
+</DateInput>
+
+<DatePopupButton ImageUrl="" HoverImageUrl=""></DatePopupButton>
+                        </telerik:RadDatePicker>--%>
+                 <%--   </td>
                 </tr>
                 
                 <tr>
-                    <td> &nbsp;</td>
-                    <td>  <asp:Button ID="btn_c_stat" runat="server" Text="เปลี่ยนสถานะ" CssClass="btn-lg"/></td>
-                </tr>
-                 </table>
-    <br />
+                    <td> &nbsp;</td>--%>
+                    <%--<td>  <asp:Button ID="btn_c_stat" runat="server" Text="เปลี่ยนสถานะ" CssClass="btn-lg"/></td>--%>
+           <%--     </tr>--%>
+                 </table>&nbsp;<br />
 
     <h2>
         เวลาทำการ
@@ -125,23 +143,25 @@
     <table class="table">
         <tr>
             <td>เวลาทำการ :</td>
-            <td style="width:30%;">
-                <asp:TextBox ID="txt_time" runat="server" CssClass="input-sm" Width="250px"></asp:TextBox>
+            <td>
+                <%--<asp:TextBox ID="txt_time" runat="server" CssClass="input-sm" Width="250px" AutoPostBack="True" ReadOnly="True"></asp:TextBox>--%>                
+                <asp:Label ID="txt_time" runat="server" Text=""></asp:Label>
             </td>
             <td>
-                <asp:Button ID="btn_time" runat="server" Text="เปลี่ยนเวลาทำการ" CssClass="btn-sm" Width="144px" />
+                <%--<asp:Button ID="btn_time" runat="server" Text="เปลี่ยนเวลาทำการ" CssClass="btn-sm" Width="144px" />--%>
             </td>
         </tr>
 
         <tr>
             <td>รูปแบบบ้านเลขที่ในไฟล์ pdf</td>
-            <td style="width:30%;">
-                <asp:DropDownList ID="ddl_template" runat="server" Width="80%">
+             <td>  <asp:Label ID="ddl_template" runat="server" Text=""></asp:Label></td>
+           <%-- <td style="width:30%;">
+                <asp:DropDownList ID="ddl_template" runat="server" Width="80%" AutoPostBack="True" Visible="False">
                             <asp:ListItem Value="1">แบบปกติ</asp:ListItem>
                             <asp:ListItem Value="2">แบบบ้านเลขที่ยาว</asp:ListItem>
-                        </asp:DropDownList></td>
+                        </asp:DropDownList></td>--%>
             <td>
-                <asp:Button ID="btn_template" runat="server" Text="เปลี่ยนรูปบบ pdf" CssClass="btn-sm" Width="144px" />
+                <%--<asp:Button ID="btn_template" runat="server" Text="เปลี่ยนรูปบบ pdf" CssClass="btn-sm" Width="144px" />--%>
             </td>
         </tr>
 
@@ -149,27 +169,29 @@
     <br />
 
     <h2>
-        แก้ไขวันที่ให้ไว้ ณ และปีที่หมดอายุ
+        วันที่ให้ไว้ ณ และปีที่หมดอายุ
     </h2>
 
     <table class="table">
         <tr>
             <td>วันที่ให้ไว้ ณ  :</td>
             <td style="width:30%;">
-                <asp:TextBox ID="txt_appdate" runat="server" CssClass="input-sm" Width="250px"></asp:TextBox>
+                 <asp:Label ID="txt_appdate" runat="server" Text=""></asp:Label>
+               <%-- <asp:TextBox ID="txt_appdate" runat="server" CssClass="input-sm" Width="250px" ReadOnly="True"></asp:TextBox>--%>
             </td>
             <td>
-                <asp:Button ID="btn_appdate" runat="server" Text="เปลี่ยนวันที่ให้ไว้ ณ" CssClass="btn-sm" Width="144px" />
+                <%--<asp:Button ID="btn_appdate" runat="server" Text="เปลี่ยนวันที่ให้ไว้ ณ" CssClass="btn-sm" Width="144px" />--%>
             </td>
         </tr>
 
         <tr>
             <td>ใบอนุญาตฉบับนี้ให้ใช้ได้จนถึง (วันที่/เดือน/พ.ศ.) = วันที่ให้ไว้ +5ปี-1วัน</td>
             <td style="width:30%;">
-                <asp:TextBox ID="txt_expdate" runat="server" CssClass="input-sm" Width="250px"></asp:TextBox>
+                 <asp:Label ID="txt_expdate" runat="server" Text=""></asp:Label>
+               <%-- <asp:TextBox ID="txt_expdate" runat="server" CssClass="input-sm" Width="250px" ReadOnly="True"></asp:TextBox>--%>
             </td>
             <td>
-                <asp:Button ID="btn_expyear" runat="server" Text="เปลี่ยนปีที่หมดอายุ" CssClass="btn-sm" Width="144px" />
+                <%--<asp:Button ID="btn_expyear" runat="server" Text="เปลี่ยนปีที่หมดอายุ" CssClass="btn-sm" Width="144px" />--%>
             </td>
         </tr>
 
@@ -190,8 +212,8 @@
                 <td>
                     <table width="50%">
                         <tr>
-                            <td width="50%"><asp:FileUpload ID="FileUpload1" runat="server" /></td>
-                            <td width="50%"><asp:Button ID="btn_upload_img" runat="server" Text="Upload รูป" CssClass="btn-sm" /></td>
+                            <td width="50%"><%--<asp:FileUpload ID="FileUpload1" runat="server" />--%></td>
+                           <%-- <td width="50%"><asp:Button ID="btn_upload_img" runat="server" Text="Upload รูป" CssClass="btn-sm" /></td>--%>
                         </tr>
                     </table>
                 </td>
@@ -210,14 +232,14 @@
                 
                 <table>
                     <tr>
-                        <td><asp:Button ID="btn_location_select" runat="server" Text="เลือกสถานที่ตั้ง" CssClass="btn-lg"/></td>
+                        <td><%--<asp:Button ID="btn_location_select" runat="server" Text="เลือกสถานที่ตั้ง" CssClass="btn-lg"/>--%></td>
                         <td><asp:Button ID="btn_location" runat="server" Text="เพิ่มสถานที่ตั้งใหม่" CssClass="btn-lg" style="display:none;"/>
                             <%--<asp:Button ID="btn_location_ref" runat="server" Text="" CssClass="btn-lg"/>--%>
 
                         </td>
                     </tr>
                 </table>
-                <asp:HiddenField ID="hd_location" runat="server" />
+                <%--<asp:HiddenField ID="hd_location" runat="server" />--%>
             </td>
         </tr>
         <tr>
@@ -233,10 +255,10 @@
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่ตามทะเบียนราษฎร์" ReadOnly="True" SortExpression="fulladdr" UniqueName="fulladdr">
                             </telerik:GridBoundColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_edit" HeaderText=""  Display="false"
-                           CommandName="_edit" Text="แก้ไขคำผิดในที่อยู่เดิม">
+                            <%--<telerik:GridButtonColumn ButtonType="LinkButt8on" UniqueName="_sel" HeaderText=""  Display="false"
+                           CommandName="_sel" Text="ดูข้อมูล">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
+                       </telerik:GridButtonColumn>--%>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -254,11 +276,11 @@
             <td align="right">
                 <table>
                     <tr>
-                        <td><asp:Button ID="btn_add_keep_select" runat="server" Text="เลือกสถานที่เก็บ" CssClass="btn-lg"/></td>
+                        <td><%--<asp:Button ID="btn_add_keep_select" runat="server" Text="เลือกสถานที่เก็บ" CssClass="btn-lg"/>--%></td>
                         <td><asp:Button ID="btn_add_keep" runat="server" Text="เพิ่มสถานที่เก็บใหม่" CssClass="btn-lg" style="display:none;"/></td>
                     </tr>
                 </table>
-                <asp:HiddenField ID="hdkeep" runat="server" />
+                <%--<asp:HiddenField ID="hdkeep" runat="server" />--%>
             </td>
         </tr>
         <tr>
@@ -274,14 +296,14 @@
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่" ReadOnly="True" SortExpression="fulladdr" UniqueName="fulladdr">
                             </telerik:GridBoundColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt" HeaderText="" Display="false"
-                           CommandName="edt" Text="แก้ไข">
-                           <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="del" HeaderText="" ConfirmText="ต้องการลบข้อมูลหรือไม่"
+                           <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sel" HeaderText="" Display="false"
+                           CommandName="sel" Text="ดูข้อมูล">
+                           <HeaderStyle Width="70px" />--%>
+                       <%--</telerik:GridButtonColumn>--%>
+                           <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="del" HeaderText="" ConfirmText="ต้องการลบข้อมูลหรือไม่"
                            CommandName="del" Text="ลบข้อมูล">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
+                       </telerik:GridButtonColumn>--%>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -296,7 +318,7 @@
     <table class="table">
         <tr>
             <td align="right">
-                <asp:Button ID="btn_bsn" runat="server" Text="เปลี่ยนผู้ดำเนินกิจการ" CssClass="btn-lg"/>
+                <%--<asp:Button ID="btn_bsn" runat="server" Text="เปลี่ยนผู้ดำเนินกิจการ" CssClass="btn-lg"/>--%>
             </td>
         </tr>
         <tr>
@@ -316,14 +338,14 @@
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่" ReadOnly="True" SortExpression="fulladdr" UniqueName="fulladdr">
                             </telerik:GridBoundColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_edit" HeaderText="" ItemStyle-Width="15%"
-                           CommandName="_edit" Text="อัพเดทข้อมูล" ConfirmText="ต้องการอัพเดทข้อมูลหรือไม่?">
+                            <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_sel" HeaderText="" ItemStyle-Width="15%"
+                           CommandName="_sel" Text="ดูข้อมูล">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_edit2" HeaderText="" ItemStyle-Width="15%"
+                       </telerik:GridButtonColumn>--%>
+                           <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_edit2" HeaderText="" ItemStyle-Width="15%"
                            CommandName="_edit2" Text="แก้ไขข้อมูลชื่อ-ที่อยู่เอง">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
+                       </telerik:GridButtonColumn>--%>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -337,7 +359,7 @@
     <table class="table">
         <tr>
             <td align="right">
-                <asp:Button ID="btn_lcnname" runat="server" Text="เปลี่ยนผู้รับอนุญาต" CssClass="btn-lg"/>
+                <%--<asp:Button ID="btn_lcnname" runat="server" Text="เปลี่ยนผู้รับอนุญาต" CssClass="btn-lg"/>--%>
             </td>
         </tr>
         <tr>
@@ -351,10 +373,10 @@
                             <telerik:GridBoundColumn DataField="thanm" FilterControlAltText="Filter thanm column"
                                 HeaderText="ชื่อผู้รับอนุญาต" SortExpression="thanm" UniqueName="thanm">
                             </telerik:GridBoundColumn>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_edit" HeaderText="" ItemStyle-Width="15%"
-                           CommandName="_edit" Text="อัพเดทข้อมูล" ConfirmText="ต้องการอัพเดทข้อมูลหรือไม่?">
+                            <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_sel" HeaderText="" ItemStyle-Width="15%"
+                           CommandName="_sel" Text="ดูข้อมูล">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
+                       </telerik:GridButtonColumn>--%>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -367,7 +389,7 @@
     <table class="table">
         <tr>
             <td align="right">
-                <asp:Button ID="btn_phr_add" runat="server" Text="เพิ่มผู้มีหน้าที่ปฏิบัติการ" CssClass="btn-lg"/>
+                <%--<asp:Button ID="btn_phr_add" runat="server" Text="เพิ่มผู้มีหน้าที่ปฏิบัติการ" CssClass="btn-lg"/>--%>
             </td>
         </tr>
         <tr>
@@ -391,14 +413,14 @@
                                 <telerik:GridBoundColumn DataField="functnm" FilterControlAltText="Filter functnm column"
                                    HeaderText="หน้าที่" SortExpression="functnm" UniqueName="functnm" >
                                </telerik:GridBoundColumn>
-                               <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt"
-                                   CommandName="edt" Text="แก้ไข">
+                               <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sel"
+                                   CommandName="sel" Text="ดูข้อมูล">
                                    <HeaderStyle Width="70px" />
                                </telerik:GridButtonColumn>
-                               <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
+                              <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
                                    CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="คุณต้องการลบผู้ปฏิบัติการหรือไม่">
                                    <HeaderStyle Width="70px" />
-                               </telerik:GridButtonColumn>
+                               </telerik:GridButtonColumn>--%>
                            </Columns>
                        </MasterTableView>
                    </telerik:RadGrid>

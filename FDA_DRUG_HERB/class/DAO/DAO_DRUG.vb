@@ -2295,6 +2295,12 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_FK_IDA(ByVal IDA As String)
+
+            datas = (From p In db.dalcntypes Where p.lcntpcd = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
     End Class
 
     Public Class ClsDBdacncphr
@@ -2674,7 +2680,6 @@ Namespace DAO_DRUG
         End Sub
 
         Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
-
             datas = (From p In db.DALCN_PHRs Where p.FK_IDA = FK_IDA Select p)
             For Each Me.fields In datas
                 'AddDetails()
@@ -3094,9 +3099,17 @@ Namespace DAO_DRUG
 
             Next
         End Sub
+
         Public Sub GetDataby_TEMPLAETE99(ByVal P_ID As Integer, ByVal lcntype As String, ByVal STATUS As Integer, ByVal PREVIEW As Integer)
             datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
               And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_TEMPLAETE_BY_GROUP_V1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal PREVIEW As Integer, Optional _group As Integer = 0)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.STATUS_ID = STATUS _
+              And p.PREVIEW = PREVIEW And p.GROUPS = _group Select p)
             For Each Me.fields In datas
 
             Next
@@ -3131,6 +3144,13 @@ Namespace DAO_DRUG
         End Sub
         Public Sub GetDataby_TEMPLAETE_and_GROUP(ByVal P_ID As String, ByVal lcntype As String, ByVal STATUS As Integer, ByVal GROUPS As Integer, ByVal PREVIEW As Integer)
             datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+             And p.GROUPS = GROUPS And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_TEMPLAETE_and_GROUP_PREVIEW(ByVal P_ID As String, ByVal STATUS As Integer, ByVal GROUPS As Integer, ByVal PREVIEW As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.STATUS_ID = STATUS _
              And p.GROUPS = GROUPS And p.PREVIEW = PREVIEW Select p)
             For Each Me.fields In datas
 
@@ -14145,6 +14165,41 @@ Namespace DAO_DRUG
         ''' <remarks></remarks>
         Public Sub delete()
             db.DALCN_NCT_SUBSTITUTEs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+    End Class
+    Public Class TB_DALCN_SUBSTITUTE
+
+        Inherits MAINCONTEXT
+        Public fields As New DALCN_SUBTITUTE
+        Public Sub GetDataby_All()
+
+            datas = (From p In db.DALCN_SUBTITUTEs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub Getdata_by_IDA(ByVal IDA As Integer)
+            datas = From p In db.DALCN_SUBTITUTEs Where p.IDA = IDA Select p
+            For Each Me.fields In datas
+            Next
+
+        End Sub
+        Public Sub Getdata_by_FK_IDA(ByVal IDA As Integer)
+            datas = From p In db.DALCN_SUBTITUTEs Where p.FK_IDA = IDA Select p
+            For Each Me.fields In datas
+
+            Next
+
+        End Sub
+        Public Sub insert()
+            db.DALCN_SUBTITUTEs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+        Public Sub delete()
+            db.DALCN_SUBTITUTEs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
     End Class

@@ -32,6 +32,7 @@
             UC_BSN_NAME2.bind_ddl_prefix()
             UC_LCNS_NAME.bind_ddl_prefix()
             UC_BSN_SUSTAIN1.bind_old_name()
+            UC_BSN_SUSTAIN_V2.bind_old_name()
 
             If Request.QueryString("ida") <> "" Then
                 Dim dao As New DAO_DRUG.ClsDBdalcn
@@ -124,6 +125,16 @@
                     Panel6.Style.Add("display", "none")
                     Panel7.Style.Add("display", "none")
                     Panel8.Style.Add("display", "block")
+                Case "12"
+                    Panel1.Style.Add("display", "none")
+                    Panel2.Style.Add("display", "none")
+                    Panel3.Style.Add("display", "none")
+                    Panel4.Style.Add("display", "none")
+                    Panel5.Style.Add("display", "none")
+                    Panel6.Style.Add("display", "none")
+                    Panel7.Style.Add("display", "none")
+                    Panel8.Style.Add("display", "none")
+                    Panel9.Style.Add("display", "block")
             End Select
 
         End If
@@ -217,7 +228,7 @@
                 '---------------update ของจริง
                 Dim dao_da As New DAO_DRUG.ClsDBdalcn
                 dao_da.GetDataby_IDA(ida)
-                
+
                 Try
                     Dim dao_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
                     dao_addr.GetDataby_IDA(dao_da.fields.FK_IDA)
@@ -333,6 +344,24 @@
                 Dim dao_h As New DAO_DRUG.TB_EDT_HISTORY
                 UC_BSN_SUSTAIN1.set_data_his(dao_h, dao)
                 UC_BSN_SUSTAIN1.set_data_dalcn(dao)
+
+
+                dao_h.fields.FK_IDA = ida_c
+                dao_h.fields.EDIT_TYPE = edt
+                dao_h.fields.INSERT_DATE = Date.Now
+                dao_h.fields.IDEN_EDITOR = _CLS.CITIZEN_ID
+                Try
+                    dao_h.fields.SELECT_EDIT_DATE = CDate(txt_select_date_edit.Text)
+                Catch ex As Exception
+
+                End Try
+                dao_h.insert()
+                dao.update()
+                Response.Write("<script type='text/javascript'>alert('แก้ไขเรียบร้อย');</script> ")
+            ElseIf edt = "12" Then
+                Dim dao_h As New DAO_DRUG.TB_EDT_HISTORY
+                UC_BSN_SUSTAIN_V2.set_data_his(dao_h, dao)
+                UC_BSN_SUSTAIN_V2.set_data_dalcn(dao)
 
 
                 dao_h.fields.FK_IDA = ida_c

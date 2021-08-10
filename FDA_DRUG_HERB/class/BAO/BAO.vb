@@ -1226,6 +1226,13 @@ Namespace BAO
             dta.TableName = "SP_drug_general_sai"
             Return dta
         End Function
+        Public Function SP_drug_general_sai_v2_NEW(ByVal newcode As String) As DataTable
+            Dim sql As String = "exec SP_drug_general_sai_v2_new @newcode='" & newcode & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_drug_general_sai_V2_"
+            Return dta
+        End Function
         Public Function SP_DRRGT_NAME_DRUG_EXPORT_BY_NEWCODE(ByVal newcode As String) As DataTable
             Dim sql As String = "exec SP_DRRGT_NAME_DRUG_EXPORT_BY_NEWCODE @newcode='" & newcode & "'"
             Dim dta As New DataTable
@@ -1247,6 +1254,13 @@ Namespace BAO
             Dim dta As New DataTable
             dta = Queryds(sql)
             dta.TableName = "SP_drug_general_rq"
+            Return dta
+        End Function
+        Public Function SP_drug_general_rq_new(ByVal IDA As Integer) As DataTable
+            Dim sql As String = "exec SP_drug_general_rq_new @ida=" & IDA
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_drug_general_rq_new"
             Return dta
         End Function
         '
@@ -1426,6 +1440,13 @@ Namespace BAO
             Return dta
         End Function
         '
+        Public Function SP_DALCN_SUBSTITUTE_BY_FK_IDA(ByVal FK_IDA As Integer) As DataTable
+            Dim sql As String = "exec SP_DALCN_SUBSTITUTE_BY_FK_IDA @FK_IDA=" & FK_IDA
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_DALCN_SUBSTITUTE_BY_FK_IDA"
+            Return dta
+        End Function
         Public Function SP_DALCN_NCT_SUBSTITUTE_BY_FK_IDA(ByVal FK_IDA As Integer) As DataTable
             Dim sql As String = "exec SP_DALCN_NCT_SUBSTITUTE_BY_FK_IDA @FK_IDA=" & FK_IDA
             Dim dta As New DataTable
@@ -1433,6 +1454,7 @@ Namespace BAO
             dta.TableName = "SP_DALCN_NCT_SUBSTITUTE_BY_FK_IDA"
             Return dta
         End Function
+
         Public Function SP_DRRGT_SUBSTITUTE_STAFF() As DataTable
             Dim sql As String = "exec SP_DRRGT_SUBSTITUTE_STAFF "
             Dim dta As New DataTable
@@ -1446,6 +1468,13 @@ Namespace BAO
             Dim dta As New DataTable
             dta = Queryds(sql)
             dta.TableName = "SP_DALCN_NCT_SUBSTITUTE_STAFF"
+            Return dta
+        End Function
+        Public Function SP_DALCN_SUBSTITUTE_STAFF() As DataTable
+            Dim sql As String = "exec SP_DALCN_SUBSTITUTE_STAFF "
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_DALCN_SUBSTITUTE_STAFF"
             Return dta
         End Function
         Public Function SP_GET_DDL_PHR_BY_FK_IDA(ByVal FK_IDA As Integer) As DataTable
@@ -1642,6 +1671,13 @@ Namespace BAO
             Dim dta As New DataTable
             dta = Queryds(sql)
             dta.TableName = "SP_DDL_LCN_DI_by_PROCESS_ID"
+            Return dta
+        End Function
+        Public Function SP_DDL_LCN_SUBSTITUTE_by_PROCESS_ID(ByVal process As String, ByVal iden As String) As DataTable
+            Dim sql As String = "exec SP_DDL_LCN_SUBSTITUTE_by_PROCESS_ID @PROCESS_ID='" & process & "' ,@iden='" & iden & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_DDL_LCN_SUBSTITUTE_by_PROCESS_ID"
             Return dta
         End Function
         Public Function SP_DDL_LCN_DI_by_type(ByVal iden As String, ByVal _type As Integer) As DataTable
@@ -4898,7 +4934,20 @@ Namespace BAO
 
             Return dt
         End Function
-        '
+        'SP_PHR_GET_DATA_STAFF
+        Public Function SP_PHR_GET_DATA_STAFF() As DataTable
+            Dim clsds As New ClassDataset
+            Dim sql As String = "exec SP_PHR_GET_DATA_STAFF "
+            Dim dt As New DataTable
+            Try
+                dt = clsds.dsQueryselect(sql, con_str).Tables(0)
+            Catch ex As Exception
+
+            End Try
+
+
+            Return dt
+        End Function
         Public Function SP_DALCN_EDIT_REQUEST_BY_FK_IDA(ByVal fk_ida As Integer) As DataTable
             Dim clsds As New ClassDataset
             Dim sql As String = "exec SP_DALCN_EDIT_REQUEST_BY_FK_IDA @FK_IDA=" & fk_ida

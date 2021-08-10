@@ -30,6 +30,12 @@
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_LCN_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_HERBs Where p.IDA_dalcn = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         '
         Public Sub GetDataby_identify(ByVal iden As String)
 
@@ -59,6 +65,70 @@
         Public Sub GetDataby_lcnno_no(ByVal lcnno_no As String)
 
             datas = (From p In db.XML_SEARCH_DRUG_LCN_HERBs Where p.lcnno_no = lcnno_no Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+
+    Public Class TB_XML_SEARCH_DRUG_LCN_LICEN_HERB
+        Inherits MAINCONTEXT2 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New XML_SEARCH_DRUG_LCN_LICEN_HERB
+
+        Public Sub insert()
+            db.XML_SEARCH_DRUG_LCN_LICEN_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.XML_SEARCH_DRUG_LCN_LICEN_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_LCN_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.IDA_dalcn = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        '
+        Public Sub GetDataby_identify(ByVal iden As String)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.CITIZEN_AUTHORIZE = iden Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        '
+        Public Sub GetDataby_lcnsid(ByVal lcnsid As String)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.lcnsid = lcnsid Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataALL()
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_u1(ByVal u1 As String)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.Newcode_not = u1 Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_lcnno_no(ByVal lcnno_no As String)
+
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.lcnno_no = lcnno_no Select p)
             For Each Me.fields In datas
             Next
         End Sub

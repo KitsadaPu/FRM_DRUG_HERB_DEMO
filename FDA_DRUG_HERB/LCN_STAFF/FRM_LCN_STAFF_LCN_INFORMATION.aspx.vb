@@ -1,6 +1,5 @@
 ﻿Imports Telerik.Web.UI
-
-Public Class FRM_LCN_STAFF_LCN_INFORMATION
+Public Class FRM_LCN_STAFF_LCN_INFORMATION_EDIT
     Inherits System.Web.UI.Page
     Private _CLS As New CLS_SESSION
     Sub RunSession()
@@ -26,7 +25,7 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
 
         End Try
         If Not IsPostBack Then
-            rdp_cncdate.SelectedDate = Date.Now
+            'rdp_cncdate.SelectedDate = Date.Now
 
             Dim dao As New DAO_DRUG.ClsDBdalcn
             Dim lcntpcd As String = ""
@@ -48,12 +47,18 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
 
             End Try
             Try
-                ddl_template.DropDownSelectData(dao.fields.TEMPLATE_ID)
+                If dao.fields.TEMPLATE_ID = "1" Then
+                    ddl_template.Text = "แบบปกติ"
+                Else
+                    ddl_template.Text = "แบบบ้านเลขที่ยาว"
+                End If
+
+                'ddl_template.DropDownSelectData(dao.fields.TEMPLATE_ID)
             Catch ex As Exception
 
             End Try
             Try
-                rdp_cncdate.SelectedDate = CDate(dao.fields.cncdate)
+                'rdp_cncdate.SelectedDate = CDate(dao.fields.cncdate)
             Catch ex As Exception
 
             End Try
@@ -90,7 +95,11 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
 
             End If
             Try
-                txt_appdate.Text = CDate(dao.fields.appdate).ToShortDateString()
+                If dao.fields.appdate Is Nothing Then
+                    txt_appdate.Text = "-"
+                Else
+                    txt_appdate.Text = CDate(dao.fields.appdate).ToShortDateString()
+                End If
             Catch ex As Exception
 
             End Try
@@ -110,14 +119,18 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
             '    End If
             'End If
             Try
-                txt_expdate.Text = CDate(dao.fields.expdate).ToShortDateString
+                If dao.fields.expyear Is Nothing Then
+                    txt_expdate.Text = "-"
+                Else
+                    txt_expdate.Text = CDate(dao.fields.expdate).ToShortDateString
+                End If
             Catch ex As Exception
 
             End Try
             bind_ddl_stat()
 
             Try
-                ddl_stat.DropDownSelectData(dao.fields.cnccscd)
+                'ddl_stat.DropDownSelectData(dao.fields.cnccscd)
             Catch ex As Exception
 
             End Try
@@ -136,33 +149,33 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
         Try
             Dim dao_stat As New DAO_DRUG.ClsDBdacscd
             dao_stat.GetDataAll()
-            ddl_stat.DataSource = dao_stat.datas
-            ddl_stat.DataTextField = "csnm"
-            ddl_stat.DataValueField = "cscd"
-            ddl_stat.DataBind()
+            'ddl_stat.DataSource = dao_stat.datas
+            'ddl_stat.DataTextField = "csnm"
+            'ddl_stat.DataValueField = "cscd"
+            'ddl_stat.DataBind()
 
             Dim item As New ListItem
             item.Text = "คงอยู่"
             item.Value = "0"
-            ddl_stat.Items.Insert(0, item)
+            'ddl_stat.Items.Insert(0, item)
         Catch ex As Exception
 
         End Try
     End Sub
-    Sub set_hide_show()
-        If hd_location.Value = "0" Then
-            btn_location.Style.Add("display", "block")
-        Else
-            btn_location.Style.Add("display", "none")
-        End If
+    'Sub set_hide_show()
+    '    If hd_location.Value = "0" Then
+    '        btn_location.Style.Add("display", "block")
+    '    Else
+    '        btn_location.Style.Add("display", "none")
+    '    End If
 
-        If hdkeep.Value = "0" Then
-            btn_add_keep.Style.Add("display", "block")
-        Else
-            btn_add_keep.Style.Add("display", "none")
-        End If
+    '    If hdkeep.Value = "0" Then
+    '        btn_add_keep.Style.Add("display", "block")
+    '    Else
+    '        btn_add_keep.Style.Add("display", "none")
+    '    End If
 
-    End Sub
+    'End Sub
     Public Sub Shows(ByVal IDA As Integer)
         Dim Tb As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS                               ' ประกาศตัวแปรเพื่อเรียกใช้
         Dim TbNO As New DAO_DRUG.ClsDBdalcn                                     ' ประกาศตัวแปรเพื่อเรียกใช้
@@ -243,33 +256,33 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
             'dao.GetDataby_IDA(item("I").Text)
 
             'Dim dao_his As New DAO_DRUG.TB_DALCN_PHR_HISTORY
-            If e.CommandName = "_edit" Then
-                lbl_title.Text = "แก้ไขสถานที่ตั้ง"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx?IDA=" & item("IDA").Text & "&t=1');", True)
-            End If
+            'If e.CommandName = "_sel" Then
+            '    lbl_title.Text = "แก้ไขสถานที่ตั้ง"
+            '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx?IDA=" & item("IDA").Text & "&t=1');", True)
+            'End If
 
         End If
     End Sub
 
     Private Sub rglocation_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rglocation.ItemDataBound
         '
-        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
-            Dim item As GridDataItem
-            item = e.Item
-            Dim IDA As String = item("IDA").Text
-            Dim btn_edit As LinkButton = DirectCast(item("_edit").Controls(0), LinkButton)
-            Try
-                If _CLS.PVCODE = 10 Then
-                    btn_edit.Style.Add("display", "block")
-                Else
-                    btn_edit.Style.Add("display", "none")
-                End If
-            Catch ex As Exception
+        'If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+        '    Dim item As GridDataItem
+        '    item = e.Item
+        '    Dim IDA As String = item("IDA").Text
+        '    Dim btn_edit As LinkButton = DirectCast(item("_sel").Controls(0), LinkButton)
+        '    Try
+        '        If _CLS.PVCODE = 10 Then
+        '            btn_edit.Style.Add("display", "block")
+        '        Else
+        '            btn_edit.Style.Add("display", "none")
+        '        End If
+        '    Catch ex As Exception
 
-            End Try
+        '    End Try
 
-            
-        End If
+
+        'End If
     End Sub
 
     Private Sub rglocation_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rglocation.NeedDataSource
@@ -298,30 +311,30 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
             'dao.GetDataby_IDA(item("I").Text)
 
             'Dim dao_his As New DAO_DRUG.TB_DALCN_PHR_HISTORY
-            If e.CommandName = "edt" Then
-                lbl_title.Text = "แก้ไขสถานที่เก็บ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx?IDA=" & item("IDA").Text & "&t=2');", True)
-            ElseIf e.CommandName = "del" Then
-                Dim dao As New DAO_DRUG.TB_DALCN_DETAIL_LOCATION_KEEP
-                Dim bao_addr As New BAO.ClsDBSqlcommand
-                Dim dt As New DataTable
-                bao_addr.SP_CUSTOMER_LCN_BY_IDA(item("IDA").Text)
-                dt = bao_addr.dt
-                Dim old_addr As String = ""
-                Try
-                    old_addr = dt(0)("fulladdr")
-                Catch ex As Exception
+            'If e.CommandName = "sel" Then
+            '    lbl_title.Text = "แก้ไขสถานที่เก็บ"
+            '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx?IDA=" & item("IDA").Text & "&t=2');", True)
+            '    'ElseIf e.CommandName = "del" Then
+            '    '    Dim dao As New DAO_DRUG.TB_DALCN_DETAIL_LOCATION_KEEP
+            '    '    Dim bao_addr As New BAO.ClsDBSqlcommand
+            '    '    Dim dt As New DataTable
+            '    '    bao_addr.SP_CUSTOMER_LCN_BY_IDA(item("IDA").Text)
+            '    '    dt = bao_addr.dt
+            '    '    Dim old_addr As String = ""
+            '    '    Try
+            '    '        old_addr = dt(0)("fulladdr")
+            '    '    Catch ex As Exception
 
-                End Try
-                KEEP_LOGS_EDIT(item("IDA").Text, "ลบสถานที่เก็บ - " & old_addr, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
-                Try
-                    dao.GetDataby_IDA(item("IDA").Text)
-                    dao.delete()
-                Catch ex As Exception
+            '    '    End Try
+            '    '    KEEP_LOGS_EDIT(item("IDA").Text, "ลบสถานที่เก็บ - " & old_addr, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
+            '    '    Try
+            '    '        dao.GetDataby_IDA(item("IDA").Text)
+            '    '        dao.delete()
+            '    '    Catch ex As Exception
 
-                End Try
-                rgkeep.Rebind()
-            End If
+            '    '    End Try
+            '    rgkeep.Rebind()
+            'End If
 
         End If
     End Sub
@@ -345,236 +358,236 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
     Private Sub rg_bsn_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles rg_bsn.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
-            If e.CommandName = "_edit" Then
-                If Len(item("BSN_IDENTIFY").Text) >= 13 Then
-                    Dim bao_show11 As New BAO_SHOW
-                    Dim dt_bsn As DataTable = bao_show11.SP_LOCATION_BSN_BY_IDENTIFY(item("BSN_IDENTIFY").Text)
-                    Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
-                    dao_bsn.GetDataby_LCN_IDA(Request.QueryString("IDA"))
-                    For Each dr As DataRow In dt_bsn.Rows
-                        KEEP_LOGS_EDIT(Request.QueryString("IDA"), "อัพเดตข้อมูลผู้ดำเนินกิจการจาก " & dao_bsn.fields.BSN_THAIFULLNAME & " เป็น " & dr("BSN_THAIFULLNAME"), _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
-                        Try
-                            dao_bsn.fields.BSN_THAIFULLNAME = dr("BSN_THAIFULLNAME")
-                        Catch ex As Exception
+            'If e.CommandName = "_edit" Then
+            'If Len(item("BSN_IDENTIFY").Text) >= 13 Then
+            '    Dim bao_show11 As New BAO_SHOW
+            '    Dim dt_bsn As DataTable = bao_show11.SP_LOCATION_BSN_BY_IDENTIFY(item("BSN_IDENTIFY").Text)
+            '    Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            '    dao_bsn.GetDataby_LCN_IDA(Request.QueryString("IDA"))
+            '    For Each dr As DataRow In dt_bsn.Rows
+            '        KEEP_LOGS_EDIT(Request.QueryString("IDA"), "อัพเดตข้อมูลผู้ดำเนินกิจการจาก " & dao_bsn.fields.BSN_THAIFULLNAME & " เป็น " & dr("BSN_THAIFULLNAME"), _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
+            '        Try
+            '            dao_bsn.fields.BSN_THAIFULLNAME = dr("BSN_THAIFULLNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_IDENTIFY = dr("BSN_IDENTIFY")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_IDENTIFY = dr("BSN_IDENTIFY")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ADDR = dr("BSN_ADDR")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ADDR = dr("BSN_ADDR")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_SOI = dr("BSN_SOI")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_SOI = dr("BSN_SOI")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ROAD = dr("BSN_ROAD")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ROAD = dr("BSN_ROAD")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_MOO = dr("BSN_MOO")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_MOO = dr("BSN_MOO")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_THMBL_NAME = dr("BSN_THMBL_NAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_THMBL_NAME = dr("BSN_THMBL_NAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_AMPHR_NAME = dr("BSN_AMPHR_NAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_AMPHR_NAME = dr("BSN_AMPHR_NAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_CHWNGNAME = dr("BSN_CHWNGNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_CHWNGNAME = dr("BSN_CHWNGNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_TELEPHONE = dr("BSN_TELEPHONE")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_TELEPHONE = dr("BSN_TELEPHONE")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_FAX = dr("BSN_FAX")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_FAX = dr("BSN_FAX")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_THAINAME = dr("BSN_THAINAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_THAINAME = dr("BSN_THAINAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_THAILASTNAME = dr("BSN_THAILASTNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_THAILASTNAME = dr("BSN_THAILASTNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_PREFIXENGCD = dr("BSN_PREFIXENGCD")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_PREFIXENGCD = dr("BSN_PREFIXENGCD")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGNAME = dr("BSN_ENGNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGNAME = dr("BSN_ENGNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGLASTNAME = dr("BSN_ENGLASTNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGLASTNAME = dr("BSN_ENGLASTNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGFULLNAME = dr("BSN_ENGFULLNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGFULLNAME = dr("BSN_ENGFULLNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.CHANGWAT_ID = dr("CHANGWAT_ID")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.CHANGWAT_ID = dr("CHANGWAT_ID")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.AMPHR_ID = dr("AMPHR_ID")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.AMPHR_ID = dr("AMPHR_ID")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.TUMBON_ID = dr("TUMBON_ID")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.TUMBON_ID = dr("TUMBON_ID")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_FLOOR = dr("BSN_FLOOR")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_FLOOR = dr("BSN_FLOOR")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_BUILDING = dr("BSN_BUILDING")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_BUILDING = dr("BSN_BUILDING")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ZIPCODE = dr("BSN_ZIPCODE")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ZIPCODE = dr("BSN_ZIPCODE")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.CREATE_DATE = dr("CREATE_DATE")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.CREATE_DATE = dr("CREATE_DATE")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.DOWN_ID = dr("DOWN_ID")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.DOWN_ID = dr("DOWN_ID")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.CITIZEN_ID = dr("CITIZEN_ID")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.CITIZEN_ID = dr("CITIZEN_ID")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.XMLNAME = dr("XMLNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.XMLNAME = dr("XMLNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.NATIONALITY = dr("NATIONALITY")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.NATIONALITY = dr("NATIONALITY")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_HOUSENO = dr("BSN_HOUSENO")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_HOUSENO = dr("BSN_HOUSENO")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGADDR = dr("BSN_ENGADDR")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGADDR = dr("BSN_ENGADDR")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGMU = dr("BSN_ENGMU")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGMU = dr("BSN_ENGMU")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGSOI = dr("BSN_ENGSOI")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGSOI = dr("BSN_ENGSOI")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_ENGROAD = dr("BSN_ENGROAD")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_ENGROAD = dr("BSN_ENGROAD")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_CHWNG_ENGNAME = dr("BSN_CHWNG_ENGNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_CHWNG_ENGNAME = dr("BSN_CHWNG_ENGNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_AMPHR_ENGNAME = dr("BSN_AMPHR_ENGNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_AMPHR_ENGNAME = dr("BSN_AMPHR_ENGNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_THMBL_ENGNAME = dr("BSN_THMBL_ENGNAME")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_THMBL_ENGNAME = dr("BSN_THMBL_ENGNAME")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.BSN_NATIONALITY_CD = dr("BSN_NATIONALITY_CD")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.BSN_NATIONALITY_CD = dr("BSN_NATIONALITY_CD")
+            '        Catch ex As Exception
 
-                        End Try
-                        Try
-                            dao_bsn.fields.AGE = dr("AGE")
-                        Catch ex As Exception
+            '        End Try
+            '        Try
+            '            dao_bsn.fields.AGE = dr("AGE")
+            '        Catch ex As Exception
 
-                        End Try
+            '        End Try
 
-                        dao_bsn.update()
-
-
-                        Try
-                            Dim dao_dalcn As New DAO_DRUG.ClsDBdalcn
-                            dao_dalcn.GetDataby_IDA(Request.QueryString("ida"))
-                            set_data_dalcn(dao_dalcn, item("BSN_IDENTIFY").Text)
-                            dao_dalcn.update()
-                        Catch ex As Exception
-
-                        End Try
-                        Dim ws_update As New WS_DRUG.WS_DRUG
-                        ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
-                        rg_bsn.Rebind()
-                        Try
-                            Shows(Request.QueryString("IDA"))
-                        Catch ex As Exception
-
-                        End Try
-                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('อัพเดทข้อมูลเรียบร้อยแล้ว');", True)
-                    Next
+            '        dao_bsn.update()
 
 
-                Else
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่สามารถอัพเดทข้อมูลได้เนื่องจากเลขบัตรประชาชนไม่ถูกต้อง');", True)
-                End If
-            ElseIf e.CommandName = "_edit2" Then
-                '
-                lbl_title.Text = "แก้ไขที่อยู่ผู้ดำเนินกิจการ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx?ida=" & item("IDA").Text & "');", True)
-            End If
+            '        Try
+            '            Dim dao_dalcn As New DAO_DRUG.ClsDBdalcn
+            '            dao_dalcn.GetDataby_IDA(Request.QueryString("ida"))
+            '            set_data_dalcn(dao_dalcn, item("BSN_IDENTIFY").Text)
+            '            dao_dalcn.update()
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Dim ws_update As New WS_DRUG.WS_DRUG
+            '        ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+            '        rg_bsn.Rebind()
+            '        Try
+            '            Shows(Request.QueryString("IDA"))
+            '        Catch ex As Exception
+
+            '        End Try
+            '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('อัพเดทข้อมูลเรียบร้อยแล้ว');", True)
+            '    Next
+
+
+            'Else
+            '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่สามารถอัพเดทข้อมูลได้เนื่องจากเลขบัตรประชาชนไม่ถูกต้อง');", True)
+            'End If
+            'ElseIf e.CommandName = "_edit2" Then
+            '    '
+            '    lbl_title.Text = "แก้ไขที่อยู่ผู้ดำเนินกิจการ"
+            '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx?ida=" & item("IDA").Text & "');", True)
+            'End If
         End If
     End Sub
 
@@ -596,44 +609,44 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
     Private Sub rglcnname_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles rglcnname.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
-            If e.CommandName = "_edit" Then
-                Dim dao As New DAO_DRUG.ClsDBdalcn
-                dao.GetDataby_IDA(Request.QueryString("IDA"))
-                    If dao.fields.CITIZEN_ID_AUTHORIZE <> "" Then
-                        Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
-                    Dim a As String = ""
-                    Try
-                        a = ws2.insert_taxno_authorize(dao.fields.CITIZEN_ID_AUTHORIZE)
-                    Catch ex As Exception
+            'If e.CommandName = "_sel" Then
+            '    Dim dao As New DAO_DRUG.ClsDBdalcn
+            '    'dao.GetDataby_IDA(Request.QueryString("IDA"))
+            '    'If dao.fields.CITIZEN_ID_AUTHORIZE <> "" Then
+            '    '    Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
+            '    '    Dim a As String = ""
+            '    '    Try
+            '    '        a = ws2.insert_taxno_authorize(dao.fields.CITIZEN_ID_AUTHORIZE)
+            '    '    Catch ex As Exception
 
-                    End Try
-                    Try
-                        a = ws2.insert_taxno(dao.fields.CITIZEN_ID_AUTHORIZE)
-                    Catch ex As Exception
+            '    '    End Try
+            '    '    Try
+            '    '        a = ws2.insert_taxno(dao.fields.CITIZEN_ID_AUTHORIZE)
+            '    '    Catch ex As Exception
 
-                    End Try
-                    Try
-                        Dim ws1 As New WS_FDA_CITIZEN.WS_FDA_CITIZEN
-                        ws1.FDA_CITIZEN(dao.fields.CITIZEN_ID_AUTHORIZE, "1102001745831", "fusion", "P@ssw0rdfusion440")
-                    Catch ex As Exception
+            '    '    End Try
+            '    '    Try
+            '    '        Dim ws1 As New WS_FDA_CITIZEN.WS_FDA_CITIZEN
+            '    '        ws1.FDA_CITIZEN(dao.fields.CITIZEN_ID_AUTHORIZE, "1102001745831", "fusion", "P@ssw0rdfusion440")
+            '    '    Catch ex As Exception
 
-                    End Try
-                    Try
-                        Dim ws3 As New WS_TRADERS.WS_TRADER
-                        ws3.CallWS_TRADER("fusion", "P@ssw0rdfusion440", dao.fields.CITIZEN_ID_AUTHORIZE)
-                    Catch ex As Exception
+            '    '    End Try
+            '    '    Try
+            '    '        Dim ws3 As New WS_TRADERS.WS_TRADER
+            '    '        ws3.CallWS_TRADER("fusion", "P@ssw0rdfusion440", dao.fields.CITIZEN_ID_AUTHORIZE)
+            '    '    Catch ex As Exception
 
-                    End Try
+            '    '    End Try
 
-                End If
+            '    'End If
 
 
-                KEEP_LOGS_EDIT(Request.QueryString("IDA"), "อัพเดตข้อมูลผู้รับอนุญาต - " & dao.fields.CITIZEN_ID_AUTHORIZE, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
-                Dim ws_update As New WS_DRUG.WS_DRUG
-                ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
-                rglcnname.Rebind()
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('อัพเดทข้อมูลเรียบร้อยแล้ว');", True)
-            End If
+            '    'KEEP_LOGS_EDIT(Request.QueryString("IDA"), "อัพเดตข้อมูลผู้รับอนุญาต - " & dao.fields.CITIZEN_ID_AUTHORIZE, _CLS.CITIZEN_ID, url:=HttpContext.Current.Request.Url.AbsoluteUri)
+            '    'Dim ws_update As New WS_DRUG.WS_DRUG
+            '    'ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+            '    'rglcnname.Rebind()
+            '    'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('อัพเดทข้อมูลเรียบร้อยแล้ว');", True)
+            'End If
         End If
     End Sub
 
@@ -657,25 +670,25 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
             Dim dao_his As New DAO_DRUG.TB_DALCN_PHR_HISTORY
-            If e.CommandName = "edt" Then
-                lbl_title.Text = "แก้ไขข้อมูลผู้มีหน้าที่ปฏิบัติการ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_PHR_EDIT.aspx?phr=" & item("PHR_IDA").Text & "&ida= " & Request.QueryString("IDA") & "');", True)
-            ElseIf e.CommandName = "r_del" Then
-                Dim name_del As String
-                Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
-                dao.GetDataby_IDA(item("PHR_IDA").Text)
-                name_del = dao.fields.PHR_NAME
-                dao.delete()
+            If e.CommandName = "sel" Then
+                lbl_title.Text = "ดูข้อมูล"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('POPUP_LCN_PHR_DETAIL.aspx?phr=" & item("PHR_IDA").Text & "&ida= " & Request.QueryString("IDA") & "');", True)
+                'ElseIf e.CommandName = "r_del" Then
+                '    Dim name_del As String
+                '    Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
+                '    dao.GetDataby_IDA(item("PHR_IDA").Text)
+                '    name_del = dao.fields.PHR_NAME
+                '    dao.delete()
 
-                Dim ws_update As New WS_DRUG.WS_DRUG
-                ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
-                'ws_update.DRUG_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
-                KEEP_LOGS_EDIT(Request.QueryString("ida"), "ลบผู้มีหน้าที่ปฏิบัติการ " & name_del, _CLS.CITIZEN_ID)
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ลบเรียบร้อยแล้ว');", True)
+                '    Dim ws_update As New WS_DRUG.WS_DRUG
+                '    ws_update.HERB_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+                '    'ws_update.DRUG_UPDATE_LICEN(Request.QueryString("ida"), _CLS.CITIZEN_ID)
+                '    KEEP_LOGS_EDIT(Request.QueryString("ida"), "ลบผู้มีหน้าที่ปฏิบัติการ " & name_del, _CLS.CITIZEN_ID)
+                '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ลบเรียบร้อยแล้ว');", True)
 
-            ElseIf e.CommandName = "job" Then
-                lbl_title.Text = "เพิ่ม/แก้ไขผู้มีหน้าที่ปฏิบัติการ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_PHR_JOB.aspx?ida=" & Request.QueryString("ida") & "&ida_c=" & Request.QueryString("ida_c") & "&phr=" & item("PHR_IDA").Text & "');", True)
+                'ElseIf e.CommandName = "job" Then
+                '    lbl_title.Text = "เพิ่ม/แก้ไขผู้มีหน้าที่ปฏิบัติการ"
+                '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_PHR_JOB.aspx?ida=" & Request.QueryString("ida") & "&ida_c=" & Request.QueryString("ida_c") & "&phr=" & item("PHR_IDA").Text & "');", True)
             End If
             rgphr.Rebind()
         End If
@@ -731,93 +744,93 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx?lcn_ida=" & IDA & "&t=2');", True)
     End Sub
 
-    Private Sub FRM_LCN_STAFF_LCN_INFORMATION_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
-        hd_location.Value = rglocation.Items.Count.ToString()
-        hdkeep.Value = rgkeep.Items.Count.ToString()
-        set_hide_show()
+    'Private Sub FRM_LCN_STAFF_LCN_INFORMATION_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
+    '    hd_location.Value = rglocation.Items.Count.ToString()
+    '    hdkeep.Value = rgkeep.Items.Count.ToString()
+    '    set_hide_show()
 
-        Dim dao_ya As New DAO_DRUG.ClsDBdalcn
-        dao_ya.GetDataby_IDA(Request.QueryString("IDA"))
-        Try
-            RadBinaryImage1.DataValue = Convert.FromBase64String(dao_ya.fields.IMAGE_BSN)
-            RadBinaryImage1.ResizeMode = BinaryImageResizeMode.Fit
-        Catch ex As Exception
+    '    Dim dao_ya As New DAO_DRUG.ClsDBdalcn
+    '    dao_ya.GetDataby_IDA(Request.QueryString("IDA"))
+    '    Try
+    '        RadBinaryImage1.DataValue = Convert.FromBase64String(dao_ya.fields.IMAGE_BSN)
+    '        RadBinaryImage1.ResizeMode = BinaryImageResizeMode.Fit
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
-    Private Sub btn_c_stat_Click(sender As Object, e As EventArgs) Handles btn_c_stat.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        dao.GetDataby_IDA(Request.QueryString("IDA"))
-        Try
-            If ddl_stat.SelectedValue = "0" Then
-                dao.fields.cnccscd = Nothing
-                dao.fields.cnccd = Nothing
-                dao.update()
-            Else
-                dao.fields.cnccscd = ddl_stat.SelectedValue
-                dao.fields.cnccd = 2
-                dao.update()
-            End If
-        Catch ex As Exception
+    'Private Sub btn_c_stat_Click(sender As Object, e As EventArgs) Handles btn_c_stat.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '    Try
+    '        If ddl_stat.SelectedValue = "0" Then
+    '            dao.fields.cnccscd = Nothing
+    '            dao.fields.cnccd = Nothing
+    '            dao.update()
+    '        Else
+    '            dao.fields.cnccscd = ddl_stat.SelectedValue
+    '            dao.fields.cnccd = 2
+    '            dao.update()
+    '        End If
+    '    Catch ex As Exception
 
-        End Try
-        Run_Service(Request.QueryString("IDA"))
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อยแล้ว');", True)
+    '    End Try
+    '    Run_Service(Request.QueryString("IDA"))
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อยแล้ว');", True)
 
-        KEEP_LOGS_EDIT(Request.QueryString("IDA"), "แก้ไขสถานะใบอนุญาต", _CLS.CITIZEN_ID)
-    End Sub
+    '    KEEP_LOGS_EDIT(Request.QueryString("IDA"), "แก้ไขสถานะใบอนุญาต", _CLS.CITIZEN_ID)
+    'End Sub
 
-    Private Sub btn_add_keep_select_Click(sender As Object, e As EventArgs) Handles btn_add_keep_select.Click
-        lbl_title.Text = "เพิ่มสถานที่เก็บ"
-        Dim IDA As String = ""
-        Try
-            'Dim dao As New DAO_DRUG.ClsDBdalcn
-            'dao.GetDataby_IDA(Request.QueryString("IDA"))
-            'IDA = dao.fields.FK_IDA
-            IDA = Request.QueryString("IDA")
-        Catch ex As Exception
+    'Private Sub btn_add_keep_select_Click(sender As Object, e As EventArgs) Handles btn_add_keep_select.Click
+    '    lbl_title.Text = "เพิ่มสถานที่เก็บ"
+    '    Dim IDA As String = ""
+    '    Try
+    '        'Dim dao As New DAO_DRUG.ClsDBdalcn
+    '        'dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '        'IDA = dao.fields.FK_IDA
+    '        IDA = Request.QueryString("IDA")
+    '    Catch ex As Exception
 
-        End Try
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx?ida=" & IDA & "&t=2');", True)
-    End Sub
+    '    End Try
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx?ida=" & IDA & "&t=2');", True)
+    'End Sub
 
-    Private Sub btn_location_select_Click(sender As Object, e As EventArgs) Handles btn_location_select.Click
-        lbl_title.Text = "เลือกสถานที่ตั้งใหม่"
-        Dim IDA As String = ""
-        Try
-            'Dim dao As New DAO_DRUG.ClsDBdalcn
-            'dao.GetDataby_IDA(Request.QueryString("IDA"))
-            'IDA = dao.fields.FK_IDA
-            IDA = Request.QueryString("IDA")
-        Catch ex As Exception
+    'Private Sub btn_location_select_Click(sender As Object, e As EventArgs) Handles btn_location_select.Click
+    '    lbl_title.Text = "เลือกสถานที่ตั้งใหม่"
+    '    Dim IDA As String = ""
+    '    Try
+    '        'Dim dao As New DAO_DRUG.ClsDBdalcn
+    '        'dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '        'IDA = dao.fields.FK_IDA
+    '        IDA = Request.QueryString("IDA")
+    '    Catch ex As Exception
 
-        End Try
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_ADD_LOCATION.aspx?ida=" & IDA & "&t=1');", True)
-    End Sub
+    '    End Try
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_ADD_LOCATION.aspx?ida=" & IDA & "&t=1');", True)
+    'End Sub
 
-    Private Sub btn_lcnname_Click(sender As Object, e As EventArgs) Handles btn_lcnname.Click
-        lbl_title.Text = "เปลี่ยนผู้รับอนุญาต"
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_CHANGE_LCNSNM.aspx?ida=" & Request.QueryString("IDA") & "');", True)
-    End Sub
+    'Private Sub btn_lcnname_Click(sender As Object, e As EventArgs) Handles btn_lcnname.Click
+    '    lbl_title.Text = "เปลี่ยนผู้รับอนุญาต"
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_CHANGE_LCNSNM.aspx?ida=" & Request.QueryString("IDA") & "');", True)
+    'End Sub
 
-    Private Sub btn_bsn_Click(sender As Object, e As EventArgs) Handles btn_bsn.Click
-        lbl_title.Text = "เปลี่ยนผู้ดำเนินกิจการ"
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_CHANGE_BSN.aspx?ida=" & Request.QueryString("IDA") & "');", True)
-    End Sub
+    'Private Sub btn_bsn_Click(sender As Object, e As EventArgs) Handles btn_bsn.Click
+    '    lbl_title.Text = "เปลี่ยนผู้ดำเนินกิจการ"
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_CHANGE_BSN.aspx?ida=" & Request.QueryString("IDA") & "');", True)
+    'End Sub
 
-    Private Sub btn_phr_add_Click(sender As Object, e As EventArgs) Handles btn_phr_add.Click
-        lbl_title.Text = "บันทึกข้อมูลผู้ปฏิบัติงาน"
-        'Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
-        'dao.GetDataby_IDA(Request.QueryString("IDA"))
-        'Dim phr_ida As String = 0
-        'Try
-        '    phr_ida = dao.fields.PHR_IDA
-        'Catch ex As Exception
+    'Private Sub btn_phr_add_Click(sender As Object, e As EventArgs) Handles btn_phr_add.Click
+    '    lbl_title.Text = "บันทึกข้อมูลผู้ปฏิบัติงาน"
+    '    'Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
+    '    'dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '    'Dim phr_ida As String = 0
+    '    'Try
+    '    '    phr_ida = dao.fields.PHR_IDA
+    '    'Catch ex As Exception
 
-        'End Try
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_PHR_INSERT.aspx?ida=" & Request.QueryString("IDA") & "');", True)
-    End Sub
+    '    'End Try
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_STAFF_LCN_PHR_INSERT.aspx?ida=" & Request.QueryString("IDA") & "');", True)
+    'End Sub
     Public Sub set_data_dalcn(ByRef dao As DAO_DRUG.ClsDBdalcn, ByVal bsn_iden As String)
         Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
         dao_bsn.Getdata_by_iden(bsn_iden)
@@ -882,135 +895,136 @@ Public Class FRM_LCN_STAFF_LCN_INFORMATION
         Next
     End Sub
 
-    Private Sub btn_time_Click(sender As Object, e As EventArgs) Handles btn_time.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Dim ccc As String = ""
-        Try
-            dao.GetDataby_IDA(Request.QueryString("ida"))
-            dao.fields.opentime = txt_time.Text
-            dao.update()
-            Run_Service(Request.QueryString("IDA"))
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
-        Catch ex As Exception
+    'Private Sub btn_time_Click(sender As Object, e As EventArgs) Handles btn_time.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    Dim ccc As String = ""
+    '    Try
+    '        dao.GetDataby_IDA(Request.QueryString("ida"))
+    '        dao.fields.opentime = txt_time.Text
+    '        dao.update()
+    '        Run_Service(Request.QueryString("IDA"))
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+    '    Catch ex As Exception
 
-        End Try
-        KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขเวลาทำการ", _CLS.CITIZEN_ID)
+    '    End Try
+    '    KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขเวลาทำการ", _CLS.CITIZEN_ID)
 
-    End Sub
+    'End Sub
 
-    Private Sub btn_appdate_Click(sender As Object, e As EventArgs) Handles btn_appdate.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Try
-            dao.GetDataby_IDA(Request.QueryString("ida"))
-            dao.fields.appdate = CDate(txt_appdate.Text)
-            dao.update()
+    'Private Sub btn_appdate_Click(sender As Object, e As EventArgs) Handles btn_appdate.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    Try
+    '        dao.GetDataby_IDA(Request.QueryString("ida"))
+    '        dao.fields.appdate = CDate(txt_appdate.Text)
+    '        dao.update()
 
-            Run_Service(Request.QueryString("IDA"))
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
-        Catch ex As Exception
+    '        Run_Service(Request.QueryString("IDA"))
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+    '    Catch ex As Exception
 
-        End Try
-        KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขวันที่ให้ไว้ ณ", _CLS.CITIZEN_ID)
-    End Sub
+    '    End Try
+    '    KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขวันที่ให้ไว้ ณ", _CLS.CITIZEN_ID)
+    'End Sub
 
-    Private Sub btn_expyear_Click(sender As Object, e As EventArgs) Handles btn_expyear.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Dim expyear As Integer = 0
-        Dim expdate As Date = Nothing
-        Try
-            expdate = Trim(txt_expdate.Text)
-        Catch ex As Exception
+    'Private Sub btn_expyear_Click(sender As Object, e As EventArgs) Handles btn_expyear.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    Dim expyear As Integer = 0
+    '    Dim expdate As Date = Nothing
+    '    Try
+    '        expdate = Trim(txt_expdate.Text)
+    '    Catch ex As Exception
 
-        End Try
-        'Try
-        '    expyear = Trim(txt_expdate.Text)
-        'Catch ex As Exception
+    '    End Try
+    '    'Try
+    '    '    expyear = Trim(txt_expdate.Text)
+    '    'Catch ex As Exception
 
-        'End Try
-        'Try
-        '    If expyear <> 0 Then
-        '        dao.GetDataby_IDA(Request.QueryString("ida"))
-        '        If expyear < 2500 Then
-        '            dao.fields.expyear = expyear + 543
-        '        Else
-        '            dao.fields.expyear = expyear
-        '        End If
-        '        dao.update()
-        '        Run_Service(Request.QueryString("IDA"))
-        '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
-        '    Else
-        '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
-        '    End If
+    '    'End Try
+    '    'Try
+    '    '    If expyear <> 0 Then
+    '    '        dao.GetDataby_IDA(Request.QueryString("ida"))
+    '    '        If expyear < 2500 Then
+    '    '            dao.fields.expyear = expyear + 543
+    '    '        Else
+    '    '            dao.fields.expyear = expyear
+    '    '        End If
+    '    '        dao.update()
+    '    '        Run_Service(Request.QueryString("IDA"))
+    '    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+    '    '    Else
+    '    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
+    '    '    End If
 
-        'Catch ex As Exception
+    '    'Catch ex As Exception
 
-        'End Try
-        Try
-            dao.fields.expdate = CDate(txt_expdate.Text) 'Date.Now 'CDate(txt_app_date.Text)
-            If expdate <> Nothing Then
-                dao.GetDataby_IDA(Request.QueryString("ida"))
-                'If expyear < 2500 Then
-                '    dao.fields.expyear = expyear + 543
-                'Else
-                '    dao.fields.expyear = expyear
-                'End If
-                dao.update()
-                'Run_Service(Request.QueryString("IDA"))
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
-            Else
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
-            End If
-        Catch ex As Exception
+    '    'End Try
+    '    Try
+    '        dao.fields.expdate = CDate(txt_expdate.Text) 'Date.Now 'CDate(txt_app_date.Text)
+    '        If expdate <> Nothing Then
+    '            dao.GetDataby_IDA(Request.QueryString("ida"))
+    '            'If expyear < 2500 Then
+    '            '    dao.fields.expyear = expyear + 543
+    '            'Else
+    '            '    dao.fields.expyear = expyear
+    '            'End If
+    '            dao.update()
+    '            'Run_Service(Request.QueryString("IDA"))
+    '            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+    '        Else
+    '            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล');", True)
+    '        End If
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-        KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขปีหมดอายุ", _CLS.CITIZEN_ID)
-    End Sub
+    '    KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไขปีหมดอายุ", _CLS.CITIZEN_ID)
+    'End Sub
 
-    Protected Sub btn_template_Click(sender As Object, e As EventArgs) Handles btn_template.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Dim ccc As String = ""
-        Try
-            dao.GetDataby_IDA(Request.QueryString("ida"))
-            dao.fields.TEMPLATE_ID = ddl_template.SelectedValue
-            dao.update()
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
-        Catch ex As Exception
+    'Protected Sub btn_template_Click(sender As Object, e As EventArgs) Handles btn_template.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    Dim ccc As String = ""
+    '    Try
+    '        dao.GetDataby_IDA(Request.QueryString("ida"))
+    '        dao.fields.TEMPLATE_ID = ddl_template.SelectedValue
+    '        dao.update()
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แก้ไขเรียบร้อย');", True)
+    '    Catch ex As Exception
 
-        End Try
-        KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไข Template เลขที่บ้านใน pdf", _CLS.CITIZEN_ID)
-    End Sub
+    '    End Try
+    '    KEEP_LOGS_EDIT(Request.QueryString("ida"), "แก้ไข Template เลขที่บ้านใน pdf", _CLS.CITIZEN_ID)
+    'End Sub
 
-    Protected Sub btn_CATEGORY_DRUG_Click(sender As Object, e As EventArgs) Handles btn_CATEGORY_DRUG.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Try
-            dao.GetDataby_IDA(Request.QueryString("IDA"))
-            dao.fields.CATEGORY_DRUG = txt_CATEGORY_DRUG.Text
-            dao.update()
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
-        Catch ex As Exception
+    'Protected Sub btn_CATEGORY_DRUG_Click(sender As Object, e As EventArgs) Handles btn_CATEGORY_DRUG.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    Try
+    '        dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '        dao.fields.CATEGORY_DRUG = txt_CATEGORY_DRUG.Text
+    '        dao.update()
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Protected Sub btn_upload_img_Click(sender As Object, e As EventArgs) Handles btn_upload_img.Click
-        If FileUpload1.HasFile Then
-            Dim file_ex As String = ""
-            file_ex = file_extension_nm(FileUpload1.FileName)
-            If file_ex = "jpg" Or file_ex = "png" Then
-                Dim dao As New DAO_DRUG.ClsDBdalcn
-                dao.GetDataby_IDA(Request.QueryString("IDA"))
-                dao.fields.IMAGE_BSN = Convert.ToBase64String(FileUpload1.FileBytes)
-                dao.update()
-                RadBinaryImage1.DataBind()
+    'Protected Sub btn_upload_img_Click(sender As Object, e As EventArgs) Handles btn_upload_img.Click
+    '    If FileUpload1.HasFile Then
+    '        Dim file_ex As String = ""
+    '        file_ex = file_extension_nm(FileUpload1.FileName)
+    '        If file_ex = "jpg" Or file_ex = "png" Then
+    '            Dim dao As New DAO_DRUG.ClsDBdalcn
+    '            dao.GetDataby_IDA(Request.QueryString("IDA"))
+    '            dao.fields.IMAGE_BSN = Convert.ToBase64String(FileUpload1.FileBytes)
+    '            dao.update()
+    '            RadBinaryImage1.DataBind()
 
-                KEEP_LOGS_EDIT(Request.QueryString("ida"), "อัพโหลดรูป", _CLS.CITIZEN_ID)
-            Else
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไฟล์ไม่ถูกต้อง ควรใช้ไฟล์นามสกุล .jpg หรือ .png');", True)
-            End If
-        Else
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาแนบไฟล์');", True)
-        End If
-    End Sub
+    '            KEEP_LOGS_EDIT(Request.QueryString("ida"), "อัพโหลดรูป", _CLS.CITIZEN_ID)
+    '        Else
+    '            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไฟล์ไม่ถูกต้อง ควรใช้ไฟล์นามสกุล .jpg หรือ .png');", True)
+    '        End If
+    '    Else
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาแนบไฟล์');", True)
+    '    End If
+    'End Sub
+
 End Class

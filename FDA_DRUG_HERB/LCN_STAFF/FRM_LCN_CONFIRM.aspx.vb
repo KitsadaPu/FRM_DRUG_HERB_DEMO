@@ -51,7 +51,6 @@ Public Class WebForm35
                 dao1.GetDataby_IDA(_IDA)
                 'BindData_PDF()
 
-
                 If dao1.fields.STATUS_ID >= 8 And dao1.fields.STATUS_ID <> 11 Then
                     BindData_PDF()
                     Panel1.Style.Add("display", "none")
@@ -1922,9 +1921,25 @@ Public Class WebForm35
 
                 If Not dao.fields.LCNNO_DISPLAY_NEW Is Nothing Then
                     lcnno_format_NEW = dao.fields.LCNNO_DISPLAY_NEW
-                    'lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
-                Else
-                    lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                    'Try
+                    '    Dim App_Date As Date = dao.fields.appdate
+                    '    If App_Date > #10/1/2019 12:00:00 AM# Then
+                    '        lcnno_format = dao.fields.LCNNO_DISPLAY_NEW
+                    '    Else
+                    '        lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                    '    End If
+                    'Catch ex As Exception
+
+                    'End Try
+
+                    If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
+                            lcnno_format = dao.fields.LCNNO_DISPLAY_NEW
+                        Else
+                            lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                        End If
+                        'lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                    Else
+                        lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
                 End If
 
             End If

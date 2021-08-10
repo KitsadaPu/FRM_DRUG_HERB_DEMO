@@ -493,16 +493,20 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
                 'Else
                 '    lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
                 'End If
-                If dao4.fields.USE_PVNABBR2 IsNot Nothing Then
-
-                    'lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                    If Right(Left(lcnno_auto, 3), 1) = "5" Then
-                        lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
-                    Else
-                        lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                    End If
+                If dao_lcn.fields.lcnno < 1000000 Then
+                    lcnno_format = dao_lcn.fields.LCNNO_DISPLAY_NEW
                 Else
-                    lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                    If dao4.fields.USE_PVNABBR2 IsNot Nothing Then
+
+                        'lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        If Right(Left(lcnno_auto, 3), 1) = "5" Then
+                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
+                        Else
+                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        End If
+                    Else
+                        lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -1085,6 +1089,9 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
 
         End Try
 
+        'Dim dao_lcn168 As New DAO_DRUG.ClsDBdalcn
+        'dao_lcn168.GetDataby_IDA(dao.fields.FK_LCN_IDA)
+
         'Dim dao_lcn As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_DRUG_LCN_ESUB  		เก่า
         Dim dao_lcn As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
         Try
@@ -1259,7 +1266,12 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
             '    End If
 
             'Else
-            lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
+            If dao_lcn.fields.lcnno_display_new Is Nothing Then
+                lcnno_format = dao.fields.pvnabbr & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+            Else
+                lcnno_format = dao_lcn.fields.lcnno_display_new
+            End If
+            'lcnno_format = pvnabbr2 & " " & CStr(CInt(Right(dao_e.fields.lcnno, 4))) & "/25" & Left(dao_e.fields.lcnno, 2) 'dao_e.fields.lcnno_no
             'End If
 
 
@@ -1311,7 +1323,7 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Try
             class_xml.DT_SHOW.DT6 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.IDA_dalcn) 'ข้อมูลสถานที่จำลอง
         Catch ex As Exception
-            Response.Write("<script type='text/javascript'>alert('" + "ไม่เจอ NEWCODE หรือ NEWCODE ไม่ตรงกัน" + "'); parent.close_modal();</script> ")
+            'Response.Write("<script type='text/javascript'>alert('" + "ไม่เจอ NEWCODE หรือ NEWCODE ไม่ตรงกัน" + "'); parent.close_modal();</script> ")
         End Try
 
         Try
@@ -1481,7 +1493,8 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         dao_sub.GetDatabyIDA(Request.QueryString("IDA"))
         dao_sub.fields.TEMPLATE_ID = ddl_template.SelectedValue
         dao_sub.update()
-        BindData_PDF()
+        'BindData_PDF()
+        BindData_PDF_SAI(Request.QueryString("newcode"))
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "'); parent.close_modal();</script> ")

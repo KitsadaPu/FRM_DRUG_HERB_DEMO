@@ -147,62 +147,167 @@
     Public Sub save()
 
         Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        Dim dao_location_addr2 As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
         Dim dao_syschngwt As New DAO_CPN.ClsDBsyschngwt
-        Dim dao_sysamphr As New DAO_CPN.ClsDBsysamphr
-        Dim dao_systhmbl As New DAO_CPN.ClsDBsysthmbl
+        Dim dao_sysamphr As New DAO_CPN.clsDBsysamphr
+        Dim dao_systhmbl As New DAO_CPN.clsDBsysthmbl
+
+        Dim dao_syschngwt_v2 As New DAO_CPN.clsDBsyschngwt
+        Dim dao_sysamphr_v2 As New DAO_CPN.clsDBsysamphr
+        Dim dao_systhmbl_v2 As New DAO_CPN.clsDBsysthmbl
 
         Dim chngwtcd As Integer = ddl_chngwt.SelectedValue
         Dim amphrcd As Integer = ddl_amphr.SelectedValue
         Dim thmblcd As Integer = ddl_thumbol.SelectedValue
 
-
-        dao_location_addr.fields.thanameplace = txt_thanameplace_lo.Text
-        dao_location_addr.fields.engnameplace = txt_engnameplace_lo.Text
-        dao_location_addr.fields.HOUSENO = txt_thacode_id_lo.Text
-        dao_location_addr.fields.thabuilding = txt_thabuilding_lo.Text
-        dao_location_addr.fields.thafloor = txt_thafloor_lo.Text
-        dao_location_addr.fields.tharoom = txt_tharoom_lo.Text
-        dao_location_addr.fields.thaaddr = txt_thaaddr_lo.Text
-        dao_location_addr.fields.thamu = txt_thamu_lo.Text
-        dao_location_addr.fields.thasoi = txt_thasoi_lo.Text
-        dao_location_addr.fields.tharoad = txt_tharoad_lo.Text
-        dao_location_addr.fields.zipcode = txt_zipcode_lo.Text
-        dao_location_addr.fields.tel = txt_tel_lo.Text
-        dao_location_addr.fields.Mobile = txt_mobile_lo.Text
-        dao_location_addr.fields.fax = txt_fax_lo.Text
-
-        dao_location_addr.fields.chngwtcd = chngwtcd
-        dao_location_addr.fields.amphrcd = amphrcd
-        dao_location_addr.fields.thmblcd = thmblcd
-        dao_location_addr.fields.thachngwtnm = ddl_chngwt.SelectedItem.Text
-        dao_location_addr.fields.thaamphrnm = ddl_amphr.SelectedItem.Text
-        dao_location_addr.fields.thathmblnm = ddl_thumbol.SelectedItem.Text
-        dao_location_addr.fields.STATUS_ID = 8
-        dao_syschngwt.GetData_by_chngwtcd(chngwtcd)
-        dao_sysamphr.GetData_by_chngwtcd_amphrcd(chngwtcd, amphrcd)
-        dao_systhmbl.GetData_by_chngwtcd_amphrcd_thmblcd(chngwtcd, amphrcd, thmblcd)
-
-        dao_location_addr.fields.engchngwtnm = dao_syschngwt.fields.engchngwtnm
-        dao_location_addr.fields.engamphrnm = dao_sysamphr.fields.engamphrnm
-        dao_location_addr.fields.engthmblnm = dao_systhmbl.fields.engthmblnm
-
-        dao_location_addr.fields.LOCATION_TYPE_ID = rdl_place_type.SelectedValue
-        dao_location_addr.fields.IDENTIFY = _CLS.CITIZEN_ID_AUTHORIZE '_iden
-        dao_location_addr.fields.SYSTEM_NAME = "DRUG"
-        Try
-            dao_location_addr.fields.pvncd = _CLS.PVCODE
-        Catch ex As Exception
-
-        End Try
-        Try
-            dao_location_addr.fields.latitude = txt_latitude.Text
-            dao_location_addr.fields.longitude = txt_longitude.Text
-        Catch ex As Exception
-
-        End Try
+        Dim chngwtcd_v2 As Integer = ddl_chngwt.SelectedValue
+        Dim amphrcd_v2 As Integer = ddl_amphr.SelectedValue
+        Dim thmblcd_v2 As Integer = ddl_thumbol.SelectedValue
 
 
-        dao_location_addr.insert()
+        If rdl_place_type.SelectedValue = "3" Then
+            dao_location_addr.fields.thanameplace = txt_thanameplace_lo.Text
+            dao_location_addr.fields.engnameplace = txt_engnameplace_lo.Text
+            dao_location_addr.fields.HOUSENO = txt_thacode_id_lo.Text
+            dao_location_addr.fields.thabuilding = txt_thabuilding_lo.Text
+            dao_location_addr.fields.thafloor = txt_thafloor_lo.Text
+            dao_location_addr.fields.tharoom = txt_tharoom_lo.Text
+            dao_location_addr.fields.thaaddr = txt_thaaddr_lo.Text
+            dao_location_addr.fields.thamu = txt_thamu_lo.Text
+            dao_location_addr.fields.thasoi = txt_thasoi_lo.Text
+            dao_location_addr.fields.tharoad = txt_tharoad_lo.Text
+            dao_location_addr.fields.zipcode = txt_zipcode_lo.Text
+            dao_location_addr.fields.tel = txt_tel_lo.Text
+            dao_location_addr.fields.Mobile = txt_mobile_lo.Text
+            dao_location_addr.fields.fax = txt_fax_lo.Text
+
+            dao_location_addr.fields.chngwtcd = chngwtcd
+            dao_location_addr.fields.amphrcd = amphrcd
+            dao_location_addr.fields.thmblcd = thmblcd
+            dao_location_addr.fields.thachngwtnm = ddl_chngwt.SelectedItem.Text
+            dao_location_addr.fields.thaamphrnm = ddl_amphr.SelectedItem.Text
+            dao_location_addr.fields.thathmblnm = ddl_thumbol.SelectedItem.Text
+            dao_location_addr.fields.STATUS_ID = 8
+            dao_syschngwt.GetData_by_chngwtcd(chngwtcd)
+            dao_sysamphr.GetData_by_chngwtcd_amphrcd(chngwtcd, amphrcd)
+            dao_systhmbl.GetData_by_chngwtcd_amphrcd_thmblcd(chngwtcd, amphrcd, thmblcd)
+
+            dao_location_addr.fields.engchngwtnm = dao_syschngwt.fields.engchngwtnm
+            dao_location_addr.fields.engamphrnm = dao_sysamphr.fields.engamphrnm
+            dao_location_addr.fields.engthmblnm = dao_systhmbl.fields.engthmblnm
+
+            dao_location_addr.fields.LOCATION_TYPE_ID = "1"
+            dao_location_addr.fields.IDENTIFY = _CLS.CITIZEN_ID_AUTHORIZE '_iden
+            dao_location_addr.fields.SYSTEM_NAME = "DRUG"
+            Try
+                dao_location_addr.fields.pvncd = _CLS.PVCODE
+            Catch ex As Exception
+
+            End Try
+            Try
+                dao_location_addr.fields.latitude = txt_latitude.Text
+                dao_location_addr.fields.longitude = txt_longitude.Text
+            Catch ex As Exception
+
+            End Try
+            dao_location_addr.insert()
+            dao_location_addr2.fields.thanameplace = txt_thanameplace_lo.Text
+            dao_location_addr2.fields.engnameplace = txt_engnameplace_lo.Text
+            dao_location_addr2.fields.HOUSENO = txt_thacode_id_lo.Text
+            dao_location_addr2.fields.thabuilding = txt_thabuilding_lo.Text
+            dao_location_addr2.fields.thafloor = txt_thafloor_lo.Text
+            dao_location_addr2.fields.tharoom = txt_tharoom_lo.Text
+            dao_location_addr2.fields.thaaddr = txt_thaaddr_lo.Text
+            dao_location_addr2.fields.thamu = txt_thamu_lo.Text
+            dao_location_addr2.fields.thasoi = txt_thasoi_lo.Text
+            dao_location_addr2.fields.tharoad = txt_tharoad_lo.Text
+            dao_location_addr2.fields.zipcode = txt_zipcode_lo.Text
+            dao_location_addr2.fields.tel = txt_tel_lo.Text
+            dao_location_addr2.fields.Mobile = txt_mobile_lo.Text
+            dao_location_addr2.fields.fax = txt_fax_lo.Text
+
+            dao_location_addr2.fields.chngwtcd = chngwtcd
+            dao_location_addr2.fields.amphrcd = amphrcd
+            dao_location_addr2.fields.thmblcd = thmblcd
+            dao_location_addr2.fields.thachngwtnm = ddl_chngwt.SelectedItem.Text
+            dao_location_addr2.fields.thaamphrnm = ddl_amphr.SelectedItem.Text
+            dao_location_addr2.fields.thathmblnm = ddl_thumbol.SelectedItem.Text
+            dao_location_addr2.fields.STATUS_ID = 8
+            dao_syschngwt_v2.GetData_by_chngwtcd(chngwtcd)
+            dao_sysamphr_v2.GetData_by_chngwtcd_amphrcd(chngwtcd, amphrcd)
+            dao_systhmbl_v2.GetData_by_chngwtcd_amphrcd_thmblcd(chngwtcd, amphrcd, thmblcd)
+
+            dao_location_addr2.fields.engchngwtnm = dao_syschngwt.fields.engchngwtnm
+            dao_location_addr2.fields.engamphrnm = dao_sysamphr.fields.engamphrnm
+            dao_location_addr2.fields.engthmblnm = dao_systhmbl.fields.engthmblnm
+
+            dao_location_addr2.fields.IDENTIFY = _CLS.CITIZEN_ID_AUTHORIZE '_iden
+            dao_location_addr2.fields.SYSTEM_NAME = "DRUG"
+            Try
+                dao_location_addr2.fields.pvncd = _CLS.PVCODE
+            Catch ex As Exception
+
+            End Try
+            Try
+                dao_location_addr2.fields.latitude = txt_latitude.Text
+                dao_location_addr2.fields.longitude = txt_longitude.Text
+            Catch ex As Exception
+
+            End Try
+            dao_location_addr2.fields.LOCATION_TYPE_ID = "2"
+            dao_location_addr2.insert()
+
+        Else
+            dao_location_addr.fields.thanameplace = txt_thanameplace_lo.Text
+            dao_location_addr.fields.engnameplace = txt_engnameplace_lo.Text
+            dao_location_addr.fields.HOUSENO = txt_thacode_id_lo.Text
+            dao_location_addr.fields.thabuilding = txt_thabuilding_lo.Text
+            dao_location_addr.fields.thafloor = txt_thafloor_lo.Text
+            dao_location_addr.fields.tharoom = txt_tharoom_lo.Text
+            dao_location_addr.fields.thaaddr = txt_thaaddr_lo.Text
+            dao_location_addr.fields.thamu = txt_thamu_lo.Text
+            dao_location_addr.fields.thasoi = txt_thasoi_lo.Text
+            dao_location_addr.fields.tharoad = txt_tharoad_lo.Text
+            dao_location_addr.fields.zipcode = txt_zipcode_lo.Text
+            dao_location_addr.fields.tel = txt_tel_lo.Text
+            dao_location_addr.fields.Mobile = txt_mobile_lo.Text
+            dao_location_addr.fields.fax = txt_fax_lo.Text
+
+            dao_location_addr.fields.chngwtcd = chngwtcd
+            dao_location_addr.fields.amphrcd = amphrcd
+            dao_location_addr.fields.thmblcd = thmblcd
+            dao_location_addr.fields.thachngwtnm = ddl_chngwt.SelectedItem.Text
+            dao_location_addr.fields.thaamphrnm = ddl_amphr.SelectedItem.Text
+            dao_location_addr.fields.thathmblnm = ddl_thumbol.SelectedItem.Text
+            dao_location_addr.fields.STATUS_ID = 8
+            dao_syschngwt_v2.GetData_by_chngwtcd(chngwtcd)
+            dao_sysamphr_v2.GetData_by_chngwtcd_amphrcd(chngwtcd, amphrcd)
+            dao_systhmbl_v2.GetData_by_chngwtcd_amphrcd_thmblcd(chngwtcd, amphrcd, thmblcd)
+
+            dao_location_addr.fields.engchngwtnm = dao_syschngwt.fields.engchngwtnm
+            dao_location_addr.fields.engamphrnm = dao_sysamphr.fields.engamphrnm
+            dao_location_addr.fields.engthmblnm = dao_systhmbl.fields.engthmblnm
+
+            dao_location_addr.fields.LOCATION_TYPE_ID = rdl_place_type.SelectedValue
+            dao_location_addr.fields.IDENTIFY = _CLS.CITIZEN_ID_AUTHORIZE '_iden
+            dao_location_addr.fields.SYSTEM_NAME = "DRUG"
+            Try
+                dao_location_addr.fields.pvncd = _CLS.PVCODE
+            Catch ex As Exception
+
+            End Try
+            Try
+                dao_location_addr.fields.latitude = txt_latitude.Text
+                dao_location_addr.fields.longitude = txt_longitude.Text
+            Catch ex As Exception
+
+            End Try
+            dao_location_addr.insert()
+        End If
+
+
+
+
         Response.Write("<script type='text/javascript'>alert('บันทึกข้อมูลเรียบร้อยแล้ว'); parent.close_modal();</script> ")
         Response.Write("</script type >")
     End Sub

@@ -1,16 +1,22 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="UC_BSN_SUSTAIN.ascx.vb" Inherits="FDA_DRUG_HERB.UC_BSN_SUSTAIN" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<style type="text/css">
+    .auto-style1 {
+        margin-bottom: 0px;
+    }
+</style>
 <asp:Panel ID="Panel4" runat="server">
-    <asp:RadioButtonList ID="rdl_type" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
+    <%--<asp:RadioButtonList ID="rdl_type" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
         <asp:ListItem Value="1" Selected="True">สืบสิทธิ์&nbsp;&nbsp;</asp:ListItem>
-        <asp:ListItem Value="2">โอนกิจการ&nbsp;</asp:ListItem>
-    </asp:RadioButtonList>
+        <%--<asp:ListItem Value="2">โอนกิจการ&nbsp;</asp:ListItem>
+    </asp:RadioButtonList>--%>
+    <asp:Label ID="rdl_type" runat="server" Text="สืบสิทธิ์"></asp:Label>
 <%--    <asp:CheckBoxList ID="cbl_change" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
         <asp:ListItem Value="1">เปลี่ยนผู้รับอนุญาต</asp:ListItem>
         <asp:ListItem Value="2">เปลี่ยนสถานที่ตั้ง</asp:ListItem>
         <asp:ListItem Value="3">เปลี่ยนผู้ดำเนินกิจการ</asp:ListItem>
     </asp:CheckBoxList>--%>
-    <asp:RadioButtonList ID="rdl_change" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
+    <asp:RadioButtonList ID="rdl_change" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CssClass="auto-style1">
         <asp:ListItem Value="1">เปลี่ยนผู้รับอนุญาต&nbsp;&nbsp;</asp:ListItem>
         <asp:ListItem Value="2">เปลี่ยนสถานที่ตั้ง&nbsp;&nbsp;</asp:ListItem>
         <asp:ListItem Value="3">เปลี่ยนผู้ดำเนินกิจการ(นิติบุคคล)</asp:ListItem>

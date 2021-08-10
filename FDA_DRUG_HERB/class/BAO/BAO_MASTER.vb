@@ -450,6 +450,30 @@
         End If
         Return dt
     End Function
+    Public Function SP_PHR_BY_FK_IDA_SUB(ByVal FK_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_PHR_BY_FK_IDA_SUB @FK_IDA =  " & FK_IDA
+        Dim dt As New DataTable
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+        Catch ex As Exception
+
+        End Try
+
+        dt.TableName = "SP_PHR_BY_FK_IDA_SUB"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        Return dt
+    End Function
 
 
     ''' <summary>

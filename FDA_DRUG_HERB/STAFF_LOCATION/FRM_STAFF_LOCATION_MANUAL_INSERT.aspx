@@ -36,9 +36,10 @@
                         </td>
                         <td  style="width:70%  ; text-align:left">
 
-                             <asp:RadioButtonList ID="rdl_place_type" runat="server" RepeatColumns="2" RepeatDirection="Horizontal">
+                             <asp:RadioButtonList ID="rdl_place_type" runat="server" RepeatColumns="2" RepeatDirection="Horizontal" Height="20px" Width="359px">
                                  <asp:ListItem Value="1" Selected="True">ที่ตั้ง</asp:ListItem>
                                  <asp:ListItem Value="2">สถานที่เก็บ</asp:ListItem>
+                                  <asp:ListItem Value="3">ใช้สถานที่เก็บเดียวกับสถานที่ตั้ง</asp:ListItem>
                              </asp:RadioButtonList>
 
                         </td>

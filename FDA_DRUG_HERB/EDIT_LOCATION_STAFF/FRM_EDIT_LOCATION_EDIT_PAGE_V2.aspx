@@ -20,6 +20,8 @@
 
 
 <%@ Register src="UC/UC_BSN_SUSTAIN.ascx" tagname="UC_BSN_SUSTAIN" tagprefix="uc4" %>
+<%@ Register Src="~/EDIT_LOCATION_STAFF/UC/UC_BSN_SUSTAIN_V2.ascx" TagPrefix="uc1" TagName="UC_BSN_SUSTAIN_V2" %>
+
 
 
 
@@ -60,6 +62,9 @@
                 </asp:Panel>
                 <asp:Panel ID="Panel8" runat="server" Style="display: none;">
                     <uc4:UC_BSN_SUSTAIN ID="UC_BSN_SUSTAIN1" runat="server" />
+                </asp:Panel>
+                <asp:Panel ID="Panel9" runat="server" Style="display: none;">
+                    <uc1:UC_BSN_SUSTAIN_V2 runat="server" id="UC_BSN_SUSTAIN_V2" />
                 </asp:Panel>
             </td>
         </tr>

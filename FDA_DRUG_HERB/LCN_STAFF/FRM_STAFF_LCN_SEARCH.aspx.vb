@@ -168,8 +168,14 @@ Public Class FRM_STAFF_LCN_SEARCH
     Private Sub RadGrid1_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles RadGrid1.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item
+            Dim PAGE_MENU As String = Request.QueryString("PAGE_MENU")
             If e.CommandName = "sel" Then
-                Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
+                If PAGE_MENU = 1 Then
+                    Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
+                Else
+                    Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx?IDA=" & item("IDA").Text)
+                End If
+                'Response.Redirect("FRM_LCN_STAFF_LCN_INFORMATION.aspx?IDA=" & item("IDA").Text)
             ElseIf e.CommandName = "_trid" Then
                 Dim TR_ID As String = ""
                 Dim _ProcessID As String = ""

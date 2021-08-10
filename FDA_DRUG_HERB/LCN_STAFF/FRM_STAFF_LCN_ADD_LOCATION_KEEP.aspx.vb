@@ -15,7 +15,17 @@
         RunQuery()
         If Not IsPostBack Then
             set_ddl_place()
+            set_ddl_place_sel()
             set_data()
+            set_panel()
+        End If
+
+        If Request.QueryString("t") = "1" Then
+            lbl_head.Text = "เลือกที่ตั้ง"
+            lbl_name.Text = "ชื่อที่ตั้ง"
+        Else
+            lbl_head.Text = "เลือกสถานที่เก็บ"
+            lbl_name.Text = "ชื่อสถานที่เก็บ"
         End If
     End Sub
     Private Sub ddl_placename_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_placename.SelectedIndexChanged
@@ -63,6 +73,126 @@
 
         Dim item As New ListItem("", "")
         ddl_placename.Items.Insert(0, item)
+    End Sub
+    Sub chngwtcd()
+        Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
+        Dim chn As New DAO_CPN.clsDBsyschngwt
+        Dim item As New ListItem("-----รายชื่อจังหวัด-----", "0")
+        chn.GetDataAll()
+        ddl_chngwt.DataSource = chn.datas
+        ddl_chngwt.DataTextField = "thachngwtnm"
+        ddl_chngwt.DataValueField = "chngwtcd"
+        ddl_chngwt.DataBind()
+        ddl_chngwt.Items.Insert(0, item)
+    End Sub
+
+    Sub amphrcd()   'เป็นการนำข้อมูลในตารางใส่ DropDown  ข้อมูลอำเภอ
+        Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
+        Dim amp As New DAO_CPN.clsDBsysamphr
+        amp.GetDataby_chngwtcd(ddl_chngwt.SelectedValue)
+        ddl_amphr.DataSource = amp.datas
+        ddl_amphr.DataTextField = "thaamphrnm"
+        ddl_amphr.DataValueField = "amphrcd"
+        ddl_amphr.DataBind()
+        DropDownInsertDataFirstRow2(ddl_amphr, "-----รายชื่ออำเภอ-----", "0")
+    End Sub
+    Sub thmblcd()      'เป็นการนำข้อมูลในตารางใส่ DropDown  ข้อมูลตำบล
+        Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
+        Dim thm As New DAO_CPN.clsDBsysthmbl
+        thm.GetDataby_thmbl(ddl_chngwt.SelectedValue, ddl_amphr.SelectedValue)
+        ddl_thumbol.DataSource = thm.datas
+        ddl_thumbol.DataTextField = "thathmblnm"
+        ddl_thumbol.DataValueField = "thmblcd"
+        ddl_thumbol.DataBind()
+        DropDownInsertDataFirstRow2(ddl_thumbol, "-----รายชื่อตำบล-----", "0")
+    End Sub
+    Protected Sub ddl_chngwt_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_chngwt.SelectedIndexChanged
+
+        ddl_amphr.Items.Clear()
+        ddl_thumbol.Items.Clear()
+        amphrcd()
+
+    End Sub
+
+    Protected Sub ddl_amphr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_amphr.SelectedIndexChanged
+
+        thmblcd()
+
+
+    End Sub
+    Private Sub ddl_placename_sel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_placename_sel.SelectedIndexChanged
+        loadData_by_Identify()
+    End Sub
+    Public Sub loadData_by_Identify()
+        Dim dao_loca_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        dao_loca_addr.GetDataby_IDA(ddl_placename_sel.SelectedValue)
+        chngwtcd()
+        txt_thabuilding_lo.Text = dao_loca_addr.fields.thabuilding
+        txt_thafloor_lo.Text = dao_loca_addr.fields.thafloor
+        txt_tharoom_lo.Text = dao_loca_addr.fields.tharoom
+        txt_thanameplace_lo.Text = dao_loca_addr.fields.thanameplace
+        txt_engnameplace_lo.Text = dao_loca_addr.fields.engnameplace
+        txt_thacode_id_lo.Text = dao_loca_addr.fields.HOUSENO
+        txt_thaaddr_lo.Text = dao_loca_addr.fields.thaaddr
+        txt_thamu_lo.Text = dao_loca_addr.fields.thamu
+        txt_thasoi_lo.Text = dao_loca_addr.fields.thasoi
+        txt_tharoad_lo.Text = dao_loca_addr.fields.tharoad
+        txt_zipcode_lo.Text = dao_loca_addr.fields.zipcode
+        txt_tel_lo.Text = dao_loca_addr.fields.tel
+        txt_mobile_lo.Text = dao_loca_addr.fields.Mobile
+        txt_fax_lo.Text = dao_loca_addr.fields.fax
+        'Try
+        '    ddl_chngwt.DropDownSelectData(dao_loca_addr.fields.chngwtcd)
+        '    amphrcd()
+        '    ddl_amphr.DropDownSelectData(dao_loca_addr.fields.amphrcd)
+        '    thmblcd()
+        '    ddl_thumbol.DropDownSelectData(dao_loca_addr.fields.thmblcd)
+        'Catch ex As Exception
+
+        'End Try
+
+        Try
+            ddl_chngwt.DropDownSelectData(dao_loca_addr.fields.chngwtcd)
+        Catch ex As Exception
+
+        End Try
+        Try
+            amphrcd()
+            ddl_amphr.DropDownSelectData(dao_loca_addr.fields.amphrcd)
+        Catch ex As Exception
+
+        End Try
+        Try
+            thmblcd()
+            ddl_thumbol.DropDownSelectData(dao_loca_addr.fields.thmblcd)
+        Catch ex As Exception
+
+        End Try
+
+
+
+        'Try
+        '    rdl_place_type.SelectedValue = dao_loca_addr.fields.LOCATION_TYPE_ID
+        'Catch ex As Exception
+
+        'End Try
+        'Try
+        '    If dao_loca_addr.fields.LOCATION_TYPE_ID = "1" Then
+        '        lbl_place_type.Text = "ที่ตั้ง"
+        '    ElseIf dao_loca_addr.fields.LOCATION_TYPE_ID = "2" Then
+        '        lbl_place_type.Text = "สถานที่เก็บ"
+        '    End If
+        'Catch ex As Exception
+
+        'End Try
+
+
+        Try
+            txt_latitude.Text = dao_loca_addr.fields.latitude
+            txt_longitude.Text = dao_loca_addr.fields.longitude
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
@@ -232,6 +362,44 @@
             Catch ex As Exception
 
             End Try
+        End If
+    End Sub
+    Sub set_ddl_place_sel()
+        Dim iden As String = ""
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(Request.QueryString("ida"))
+        Try
+            iden = dao.fields.CITIZEN_ID_AUTHORIZE
+        Catch ex As Exception
+
+        End Try
+        Dim dt As New DataTable
+        Dim bao As New BAO_SHOW
+        'dt = bao.SP_LOCATION_ADDRESS_BY_IDENTIFY(iden)
+        If Request.QueryString("t") = "2" Then
+            dt = bao.SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSIDV2(2, iden)
+        ElseIf Request.QueryString("t") = "1" Then
+            dt = bao.SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSIDV2_1(1, iden)
+        End If
+
+        ddl_placename_sel.DataSource = dt
+        ddl_placename_sel.DataValueField = "IDA"
+        ddl_placename_sel.DataTextField = "thanameplace"
+        ddl_placename_sel.DataBind()
+
+        Dim item As New ListItem("", "0")
+        ddl_placename_sel.Items.Insert(0, item)
+    End Sub
+    Private Sub rdl_choose_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rdl_choose.SelectedIndexChanged
+        set_panel()
+    End Sub
+    Sub set_panel()
+        If rdl_choose.SelectedValue = "1" Then
+            Panel1.Style.Add("display", "block")
+            Panel2.Style.Add("display", "none")
+        Else
+            Panel1.Style.Add("display", "none")
+            Panel2.Style.Add("display", "block")
         End If
     End Sub
 End Class

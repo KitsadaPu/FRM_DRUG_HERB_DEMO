@@ -215,7 +215,8 @@
 
     End Sub
     Public Sub set_data_his(ByRef dao As DAO_DRUG.TB_EDT_HISTORY, ByRef dao2 As DAO_DRUG.ClsDBdalcn)
-        dao.fields.SUSTAIN_TYPE = rdl_type.SelectedValue
+        'dao.fields.SUSTAIN_TYPE = rdl_type.selectvalue
+        dao.fields.SUSTAIN_TYPE = "1"
         For i As Integer = 0 To rdl_change.Items.Count - 1
             If rdl_change.Items(i).Selected = True Then
                 If rdl_change.Items(i).Value = "1" Then
@@ -419,7 +420,7 @@
         'Catch ex As Exception
 
         'End Try
-        
+
 
         'dao.fields.thaname
         ''tha

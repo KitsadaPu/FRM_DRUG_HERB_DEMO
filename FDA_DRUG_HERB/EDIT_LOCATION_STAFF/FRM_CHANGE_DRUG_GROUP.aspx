@@ -3,11 +3,14 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <%@ Register Src="~/EDIT_LOCATION_STAFF/UC/UC_TABLE_DRUG_GROUP_CHANGE.ascx" TagPrefix="uc1" TagName="UC_TABLE_DRUG_GROUP_CHANGE" %>
+<%@ Register Src="~/LCN/UC/UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx" TagPrefix="uc1" TagName="UC_TABLE_DRUG_GROUP_CHANGE_HERB" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <uc1:UC_TABLE_DRUG_GROUP_CHANGE runat="server" id="UC_TABLE_DRUG_GROUP_CHANGE" />
+    <uc1:UC_TABLE_DRUG_GROUP_CHANGE_HERB runat="server" ID="UC_TABLE_DRUG_GROUP_CHANGE_HERB" />
+   <%-- <uc1:UC_TABLE_DRUG_GROUP_CHANGE runat="server" id="UC_TABLE_DRUG_GROUP_CHANGE" />--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             
