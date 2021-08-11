@@ -66,7 +66,7 @@
     <div class="row">
         <div class="col-lg-10"></div>
         <div class="col-lg-1">
-            <asp:Button ID="Button1" runat="server" Text="เพิ่มคำขอ" />
+            <asp:Button ID="Button1" runat="server" Text="เพิ่มคำขอ" CssClass="btn-lg" Width="80%" />
         </div>
         <div class="auto-style2"></div>
     </div>

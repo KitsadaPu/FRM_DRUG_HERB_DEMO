@@ -78,13 +78,13 @@
  </telerik:radgrid>
                     <asp:Button ID="btn_reload" runat="server" Text="" style="display:none" />
                   <div class=" modal fade" id="myModal">              
-               <div class="panel panel-info" style="width:100%;">
+               <div class="panel panel-info" style="width:100% ; height:100%">
                    <div class="panel-heading  text-center"><h1>
                        <asp:label id="lbl_title" runat="server" text=""></asp:label> </h1>
                    </div>
                   <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
-                   <div class="panel-body">
-                             <iframe id="f1"  style="width:100%; height:550px;" ></iframe>
+                   <div class="panel-body" style="width:100% ; height:100%">
+                             <iframe id="f1"  style="width:100%; height:100%" ></iframe>
                    </div>
                    <div class="panel-footer"></div>
                </div>       
