@@ -71,10 +71,10 @@
                                    CommandName="req" Text="ขอแก้ไข">
                                    <HeaderStyle Width="70px" />
                                </telerik:GridButtonColumn>
-                               <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sele"
+                               <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sele"
                                    CommandName="rep" Text="ขอใบแทน">
                                    <HeaderStyle Width="70px" />
-                               </telerik:GridButtonColumn>
+                               </telerik:GridButtonColumn>--%>
                            </Columns>
                        </MasterTableView>
  </telerik:radgrid>

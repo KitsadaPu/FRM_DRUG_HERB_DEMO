@@ -33,9 +33,9 @@ Public Class FRM_SELECT_PROCESS_LCN
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
             If Request.QueryString("ttt") = 2 Then
-                H.NavigateUrl = "../MAIN_STAFF/FRM_REPLACEMENT_LICENSE_LOCATION_MENU2.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") 'URL หน้า ยืนยัน
+                H.NavigateUrl = "../MAIN/FRM_MAIN_PRODUCK_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") 'URL หน้า ยืนยัน
             Else
-                H.NavigateUrl = "../MAIN_STAFF/FRM_REPLACEMENT_LICENSE_LOCATION_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt")  'URL หน้า ยืนยัน
+                H.NavigateUrl = "../MAIN/FRM_MAIN_PRODUCK_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt")  'URL หน้า ยืนยัน
             End If
 
         End If

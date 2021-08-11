@@ -636,6 +636,7 @@
     <Content Include="LCN\UC\UC_HERB_KEEP.ascx" />
     <Content Include="LCN\UC\UC_HERB_PHESAJ.ascx" />
     <Content Include="LCN\UC\UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx" />
+    <Content Include="MAIN\FRM_MAIN_PRODUCK_MENU.aspx" />
     <Content Include="MAIN\FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx" />
     <Content Include="MAIN\FRM_SELECT_PROCESS_LCN.aspx" />
     <Content Include="SOMORPO4_STAFF\FRM_SOMORPO4_MAIN.aspx" />
@@ -4957,6 +4958,13 @@
     <Compile Include="LCN_IMPORT_STAFF\FRM_LCN_STAFF_IMPORT_CONFIRM.aspx.vb">
       <DependentUpon>FRM_LCN_STAFF_IMPORT_CONFIRM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MAIN\FRM_MAIN_PRODUCK_MENU.aspx.designer.vb">
+      <DependentUpon>FRM_MAIN_PRODUCK_MENU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN\FRM_MAIN_PRODUCK_MENU.aspx.vb">
+      <DependentUpon>FRM_MAIN_PRODUCK_MENU.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="MAIN\FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx.designer.vb">
       <DependentUpon>FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx</DependentUpon>
