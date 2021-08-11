@@ -123,7 +123,7 @@
                  </div>
                  <div class="col-lg-3"></div>
                  <div class="col-lg-1">
-                     <asp:Button ID="SUB_ADD" runat="server" Text="คำขอใหม่" CssClass="btn-lg"/>
+                     <asp:Button ID="SUB_ADD" runat="server" Text="ขอใบแทน" CssClass="btn-lg"/>
                  </div>
              </div>
 
