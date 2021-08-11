@@ -124,7 +124,7 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN1
             'If Request.QueryString("lcn_ida") = "" Then
             '    dt = bao.SP_DALCN_SUBSTITUTE_BY_FK_IDA(rcb_search.SelectedValue)
             'Else
-            dt = bao.SP_DALCN_SUBSTITUTE_BY_FK_IDA(Request.QueryString("lcn_ida"))
+            dt = bao.SP_DALCN_SUBSTITUTE_BY_FK_IDA(_IDA)
             ' End If
 
         Catch ex As Exception

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">ข้าพเจ้า</div>
-            <div class="col-lg-6" style="BORDER-BOTTOM: #999999 1px dotted">&nbsp;<asp:Label ID="lbl_lcn_name" runat="server"></asp:Label></div>
+            <div class="col-lg-6" style="BORDER-BOTTOM: #999999 1px dotted">&nbsp;<asp:Label ID="lbl_lcn_name" runat="server"></asp:Label>&nbsp;</div>
             <div class="col-lg-2">(ชื่อผู้รับอนุญาต)</div>
             <div class="col-lg-1"></div>
         </div>

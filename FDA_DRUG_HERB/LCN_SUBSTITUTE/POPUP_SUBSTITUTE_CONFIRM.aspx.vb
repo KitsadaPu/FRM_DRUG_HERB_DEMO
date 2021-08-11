@@ -27,8 +27,21 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
         RunQuery()
         If Not IsPostBack Then
             BindData_PDF()
+            show_btn(_IDA)
             UC_GRID_ATTACH.load_gv(_TR_ID)
         End If
+    End Sub
+    Sub show_btn(ByVal IDA As String)
+        Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+        dao.Getdata_by_IDA(IDA)
+        If dao.fields.STATUS_ID <> 1 Then
+            btn_confirm.Enabled = False
+            btn_cancel.Enabled = False
+            btn_confirm.CssClass = "btn-danger btn-lg"
+            btn_cancel.CssClass = "btn-danger btn-lg"
+        End If
+
+
     End Sub
     Private Sub BindData_PDF()
         Dim bao As New BAO.AppSettings
@@ -220,7 +233,7 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
     Private Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
         Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
         Dim bao As New BAO.ClsDBSqlcommand
-        dao.Getdata_by_IDA(Integer.Parse(_IDA))
+        dao.Getdata_by_IDA(_IDA)
         dao.fields.STATUS_ID = 2
         dao.update()
 
