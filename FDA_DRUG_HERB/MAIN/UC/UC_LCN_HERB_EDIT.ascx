@@ -74,7 +74,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <asp:Button ID="btn_save" runat="server" Text="เพิ่มสถานที่เก็บ" />
+            <asp:Button ID="btn_save_lcn" runat="server" Text="เพิ่มสถานที่เก็บ" />
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -131,10 +131,6 @@
                             HeaderText="CITIZEN_ID_UPLOAD" SortExpression="CITIZEN_ID_UPLOAD" UniqueName="CITIZEN_ID_UPLOAD" Display="false">
                         </telerik:GridBoundColumn>
 
-
-                        <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
-                            HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
-                        </telerik:GridBoundColumn>
 
                         <telerik:GridBoundColumn DataField="lctcd" DataType="System.Int32" FilterControlAltText="Filter lctcd column" HeaderText="lctcd"
                             SortExpression="lctcd" UniqueName="lctcd" Display="false">

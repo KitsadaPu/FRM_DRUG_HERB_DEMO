@@ -77,10 +77,7 @@
         End Try
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         RunQuery()
-
-
         If Not IsPostBack Then
             Clone_db()
             UC_HERB_EDIT.Set_Label(_iden)
@@ -134,7 +131,7 @@
             dao_row.fields.ACTIVE = 0
             dao_row.update()
         Next
-        Response.Write("<script type='text/javascript'>alert('บกเลิกเรียบร้อย');parent.close_modal();</script> ")
+        Response.Write("<script type='text/javascript'>alert('บกเลิกเรียบร้อย');parent.close_modal1();</script> ")
         'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ยกเลิกเรียบร้อย');", True)
     End Sub
 
@@ -201,8 +198,9 @@
                 .fields.TR_ID = .fields.IDA
                 .update()
             End With
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal1();", True)
+            Session.Remove("IDA_FK_DLCN_FIx")
+
         End If
-        Session.Remove("IDA_FK_DLCN_FIx")
     End Sub
 End Class

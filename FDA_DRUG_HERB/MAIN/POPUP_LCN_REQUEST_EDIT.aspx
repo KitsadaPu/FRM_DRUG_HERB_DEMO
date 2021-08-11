@@ -8,18 +8,21 @@
 
 
 
+
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <uc1:UC_HERB_EDIT runat="server" id="UC_HERB_EDIT" />
+        <uc1:UC_HERB_EDIT runat="server" ID="UC_HERB_EDIT" />
     </div>
     <div class="row">
-        <uc1:UC_LCN_HERB_EDIT runat="server" id="UC_LCN_HERB_EDIT" />
+        <uc1:UC_LCN_HERB_EDIT runat="server" ID="UC_LCN_HERB_EDIT" />
     </div>
     <div class="row">
-        
-        <uc1:UC_LCN_HERB_PHESAJ_EDIT runat="server" id="UC_LCN_HERB_PHESAJ_EDIT" />   
+        <uc1:UC_LCN_HERB_PHESAJ_EDIT runat="server" ID="UC_LCN_HERB_PHESAJ_EDIT" />
     </div>
 <asp:Label ID="Label1" runat="server" Text="" style="display:none"></asp:Label>
     <div class="panel-footer " style="text-align:center;">

@@ -1009,7 +1009,7 @@
     End Function
     Public Function SP_CLONE_DALCN_PHR_BY_FK_IDA_2(ByVal IDA As Integer) As DataTable
         Dim clsds As New ClassDataset
-        Dim sql As String = "exec SP_CLONE_DALCN_PHR_BY_FK_IDA_2 @IDA =  " & IDA
+        Dim sql As String = "exec SP_CLONE_DALCN_PHR_BY_FK_IDA_2 @IDA =" & IDA
         Dim dt As New DataTable
         dt.TableName = "SP_CLONE_DALCN_PHR_BY_FK_IDA_2"
         Try

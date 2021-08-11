@@ -99,7 +99,7 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
     '    End If
     'End Sub
 
-    Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+    Protected Sub btn_save_phr_Click(sender As Object, e As EventArgs) Handles btn_save_phr.Click
         Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("IDA_FK_DLCN_FIx").ToString())
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR_FIX
         'If ddl_prefix.Text = "0" Then
@@ -107,13 +107,13 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
         '    Check_infor()
         'Else
         If ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
-                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
-                Check_infor()
-            ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
-                Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
-                Check_infor()
-            Else
-                set_data(dao)
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+            Check_infor()
+        ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+            Check_infor()
+        Else
+            set_data(dao)
             dao.fields.FK_IDA = ida_fk_dalcn_fix
             dao.fields.ID_DALCN = Request.QueryString("ida")
             dao.fields.ACTIVE = 1
@@ -286,8 +286,12 @@ Public Class UC_LCN_HERB_PHESAJ_EDIT
         Dim bao As New BAO_MASTER
         Dim dt As New DataTable
         Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("IDA_FK_DLCN_FIx").ToString())
+        Try
+            dt = bao.SP_CLONE_DALCN_PHR_BY_FK_IDA_2(ida_fk_dalcn_fix)
+        Catch ex As Exception
 
-        dt = bao.SP_CLONE_DALCN_PHR_BY_FK_IDA_2(ida_fk_dalcn_fix)
+        End Try
+
 
 
         If dt.Rows.Count > 0 Then

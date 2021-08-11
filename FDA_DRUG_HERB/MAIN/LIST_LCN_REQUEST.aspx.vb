@@ -60,8 +60,8 @@ Public Class LIST_LCN_REQUEST
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'Response.Redirect("POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "")
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "');", True)
-
+        'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups1('" & "POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "');", True)
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups1('" & "POPUP_LCN_REQUEST_EDIT.aspx?IDA=" & _IDA & "&ID_LCN=" & _id_lcn & "&identify=" & _iden & "&TR_ID=" & _TR_ID & " &Process=" & _ProcessID & " &lct_ida=" & _lct_ida & "');", True)
     End Sub
     Protected Sub btn_reload_Click(sender As Object, e As EventArgs) Handles btn_reload.Click
         rgns.Rebind()

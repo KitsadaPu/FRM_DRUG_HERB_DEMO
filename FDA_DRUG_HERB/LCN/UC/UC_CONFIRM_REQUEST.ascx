@@ -2,8 +2,8 @@
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <table>
 <td rowspan="2" class="container1">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server">
-                </asp:ScriptManager>
+<%--                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>--%>
                 <%--<uc1:UC_CONFIRM ID="UC_CONFIRM1" runat="server" />--%>
 
                 <div style="border: groove; border-color: gainsboro;">

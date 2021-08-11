@@ -21,7 +21,7 @@
     <![endif]-->
 
      <link href="../css/Custom.css" rel="stylesheet" />
-    <link href="../css/Custom3.css" rel="stylesheet" />
+    <%--<link href="../css/Custom3.css" rel="stylesheet" />--%>
 
 
 
@@ -40,6 +40,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <%--         <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />   
     <link href="../Content/bootstrap.css" rel="stylesheet" />--%>
        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

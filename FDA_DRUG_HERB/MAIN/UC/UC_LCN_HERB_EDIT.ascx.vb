@@ -65,7 +65,7 @@ Public Class UC_LCN_HERB_EDIT
 
         End Try
     End Sub
-    Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+    Private Sub btn_save_lcn_Click(sender As Object, e As EventArgs) Handles btn_save_lcn.Click
         Dim ida_fk_dalcn_fix As Integer = Convert.ToInt32(Session("IDA_FK_DLCN_FIx").ToString())
         If ddl_placename.SelectedValue <> "" Or cb_location.Checked Then
             Label1.Style.Add("display", "none")

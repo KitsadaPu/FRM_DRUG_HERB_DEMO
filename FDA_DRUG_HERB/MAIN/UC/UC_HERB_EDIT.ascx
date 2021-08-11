@@ -1,8 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="UC_HERB_EDIT.ascx.vb" Inherits="FDA_DRUG_HERB.UC_HERB_EDIT" %>
 
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
 <style type="text/css">
     .auto-style3 {
         width: 85px;
@@ -53,7 +52,6 @@
     </style>
 
 <div>
-   <form name="form" method="post" align="center;">
            <div class ="row">
                <div class ="col-md-12"  style="text-align:center;">
                    <h1>
@@ -580,7 +578,7 @@
 
                        &nbsp;</td>
                </tr>
-              <thead style="display:none;">
+              <th style="display:initial;">
                <tr>
                    <td class="auto-style3"></td>
                    <td>
@@ -736,7 +734,7 @@
 
                        &nbsp;</td>
                </tr>
-                   </thead> 
+                   </th> 
            </table>
 
 
@@ -856,5 +854,4 @@
 
        
        
-    </form>
 </div>

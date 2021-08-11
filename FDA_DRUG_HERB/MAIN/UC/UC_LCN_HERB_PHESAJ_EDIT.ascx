@@ -156,7 +156,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            <asp:Button ID="btn_save" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" />
+            <asp:Button ID="btn_save_phr" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" />
             <%--<asp:Button ID="btn_edit" runat="server" Text="ยืนยันการแก้ไข"/>--%>
         </div>
         <div class="col-lg-8"></div>
