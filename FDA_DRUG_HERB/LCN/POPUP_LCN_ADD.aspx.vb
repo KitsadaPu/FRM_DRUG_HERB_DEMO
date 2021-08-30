@@ -26,6 +26,8 @@
     Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
         RunSession()
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(Request.QueryString("ida"))
 
         If Not IsPostBack Then
             UC_HERB.Set_Label(_CLS.CITIZEN_ID_AUTHORIZE)
@@ -35,16 +37,23 @@
             UC_HERB_PHESAJ.bind_ddl_prefix()
             UC_HERB_PHESAJ.bind_ddl_phr_type()
 
-            If Request.QueryString("ida") <> "" Then
-                Panel1.Style.Add("display", "block")
-                Panel2.Style.Add("display", "block")
-                btn_save.Style.Add("display", "none")
-            Else
-                Panel1.Style.Add("display", "none")
-                Panel2.Style.Add("display", "none")
-                btn_save.Style.Add("display", "block")
-            End If
 
+            If Request.QueryString("ida") <> "" Then
+                    Panel1.Style.Add("display", "block")
+                    Panel2.Style.Add("display", "block")
+                Panel3.Style.Add("display", "block")
+                Panel4.Style.Add("display", "none")
+                    btn_save.Style.Add("display", "none")
+                Else
+                    Panel1.Style.Add("display", "none")
+                    Panel2.Style.Add("display", "none")
+                Panel3.Style.Add("display", "none")
+                Panel4.Style.Add("display", "block")
+                    btn_save.Style.Add("display", "block")
+                End If
+
+
+            'Panel3.Style.Add("display", "block")
         End If
     End Sub
 

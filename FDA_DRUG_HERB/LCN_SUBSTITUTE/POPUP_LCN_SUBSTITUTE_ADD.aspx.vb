@@ -26,21 +26,29 @@ Public Class POPUP_LCN_SUBSTITUTE_ADD
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
-        set_txt_label()
+        If Not IsPostBack Then
+            'set_txt_label()
+            UC_LCN_SUB.load_ddl_sub_purpose()
+        End If
     End Sub
-    Public Sub SET_ATTACH(ByVal TR_ID As String, ByVal PROCESS_ID As String, ByVal YEAR As String)
+    'Public Sub SET_ATTACH(ByVal TR_ID As String, ByVal PROCESS_ID As String, ByVal YEAR As String)
 
-        uc102_1.ATTACH1(TR_ID, PROCESS_ID, YEAR, "1")
-        uc102_2.ATTACH1(TR_ID, PROCESS_ID, YEAR, "2")
-        uc102_3.ATTACH1(TR_ID, PROCESS_ID, YEAR, "3")
+    '    uc102_1.ATTACH1(TR_ID, PROCESS_ID, YEAR, "1")
+    '    uc102_2.ATTACH1(TR_ID, PROCESS_ID, YEAR, "2")
+    '    uc102_3.ATTACH1(TR_ID, PROCESS_ID, YEAR, "3")
 
-    End Sub
-    Public Sub set_txt_label()
-        uc102_1.get_label("1.สำเนาใบรับแจ้งความ")
-        uc102_2.get_label("2.ใบสำคัญการขึ้นทะเบียนตำรับยาที่ถูกทำลาย")
-        uc102_3.get_label("3.สำเนาใบอนุญาตผลิต หรือนำหรือสั่งยาเข้ามาในราชอาณาจักร")
+    'End Sub
+    'Public Sub set_txt_label()
 
-    End Sub
+    '    If Session("DDL_TYPE") = 1 Then
+    '        uc102_1.get_label("1.สำเนาใบรับแจ้งความ")
+    '        uc102_2.get_label("2.ใบสำคัญการขึ้นทะเบียนตำรับยาที่ถูกทำลาย")
+    '    Else
+    '        uc102_1.get_label("1.สำเนาใบรับแจ้งความ")
+    '        uc102_2.get_label("2.ใบสำคัญการขึ้นทะเบียนตำรับยาที่ถูกทำลาย")
+    '        uc102_3.get_label("3.สำเนาใบอนุญาตผลิต หรือนำหรือสั่งยาเข้ามาในราชอาณาจักร")
+    '    End If
+    'End Sub
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim dao_sub As New DAO_DRUG.TB_DALCN_SUBSTITUTE
         Dim dao As New DAO_DRUG.ClsDBdalcn
@@ -59,7 +67,7 @@ Public Class POPUP_LCN_SUBSTITUTE_ADD
         bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
 
         Try
-            SET_ATTACH(dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year))
+            UC_LCN_SUB.SET_ATTACH(dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year))
             alert("รหัสการดำเนินการ คือ DA-" & dao_sub.fields.PROCESS_ID & "-" & con_year(Date.Now.Date().Year()) & "-" + dao_sub.fields.TR_ID)
         Catch ex As Exception
 

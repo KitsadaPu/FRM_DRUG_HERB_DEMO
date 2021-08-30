@@ -241,6 +241,11 @@
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_u1_and_funcd(ByVal u1 As String, ByVal funccd As String)
+            datas = (From p In db.XML_DRUG_FRGN_HERBs Where p.Newcode_U = u1 And p.funccd = funccd Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
     End Class
     Public Class TB_XML_DRUG_IOW_HERB
         Inherits MAINCONTEXT2 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน

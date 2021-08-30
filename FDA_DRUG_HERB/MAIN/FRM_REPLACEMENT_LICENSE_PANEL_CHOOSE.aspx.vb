@@ -7,10 +7,10 @@
     End Sub
 
     Protected Sub btn_new_Click(sender As Object, e As EventArgs) Handles btn_new.Click
-        Response.Redirect("../LOCATION/FRM_LCN_LCT.aspx")
+        Response.Redirect("../LOCATION/FRM_LCN_LCT.aspx?MENU_GROUP=1&ttt=1")
     End Sub
 
     Private Sub btn_other_Click(sender As Object, e As EventArgs) Handles btn_other.Click
-        Response.Redirect("FRM_SELECT_PROCESS_LCN.aspx?")
+        Response.Redirect("FRM_SELECT_PROCESS_LCN.aspx?MENU_GROUP=1&ttt=2")
     End Sub
 End Class

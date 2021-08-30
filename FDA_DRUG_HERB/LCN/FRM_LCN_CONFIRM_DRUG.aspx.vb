@@ -791,6 +791,14 @@ Public Class FRM_LCN_CONFIRM_DRUG
             '    btn_confirm.CssClass = "btn-danger btn-lg"
             '    btn_cancel.CssClass = "btn-danger btn-lg"
         End If
+        If dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 8 Then
+            btn_load.Enabled = True
+            'btn_load.CssClass = "btn-danger btn-lg"
+
+        Else
+            btn_load.Enabled = False
+            btn_load.CssClass = "btn-danger btn-lg"
+        End If
 
 
     End Sub
@@ -862,7 +870,11 @@ Public Class FRM_LCN_CONFIRM_DRUG
     End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
-        load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        If dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 8 Then
+            load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
+        End If
     End Sub
 
     ''' <summary>
@@ -2222,5 +2234,10 @@ Public Class FRM_LCN_CONFIRM_DRUG
     End Sub
     Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
         Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
+    End Sub
+
+    Protected Sub btn_previewUp_Click(sender As Object, e As EventArgs) Handles btn_previewUp.Click
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "');", True)
+        Response.Redirect("POPUP_PREVIEW_UPLOAD.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden)
     End Sub
 End Class

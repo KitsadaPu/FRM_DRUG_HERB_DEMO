@@ -84,7 +84,7 @@
     <div class="h3" style="padding-left:5%;">  <asp:Label ID="lbl_name" runat="server" Visible="false" Text=""></asp:Label> </div>
     
      <div class="panel" style="text-align:left ;width:100%">
-         <div  style="height:100px" > 
+         <div  style="height:110px" > 
            <%-- <div class="row">
                  <div  class="col-lg-1"><h4> คำขอใบแทน </h4></div>
                  <div  class="col-lg-1">
@@ -118,10 +118,10 @@
                       <asp:Label ID="TXT_LCNNO" runat="server" Text=""></asp:Label>
                  </div>
                  <div class="col-lg-1">ชื่อสถานที่:</div>
-                 <div class="col-lg-1">
+                 <div class="col-lg-3">
                       <asp:Label ID="TXT_LCB_NAME" runat="server" Text=""></asp:Label>
                  </div>
-                 <div class="col-lg-3"></div>
+                 <div class="col-lg-1"></div>
                  <div class="col-lg-1">
                      <asp:Button ID="SUB_ADD" runat="server" Text="ขอใบแทน" CssClass="btn-lg"/>
                  </div>

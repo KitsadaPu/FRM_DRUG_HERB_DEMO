@@ -40,6 +40,14 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
             btn_confirm.CssClass = "btn-danger btn-lg"
             btn_cancel.CssClass = "btn-danger btn-lg"
         End If
+        If dao.fields.STATUS_ID = 8 Then
+            btn_load.Enabled = True
+            'btn_load.CssClass = "btn-danger btn-lg"
+
+        Else
+            btn_load.Enabled = False
+            btn_load.CssClass = "btn-danger btn-lg"
+        End If
 
 
     End Sub
@@ -243,5 +251,27 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
+    End Sub
+
+    Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        If dao.fields.STATUS_ID = 8 Then
+            load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
+        End If
+    End Sub
+    Private Sub load_PDF(ByVal path As String, ByVal fileName As String)
+        Dim bao As New BAO.AppSettings
+        Dim clsds As New ClassDataset
+
+        Response.Clear()
+        Response.ContentType = "Application/pdf"
+        Response.AddHeader("Content-Disposition", "attachment; filename=" & fileName)
+        Response.BinaryWrite(clsds.UpLoadImageByte(path)) '"C:\path\PDF_XML_CLASS\"
+
+        Response.Flush()
+        Response.Close()
+        Response.End()
+
     End Sub
 End Class

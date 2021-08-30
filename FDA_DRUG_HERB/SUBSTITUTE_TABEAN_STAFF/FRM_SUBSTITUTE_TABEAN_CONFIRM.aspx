@@ -83,7 +83,7 @@
     </div>
             </td>
              <td style="padding-left:10%;height:50%;">
-                 <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
+                 <%--<telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>--%>
                  <table class="table" style="width:90%"> 
                      <%--<tr>
                          <td>

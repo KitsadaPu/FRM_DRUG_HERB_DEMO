@@ -92,7 +92,12 @@
                              </telerik:radcombobox>
                          </td>
                      </tr>--%>
-                     
+                      <tr>
+                         <td>
+                         <asp:Panel ID="Panel3" runat="server">
+                             <asp:Label ID="Label2" runat="server" Text="แบบฟอร์ม PDF:"></asp:Label></asp:Panel>
+                             </td>
+                     </tr>
                         <tr>
                             <td>
                                <asp:Panel ID="Panel1" runat="server">
@@ -104,35 +109,47 @@
                                     </asp:Panel>
                             </td>                             
                         </tr>
-                     
+                       <tr>
+                         <td>
+                         <asp:Panel ID="Panel2" runat="server">
+                             <asp:Label ID="Label1" runat="server" Text="กรุณาเลือกสถานะ:"></asp:Label></asp:Panel>
+                             </td>
+                     </tr>
                     <tr>
+                        
                         <td>
                             <asp:DropDownList ID="ddl_cnsdcd" runat="server" Width="80%" DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
                             </asp:DropDownList>
 
                         </td>
                     </tr>
+                    <%--<tr>
+                         <td>
+                         <asp:Panel ID="Panel4" runat="server">
+                             <asp:Label ID="Label3" runat="server" Text="กรุณาเลือกสถานะ:"></asp:Label></asp:Panel>
+                             </td>
+                     </tr>
                     <tr>
                         <td>
                             <asp:TextBox ID="txt_appdate" runat="server" Width="80%"></asp:TextBox>
 
                         </td>
+                    </tr>--%>
+                    <tr>
+                        <td>
+                            <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
+                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="100%" /></td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%" /></td>
+                            <asp:Button ID="btn_load" runat="server" Text="ดาวน์โหลด สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_load" runat="server" Text="Download PDF" CssClass="btn-lg" Width="80%" /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="80%" /></td>
+                            <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="100%" /></td>
                     </tr>
 
                 </table>

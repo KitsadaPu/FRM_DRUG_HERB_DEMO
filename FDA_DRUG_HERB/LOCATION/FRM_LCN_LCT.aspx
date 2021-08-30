@@ -68,7 +68,7 @@
         <img src="../DESIGN/imgs/spinner.gif" alt="Loading" style="position: absolute; top: 120px; left: 293px; height: 185px; width: 207px;" />
     </div>
 
-    
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     
      <div class="panel" style="text-align:left ;width:100%">
          <div class="panel-heading panel-title" style="height:70px" > 

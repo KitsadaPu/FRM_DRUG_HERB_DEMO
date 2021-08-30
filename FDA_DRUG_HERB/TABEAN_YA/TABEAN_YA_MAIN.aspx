@@ -159,16 +159,16 @@
         
     </div>--%>
   
-    <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="0" MultiPageID="RadMultiPage1" Orientation="HorizontalTop" Width="100%">
+    <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="1" MultiPageID="RadMultiPage1" Width="100%">
         <Tabs>
-            <telerik:RadTab runat="server" Text="ยาตัวอย่าง" Selected="True" Value="1">
+            <telerik:RadTab runat="server" Text="ยาตัวอย่าง" Value="1">
             </telerik:RadTab>
-            <telerik:RadTab runat="server" Text="ย.1" Value="2">
+            <telerik:RadTab runat="server" Text="ย.1" Value="2" Selected="True">
             </telerik:RadTab>
         </Tabs>
     </telerik:RadTabStrip>
 
-    <telerik:RadMultiPage ID="RadMultiPage1" runat="server" SelectedIndex="0" CssClass="fa left" Width="100%">
+    <telerik:RadMultiPage ID="RadMultiPage1" runat="server" SelectedIndex="1" CssClass="fa left" Width="100%">
         <telerik:RadPageView ID="RadPageView1" runat="server" TabIndex="1">
             <fieldset>
            <legend style="color: red;">ยาตัวอย่าง</legend>

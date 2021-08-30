@@ -29,6 +29,7 @@
                 'If dao_up.fields.PROCESS_ID = "104" Or dao_up.fields.PROCESS_ID = "105" Then
                 Label1.Style.Add("display", "block")
                 ddl_template.Style.Add("display", "block")
+                Txt_rcvno.Text = dao.fields.RCVNO_DISPLAY
                 'End If
             Catch ex As Exception
 

@@ -21,7 +21,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
         If Not IsPostBack Then
-            txt_app_date.Text = Date.Now.ToShortDateString()
+            RDP_APP_DATE.SelectedDate = Date.Now.ToShortDateString()
         End If
     End Sub
 
@@ -49,7 +49,7 @@
         dao.GetDataby_IDA(_IDA)
 
         Try
-            dao.fields.appdate = CDate(txt_app_date.Text)
+            dao.fields.appdate = CDate(RDP_APP_DATE.SelectedDate)
         Catch ex As Exception
 
         End Try

@@ -74,40 +74,7 @@
                 <asp:RadioButton ID="rbtn_other" runat="server" GroupName="pvn" Text="ต่างจังหวัด" />
             </h4>
         </div>
-        <div>
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    <h3>กรุณาเลือกไฟล์ที่อยู่ของไฟล์แนบ</h3>
-
-                    <table class="auto-style1">
-                        <%--<tr><td style="width:15%;">   ใบคำขอ</td><td>   <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn-default" />  </td></tr>--%>
-                        <tr>
-                            <td colspan="2">
-                                <asp:Panel ID="Panel101" runat="server">
-                                    <uc1:UC_ATTACH_DRUG ID="uc102_1" runat="server" />
-                                    <uc1:UC_ATTACH_DRUG ID="uc102_2" runat="server" />
-                                    <uc1:UC_ATTACH_DRUG ID="uc102_3" runat="server" />
-                                </asp:Panel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <%--<asp:Button ID="btn_Upload" runat="server" Text="อัพโหลด" CssClass=" btn-lg" />--%>
-                                &nbsp;
-                 <%--<asp:Button ID="Button1" runat="server" Text="ปิด"  CssClass=" btn-lg" Width="150px"  />--%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">หมายเหตุ : กรุณาจดเลขที่ได้หลังจากทำการอัพโหลดเรียบร้อยแล้ว</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="panel-footer " style="text-align: center;">

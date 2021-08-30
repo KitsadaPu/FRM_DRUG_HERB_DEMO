@@ -26,7 +26,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
         If Not IsPostBack Then
-            txt_appdate.Text = Date.Now.ToShortDateString()
+            'txt_appdate.Text = Date.Now.ToShortDateString()
             Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
             dao.Getdata_by_IDA(_IDA)
             If dao.fields.STATUS_ID = 8 Then
@@ -36,8 +36,10 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             End If
             If dao.fields.STATUS_ID = 8 Then
                 Panel1.Style.Add("display", "block")
+                Panel3.Style.Add("display", "block")
             Else
                 Panel1.Style.Add("display", "none")
+                Panel3.Style.Add("display", "none")
             End If
             'bind_ddl_rqt()
             show_btn(_IDA)
@@ -58,7 +60,14 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             ddl_cnsdcd.Style.Add("display", "none")
 
         End If
+        If dao.fields.STATUS_ID = 8 Then
+            btn_load.Enabled = True
+            'btn_load.CssClass = "btn-danger btn-lg"
 
+        Else
+            btn_load.Enabled = False
+            btn_load.CssClass = "btn-danger btn-lg"
+        End If
 
     End Sub
     Public Sub Bind_ddl_Status_staff()
@@ -92,15 +101,15 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         If status_id1 = 2 Then
             int_group_ddl1 = 1
             int_group_ddl2 = 0
-        ElseIf status_id1 = 4 Then
+        ElseIf status_id1 = 9 Then
             int_group_ddl1 = 2
             int_group_ddl2 = 0
-        ElseIf status_id1 = 5 Then
+        ElseIf status_id1 = 11 Then
             int_group_ddl1 = 3
             int_group_ddl2 = 0
         End If
 
-        dt = Get_DDL_DATA(12, int_group_ddl1, int_group_ddl2)
+        dt = Get_DDL_DATA(13, int_group_ddl1, int_group_ddl2)
 
         ddl_cnsdcd.DataSource = dt
         ddl_cnsdcd.DataValueField = "STATUS_ID"
@@ -348,8 +357,12 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         ElseIf STATUS_ID = 5 Then
             Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
 
+        ElseIf STATUS_ID = 4 Then
+            dao.fields.STATUS_ID = 9
+            dao.update()
+            alert("รับคำขอแล้ว")
         ElseIf STATUS_ID = 8 Then
-            dao.fields.appdate = CDate(txt_appdate.Text)
+            'dao.fields.appdate = CDate(txt_appdate.Text)
             dao.fields.STATUS_ID = STATUS_ID
             dao.update()
 
@@ -1506,6 +1519,27 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             dao.fields.TEMPLATE_ID = ddl_template.SelectedValue
             dao.update()
         End If
+
+    End Sub
+    Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        If dao.fields.STATUS_ID = 8 Then
+            load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
+        End If
+    End Sub
+    Private Sub load_PDF(ByVal path As String, ByVal fileName As String)
+        Dim bao As New BAO.AppSettings
+        Dim clsds As New ClassDataset
+
+        Response.Clear()
+        Response.ContentType = "Application/pdf"
+        Response.AddHeader("Content-Disposition", "attachment; filename=" & fileName)
+        Response.BinaryWrite(clsds.UpLoadImageByte(path)) '"C:\path\PDF_XML_CLASS\"
+
+        Response.Flush()
+        Response.Close()
+        Response.End()
 
     End Sub
 End Class

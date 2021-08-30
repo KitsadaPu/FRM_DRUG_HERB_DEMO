@@ -23,6 +23,15 @@ Partial Public Class POPUP_LCN_ADD
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
+    '''Panel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel4 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''UC_HERB control.
     '''</summary>
     '''<remarks>
@@ -75,4 +84,22 @@ Partial Public Class POPUP_LCN_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_HERB_PHESAJ As Global.FDA_DRUG_HERB.UC_HERB_PHESAJ
+
+    '''<summary>
+    '''Panel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''UC_LCN_UPLOAD_FILE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_LCN_UPLOAD_FILE As Global.FDA_DRUG_HERB.UC_LCN_UPLOAD_FILE
 End Class

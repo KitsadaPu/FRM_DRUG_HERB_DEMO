@@ -932,15 +932,6 @@ Partial Public Class WebForm35
     Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_load control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_load As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''btn_preview control.
     '''</summary>
     '''<remarks>
@@ -957,6 +948,15 @@ Partial Public Class WebForm35
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_sormorpo1 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_up control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_up As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btn_load0 control.

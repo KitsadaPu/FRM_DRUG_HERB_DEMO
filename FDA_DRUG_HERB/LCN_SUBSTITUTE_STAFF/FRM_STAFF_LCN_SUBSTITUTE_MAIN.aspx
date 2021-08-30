@@ -142,8 +142,8 @@
                        <telerik:GridBoundColumn DataField="REMARK" FilterControlAltText="Filter REMARK column"
                            HeaderText="เหตุผล" SortExpression="REMARK" UniqueName="REMARK">
                        </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
-                           HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
+                       <telerik:GridBoundColumn DataField="STATUS_NAME_STAFF" FilterControlAltText="Filter STATUS_NAME_STAFF column"
+                           HeaderText="สถานะ" SortExpression="STATUS_NAME_STAFF" UniqueName="STATUS_NAME_STAFF">
                        </telerik:GridBoundColumn>
                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_Select"
                            CommandName="sel" Text="ดูข้อมูล">

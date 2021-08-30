@@ -25,17 +25,44 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
         Set_Label(_iden)
+        'Set_ddl_type()
+        set_txt_label()
         If Not IsPostBack Then
-                If _ProcessID = "122" Then
-                    rdl_lcn_type.SelectedValue = "1"
-                ElseIf _ProcessID = "121" Then
-                    rdl_lcn_type.SelectedValue = "2"
-                ElseIf _ProcessID = "120" Then
-                    rdl_lcn_type.SelectedValue = "3"
-                End If
+            If _ProcessID = "122" Then
+                rdl_lcn_type.SelectedValue = "1"
+            ElseIf _ProcessID = "121" Then
+                rdl_lcn_type.SelectedValue = "2"
+            ElseIf _ProcessID = "120" Then
+                rdl_lcn_type.SelectedValue = "3"
             End If
-    End Sub
 
+        End If
+    End Sub
+    'Public Sub Set_ddl_type()
+    '    If ddl_sub_purpose.DataValueField = "1" Then
+    '        Panel1.Style.Add("display", "block")
+    '        Panel2.Style.Add("display", "none")
+    '    ElseIf ddl_sub_purpose.SelectedValue = "2" Then
+    '        Panel1.Style.Add("display", "none")
+    '        Panel2.Style.Add("display", "block")
+    '    Else
+    '        Panel1.Style.Add("display", "none")
+    '        Panel2.Style.Add("display", "none")
+    '    End If
+    'End Sub
+    Public Sub set_txt_label()
+        uc102_1.get_label("แนบใบอนุญาตถูกทำลาย หรือ ลบเลือนในสาระสำคัญ")
+        uc102_2.get_label("ใบรับแจ้งความของสถานีตำรวจท้องที่ที่ใบอนุญาตนั้นสูญหาย")
+        'uc102_3.get_label("3.สำเนาใบอนุญาตผลิต หรือนำหรือสั่งยาเข้ามาในราชอาณาจักร")
+
+    End Sub
+    Public Sub SET_ATTACH(ByVal TR_ID As String, ByVal PROCESS_ID As String, ByVal YEAR As String)
+
+        uc102_1.ATTACH1(TR_ID, PROCESS_ID, YEAR, "1")
+        uc102_2.ATTACH1(TR_ID, PROCESS_ID, YEAR, "2")
+        'uc102_3.ATTACH1(TR_ID, PROCESS_ID, YEAR, "3")
+
+    End Sub
     Sub Set_Label(ByVal CITIZEN_ID_AUTHORIZE As String)
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
@@ -188,12 +215,51 @@
             dao_sub.fields.PROCESS_ID = "10401"
             dao_sub.fields.CITIZEN_ID = _CLS.CITIZEN_ID
             dao_sub.fields.FK_IDA = dao.fields.IDA
-            dao_sub.fields.PURPOSE = txt_sub_PURPOSE.Text
+            'dao_sub.fields.PURPOSE = txt_sub_PURPOSE.Text
             dao_sub.fields.LCN_TYPE = Process_sub
             dao_sub.fields.CITIZEN_ID_AUTHORIZE = dao.fields.CITIZEN_ID_AUTHORIZE
 
+            Try
+                dao_sub.fields.PURPOSE_ID = ddl_sub_purpose.SelectedValue
+                dao_sub.fields.PURPOSE = ddl_sub_purpose.SelectedItem.Text
+            Catch ex As Exception
+
+            End Try
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Public Sub load_ddl_sub_purpose()
+        Try
+            Dim dao As New DAO_DRUG.TB_MAS_TYPE_UPLOAD_SUBTITU
+            dao.GetDataAll()
+            ddl_sub_purpose.DataSource = dao.datas
+            ddl_sub_purpose.DataValueField = "TYPE_ID"
+            ddl_sub_purpose.DataTextField = "TYPE_NAME"
+            ddl_sub_purpose.DataBind()
+
+            Dim item As New ListItem
+            item.Text = "--กรุณาเลือก--"
+            item.Value = "0"
+            ddl_sub_purpose.Items.Insert(0, item)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Protected Sub ddl_sub_purpose_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_sub_purpose.SelectedIndexChanged
+        If ddl_sub_purpose.SelectedValue = "1" Then
+            Panel1.Style.Add("display", "block")
+            Panel2.Style.Add("display", "none")
+            Panel3.Style.Add("display", "block")
+        ElseIf ddl_sub_purpose.SelectedValue = "2" Then
+            Panel1.Style.Add("display", "none")
+            Panel2.Style.Add("display", "block")
+            Panel3.Style.Add("display", "block")
+        Else
+            Panel1.Style.Add("display", "none")
+            Panel2.Style.Add("display", "none")
+        End If
     End Sub
 End Class

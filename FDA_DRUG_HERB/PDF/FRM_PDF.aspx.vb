@@ -14,7 +14,12 @@ Public Class WebForm1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
         Try
-            load_pdf(_FileName)
+            If _FileName.Contains("543-0") Then
+                Response.Write("<script type='text/javascript'>
+                alert('ขณะนี้ระบบการแสดงข้อมูลผ่าน qr code มีปัญหา ท่านสามารถตรวจสอบข้อมูล ใบอนุญาตผลิตภัณฑ์สมุนไพรได้ที่ https://porta.fda.moph.go.th/fda_search_all/main/search_center_main.aspx การค้นหา เลือกหัวข้อสืบค้นสถานที่สมุนไพร โดยใช้ชื่อ หรือ เลขที่ใบอนุญาต');parent.close_modal();</script> ")
+            Else
+                load_pdf(_FileName)
+            End If
         Catch ex As Exception
             If ex.Message.Contains("another") Then
                 Response.Write("<script type='text/javascript'>alert('ขออภัย ขณะนี้เจ้าหน้าที่กำลังเปิด pdf นี้อยู่');parent.close_modal();</script> ")

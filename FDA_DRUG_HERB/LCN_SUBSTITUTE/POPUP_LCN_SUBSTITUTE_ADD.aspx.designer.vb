@@ -41,42 +41,6 @@ Partial Public Class POPUP_LCN_SUBSTITUTE_ADD
     Protected WithEvents rbtn_other As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
-    '''Panel101 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel101 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''uc102_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents uc102_1 As Global.FDA_DRUG_HERB.UC_ATTACH_DRUG
-
-    '''<summary>
-    '''uc102_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents uc102_2 As Global.FDA_DRUG_HERB.UC_ATTACH_DRUG
-
-    '''<summary>
-    '''uc102_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents uc102_3 As Global.FDA_DRUG_HERB.UC_ATTACH_DRUG
-
-    '''<summary>
     '''btn_save control.
     '''</summary>
     '''<remarks>

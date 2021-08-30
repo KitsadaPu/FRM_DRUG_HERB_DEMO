@@ -630,15 +630,23 @@
     <Content Include="GEN_XML_BC.aspx" />
     <Content Include="LCN\POPUP_LCN_ADD.aspx" />
     <Content Include="LCN\POPUP_LCN_DRUG_GROUP_HERB.aspx" />
+    <Content Include="LCN\POPUP_LCN_EDIT.aspx" />
+    <Content Include="LCN\POPUP_PREVIEW_UPLOAD.aspx" />
     <Content Include="LCN\UC\UC_CONFIRM_REPRESENT.ascx" />
     <Content Include="LCN\UC\UC_CONFIRM_REQUEST.ascx" />
     <Content Include="LCN\UC\UC_HERB.ascx" />
     <Content Include="LCN\UC\UC_HERB_KEEP.ascx" />
     <Content Include="LCN\UC\UC_HERB_PHESAJ.ascx" />
+    <Content Include="LCN\UC\UC_LCN_UPLOAD_FILE.ascx" />
     <Content Include="LCN\UC\UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx" />
+    <Content Include="LCN\UC\UC_UPLOAD_PREVIEW.ascx" />
+    <Content Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_EDIT.aspx" />
+    <Content Include="LCN_STAFF\UC\UC_LCN_UPLOAD_FILE_STAFF.ascx" />
     <Content Include="MAIN\FRM_MAIN_PRODUCK_MENU.aspx" />
     <Content Include="MAIN\FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx" />
     <Content Include="MAIN\FRM_SELECT_PROCESS_LCN.aspx" />
+    <Content Include="MAIN\FRM_SELECT_PROCESS_LCN_MAIN.aspx" />
     <Content Include="SOMORPO4_STAFF\FRM_SOMORPO4_MAIN.aspx" />
     <Content Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx" />
@@ -693,11 +701,14 @@
     <Content Include="UC\UC_ATTACH.ascx" />
     <Content Include="UC\UC_ATTACH_CUS.ascx" />
     <Content Include="UC\UC_ATTACH_DRUG.ascx" />
+    <Content Include="UC\UC_ATTACH_LCN.ascx" />
+    <Content Include="UC\UC_ATTACH_LCN_LOAD.ascx" />
     <Content Include="UC\UC_CHEMECAL_SUB_TYPE.ascx" />
     <Content Include="UC\UC_CONFIRM.ascx" />
     <Content Include="UC\UC_DRUG_SEARCH.ascx" />
     <Content Include="UC\UC_FILTER.ascx" />
     <Content Include="UC\UC_GRID_ATTACH.ascx" />
+    <Content Include="UC\UC_GRID_ATTACH_LCN.ascx" />
     <Content Include="UC\UC_GRID_PHARMACIST.ascx" />
     <Content Include="UC\UC_HEADER.ascx" />
     <Content Include="UC\UC_HEADER_STAFF.ascx" />
@@ -4805,6 +4816,13 @@
       <DependentUpon>POPUP_LCN_DRUG_GROUP_HERB.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="LCN\POPUP_LCN_EDIT.aspx.designer.vb">
+      <DependentUpon>POPUP_LCN_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN\POPUP_LCN_EDIT.aspx.vb">
+      <DependentUpon>POPUP_LCN_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="LCN\POPUP_LCN_NCT_TEMP_CONFIRM.aspx.designer.vb">
       <DependentUpon>POPUP_LCN_NCT_TEMP_CONFIRM.aspx</DependentUpon>
     </Compile>
@@ -4875,6 +4893,13 @@
       <DependentUpon>POPUP_LCN_UPLOAD_NCT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN\POPUP_PREVIEW_UPLOAD.aspx.designer.vb">
+      <DependentUpon>POPUP_PREVIEW_UPLOAD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN\POPUP_PREVIEW_UPLOAD.aspx.vb">
+      <DependentUpon>POPUP_PREVIEW_UPLOAD.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="LCN\UC\UC_CONFIRM_REPRESENT.ascx.designer.vb">
       <DependentUpon>UC_CONFIRM_REPRESENT.ascx</DependentUpon>
     </Compile>
@@ -4910,11 +4935,25 @@
       <DependentUpon>UC_HERB_PHESAJ.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN\UC\UC_LCN_UPLOAD_FILE.ascx.designer.vb">
+      <DependentUpon>UC_LCN_UPLOAD_FILE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN\UC\UC_LCN_UPLOAD_FILE.ascx.vb">
+      <DependentUpon>UC_LCN_UPLOAD_FILE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="LCN\UC\UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx.designer.vb">
       <DependentUpon>UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx</DependentUpon>
     </Compile>
     <Compile Include="LCN\UC\UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx.vb">
       <DependentUpon>UC_TABLE_DRUG_GROUP_CHANGE_HERB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN\UC\UC_UPLOAD_PREVIEW.ascx.designer.vb">
+      <DependentUpon>UC_UPLOAD_PREVIEW.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN\UC\UC_UPLOAD_PREVIEW.ascx.vb">
+      <DependentUpon>UC_UPLOAD_PREVIEW.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_IMPORT\FRM_LCN_IMPORT_CONFIRM_DRUG.aspx.designer.vb">
@@ -4959,6 +4998,27 @@
       <DependentUpon>FRM_LCN_STAFF_IMPORT_CONFIRM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_UPLOAD_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx.vb">
+      <DependentUpon>FRM_LCN_UPLOAD_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_REMARK_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_EDIT.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_REMARK_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_UPLOAD_FILE_STAFF.ascx.designer.vb">
+      <DependentUpon>UC_LCN_UPLOAD_FILE_STAFF.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_UPLOAD_FILE_STAFF.ascx.vb">
+      <DependentUpon>UC_LCN_UPLOAD_FILE_STAFF.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="MAIN\FRM_MAIN_PRODUCK_MENU.aspx.designer.vb">
       <DependentUpon>FRM_MAIN_PRODUCK_MENU.aspx</DependentUpon>
     </Compile>
@@ -4978,6 +5038,13 @@
     </Compile>
     <Compile Include="MAIN\FRM_SELECT_PROCESS_LCN.aspx.vb">
       <DependentUpon>FRM_SELECT_PROCESS_LCN.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MAIN\FRM_SELECT_PROCESS_LCN_MAIN.aspx.designer.vb">
+      <DependentUpon>FRM_SELECT_PROCESS_LCN_MAIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN\FRM_SELECT_PROCESS_LCN_MAIN.aspx.vb">
+      <DependentUpon>FRM_SELECT_PROCESS_LCN_MAIN.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="SOMORPO4_STAFF\FRM_SOMORPO4_MAIN.aspx.designer.vb">
@@ -7172,6 +7239,20 @@
       <DependentUpon>UC_ATTACH_DRUG.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="UC\UC_ATTACH_LCN.ascx.designer.vb">
+      <DependentUpon>UC_ATTACH_LCN.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_ATTACH_LCN.ascx.vb">
+      <DependentUpon>UC_ATTACH_LCN.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UC\UC_ATTACH_LCN_LOAD.ascx.designer.vb">
+      <DependentUpon>UC_ATTACH_LCN_LOAD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_ATTACH_LCN_LOAD.ascx.vb">
+      <DependentUpon>UC_ATTACH_LCN_LOAD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="UC\UC_CHEMECAL_SUB_TYPE.ascx.designer.vb">
       <DependentUpon>UC_CHEMECAL_SUB_TYPE.ascx</DependentUpon>
     </Compile>
@@ -7205,6 +7286,13 @@
     </Compile>
     <Compile Include="UC\UC_GRID_ATTACH.ascx.vb">
       <DependentUpon>UC_GRID_ATTACH.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UC\UC_GRID_ATTACH_LCN.ascx.designer.vb">
+      <DependentUpon>UC_GRID_ATTACH_LCN.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_GRID_ATTACH_LCN.ascx.vb">
+      <DependentUpon>UC_GRID_ATTACH_LCN.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UC\UC_GRID_PHARMACIST.ascx.designer.vb">

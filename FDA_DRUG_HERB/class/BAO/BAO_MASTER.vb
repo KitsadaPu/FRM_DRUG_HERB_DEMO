@@ -1150,6 +1150,27 @@
         Return dt
     End Function
 
+    Public Function SP_DALCN_UPLOAD_FILE_BY_FK_IDA(ByVal FK_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DALCN_UPLOAD_FILE_BY_FK_IDA @FK_IDA =  " & FK_IDA
+        Dim dt As New DataTable
+        dt.TableName = "SP_DALCN_UPLOAD_FILE_BY_FK_IDA"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+                'dt.Clear()
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+            'dt.Clear()
+        End If
+        Return dt
+    End Function
+
     ''' <summary>
     ''' 'ผู้มีหน้าที่ปฏิบัติการ
     ''' </summary>

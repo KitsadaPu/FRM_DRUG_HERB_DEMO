@@ -50,6 +50,24 @@ Partial Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     Protected WithEvents RadScriptManager1 As Global.Telerik.Web.UI.RadScriptManager
 
     '''<summary>
+    '''Panel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Panel1 control.
     '''</summary>
     '''<remarks>
@@ -68,6 +86,24 @@ Partial Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     Protected WithEvents ddl_template As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''ddl_cnsdcd control.
     '''</summary>
     '''<remarks>
@@ -75,15 +111,6 @@ Partial Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_cnsdcd As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''txt_appdate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_appdate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_confirm control.

@@ -137,7 +137,7 @@
                                                
                                            </td>--%>
              <div class="col-lg-3 col-md-3">
-                 <asp:Button ID="btn_add" runat="server" Text="เพิ่มคำขอแบบใหม่" CssClass="auto-style1" Height="45px" Width="200px" />                              
+                 <asp:Button ID="btn_add" runat="server" Text="เพิ่มคำขอใบอนุญาต" CssClass="auto-style1" Height="45px" Width="200px" />                              
                  <asp:Button ID="btn_reload" runat="server" Text="" style="display:none;"  />
                  <asp:Button ID="Button1" runat="server" Text="" style="display:none;"  />
      
@@ -227,6 +227,16 @@
                        <ItemTemplate>
 
                            <asp:Button ID="btn_drug_group" runat="server" Text="รายละเอียดหมวดยา" CommandName="drug_group" Width="100%" CssClass="btn-link" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>' />
+                           &nbsp; &nbsp; &nbsp;
+                        
+                       </ItemTemplate>
+
+                       <ItemStyle Width="10%"></ItemStyle>
+                   </asp:TemplateField>
+                    <asp:TemplateField ItemStyle-Width="10%">
+                       <ItemTemplate>
+
+                           <asp:Button ID="btn_drug_edit" runat="server" Text="แก้ไข" CommandName="drug_edit" Width="100%" CssClass="btn-link" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>' />
                            &nbsp; &nbsp; &nbsp;
                         
                        </ItemTemplate>

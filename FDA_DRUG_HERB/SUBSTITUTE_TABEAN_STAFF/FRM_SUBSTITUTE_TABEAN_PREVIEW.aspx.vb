@@ -921,6 +921,7 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Dim LCNTPCD_GROUP As String = ""
         Dim FK_LCN_IDA As Integer = 0
         Dim wong_lep As String = ""
+        Dim _COUNTRY As String = ""
         Try
             STATUS_ID = 8 'Request.QueryString("STATUS_ID") 'Get_drrqt_Status(_IDA)
         Catch ex As Exception
@@ -1304,6 +1305,11 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         'Catch ex As Exception
 
         'End Try
+        Dim dao_frgn As New DAO_XML_DRUG_HERB.TB_XML_DRUG_FRGN_HERB
+        dao_frgn.GetDataby_u1_and_funcd(newcode, 3)
+        If dao_frgn.fields.funccd = 3 Then
+            _COUNTRY = dao_frgn.fields.engcntnm
+        End If
 
 
         class_xml.LCNNO_FORMAT = lcnno_format
@@ -1312,7 +1318,7 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         class_xml.LCN_TYPE = lcn_long_type 'ยานี้
         class_xml.TABEAN_FORMAT = rgtno_format
         class_xml.DRUG_NAME = drug_name
-        class_xml.COUNTRY = "ไทย"
+        class_xml.COUNTRY = _COUNTRY
         class_xml.CHK_LCN_SUBTYPE1 = CHK_LCN_SUBTYPE1
         class_xml.CHK_LCN_SUBTYPE2 = CHK_LCN_SUBTYPE2
         class_xml.CHK_LCN_SUBTYPE3 = CHK_LCN_SUBTYPE3
@@ -1426,10 +1432,10 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
             If E_VALUE <> "(E)" Then
                 'dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUPV2("1400001", "1400001", 8, ddl_template.SelectedValue, _group:=1)
                 'NAME_TEMPLATE = dao_pdftemplate.fields.PDF_TEMPLATE
-                NAME_TEMPLATE = "DATAN_YOR_2_NCIENT_READONLY.pdf"
+                NAME_TEMPLATE = "DATAN_TORYOR5_NCIENT_READONLY.pdf"
             Else
                 'If Request.QueryString("status") = "8" Or Request.QueryString("status") = "14" Then
-                NAME_TEMPLATE = "DATAN_YOR_2_NCIENT_READONLY_E.pdf"
+                NAME_TEMPLATE = "DATAN_TORYOR5_NCIENT_READONLY.pdf"
                 'Else
                 '    NAME_TEMPLATE = dao_pdftemplate.fields.PDF_TEMPLATE
                 'End If

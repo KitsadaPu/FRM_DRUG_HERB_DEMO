@@ -1687,6 +1687,70 @@ Namespace DAO_DRUG
             Next
         End Sub
     End Class
+    Public Class TB_DALCN_UPLOAD_FILE
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_UPLOAD_FILE
+
+        Private _Details As New List(Of DALCN_UPLOAD_FILE)
+        Public Property Details() As List(Of DALCN_UPLOAD_FILE)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_UPLOAD_FILE))
+                _Details = value
+            End Set
+        End Property
+        Public Sub insert()
+            db.DALCN_UPLOAD_FILEs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_UPLOAD_FILEs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID(ByVal TR_ID As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetMAXby_TR_ID_And_Process(ByVal TR_ID As Integer, ByVal process As String)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.PROCESS_ID = process Order By CInt(p.TYPE) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDaTaby_TR_ID_And_TYPE_AND_FK_IDA(ByVal TR_ID As Integer, ByVal TYPE As String, ByVal IDA As Integer)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+
 
     Public Class ClsDBTRANSACTION_UPLOAD
         Inherits MAINCONTEXT
@@ -14569,6 +14633,47 @@ Namespace DAO_DRUG
         End Sub
         Public Sub GetData_by_TYPE_ID(ByVal TYPE_ID As Integer)
             datas = (From p In db.MAS_TYPE_PHR_HERBs Where p.TYPE_ID = TYPE_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_MAS_TYPE_UPLOAD_SUBTITU
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_TYPE_UPLOAD_SUTITUTE
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.MAS_TYPE_UPLOAD_SUTITUTEs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub insert()
+            db.MAS_TYPE_UPLOAD_SUTITUTEs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_TYPE_UPLOAD_SUTITUTEs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_TYPE_UPLOAD_SUTITUTEs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_By_IDA(ByVal IDA As Integer)
+            datas = (From p In db.MAS_TYPE_UPLOAD_SUTITUTEs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_by_TYPE_ID(ByVal TYPE_ID As Integer)
+            datas = (From p In db.MAS_TYPE_UPLOAD_SUTITUTEs Where p.TYPE_ID = TYPE_ID Select p)
             For Each Me.fields In datas
             Next
         End Sub

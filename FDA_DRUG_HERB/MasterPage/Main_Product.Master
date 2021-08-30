@@ -39,7 +39,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>  
+       <%-- <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> --%> 
        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="Html5/html5shiv.min.js"></script>
@@ -47,7 +47,7 @@
     <![endif]-->
 
 	<div class="wrapper two">
-		<header class="header"  style="background: #8CB343">
+		<header class="header"  style="background: #63320e">
 			<div class="inner">
 				<a href="" class="logo">
 					<img src="../imgs/logo@2x.png" alt="Logo" />
@@ -58,7 +58,7 @@
 						<img src="../imgs/logo@2x.png" alt="Logo" />
 					</a>
 					<!-- For Mobile -->
-					<span class="circle"  style="background: #8CB343"></span>
+					<span class="circle"  style="background: #63320e"></span>
 					<div class="media-body">
 						<h1>สมุนไพร&nbsp;</h1>
 						<p>สำนักงานคณะกรรมการอาหารและยา กระทรวงสาธารณสุข</p>

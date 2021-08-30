@@ -1,9 +1,10 @@
 ﻿Imports Telerik.Web.UI
 Public Class FRM_SELECT_PROCESS_LCN
     Inherits System.Web.UI.Page
-
+    Private _MENU_GROUP As String = ""
     Private _CLS As New CLS_SESSION
     Sub RunSession()
+        _MENU_GROUP = Request.QueryString("MENU_GROUP")
         Try
             _CLS = Session("CLS")                               'นำค่า Session ใส่ ในตัวแปร _CLS
         Catch ex As Exception
@@ -33,9 +34,9 @@ Public Class FRM_SELECT_PROCESS_LCN
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
             If Request.QueryString("ttt") = 2 Then
-                H.NavigateUrl = "../MAIN/FRM_MAIN_PRODUCK_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") 'URL หน้า ยืนยัน
+                H.NavigateUrl = "../MAIN/FRM_SELECT_PROCESS_LCN_MAIN.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") & "&MENU_GROUP=" & _MENU_GROUP 'URL หน้า ยืนยัน
             Else
-                H.NavigateUrl = "../MAIN/FRM_MAIN_PRODUCK_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt")  'URL หน้า ยืนยัน
+                H.NavigateUrl = "../MAIN/FRM_SELECT_PROCESS_LCN_MAIN.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") & "&MENU_GROUP=" & _MENU_GROUP 'URL หน้า ยืนยัน
             End If
 
         End If

@@ -1296,7 +1296,7 @@
                     <asp:Literal ID="lr_preview" runat="server"></asp:Literal>
                 </div>
             </td>
-            <td style="padding-left: 10%; height: 50%;">
+            <td style="padding-left: 10%; height: 20%;" padding-top: 1%; padding-bottom: 70%">
 
                 <table class="table" style="width: 90%">
 
@@ -1310,7 +1310,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_load" runat="server" Text="Download PDF" CssClass="btn-lg" Width="80%" /></td>
+                            <asp:Button ID="btn_load" runat="server" Text="Download สพม.๒" CssClass="btn-lg" Width="80%" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Button ID="btn_previewUp" runat="server" Text="ตรวจสอบไฟล์อัพโหลด" CssClass="btn-lg" Width="80%" /></td>
                     </tr>
                     <tr>
                         <td>

@@ -24,7 +24,7 @@
         </script>
         <div class="panel" style="text-align:center ;width:100%">
          <div class="panel-heading panel-title" style="height:70px" > 
-            
+             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
              <div  class="auto-style1" ><h3> เลือกรายการใบอนุญาตที่ต้องการแก้ไข</h3> </div>
 
          </div>

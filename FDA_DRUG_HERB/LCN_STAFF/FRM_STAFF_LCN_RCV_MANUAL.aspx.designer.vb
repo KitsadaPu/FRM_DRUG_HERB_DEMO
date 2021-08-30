@@ -29,7 +29,7 @@ Partial Public Class FRM_STAFF_LCN_RCV_MANUAL
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Txt_rcvno As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Txt_rcvno As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_rcvdate control.

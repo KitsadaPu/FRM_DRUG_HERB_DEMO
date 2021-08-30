@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class WebForm13
 
     '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
     '''lbl_app_date control.
     '''</summary>
     '''<remarks>
@@ -23,13 +32,13 @@ Partial Public Class WebForm13
     Protected WithEvents lbl_app_date As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_app_date control.
+    '''RDP_APP_DATE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_app_date As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RDP_APP_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''Button1 control.

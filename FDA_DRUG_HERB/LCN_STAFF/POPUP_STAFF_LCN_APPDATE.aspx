@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POPUP_STAFF_LCN_APPDATE.aspx.vb" Inherits="FDA_DRUG_HERB.WebForm13" %>
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <link href="../css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
     <link href="../css/smoothness/jquery2.custom.css" rel="stylesheet" />
@@ -15,6 +16,8 @@
     </script> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <div class="panel" style="width:100%">
             <div class="panel-heading panel-title">
                  <div class="row">
@@ -39,7 +42,8 @@
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-2">
-                        <asp:TextBox ID="txt_app_date" runat="server" CssClass="input-lg" Width="95%"></asp:TextBox>
+                        <telerik:RadDatePicker ID="RDP_APP_DATE" Runat="server">
+                       </telerik:RadDatePicker>                      
                     </div>
                     <div class="col-lg-2">
                         <p style="color:red">*(วัน/เดือน/ปี พ.ศ. => 1/10/2563)</p>

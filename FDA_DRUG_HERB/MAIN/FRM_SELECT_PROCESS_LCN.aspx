@@ -5,17 +5,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel" style="text-align: left; width: 100%">
-        <div class="panel-heading panel-title" style="height: 50px">
-
-            <div class="col-lg-4 col-md-4">
-                <h4>กรุณาเลือกใบอนุญาตเพื่อทำรายการต่อ</h4>
+        <div class="panel-heading panel-title" style="height: 60px">
+            <div class="col-lg-10 col-md-4" style="text-align:center">
+               <p class="h3" style="text-align:center;">เลือกใบอนุญาตที่ท่านต้องการดำเนินการ</p>
             </div>
+             <%--<br />
+                 <p class="h3" style="text-align:center;">เลือกกระบวนงานที่ท่านต้องการดำเนินการ</p>
+                <hr />--%>
             <%--<div  class="col-lg-8 col-md-8">
                                <p style="text-align:right;padding-right:5%;"></p>
                           </div>--%>
         </div>
     </div>
- 
+      <hr />
     <%--<p class="h3">ใบอนุญาต</p>--%>
     
     <div class="panel panel-body" style="width: 100%; padding-left: 5%;">

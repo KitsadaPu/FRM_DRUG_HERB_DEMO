@@ -179,21 +179,25 @@ Public Class FRM_LCN_DRUG
     End Sub
 
 #Region "GRIDVIEW"
-
     Protected Sub GV_lcnno_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GV_lcnno.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim id As String = GV_lcnno.DataKeys.Item(e.Row.RowIndex).Value.ToString()
+            Dim dao As New DAO_DRUG.ClsDBdalcn
+            dao.GetDataby_IDA(id)
 
             Dim btn_Select As Button = DirectCast(e.Row.FindControl("btn_Select"), Button)
             Dim btn_drug_group As Button = DirectCast(e.Row.FindControl("btn_drug_group"), Button)
             Dim btn_lcn As Button = DirectCast(e.Row.FindControl("btn_lcn"), Button)
             Dim btn_leaves As Button = DirectCast(e.Row.FindControl("btn_leaves"), Button)
             Dim btn_sell As Button = DirectCast(e.Row.FindControl("btn_sell"), Button)
-            Dim id As String = GV_lcnno.DataKeys.Item(e.Row.RowIndex).Value.ToString()
+            Dim btn_drug_edit As Button = DirectCast(e.Row.FindControl("btn_drug_edit"), Button)
+
             'btn_Select.Style.Add("display", "none")
             btn_lcn.Style.Add("display", "none")
             btn_leaves.Style.Add("display", "none")
             btn_drug_group.Style.Add("display", "none")
             btn_sell.Style.Add("display", "none")
+            btn_drug_edit.Style.Add("display", "none")
             Dim bool As Boolean = False
             Dim bool2 As Boolean = False
             If _process = "106" Then
@@ -212,6 +216,15 @@ Public Class FRM_LCN_DRUG
                 End If
             ElseIf _process = "120" Or _process = "121" Or _process = "122" Then
                 btn_drug_group.Style.Add("display", "block")
+                Try
+                    If dao.fields.STATUS_ID = 12 Or dao.fields.STATUS_ID = 13 Then
+                        btn_drug_edit.Style.Add("display", "block")
+                        Dim url As String = "POPUP_LCN_EDIT.aspx?type_id=" & _process & "&process=" & _process & "&lct_ida=" & _lct_ida & "&ida=" & id & "&TR_ID=" & dao.fields.TR_ID
+                        btn_drug_edit.Attributes.Add("OnClick", "Popups3('" & url & "'); return false;")
+                    End If
+                Catch ex As Exception
+
+                End Try
             ElseIf _process = "101" Then
                 Dim dao_ky As New DAO_DRUG.ClsDBdalcn
                 dao_ky.GetDataby_IDA(id)
@@ -279,8 +292,7 @@ Public Class FRM_LCN_DRUG
             'ElseIf _process = 118 Then
             '    btn_leaves.Style.Add("display", "block")
             'End If
-            Dim dao As New DAO_DRUG.ClsDBdalcn
-            dao.GetDataby_IDA(id)
+
 
             'ไม่ให้แสดงคำว่า เลือกข้อมูล ถ้าสถานะไม่ใช่อนุมัติ
             If dao.fields.STATUS_ID <> 8 Then
