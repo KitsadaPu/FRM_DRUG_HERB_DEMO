@@ -104,6 +104,15 @@ Partial Public Class UC_LCN_UPLOAD_FILE
     Protected WithEvents rdl_person_type5 As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
+    '''show_local_div control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents show_local_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''rdl_chk_local control.
     '''</summary>
     '''<remarks>
@@ -113,58 +122,13 @@ Partial Public Class UC_LCN_UPLOAD_FILE
     Protected WithEvents rdl_chk_local As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''UC_ATTACH_LCN_NO1 control.
+    '''show_bsn_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_NO1_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO1_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_NO1_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO1_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_NO1_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO1_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_NO1_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO1_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_NO2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_NO2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
+    Protected WithEvents show_bsn_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''Panel2 control.
@@ -185,308 +149,29 @@ Partial Public Class UC_LCN_UPLOAD_FILE
     Protected WithEvents rdl_chk_bsn As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''UC_ATTACH_LCN_BSN1 control.
+    '''btn_select_typeatt control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_BSN1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
+    Protected WithEvents btn_select_typeatt As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''UC_ATTACH_LCN_BSN2 control.
+    '''btn_save control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_BSN2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
+    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''UC_ATTACH_LCN_BSN2_2 control.
+    '''tb_type_menu control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_BSN2_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''Panel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''UC_ATTACH_LCN7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN7 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN8 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN8 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_1_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_1_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_1_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_1_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_1_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_1_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_1_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_1_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_1_5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_1_5 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_2_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_2_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_2_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_2_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_2_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_2_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_2_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_2_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_2_5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_2_5 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_3_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_3_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_3_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_3_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_3_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_3_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_3_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_3_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_4_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_4_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_4_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_4_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_4_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_4_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_4_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_4_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_4_5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_4_5 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_5_1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_5_1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_5_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_5_2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_5_3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_5_3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_5_4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_5_4 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''Panel_posormo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel_posormo As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''UC_ATTACH_LCN_PSM1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_PSM1 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_PSM2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_PSM2 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''UC_ATTACH_LCN_PSM3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_ATTACH_LCN_PSM3 As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
-
-    '''<summary>
-    '''BTN_UPLOAD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents BTN_UPLOAD As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
 End Class

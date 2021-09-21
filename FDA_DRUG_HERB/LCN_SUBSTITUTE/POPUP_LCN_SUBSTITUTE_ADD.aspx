@@ -78,7 +78,7 @@
     </div>
 
     <div class="panel-footer " style="text-align: center;">
-        <asp:Button ID="btn_save" runat="server" Text="บันทึก" CssClass="btn-lg" Width="120px" />&nbsp;&nbsp;
+        <asp:Button ID="btn_save" runat="server" Text="บันทึก" CssClass="btn-lg" Width="120px" OnClientClick="return confirm('หมายเหตุ ภายหลังจากที่การดำเนินการแล้วเสร็จขอให้ท่านส่งเอกสารใบอนุญาตฉบับจริงมายังกลุ่มสถานที่ กองผลิตภัณฑ์สมุนไพร สำนักงานคณะกรรมการอาหารและยา เลขที่ 88/24 ถนนติวานนท์ ตำบลตลาดขวัญ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000 เพื่อประกอบการดำเนินการต่อไปคำขอจะเริ่มดำเนินการหลังจากเจ้าหน้าที่ได้รับใบอนุญาตฉบับจริงแล้ว');"/>&nbsp;&nbsp;
         <asp:Button ID="btn_close" runat="server" Text="ปิดหน้าต่าง" CssClass="btn-lg" Width="120px" />
     </div>
 </asp:Content>

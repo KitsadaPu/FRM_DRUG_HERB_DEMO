@@ -51,7 +51,7 @@ Public Class WebForm35
                 dao1.GetDataby_IDA(_IDA)
                 'BindData_PDF()
 
-                If dao1.fields.STATUS_ID >= 8 And dao1.fields.STATUS_ID <> 11 Then
+                If dao1.fields.STATUS_ID = 8 Then
                     BindData_PDF()
                     Panel1.Style.Add("display", "none")
                 Else
@@ -64,7 +64,7 @@ Public Class WebForm35
             load_fdpdtno()
             UC_GRID_PHARMACIST.load_gv(_IDA)
             If _TR_ID <> "" Then
-                UC_GRID_ATTACH.load_gv(_TR_ID)
+                'UC_GRID_ATTACH.load_gv(_TR_ID)
             End If
 
             set_hide(_IDA)
@@ -816,10 +816,13 @@ Public Class WebForm35
             btn_cancel.Enabled = False
             btn_confirm.CssClass = "btn-danger btn-lg"
             btn_cancel.CssClass = "btn-danger btn-lg"
-
+            btn_preview.CssClass = "btn-danger btn-lg"
             ddl_cnsdcd.Style.Add("display", "none")
         End If
 
+        If dao.fields.STATUS_ID = 8 Or dao.fields.STATUS_ID = 6 Then
+            ddl_template.Style.Add("display", "block")
+        End If
         'Try
         '    Dim dao_u As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
         '    dao_u.GetDataby_IDA(_TR_ID)
@@ -835,11 +838,11 @@ Public Class WebForm35
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(_IDA)
 
-        Dim dao_s As New DAO_DRUG.TB_MAS_STAFF_OFFER
+        Dim dao_s As New DAO_DRUG.TB_MAS_STAFF_NAME_HERB
         Dim dao_stat As New DAO_DRUG.ClsDBMAS_STATUS
         Try
             dao_s.GetDataby_IDA(dao.fields.FK_STAFF_OFFER_IDA)
-            lbl_staff_consider.Text = dao_s.fields.STAFF_OFFER_NAME
+            lbl_staff_consider.Text = dao_s.fields.STAFF_NAME
         Catch ex As Exception
             lbl_staff_consider.Text = "-"
         End Try
@@ -964,10 +967,19 @@ Public Class WebForm35
 
 
         If STATUS_ID = 3 Then
+            Dim LCNNO_V2 As Integer
+            Dim bao2 As New BAO.GenNumber
+            Dim RCVNO_HERB_NEW As Integer
             dao.fields.STATUS_ID = STATUS_ID
             RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
             dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
 
+            RCVNO_HERB_NEW = bao2.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+
+            Dim _year As Integer = con_year(Date.Now.Year)
+            If _year < 2500 Then
+                _year += 543
+            End If
 
             dao.fields.RCVNO_DISPLAY = bao.FORMAT_NUMBER_MINI(con_year(Date.Now.Year()), RCVNO)
             Try
@@ -975,8 +987,14 @@ Public Class WebForm35
             Catch ex As Exception
 
             End Try
+
+            LCNNO_V2 = con_year(Date.Now.Year).Substring(2, 2) & RCVNO_HERB_NEW
+
+            dao.fields.RCVNO_NEW = "HB " & _CLS.PVCODE & "-" & PROCESS_ID & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & RCVNO_HERB_NEW
+
             dao.fields.RCVDATE_DISPLAY = Date.Now.ToShortDateString()
             'dao.fields.frtappdate = Date.Now
+            AddLogStatus(3, _ProcessID, _CLS.CITIZEN_ID, _IDA)
             dao.update()
 
             'Dim cls_sop As New CLS_SOP
@@ -987,27 +1005,35 @@ Public Class WebForm35
             '--------------------------------
             alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
         ElseIf STATUS_ID = 11 Then
-            Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+            Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
         ElseIf STATUS_ID = 12 Then
-            Response.Redirect("FRM_STAFF_LCN_REMARK_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & "12")
+            AddLogStatus(12, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+            Response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
             'ElseIf STATUS_ID = 13 Then
             '    Response.Redirect("FRM_STAFF_LCN_REMARK.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & "13")
         ElseIf STATUS_ID = 13 Then
-            dao.fields.STATUS_ID = 11
-            dao.update()
+            AddLogStatus(13, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+            Response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
+
             'Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
             alert("อัพเดทเรียบร้อยแล้ว")
         ElseIf STATUS_ID = 5 Then
             dao.fields.STATUS_ID = 5
             dao.update()
+            AddLogStatus(5, _ProcessID, _CLS.CITIZEN_ID, _IDA)
             'Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+            alert("อัพเดทเรียบร้อยแล้ว")
+
+        ElseIf STATUS_ID = 15 Then
+            dao.fields.STATUS_ID = 11
+            dao.update()
             alert("อัพเดทเรียบร้อยแล้ว")
         ElseIf STATUS_ID = 6 Then
             Response.Redirect("FRM_STAFF_LCN_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
         ElseIf STATUS_ID = 8 Then
-            
-            dao.fields.STATUS_ID = STATUS_ID
 
+            dao.fields.STATUS_ID = STATUS_ID
+            AddLogStatus(8, _ProcessID, _CLS.CITIZEN_ID, _IDA)
             'Dim r_no As String = ""
             'Try
             '    r_no = dao.fields.TEMPORARY_RCVNO
@@ -1177,7 +1203,13 @@ Public Class WebForm35
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        Response.Write("<script type='text/javascript'>parent.close_modal(); </script> ")
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        dao.fields.STATUS_ID = 78
+        dao.update()
+
+        AddLogStatus(78, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        alert("ดำเนินการยกเลิกคำขอแล้ว")
     End Sub
 
     'Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
@@ -1448,6 +1480,9 @@ Public Class WebForm35
             'DT11 = class_xml.DT_SHOW.DT11
             For Each drr As DataRow In class_xml.DT_SHOW.DT11.Rows
                 Try
+                    If drr("thaaddr") = "" Then
+                        drr("thaaddr") = "-"
+                    End If
                     drr("thaaddr") = NumEng2Thai(drr("thaaddr"))
                 Catch ex As Exception
 
@@ -2003,16 +2038,35 @@ Public Class WebForm35
         End Try
         class_xml.DT_MASTER.DT34.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_3_1_ROW"
 
+        Dim rcvno_format As String = ""
+        Dim RCV_DATE As String = ""
+        Try
+            rcvno_format = dao.fields.RCVNO_NEW
+        Catch ex As Exception
 
+        End Try
+
+        Dim rcvdate1 As Date
+        Dim rcvdate2 As String = ""
+        Try
+            If dao.fields.rcvdate IsNot Nothing Then
+                rcvdate1 = dao.fields.rcvdate
+                rcvdate2 = CDate(rcvdate1).ToString("dd/MM/yyy")
+            End If
+
+        Catch ex As Exception
+
+        End Try
         'class_xml.LCNNO_SHOW = lcnno_format
         'class_xml.SHOW_LCNNO = lcnno_text
         Dim dao_main As New DAO_DRUG.ClsDBdalcn
         dao_main.GetDataby_IDA(MAIN_LCN_IDA)
         ' If MAIN_LCN_IDA = 0 Then
 
-        'class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)
+        'class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)  RCVNO_FORMAT
         'class_xml.LCNNO_SHOW_NEW = NumEng2Thai(lcnno_format_NEW)
-
+        class_xml.RCVNO_FORMAT = rcvno_format
+        class_xml.RCVDATE_DISPLAY = rcvdate2
         class_xml.LCNNO_SHOW = lcnno_format
         class_xml.LCNNO_SHOW_NUMTHAI = NumEng2Thai(lcnno_format)
         class_xml.LCNNO_SHOW_NEW = lcnno_format_NEW
@@ -2389,7 +2443,7 @@ Public Class WebForm35
                 If template_id = 1 Then
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             ElseIf _group = 3 Then
@@ -2404,7 +2458,7 @@ Public Class WebForm35
                 If template_id = 1 Then
                     dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=0)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
 
@@ -2575,7 +2629,8 @@ Public Class WebForm35
             _group = 3
         End If
 
-        BindData_PDF_SOMORPO1(_group:=_group)
+        'BindData_PDF(_group:=1)
+        BindData_PDF_SOMORPO1(_group:=0)
     End Sub
     Private Sub BindData_PDF_SOMORPO1(Optional _group As Integer = 0)
         Dim bao As New BAO.AppSettings
@@ -2642,9 +2697,11 @@ Public Class WebForm35
         Dim class_xml As New CLASS_DALCN
         Dim bao_show As New BAO_SHOW
 
-        class_xml.DT_SHOW.DT24 = bao_show.SP_DRUG_GROUP_BY_LCN_IDA(_IDA)
-        class_xml.DT_SHOW.DT9 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_MUTI_LOCATION(dao.fields.FK_IDA) ' 'ข้อมูลสถานที่จำลอง
-        'class_xml.DT_SHOW.DT9 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao.fields.FK_IDA)
+        'class_xml.DT_SHOW.DT24 = bao_show.SP_DRUG_GROUP_BY_LCN_IDA(_IDA)
+        'class_xml.DT_SHOW.DT9 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_MUTI_LOCATION(dao.fields.FK_IDA) ' 'ข้อมูลสถานที่จำลอง
+        class_xml.DT_SHOW.DT9 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao.fields.FK_IDA)
+
+        class_xml.DT_SHOW.DT10 = bao_show.SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA(_IDA)
 
         Dim tt As Integer = 0
         If dao.fields.lcntpcd.Contains("ผ") Then
@@ -2656,15 +2713,293 @@ Public Class WebForm35
         End If
         If tt = 1 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB(_IDA, tt)
-            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, 1)
+
         ElseIf tt = 2 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB_V3(_IDA, tt)
-            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, 1)
         ElseIf tt = 3 Then
             class_xml.DT_SHOW.DT19 = bao_show.SP_DRUG_GROUP_LCN_HERB2(_IDA, tt)
-            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, tt)
+            class_xml.DT_MASTER.DT40 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1(_IDA, 1)
+
         End If
 
+        Dim DDL_DRUG_SMP_31 As String = ""
+        Dim DDL_DRUG_SMP_32 As String = ""
+        Dim DDL_DRUG_SMP_33 As String = ""
+        Dim DDL_DRUG_SMP_34 As String = ""
+        Dim DDL_DRUG_SMP_35 As String = ""
+        Dim DDL_DRUG_SMP_36 As String = ""
+        Dim DDL_DRUG_SMP_37 As String = ""
+        Dim DDL_DRUG_SMP_38 As String = ""
+        Dim DDL_DRUG_SMP_39 As String = ""
+        Dim DDL_DRUG_SMP_310 As String = ""
+        Dim DDL_DRUG_SMP_311 As String = ""
+        Dim DDL_DRUG_SMP_312 As String = ""
+
+        class_xml.DT_SHOW.DT23 = bao_show.SP_DRUG_GROUP_HERB_NO3(_IDA)
+        For Each drr As DataRow In class_xml.DT_SHOW.DT23.Rows
+            Try
+                If drr("FK_IDA") = 27 Then
+                    DDL_DRUG_SMP_31 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 28 Then
+                    DDL_DRUG_SMP_32 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 29 Then
+                    DDL_DRUG_SMP_33 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 30 Then
+                    DDL_DRUG_SMP_34 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 31 Then
+                    DDL_DRUG_SMP_35 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 32 Then
+                    DDL_DRUG_SMP_36 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 33 Then
+                    DDL_DRUG_SMP_37 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 34 Then
+                    DDL_DRUG_SMP_38 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 35 Then
+                    DDL_DRUG_SMP_39 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 36 Then
+                    DDL_DRUG_SMP_310 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 37 Then
+                    DDL_DRUG_SMP_311 = drr("GROUP_NAME")
+                End If
+                If drr("FK_IDA") = 38 Then
+                    DDL_DRUG_SMP_312 = drr("GROUP_NAME")
+                End If
+
+            Catch ex As Exception
+
+            End Try
+        Next
+        class_xml.DT_SHOW.DT22 = bao_show.SP_DRUG_GROUP_LCN_HERB_SMP1_V2(_IDA)
+
+        Dim chk_smp1 As String = "0"
+        Dim chk_smp1_1 As String = "0"
+        Dim chk_smp1_2 As String = "0"
+        Dim chk_smp1_3 As String = "0"
+        Dim chk_smp1_4 As String = "0"
+        Dim chk_smp1_5 As String = "0"
+        Dim chk_smp1_6 As String = "0"
+        Dim chk_smp1_7 As String = "0"
+        Dim chk_smp1_8 As String = "0"
+        Dim chk_smp1_9 As String = "0"
+        Dim chk_smp1_10 As String = ""
+        Dim chk_smp1_11 As String = ""
+        Dim chk_smp2 As String = "0"
+        Dim chk_smp2_1 As String = "0"
+        Dim chk_smp2_2 As String = "0"
+        Dim chk_smp2_3 As String = "0"
+        Dim chk_smp2_4 As String = "0"
+        Dim chk_smp2_5 As String = "0"
+        Dim chk_smp2_6 As String = "0"
+        Dim chk_smp2_7 As String = "0"
+        Dim chk_smp2_8 As String = "0"
+        Dim chk_smp2_9 As String = "0"
+        Dim chk_smp2_10 As String = "0"
+        Dim chk_smp2_11 As String = ""
+        Dim chk_smp2_12 As String = ""
+        Dim chk_smp3 As String = "0"
+        Dim chk_smp3_1 As String = "0"
+        Dim chk_smp3_2 As String = "0"
+        Dim chk_smp3_3 As String = "0"
+        Dim chk_smp3_4 As String = "0"
+        Dim chk_smp3_5 As String = "0"
+        Dim chk_smp3_6 As String = "0"
+        Dim chk_smp3_7 As String = "0"
+        Dim chk_smp3_8 As String = "0"
+        Dim chk_smp3_9 As String = "0"
+        Dim chk_smp3_10 As String = "0"
+        Dim chk_smp3_11 As String = ""
+        Dim chk_smp3_12 As String = ""
+        Dim chk_smp4 As String = "0"
+        Dim chk_smp4_1 As String = "0"
+        Dim chk_smp4_1_1 As String = ""
+        Dim chk_smp4_1_2 As String = ""
+        Dim chk_smp4_2 As String = "0"
+        Dim chk_smp4_3 As String = ""
+        Dim CHK_SMP1_MAIN_1 As String = "0"
+        Dim CHK_SMP1_MAIN_2 As String = "0"
+        Dim CHK_SMP1_MAIN_3 As String = "0"
+        Dim CHK_SMP1_MAIN_4 As String = "0"
+
+        For Each drr As DataRow In class_xml.DT_SHOW.DT22.Rows
+            Try
+                If dao.fields.PROCESS_ID = 122 Then
+                    If drr("HEAD_NO") = 1 Then
+                        chk_smp1 = 1
+                    End If
+                    If drr("HEAD_NO") = 2 Then
+                        chk_smp1_1 = 1
+                    End If
+                    If drr("HEAD_NO") = 3 Then
+                        chk_smp1_2 = 1
+                    End If
+                    If drr("HEAD_NO") = 4 Then
+                        chk_smp1_3 = 1
+                    End If
+                    If drr("HEAD_NO") = 5 Then
+                        chk_smp1_4 = 1
+                    End If
+                    If drr("HEAD_NO") = 6 Then
+                        chk_smp1_5 = 1
+                    End If
+                    If drr("HEAD_NO") = 7 Then
+                        chk_smp1_6 = 1
+                    End If
+                    If drr("HEAD_NO") = 8 Then
+                        chk_smp1_7 = 1
+                    End If
+                    If drr("HEAD_NO") = 9 Then
+                        chk_smp1_8 = 1
+                    End If
+                    If drr("HEAD_NO") = 10 Then
+                        chk_smp1_9 = 1
+                    End If
+                    If drr("HEAD_NO") = 11 Then
+                        chk_smp1_10 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 12 Then
+                        chk_smp1_11 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 13 Then
+                        chk_smp2 = 1
+                    End If
+                    If drr("HEAD_NO") = 14 Then
+                        chk_smp2_1 = 1
+                    End If
+                    If drr("HEAD_NO") = 15 Then
+                        chk_smp2_2 = 1
+                    End If
+                    If drr("HEAD_NO") = 16 Then
+                        chk_smp2_3 = 1
+                    End If
+                    If drr("HEAD_NO") = 17 Then
+                        chk_smp2_4 = 1
+                    End If
+                    If drr("HEAD_NO") = 18 Then
+                        chk_smp2_5 = 1
+                    End If
+                    If drr("HEAD_NO") = 19 Then
+                        chk_smp2_6 = 1
+                    End If
+                    If drr("HEAD_NO") = 20 Then
+                        chk_smp2_7 = 1
+                    End If
+                    If drr("HEAD_NO") = 21 Then
+                        chk_smp2_8 = 1
+                    End If
+                    If drr("HEAD_NO") = 22 Then
+                        chk_smp2_9 = 1
+                    End If
+                    If drr("HEAD_NO") = 23 Then
+                        chk_smp2_10 = 1
+                    End If
+                    If drr("HEAD_NO") = 24 Then
+                        chk_smp2_11 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 25 Then
+                        chk_smp2_12 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 26 Then
+                        chk_smp3 = 1
+                    End If
+                    If drr("HEAD_NO") = 27 Then
+                        chk_smp3_1 = 1
+                    End If
+                    If drr("HEAD_NO") = 28 Then
+                        chk_smp3_2 = 1
+                    End If
+                    If drr("HEAD_NO") = 29 Then
+                        chk_smp3_3 = 1
+                    End If
+                    If drr("HEAD_NO") = 30 Then
+                        chk_smp3_4 = 1
+                    End If
+                    If drr("HEAD_NO") = 31 Then
+                        chk_smp3_5 = 1
+                    End If
+                    If drr("HEAD_NO") = 32 Then
+                        chk_smp3_6 = 1
+                    End If
+                    If drr("HEAD_NO") = 33 Then
+                        chk_smp3_7 = 1
+                    End If
+                    If drr("HEAD_NO") = 34 Then
+                        chk_smp3_8 = 1
+                    End If
+                    If drr("HEAD_NO") = 35 Then
+                        chk_smp3_9 = 1
+                    End If
+                    If drr("HEAD_NO") = 36 Then
+                        chk_smp3_10 = 1
+                    End If
+                    If drr("HEAD_NO") = 37 Then
+                        chk_smp3_11 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 38 Then
+                        chk_smp3_12 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 39 Then
+                        chk_smp4 = 1
+                    End If
+                    If drr("HEAD_NO") = 40 Then
+                        chk_smp4_1 = 1
+                    End If
+                    If drr("HEAD_NO") = 41 Then
+                        chk_smp4_1_1 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 42 Then
+                        chk_smp4_1_2 = drr("COL_ID1")
+                    End If
+                    If drr("HEAD_NO") = 43 Then
+                        chk_smp4_2 = 1
+                    End If
+                    If drr("HEAD_NO") = 44 Then
+                        chk_smp4_3 = drr("COL_ID1")
+                    End If
+                ElseIf dao.fields.PROCESS_ID = 121 Then
+                    If drr("HEAD_NO") = 1 Then
+                        chk_smp1 = 1
+                    End If
+                    If drr("HEAD_NO") = 13 Then
+                        chk_smp2 = 1
+                    End If
+                    If drr("HEAD_NO") = 26 Then
+                        chk_smp3 = 1
+                    End If
+                    If drr("HEAD_NO") = 39 Then
+                        chk_smp4 = 1
+                    End If
+                ElseIf dao.fields.PROCESS_ID = 120 Then
+                    If drr("HEAD_NO") = 1 Then
+                        CHK_SMP1_MAIN_1 = 1
+                    End If
+                    If drr("HEAD_NO") = 13 Then
+                        CHK_SMP1_MAIN_2 = 1
+                    End If
+                    If drr("HEAD_NO") = 26 Then
+                        CHK_SMP1_MAIN_3 = 1
+                    End If
+                    If drr("HEAD_NO") = 39 Then
+                        CHK_SMP1_MAIN_4 = 1
+                    End If
+                End If
+
+
+            Catch ex As Exception
+
+            End Try
+        Next
 
         Dim dt9 As New DataTable
 
@@ -2784,115 +3119,27 @@ Public Class WebForm35
 
         End Try
 
-        class_xml.DT_SHOW.DT13 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSIDV2(2, dao.fields.CITIZEN_ID_AUTHORIZE) 'ที่เก็บ
-        Dim DT13 As New DataTable
-        Try
-            DT13 = class_xml.DT_SHOW.DT13
-            For Each drr As DataRow In DT13.Rows
-                Try
-                    drr("thaaddr") = NumEng2Thai(drr("thaaddr"))
-                Catch ex As Exception
+        'class_xml.DT_SHOW.DT13 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSIDV2(2, dao.fields.CITIZEN_ID_AUTHORIZE) 'ที่เก็บ
 
-                End Try
-                Try
-                    drr("fulladdr") = NumEng2Thai(drr("fulladdr"))
-                Catch ex As Exception
 
-                End Try
-                Try
-                    drr("tharoom") = NumEng2Thai(drr("tharoom"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thamu") = NumEng2Thai(drr("thamu"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thafloor") = NumEng2Thai(drr("thafloor"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thasoi") = NumEng2Thai(drr("thasoi"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thabuilding") = NumEng2Thai(drr("thabuilding"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("tharoad") = NumEng2Thai(drr("tharoad"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("zipcode") = NumEng2Thai(drr("zipcode"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("tel") = NumEng2Thai(drr("tel"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("fax") = NumEng2Thai(drr("fax"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("Mobile") = NumEng2Thai(drr("Mobile"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thachngwtnm") = NumEng2Thai(drr("thachngwtnm"))
-                Catch ex As Exception
-
-                End Try
-            Next
-        Catch ex As Exception
-
-        End Try
-        'class_xml.DT_SHOW.DT13.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSID_2"
-        'class_xml.DT_SHOW.DT14 = bao_show.SP_LOCATION_BSN_BY_LOCATION_ADDRESS_IDA(dao.fields.FK_IDA) 'ผู้ดำเนิน
 
         Dim BSN_IDENTIFY As String = ""
         Try
-            'If MAIN_LCN_IDA <> 0 Then
-            '    Dim dao_lcn2 As New DAO_DRUG.ClsDBdalcn
-            '    dao_lcn2.GetDataby_IDA(MAIN_LCN_IDA)
-            'End If
             BSN_IDENTIFY = NumEng2Thai(dao.fields.BSN_IDENTIFY)
         Catch ex As Exception
 
         End Try
         Dim MAIN_LCN_IDA As Integer = 0
-        'If IsNothing(dao.fields.MAIN_LCN_IDA) = False Then
-        '    If (Integer.TryParse(dao.fields.MAIN_LCN_IDA, MAIN_LCN_IDA) = True) Then        'เปลี่ยน ร
-        '        class_xml.DT_MASTER.DT30 = bao_master.SP_MASTER_DALCN_by_IDA(MAIN_LCN_IDA)
-        '    End If
-        'End If
+
         Try
             MAIN_LCN_IDA = dao.fields.MAIN_LCN_IDA
         Catch ex As Exception
 
         End Try
-        'class_xml.DT_SHOW.DT14 = bao_show.SP_LOCATION_BSN_BY_IDENTIFY(BSN_IDENTIFY) 'ผู้ดำเนิน
-        'If MAIN_LCN_IDA <> 0 Then
-        '    'ใบย่อย
-        '    class_xml.DT_SHOW.DT14 = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(MAIN_LCN_IDA) 'ผู้ดำเนิน
-
-        '    'Dim dao_mn As New DAO_DRUG.ClsDBdalcn
-        '    'dao_mn.GetDataby_IDA(MAIN_LCN_IDA)
-        '    'lcnno_auto = dao_mn.fields.lcnno
-        'Else
 
         class_xml.DT_SHOW.DT14 = bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
+
+        class_xml.DT_SHOW.DT15 = bao_show.SP_DALCN_CURRENT_ADDRESS(_IDA)
         'End If
         Dim dt14 As New DataTable
         Dim dao_frgn As New DAO_DRUG.TB_DALCN_FRGN_DATA
@@ -2920,114 +3167,10 @@ Public Class WebForm35
         Dim bao_master As New BAO_MASTER
 
         class_xml.DT_MASTER.DT18 = bao_master.SP_PHR_BY_FK_IDA(dao.fields.IDA) 'ผู้มีหน้าที่ปฎิบัติการ
-        'Dim DT18 As New DataTable
 
-        'DT18 = class_xml.DT_MASTER.DT18
-        'For Each drr As DataRow In DT18.Rows
-        '    Try
-        '        drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-        '    Catch ex As Exception
-
-        '    End Try
-        '    Try
-        '        drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-        '    Catch ex As Exception
-
-        '    End Try
-        '    Try
-        '        drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-        '    Catch ex As Exception
-
-        '    End Try
-
-        'Next
         class_xml.DT_SHOW.DT35 = bao_master.SP_DALCN_FRGN_DATA(_IDA)
 
-        class_xml.DT_MASTER.DT24 = bao_master.SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA(dao.fields.IDA)
-        Dim DT24 As New DataTable
-        Try
-            DT24 = class_xml.DT_MASTER.DT24
-            For Each drr As DataRow In DT24.Rows
-                Try
-                    drr("thanameplace2") = NumEng2Thai(drr("thanameplace2"))
-                Catch ex As Exception
 
-                End Try
-                Try
-                    drr("thaaddr") = NumEng2Thai(drr("thaaddr"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("fulladdr") = NumEng2Thai(drr("fulladdr"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("fulladdr2") = NumEng2Thai(drr("fulladdr2"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("tharoom") = NumEng2Thai(drr("tharoom"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thamu") = NumEng2Thai(drr("thamu"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thafloor") = NumEng2Thai(drr("thafloor"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thasoi") = NumEng2Thai(drr("thasoi"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thabuilding") = NumEng2Thai(drr("thabuilding"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("tharoad") = NumEng2Thai(drr("tharoad"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("zipcode") = NumEng2Thai(drr("zipcode"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("tel") = NumEng2Thai(drr("tel"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("fax") = NumEng2Thai(drr("fax"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("Mobile") = NumEng2Thai(drr("Mobile"))
-                Catch ex As Exception
-
-                End Try
-                Try
-                    drr("thachngwtnm") = NumEng2Thai(drr("thachngwtnm"))
-                Catch ex As Exception
-
-                End Try
-            Next
-            class_xml.DT_MASTER.DT24 = DT24
-        Catch ex As Exception
-
-        End Try
         class_xml.DT_MASTER.DT25 = bao_master.SP_PHR_NOT_ROW_1_BY_FK_IDA(dao.fields.IDA)
         Dim DT25 As New DataTable
         Try
@@ -3040,56 +3183,6 @@ Public Class WebForm35
         Catch ex As Exception
 
         End Try
-        class_xml.DT_MASTER.DT26 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE(dao.fields.IDA, 1)
-        Dim DT26 As New DataTable
-        Try
-            DT26 = class_xml.DT_MASTER.DT26
-            For Each drr As DataRow In DT26.Rows
-                drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-                drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-                drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-            Next
-        Catch ex As Exception
-
-        End Try
-        class_xml.DT_MASTER.DT27 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE(dao.fields.IDA, 2)
-        Dim DT27 As New DataTable
-        Try
-            DT27 = class_xml.DT_MASTER.DT27
-            For Each drr As DataRow In DT27.Rows
-                drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-                drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-                drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-            Next
-        Catch ex As Exception
-
-        End Try
-        class_xml.DT_MASTER.DT27.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2"
-        class_xml.DT_MASTER.DT28 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2(dao.fields.IDA, 1)
-        Dim DT28 As New DataTable
-        Try
-            DT28 = class_xml.DT_MASTER.DT28
-            For Each drr As DataRow In DT28.Rows
-                drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-                drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-                drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-            Next
-        Catch ex As Exception
-
-        End Try
-        class_xml.DT_MASTER.DT29 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2(dao.fields.IDA, 2)
-        Dim DT29 As New DataTable
-        Try
-            DT29 = class_xml.DT_MASTER.DT29
-            For Each drr As DataRow In DT29.Rows
-                drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-                drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-                drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-            Next
-        Catch ex As Exception
-
-        End Try
-        class_xml.DT_MASTER.DT29.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2_1_ROW"
 
         class_xml.DT_MASTER.DT31 = bao_master.SP_DALCN_PHR_BY_FK_IDA_2(dao.fields.IDA)
         Dim DT31 As New DataTable
@@ -3198,36 +3291,31 @@ Public Class WebForm35
         Catch ex As Exception
 
         End Try
-        class_xml.DT_MASTER.DT32 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE(dao.fields.IDA, 1)
-        class_xml.DT_MASTER.DT32.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2_2_ROW"
-        class_xml.DT_MASTER.DT33 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE(dao.fields.IDA, 1)
-        class_xml.DT_MASTER.DT33.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2_2_ROW"
-
-        class_xml.DT_MASTER.DT34 = bao_master.SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_2(dao.fields.IDA, 3)
-        Dim DT34 As New DataTable
+        Dim rcvno_format As String = ""
+        Dim RCV_DATE As String = ""
         Try
-            DT34 = class_xml.DT_MASTER.DT34
-            For Each drr As DataRow In DT34.Rows
-                drr("PHR_CTZNO") = NumEng2Thai(drr("PHR_CTZNO"))
-                drr("PHR_TEXT_NUM") = NumEng2Thai(drr("PHR_TEXT_NUM"))
-                drr("PHR_TEXT_WORK_TIME") = NumEng2Thai(drr("PHR_TEXT_WORK_TIME"))
-                drr("PHR_CERTIFICATE_TRAINING1") = NumEng2Thai(drr("PHR_CERTIFICATE_TRAINING1"))
-                '
-            Next
+            rcvno_format = dao.fields.RCVNO_NEW
         Catch ex As Exception
 
         End Try
-        class_xml.DT_MASTER.DT34.TableName = "SP_PHR_BY_FK_IDA_and_PHR_MEDICAL_TYPE_3_1_ROW"
+
+        Dim rcvdate1 As Date
+        Dim rcvdate2 As String = ""
+        Try
+            If dao.fields.rcvdate IsNot Nothing Then
+                rcvdate1 = dao.fields.rcvdate
+                rcvdate2 = CDate(rcvdate1).ToString("dd/MM/yyy")
+            End If
+
+        Catch ex As Exception
+
+        End Try
 
 
-        'class_xml.LCNNO_SHOW = lcnno_format
-        'class_xml.SHOW_LCNNO = lcnno_text
         Dim dao_main As New DAO_DRUG.ClsDBdalcn
         dao_main.GetDataby_IDA(MAIN_LCN_IDA)
-        ' If MAIN_LCN_IDA = 0 Then
-
-        'class_xml.LCNNO_SHOW = NumEng2Thai(lcnno_format)
-        'class_xml.LCNNO_SHOW_NEW = NumEng2Thai(lcnno_format_NEW)
+        Dim op_time As String = ""
+        op_time = dao.fields.opentime
 
         class_xml.LCNNO_SHOW = lcnno_format
         class_xml.LCNNO_SHOW_NUMTHAI = NumEng2Thai(lcnno_format)
@@ -3235,32 +3323,74 @@ Public Class WebForm35
         class_xml.LCNNO_SHOW_NEW_NUMTHAI = NumEng2Thai(lcnno_format_NEW)
         class_xml.SHOW_LCNNO = lcnno_text
         class_xml.SHOW_LCNNO_NUMTHAI = NumEng2Thai(lcnno_text)
+        class_xml.RCVNO_FORMAT = rcvno_format
+        class_xml.RCVDATE_DISPLAY = rcvdate2
+        class_xml.OPEN_TIME = op_time
+        class_xml.chk_smp1 = chk_smp1
+        class_xml.chk_smp1_1 = chk_smp1_1
+        class_xml.chk_smp1_2 = chk_smp1_2
+        class_xml.chk_smp1_3 = chk_smp1_3
+        class_xml.chk_smp1_4 = chk_smp1_4
+        class_xml.chk_smp1_5 = chk_smp1_5
+        class_xml.chk_smp1_6 = chk_smp1_6
+        class_xml.chk_smp1_7 = chk_smp1_7
+        class_xml.chk_smp1_8 = chk_smp1_8
+        class_xml.chk_smp1_9 = chk_smp1_9
+        class_xml.chk_smp1_10 = chk_smp1_10
+        class_xml.chk_smp1_11 = chk_smp1_11
+        class_xml.chk_smp2 = chk_smp2
+        class_xml.chk_smp2_1 = chk_smp2_1
+        class_xml.chk_smp2_2 = chk_smp2_2
+        class_xml.chk_smp2_3 = chk_smp2_3
+        class_xml.chk_smp2_4 = chk_smp2_4
+        class_xml.chk_smp2_5 = chk_smp2_5
+        class_xml.chk_smp2_6 = chk_smp2_6
+        class_xml.chk_smp2_7 = chk_smp2_7
+        class_xml.chk_smp2_8 = chk_smp2_8
+        class_xml.chk_smp2_9 = chk_smp2_9
+        class_xml.chk_smp2_10 = chk_smp2_10
+        class_xml.chk_smp2_11 = chk_smp2_11
+        class_xml.chk_smp2_12 = chk_smp2_12
+        class_xml.chk_smp3 = chk_smp3
+        class_xml.chk_smp3_1 = chk_smp3_1
+        class_xml.chk_smp3_2 = chk_smp3_2
+        class_xml.chk_smp3_3 = chk_smp3_3
+        class_xml.chk_smp3_4 = chk_smp3_4
+        class_xml.chk_smp3_5 = chk_smp3_8
+        class_xml.chk_smp3_6 = chk_smp3_6
+        class_xml.chk_smp3_7 = chk_smp3_7
+        class_xml.chk_smp3_8 = chk_smp3_8
+        class_xml.chk_smp3_9 = chk_smp3_9
+        class_xml.chk_smp3_10 = chk_smp3_10
+        class_xml.chk_smp3_11 = chk_smp3_11
+        class_xml.chk_smp3_12 = chk_smp3_12
+        class_xml.chk_smp4 = chk_smp4
+        class_xml.chk_smp4_1 = chk_smp4_1
+        class_xml.chk_smp4_1_1 = chk_smp4_1_1
+        class_xml.chk_smp4_1_2 = chk_smp4_1_2
+        class_xml.chk_smp4_2 = chk_smp4_2
+        class_xml.chk_smp4_3 = chk_smp4_3
 
-        Try
+        class_xml.CHK_SMP1_SELL_1 = CHK_SMP1_MAIN_1
+        class_xml.CHK_SMP1_SELL_2 = CHK_SMP1_MAIN_2
+        class_xml.CHK_SMP1_SELL_3 = CHK_SMP1_MAIN_3
+        class_xml.CHK_SMP1_SELL_4 = CHK_SMP1_MAIN_4
 
-            class_xml.COUNT_PHESAJ1 = dao_PHR2.CountDataby_FK_IDA_and_Type(_IDA, 1)
-        Catch ex As Exception
+        class_xml.DDL_MENU_DRUG_GROUP_3_1 = DDL_DRUG_SMP_31
+        class_xml.DDL_MENU_DRUG_GROUP_3_2 = DDL_DRUG_SMP_32
+        class_xml.DDL_MENU_DRUG_GROUP_3_3 = DDL_DRUG_SMP_33
+        class_xml.DDL_MENU_DRUG_GROUP_3_4 = DDL_DRUG_SMP_34
+        class_xml.DDL_MENU_DRUG_GROUP_3_5 = DDL_DRUG_SMP_35
+        class_xml.DDL_MENU_DRUG_GROUP_3_6 = DDL_DRUG_SMP_36
+        class_xml.DDL_MENU_DRUG_GROUP_3_7 = DDL_DRUG_SMP_37
+        class_xml.DDL_MENU_DRUG_GROUP_3_8 = DDL_DRUG_SMP_38
+        class_xml.DDL_MENU_DRUG_GROUP_3_9 = DDL_DRUG_SMP_39
+        class_xml.DDL_MENU_DRUG_GROUP_3_10 = DDL_DRUG_SMP_310
+        class_xml.DDL_MENU_DRUG_GROUP_3_11 = DDL_DRUG_SMP_311
+        class_xml.DDL_MENU_DRUG_GROUP_3_12 = DDL_DRUG_SMP_312
 
-        End Try
 
-        Try
-            dao_PHR2 = New DAO_DRUG.ClsDBDALCN_PHR
-            class_xml.COUNT_PHESAJ2 = dao_PHR2.CountDataby_FK_IDA_and_Type(_IDA, 2)
-        Catch ex As Exception
-
-        End Try
-        Try
-            dao_PHR2 = New DAO_DRUG.ClsDBDALCN_PHR
-            class_xml.COUNT_PHESAJ3 = dao_PHR2.CountDataby_FK_IDA_and_Type(_IDA, 3)
-        Catch ex As Exception
-
-        End Try
-        'Else
-
-        '    class_xml.LCNNO_SHOW = dao_main.fields.pvnabbr & " " & CStr(CInt(Right(dao_main.fields.lcnno, 5))) & "/25" & Left(dao_main.fields.lcnno, 2)
-        '    class_xml.SHOW_LCNNO = dao_main.fields.LCNNO_MANUAL
-        'End If
-        class_xml.CHK_VALUE = dao_PHR.fields.PHR_MEDICAL_TYPE
+        class_xml.PROCESS_ID = PROCESS_ID
 
         If IsNothing(dao.fields.appdate) = False Then
             Dim appdate As Date
@@ -3381,74 +3511,6 @@ Public Class WebForm35
             End Try
             class_xml.DALCN_PHRs.Add(dao_PHR.fields)
         Next
-        '-------------------------------------
-
-
-        For Each dao_DALCN_DETAIL_LOCATION_KEEP.fields In dao_DALCN_DETAIL_LOCATION_KEEP.datas
-            Dim cls_DALCN_DETAIL_LOCATION_KEEP As New DALCN_DETAIL_LOCATION_KEEP
-            cls_DALCN_DETAIL_LOCATION_KEEP = dao_DALCN_DETAIL_LOCATION_KEEP.fields
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thaaddr = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thaaddr)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tharoom = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tharoom)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thamu = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thamu)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thafloor = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thafloor)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thasoi = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thasoi)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thabuilding = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thabuilding)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tharoad = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tharoad)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_zipcode = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_zipcode)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tel = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_tel)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_fax = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_fax)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_Mobile = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_Mobile)
-            Catch ex As Exception
-
-            End Try
-            Try
-                dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thachngwtnm = NumEng2Thai(dao_DALCN_DETAIL_LOCATION_KEEP.fields.LOCATION_ADDRESS_thachngwtnm)
-            Catch ex As Exception
-
-            End Try
-            class_xml.DALCN_DETAIL_LOCATION_KEEPs.Add(cls_DALCN_DETAIL_LOCATION_KEEP)
-        Next
 
         Try
             Dim rcvdate As Date = dao.fields.rcvdate
@@ -3537,18 +3599,18 @@ Public Class WebForm35
                     template_id = 0
                 End Try
                 If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 1, 7)
                 Else
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 1, 7)
                 End If
             ElseIf _group = 2 Or _group = 3 Then
                 If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             Else
@@ -3559,11 +3621,11 @@ Public Class WebForm35
                     template_id = 0
                 End Try
                 If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 1, 7)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 1, 7)
                 End If
 
             End If
@@ -3577,33 +3639,33 @@ Public Class WebForm35
 
             If _group = 1 Then
                 If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             ElseIf _group = 2 Then
                 If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             ElseIf _group = 3 Then
                 If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             Else
 
                 If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=99)
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=7)
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
 
@@ -3616,8 +3678,8 @@ Public Class WebForm35
 
         Dim paths As String = bao._PATH_DEFAULT
         Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
-        Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
-        Dim Path_XML As String = paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML("DA", PROCESS_ID, YEAR, _TR_ID)
+        Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF2("DA", PROCESS_ID, YEAR, _TR_ID, _IDA)
+        Dim Path_XML As String = paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML2("DA", PROCESS_ID, YEAR, _TR_ID, _IDA)
 
 
         Dim url As String = ""
@@ -3633,7 +3695,7 @@ Public Class WebForm35
         hl_reader.NavigateUrl = "../PDF/FRM_PDF_VIEW.aspx?FileName=" & filename ' Link เปิดไฟล์ตัวใหญ่
         HiddenField1.Value = filename
         '    show_btn() 'ตรวจสอบปุ่ม
-        _CLS.FILENAME_PDF = NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
+        _CLS.FILENAME_PDF = NAME_PDF2("DA", PROCESS_ID, YEAR, _TR_ID, _IDA)
     End Sub
 
     Protected Sub btn_up_Click(sender As Object, e As EventArgs) Handles btn_up.Click

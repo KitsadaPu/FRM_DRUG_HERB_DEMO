@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18, 27.25" name="LINQ_TABEAN_HERB_JJ">
+  <DataContextMoniker Name="/LINQ_TABEAN_HERB_JJDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9e047e69-1fd2-4dfa-b06d-fc54862d917a" absoluteBounds="0.75, 0.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/GEN_NO_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="243c84eb-e729-4b0d-880c-84fc1a0d8409" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ec882f76-b4e9-4da6-8cd1-ce2f99247d31" absoluteBounds="3.75, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_EATTING_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1db0500a-508d-4b4a-a3c0-c5311de3fbc4" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40ca5cfd-60d2-45e4-9b67-1fdeef9fd4c8" absoluteBounds="3.75, 3.75, 2, 12.155174153645831">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_NAME_DETAIL_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f5660126-e20f-44b1-a762-422c22c58f23" absoluteBounds="3.765, 4.21, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7e640a86-3b47-4227-a138-1f3fc6b3996b" absoluteBounds="6.75, 0.75, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_NAME_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a544525a-e826-4128-a606-43dbc62e84bb" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="afdc993a-ace1-4bd3-aa05-24f64eb01a28" absoluteBounds="6.75, 3.75, 2, 2.347801106770834">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_PRODUCT_AGE_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee07c907-5dd5-4b93-9e19-a6ba7afb4f02" absoluteBounds="6.765, 4.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3c101ef4-21fd-47e9-9032-d79c9a08949d" absoluteBounds="6.75, 7.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_PRODUCT_PROCESS_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5e3d69d5-bac6-485a-a4eb-76c5b4378933" absoluteBounds="6.765, 8.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="de9c8861-2d0a-4f9d-970c-1300835c8a5d" absoluteBounds="9.75, 0.75, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dcabe0ff-de85-4890-9a19-7f7329cac083" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d4376216-ac4e-4893-87c4-fbd0167345c2" absoluteBounds="9.75, 4.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_STATUS_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bed43812-cc48-4e3d-8cf9-c010a8f6f133" absoluteBounds="9.765, 5.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b4a8dde0-9d26-498e-a038-7ea20fa10826" absoluteBounds="9.75, 8.75, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_STYPE_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5120b302-761d-4735-8e5b-011b0b6241e0" absoluteBounds="9.765, 9.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6ceb9053-51a2-4435-b178-233f4a61b438" absoluteBounds="6.75, 11.75, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_SYNDROME_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b54f584f-69dd-4a79-b1f3-e9712385d30c" absoluteBounds="6.765, 12.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="408b10d7-9ad1-4f55-b89b-e0f15794ae77" absoluteBounds="9.75, 11.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/MAS_TABEAN_HERB_UPLOADFILE_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd265e2e-428e-4deb-ad83-1308b16b4639" absoluteBounds="9.765, 12.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ce80db53-5246-44ac-897b-d265c2412171" absoluteBounds="12.75, 0.75, 2, 4.2708154296874987">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/TABEAN_HERB_UPLOAD_FILE_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="140bdb98-a013-4027-8b4e-e2c9f7271bf0" absoluteBounds="12.765, 1.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc667ca0-e781-49c3-bcc0-4d83bb18c38e" absoluteBounds="12.75, 6.75, 2, 20.231834309895831">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/TABEAN_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="36695362-860c-4b5a-bccb-476f3b07f885" absoluteBounds="12.765, 7.21, 1.9700000000000002, 19.671834309895832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8715a814-0335-4ff6-b397-eb4b838fe0e6" absoluteBounds="15.75, 0.75, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/TABEAN_JJ_SUB_PACKSIZE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da0d9607-c61c-46e2-953e-47d03bbff236" absoluteBounds="15.765, 1.21, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c8c5c27b-15a4-4de9-ad96-9807c46f2210" absoluteBounds="15.75, 6.75, 2, 3.5016097005208318">
+      <DataClassMoniker Name="/LINQ_TABEAN_HERB_JJDataContext/TABEAN_TRANSACTION_JJ" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87d5d128-01f0-45c6-94ab-71d3b814ee53" absoluteBounds="15.765, 7.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

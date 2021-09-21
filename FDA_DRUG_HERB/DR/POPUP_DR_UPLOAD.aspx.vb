@@ -7,10 +7,12 @@ Public Class POPUP_DR_UPLOAD
     Private _ProcessID As Integer
     Private _IDA As String
     Private _lcn_ida As String = ""
+    Private _IDA_TF As String = ""
     Sub runQuery()
         _lcn_ida = Request.QueryString("lcn_ida")
         _ProcessID = Request.QueryString("process")
         _IDA = Request.QueryString("IDA")
+        _IDA_TF = Request.QueryString("IDA_TF")
     End Sub
     Sub RunSession()
         Try
@@ -761,6 +763,10 @@ Public Class POPUP_DR_UPLOAD
             Dim dao As New DAO_DRUG.ClsDBdrrqt
             Dim dao_rg As New DAO_DRUG.ClsDBDRUG_REGISTRATION
             dao_rg.GetDataby_IDA(_IDA)
+            'Dim IDA_TF As String = ""
+            'Dim TR_ID_TF As String = ""
+            'TR_ID_TF = Left(Right(FileName, 10), 6)
+
             If Trim(p2.TRANSFER) = "" Then
                 dao.fields = p2.drrqts
                 Try
@@ -1289,14 +1295,27 @@ Public Class POPUP_DR_UPLOAD
                 Dim dt_DRUG_REGISTRATION_PRODUCER_IN As New DataTable
                 'Dim dt_DRUG_REGISTRATION_EQTO As New DataTable
 
-                dt_DRUG_REGISTRATION_DETAIL_CAS = bao_show.SP_DRUG_REGISTRATION_DETAIL_CAS_BY_FK_IDA(_IDA)
-                dt_DRUG_REGISTRATION_PACKAGE = bao_show.SP_DRUG_REGISTRATION_PACKAGE_BY_IDA(_IDA)
-                dt_DRUG_REGISTRATION_ATC_DETAIL = bao_show.SP_DRUG_REGISTRATION_ATC_DETAIL_BY_FK_IDA(_IDA)
+                If Trim(p2.drrqts.TRANSFER_TYPE) = "" Then
+                    dt_DRUG_REGISTRATION_DETAIL_CAS = bao_show.SP_DRUG_REGISTRATION_DETAIL_CAS_BY_FK_IDA(_IDA)
+                    dt_DRUG_REGISTRATION_PACKAGE = bao_show.SP_DRUG_REGISTRATION_PACKAGE_BY_IDA(_IDA)
+                    dt_DRUG_REGISTRATION_ATC_DETAIL = bao_show.SP_DRUG_REGISTRATION_ATC_DETAIL_BY_FK_IDA(_IDA)
 
-                dt_DRUG_REGISTRATION_PROPERTIES = bao_show.SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA(_IDA)
-                dt_DRUG_REGISTRATION_PRODUCER = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA(_IDA)
+                    dt_DRUG_REGISTRATION_PROPERTIES = bao_show.SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA(_IDA)
+                    dt_DRUG_REGISTRATION_PRODUCER = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA(_IDA)
 
-                dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(_IDA)
+                    dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(_IDA)
+                Else
+                    dt_DRUG_REGISTRATION_DETAIL_CAS = bao_show.SP_DRUG_REGISTRATION_DETAIL_CAS_BY_FK_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_PACKAGE = bao_show.SP_DRUG_REGISTRATION_PACKAGE_BY_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_ATC_DETAIL = bao_show.SP_DRUG_REGISTRATION_ATC_DETAIL_BY_FK_IDA(_IDA_TF)
+
+                    dt_DRUG_REGISTRATION_PROPERTIES = bao_show.SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_PRODUCER = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA(_IDA_TF)
+
+                    dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(_IDA_TF)
+                End If
+
+
 
                 Dim main_ida As Integer = 0
                 Try

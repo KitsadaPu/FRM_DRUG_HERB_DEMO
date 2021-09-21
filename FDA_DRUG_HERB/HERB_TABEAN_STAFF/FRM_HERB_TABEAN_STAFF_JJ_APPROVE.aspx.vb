@@ -1,0 +1,188 @@
+﻿Imports Telerik.Web.UI
+
+Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
+    Inherits System.Web.UI.Page
+    Private _CLS As New CLS_SESSION
+    Private _IDA As String
+    Private _TR_ID As String
+    Private _ProcessID As String
+    Private _IDA_LCN As String
+
+    Sub RunSession()
+        _ProcessID = Request.QueryString("process")
+        _IDA = Request.QueryString("IDA")
+        _TR_ID = Request.QueryString("TR_ID")
+        _IDA_LCN = Request.QueryString("IDA_LCN")
+        Try
+            _CLS = Session("CLS")
+        Catch ex As Exception
+            Response.Redirect("http://privus.fda.moph.go.th/")
+        End Try
+    End Sub
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        RunSession()
+        If Not IsPostBack Then
+            'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/จจ๒.pdf'></iframe>"
+            Run_Pdf_Tabean_Herb_JJ2()
+            bind_data()
+        End If
+    End Sub
+
+    Public Sub Run_Pdf_Tabean_Herb_JJ2()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ2", 0)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ") 'path
+
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+
+        lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+    End Sub
+
+    Public Sub bind_data()
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim DD_STATUS As Integer = dao.fields.STATUS_ID
+        RCVNO_FULL.Text = dao.fields.RCVNO_FULL
+        RGTNO_FULL.Text = dao.fields.RGTNO_FULL
+        DATE_APP.Text = dao.fields.DATE_APP
+        NOTE_APP.Text = dao.fields.NOTE_APP
+        OFF_APP.Text = dao.fields.OFF_APP
+
+        Dim dao_status As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_STATUS_JJ
+        dao_status.Getdataby_STATUS_ID(DD_STATUS)
+        STATUS.Text = dao_status.fields.STATUS_NAME
+
+    End Sub
+
+    Function bind_data_uploadfile()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
+        RadGrid1.DataSource = bind_data_uploadfile()
+    End Sub
+
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+
+    Function bind_data_uploadfile_edit()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_uploadfile_edit()
+    End Sub
+
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+    End Sub
+
+    Protected Sub btn_download_jj1_Click(sender As Object, e As EventArgs) Handles btn_download_jj1.Click
+        'Response.ContentType = "Application/pdf"
+        'Response.AppendHeader("Content-Disposition", "attachment; filename=help.pdf")
+        'Response.TransmitFile(Server.MapPath("../PDF/จจ๑.PDF"))
+
+        'Dim bao_app As New BAO.AppSettings
+        'bao_app.RunAppSettings()
+
+        'Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        'dao.GetdatabyID_IDA(_IDA)
+
+        'Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        'dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ1", 0)
+
+        'Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ") 'path
+
+        'Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+        'Dim FILENAME_PDF_OUTPUT As String = NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+
+        'load_PDF(PATH_PDF_OUTPUT, FILENAME_PDF_OUTPUT)
+
+        Dim Url As String = "FRM_HERB_TABEAN_STAFF_JJ_PREVIEW_JJ1.aspx?IDA=" & _IDA
+        Response.Write("<script>window.open('" & Url & "','_blank')</script>")
+
+    End Sub
+
+    Private Sub load_PDF(ByVal path As String, ByVal fileName As String)
+        Dim bao As New BAO.AppSettings
+        Dim clsds As New ClassDataset
+
+        Response.Clear()
+        Response.ContentType = "Application/pdf"
+        Response.AddHeader("Content-Disposition", "attachment; filename=" & fileName)
+        Response.BinaryWrite(clsds.UpLoadImageByte(path)) '"C:\path\PDF_XML_CLASS\"
+
+        Response.Flush()
+        Response.Close()
+        Response.End()
+
+    End Sub
+
+    Function bind_data_file_recipe_production()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(dao.fields.DD_HERB_NAME_ID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
+        RadGrid3.DataSource = bind_data_file_recipe_production()
+    End Sub
+
+    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid3.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+            Dim DD_HERB_NAME_PRODUCT_ID As Integer = item("DD_HERB_NAME_PRODUCT_ID").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_RECIPE_PRODUCT_PREVIEW_FILE.aspx?IDA=" & IDA
+
+        End If
+
+    End Sub
+
+End Class

@@ -532,7 +532,15 @@
             Catch ex As Exception
 
             End Try
+            Try
+                If rdl_sanchaat.SelectedValue = 1 Then
+                    .PERSONNAL_NATIONALITY = "ไทย"
+                Else
+                    .PERSONNAL_NATIONALITY = txt_nationality.Text
+                End If
+            Catch ex As Exception
 
+            End Try
             Try
                 .DOC_DATE = CDate(RDP_DOC_DATE.SelectedDate)
             Catch ex As Exception

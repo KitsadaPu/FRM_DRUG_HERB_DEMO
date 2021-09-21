@@ -36,6 +36,21 @@
 
     End Function
 
-  
+    Public Function insert_transection_jj(ByVal processid As Integer, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As Integer
+
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_TRANSACTION_JJ
+        dao_up.fields.CITIEZEN_ID = _CITIZEN_ID
+        dao_up.fields.CITIEZEN_ID_AUTHORIZE = _CITIZEN_ID_AUTHORIZE
+        dao_up.fields.PROCESS_ID = processid
+        dao_up.fields.FK_IDA_JJ = IDA
+        dao_up.fields.STATUS = STATUS_ID
+        dao_up.fields.UPLOAD_DATE = Date.Now()
+        dao_up.fields.YEAR = con_year(Date.Now().Year())
+        dao_up.insert() 'ปรับเป็น update
+        Return dao_up.fields.IDA
+
+    End Function
+
+
 
 End Class

@@ -283,7 +283,7 @@
                      <tr><td>สถานะ</td></tr>
                      
                      <tr><td>
-                         <asp:DropDownList ID="ddl_status" runat="server"  CssClass="form-control">
+                         <asp:DropDownList ID="ddl_status"  runat="server" AutoPostBack="True"   Width="90%"  DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
             <%--                  
                              <asp:ListItem Value="8">อนุมัติ</asp:ListItem>
                              <asp:ListItem Value="7">คืนคำขอ</asp:ListItem>--%>

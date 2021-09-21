@@ -23,15 +23,20 @@
     .myDiv4 {
         display: none;
     }
+
     .sub_mydiv {
         display: none;
     }
+
     .sub_mydiv2 {
         display: none;
     }
 
     label {
         margin-right: 20px;
+    }
+    img {
+        max-width: none !important;
     }
 </style>
 <%--</asp:Content>--%>
@@ -103,10 +108,16 @@
                 if (inputValue > 2 && inputValue < 6) {
                     $(".myDiv3").not(targetBox3).hide();
                     $(targetBox3).show();
+                    document.getElementById("rdl_chk_bsn").checked = false;
+                } else {
+                    $(".myDiv3").not(targetBox).hide();
+                    $(targetBox).show();
+                    //$("input:radio[id=rdl_chk_bsn]:checked")[0].checked = false;
+                    document.getElementById("rdl_chk_bsn").checked = false;
                 }
                 if (inputValue < 3) {
-                    document.getElementById('sub_menu2').style.display = "none";           
-                } 
+                    document.getElementById('show_bsn_div').style.display = "none";
+                }
             } else {
                 if (inputValue < 50) {
                     $(".sub_mydiv").not(targetBox).hide();
@@ -114,7 +125,7 @@
                 } else {
                     $(".sub_mydiv2").not(targetBox6).hide();
                     $(targetBox6).show();
-                }                               
+                }
             }
 
             //alert("Radio button " + inputValue + " is selected");myDiv2
@@ -138,58 +149,48 @@
 <div style="width: 100%; text-align: left">
 </div>
 <h3>อัพโหลดเอกสาร</h3>
-<div id="body">
+<div>
     <div id="chk_type_person">
         <div class="row">
             <div class="col-lg-11" style="padding-left: 2em">
 
                 <label id="lbl_person_type1" runat="server">
-                <input type="radio" name="colorCheckbox"  id="rdl_person_type1" runat="server"
-                       value="1"> บุคคลธรรมดา</label>
+                    <input type="radio" name="colorCheckbox" id="rdl_person_type1" runat="server"
+                        value="1">
+                    บุคคลธรรมดา</label>
                 <label id="lbl_person_type2" runat="server">
-                <input type="radio" name="colorCheckbox"  id="rdl_person_type2" runat="server"
-                       value="2"> บุคคลธรรมดา(สัญชาติอื่นๆ)</label>
+                    <input type="radio" name="colorCheckbox" id="rdl_person_type2" runat="server"
+                        value="2">
+                    บุคคลธรรมดา(สัญชาติอื่นๆ)</label>
                 <label id="lbl_person_type3" runat="server">
-                <input type="radio" name="colorCheckbox"  id="rdl_person_type3" runat="server"
-                       value="3"> นิติบุคคล(สัญชาติไทย)</label>
+                    <input type="radio" name="colorCheckbox" id="rdl_person_type3" runat="server"
+                        value="3">
+                    นิติบุคคล(สัญชาติไทย)</label>
                 <label id="lbl_person_type4" runat="server">
-                <input type="radio" name="colorCheckbox"  id="rdl_person_type4" runat="server"
-                       value="4"> นิติบุคคล(สัญชาติอื่นๆ) กรณีจดทะเบียนในไทย</label>
+                    <input type="radio" name="colorCheckbox" id="rdl_person_type4" runat="server"
+                        value="4">
+                    นิติบุคคล(สัญชาติอื่นๆ) กรณีจดทะเบียนในไทย</label>
                 <label id="lbl_person_type5" runat="server">
-                 <input type="radio" name="colorCheckbox"  id="rdl_person_type5" runat="server"
-                       value="5"> นิติบุคคล(สัญชาติอื่นๆ) กรณีไม่จดทะเบียนในไทย</label>
+                    <input type="radio" name="colorCheckbox" id="rdl_person_type5" runat="server"
+                        value="5">
+                    นิติบุคคล(สัญชาติอื่นๆ) กรณีไม่จดทะเบียนในไทย</label>
 
                 <br />
-
-                <%--<asp:RadioButtonList ID="rdl_person_type" name='lom' runat="server" BackColor="White" BorderColor="White" BorderStyle="None" CssClass="auto-style1" ForeColor="Black" Height="209px" Width="431px" onclick="ShowHideDiv_1()">
-                    <asp:ListItem Value="1">บุคคลธรรมดา</asp:ListItem>
-                    <asp:ListItem Value="2">บุคคลธรรมดา(สัญชาติอื่นๆ) </asp:ListItem>
-                    <asp:ListItem Value="3">นิติบุคคล(สัญชาติไทย)</asp:ListItem>
-                    <asp:ListItem Value="4">นิติบุคคล(สัญชาติอื่นๆ) กรณีจดทะเบียนในไทย</asp:ListItem>
-                    <asp:ListItem Value="5">นิติบุคคล(สัญชาติอื่นๆ) กรณีไม่จดทะเบียนในไทย</asp:ListItem>
-                </asp:RadioButtonList>--%>
             </div>
         </div>
     </div>
     <hr />
-    <%-----------------------------------------------------------((_Panel_))-------------------------------------------------------------------%>
-
-
-
-
-
-    <div>
-        <div id="show_1_1" class="9 myDiv2">
-            <div class="row">
-                <div class="col-lg-10" style="padding-left: 4em">
-                    <asp:RadioButtonList ID="rdl_chk_local" runat="server" BackColor="White" BorderColor="White" BorderStyle="None" ForeColor="Black">
-                        <asp:ListItem Value="11">กรณีที่ผู้ขอรับอนุญาตไม่ได้เป็นเจ้าของกรรมสิทธิ์</asp:ListItem>
-                        <asp:ListItem Value="12">กรณีทะเบียนบ้านไม่มีผู้อยู่อาศัย (ทะเบียนบ้านลอย) ใช้เอกสารอย่างใดอย่างหนึ่ง ดังนี้ </asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>
+    <div id="show_local_div" class="9 myDiv2" runat="server">
+        <div class="row">
+            <div class="col-lg-10" style="padding-left: 4em">
+                <asp:RadioButtonList ID="rdl_chk_local" runat="server" BackColor="White" BorderColor="White" BorderStyle="None" ForeColor="Black">
+                    <asp:ListItem Value="11">กรณีที่ผู้ขอรับอนุญาตไม่ได้เป็นเจ้าของกรรมสิทธิ์</asp:ListItem>
+                    <asp:ListItem Value="12">กรณีทะเบียนบ้านไม่มีผู้อยู่อาศัย (ทะเบียนบ้านลอย) ใช้เอกสารอย่างใดอย่างหนึ่ง ดังนี้ </asp:ListItem>
+                </asp:RadioButtonList>
             </div>
         </div>
-        <div class="11 sub_mydiv" id="testdv">
+    </div>
+    <%--  <div class="11 sub_mydiv" id="testdv">
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-8">
@@ -257,24 +258,29 @@
                 </div>
             </div>
         </div>
+    </div>--%>
+
+    <div class="8 myDiv3" id="show_bsn_div" runat="server">
+        <asp:Panel ID="Panel2" runat="server">
+            <div class="row">
+                <div class="col-lg-8" style="padding-left: 4em">
+                    <asp:RadioButtonList ID="rdl_chk_bsn" runat="server">
+                        <asp:ListItem Value="66">ผู้ดำเนินกิจการยื่นเอง</asp:ListItem>
+                        <asp:ListItem Value="77">ผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเป็นบุคคลต่างด้าว</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+            </div>
+        </asp:Panel>
     </div>
 
+    <div class="row">
+        <div class="col-lg-8" style="padding-left: 2em">
+            <asp:Button ID="btn_select_typeatt" runat="server" Text="เลือก" CssClass="btn-sm" />
+        </div>
 
+    </div>
 
-    <div>
-        <div class="8 myDiv3" id="sub_menu2">
-            <asp:Panel ID="Panel2" runat="server">
-                <div class="row">
-                    <div class="col-lg-8" style="padding-left: 4em">
-                        <asp:RadioButtonList ID="rdl_chk_bsn" runat="server">
-                            <asp:ListItem Value="66">ผู้ดำเนินกิจการยื่นเอง</asp:ListItem>
-                            <asp:ListItem Value="77">ผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเป็นบุคคลต่างด้าว</asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>
-                </div>
-            </asp:Panel>
-
-            <div id="show_bsnDiv" class="66 sub_mydiv2">
+    <%-- <div id="show_bsnDiv" class="66 sub_mydiv2">
                 <hr />
                 <div class="row">
                     <div class="col-lg-1"></div>
@@ -620,14 +626,14 @@
             </div>
         </div>
         <hr />
-    </div>
+    </div>--%>
 
 
 
 
     <%--<asp:Button ID="BTN_UPLOAD_PART1" runat="server" Text="อัพโหลด" CssClass=" btn-lg" />--%>
 
-    <div class="111 myDiv4">
+   <%-- <div class="111 myDiv4">
         <asp:Panel ID="Panel_posormo" runat="server" Style="display: none;">
             <hr />
             <div class="row">
@@ -655,12 +661,36 @@
             </div>
             <hr />
         </asp:Panel>
-    </div>
+    </div>--%>
+    <div class="row">
+                <div class="col-lg-8" style="padding-left: 2em"> <h3>
+                    รายการเอกสารแนบ
+                </h3></div>
+            </div>
+    <div class="row">
+                <div class="col-lg-10" style="padding-left: 4em"> <span style="font-size:16px;color:red;">
+                     ในขั้นตอนการแนบไฟล์นี้ ท่านสามารถแนบไฟล์และอัพโหลดไฟล์แนบไปทีละหัวข้อได้โดยไม่จำเป็นต้องแนบไฟล์ทั้งหมด แล้วกดยืนยันไฟล์แนบทีเดียว ทั้งนี้ หากทั้งไม่สามารถแนบไฟล์ทั้งหมดให้ครบในครั้งเดียวได้ ท่านสามารถยืนยันไฟล์แนบเฉพาะหัวข้อที่ท่านแนบไฟล์แล้ว และสามารถมาแนบไฟล์เพิ่มต่อในภายหลัง
+                </span></div>
+            </div>
 
     <div class="row">
         <div class="col-lg-12" style="text-align: right">
-            <asp:Button ID="BTN_UPLOAD" runat="server" Text="อัพโหลดเอกสาร" CssClass=" btn-lg" OnClientClick="return confirm('กรุณาตรวจสอบความถูกต้องของเอกสารก่อนกด ยืนยัน');" />
+            <asp:Button ID="btn_save" runat="server" Text="อัพโหลดเอกสาร" CssClass="btn-sm" OnClientClick="return confirm('กรุณาตรวจสอบความถูกต้องของเอกสารก่อนกด ยืนยัน');" />
         </div>
 
     </div>
+   <%-- <div class="row">
+        <div class="col-lg-12" style="text-align: right">
+            <asp:Button ID="BTN_UPLOAD" runat="server" Text="อัพโหลดเอกสาร" CssClass="btn-sm" OnClientClick="return confirm('กรุณาตรวจสอบความถูกต้องของเอกสารก่อนกด ยืนยัน');" />
+        </div>
+
+    </div>--%>
+
+    <div>
+        <div style="overflow-x: scroll; height: 550px">
+            <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>
+        </div>
+    </div>
+
 </div>
+

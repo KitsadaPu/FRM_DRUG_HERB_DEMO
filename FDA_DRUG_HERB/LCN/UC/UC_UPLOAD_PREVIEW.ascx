@@ -125,9 +125,8 @@
 <div style="width: 100%; text-align: left">
 </div>
 <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-7">
-        <h3>อัพโหลดเอกสาร</h3>
+    <div class="col-lg-12" style="text-align:center">
+        <h3>รายการเอกสารที่อัพโหลด</h3>
     </div>
 </div>
 
@@ -142,43 +141,16 @@
     </div>
 
    <%-- <asp:Panel ID="Panel_Type_Local" runat="server" Style="display: none;">
-        <div class="row">
-            <div class="col-lg-1" style="padding-left: 2em"></div>
-            <div class="col-lg-8">
-                <asp:Label ID="lbl_type_local" runat="server" Text="type_local"></asp:Label>
-            </div>
-        </div>
-    </asp:Panel>--%>
 
-<%--    <asp:Panel ID="Panel_Type_BSN" runat="server" Style="display: none;">
-        <div class="row">
-            <div class="col-lg-1" style="padding-left: 2em"></div>
-            <div class="col-lg-8">
-                <asp:Label ID="lbl_type_bsn" runat="server" Text="type_bsn"></asp:Label>
-            </div>
-        </div>
     </asp:Panel>--%>
 
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <asp:GridView ID="GV_lcnno" runat="server" Width="100%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
-                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" Font-Size="10pt">
+            <asp:GridView ID="GV_lcnno" runat="server" Width="87%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="8" Font-Size="8pt">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <%--<asp:BoundField DataField="pay_stat" HeaderText="การชำระเงิน" ItemStyle-Width ="10%" />--%>
-                    <%--<asp:BoundField DataField="rcvno" HeaderText="เลขที่รับ" ItemStyle-Width ="10%" ItemStyle-HorizontalAlign="Left" />
-      
-         <asp:BoundField DataField="rcvdate"  DataFormatString="{0:d}" HeaderText="วันที่ยื่นคำขอ" ItemStyle-Width ="20%" >
-<ItemStyle Width="20%"></ItemStyle>
-         </asp:BoundField>
-         <asp:BoundField HeaderText="วันที่รับพิจารณา" DataFormatString="{0:d}" />
-         <asp:BoundField HeaderText="วันที่แล้วเสร็จ" DataFormatString="{0:d}" />--%>
-                    <%--<asp:TemplateField ItemStyle-Width="10%" HeaderText="สถานะ">
-                     <ItemTemplate>
-                          <asp:Label ID="lbl_status" runat="server" ></asp:Label>
-                     </ItemTemplate>
-                </asp:TemplateField>--%>
 
                     <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
                         <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
@@ -186,10 +158,6 @@
                     <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">
                         <ItemStyle Width="20%" />
                     </asp:BoundField>
-
-                    <%-- <asp:CheckBoxField DataField="pay_stat_chk" HeaderText="การชำระเงิน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
-                       <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
-                   </asp:CheckBoxField>--%>
 
                     <asp:TemplateField ItemStyle-Width="15%">
                         <ItemTemplate>
@@ -199,7 +167,7 @@
                         <asp:HyperLink ID="btn_Select" runat="server" Target="_blank" CssClass="btn-control" CommandName="sel" Width="100%" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'>ดูข้อมูล</asp:HyperLink>
                         </ItemTemplate>
 
-                        <ItemStyle Width="15%"></ItemStyle>
+                        <ItemStyle Width="30%"></ItemStyle>
                     </asp:TemplateField>
 
 
@@ -223,15 +191,116 @@
         </div>
     </div>
    
+    <asp:Panel ID="Panel1" runat="server" Style="display: none;">
+
+        <div class="row">
+    <div class="col-lg-12" style="text-align:center">
+        <h3>รายการเอกสารที่แก้ไขอัพโหลดครังที่ 1</h3>
+    </div>
+</div>
+    
     <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <asp:GridView ID="GV_lcnno1" runat="server" Width="87%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="8" Font-Size="8pt" >
+                <AlternatingRowStyle BackColor="White" />
+                <Columns>
+
+                    <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
+                        <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">
+                        <ItemStyle Width="20%" />
+                    </asp:BoundField>
+
+                    <asp:TemplateField ItemStyle-Width="15%">
+                        <ItemTemplate>
+                         
+                           &nbsp; &nbsp; &nbsp;
+                        <asp:HyperLink ID="btn_Select" runat="server" Target="_blank" CssClass="btn-control" CommandName="sel" Width="100%" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'>ดูข้อมูล</asp:HyperLink>
+                        </ItemTemplate>
+
+                        <ItemStyle Width="30%"></ItemStyle>
+                    </asp:TemplateField>
+
+                </Columns>
+                <EmptyDataTemplate>
+                    <center>ไม่พบข้อมูล</center>
+                </EmptyDataTemplate>
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#AEB6BF  " Font-Bold="True" ForeColor="#17202A" CssClass="row" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EBF5FB  " CssClass="row" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+            </asp:GridView>
+        </div>
+    </div>
+    </asp:Panel>
+
+     <asp:Panel ID="Panel2" runat="server" Style="display: none;">
+
+        <div class="row">
+    <div class="col-lg-12" style="text-align:center">
+        <h3>รายการเอกสารที่แก้ไขอัพโหลดครังที่ 2</h3>
+    </div>
+</div>
+    
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <asp:GridView ID="GV_lcnno2" runat="server" Width="87%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" Font-Size="8pt">
+                <AlternatingRowStyle BackColor="White" />
+                <Columns>
+
+                    <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
+                        <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">
+                        <ItemStyle Width="20%" />
+                    </asp:BoundField>
+
+                    <asp:TemplateField ItemStyle-Width="15%">
+                        <ItemTemplate>
+                         
+                           &nbsp; &nbsp; &nbsp;
+                        <asp:HyperLink ID="btn_Select" runat="server" Target="_blank" CssClass="btn-control" CommandName="sel" Width="100%" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'>ดูข้อมูล</asp:HyperLink>
+                        </ItemTemplate>
+
+                        <ItemStyle Width="30%"></ItemStyle>
+                    </asp:TemplateField>
+
+                </Columns>
+                <EmptyDataTemplate>
+                    <center>ไม่พบข้อมูล</center>
+                </EmptyDataTemplate>
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#AEB6BF  " Font-Bold="True" ForeColor="#17202A" CssClass="row" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EBF5FB  " CssClass="row" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+            </asp:GridView>
+        </div>
+    </div>
+   
+    </asp:Panel>
+
+     <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Height="40px" />
 
         </div>
     </div>
-
-
-
-
     <asp:Button ID="btn_reload" runat="server" Text="" Style="display: none;" />
 </div>

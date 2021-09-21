@@ -1,4 +1,5 @@
-﻿Public Class FRM_STAFF_LCN_CONSIDER_UPDATE
+﻿Imports Telerik.Web.UI
+Public Class FRM_STAFF_LCN_CONSIDER_UPDATE
     Inherits System.Web.UI.Page
     Private _TR_ID As Integer
     Private _IDA As Integer
@@ -34,7 +35,7 @@
             TextBox1.Text = Date.Now.ToShortDateString()
         End Try
         Try
-            ddl_staff_offer.SelectedValue = dao.fields.FK_STAFF_OFFER_IDA
+            rcb_staff_offer.SelectedValue = dao.fields.FK_STAFF_OFFER_IDA
         Catch ex As Exception
 
         End Try
@@ -53,7 +54,7 @@
         Catch ex As Exception
             dao.fields.CONSIDER_DATE = Nothing
         End Try
-        dao.fields.FK_STAFF_OFFER_IDA = ddl_staff_offer.SelectedValue
+        dao.fields.FK_STAFF_OFFER_IDA = rcb_staff_offer.SelectedValue
         'Try
         '    'dao.fields.appdate = CDate(txt_app_date.Text)
 
@@ -89,11 +90,24 @@
         Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
     End Sub
     Public Sub Bind_ddl_staff_offer()
-        Dim bao As New BAO.ClsDBSqlcommand
-        Dim dt As New DataTable
-        bao.SP_STAFF_OFFER_DDL()
+        'Dim bao As New BAO.ClsDBSqlcommand
+        'Dim dt As New DataTable
+        'bao.SP_STAFF_OFFER_DDL()
 
-        ddl_staff_offer.DataSource = bao.dt
-        ddl_staff_offer.DataBind()
+        'ddl_staff_offer.DataSource = bao.dt
+        'ddl_staff_offer.DataBind()
+
+        Dim dao As New DAO_DRUG.TB_MAS_STAFF_NAME_HERB
+        dao.GetDataby_All()
+        'Dim item As New ListItem("---กรุณาเลือก---", "0")
+
+        rcb_staff_offer.DataSource = dao.datas 'dao.datas
+        rcb_staff_offer.DataTextField = "STAFF_NAME"
+        rcb_staff_offer.DataValueField = "IDA"
+        rcb_staff_offer.DataBind()
+        Dim item As New RadComboBoxItem
+        item.Text = "---กรุณาเลือก---"
+        item.Value = "0"
+        rcb_staff_offer.Items.Insert(0, item)
     End Sub
 End Class

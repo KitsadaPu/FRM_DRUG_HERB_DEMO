@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-lg-1" style="text-align: right"></div>
                 <div class="col-lg-3">
-                     <asp:Button ID="btn_save" runat="server" Text="บันทึกข้อมูลส่วนที่ 1" CssClass="btn-lg" OnClientClick="confirm('ต้องการบันทึกหรือไม่');" />
+                     <asp:Button ID="btn_save" runat="server" Text="บันทึกข้อมูลส่วนที่ 1" CssClass="btn-sm" OnClientClick="confirm('ต้องการบันทึกหรือไม่');" />
                 </div>
             </div>
 

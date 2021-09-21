@@ -66,6 +66,13 @@ Module BAO_COMMON
         Return filename
     End Function
 
+    Public Function NAME_UPLOAD_XML_JJ(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer) As String
+
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & ID_TRANSECTION_UPLOAD & ".xml"
+
+        Return filename
+    End Function
+
     Public Function NAME_DOWNLOAD_PDF(ByVal SYS As String, ByVal ID_TRANSECTION_UPLOAD As String) As String
         Dim filename As String = SYS & "-" & ID_TRANSECTION_UPLOAD & ".pdf"
 
@@ -228,6 +235,15 @@ Module BAO_COMMON
             _p_dalcn_subtitute = value
         End Set
     End Property
+    Private _TB_SMP3 As New XML_CENTER.CLASS_DALCN_SUBSTITUTE
+    Public Property TB_SMP3() As XML_CENTER.CLASS_DALCN_SUBSTITUTE
+        Get
+            Return _TB_SMP3
+        End Get
+        Set(ByVal value As XML_CENTER.CLASS_DALCN_SUBSTITUTE)
+            _TB_SMP3 = value
+        End Set
+    End Property
     Private _p_dalcn_sub As New XML_CENTER.CLASS_DALCN_NCT_SUBSTITUTE
     Public Property p_dalcn_sub() As XML_CENTER.CLASS_DALCN_NCT_SUBSTITUTE
         Get
@@ -349,6 +365,17 @@ Module BAO_COMMON
             _p_temp_nct = value
         End Set
     End Property
+
+    Private _TB_JJ As CLS_TABEAN_HERB_JJ
+    Public Property TB_JJ() As CLS_TABEAN_HERB_JJ
+        Get
+            Return _TB_JJ
+        End Get
+        Set(ByVal value As CLS_TABEAN_HERB_JJ)
+            _TB_JJ = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' ProcessID 
     ''' 1 = สถานที่
@@ -489,6 +516,12 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = "1400093" Then
                     Dim cls_xml As New CLASS_GEN_XML.DRRGT_PIL_GEN
                     cls_xml.GEN_DRRGT_PIL(PATH_XML, p_PIL)
+                ElseIf PROSESS_ID = "20309" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                    cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+                ElseIf PROSESS_ID = "10201" Then
+                    Dim cls_xml As New CLASS_GEN_XML.LCN_EDIT_SMP3
+                    cls_xml.GEN_XML_TABEAN_SMP3(PATH_XML, _TB_SMP3)
                 ElseIf PROSESS_ID = 10401 Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
@@ -517,6 +550,8 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                     cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
+
+
                 ElseIf PROSESS_ID = 10401 Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
@@ -667,6 +702,34 @@ Module BAO_COMMON
                     End Using
                 End Using
 
+            ElseIf PROSESS_ID = "10201" Then
+                Dim cls_xml As New CLASS_GEN_XML.LCN_EDIT_SMP3
+                cls_xml.GEN_XML_TABEAN_SMP3(PATH_XML, _TB_SMP3)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "20309" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
             ElseIf PROSESS_ID = "1400001" And STATUS_ID <> "1" Then ' ทะเบียนยา
                 Dim cls_xml As New CLASS_GEN_XML.Center
                 cls_xml.GEN_XML_DR(PATH_XML, p_dr)
@@ -776,11 +839,45 @@ Module BAO_COMMON
         Return filename
     End Function
 
+    Public Function NAME_PDF2(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal IDA As String, ByVal ID_TRANSECTION_UPLOAD As String) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & IDA & "-" & ID_TRANSECTION_UPLOAD.Trim() & ".pdf"
+
+        Return filename
+    End Function
+
     Public Function NAME_XML(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String) As String
         Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & ID_TRANSECTION_UPLOAD.Trim() & ".xml"
 
         Return filename
     End Function
+    Public Function NAME_XML2(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal IDA As String, ByVal ID_TRANSECTION_UPLOAD As String) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & IDA & "-" & ID_TRANSECTION_UPLOAD.Trim() & ".xml"
+
+        Return filename
+    End Function
+    Public Function NAME_PDF_SMP3(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+    Public Function NAME_XML_SMP3(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+
+    Public Function NAME_PDF_JJ(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+
+    Public Function NAME_XML_JJ(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+
     ''' <summary>
     ''' ดึงสกุลไฟล์แนบ
     ''' </summary>

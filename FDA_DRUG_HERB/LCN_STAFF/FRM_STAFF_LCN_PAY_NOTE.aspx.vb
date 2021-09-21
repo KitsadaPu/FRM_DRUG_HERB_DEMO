@@ -1,6 +1,7 @@
 ﻿Public Class FRM_STAFF_LCN_PAY_NOTE
     Inherits System.Web.UI.Page
     Private _TR_ID As Integer
+    Private STATUS_ID As Integer
     Private _IDA As Integer
     Private _CLS As New CLS_SESSION
     ' Private _type As String
@@ -10,6 +11,7 @@
             Response.Redirect("http://privus.fda.moph.go.th/")
         Else
             _TR_ID = Request.QueryString("TR_ID")
+            STATUS_ID = Request.QueryString("STATUS_ID")
             _IDA = Request.QueryString("IDA")
             _CLS = Session("CLS")
             ' _type = "1"
@@ -27,10 +29,54 @@
     End Sub
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        Dim dao_up As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
+        Dim bao As New BAO.GenNumber
+        'Dim STATUS_ID As Integer = ddl_cnsdcd.SelectedItem.Value
+        Dim RCVNO As Integer
+
+        dao.GetDataby_IDA(_IDA)
+        dao_up.GetDataby_IDA(dao.fields.TR_ID)
+
+        Dim PROCESS_ID As Integer = dao_up.fields.PROCESS_ID
+
+        Dim dao_date As New DAO_DRUG.ClsDBSTATUS_DATE
+        dao_date.fields.FK_IDA = _IDA
+        Dim LCNNO_V2 As Integer
+        Dim bao2 As New BAO.GenNumber
+        Dim RCVNO_HERB_NEW As Integer
+        dao.fields.STATUS_ID = STATUS_ID
+        RCVNO = BAO.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+        dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
+
+        RCVNO_HERB_NEW = bao2.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+
+        Dim _year As Integer = con_year(Date.Now.Year)
+        If _year < 2500 Then
+            _year += 543
+        End If
+
+        dao.fields.RCVNO_DISPLAY = BAO.FORMAT_NUMBER_MINI(con_year(Date.Now.Year()), RCVNO)
+        Try
+            dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
+        Catch ex As Exception
+
+        End Try
+
+        LCNNO_V2 = con_year(Date.Now.Year).Substring(2, 2) & RCVNO_HERB_NEW
+
+        dao.fields.RCVNO_NEW = "HB " & _CLS.PVCODE & "-" & PROCESS_ID & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & RCVNO_HERB_NEW
+
+        dao.fields.RCVDATE_DISPLAY = Date.Now.ToShortDateString()
+        'dao.fields.frtappdate = Date.Now
+        AddLogStatus(3, PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
+        dao.update()
+
+
         If Len(TextBox1.Text) >= 10 Then
-            Dim dao As New DAO_DRUG.ClsDBdalcn
+            'Dim dao As New DAO_DRUG.ClsDBdalcn
             dao.GetDataby_IDA(_IDA)
-            dao.fields.STATUS_ID = 11
+            dao.fields.STATUS_ID = STATUS_ID
             dao.fields.comment = TextBox1.Text
             dao.fields.frtappdate = Date.Now
             dao.update()
@@ -46,6 +92,6 @@
     End Sub
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Response.Redirect("FRM_LCN_CONFIRM.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & Request.QueryString("process"))
+        Response.Redirect("FRM_LCN_CONFIRM.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
     End Sub
 End Class

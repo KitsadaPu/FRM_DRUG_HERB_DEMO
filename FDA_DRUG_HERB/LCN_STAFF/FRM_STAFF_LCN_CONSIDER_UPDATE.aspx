@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="FRM_STAFF_LCN_CONSIDER_UPDATE.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_STAFF_LCN_CONSIDER_UPDATE" %>
+
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="panel" style="width:100%">
             <div class="panel-heading panel-title">
                 <h1>เสนอลงนาม</h1>
@@ -19,8 +22,10 @@
                     <tr>
                         <td>ชื่อผู้ลงนาม </td>
                         <td>
-                            <asp:DropDownList ID="ddl_staff_offer" runat="server" DataTextField="STAFF_OFFER_NAME" DataValueField="IDA" CssClass="input-lg" Width="200px">
-                            </asp:DropDownList>
+                            <%--<asp:DropDownList ID="ddl_staff_offer" runat="server" DataTextField="STAFF_OFFER_NAME" DataValueField="IDA" CssClass="input-lg" Width="200px">
+                            </asp:DropDownList>--%>
+                             <telerik:radcombobox ID="rcb_staff_offer" Runat="server" Filter="Contains" DataTextField="STAFF_OFFER_NAME" DataValueField="IDA">
+                        </telerik:radcombobox>
                         </td>
                     </tr>
 

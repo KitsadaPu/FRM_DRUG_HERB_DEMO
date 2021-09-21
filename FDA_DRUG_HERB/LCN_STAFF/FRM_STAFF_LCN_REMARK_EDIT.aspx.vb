@@ -2,6 +2,7 @@
     Inherits System.Web.UI.Page
     Private _TR_ID As Integer
     Private _IDA As Integer
+    Private _STATUS_ID As String
     Private _CLS As New CLS_SESSION
     Private Sub runQuery()
         If Session("CLS") Is Nothing Then
@@ -10,6 +11,8 @@
             _TR_ID = Request.QueryString("TR_ID")
             _IDA = Request.QueryString("IDA")
             _CLS = Session("CLS")
+            _STATUS_ID = Request.QueryString("STATUS_ID")
+
             ' _type = "1"
         End If
 
@@ -27,7 +30,7 @@
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(_IDA)
-        dao.fields.STATUS_ID = 12
+        dao.fields.STATUS_ID = _STATUS_ID
         dao.fields.REMARK_EDIT = TextBox1.Text
         dao.update()
 

@@ -1,4 +1,5 @@
-﻿Public Class FRM_STAFF_LCN_CONSIDER
+﻿Imports Telerik.Web.UI
+Public Class FRM_STAFF_LCN_CONSIDER
     Inherits System.Web.UI.Page
 
     Private _TR_ID As Integer
@@ -45,12 +46,25 @@
 
     End Sub
     Public Sub Bind_ddl_staff_offer()
-        Dim bao As New BAO.ClsDBSqlcommand
-        Dim dt As New DataTable
-        bao.SP_STAFF_OFFER_DDL()
+        'Dim bao As New BAO.ClsDBSqlcommand
+        'Dim dt As New DataTable
+        'bao.SP_STAFF_OFFER_DDL()
 
-        ddl_staff_offer.DataSource = bao.dt
-        ddl_staff_offer.DataBind()
+        'ddl_staff_offer.DataSource = bao.dt
+        'ddl_staff_offer.DataBind()
+
+        Dim dao As New DAO_DRUG.TB_MAS_STAFF_NAME_HERB
+        dao.GetDataby_All()
+        'Dim item As New ListItem("---กรุณาเลือก---", "0")
+
+        rcb_staff_offer.DataSource = dao.datas 'dao.datas
+        rcb_staff_offer.DataTextField = "STAFF_NAME"
+        rcb_staff_offer.DataValueField = "IDA"
+        rcb_staff_offer.DataBind()
+        Dim item As New RadComboBoxItem
+        item.Text = "---กรุณาเลือก---"
+        item.Value = "0"
+        rcb_staff_offer.Items.Insert(0, item)
     End Sub
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
@@ -66,7 +80,7 @@
             Dim PROCESS_ID As Integer = dao_up.fields.PROCESS_ID
 
             Dim dao_p As New DAO_DRUG.ClsDBPROCESS_NAME
-            dao_p.GetDataby_PROCESS_ID(PROCESS_ID)
+            dao_p.GetDataby_Process_ID(PROCESS_ID)
             Dim GROUP_NUMBER As Integer = dao_p.fields.PROCESS_ID
 
             Dim CONSIDER_DATE As Date = CDate(TextBox1.Text)
@@ -115,7 +129,7 @@
             dao.fields.STATUS_ID = 6
             dao.fields.CONSIDER_DATE = CONSIDER_DATE
 
-            dao.fields.FK_STAFF_OFFER_IDA = ddl_staff_offer.SelectedValue
+            dao.fields.FK_STAFF_OFFER_IDA = rcb_staff_offer.SelectedValue
             'Try
             '    dao.fields.appdate = CDate(txt_app_date.Text)
             'Catch ex As Exception
@@ -177,5 +191,9 @@
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Response.Redirect("FRM_LCN_CONFIRM.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+    End Sub
+
+    Protected Sub ddl_staff_offer_SelectedIndexChanged(sender As Object, e As EventArgs)
+
     End Sub
 End Class

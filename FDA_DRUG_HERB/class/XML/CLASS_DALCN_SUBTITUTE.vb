@@ -102,6 +102,15 @@
                 _RCVDAY = value
             End Set
         End Property
+        Private _RCVNO_FORMAT_NEW As String
+        Public Property RCVNO_FORMAT_NEW() As String
+            Get
+                Return _RCVNO_FORMAT_NEW
+            End Get
+            Set(ByVal value As String)
+                _RCVNO_FORMAT_NEW = value
+            End Set
+        End Property
 
         Private _RCVMONTH As String
         Public Property RCVMONTH() As String
@@ -288,6 +297,26 @@
             End Get
             Set(ByVal value As String)
                 _LCN_TYPE = value
+            End Set
+        End Property
+
+        Private _BSN_NAME As String
+        Public Property BSN_NAME() As String
+            Get
+                Return _BSN_NAME
+            End Get
+            Set(ByVal value As String)
+                _BSN_NAME = value
+            End Set
+        End Property
+
+        Private _FULL_BSN_NAME As String
+        Public Property FULL_BSN_NAME() As String
+            Get
+                Return _FULL_BSN_NAME
+            End Get
+            Set(ByVal value As String)
+                _FULL_BSN_NAME = value
             End Set
         End Property
 

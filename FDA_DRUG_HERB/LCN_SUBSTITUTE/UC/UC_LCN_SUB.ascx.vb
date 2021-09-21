@@ -63,6 +63,19 @@
         'uc102_3.ATTACH1(TR_ID, PROCESS_ID, YEAR, "3")
 
     End Sub
+    Function CHK_ATTACH_PDF() As Integer
+        Dim i As Integer = 0
+        i += uc102_1.CHK_Extension()
+        i += uc102_2.CHK_Extension()
+        Return i
+    End Function
+
+    Function CHK_upload_file() As Integer
+        Dim i As Integer = 0
+        i += uc102_1.CHK_upload_file()
+        i += uc102_2.CHK_upload_file()
+        Return i
+    End Function
     Sub Set_Label(ByVal CITIZEN_ID_AUTHORIZE As String)
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
@@ -205,6 +218,7 @@
             Process_sub = 1
         End If
 
+        Dim bsn_nmae As String = ""
         Try
             dao_sub.fields.lcntpcd = dao.fields.lcntpcd
             dao_sub.fields.lcnno = dao.fields.lcnno
@@ -214,6 +228,7 @@
             dao_sub.fields.WTIRE_DATE = Date.Now
             dao_sub.fields.PROCESS_ID = "10401"
             dao_sub.fields.CITIZEN_ID = _CLS.CITIZEN_ID
+
             dao_sub.fields.FK_IDA = dao.fields.IDA
             'dao_sub.fields.PURPOSE = txt_sub_PURPOSE.Text
             dao_sub.fields.LCN_TYPE = Process_sub
@@ -229,7 +244,15 @@
 
         End Try
     End Sub
-
+    Private Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
+    End Sub
+    'Shared Sub chk_rdl_click()
+    '    Dim ddl_purpose As String = ""
+    '    ddl_purpose = ddl_sub_purpose.DataValueField
+    '    ID = ddl_purpose
+    '    'Return id
+    'End Sub
     Public Sub load_ddl_sub_purpose()
         Try
             Dim dao As New DAO_DRUG.TB_MAS_TYPE_UPLOAD_SUBTITU

@@ -52,6 +52,14 @@
         End If
         Return i
     End Function
+    Function CHK_Extension2() As Integer
+        Dim aa As String = System.IO.Path.GetExtension(FileUpload1.FileName)
+        Dim i As Integer = 0
+        If (aa.Contains("pdf") Or aa = "") Then
+            i += 1
+        End If
+        Return i
+    End Function
     Function CHK_upload_file() As Integer
         Dim aa As String = System.IO.Path.GetExtension(FileUpload1.FileName)
         Dim i As Integer = 0

@@ -159,6 +159,24 @@
             _SHOW_LCNNO_NUMTHAI = value
         End Set
     End Property
+    Private _RCVNO_FORMAT As String
+    Public Property RCVNO_FORMAT() As String
+        Get
+            Return _RCVNO_FORMAT
+        End Get
+        Set(ByVal value As String)
+            _RCVNO_FORMAT = value
+        End Set
+    End Property
+    Private _RCVDATE_DISPLAY As String
+    Public Property RCVDATE_DISPLAY() As String
+        Get
+            Return _RCVDATE_DISPLAY
+        End Get
+        Set(ByVal value As String)
+            _RCVDATE_DISPLAY = value
+        End Set
+    End Property
 
     Private _HEAD_LCNNO As String
     Public Property HEAD_LCNNO() As String
@@ -196,6 +214,15 @@
         End Get
         Set(ByVal value As String)
             _SHOW_LCNDATE_YEAR = value
+        End Set
+    End Property
+    Private _OPEN_TIME As String
+    Public Property OPEN_TIME() As String
+        Get
+            Return _OPEN_TIME
+        End Get
+        Set(ByVal value As String)
+            _OPEN_TIME = value
         End Set
     End Property
 

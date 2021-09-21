@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LGT_DRUG_DEMO" Class="LINQ_LCNDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.111.28.168;Initial Catalog=LGT_DRUG_DEMO;User ID=fusion" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LGT_DRUGConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MAS_LCN_EDIT_STATUS" Member="MAS_LCN_EDIT_STATUS">
+    <Type Name="MAS_LCN_EDIT_STATUS">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STATUS_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_NAME_STAFF" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_GROUP_SUB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="READ_ONLY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CAL_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GROUP_DDL_SHOW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOP_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_LCN_APPROVE_EDIT_REASON" Member="MAS_LCN_APPROVE_EDIT_REASONs">
+    <Type Name="MAS_LCN_APPROVE_EDIT_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LCN_REASON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_REASON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_LCN_APPROVE_EDIT_REASON_UPLOAD_FILE" Member="MAS_LCN_APPROVE_EDIT_REASON_UPLOAD_FILEs">
+    <Type Name="MAS_LCN_APPROVE_EDIT_REASON_UPLOAD_FILE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HEAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TITEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TITLE_ID2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SUB_MAIN_MENU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MAIN_MENU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ANNOTATION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SUB_MENU_GROUP" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="MENU_GROUP" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="REMARK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_LCN_APPROVE_EDIT_REASON_SUB" Member="MAS_LCN_APPROVE_EDIT_REASON_SUBs">
+    <Type Name="MAS_LCN_APPROVE_EDIT_REASON_SUB">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SUB_REASON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SUB_REASON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_TRANSACTION_RQ_NUMBER" Member="LCN_APPROVE_EDIT_TRANSACTION_RQ_NUMBERs">
+    <Type Name="LCN_APPROVE_EDIT_TRANSACTION_RQ_NUMBER">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_IDA_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CITIEZEN_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CITIEZEN_ID_AUTHORIZE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPLOAD_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REF_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOWNLOAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="GEN_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_UPLOAD_FILE" Member="LCN_APPROVE_EDIT_UPLOAD_FILEs">
+    <Type Name="LCN_APPROVE_EDIT_UPLOAD_FILE">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FILE_NUMBER_NAME" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE_YEAR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_FAKE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_REAL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE_FILE_EDIT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TYPE_PERSON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_PERSON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_BSN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_BSN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_LOCAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_LOCAL_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SUB_DOCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HEAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_TITEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_TITEL_ID2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT" Member="LCN_APPROVE_EDITs">
+    <Type Name="LCN_APPROVE_EDIT">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LOCATION_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DATE_YEAR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_EDIT_REASON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LCN_EDIT_REASON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FK_SUB_REASON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_SUB_REASON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE_REASON" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LCN_TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LCN_TYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_NAME_SUB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_IDENTIFY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCNNO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_LOCATION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_NUM" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_BUILDING" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_MOO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_SOI" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_ROAD" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_TAMBON" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_AMPHOR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_CHANGWAT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_ZIPCODE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDR_TEL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_OPENTIME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_RQ_NUMBER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_RQ_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_RQ_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_RQ_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_CHECK_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_CHECK_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_CHECK_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_NAME_PAY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_TYPE_ID_PAY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_TYPE_NAME_PAY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_SIGN_AMOUNT_PAY" Type="System.Decimal" DbType="Decimal(14,2)" CanBeNull="true" />
+      <Column Name="STAFF_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STAFF_APPROVE_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STAFF_APPROVE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAFF_APPROVE_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

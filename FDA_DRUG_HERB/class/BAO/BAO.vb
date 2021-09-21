@@ -1606,6 +1606,15 @@ Namespace BAO
             dta.TableName = "SP_PRE4_WAIT_ALLOW_ALL"
             Return dta
         End Function
+        Public Function SP_CUSTOMER_LCN_BY_FK_IDA2(ByVal FK_IDA As Integer, ByVal lcntpcd As String, ByVal iden As String) As DataTable
+            'Dim dayBegin As Integer = convertDateToInteger(startdate)
+            'Dim dayEnd As Integer = convertDateToInteger(enddate)
+            Dim sql As String = "exec SP_CUSTOMER_LCN_BY_FK_IDA @FK_IDA=" & FK_IDA & " ,@lcntpcd=" & lcntpcd & " ,@iden=" & iden
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_CUSTOMER_LCN_BY_FK_IDA"
+            Return dta
+        End Function
         Public Function SP_SEARCH_PERSON(ByVal search As String) As DataTable
             Dim sql As String = "exec SP_SEARCH_PERSON @search='" & search & "'"
             Dim dta As New DataTable
@@ -5926,6 +5935,9 @@ Namespace BAO
         Public _PATH_EDIT As String = System.Configuration.ConfigurationManager.AppSettings("PATH_EDIT")              'ที่อยู่ Path
         Public _PATH_SUBS As String = System.Configuration.ConfigurationManager.AppSettings("PATH_EDIT")
         Public _RDLC As String = System.Configuration.ConfigurationManager.AppSettings("RDLC")
+        Public _PATH_IMG As String = System.Configuration.ConfigurationManager.AppSettings("PATH_IMG")
+        Public _PATH_XML_PDF_TABEAN_JJ As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ")
+
         Sub RunAppSettings()
             _PATH_PDF_TEMPLATE = System.Configuration.ConfigurationManager.AppSettings("PATH_PDF_TEMPLATE")                 'ที่อยู่ Path
             _PATH_XML_CLASS = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_CLASS")                       'ที่อยู่ Path
@@ -5934,6 +5946,8 @@ Namespace BAO
             _PATH_XML_TRADER = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_TRADER")                     'ที่อยู่ Path
             _PATH_EDIT = System.Configuration.ConfigurationManager.AppSettings("PATH_EDIT")              'ที่อยู่ Path
             _RDLC = System.Configuration.ConfigurationManager.AppSettings("RDLC")
+            _PATH_IMG = System.Configuration.ConfigurationManager.AppSettings("PATH_IMG")
+            _PATH_XML_PDF_TABEAN_JJ = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ")
         End Sub
     End Class
 
@@ -6366,6 +6380,37 @@ Namespace BAO
 
             Return str_no
         End Function
+
+        Function GEN_NO_JJ(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal REF_IDA As String, ByVal IDA_LCNNO As String)
+            Dim int_no As Integer
+            Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_JJ
+            dao.GetDataby_GEN(YEAR, PVCODE, TYPE, REF_IDA, IDA_LCNNO)
+            If IsNothing(dao.fields.GENNO) = True Then
+                int_no = 0
+            Else
+                int_no = dao.fields.GENNO
+            End If
+
+            int_no = int_no + 1
+            Dim str_no As String = int_no.ToString()
+            'str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            'str_no = YEAR.Substring(2, 2) & str_no
+
+            Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_JJ
+            dao2.fields.YEAR = YEAR
+            dao2.fields.PVCODE = PVCODE
+            dao2.fields.TYPE = TYPE
+            dao2.fields.LCNNO = IDA_LCNNO
+            dao2.fields.FORMAT = 1
+            dao2.fields.GROUP_NO = 1
+            dao2.fields.REF_IDA = REF_IDA
+            dao2.fields.DESCRIPTION = str_no
+            dao2.fields.GENNO = int_no
+            dao2.insert()
+
+            Return str_no
+        End Function
+
         Function GEN_LCNNO_NEW(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal LCNNO As String,
                         ByVal FORMAT As String, ByVal GROUP_NO As String, ByVal REF_IDA As String, ByVal DESCRIPTION As String) As String
             Dim int_no As Integer
@@ -6704,6 +6749,29 @@ Namespace BAO
             dao.fields.PROCESS_ID = PROCESS_ID
             dao.fields.FK_IDA = FK_IDA
             dao.insert()
+            Return str_no
+        End Function
+        Public Function GEN_RCVNO_NO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal PROCESS_ID As String, ByVal FK_IDA As Integer) As String
+            Dim int_no As Integer
+            Dim dao As New DAO_DRUG.ClsDBGEN_RCVNO
+            dao.GetDataby_Year_PVNCD_PROCESS_ID_MAX(PVNCD, YEAR, PROCESS_ID)
+            If IsNothing(dao.fields.GEN_RCV) = True Then
+                int_no = 0
+            Else
+                int_no = dao.fields.GEN_RCV
+            End If
+            'int_no = int_no + 1
+
+            Dim str_no As String = int_no.ToString()
+            ''str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            'str_no = YEAR.Substring(2, 2) & str_no
+            'dao = New DAO_DRUG.ClsDBGEN_RCVNO
+            'dao.fields.YEARS = YEAR
+            'dao.fields.PVNCD = PVNCD
+            'dao.fields.GEN_RCV = int_no
+            'dao.fields.PROCESS_ID = PROCESS_ID
+            'dao.fields.FK_IDA = FK_IDA
+            'dao.insert()
             Return str_no
         End Function
 

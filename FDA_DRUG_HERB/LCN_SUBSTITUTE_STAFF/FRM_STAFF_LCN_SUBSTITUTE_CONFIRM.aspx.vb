@@ -54,20 +54,27 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         If dao.fields.STATUS_ID = 8 Or dao.fields.STATUS_ID = 7 Then
             btn_confirm.Enabled = False
             btn_cancel.Enabled = False
+
             btn_confirm.CssClass = "btn-danger btn-lg"
             btn_cancel.CssClass = "btn-danger btn-lg"
+
+
 
             ddl_cnsdcd.Style.Add("display", "none")
 
         End If
-        If dao.fields.STATUS_ID = 8 Then
-            btn_load.Enabled = True
-            'btn_load.CssClass = "btn-danger btn-lg"
-
-        Else
-            btn_load.Enabled = False
-            btn_load.CssClass = "btn-danger btn-lg"
+        If dao.fields.STATUS_ID <> 9 Then
+            btn_preview.Enabled = False
+            btn_preview.CssClass = "btn-danger btn-lg"
         End If
+        'If dao.fields.STATUS_ID = 8 Or dao.fields.STATUS_ID = 9 Then btn_preview
+        '    'btn_load.Enabled = True
+        '    'btn_load.CssClass = "btn-danger btn-lg"
+
+        'Else
+        '    'btn_load.Enabled = False
+        '    'btn_load.CssClass = "btn-danger btn-lg"
+        'End If
 
     End Sub
     Public Sub Bind_ddl_Status_staff()
@@ -212,6 +219,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         Dim rcvno_auto As String = ""
         Dim lcnno_format As String = ""
         Dim rcvno_format As String = ""
+        Dim rcvno_format_new As String = ""
         Dim MAIN_LCN_IDA As Integer = 0
         Dim lcnno_format_new As String = ""
 
@@ -250,10 +258,42 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             If Len(rcvno_auto) > 0 Then
                 rcvno_format = CStr(CInt(Right(rcvno_auto, 5))) & "/25" & Left(rcvno_auto, 2)
             End If
+            rcvno_format_new = dao.fields.rcvno_new
         Catch ex As Exception
 
         End Try
 
+        Dim bsn_name As String = ""
+        Dim CITIZEN_ID_AUTHORIZE As String = ""
+        Try
+            CITIZEN_ID_AUTHORIZE = dao.fields.CITIZEN_ID
+        Catch ex As Exception
+
+        End Try
+
+        Dim ws_2 As New WS_Taxno_TaxnoAuthorize.WebService1
+        Dim ws_taxno = ws_2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
+
+        Dim dao_syslcnsid As New DAO_CPN.clsDBsyslcnsid
+        dao_syslcnsid.GetDataby_identify(CITIZEN_ID_AUTHORIZE)
+
+        Try
+            bsn_name = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
+        Catch ex As Exception
+
+        End Try
+
+        Dim rcvdate As Date
+        Dim rcvdate2 As String = ""
+        Try
+            If dao.fields.rcvdate IsNot Nothing Then
+                rcvdate = dao.fields.rcvdate
+                rcvdate2 = CDate(rcvdate).ToString("dd/MM/yyy")
+            End If
+
+        Catch ex As Exception
+
+        End Try
 
         Dim bao_master As New BAO_MASTER
 
@@ -261,11 +301,16 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         Cls_XML.LCNNO_SHOW = lcnno_format
         Cls_XML.LCNNO_FORMAT_NEW = lcnno_format_new
         Cls_XML.RCVNO_FORMAT = rcvno_format
+        Cls_XML.RCVNO_FORMAT_NEW = rcvno_format_new
+        Cls_XML.RCVDATE_DISPLAY = rcvdate2
         Cls_XML.PHR_NAME = dao_phr.fields.PHR_NAME
         Cls_XML.WTIRE_DATE = dao.fields.WTIRE_DATE
         Cls_XML.PUR_POSE = dao.fields.PURPOSE
         Cls_XML.OPENTIME = dao_main.fields.opentime
         Cls_XML.LCN_TYPE = dao.fields.LCN_TYPE
+        Cls_XML.CITIZEN_AUTHORIZE = dao_main.fields.CITIZEN_ID_AUTHORIZE
+        Cls_XML.TEL = dao_main.fields.tel
+        Cls_XML.BSN_NAME = bsn_name
 
         Cls_XML.DT_MASTER.DT1 = bao_master.SP_PHR_BY_FK_IDA_SUB(dao.fields.FK_IDA)
 
@@ -310,6 +355,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         Dim bao As New BAO.GenNumber
         Dim STATUS_ID As Integer = ddl_cnsdcd.SelectedItem.Value
         Dim RCVNO As Integer = 0
+        Dim RCVNO_NEW As Integer = 0
         Dim PROCESS_ID As Integer
         Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
         dao.Getdata_by_IDA(_IDA)
@@ -341,32 +387,73 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             'Catch ex As Exception
 
             'End Try
+            'dao.fields.STATUS_ID = STATUS_ID
+            'RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+            'dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
+
+            'Try
+            '    dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
+            'Catch ex As Exception
+
+            'End Try
+            'dao.fields.STATUS_ID = STATUS_ID
+            'dao.update()
+
+            'alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
+        ElseIf STATUS_ID = 5 Then
+            Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
+
+        ElseIf STATUS_ID = 4 Then
             dao.fields.STATUS_ID = STATUS_ID
             RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
             dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
 
+            Dim dao_p As New DAO_DRUG.ClsDBPROCESS_NAME
+            dao_p.GetDataby_Process_ID(PROCESS_ID)
+            Dim GROUP_NUMBER As Integer = dao_p.fields.PROCESS_ID
+
+            Dim bao2 As New BAO.GenNumber
+            Dim RCVNO_HERB_NEW As Integer
+            Dim LCNNO_V2 As Integer
+            RCVNO_HERB_NEW = bao2.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+
+            Dim _year As Integer = con_year(Date.Now.Year)
+            If _year < 2500 Then
+                _year += 543
+            End If
+
+            LCNNO_V2 = con_year(Date.Now.Year).Substring(2, 2) & RCVNO_HERB_NEW
+            dao.fields.lcnno = LCNNO_V2
+
+            dao.fields.rcvno_new = "HB " & _CLS.PVCODE & "-" & PROCESS_ID & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & RCVNO_HERB_NEW
+
+            'RCVNO_NEW = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+            'dao.fields.rcvno_new = RCVNO_NEW 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
             Try
                 dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
             Catch ex As Exception
 
             End Try
-            dao.fields.STATUS_ID = STATUS_ID
+            dao.fields.STATUS_ID = 9
             dao.update()
 
             alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
-        ElseIf STATUS_ID = 5 Then
-            Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
 
-        ElseIf STATUS_ID = 4 Then
-            dao.fields.STATUS_ID = 9
-            dao.update()
-            alert("รับคำขอแล้ว")
+            'dao.fields.STATUS_ID = 9
+            'dao.update()
+            'alert("รับคำขอแล้ว")
         ElseIf STATUS_ID = 8 Then
             'dao.fields.appdate = CDate(txt_appdate.Text)
-            dao.fields.STATUS_ID = STATUS_ID
-            dao.update()
+            Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_APP_DATE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
 
-            alert("ดำเนินการอนุมัติแล้ว")
+        ElseIf STATUS_ID = 7 Then
+            'Response.Redirect("FRM_STAFF_LCN_REMARK.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+            'dao.fields.STATUS_ID = STATUS_ID
+            'dao.update()
+            AddLogStatus(STATUS_ID, Request.QueryString("process"), _CLS.CITIZEN_ID, _IDA)
+            'alert("ดำเนินการเรียบร้อยแล้ว")
+            Response.Redirect("FRM_SUBTITUBE_REMARK_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
+
         End If
     End Sub
     Sub alert(ByVal text As String)
@@ -1458,12 +1545,14 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
                 template_id = 0
             End Try
             If template_id = 1 Then
-                dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, statusId, 0, _group:=0)
+                dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, statusId, 0, _group:=1)
 
             Else
-                dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, statusId, 0, _group:=1)
+                dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, statusId, 0, _group:=0)
             End If
 
+        Else
+            dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, 8, 0, _group:=0)
         End If
 
         Dim paths As String = bao._PATH_DEFAULT
@@ -1521,13 +1610,13 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         End If
 
     End Sub
-    Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        dao.GetDataby_IDA(_IDA)
-        If dao.fields.STATUS_ID = 8 Then
-            load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
-        End If
-    End Sub
+    'Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
+    '    Dim dao As New DAO_DRUG.ClsDBdalcn
+    '    dao.GetDataby_IDA(_IDA)
+    '    If dao.fields.STATUS_ID = 8 Then
+    '        load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
+    '    End If
+    'End Sub
     Private Sub load_PDF(ByVal path As String, ByVal fileName As String)
         Dim bao As New BAO.AppSettings
         Dim clsds As New ClassDataset
@@ -1542,4 +1631,39 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         Response.End()
 
     End Sub
+    Public Function UpLoadImageByte(ByVal info As String) As Byte()
+        Dim stream As New FileStream(info.Replace("/", "\"), FileMode.Open)
+        Dim reader As New BinaryReader(stream)
+        Dim imgBin() As Byte
+        Try
+            imgBin = reader.ReadBytes(stream.Length)
+        Catch ex As Exception
+        Finally
+            stream.Close()
+            reader.Close()
+        End Try
+        Return imgBin
+    End Function
+
+    Protected Sub btn_preview_Click(sender As Object, e As EventArgs) Handles btn_preview.Click
+        Dim _group As Integer = 0
+
+
+        BindData_PDF_LCN(_group:=0)
+    End Sub
+
+    Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
+        Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
+    End Sub
+
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+        dao.Getdata_by_IDA(_IDA)
+        dao.fields.STATUS_ID = 78
+        dao.update()
+
+        AddLogStatus(78, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        alert("ดำเนินการยกเลิกคำขอแล้ว")
+    End Sub
+
 End Class

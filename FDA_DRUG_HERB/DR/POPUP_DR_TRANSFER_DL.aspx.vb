@@ -5,9 +5,11 @@ Imports System.IO
 Public Class POPUP_DR_TRANSFER_DL
     Inherits System.Web.UI.Page
     Private _CLS As New CLS_SESSION
-    Private _process As String
+    Private _processID As String
     Private _pvncd As Integer
     Private _main_ida As String = ""
+    Private _IDA As String = ""
+    Private _lcn_ida As String = ""
     Sub RunSession()
         Try
             _CLS = Session("CLS")
@@ -16,22 +18,38 @@ Public Class POPUP_DR_TRANSFER_DL
             Response.Redirect("http://privus.fda.moph.go.th/")
         End Try
         Try
-            _process = Request.QueryString("process")
+            _processID = Request.QueryString("process")
             _main_ida = Request.QueryString("IDA")
+            _IDA = Request.QueryString("IDA_G")
+            _lcn_ida = Request.QueryString("lcn_ida")
         Catch ex As Exception
 
         End Try
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
+        'set_txt_label()
         If Not IsPostBack Then
+            'txt_citizenid.Text = _CLS.CITIZEN_ID_AUTHORIZE
             If Request.QueryString("identify") <> "" Then
                 If Request.QueryString("identify") <> _CLS.CITIZEN_ID_AUTHORIZE Then
                     AddLogMultiTab(_CLS.CITIZEN_ID, Request.QueryString("identify"), 0, HttpContext.Current.Request.Url.AbsoluteUri)
 
                 End If
+                'bind_yor8()
             End If
         End If
+        'If _IDA <> "" Then
+        '    Panel1.Style.Add("display", "block")
+        'End If
+        'If Request.QueryString("tt") = "2" Then
+        '    Label1.Style.Add("display", "block")
+        '    ddl_yor8.Style.Add("display", "block")
+        '    cb_herbal.Style.Add("display", "block")
+        'ElseIf Request.QueryString("tt") = "1" Then
+        '    lbl_niti.Visible = False
+        '    txt_citizenid.Visible = False
+        'End If
     End Sub
 
     Protected Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
@@ -84,7 +102,7 @@ Public Class POPUP_DR_TRANSFER_DL
                     If RadioButtonList1.SelectedValue <> "" Then
                         Dim dao As New DAO_DRUG.ClsDBdrrgt
                         dao.GetDataby_IDA(IDA)
-                        Bind_PDF(_main_ida, _process, IDA, dao.fields.FK_LCN_IDA)
+                        Bind_PDF(_main_ida, _processID, IDA, dao.fields.FK_LCN_IDA)
                     Else
                         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกประเภท');", True)
                     End If
@@ -93,6 +111,20 @@ Public Class POPUP_DR_TRANSFER_DL
 
                 End Try
 
+            ElseIf e.CommandName = "tranfer" Then
+                Try
+                    If RadioButtonList1.SelectedValue <> "" Then
+                        Dim dao As New DAO_DRUG.ClsDBdrrgt
+                        dao.GetDataby_IDA(IDA)
+                        'Panel1.Style.Add("display", "block")
+                        Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri & "&IDA_G=" & IDA)
+                    Else
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกประเภท');", True)
+                    End If
+
+                Catch ex As Exception
+
+                End Try
             End If
         End If
     End Sub
@@ -302,7 +334,7 @@ Public Class POPUP_DR_TRANSFER_DL
         cls_xml.DT_SHOW.DT23.TableName = "SP_regis"
         cls_xml.DT_SHOW.DT7 = bao_show.SP_LOCATION_BSN_BY_LOCATION_ADDRESS_IDAV2(1) 'ผู้ดำเนิน
 
-        
+
 
         '_______________MASTER_________________
         Dim bao_master As New BAO_MASTER
@@ -317,4 +349,29 @@ Public Class POPUP_DR_TRANSFER_DL
         objStreamWriter.Close()
 
     End Sub
+
+    'Sub bind_yor8()
+    '    Dim dt As New DataTable
+    '    Dim bao As New BAO.ClsDBSqlcommand
+    '    dt = bao.SP_GET_DRSAMP_DLL(_CLS.CITIZEN_ID_AUTHORIZE)
+
+    '    ddl_yor8.DataSource = dt
+    '    ddl_yor8.DataTextField = "drug_name"
+    '    ddl_yor8.DataValueField = "IDA"
+    '    ddl_yor8.DataBind()
+
+    '    'Dim bao_master As New BAO_MASTER
+    '    'Dim dt As New DataTable
+    '    'dt = bao_master.SP_drkdofdrg()
+    '    'ddl_drkdofdrg.DataSource = dt
+    '    'ddl_drkdofdrg.DataTextField = "thakindnm"
+    '    'ddl_drkdofdrg.DataValueField = "kindcd"
+    '    'ddl_drkdofdrg.DataBind()
+
+    '    Dim item As New ListItem
+    '    item.Text = "--กรุณาเลือก--"
+    '    item.Value = "0"
+    '    ddl_yor8.Items.Insert(0, item)
+    'End Sub
+
 End Class

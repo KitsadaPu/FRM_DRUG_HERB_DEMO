@@ -68,15 +68,6 @@ Partial Public Class POPUP_STAFF_LCN_SUBTITUTE_CONSIDER
     Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_app_date control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_app_date As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''Button1 control.
     '''</summary>
     '''<remarks>

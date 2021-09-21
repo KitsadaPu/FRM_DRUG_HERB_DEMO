@@ -1079,7 +1079,7 @@
                      </tr>--%>
                     <tr>
                         <td>
-                            <asp:DropDownList ID="ddl_template" runat="server" Width="80%" AutoPostBack="True">
+                            <asp:DropDownList ID="ddl_template" runat="server" Width="80%" AutoPostBack="True" style="display:none;">
                                 <asp:ListItem Value="0">---เลือกแบบ pdf---</asp:ListItem>
                                 <asp:ListItem Value="1">pdf แบบปกติ</asp:ListItem>
                                 <asp:ListItem Value="2">pdf แบบบ้านเลขที่ยาว</asp:ListItem>
@@ -1113,7 +1113,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%" /></td>
+                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%"  OnClientClick="return confirm('คุณต้องการยกเลิกข้อคำขอหรือไม่');"/></td>
                     </tr>
                     <%-- <tr><td>  <asp:Button ID="btn_load" runat="server" Text="Download PDF" CssClass="btn-lg"   Width="80%" /></td></tr>--%>
                     <tr>
@@ -1148,7 +1148,7 @@
         <tr>
             <td style="width: 30%; height: 50%; padding-left: 10%">
 
-                <uc1:UC_GRID_ATTACH runat="server" ID="UC_GRID_ATTACH" />
+                <%--<uc1:UC_GRID_ATTACH runat="server" ID="UC_GRID_ATTACH" />--%>
 
                 <br />
                 <uc2:UC_GRID_PHARMACIST ID="UC_GRID_PHARMACIST" runat="server" />

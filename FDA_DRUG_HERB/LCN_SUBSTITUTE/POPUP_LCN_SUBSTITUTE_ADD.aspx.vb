@@ -50,36 +50,58 @@ Public Class POPUP_LCN_SUBSTITUTE_ADD
     '    End If
     'End Sub
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+
         Dim dao_sub As New DAO_DRUG.TB_DALCN_SUBSTITUTE
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(_lcn_ida)
 
         UC_LCN_SUB.set_data(dao_sub)
         dao_sub.fields.STATUS_ID = "1"
-        dao_sub.insert()
+        If dao_sub.fields.PURPOSE_ID = 0 Or dao_sub.fields.PURPOSE_ID Is Nothing Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกเหตุที่ขอรับใบแทน');", True)
+            'alert("กรุณาอัพโหลดเอกสาร")
+        Else
+            Try
+                If UC_LCN_SUB.CHK_ATTACH_PDF() = 0 Then
+                    If UC_LCN_SUB.CHK_upload_file() = 1 Then
+                        UC_LCN_SUB.SET_ATTACH(dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year))
+                        dao_sub.insert()
 
-        Dim bao As New BAO.AppSettings
-        bao.RunAppSettings()
+                        Dim bao As New BAO.AppSettings
+                        bao.RunAppSettings()
 
-        Dim TR_ID As String = ""
-        Dim bao_tran As New BAO_TRANSECTION
-        bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
-        bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+                        Dim TR_ID As String = ""
+                        Dim bao_tran As New BAO_TRANSECTION
+                        bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
+                        bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
 
-        Try
-            UC_LCN_SUB.SET_ATTACH(dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year))
-            alert("รหัสการดำเนินการ คือ DA-" & dao_sub.fields.PROCESS_ID & "-" & con_year(Date.Now.Date().Year()) & "-" + dao_sub.fields.TR_ID)
-        Catch ex As Exception
+                        'alert("รหัสการดำเนินการ คือ DA-" & dao_sub.fields.PROCESS_ID & "-" & con_year(Date.Now.Date().Year()) & "-" + dao_sub.fields.TR_ID)
 
-        End Try
-        'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+                    Else
+                        alert("กรุณาแนบไฟล์ PDF")
+                    End If
 
-        'Response.Redirect("FRM_LCN_SUBTITUTE_UPLOAD.aspx?IDA=" & dao_sub.fields.IDA & "&TR_ID=" & dao_sub.fields.TR_ID & "&process=" & dao_sub.fields.PROCESS_ID & "&LCN_IDA=" & dao_sub.fields.FK_IDA)
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+                Else
+                    alert("กรุณาแนบไฟล์ PDF")
+                End If
+
+
+
+
+                'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
+
+                'Response.Redirect("FRM_LCN_SUBTITUTE_UPLOAD.aspx?IDA=" & dao_sub.fields.IDA & "&TR_ID=" & dao_sub.fields.TR_ID & "&process=" & dao_sub.fields.PROCESS_ID & "&LCN_IDA=" & dao_sub.fields.FK_IDA)
+
+            Catch ex As Exception
+
+            End Try
+        End If
+
     End Sub
 
-    Sub alert(ByVal text As String)
-        Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
+    Private Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
     End Sub
     Protected Sub btn_close_Click(sender As Object, e As EventArgs) Handles btn_close.Click
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "parent.close_modal();", True)

@@ -141,12 +141,16 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="100%" /></td>
+                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการยกเลิกข้อคำขอหรือไม่');"/></td>
                     </tr>
-                    <tr>
+                     <tr>
+                        <td>
+                            <asp:Button ID="btn_preview" runat="server" Text="Preview สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
+                    </tr>
+                   <%-- <tr>
                         <td>
                             <asp:Button ID="btn_load" runat="server" Text="ดาวน์โหลด สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td>
                             <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="100%" /></td>

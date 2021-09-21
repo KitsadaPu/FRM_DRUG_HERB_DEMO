@@ -1306,7 +1306,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%" /></td>
+                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการยกเลิกข้อคำขอหรือไม่');"/></td>
                     </tr>
                     <tr>
                         <td>

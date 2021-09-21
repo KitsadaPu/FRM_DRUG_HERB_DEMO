@@ -23,15 +23,6 @@ Partial Public Class FRM_LCN_UPLOAD_STAFF
     Protected WithEvents lbl_type_person As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Panel_Type_Local control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel_Type_Local As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lbl_type_local control.
     '''</summary>
     '''<remarks>
@@ -39,15 +30,6 @@ Partial Public Class FRM_LCN_UPLOAD_STAFF
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_type_local As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Panel_Type_BSN control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel_Type_BSN As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lbl_type_bsn control.
@@ -66,6 +48,42 @@ Partial Public Class FRM_LCN_UPLOAD_STAFF
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GV_lcnno As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''GV_lcnno1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GV_lcnno1 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''GV_lcnno2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GV_lcnno2 As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btn_load0 control.

@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POPUP_DR_TRANSFER_DL.aspx.vb" Inherits="FDA_DRUG_HERB.POPUP_DR_TRANSFER_DL" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<%@ Register Src="~/UC/UC_ATTACH_DRUG.ascx" TagPrefix="uc1" TagName="UC_ATTACH_DRUG" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -86,6 +89,10 @@
                            CommandName="dow" Text="ดาวน์โหลดคำขอ Transfer">
                            <HeaderStyle Width="70px" />
                        </telerik:GridButtonColumn>
+                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_tranfer"
+                                    CommandName="tranfer" Text="Transfer คำขอ">
+                                    <HeaderStyle Width="70px" />
+                                </telerik:GridButtonColumn>
                        <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_add"
                            CommandName="add" Text="เพิ่มข้อมูลส่วนที่ 2">
                            <HeaderStyle Width="70px" />

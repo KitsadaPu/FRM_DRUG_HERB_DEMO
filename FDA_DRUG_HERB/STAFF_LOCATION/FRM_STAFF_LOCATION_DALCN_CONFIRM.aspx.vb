@@ -77,7 +77,7 @@
         Dim dt As New DataTable
         Dim bao As New BAO.ClsDBSqlcommand
         'bao.SP_MAS_STATUS_STAFF()
-        Dim int_group_ddl As Integer = 3
+        Dim int_group_ddl As Integer = 4
         bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL(2, int_group_ddl)
         dt = bao.dt
 

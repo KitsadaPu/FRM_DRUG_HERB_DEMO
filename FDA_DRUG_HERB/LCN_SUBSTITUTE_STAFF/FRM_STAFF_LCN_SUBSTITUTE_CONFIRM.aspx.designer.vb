@@ -131,13 +131,13 @@ Partial Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_load control.
+    '''btn_preview control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_load As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_preview As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btn_load0 control.

@@ -127,6 +127,14 @@ Namespace CLASS_GEN_XML
             objStreamWriter.Close()
 
         End Sub
+        Public Sub GEN_XML_TABEAN_SMP3(ByVal PATH As String, ByVal p2 As CLASS_DALCN_SUBSTITUTE)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
         Public Sub GEN_XML_DH(ByVal PATH As String, ByVal p2 As CLASS_DH)
 
             Dim objStreamWriter As New StreamWriter(PATH)
@@ -286,6 +294,16 @@ Namespace CLASS_GEN_XML
             objStreamWriter.Close()
 
         End Sub
+
+        Public Sub GEN_XML_TABEAN_JJ(ByVal PATH As String, ByVal p2 As CLS_TABEAN_HERB_JJ)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+
     End Class
 
     Public Class DALCN
@@ -3483,76 +3501,217 @@ Namespace CLASS_GEN_XML
         End Function
     End Class
     Public Class DALCN_SUB
-            Inherits Center
+        Inherits Center
 
-            Private _cityzen_id As String
-            Private _lcnsid As Integer
-            Private _lcnno As String
-            Private _p4 As String
-            Private _p5 As String
-            Private _CHK_SELL_TYPE As String
-            'Private _CHK_SELL_TYPE1 As String
-            Private _phr_medical_type As String
-            Private _opentime As String
-            Public Sub New()
-                _CITIEZEN_ID = ""
-                _lcnsid_customer = 0
-                _lcnno = ""
-                _fdtypecd = ""
-                _fdtypenm = ""
-                _PVNCD = "10"
-                _CHK_SELL_TYPE = ""
-                '_CHK_SELL_TYPE1 = ""
-                _phr_medical_type = ""
-                _opentime = ""
-            End Sub
+        Private _cityzen_id As String
+        Private _lcnsid As Integer
+        Private _lcnno As String
+        Private _p4 As String
+        Private _p5 As String
+        Private _CHK_SELL_TYPE As String
+        'Private _CHK_SELL_TYPE1 As String
+        Private _phr_medical_type As String
+        Private _opentime As String
+        Public Sub New()
+            _CITIEZEN_ID = ""
+            _lcnsid_customer = 0
+            _lcnno = ""
+            _fdtypecd = ""
+            _fdtypenm = ""
+            _PVNCD = "10"
+            _CHK_SELL_TYPE = ""
+            '_CHK_SELL_TYPE1 = ""
+            _phr_medical_type = ""
+            _opentime = ""
+        End Sub
 
-            Public Sub New(Optional citizen_id As String = "", Optional lcnsid As Integer = 0,
-                           Optional lcnno As String = "", Optional lcntpcd As String = "", Optional pvncd As String = "10", Optional CHK_SELL_TYPE As String = "", Optional phr_medical_type As String = "", Optional opentime As String = "")
-                _CITIEZEN_ID = citizen_id
-                _lcnsid_customer = lcnsid
-                _lcntpcd = lcntpcd
-                _lcnno = lcnno
-                _opentime = opentime
-                '_fdtypenm = fdtypenm
-                _PVNCD = pvncd
-                _CHK_SELL_TYPE = CHK_SELL_TYPE
-                '_CHK_SELL_TYPE1 = CHK_SELL_TYPE1
-                _phr_medical_type = phr_medical_type
-            End Sub
+        Public Sub New(Optional citizen_id As String = "", Optional lcnsid As Integer = 0,
+                       Optional lcnno As String = "", Optional lcntpcd As String = "", Optional pvncd As String = "10", Optional CHK_SELL_TYPE As String = "", Optional phr_medical_type As String = "", Optional opentime As String = "")
+            _CITIEZEN_ID = citizen_id
+            _lcnsid_customer = lcnsid
+            _lcntpcd = lcntpcd
+            _lcnno = lcnno
+            _opentime = opentime
+            '_fdtypenm = fdtypenm
+            _PVNCD = pvncd
+            _CHK_SELL_TYPE = CHK_SELL_TYPE
+            '_CHK_SELL_TYPE1 = CHK_SELL_TYPE1
+            _phr_medical_type = phr_medical_type
+        End Sub
 
-            ''' <summary>
-            ''' ใบอนุญาต
-            ''' </summary>
-            ''' <param name="rows"></param>
-            ''' <returns></returns>
-            ''' <remarks></remarks>
-            Public Function gen_xml(Optional rows As Integer = 0) As CLASS_DALCN_SUBSTITUTE
-                Dim class_xml As New CLASS_DALCN_SUBSTITUTE
-                Dim dao_dalcn_edit As New DAO_DRUG.TB_DALCN_SUBSTITUTE
-                class_xml.DALCN_SUBSTITUTEs = AddValue(class_xml.DALCN_SUBSTITUTEs)
-                class_xml.DALCN_SUBSTITUTEs.rcvno = 0
-                '_______________SHOW___________________
-                Dim bao_show As New BAO_SHOW
-                'class_xml.DT_SHOW.DT1 = bao_show.SP_SP_SYSCHNGWT
-                'class_xml.DT_SHOW.DT2 = bao_show.SP_SP_SYSAMPHR
-                'class_xml.DT_SHOW.DT3 = bao_show.SP_SP_SYSTHMBL
-                'class_xml.DT_SHOW.DT4 = bao_show.SP_MAINPERSON_CTZNO(_CITIEZEN_ID)
-                'class_xml.DT_SHOW.DT10 = bao_show.SP_SYSPREFIX
+        ''' <summary>
+        ''' ใบอนุญาต
+        ''' </summary>
+        ''' <param name="rows"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function gen_xml(Optional rows As Integer = 0) As CLASS_DALCN_SUBSTITUTE
+            Dim class_xml As New CLASS_DALCN_SUBSTITUTE
+            Dim dao_dalcn_edit As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+            class_xml.DALCN_SUBSTITUTEs = AddValue(class_xml.DALCN_SUBSTITUTEs)
+            class_xml.DALCN_SUBSTITUTEs.rcvno = 0
+            '_______________SHOW___________________
+            Dim bao_show As New BAO_SHOW
+            'class_xml.DT_SHOW.DT1 = bao_show.SP_SP_SYSCHNGWT
+            'class_xml.DT_SHOW.DT2 = bao_show.SP_SP_SYSAMPHR
+            'class_xml.DT_SHOW.DT3 = bao_show.SP_SP_SYSTHMBL
+            'class_xml.DT_SHOW.DT4 = bao_show.SP_MAINPERSON_CTZNO(_CITIEZEN_ID)
+            'class_xml.DT_SHOW.DT10 = bao_show.SP_SYSPREFIX
 
-                '_______________MASTER_________________
-                Dim bao_master As New BAO_MASTER
+            '_______________MASTER_________________
+            Dim bao_master As New BAO_MASTER
 
-                class_xml.EXP_YEAR = ""
-                'class_xml.LCNNO_SHOW = ""
-                class_xml.RCVDAY = ""
-                class_xml.RCVMONTH = ""
-                class_xml.RCVYEAR = ""
-                class_xml.SHOW_LCNNO = ""
-                class_xml.phr_medical_type = ""
-                Return class_xml
+            class_xml.EXP_YEAR = ""
+            'class_xml.LCNNO_SHOW = ""
+            class_xml.RCVDAY = ""
+            class_xml.RCVMONTH = ""
+            class_xml.RCVYEAR = ""
+            class_xml.SHOW_LCNNO = ""
+            class_xml.phr_medical_type = ""
+            Return class_xml
 
 
-            End Function
-        End Class
+        End Function
+    End Class
+
+    Public Class LCN_EDIT_SMP3
+        Inherits Center
+
+        Public Function gen_xml(ByVal IDA As Integer, ByVal IDA_LCN As Integer, ByVal _YEAR As String)
+            Dim XML As New CLS_LCN_EDIT_SMP3
+
+            'Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+            'dao.GetDataby_IDA_YEAR(IDA, _YEAR, True)
+            'XML.LCN_APPROVE_EDIT = dao.fields
+
+            Dim dt1, dt2 As New DataTable
+            Dim bao As New BAO_LCN.BIND_DT_XML
+            dt1 = bao.SP_LCN_APPROVE_EDIT_GET_DATA_XML1(IDA, _YEAR)
+            dt1.TableName = "XML_LCN_APPROVE_EDIT"
+
+            dt2 = bao.SP_LCN_APPROVE_EDIT_GET_DATA_XML2(IDA_LCN, _YEAR)
+            dt2.TableName = "XML_LCN_APPROVE_EDIT_FILE_UPLOAD"
+
+            XML.DT_SHOW.DT1 = dt1
+            XML.DT_SHOW.DT2 = dt2
+
+            Return XML
+        End Function
+
+    End Class
+
+    Public Class TABEAN_HERB_JJ
+        Inherits Center
+
+        Public Function gen_xml(ByVal IDA As Integer, ByVal IDA_LCN As Integer)
+            Dim XML As New CLS_TABEAN_HERB_JJ
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+
+            'Dim dt As New DataTable
+            Dim dt_lcn As New DataTable
+            Dim dt_lcn_location As New DataTable
+
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+            dao.GetdatabyID_IDA(IDA)
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(IDA_LCN)
+
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            XML.TYPE_PERSON = TYPE_PERSON
+
+            'ข้อ 2
+            If TYPE_PERSON = 1 Then
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(IDA_LCN)
+                dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_PERSON_1"
+                XML.DT_SHOW.DT3 = dt_lcn
+            ElseIf TYPE_PERSON = 99 Then
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(IDA_LCN)
+                dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_NITI_99"
+                XML.DT_SHOW.DT4 = dt_lcn
+            End If
+
+            'HEAD
+            XML.TABEAN_JJ = dao.fields
+
+            Dim date_approve_day As Date
+            Dim date_approve_month As Date
+            Dim date_approve_year As Date
+            Dim date_req_day As Date
+            Dim date_req_month As Date
+            Dim date_req_year As Date
+
+            'วันที่รับคำขอ และ วันที่อนุมัติ
+            If dao.fields.STATUS_ID = 8 Then
+                date_approve_day = dao.fields.DATE_APP
+                date_approve_month = dao.fields.DATE_APP
+                date_approve_year = dao.fields.DATE_APP
+
+                XML.date_approve_day = date_approve_day.Day.ToString()
+                XML.date_approve_month = date_approve_month.ToString("MMMM")
+                XML.date_approve_year = con_year(date_approve_year.Year)
+
+                date_req_day = dao.fields.DATE_REQ
+                date_req_month = dao.fields.DATE_REQ
+                date_req_year = dao.fields.DATE_REQ
+
+                XML.date_req_day = date_req_day.Day.ToString()
+                XML.date_req_month = date_req_month.ToString("MMMM")
+                XML.date_req_year = con_year(date_req_year.Year)
+
+                XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+            ElseIf dao.fields.STATUS_ID = 12 Or dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 11 Then
+                date_req_day = dao.fields.DATE_REQ
+                date_req_month = dao.fields.DATE_REQ
+                date_req_year = dao.fields.DATE_REQ
+
+                XML.date_req_day = date_req_day.Day.ToString()
+                XML.date_req_month = date_req_month.ToString("MMMM")
+                XML.date_req_year = con_year(date_req_year.Year)
+
+                XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+            End If
+
+            Dim dao_detail As New DAO_TABEAN_HERB.TB_TABEAN_SUBPACKAGE
+            dao_detail.GetData_ByFkIDA(IDA)
+
+            For Each dao_detail.fields In dao_detail.Details
+                XML.TABEAN_SUBPACKAGE.Add(dao_detail.fields)
+
+                Dim pk As String = ""
+                pk = " primary packaging " & dao_detail.fields.PACK_FSIZE_NAME & " " & dao_detail.fields.PACK_FSIZE_VOLUME & " " & dao_detail.fields.PACK_FSIZE_UNIT_NAME & " secondary packaging " &
+                    dao_detail.fields.PACK_SECSIZE_NAME & " " & dao_detail.fields.PACK_SECSIZE_VOLUME & " " & dao_detail.fields.PACK_SECSIZE_UNIT_NAME & " tertiary packaging " &
+                    dao_detail.fields.PACK_THSIZE_NAME & " " & dao_detail.fields.PACK_THSSIZE_VOLUME & " " & dao_detail.fields.PACK_THSIZE_UNIT_NAME
+
+                XML.list_subpackage.Add(pk)
+            Next
+
+            'Dim bao_xml As New BAO_TABEAN_HERB.tb_xml
+            'dt = bao_xml.SP_XML_TABEAN_JJ()
+            'dt.TableName = "XML_TABEAN_JJ"
+            'XML.DT_SHOW.DT1 = dt
+
+            If dao_lcn.fields.PROCESS_ID = 121 Then
+                dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(IDA_LCN)
+                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPI"
+                XML.DT_SHOW.DT1 = dt_lcn
+            ElseIf dao_lcn.fields.PROCESS_ID = 122 Then
+                dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(IDA_LCN)
+                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPM"
+                XML.DT_SHOW.DT2 = dt_lcn_location
+            End If
+
+            'dt_lcn_location = bao_lcn_location.SP_DALCN_FRGN_DATA(IDA_LCN)
+            'dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_NATIONALITY"
+            'XML.DT_SHOW.DT2 = dt_lcn_location
+
+            Return XML
+        End Function
+
+    End Class
+
 End Namespace

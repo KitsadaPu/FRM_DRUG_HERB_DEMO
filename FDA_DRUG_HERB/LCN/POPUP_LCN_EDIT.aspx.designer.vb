@@ -32,15 +32,6 @@ Partial Public Class POPUP_LCN_EDIT
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''txt_edit_remark control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_edit_remark As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''UC_GRID_ATTACH control.
     '''</summary>
     '''<remarks>
@@ -50,13 +41,31 @@ Partial Public Class POPUP_LCN_EDIT
     Protected WithEvents UC_GRID_ATTACH As Global.FDA_DRUG_HERB.UC_GRID_ATTACH
 
     '''<summary>
-    '''UC_LCN_UPLOAD_FILE control.
+    '''txt_edit_remark control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_LCN_UPLOAD_FILE As Global.FDA_DRUG_HERB.UC_LCN_UPLOAD_FILE
+    Protected WithEvents txt_edit_remark As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''tb_type_menu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
+
+    '''<summary>
+    '''btn_add_upload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''BTN_UPDATE_EDIT control.

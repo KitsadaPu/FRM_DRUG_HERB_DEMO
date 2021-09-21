@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="FRM_STAFF_LCN_CONSIDER.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_STAFF_LCN_CONSIDER" %>
 
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
     <link href="../css/smoothness/jquery2.custom.css" rel="stylesheet" />
@@ -16,6 +17,7 @@
         </script> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="panel" style="width:100%">
             <div class="panel-heading panel-title">
                 <h1>เสนอลงนาม</h1>
@@ -28,8 +30,8 @@
                         </td></tr>
 
                     <tr ><td>ชื่อผู้ลงนาม </td><td>
-                        <asp:DropDownList ID="ddl_staff_offer" runat="server" DataTextField="STAFF_OFFER_NAME" DataValueField="IDA" CssClass="input-lg" Width="200px">
-                        </asp:DropDownList>
+                        <telerik:RadComboBox ID="rcb_staff_offer" Runat="server" Filter="Contains" DataTextField="STAFF_OFFER_NAME" DataValueField="IDA">
+                        </telerik:RadComboBox>
                         </td></tr>
 
                     <tr ><td>วันที่เสนอลงนาม</td><td>

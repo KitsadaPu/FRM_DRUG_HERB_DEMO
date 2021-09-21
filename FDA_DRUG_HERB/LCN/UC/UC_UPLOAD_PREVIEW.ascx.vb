@@ -33,6 +33,18 @@ Public Class UC_UPLOAD_PREVIEW
         set_data()
         If Not IsPostBack Then
             load_GV_lcnno()
+            load_GV_lcnno2()
+            load_GV_lcnno3()
+
+            Dim dao As New DAO_DRUG.ClsDBdalcn
+            dao.GetDataby_IDA(_IDA)
+            If dao.fields.EDIT_UPLOAD_ID = 1 Then
+                Panel1.Style.Add("display", "block")
+                Panel2.Style.Add("display", "none")
+            ElseIf dao.fields.EDIT_UPLOAD_ID = 2 Then
+                Panel1.Style.Add("display", "block")
+                Panel2.Style.Add("display", "block")
+            End If
         End If
 
     End Sub
@@ -77,9 +89,19 @@ Public Class UC_UPLOAD_PREVIEW
         GV_lcnno.PageIndex = e.NewPageIndex
         load_GV_lcnno()
     End Sub
+    Protected Sub GV_lcnno2_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles GV_lcnno1.PageIndexChanging
+        GV_lcnno1.PageIndex = e.NewPageIndex
+        load_GV_lcnno2()
+    End Sub
+    Protected Sub GV_lcnno3_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles GV_lcnno2.PageIndexChanging
+        GV_lcnno2.PageIndex = e.NewPageIndex
+        load_GV_lcnno3()
+    End Sub
 
     Protected Sub btn_reload_Click(sender As Object, e As EventArgs) Handles btn_reload.Click
         load_GV_lcnno()                             'เรียกฟังก์ชั่น  load_GV_lcnno   มาใช้งาน
+        load_GV_lcnno2()
+        load_GV_lcnno3()
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ") 'จาวาคำสั่ง Alert
@@ -106,27 +128,84 @@ Public Class UC_UPLOAD_PREVIEW
         'End If
     End Sub
     Protected Sub GV_lcnno_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GV_lcnno.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim btn_Select As HyperLink = DirectCast(e.Row.FindControl("btn_Select"), HyperLink) 'สร้าง HyperLink จำลองแทน HyperLink ของแต่ละ row 
-            Dim index As Integer = e.Row.RowIndex 'เลขที่ลำดับของแต่ละ row
-            Dim str_ID As String = GV_lcnno.DataKeys.Item(index).Value.ToString() 'ดึง DataKeys ของแต่ละ row มาเก็บใน str_ID
-            'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH 'เรียกใช้classตารางไฟล์แนบ
-            Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao.GetDataby_IDA(str_ID) 'ดึงข้อมูลโดยการ where IDA ที่ใช้เป็น DataKeys ของแต่ละ row 
-            btn_Select.NavigateUrl = "~\PDF\FRM_ATTACH_PREVIEW_ALL.aspx\" & dao.fields.NAME_FAKE 'ระบุ URL ของ HyperLink ในแต่ละ row โดยส่งชื่อไฟล์เพื่อเพื่อหาไฟล์PDFที่ต้องการแสดง
-        End If
+        Try
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim btn_Select As HyperLink = DirectCast(e.Row.FindControl("btn_Select"), HyperLink) 'สร้าง HyperLink จำลองแทน HyperLink ของแต่ละ row 
+                Dim index As Integer = e.Row.RowIndex 'เลขที่ลำดับของแต่ละ row
+                Dim str_ID As String = GV_lcnno.DataKeys.Item(index).Value.ToString() 'ดึง DataKeys ของแต่ละ row มาเก็บใน str_ID
+                'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH 'เรียกใช้classตารางไฟล์แนบ
+                Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+                dao.GetDataby_IDA(str_ID) 'ดึงข้อมูลโดยการ where IDA ที่ใช้เป็น DataKeys ของแต่ละ row 
+                btn_Select.NavigateUrl = "~\PDF\FRM_ATTACH_PREVIEW_ALL.aspx\" & dao.fields.NAME_FAKE 'ระบุ URL ของ HyperLink ในแต่ละ row โดยส่งชื่อไฟล์เพื่อเพื่อหาไฟล์PDFที่ต้องการแสดง
+            End If
+        Catch ex As Exception
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่เจอไฟล์ PDF');", True)
+        End Try
+
+    End Sub
+    Protected Sub GV_lcnno1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GV_lcnno1.RowDataBound
+        Try
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim btn_Select As HyperLink = DirectCast(e.Row.FindControl("btn_Select"), HyperLink) 'สร้าง HyperLink จำลองแทน HyperLink ของแต่ละ row 
+                Dim index As Integer = e.Row.RowIndex 'เลขที่ลำดับของแต่ละ row
+                Dim str_ID As String = GV_lcnno1.DataKeys.Item(index).Value.ToString() 'ดึง DataKeys ของแต่ละ row มาเก็บใน str_ID
+                'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH 'เรียกใช้classตารางไฟล์แนบ
+                Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+                dao.GetDataby_IDA(str_ID) 'ดึงข้อมูลโดยการ where IDA ที่ใช้เป็น DataKeys ของแต่ละ row 
+                btn_Select.NavigateUrl = "~\PDF\FRM_ATTACH_PREVIEW_ALL.aspx\" & dao.fields.NAME_FAKE 'ระบุ URL ของ HyperLink ในแต่ละ row โดยส่งชื่อไฟล์เพื่อเพื่อหาไฟล์PDFที่ต้องการแสดง
+            End If
+        Catch ex As Exception
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่เจอไฟล์ PDF');", True)
+        End Try
+
+    End Sub
+    Protected Sub GV_lcnno2_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GV_lcnno2.RowDataBound
+        Try
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim btn_Select As HyperLink = DirectCast(e.Row.FindControl("btn_Select"), HyperLink) 'สร้าง HyperLink จำลองแทน HyperLink ของแต่ละ row 
+                Dim index As Integer = e.Row.RowIndex 'เลขที่ลำดับของแต่ละ row
+                Dim str_ID As String = GV_lcnno2.DataKeys.Item(index).Value.ToString() 'ดึง DataKeys ของแต่ละ row มาเก็บใน str_ID
+                'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH 'เรียกใช้classตารางไฟล์แนบ
+                Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+                dao.GetDataby_IDA(str_ID) 'ดึงข้อมูลโดยการ where IDA ที่ใช้เป็น DataKeys ของแต่ละ row 
+                btn_Select.NavigateUrl = "~\PDF\FRM_ATTACH_PREVIEW_ALL.aspx\" & dao.fields.NAME_FAKE 'ระบุ URL ของ HyperLink ในแต่ละ row โดยส่งชื่อไฟล์เพื่อเพื่อหาไฟล์PDFที่ต้องการแสดง
+            End If
+        Catch ex As Exception
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่เจอไฟล์ PDF');", True)
+        End Try
+
     End Sub
     Sub load_GV_lcnno()                             ' Gridview นำมาโชว์
         Dim bao As New BAO_MASTER
         Dim dt As New DataTable
 
-        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA(_IDA)
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 1)
 
 
         GV_lcnno.DataSource = dt               'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
         GV_lcnno.DataBind()                         'นำข้อมูลมโชใน Gridview ชื่อ Gridview ว่า GV_lcnno   เพื่อให้ข้อมูลวิ่ง
     End Sub
 
+    Sub load_GV_lcnno2()                             ' Gridview นำมาโชว์
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 3)
+
+
+        GV_lcnno1.DataSource = dt               'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
+        GV_lcnno1.DataBind()                         'นำข้อมูลมโชใน Gridview ชื่อ Gridview ว่า GV_lcnno   เพื่อให้ข้อมูลวิ่ง
+    End Sub
+    Sub load_GV_lcnno3()                             ' Gridview นำมาโชว์
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 4)
+
+
+        GV_lcnno2.DataSource = dt               'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
+        GV_lcnno2.DataBind()                         'นำข้อมูลมโชใน Gridview ชื่อ Gridview ว่า GV_lcnno   เพื่อให้ข้อมูลวิ่ง
+    End Sub
     Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
         Response.Redirect("FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden)
         'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "');", True)

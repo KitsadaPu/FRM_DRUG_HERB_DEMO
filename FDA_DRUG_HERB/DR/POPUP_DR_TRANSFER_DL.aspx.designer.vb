@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class POPUP_DR_TRANSFER_DL
-    
+
     '''<summary>
     '''RadScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class POPUP_DR_TRANSFER_DL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadScriptManager1 As Global.Telerik.Web.UI.RadScriptManager
-    
+
     '''<summary>
     '''RadioButtonList1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class POPUP_DR_TRANSFER_DL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadioButtonList1 As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''txt_lcnno_no control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class POPUP_DR_TRANSFER_DL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_lcnno_no As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btn_search control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class POPUP_DR_TRANSFER_DL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>

@@ -264,4 +264,45 @@
         Response.Write("<script type='text/javascript'>alert('ส่งเรื่องเรียบร้อยแล้ว'); parent.close_modal();</script> ")
         Response.Write("</script type >")
     End Sub
+
+    Protected Sub btn_hno_Click(sender As Object, e As EventArgs) Handles btn_hno.Click
+        Dim houseno As String = ""
+        houseno = txt_thacode_id_lo.Text
+
+        If houseno = "" Then
+            'alert_normal("กรุณาระบุรหัสประจำบ้าน")
+            Response.Write("<script type='text/javascript'>alert('กรุณาระบุรหัสประจำบ้าน');</script> ")
+            Response.Write("</script type >")
+        Else
+            Try
+                Dim ws As New WS_Taxno_TaxnoAuthorize.WebService1
+                Dim obj As New WS_Taxno_TaxnoAuthorize.HOUSENO
+                obj = ws.getDetail_Houseno_by_addressID(houseno)
+
+                'txt_houseno.Text = obj.AddressID
+                txt_thaaddr_lo.Text = obj.Address_No
+                'txt_thabuild.Text = ""
+                'txt_thafloor.Text = ""
+                txt_thamu_lo.Text = obj.Address_Moo
+                txt_thasoi_lo.Text = obj.Address_Soi
+                txt_tharoad_lo.Text = obj.Address_Road
+                txt_zipcode_lo.Text = obj.PostCode
+                Lb_tel_lo.Text = obj.Tel01
+                txt_fax_lo.Text = ""
+
+                ddl_chngwt.DropDownSelectText(obj.Address_Province)
+                amphrcd()
+                ddl_amphr.DropDownSelectText(obj.Address_Amphur)
+                thmblcd()
+                ddl_thumbol.DropDownSelectText(obj.Address_Tumbol)
+            Catch ex As Exception
+                Response.Write("<script type='text/javascript'>alert('ไม่พบข้อมูล');</script> ")
+                Response.Write("</script type >")
+            End Try
+
+            'lb_ampr_ws.Text = obj.Address_Amphur
+            'lb_thmbl_ws.Text = obj.Address_Tumbol
+            'lb_chngwt_ws.Text = obj.Address_Province
+        End If
+    End Sub
 End Class

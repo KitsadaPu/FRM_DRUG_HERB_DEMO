@@ -33,14 +33,15 @@ Public Class FRM_LCN_CONFIRM_DRUG
         'If Session("b64") IsNot Nothing Then
         '    b64 = Session("b64")
         'End If
-        Set_Label(_iden)
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        Set_Label(dao.fields.CITIZEN_ID_AUTHORIZE)
         setdata_frgn_data()
         setdata_current_data()
         setdata_DALCN()
         If Not IsPostBack Then
-            Dim dao As New DAO_DRUG.ClsDBdalcn
-            dao.GetDataby_IDA(_IDA)
-            If dao.fields.STATUS_ID >= 8 And dao.fields.STATUS_ID <> 11 Then
+
+            If dao.fields.STATUS_ID = 8 Then
                 BindData_PDF()
                 Panel1.Style.Add("display", "none")
             Else
@@ -86,7 +87,7 @@ Public Class FRM_LCN_CONFIRM_DRUG
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt_lcn As New DataTable
-        dt_lcn = bao.SP_Lisense_Name_and_Addr(_iden) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
+        dt_lcn = bao.SP_Lisense_Name_and_Addr(CITIZEN_ID_AUTHORIZE) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
 
         For Each dr As DataRow In dt_lcn.Rows
             'Try
@@ -791,7 +792,7 @@ Public Class FRM_LCN_CONFIRM_DRUG
             '    btn_confirm.CssClass = "btn-danger btn-lg"
             '    btn_cancel.CssClass = "btn-danger btn-lg"
         End If
-        If dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 8 Then
+        If dao.fields.STATUS_ID = 8 Then
             btn_load.Enabled = True
             'btn_load.CssClass = "btn-danger btn-lg"
 
@@ -864,9 +865,9 @@ Public Class FRM_LCN_CONFIRM_DRUG
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(Integer.Parse(_IDA))
-        dao.fields.STATUS_ID = 7
+        dao.fields.STATUS_ID = 78
         dao.update()
-        AddLogStatus(7, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        AddLogStatus(78, _ProcessID, _CLS.CITIZEN_ID, _IDA)
     End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
@@ -1727,9 +1728,28 @@ Public Class FRM_LCN_CONFIRM_DRUG
             End If
         End If
 
+        Dim rcvno_format As String = ""
+        Dim RCV_DATE As String = ""
+        Try
+            rcvno_format = dao.fields.RCVNO_NEW
+        Catch ex As Exception
 
+        End Try
 
+        Dim rcvdate1 As Date
+        Dim rcvdate2 As String = ""
+        Try
+            If dao.fields.rcvdate IsNot Nothing Then
+                rcvdate1 = dao.fields.rcvdate
+                rcvdate2 = CDate(rcvdate1).ToString("dd/MM/yyy")
+            End If
 
+        Catch ex As Exception
+
+        End Try
+
+        class_xml.RCVNO_FORMAT = rcvno_format
+        class_xml.RCVDATE_DISPLAY = rcvdate2
         'If MAIN_LCN_IDA = 0 Then
         class_xml.LCNNO_SHOW = (lcnno_format)
         class_xml.LCNNO_SHOW_NUMTHAI = NumEng2Thai(lcnno_format)

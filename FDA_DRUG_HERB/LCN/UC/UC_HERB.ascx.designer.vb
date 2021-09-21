@@ -47,7 +47,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_name As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_ages control.
@@ -56,7 +56,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_ages As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_ages As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_nation control.
@@ -65,7 +65,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_nation As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_nation As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_iden control.
@@ -74,16 +74,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_iden As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_lcn_iden2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_lcn_iden2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_iden As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_addr control.
@@ -92,7 +83,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_addr As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_addr As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_floor control.
@@ -101,7 +92,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_floor As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_floor As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_room control.
@@ -110,7 +101,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_room As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_room As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_building control.
@@ -119,7 +110,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_building As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_building As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_mu control.
@@ -128,7 +119,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_mu As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_mu As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_soi control.
@@ -137,7 +128,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_soi As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_soi As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_road control.
@@ -146,7 +137,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_road As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_road As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_tambol control.
@@ -155,7 +146,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_tambol As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_tambol As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_amphor control.
@@ -164,7 +155,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_amphor As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_amphor As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_changwat control.
@@ -173,7 +164,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_changwat As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_changwat As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_zipcode control.
@@ -182,7 +173,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_zipcode As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_zipcode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_fax control.
@@ -191,7 +182,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_fax As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_fax As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_tel control.
@@ -200,7 +191,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_tel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_tel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lcn_email control.
@@ -209,7 +200,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lcn_email As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lcn_email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txt_da_opentime control.
@@ -237,6 +228,15 @@ Partial Public Class UC_HERB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TB_Personal As Global.System.Web.UI.HtmlControls.HtmlTable
+
+    '''<summary>
+    '''txt_nationality control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_nationality As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''TB_Personal_Type1 control.
@@ -425,7 +425,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_THAIFULLNAME As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_THAIFULLNAME As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_AGE control.
@@ -434,7 +434,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_AGE As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_AGE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Label20 control.
@@ -443,7 +443,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label20 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label20 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_IDENTIFY control.
@@ -452,7 +452,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_IDENTIFY As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_IDENTIFY As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_ADDR control.
@@ -461,7 +461,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_ADDR As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_ADDR As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_FLOOR control.
@@ -470,7 +470,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_FLOOR As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_FLOOR As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_ROOM control.
@@ -479,7 +479,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_ROOM As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_ROOM As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_BUILDING control.
@@ -488,7 +488,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_BUILDING As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_BUILDING As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_MOO control.
@@ -497,7 +497,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_MOO As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_MOO As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_SOI control.
@@ -506,7 +506,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_SOI As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_SOI As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_ROAD control.
@@ -515,7 +515,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_ROAD As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_ROAD As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_THMBL_NAME control.
@@ -524,7 +524,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_THMBL_NAME As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_THMBL_NAME As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_AMPHR_NAME control.
@@ -533,7 +533,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_AMPHR_NAME As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_AMPHR_NAME As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_thachngwtnm control.
@@ -542,7 +542,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_thachngwtnm As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_thachngwtnm As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_ZIPCODE control.
@@ -551,7 +551,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_ZIPCODE As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_ZIPCODE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_FAX control.
@@ -560,7 +560,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_FAX As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_FAX As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_BSN_TEL control.
@@ -569,7 +569,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_BSN_TEL As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_BSN_TEL As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Label33 control.
@@ -578,7 +578,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label33 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label33 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''cb_addr control.
@@ -776,7 +776,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thanameplace As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thanameplace As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_HOUSENO control.
@@ -785,7 +785,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_HOUSENO As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_HOUSENO As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thaaddr control.
@@ -794,7 +794,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thaaddr As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thaaddr As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thabuilding control.
@@ -803,7 +803,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thabuilding As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thabuilding As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thamu control.
@@ -812,7 +812,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thamu As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thamu As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thasoi control.
@@ -821,7 +821,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thasoi As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thasoi As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_tharoad control.
@@ -830,7 +830,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_tharoad As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_tharoad As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thathmblnm control.
@@ -839,7 +839,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thathmblnm As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thathmblnm As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thaamphrnm control.
@@ -848,7 +848,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thaamphrnm As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thaamphrnm As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_thachngwtnm control.
@@ -857,7 +857,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_thachngwtnm As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_thachngwtnm As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_zipcode control.
@@ -866,7 +866,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_zipcode As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_zipcode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_fax control.
@@ -875,7 +875,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_fax As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_fax As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_lct_tel control.
@@ -884,7 +884,7 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_lct_tel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_lct_tel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Label59 control.
@@ -893,5 +893,5 @@ Partial Public Class UC_HERB
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label59 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label59 As Global.System.Web.UI.WebControls.TextBox
 End Class

@@ -257,6 +257,24 @@ Partial Public Class TABEAN_YA_MAIN
     Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''UC_TRANFER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_TRANFER As Global.FDA_DRUG_HERB.UC_TRANFER
+
+    '''<summary>
     '''rg_tabean1 control.
     '''</summary>
     '''<remarks>

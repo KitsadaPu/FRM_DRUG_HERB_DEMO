@@ -91,7 +91,8 @@
                 <td style="width:70%  ; text-align:left" colspan="2">
 
                 <asp:TextBox ID="txt_thacode_id_lo"  runat="server" Width="70%" ></asp:TextBox>
-
+                    <asp:Button ID="btn_hno" runat="server" Text="ดึงข้อมูล" />
+                    (หมายเหตุ สามารถดึงได้ทีละเลข)
                 </td>
             </tr>
               <tr>

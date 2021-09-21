@@ -143,14 +143,6 @@
         <div class="col-lg-7"></div>
     </div>
 
-      <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <p style="color:red"> *หมายเหตุสีแดง 
-ภายหลังจากที่การดำเนินการแล้วเสร็จขอให้ท่านส่งเอกสารใบอนุญาตฉบับจริงมายังกลุ่มสถานที่ กองผลิตภัณฑ์สมุนไพร สำนักงานคณะกรรมการอาหารและยา เลขที่ 88/24 ถนนติวานนท์ ตำบลตลาดขวัญ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000 เพื่อประกอบการดำเนินการต่อไป</p>
-        </div>
-        <div class="col-lg-8"></div>
-    </div>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
@@ -190,6 +182,17 @@
                     <tr>
                         <td colspan="2">
                             <asp:Panel ID="Panel1" runat="server" Style="display: none;">
+                                <div class="row">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10">
+                                        <p style="color: red">
+                                            *หมายเหตุ
+ภายหลังจากที่การดำเนินการแล้วเสร็จขอให้ท่านส่งเอกสารใบอนุญาตฉบับจริงมายังกลุ่มสถานที่ กองผลิตภัณฑ์สมุนไพร สำนักงานคณะกรรมการอาหารและยา เลขที่ 88/24 ถนนติวานนท์ ตำบลตลาดขวัญ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000 เพื่อประกอบการดำเนินการต่อไป
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8"></div>
+                                </div>
+
                                 <uc1:UC_ATTACH_DRUG ID="uc102_1" runat="server" />
                                 <%-- <uc1:UC_ATTACH_DRUG ID="uc102_2" runat="server" />
                                     <uc1:UC_ATTACH_DRUG ID="uc102_3" runat="server" />--%>
@@ -199,16 +202,6 @@
                                 <%--    <uc1:UC_ATTACH_DRUG ID="UC_ATTACH_DRUG2" runat="server" />
                                     <uc1:UC_ATTACH_DRUG ID="UC_ATTACH_DRUG3" runat="server" />--%>
                             </asp:Panel>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <%--<asp:Button ID="btn_Upload" runat="server" Text="อัพโหลด" CssClass=" btn-lg" />--%>
-                                &nbsp;
-                 <%--<asp:Button ID="Button1" runat="server" Text="ปิด"  CssClass=" btn-lg" Width="150px"  />--%>
                         </td>
                     </tr>
                     <tr>

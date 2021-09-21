@@ -1331,6 +1331,43 @@ Public Class BAO_SHOW
         dt.TableName = "SP_DRUG_GROUP_LCN_HERB_SMP1"
         Return dt
     End Function
+    Public Function SP_DRUG_GROUP_LCN_HERB_SMP1_V2(ByVal LCN_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DRUG_GROUP_LCN_HERB_SMP1_V2 @LCN_IDA= '" & LCN_IDA & "'"
+        Dim dt As New DataTable
+        Try
+            dt = clsds.dsQueryselect(sql, conn_DRUG).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        dt.TableName = "SP_DRUG_GROUP_LCN_HERB_SMP1_V2"
+        Return dt
+    End Function
+
+    Public Function SP_DRUG_GROUP_HERB_NO3(ByVal LCN_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DRUG_GROUP_HERB_NO3 @LCN_IDA= '" & LCN_IDA & "'"
+        Dim dt As New DataTable
+        Try
+            dt = clsds.dsQueryselect(sql, conn_DRUG).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        dt.TableName = "SP_DRUG_GROUP_HERB_NO3"
+        Return dt
+    End Function
     '
     Public Function SP_LOCATION_ADDRESS_by_LOCATION_TYPE_CD_and_LCNSIDV2_1(ByVal LOCATION_TYPE_CD As Integer, ByVal iden As String) As DataTable
         Dim clsds As New ClassDataset
@@ -1441,6 +1478,24 @@ Public Class BAO_SHOW
             dt = AddDatatable(dt)
         End If
         dt.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA"
+        Return dt
+    End Function
+    Public Function SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA(ByVal LCN_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA @FK_IDA = " & LCN_IDA
+        Dim dt As New DataTable
+        Try
+            dt = clsds.dsQueryselect(sql, conn_DRUG).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        dt.TableName = "SP_MASTER_DALCN_DETAIL_LOCATION_KEEP_BY_IDA"
         Return dt
     End Function
     '

@@ -5,17 +5,22 @@
         Check_pdf()
     End Sub
     Private Sub Check_pdf()
-        Dim bao As New BAO.AppSettings
-        Dim imageUrl As String = HttpContext.Current.Request.Url.AbsoluteUri
-        Dim url() As String = imageUrl.Split("/")
-        Dim filename As String = url(url.Length - 1)
-        Dim saveLocation As String = _PATH_DEFALUT & "/upload/" & filename
+        Try
+            Dim bao As New BAO.AppSettings
+            Dim imageUrl As String = HttpContext.Current.Request.Url.AbsoluteUri
+            Dim url() As String = imageUrl.Split("/")
+            Dim filename As String = url(url.Length - 1)
+            Dim saveLocation As String = _PATH_DEFALUT & "/upload/" & filename
 
-        ' If Checkfile(saveLocation) = False Then
-        '     save_pdf(filename, saveLocation)
-        ' Else
-        load_pdf(saveLocation, filename)
-        ' End If
+            ' If Checkfile(saveLocation) = False Then
+            '     save_pdf(filename, saveLocation)
+            ' Else
+            load_pdf(saveLocation, filename)
+            ' End If
+        Catch ex As Exception
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่เจอไฟล์ PDF');", True)
+        End Try
+
 
     End Sub
     Private Sub load_pdf(ByVal FilePath As String, ByVal filename As String)

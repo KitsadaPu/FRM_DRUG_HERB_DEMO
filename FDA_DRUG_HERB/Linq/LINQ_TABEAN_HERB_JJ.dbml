@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LGT_DRUG_DEMO" Class="LINQ_TABEAN_HERB_JJDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.111.28.168;Initial Catalog=LGT_DRUG_DEMO;User ID=fusion" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LGT_DRUGConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.GEN_NO_JJ" Member="GEN_NO_JJs">
+    <Type Name="GEN_NO_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="YEAR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PVCODE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LCNNO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GENNO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FORMAT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GROUP_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="REF_IDA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_EATTING_JJ" Member="MAS_TABEAN_HERB_EATTING_JJs">
+    <Type Name="MAS_TABEAN_HERB_EATTING_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EATTING_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EATTING_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_EXPAND" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_NAME_DETAIL_JJ" Member="MAS_TABEAN_HERB_NAME_DETAIL_JJs">
+    <Type Name="MAS_TABEAN_HERB_NAME_DETAIL_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_SUB_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_SUB_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CATEGORY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CATEGORY_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_THAI" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_ENG" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RECIPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACCOUNT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ARTICLE_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRODUCT_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NATURE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PRODUCT_PROCESS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP_UNIT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP_UNIT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIZE_PACK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SYNDROME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SYNDROME_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROPERTIES" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIZE_USE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOW_USE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EATTING_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EATTING_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EATING_CONDITION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EATING_CONDITION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TREATMENT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TREATMENT_AGE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONTRAINDICATION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTRAINDICATION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WARNING_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WARNING_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CAUTION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CAUTION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADV_REACTIVETION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ADV_REACTIVETION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SALE_CHANNEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SALE_CHANNEL_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CITIZEN_ID_AUTHORIZE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CITIZEN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MENU_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDA_LCT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_ID_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDA_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DD_HERB_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DDHERB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVEFACT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_NAME_JJ" Member="MAS_TABEAN_HERB_NAME_JJs">
+    <Type Name="MAS_TABEAN_HERB_NAME_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HERB_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HERB_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_EXPAND" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_PRODUCT_AGE_JJ" Member="MAS_TABEAN_HERB_PRODUCT_AGE_JJs">
+    <Type Name="MAS_TABEAN_HERB_PRODUCT_AGE_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PRO_AGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRO_AGE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVEFACT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_USER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_USER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_PRODUCT_PROCESS_JJ" Member="MAS_TABEAN_HERB_PRODUCT_PROCESS_JJs">
+    <Type Name="MAS_TABEAN_HERB_PRODUCT_PROCESS_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DD_HERB_NAME_PRODUCT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HEAD_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DETAIL_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ" Member="MAS_TABEAN_HERB_RECIPE_PRODUCT_JJs">
+    <Type Name="MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DD_HERB_NAME_PRODUCT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NAME_FAKE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_REAL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TYPE_PERSON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_STATUS_JJ" Member="MAS_TABEAN_HERB_STATUS_JJs">
+    <Type Name="MAS_TABEAN_HERB_STATUS_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_GROUP_SUB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_EXPAND" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_STYPE_JJ" Member="MAS_TABEAN_HERB_STYPE_JJs">
+    <Type Name="MAS_TABEAN_HERB_STYPE_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_EXPAND" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_SYNDROME_JJ" Member="MAS_TABEAN_HERB_SYNDROME_JJs">
+    <Type Name="MAS_TABEAN_HERB_SYNDROME_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SYNDROME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SYNDROME_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_EXPAND" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_TABEAN_HERB_UPLOADFILE_JJ" Member="MAS_TABEAN_HERB_UPLOADFILE_JJs">
+    <Type Name="MAS_TABEAN_HERB_UPLOADFILE_JJ">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HEAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TITEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TITLE_ID2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SUB_MAIN_MENU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MAIN_MENU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ANNOTATION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SUB_MENU_GROUP" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="MENU_GROUP" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="ACTIVEFACT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TABEAN_HERB_UPLOAD_FILE_JJ" Member="TABEAN_HERB_UPLOAD_FILE_JJs">
+    <Type Name="TABEAN_HERB_UPLOAD_FILE_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NAME_FAKE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_REAL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TYPE_PERSON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_PERSON_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_BSN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_BSN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_LOCAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_LOCAL_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SUB_DOCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TABEAN_JJ" Member="TABEAN_JJs">
+    <Type Name="TABEAN_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PVNCD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LCN_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCNNO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_ADDR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LCN_THANAMEPLACE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CUSTOMER_IDENTIFY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COMPANY_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FOREIGN_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOREIGN_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FOREIGN_NAME_PLACE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOREIGN_NAME_PLACE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MAIN_PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MAIN_PROCESS_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TYPE_SUB_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TYPE_SUB_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CATEGORY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CATEGORY_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_PLACE_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_THAI" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_ENG" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STYPE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STYPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RECIPE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACCOUNT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ARTICLE_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRODUCT_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NATURE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PRODUCT_PROCESS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP_UNIT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WEIGHT_TABLE_CAP_UNIT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIZE_PACK" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SYNDROME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SYNDROME_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROPERTIES" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIZE_USE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOW_USE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EATTING_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EATTING_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EATING_CONDITION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EATING_CONDITION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TREATMENT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TREATMENT_AGE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TREATMENT_AGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TREATMENT_AGE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CONTRAINDICATION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTRAINDICATION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WARNING_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WARNING_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CAUTION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CAUTION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADV_REACTIVETION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ADV_REACTIVETION_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SALE_CHANNEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SALE_CHANNEL_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACCEPT_FORMULA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACCEPT_FORMULA" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACCEPT_FORMULA_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RGTTPCD_GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RGTTPCD_GROUP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RGTTPCD_GROUP_ENG" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DATE_REQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OFF_REQ_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OFF_REQ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DATE_OFFER" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NOTE_OFFER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OFF_OFFER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OFF_OFFER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DATE_APP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NOTE_APP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OFF_APP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OFF_APP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NOTE_EDIT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CITIZEN_ID_AUTHORIZE" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="CITIZEN_ID" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="MENU_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDA_LCT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_ID_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDA_LCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DD_HERB_NAME_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DDHERB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RCVNO_FULL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TR_ID_JJ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RGTTPCD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RGTTPCD" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RGTNO_JJ" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RGTNO_FULL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE_YEAR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVEFACT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TABEAN_JJ_SUB_PACKSIZE" Member="TABEAN_JJ_SUB_PACKSIZEs">
+    <Type Name="TABEAN_JJ_SUB_PACKSIZE">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_FSIZE_VOLUME" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PACK_FSIZE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_FSIZE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_FSIZE_UNIT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_FSIZE_UNIT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_SECSIZE_VOLUME" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PACK_SECSIZE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_SECSIZE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_SECSIZE_UNIT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_SECSIZE_UNIT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_THSSIZE_VOLUME" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PACK_THSIZE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_THSIZE_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_THSIZE_UNIT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PACK_THSIZE_UNIT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PACK_NOTE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVEFACT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TABEAN_TRANSACTION_JJ" Member="TABEAN_TRANSACTION_JJs">
+    <Type Name="TABEAN_TRANSACTION_JJ">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_IDA_JJ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CITIEZEN_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CITIEZEN_ID_AUTHORIZE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPLOAD_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REF_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOWNLOAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="GEN_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID_STR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
