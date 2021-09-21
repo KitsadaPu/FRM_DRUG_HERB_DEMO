@@ -200,7 +200,7 @@ Public Class UC_UPLOAD_PREVIEW
         Dim bao As New BAO_MASTER
         Dim dt As New DataTable
 
-        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 4)
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 5)
 
 
         GV_lcnno2.DataSource = dt               'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
