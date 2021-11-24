@@ -11,8 +11,8 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
-
+Partial Public Class FRM_HERB_TABEAN_EX_CONFIRM
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''lr_preview control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
-
+    
     '''<summary>
     '''btn_confirm control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_confirm As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btn_cancel control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btn_edit control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_edit As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btn_close control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_close As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''RadGrid2 control.
     '''</summary>
@@ -84,31 +84,4 @@ Partial Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''RadGrid3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''lbl_head1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_head1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btn_reload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_reload As Global.System.Web.UI.WebControls.Button
 End Class

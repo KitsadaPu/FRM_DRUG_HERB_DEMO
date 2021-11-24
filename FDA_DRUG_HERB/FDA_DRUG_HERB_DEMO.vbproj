@@ -650,6 +650,19 @@
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_MAIN_MEMU.aspx" />
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_NEW.aspx" />
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_OTHER.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_ADD.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_CONFIRM.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_DETAIL.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_EDIT.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_LCN.aspx" />
+    <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_MAIN.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx" />
+    <Content Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_MAIN.aspx" />
     <Content Include="HERB_TABEAN_NEW\FRM_HERB_TABEAN.aspx" />
     <Content Include="HERB_TABEAN_NEW\FRM_HERB_TABEAN_ADD_DETAIL.aspx" />
     <Content Include="HERB_TABEAN_NEW\FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE.aspx" />
@@ -5044,6 +5057,97 @@
     </Compile>
     <Compile Include="HERB_TABEAN\FRM_HERB_TABEAN_OTHER.aspx.vb">
       <DependentUpon>FRM_HERB_TABEAN_OTHER.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_ADD.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_ADD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_ADD.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_ADD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_CONFIRM.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_CONFIRM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_CONFIRM.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_CONFIRM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_DETAIL.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_DETAIL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_DETAIL.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_DETAIL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_EDIT.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_LCN.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_LCN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_LCN.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_LCN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_MAIN.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_MAIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_MAIN.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_MAIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_MAIN.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_MAIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EX_STAFF\FRM_HERB_TABEAN_EX_STAFF_MAIN.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_EX_STAFF_MAIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HERB_TABEAN_NEW\FRM_HERB_TABEAN.aspx.designer.vb">
