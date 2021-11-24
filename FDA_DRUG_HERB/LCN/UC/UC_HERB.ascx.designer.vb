@@ -725,6 +725,15 @@ Partial Public Class UC_HERB
     Protected WithEvents txt_c_tel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lbl_chk_tel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_chk_tel As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txt_c_email control.
     '''</summary>
     '''<remarks>
@@ -732,6 +741,15 @@ Partial Public Class UC_HERB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_c_email As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_chk_email control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_chk_email As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txt_GIVE_PASSPORT_NO control.

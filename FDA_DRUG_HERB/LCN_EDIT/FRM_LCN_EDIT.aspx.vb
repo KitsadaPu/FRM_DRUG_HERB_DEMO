@@ -8,6 +8,10 @@ Public Class FRM_LCN_EDIT
     Private _lct_ida As String = ""
     Private _IDA As String = ""
     Private _iden As String
+    Private _CLS_CITIZEN_ID_AUTHORIZE As String = ""
+    Private _CLS_CITIZEN_ID As String = ""
+    Private _CLS_THANM As String = ""
+
 
 
     Sub RunSession()
@@ -27,6 +31,9 @@ Public Class FRM_LCN_EDIT
         RunSession()
         If Not IsPostBack Then
             TEXT_LOAD()
+
+
+
         End If
 
     End Sub
@@ -56,16 +63,22 @@ Public Class FRM_LCN_EDIT
 
 
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
+            Dim TR_ID As String = item("TR_ID").Text
+            Dim LCN_EDIT_REASON_TYPE As Integer = item("LCN_EDIT_REASON_TYPE").Text
 
             Dim _process As String = ""
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
             dao_lcn.GetDataby_IDA(_IDA)
             _process = dao_lcn.fields.PROCESS_ID
 
-            If e.CommandName = "LCN_EDIT_DETAIL" Then
+
+
+            If e.CommandName = "DETAIL" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 1 & "');", True)
+            ElseIf e.CommandName = "LCN_EDIT_DETAIL" Then
                 If STATUS_ID = 9 Then
                     'lbl_head1.Text = "ข้อมูลขอเอกสาร (เพิ่มเติม) ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 2 & "');", True)
                 End If
             End If
         End If
@@ -78,17 +91,7 @@ Public Class FRM_LCN_EDIT
         Dim bao As New BAO_LCN.TABLE_VIEW
         dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA(_IDA, 2)
 
-        Dim status_id As Integer = 0
-
-        For Each dr In dt.Rows
-            status_id = dr("STATUS_ID")
-        Next
-
         RadGrid1.DataSource = dt
-
-        If status_id = 9 Then
-            RadGrid1.MasterTableView.GetColumn("LCN_EDIT_DETAIL").Visible = True
-        End If
 
 
     End Sub
@@ -112,7 +115,7 @@ Public Class FRM_LCN_EDIT
         If Request.QueryString("lcn_ida") = "" Then
 
         Else
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & status_id & "');", True)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & status_id & "&detail=" & 0 & "');", True)
         End If
     End Sub
 
@@ -129,8 +132,15 @@ Public Class FRM_LCN_EDIT
             H.Target = "_blank"
             H.NavigateUrl = "../LCN_EDIT/FRM_LCN_EDIT_PREVIEW_FILE.aspx?file_id=" & FILE_NUMBER_NAME & "&lcn_ida=" & lcn_ida
 
+
+            Dim HL2_SELECT As LinkButton = DirectCast(item("LCN_EDIT_DETAIL").Controls(0), LinkButton)
+            'HL2_SELECT.Style.Add("display", "none")
+
+            'HL2_SELECT.Style.Add("display", "none")
+
             If STATUS_ID <> 9 Then
-                H.Visible = False
+                HL2_SELECT.Style.Add("display", "none")
+                H.Style.Add("display", "none")
             End If
 
         End If

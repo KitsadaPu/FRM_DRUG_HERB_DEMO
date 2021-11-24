@@ -59,6 +59,46 @@
                 </div>
                 <div class="row" runat="server">
                     <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ประเภทค่าธรรเนียม</div>
+                    <div class="col-lg-6">
+                        <asp:DropDownList ID="DD_ML_ID" runat="server" DataValueField="ML_ID" DataTextField="ML_NAME" AutoPostBack="true"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">จำนวนเงิน</div>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="TXT_BATH" runat="server" Style="width: 100%" ReadOnly="true"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <%-- <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ส่วนลด %</div>
+                    <div class="col-lg-6">
+                         <asp:TextBox ID="TXT_MINUS"  runat="server" Style="width: 100%" AutoPostBack="True"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>--%>
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ส่วนลด %</div>
+                    <div class="col-lg-6">
+                        <asp:DropDownList ID="DDL_DISCOUNT" runat="server" DataValueField="DISCOUNT_ID" DataTextField="DISCOUNT" AutoPostBack="true"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ยอดสุทธิ</div>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="TXT_SUM" runat="server" Style="width: 100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
                     <div class="col-lg-4">หมายเหตุ</div>
                     <div class="col-lg-6">
                         <asp:TextBox ID="NOTE_OFFER" TextMode="MultiLine" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
@@ -80,6 +120,9 @@
                 <div class="col-lg-10">
                     <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="80%" />
                     <br />
+                    <asp:Button ID="btn_preview" runat="server" Text="Preview จจ.2" CssClass="btn-lg" Width="80%" />
+                    <br />
+                    <%--<asp:Button ID="btn_pass_ssid" runat="server" Text="ข้ามสถานะ" CssClass="btn-lg" Width="80%" />--%>
                     <%--<asp:Button ID="btn_download_jj2" runat="server" Text="Download จจ.2" CssClass="btn-lg" Width="80%" />--%>
                 </div>
                 <div class="col-lg-1"></div>
@@ -139,7 +182,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอจดแจ้ง(ผปก. แก้ไขข้อมูลเอกสาร)</h3>
+                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
                 </div>
             </div>
             <div class="row">
@@ -192,7 +235,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารยินยอมการใช้สูตร</h3>
+                    <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
             <div class="row">

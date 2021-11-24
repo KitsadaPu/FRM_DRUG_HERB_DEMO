@@ -108,4 +108,16 @@
         End If
 
     End Sub
+
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        Dim dao_dal As New DAO_DRUG.ClsDBdalcn
+        dao_dal.GetDataby_IDA(_IDA)
+        dao_dal.fields.STATUS_ID = 78
+        dao_dal.update()
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ยกเลิกคำขอแล้ว');parent.close_modal();", True)
+    End Sub
+
+    Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
+        Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
+    End Sub
 End Class

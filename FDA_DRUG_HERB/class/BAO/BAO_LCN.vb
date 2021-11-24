@@ -90,12 +90,22 @@ Namespace BAO_LCN
     End Class
     Public Class TABLE_VIEW
         Inherits connection_db
-        Public Function SP_LCN_APPROVE_EDIT_GET_DATA(ByVal lcn As Integer, ByVal staff_id As Integer) As DataTable
+        Public Function SP_LCN_APPROVE_EDIT_GET_DATA(ByVal lcn As Integer, ByVal staff As Integer) As DataTable
 
             Dim dt As New DataTable
             Dim qstr As String = ""
 
-            qstr = "exec SP_LCN_APPROVE_EDIT_GET_DATA @IDA= " & lcn & ",@STAFF_TYPE=" & staff_id
+            qstr = "exec SP_LCN_APPROVE_EDIT_GET_DATA @IDA=" & lcn & ",@STAFF_TYPE=" & staff
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+        Public Function SP_LCN_APPROVE_EDIT_GET_DATA_FILE_UPLOAD_FOR_UPDATE(ByVal lcn As Integer, ByVal ddl1 As Integer, ByVal ddl2 As Integer, ByVal typeCre As Integer, ByVal year As String) As DataTable
+
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_LCN_APPROVE_EDIT_GET_DATA_FILE_UPLOAD_FOR_UPDATE @LCN_IDA=" & lcn & ",@DDL1=" & ddl1 & ",@DDL2=" & ddl2 & ",@TYPE_CREATE=" & typeCre & ",@YEAR='" & year & "'"
             dt = Queryds(qstr)
 
             Return dt

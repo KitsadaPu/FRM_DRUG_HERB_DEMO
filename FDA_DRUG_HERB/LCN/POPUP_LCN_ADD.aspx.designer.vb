@@ -102,4 +102,22 @@ Partial Public Class POPUP_LCN_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_LCN_UPLOAD_FILE As Global.FDA_DRUG_HERB.UC_LCN_UPLOAD_FILE
+
+    '''<summary>
+    '''btn_sumit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_cancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 End Class

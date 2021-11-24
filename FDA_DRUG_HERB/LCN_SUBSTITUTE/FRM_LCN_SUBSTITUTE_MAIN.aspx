@@ -176,7 +176,7 @@
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
 
-                    <iframe id="f1" style="width: 100%; height: 600px;"></iframe>
+                    <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
 
                 </div>
             </div>
@@ -191,7 +191,7 @@
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
 
-                    <iframe id="f2" style="width: 100%; height: 600px;"></iframe>
+                    <iframe id="f2" style="width: 100%; height: 800px;"></iframe>
 
                 </div>
             </div>

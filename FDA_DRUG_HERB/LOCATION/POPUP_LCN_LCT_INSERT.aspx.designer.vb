@@ -410,6 +410,69 @@ Partial Public Class POPUP_LCN_LCT_INSERT
     Protected WithEvents txt_longitude As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''div_set_show1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents div_set_show1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''div_set_show2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents div_set_show2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''UC_ATTACH_LCN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_ATTACH_LCN As Global.FDA_DRUG_HERB.UC_ATTACH_LCN
+
+    '''<summary>
+    '''img_not control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents img_not As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''img_cf control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents img_cf As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbl_upload_file control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_upload_file As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btn_upload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_upload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''bnt_submit control.
     '''</summary>
     '''<remarks>

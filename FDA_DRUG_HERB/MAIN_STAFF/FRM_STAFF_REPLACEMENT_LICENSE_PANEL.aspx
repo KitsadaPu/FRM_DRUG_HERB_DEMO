@@ -22,6 +22,7 @@
                    <asp:Button ID="btn_LCN" runat="server" Text="ระบบสถานที่ด้านยา" />
                    <asp:Button ID="btn_dh" runat="server" Text="ระบบเภสัชเคมีภัณฑ์" />
                    <asp:Button ID="btn_dr" runat="server" Text="ระบบทะเบียนยา" />
+                        <%--<asp:Button ID="btn_dr0" runat="server" Text="เทสระบบสิททำแทน" />--%>
                         </asp:Panel>
                       
                     </div>

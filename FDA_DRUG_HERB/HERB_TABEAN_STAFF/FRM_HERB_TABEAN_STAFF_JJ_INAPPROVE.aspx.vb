@@ -82,7 +82,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
 
         Return dt
     End Function
@@ -109,7 +109,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
 
         Return dt
     End Function
@@ -132,7 +132,9 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
     End Sub
 
     Protected Sub DD_STATUS_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_STATUS.SelectedIndexChanged
-        If DD_STATUS.SelectedValue = 8 Then
+        If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ');", True)
+        ElseIf DD_STATUS.SelectedValue = 8 Then
             P12.Visible = True
         Else
             P12.Visible = False
@@ -166,6 +168,14 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
 
             Run_Pdf_Tabean_Herb_8()
             Run_Pdf_Tabean_Herb_JJ2_8()
+        ElseIf DD_STATUS.SelectedValue = 7 Then
+            dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+            dao.Update()
+
+            Dim bao_tran As New BAO_TRANSECTION
+            bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+            dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+            dao.Update()
         End If
 
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
@@ -205,7 +215,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
         dao.GetdatabyID_IDA(_IDA)
 
         Dim XML As New CLASS_GEN_XML.TABEAN_HERB_JJ
-        TB_JJ = XML.gen_xml(_IDA, _IDA_LCN)
+        TB_JJ = XML.gen_xml_2(_IDA, _IDA_LCN)
 
         Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
         dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ2", 0)
@@ -269,7 +279,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(dao.fields.DD_HERB_NAME_ID)
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(dao.fields.DD_HERB_NAME_ID, _ProcessID)
 
         Return dt
     End Function

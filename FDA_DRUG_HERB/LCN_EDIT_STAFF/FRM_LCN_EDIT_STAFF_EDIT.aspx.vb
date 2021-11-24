@@ -117,7 +117,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
                 tc = New TableCell
                 Dim img As New Image
-                Dim AA As String = "/Images/correct.png"
+                Dim AA As String = "https://meshlog.fda.moph.go.th/FDA_DRUG_HERB_DEMO/Images/correct.png"
                 img.ImageUrl = AA
                 img.Width = 20
                 img.Height = 20
@@ -139,7 +139,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
                 tc = New TableCell
                 Dim img As New Image
-                Dim AA As String = "/Images/cancel.png"
+                Dim AA As String = "https://meshlog.fda.moph.go.th/FDA_DRUG_HERB_DEMO/Images/cancel.png"
                 img.ImageUrl = AA
                 img.Width = 20
                 img.Height = 20
@@ -199,7 +199,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
         Dim tr_id As String = ""
         Dim lcn_edit_process As Integer = 0
         tr_id = dao.fields.TR_ID
@@ -220,7 +220,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
             Dim dd2_name As String = ""
 
             Dim GET_IDA_UPLOAD As Integer = 0
-            dao_up.GETDATA_BY_PROCESS_HEAD_ID_TITEL_ID(lcn_edit_process, HEAD_ID, _dd1_file, _dd2_file, 1)
+            dao_up.GETDATA_BY_PROCESS_HEAD_ID_TITEL_ID_TR_ID(lcn_edit_process, HEAD_ID, _dd1_file, _dd2_file, _TR_ID, 1)
 
             Try
                 GET_IDA_UPLOAD = dao_up.fields.IDA
@@ -230,6 +230,9 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
             If GET_IDA_UPLOAD = 0 Then
                 dao_up.fields.FK_IDA = _LCN_IDA
+
+                dao_up.fields.DATE_YEAR = con_year(Date.Now().Year())
+
                 dao_up.fields.PROCESS_ID = lcn_edit_process
                 dao_up.fields.TR_ID = tr_id
 
@@ -294,11 +297,12 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
         Dim tr_id As String = ""
         Dim lcn_edit_process As Integer = 0
         tr_id = dao.fields.TR_ID
         lcn_edit_process = dao.fields.LCN_PROCESS_ID
+        dao.update()
 
         For Each tr As TableRow In tb_type_menu.Rows
 
@@ -330,7 +334,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
                     Dim GET_IDA_UPLOAD As Integer = 0
 
-                    dao_f.GETDATA_BY_PROCESS_HEAD_ID_TITEL_ID(lcn_edit_process, HEAD_ID, _dd1_file, _dd2_file, 1)
+                    dao_f.GETDATA_BY_PROCESS_HEAD_ID_TITEL_ID_TR_ID(lcn_edit_process, HEAD_ID, _dd1_file, _dd2_file, tr_id, 1)
 
                     dao_f.fields.DATE_YEAR = con_year(Date.Now().Year())
                     dao_f.fields.NAME_FAKE = Name_fake

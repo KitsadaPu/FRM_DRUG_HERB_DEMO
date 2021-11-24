@@ -28,22 +28,27 @@ Public Class FDA_STAFF_LCN_EDIT
     End Sub
 
     Public Sub bind_data()
-        Dim dao_up_mas As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        dao_up_mas.GetDataby_FK_IDA(_IDA)
-        Dim dao_chk As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        dao_chk.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(_TR_ID, _ProcessID, dao_up_mas.fields.TYPE)
-        If dao_chk.fields.IDA = 0 Then
-            For Each dao_up_mas.fields In dao_up_mas.datas
-                Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
-                dao_up.fields.TR_ID = _TR_ID
-                dao_up.fields.PROCESS_ID = _ProcessID
-                dao_up.fields.FK_IDA = _IDA
-                dao_up.fields.TYPE = 2
-                dao_up.fields.CREATE_DATE = Date.Now
-                dao_up.insert()
-            Next
-        End If
+        Try
+            Dim dao_up_mas As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao_up_mas.GetDataby_FK_IDA(_IDA)
+            Dim dao_chk As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao_chk.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(_TR_ID, _ProcessID, dao_up_mas.fields.TYPE)
+            If dao_chk.fields.IDA = 0 Then
+                For Each dao_up_mas.fields In dao_up_mas.datas
+                    Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.TR_ID = _TR_ID
+                    dao_up.fields.PROCESS_ID = _ProcessID
+                    dao_up.fields.FK_IDA = _IDA
+                    dao_up.fields.TYPE = 2
+                    dao_up.fields.CREATE_DATE = Date.Now
+                    dao_up.insert()
+                Next
+            End If
+        Catch ex As Exception
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ผู้ประกอบการยังไม่ได้อัพโหลดเอกสาาร');", True)
+        End Try
+
 
 
     End Sub

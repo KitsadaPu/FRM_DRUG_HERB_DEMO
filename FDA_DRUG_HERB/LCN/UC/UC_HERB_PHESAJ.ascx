@@ -22,39 +22,40 @@
 
         <div>
             <div class="row">
-                 <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
                 <div class="col-lg-1">บัตรประชาชน </div>
                 <div class="col-lg-2">
                     <asp:TextBox ID="txt_PHR_CTZNO" runat="server"></asp:TextBox>
                 </div>
                 <div class="col-lg-2">
-                    <asp:Button ID="btn_search" runat="server" Text="ค้นหา"  CssClass="btn-sm"/>
+                    <asp:Button ID="btn_search" runat="server" Text="ค้นหา" CssClass="btn-sm" />
                 </div>
             </div>
 
             <div class="row">
-                 <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
                 <div class="col-lg-1">คำนำหน้าชื่อ  </div>
                 <div class="col-lg-2">
                     <asp:DropDownList ID="ddl_prefix" runat="server" DataTextField="thanm" DataValueField="prefixcd"></asp:DropDownList>
                 </div>
-                 <div class="col-lg-2">
+                <div class="col-lg-2">
                     <asp:Label ID="Label1" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาเลือกคำนำหน้า</p></asp:Label>
                 </div>
-                
+
             </div>
 
             <div class="row">
 
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
-                    &nbsp;&nbsp; ๔.๑ กรณีผู้ประกอบวิชาชีพ/ผู้ประกอบโรคศิลปะ ชื่อ </div>
+                    &nbsp;&nbsp; ๔.๑ กรณีผู้ประกอบวิชาชีพ/ผู้ประกอบโรคศิลปะ ชื่อ
+                </div>
                 <div class="col-lg-2">
-                     <asp:TextBox ID="txt_PHR_NAME" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_PHR_NAME" runat="server"></asp:TextBox>
                 </div>
                 <div class="col-lg-2">
                     <asp:DropDownList ID="ddl_phr_type" runat="server"></asp:DropDownList>
-                <asp:Label ID="Label3" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
                 </div>
 
             </div>
@@ -74,8 +75,8 @@
                     กรณีที่ไม่ไช้ผู้ประกอบวิชาชีพหรือผู้ปรกอบโรคคิลปะ ให้ระบุคุณวุฒิ
                 </div>
                 <div class="col-lg-2">
-                     <asp:TextBox ID="txt_STUDY_LEVEL" runat="server"></asp:TextBox>
-                     <asp:Label ID="Label2" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
+                    <asp:TextBox ID="txt_STUDY_LEVEL" runat="server"></asp:TextBox>
+                    <asp:Label ID="Label2" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุคุณวุฒิ</p></asp:Label>
                 </div>
                 <div class="col-lg-2">&nbsp;</div>
             </div>
@@ -108,12 +109,12 @@
                 <div class="col-lg-2">
                     <telerik:RadDatePicker ID="rdp_SIMINAR_DATE" runat="server"></telerik:RadDatePicker>
                 </div>
-                 <div class="col-lg-1">
+                <div class="col-lg-1">
                     เวลาทำการ
                 </div>
                 <div class="col-lg-2">
-                     <asp:TextBox ID="txt_PHR_TEXT_WORK_TIME" runat="server"></asp:TextBox>
-                     <asp:Label ID="Label4" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณากรอกเวลาทำการ</p> </asp:Label>
+                    <asp:TextBox ID="txt_PHR_TEXT_WORK_TIME" runat="server"></asp:TextBox>
+                    <asp:Label ID="Label4" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณากรอกเวลาทำการ</p> </asp:Label>
                 </div>
             </div>
         </div>
@@ -121,7 +122,7 @@
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-2">เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม </div>
-                <div class="col-lg-4" style="text-align:center">
+                <div class="col-lg-4" style="text-align: center">
                     <asp:RadioButtonList ID="rdl_mastra" runat="server" Enabled="False" RepeatDirection="Horizontal">
                         <asp:ListItem Value="1">มาตรา ๓๑</asp:ListItem>
                         <asp:ListItem Value="2">มาตรา ๓๒</asp:ListItem>
@@ -133,11 +134,14 @@
             </div>
         </div>
     </div>
-
-
     <br />
-
-    <asp:Button ID="btn_save" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" />
+  
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+            <asp:Button ID="btn_save" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" Height="45px" Width="320px" />
+        </div>
+    </div>
+    <br />
     <telerik:RadGrid ID="rgphr" runat="server" Width="90%">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PHR_IDA" NoMasterRecordsText="ไม่พบข้อมูล">
             <Columns>
@@ -157,10 +161,10 @@
                 <telerik:GridBoundColumn DataField="STUDY_LEVEL" FilterControlAltText="Filter STUDY_LEVEL column"
                     HeaderText="คุณวุฒิ" SortExpression="STUDY_LEVEL" UniqueName="STUDY_LEVEL">
                 </telerik:GridBoundColumn>
-                <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt"
+               <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt"
                     CommandName="edt" Text="แก้ไข">
                     <HeaderStyle Width="70px" />
-                </telerik:GridButtonColumn>
+                </telerik:GridButtonColumn>--%>
                 <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
                     CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="คุณต้องการลบผู้ปฏิบัติการหรือไม่">
                     <HeaderStyle Width="70px" />

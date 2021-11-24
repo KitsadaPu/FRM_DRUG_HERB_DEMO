@@ -18,7 +18,23 @@
             $('#myModal').modal('hide');
             $('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
         }
+        function Popups2(url) { // สำหรับทำ Div Popup
+            $('#myModal').modal('toggle'); // เป็นคำสั่งเปิดปิด
+            var i = $('#f1'); // ID ของ iframe   
+            i.attr("src", url); //  url ของ form ที่จะเปิด
+        }
+        function spin_space() { // คำสั่งสั่งปิด PopUp
+            //    alert('123456');
+            $('#spinner').toggle('slow');
+            //$('#myModal').modal('hide');
+            //$('#ContentPlaceHolder1_Button2').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
+        }
+        function closespinner() {
+            $('#spinner').fadeOut('slow');
+            alert('Download Success');
+            $('#ContentPlaceHolder1_Button1').click();
 
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,10 +44,10 @@
         <div class="col-lg-6" style="width: 40%; text-align: center">
             <asp:DropDownList ID="DD_HERB" runat="server" AutoPostBack="true">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="20309">ผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="20312">ผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
-                <asp:ListItem Value="20310">ผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ ประเภทยาพัฒนาจากสมุนไพร</asp:ListItem>
-                <asp:ListItem Value="20311">ประเภทยาตามองค์ความรู้การแพทย์ทางเลือก</asp:ListItem>
+                <asp:ListItem Value="20301">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาแผนไทย</asp:ListItem>
+                <asp:ListItem Value="20302">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาตามองค์ความรู้การแพทย์ทางเลือก</asp:ListItem>
+                <asp:ListItem Value="20303">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาพัฒนาจากสมุนไพร</asp:ListItem>
+                <asp:ListItem Value="20304">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
@@ -42,7 +58,7 @@
             <label id="herb_ya" runat="server" visible="false">เลือกชื่อยา</label>
         </div>
         <div class="col-lg-6" style="width: 40%; text-align: center">
-            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME" Visible="false"></asp:DropDownList>
+            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME_DD" Visible="false"></asp:DropDownList>
             <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME" Visible="false"></asp:DropDownList>
         </div>
         <div class="col-lg-2" style="width: 20%; text-align: left">
@@ -55,7 +71,7 @@
 
         <p class="h3">ข้อมุล</p>
         <hr />
-        <telerik:RadGrid ID="RadGrid1" runat="server">
+        <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="15">
             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                 <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -124,13 +140,23 @@
                     <telerik:GridButtonColumn ButtonType="LinkButton" Text="จจ.2"
                         CommandName="HL2_SELECT" UniqueName="HL2_SELECT">
                     </telerik:GridButtonColumn>
+                    <telerik:GridButtonColumn ButtonType="LinkButton" Text="ใบนัดหมาย"
+                        CommandName="HL3_SELECT" UniqueName="HL3_SELECT">
+                    </telerik:GridButtonColumn>
+                    <telerik:GridTemplateColumn>
+                        <ItemTemplate>
+                            <asp:HyperLink ID="HL4_SELECT" runat="server">ชำระเงิน</asp:HyperLink>
+                        </ItemTemplate>
+                    </telerik:GridTemplateColumn>
+                    <%-- <telerik:GridButtonColumn ButtonType="LinkButton" Text="ชำระเงิน"
+                        CommandName="HL4_SELECT" UniqueName="HL4_SELECT">
+                    </telerik:GridButtonColumn>--%>
                     <%--<telerik:GridButtonColumn ButtonType="LinkButton" Text="จจ.1"
                         CommandName="JJ1_SELECT" UniqueName="HL_SELECT">
                     </telerik:GridButtonColumn>
                     <telerik:GridButtonColumn ButtonType="LinkButton" Text="จจ.2"
                         CommandName="JJ2_SELECT" UniqueName="HL_SELECT">
                     </telerik:GridButtonColumn>--%>
-
                 </Columns>
 
                 <EditFormSettings>
@@ -151,11 +177,11 @@
         <div class="panel panel-info" style="width: 100%;">
             <div class="panel-heading  text-center">
                 <h1>
-                    <asp:Label ID="lbl_head1" runat="server" Text="-"></asp:Label></h1>
+                    <asp:Label ID="lbl_head1" runat="server" Text="รายละเอียด คำขอจดแจ้ง"></asp:Label></h1>
             </div>
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
             <div class="panel-body">
-                <iframe id="f1" style="width: 100%; height: 550px;"></iframe>
+                <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
             </div>
             <div class="panel-footer"></div>
         </div>

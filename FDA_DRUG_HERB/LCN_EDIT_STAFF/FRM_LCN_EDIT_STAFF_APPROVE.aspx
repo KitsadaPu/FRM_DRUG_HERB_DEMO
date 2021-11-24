@@ -43,7 +43,7 @@
             <div class="row">
                  <div class="col-lg-1"></div>
                 <div class="col-lg-4">
-                    วันที่เสนอลงนาม:
+                    วันที่อนุมัติ:
                 </div>
                 <div class="col-lg-6">
                    <asp:TextBox ID="TXT_APPROVE_DATE" runat="server"></asp:TextBox>
@@ -52,7 +52,7 @@
             <div class="row">
                  <div class="col-lg-1"></div>
                 <div class="col-lg-4">
-                    เจ้าหน้าที่เสนอลงนาม:
+                    เจ้าหน้าที่อนุมัติ:
                 </div>
                 <div class="col-lg-4">
                         <asp:DropDownList ID="DDL_APPROVE_STAFF" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="250px" AutoPostBack="true"></asp:DropDownList>

@@ -8,9 +8,10 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
     Private _TR_ID_LCN As String = ""
     Private _IDA_LCN As String = ""
     Private _DD_HERB_NAME_ID As String = ""
-    Private _DDHERB As String = ""
+    Private _PROCESS_JJ As String = ""
     Private _TR_ID_JJ As String = ""
     Private _PROCESS_ID_LCN As String = ""
+    Private _IDA As String = ""
 
     Sub RunSession()
         Try
@@ -28,18 +29,21 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         _TR_ID_LCN = Request.QueryString("TR_ID_LCN")
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _DD_HERB_NAME_ID = Request.QueryString("DD_HERB_NAME_ID")
-        _DDHERB = Request.QueryString("DDHERB")
+        _PROCESS_JJ = Request.QueryString("PROCESS_JJ")
         _TR_ID_JJ = Request.QueryString("TR_ID_JJ")
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
+        _IDA = Request.QueryString("IDA")
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
-            bind_dd_age_unit()
+            'bind_dd_age_unit()
             bind_dd_stype()
-            bind_dd_syndrome()
+            'bind_dd_syndrome()
             bind_dd_eatting()
+            'bind_dd_manufac()
+            bind_dd_storage()
 
             bind_rg()
 
@@ -51,16 +55,16 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         End If
     End Sub
 
-    Public Sub bind_dd_age_unit()
-        Dim dt As DataTable
-        Dim bao As New BAO_TABEAN_HERB.tb_dd
-        dt = bao.SP_DD_MAS_TABEAN_HERB_PRODUCT_AGE_JJ()
+    'Public Sub bind_dd_age_unit()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_dd
+    '    dt = bao.SP_DD_MAS_TABEAN_HERB_PRODUCT_AGE_JJ()
 
-        DD_PRO_AGE.DataSource = dt
-        DD_PRO_AGE.DataBind()
-        DD_PRO_AGE.Items.Insert(0, "-- กรุณาเลือก --")
+    '    DD_PRO_AGE.DataSource = dt
+    '    DD_PRO_AGE.DataBind()
+    '    DD_PRO_AGE.Items.Insert(0, "-- กรุณาเลือก --")
 
-    End Sub
+    'End Sub
 
     Public Sub bind_dd_stype()
         Dim dt As DataTable
@@ -73,16 +77,16 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
 
     End Sub
 
-    Public Sub bind_dd_syndrome()
-        Dim dt As DataTable
-        Dim bao As New BAO_TABEAN_HERB.tb_dd
-        dt = bao.SP_DD_MAS_TABEAN_HERB_SYNDROME_JJ()
+    'Public Sub bind_dd_syndrome()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_dd
+    '    dt = bao.SP_DD_MAS_TABEAN_HERB_SYNDROME_JJ()
 
-        DD_SYNDROME_ID.DataSource = dt
-        DD_SYNDROME_ID.DataBind()
-        DD_SYNDROME_ID.Items.Insert(0, "-- กรุณาเลือก --")
+    '    DD_SYNDROME_ID.DataSource = dt
+    '    DD_SYNDROME_ID.DataBind()
+    '    DD_SYNDROME_ID.Items.Insert(0, "-- กรุณาเลือก --")
 
-    End Sub
+    'End Sub
 
     Public Sub bind_dd_eatting()
         Dim dt As DataTable
@@ -94,6 +98,28 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         DD_EATTING_ID.Items.Insert(0, "-- กรุณาเลือก --")
 
     End Sub
+
+    Public Sub bind_dd_storage()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_DD_MAS_TABEAN_HERB_STORAGE_JJ()
+
+        DD_STORAGE_ID.DataSource = dt
+        DD_STORAGE_ID.DataBind()
+        DD_STORAGE_ID.Items.Insert(0, "-- กรุณาเลือก --")
+
+    End Sub
+
+    'Public Sub bind_dd_manufac()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_dd
+    '    dt = bao.SP_DD_MAS_TABEAN_HERB_MENUFACTRUE()
+
+    '    DD_MANUFAC_ID.DataSource = dt
+    '    DD_MANUFAC_ID.DataBind()
+    '    DD_MANUFAC_ID.Items.Insert(0, "-- กรุณาเลือก --")
+
+    'End Sub
 
     'Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
     '    Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
@@ -293,7 +319,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
     Public Sub bind_rg()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         Try
-            dao.GetdatabyID_IDA_LCN(_IDA_LCN, _DD_HERB_NAME_ID)
+            dao.GetdatabyID_IDA_DD_HERB_NAME_ID(_IDA, _DD_HERB_NAME_ID)
 
             NAME_JJ.Text = dao.fields.NAME_JJ
             NAME_PLACE_JJ.Text = dao.fields.LCN_NAME
@@ -317,17 +343,20 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
             ARTICLE_NO.Text = dao.fields.ARTICLE_NO
             PRODUCT_JJ.Text = dao.fields.PRODUCT_JJ
             NATURE.Text = dao.fields.NATURE
-            PRODUCT_PROCESS.Text = dao.fields.PRODUCT_PROCESS
-
+            'PRODUCT_PROCESS.Text = dao.fields.PRODUCT_PROCESS
+            'DD_MANUFAC_ID.SelectedValue = dao.fields.MANUFAC_ID
+            'dao.fields.MANUFAC_NAME_DETAIL = TXT_MENUFACTRUE_DETAIL
             Try
-                WEIGHT_TABLE_CAP.Text = dao.fields.WEIGHT_TABLE_CAP
-                DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedValue = dao.fields.WEIGHT_TABLE_CAP_UNIT_ID
+                'WEIGHT_TABLE_CAP.Text = dao.fields.WEIGHT_TABLE_CAP
+                'DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedValue = dao.fields.WEIGHT_TABLE_CAP_UNIT_ID
                 SIZE_PACK.Text = dao.fields.SIZE_PACK
             Catch ex As Exception
 
             End Try
 
-            DD_SYNDROME_ID.SelectedValue = dao.fields.SYNDROME_ID
+            'DD_SYNDROME_ID.SelectedValue = dao.fields.SYNDROME_ID
+            TXT_SYNDROME_DETAIL.Text = dao.fields.SYNDROME_NAME_DETAIL
+
             PROPERTIES.Text = dao.fields.PROPERTIES
             SIZE_USE.Text = dao.fields.SIZE_USE
             HOW_USE.Text = dao.fields.HOW_USE
@@ -337,13 +366,29 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
                 EATING_CONDITION_NAME.Text = dao.fields.EATING_CONDITION_NAME
                 R_EATING_CONDITION_TEXT.Visible = True
             End If
-            TREATMENT.Text = dao.fields.TREATMENT
-            TREATMENT_AGE.Text = dao.fields.TREATMENT_AGE
 
+            DD_STORAGE_ID.SelectedValue = dao.fields.STORAGE_ID
+            'TREATMENT.Text = dao.fields.TREATMENT
             Try
+                Dim TREATMENT_AGE As Integer = 0
+                Dim TREATMENT_AGE_MONTH As Integer = 0
+                If dao.fields.TREATMENT_AGE Is Nothing Then
+                    TREATMENT_AGE = 0
+                Else
+                    TREATMENT_AGE = dao.fields.TREATMENT_AGE
+                End If
+                If dao.fields.TREATMENT_AGE_MONTH Is Nothing Or dao.fields.TREATMENT_AGE_MONTH = "-" Then
+                    TREATMENT_AGE_MONTH = 0
+                Else
+                    TREATMENT_AGE_MONTH = dao.fields.TREATMENT_AGE_MONTH
+                End If
+
+                TREATMENT_AGE_YEAR.SelectedValue = TREATMENT_AGE
+                TREATMENT_AGE_MONTH_SUB.SelectedValue = TREATMENT_AGE_MONTH
+
                 'Dim dao_mas_product_age As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_PRODUCT_AGE_JJ
                 'dao_mas_product_age.GetdatabyID_PRO_AGE()
-                DD_PRO_AGE.SelectedValue = dao.fields.TREATMENT_AGE_ID
+                'DD_PRO_AGE.SelectedValue = dao.fields.TREATMENT_AGE_ID
                 'DD_PRO_AGE.SelectedItem.Text = dao.fields.TREATMENT_AGE_NAME
             Catch ex As Exception
 
@@ -377,7 +422,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
 
     End Sub
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        Response.Redirect("FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _DDHERB & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN)
+        Response.Redirect("FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN)
     End Sub
     Protected Sub R_EATING_CONDITION_SelectedIndexChanged(sender As Object, e As EventArgs) Handles R_EATING_CONDITION.SelectedIndexChanged
         If R_EATING_CONDITION.SelectedValue = 1 Then
@@ -418,7 +463,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_JJ_SUB_PACKSIZE(_DD_HERB_NAME_ID)
+        dt = bao.SP_TABEAN_JJ_SUB_PACKSIZE(_DD_HERB_NAME_ID, _PROCESS_JJ)
 
         Return dt
     End Function
@@ -431,7 +476,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID_JJ, 1)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID_JJ, 1, _PROCESS_JJ)
 
         Return dt
     End Function
@@ -458,7 +503,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(_DD_HERB_NAME_ID)
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(_DD_HERB_NAME_ID, _PROCESS_JJ)
 
         Return dt
     End Function
@@ -481,7 +526,14 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         End If
 
     End Sub
-
+    Protected Sub TREATMENT_AGE_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TREATMENT_AGE_YEAR.SelectedIndexChanged
+        If TREATMENT_AGE_YEAR.SelectedValue = "3" Then
+            TREATMENT_AGE_MONTH_SUB.ClearSelection()
+            TREATMENT_AGE_MONTH_SUB.Enabled = False
+        Else
+            TREATMENT_AGE_MONTH_SUB.Enabled = True
+        End If
+    End Sub
     'Protected Sub btn_download_jj1_Click(sender As Object, e As EventArgs) Handles btn_download_jj1.Click
     '    Response.ContentType = "Application/pdf"
     '    Response.AppendHeader("Content-Disposition", "attachment; filename=help.pdf")

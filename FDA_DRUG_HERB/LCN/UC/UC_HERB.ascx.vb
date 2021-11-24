@@ -982,6 +982,14 @@
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกจังหวัด');</script> ")
             Return False
 
+        ElseIf txt_c_tel.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเบอร์มือถือ');</script> ")
+            Return False
+
+        ElseIf txt_c_email.Text = "" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุข้อมูล e-mail');</script> ")
+            Return False
+
         ElseIf ddl_amphor.SelectedValue = "0" Then
             Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกอำเภอ');</script> ")
             Return False
@@ -1023,6 +1031,16 @@
             Label65.Style.Add("display", "initial")
         Else Label65.Style.Add("display", "none")
 
+        End If
+        If txt_c_email.Text = "" Then
+            lbl_chk_email.Style.Add("display", "initial")
+        Else
+            lbl_chk_email.Style.Add("display", "none")
+        End If
+        If txt_c_tel.Text = "" Then
+            lbl_chk_tel.Style.Add("display", "initial")
+        Else
+            lbl_chk_tel.Style.Add("display", "none")
         End If
 
     End Sub

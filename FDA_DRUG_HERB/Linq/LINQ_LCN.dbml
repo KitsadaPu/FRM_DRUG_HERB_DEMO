@@ -160,4 +160,553 @@
       <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL1_REASON" Member="LCN_APPROVE_EDIT_DDL1_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL1_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PHR_TEXT_JOB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_TEXT_NUM" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STUDY_LEVEL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_SAKHA" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_SIMINAR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIMINAR_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL9_REASON" Member="LCN_APPROVE_EDIT_DDL9_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL9_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PERSON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BS_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BS_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DOC_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOC_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRGN_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FRGN_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL2_REASON" Member="LCN_APPROVE_EDIT_DDL2_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL2_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL4_REASON" Member="LCN_APPROVE_EDIT_DDL4_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL4_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL6_REASON" Member="LCN_APPROVE_EDIT_DDL6_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL6_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL7_REASON" Member="LCN_APPROVE_EDIT_DDL7_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL7_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DALCN_BSN_THAIFULLNAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BSN_THAIFULLNAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_TEXT_JOB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL8_REASON" Member="LCN_APPROVE_EDIT_DDL8_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL8_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL10_REASON" Member="LCN_APPROVE_EDIT_DDL10_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL10_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL11_REASON" Member="LCN_APPROVE_EDIT_DDL11_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL11_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL5_REASON" Member="LCN_APPROVE_EDIT_DDL5_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL5_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL1_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL1_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL1_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PHR_TEXT_JOB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_TEXT_NUM" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STUDY_LEVEL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_SAKHA" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_SIMINAR" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SIMINAR_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL9_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL9_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL9_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PERSON_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BS_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BS_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DOC_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOC_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRGN_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FRGN_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL10_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL10_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL10_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL11_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL11_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL11_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL2_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL2_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL2_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL4_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL4_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL4_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL5_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL5_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL5_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FK_IDA_CHK_ROW" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COL1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="COL6_OTHER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL6_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL6_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL6_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="opentime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thathmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thaamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_thachngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KEEP_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL7_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL7_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL7_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DALCN_BSN_THAIFULLNAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BSN_THAIFULLNAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHR_TEXT_JOB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL8_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL8_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL8_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCT_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanameplace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HOUSENO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOG_STATUS_LCN_EDIT" Member="LOG_STATUS_LCN_EDITs">
+    <Type Name="LOG_STATUS_LCN_EDIT">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STATUS_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IDENTIFY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_DDL3_REASON" Member="LCN_APPROVE_EDIT_DDL3_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_DDL3_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thmblcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="amphrcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="chngwtcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LCN_APPROVE_EDIT_OLD_DDL3_REASON" Member="LCN_APPROVE_EDIT_OLD_DDL3_REASONs">
+    <Type Name="LCN_APPROVE_EDIT_OLD_DDL3_REASON">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ddl2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thabuilding" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thamu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thmblcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="amphrcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="chngwtcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_PASSPORT_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_NO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GIVE_WORK_LICENSE_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_BY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

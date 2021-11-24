@@ -35,7 +35,7 @@ Public Class UC_UPLOAD_PREVIEW
             load_GV_lcnno()
             load_GV_lcnno2()
             load_GV_lcnno3()
-
+            set_buttom()
             Dim dao As New DAO_DRUG.ClsDBdalcn
             dao.GetDataby_IDA(_IDA)
             If dao.fields.EDIT_UPLOAD_ID = 1 Then
@@ -45,8 +45,18 @@ Public Class UC_UPLOAD_PREVIEW
                 Panel1.Style.Add("display", "block")
                 Panel2.Style.Add("display", "block")
             End If
+
         End If
 
+    End Sub
+    Sub set_buttom()
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        If dao.fields.STATUS_ID = 1 Then
+            btn_up.Visible = True
+        Else
+            btn_up.Visible = False
+        End If
     End Sub
 
     Sub set_data()
@@ -200,7 +210,7 @@ Public Class UC_UPLOAD_PREVIEW
         Dim bao As New BAO_MASTER
         Dim dt As New DataTable
 
-        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 5)
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_FK_IDA_AND_TYPE(_IDA, 4)
 
 
         GV_lcnno2.DataSource = dt               'นำข้อมูลมโชในจาก SP มาไว้ที่ DataTable 
@@ -209,5 +219,9 @@ Public Class UC_UPLOAD_PREVIEW
     Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
         Response.Redirect("FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden)
         'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "');", True)
+    End Sub
+
+    Protected Sub btn_up_Click(sender As Object, e As EventArgs) Handles btn_up.Click
+        Response.Redirect("POPUP_LCN_EDIT_UPLOAD.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida)
     End Sub
 End Class

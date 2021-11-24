@@ -59,19 +59,20 @@ Public Class FRM_STAFF_LOCATION
 
 
     Protected Sub RadGrid1_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles RadGrid1.ItemDataBound
+
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
             item = e.Item
             Dim IDA As String = item("IDA").Text
             Dim TR_ID As String = item("TR_ID").Text
 
-
-            Dim H As HyperLink = e.Item.FindControl("HyperLink1")
+            Dim l_btn_view As LinkButton = DirectCast(item("view").Controls(0), LinkButton)
+            'Dim H As HyperLink = e.Item.FindControl("view")
 
 
             ' H.Attributes.Add("onclick", "Popups2('" & "FRM_STAFF_LOCATION_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "');")
-            '
-            H.Attributes.Add("onclick", "Popups2('" & "FRM_STAFF_LOCATION_DALCN_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "');")
+            l_btn_view.Attributes.Add("onclick", "Popups2('" & "FRM_STAFF_LOCATION_DALCN_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "'); return false;")
+            'l_btn_view.Attributes.Add("onclick", "Popups2('" & "FRM_STAFF_LOCATION_DALCN_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "');")
         End If
     End Sub
 
@@ -85,4 +86,19 @@ Public Class FRM_STAFF_LOCATION
         'RadGrid1.DataBind()
         RadGrid1.Rebind()
     End Sub
+
+    'Private Sub RadGrid1_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles RadGrid1.ItemCommand
+    '    If TypeOf e.Item Is GridDataItem Then
+    '        If e.CommandName = "view" Then
+    '            Dim item As GridDataItem
+    '            item = e.Item
+    '            Dim IDA As Integer = item("IDA").Text
+    '            Dim TR_ID As String = item("TR_ID").Text
+    '            _CLS.IDA = IDA
+    '            Session("CLS") = _CLS
+    '            Response.Redirect("FRM_STAFF_LOCATION_DALCN_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID)
+
+    '        End If
+    '    End If
+    'End Sub
 End Class

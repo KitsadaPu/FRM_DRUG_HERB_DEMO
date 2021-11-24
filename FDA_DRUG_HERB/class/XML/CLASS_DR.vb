@@ -457,6 +457,15 @@ Public Class CLASS_DR
             _TRANSFER = value
         End Set
     End Property
+    Private _TRANSFER_ID As String
+    Public Property TRANSFER_ID() As String
+        Get
+            Return _TRANSFER_ID
+        End Get
+        Set(ByVal value As String)
+            _TRANSFER_ID = value
+        End Set
+    End Property
 
     Private _SUBS_APP_DAY As String
     Public Property SUBS_APP_DAY() As String

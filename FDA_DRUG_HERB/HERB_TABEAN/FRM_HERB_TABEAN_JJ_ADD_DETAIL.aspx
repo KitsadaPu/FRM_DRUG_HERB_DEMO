@@ -17,13 +17,13 @@
             <label>ผู้ขอจดแจ้ง:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_JJ" runat="server" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="NAME_JJ" runat="server" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>ชื่อสถานที่:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_PLACE_JJ" runat="server" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="NAME_PLACE_JJ" runat="server" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -33,7 +33,7 @@
             <label>ชนิด:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_TYPE_NAME" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap">
+            <asp:DropDownList ID="DD_TYPE_NAME" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="false">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
                 <asp:ListItem Value="1">ยาจากสมุนไพร</asp:ListItem>
                 <asp:ListItem Value="2">ยาจากสมุนไพรเพื่อสุขภาพ</asp:ListItem>
@@ -43,11 +43,13 @@
             <label>ชนิดจากสมุนไพร:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_TYPE_SUB_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap">
+            <asp:DropDownList ID="DD_TYPE_SUB_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="true">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="1">ยาแผนไทย</asp:ListItem>
-                <asp:ListItem Value="2">ยาตามองค์ความรู้การแพทย์แผนทางเลือก</asp:ListItem>
-                <asp:ListItem Value="3">ยาพัฒนาจากสมุนไพร</asp:ListItem>
+                <asp:ListItem Value="1">ยาจากสมุนไพร (ยาแผนไทย)</asp:ListItem>
+                <asp:ListItem Value="2">ยาจากสมุนไพร (ยาแผนจีน)</asp:ListItem>
+                <asp:ListItem Value="3">ยาจากสมุนไพร (ยาพัฒนาจากสมุนไพร)</asp:ListItem>
+                <asp:ListItem Value="4">ผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
+                <%--<asp:ListItem Value="5">ยาพัฒนาจากสมุนไพร</asp:ListItem>--%>
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
@@ -58,14 +60,16 @@
             <label>ประเภท:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_CATEGORY_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap">
+            <asp:DropDownList ID="DD_CATEGORY_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="true">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="122">ผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="121">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="120">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="122">ผลิต ผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="121">นำเข้า ผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="1220">ผลิตเพื่อส่งออกเท่านั้น</asp:ListItem>
+                <asp:ListItem Value="1210">นำเข้าเพื่อส่งออกเท่านั้น</asp:ListItem>
+                <%--<asp:ListItem Value="120">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>--%>
             </asp:DropDownList>
         </div>
-    <div class="col-lg-1"></div>
+        <div class="col-lg-1"></div>
     </div>
     <div class="row" id="foreign" runat="server" visible="false">
         <hr />
@@ -136,8 +140,8 @@
                 <label>ที่อยู่ ผู้ผลิตต่างประเทศ:</label>
             </div>
             <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-                 <asp:TextBox ID="txt_address" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None"></asp:TextBox>
-                 <asp:TextBox ID="txt_address_ida" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None" Visible="false"></asp:TextBox>
+                <asp:TextBox ID="txt_address" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None"></asp:TextBox>
+                <asp:TextBox ID="txt_address_ida" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None" Visible="false"></asp:TextBox>
             </div>
             <div class="col-lg-1"></div>
         </div>
@@ -199,13 +203,13 @@
             <label>ชื่อภาษาไทย:</label>
         </div>
         <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_THAI" runat="server" Width="100%" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="NAME_THAI" runat="server" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>ชื่อภาษาอังกฤษ(ถ้ามี):</label>
         </div>
         <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_ENG" runat="server" Width="100%" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="NAME_ENG" runat="server" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -215,13 +219,13 @@
             <label>ชื่อภาษาต่างประเทศอื่น(ถ้ามี):</label>
         </div>
         <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_OTHER" runat="server" Width="100%" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="NAME_OTHER" runat="server" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>รูปแบบ:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_STYPE_ID" runat="server" DataValueField="STYPE_ID" DataTextField="STYPE_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap">
+            <asp:DropDownList ID="DD_STYPE_ID" runat="server" DataValueField="STYPE_ID" DataTextField="STYPE_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false">
                 <%--<asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
                 <asp:ListItem Value="1">แคปซูลแข็ง (hard capsule)</asp:ListItem>
                 <asp:ListItem Value="2">ผง (powder)</asp:ListItem>--%>
@@ -235,7 +239,7 @@
             <label>ขื่อตำรับ:</label>
         </div>
         <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="RECIPE_NAME" runat="server" Width="600px" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="RECIPE_NAME" runat="server" Width="600px" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -245,13 +249,13 @@
             <label>ตามบัญชี:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="ACCOUNT_NO" runat="server" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="ACCOUNT_NO" runat="server" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1" style="text-align: right;">
             <label>ข้อ:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="ARTICLE_NO" runat="server" BorderStyle="None"></asp:TextBox>
+            <asp:TextBox ID="ARTICLE_NO" runat="server" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -261,7 +265,7 @@
             <label>สำหรับผลิตภัณฑ์สมุนไพรที่ขอจดแจ้ง:</label>
         </div>
         <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="PRODUCT_JJ" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="PRODUCT_JJ" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -278,7 +282,7 @@
             <label>รายละเอียดขนาด:</label>
         </div>
         <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="SIZE_PACK" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="SIZE_PACK" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -356,17 +360,22 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="row">
+    <%--<div class="col-lg-3" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="PRODUCT_PROCESS" runat="server" Width="100%" BorderStyle="None"></asp:TextBox>
+        </div>--%>
+    <%--<asp:DropDownList ID="DD_MANUFAC_ID" runat="server" DataValueField="MANUFAC_ID" DataTextField="MANUFAC_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false"></asp:DropDownList>--%>
+    <%-- <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
             <label>กรรมวิธีการผลิต:</label>
         </div>
-        <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="PRODUCT_PROCESS" runat="server" Width="100%" BorderStyle="None"></asp:TextBox>
+        
+        <div class="col-lg-3">
+            <asp:TextBox ID="TXT_MENUFACTRUE_DETAIL" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
-    </div>
-    <div class="row">
+    </div>--%>
+    <%--<div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
             <label>น้ำหนักส่วนประกอบสำคัญต่อเม็ด / แคปซูล:</label>
@@ -382,20 +391,15 @@
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
-    </div>
+    </div>--%>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
             <label>กลุ่มอาการ:</label>
         </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_SYNDROME_ID" runat="server"  DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap">
-                <%--<asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="1">ยาขับน้ำคาวปลา</asp:ListItem>
-                <asp:ListItem Value="2">ยาแก้ปวดท้อง</asp:ListItem>
-                <asp:ListItem Value="3">ยาขับลม/บำรุงธาตุ</asp:ListItem>
-                <asp:ListItem Value="4">แก้ไข้</asp:ListItem>--%>
-            </asp:DropDownList>
+        <div class="col-lg-8">
+            <%--<asp:DropDownList ID="DD_SYNDROME_ID" runat="server"  DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false"></asp:DropDownList>--%>
+            <asp:TextBox ID="TXT_SYNDROME_DETAIL" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -405,7 +409,7 @@
             <label>สรรพคุณ:</label>
         </div>
         <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="PROPERTIES" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="PROPERTIES" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -415,7 +419,7 @@
             <label>ขนาดและวิธีการใช้:</label>
         </div>
         <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="SIZE_USE" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="SIZE_USE" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -424,14 +428,18 @@
         <div class="col-lg-2">
             <label>วิธีการใช้:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="HOW_USE" runat="server" BorderStyle="None"></asp:TextBox>
+        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="HOW_USE" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <label>วิธีเตรียมก่อนรับประทาน:</label>
         </div>
         <div class="col-lg-2">
-            <label>วิธีเตรียมก่อนระบประทาน:</label>
-        </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_EATTING_ID" runat="server" DataValueField="EATTING_ID" DataTextField="EATTING_NAME" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap">
+            <asp:DropDownList ID="DD_EATTING_ID" runat="server" DataValueField="EATTING_ID" DataTextField="EATTING_NAME" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="false">
                 <%--<asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
                 <asp:ListItem Value="1">ละลายน้ำต้มสุก</asp:ListItem>
                 <asp:ListItem Value="2">ละลายน้ำ</asp:ListItem>
@@ -446,13 +454,13 @@
             <label>เงื่อนไขการรับประทาน:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:RadioButtonList ID="R_EATING_CONDITION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+            <asp:RadioButtonList ID="R_EATING_CONDITION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
                 <asp:ListItem Value="1">มี</asp:ListItem>
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_EATING_CONDITION_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="EATING_CONDITION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="EATING_CONDITION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -461,22 +469,57 @@
         <div class="col-lg-2">
             <label>การเก็บรักษา:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <%--<div class="col-lg-2" style="border-bottom: #999999 1px dotted">
             <asp:TextBox ID="TREATMENT" runat="server" BorderStyle="None" Width="200px"></asp:TextBox>
+        </div>--%>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="DD_STORAGE_ID" runat="server" DataValueField="PRO_MT_ID" DataTextField="PRO_MT_NAME" Style="width: 100%" Enabled="false"></asp:DropDownList>
         </div>
         <div class="col-lg-2">
             <label>อายุการเก็บรักษา:</label>
         </div>
         <div class="col-lg-1" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="TREATMENT_AGE" runat="server" BorderStyle="None" Width="200px"></asp:TextBox>
+            <%-- <asp:TextBox ID="TREATMENT_AGE" runat="server" BorderStyle="None" Width="200px" AutoPostBack="True" TextMode="Number"></asp:TextBox>--%>
+            <asp:DropDownList ID="TREATMENT_AGE_YEAR" runat="server" Width="80%" AutoPostBack="true">
+                <asp:ListItem Value="0">-</asp:ListItem>
+                <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:ListItem Value="2">2</asp:ListItem>
+                <asp:ListItem Value="3">3</asp:ListItem>
+            </asp:DropDownList>
         </div>
-        <div class="col-lg-1">
-            <label>หน่วย:</label><label style="color: red">*</label>
+        <%--  <div class="col-lg-1">
+           <label>ปี</label><label style="color: red">*</label>
+        <label>หน่วย:</label><label style="color: red">*</label>
+        </div>--%>
+        <div class="col-lg-1" style="text-align: center">
+            <label>ปี</label><label style="color: red">*</label>
+            <%--<asp:DropDownList ID="DD_PRO_AGE" runat="server" DataValueField="PRO_AGE_ID" DataTextField="PRO_AGE_NAME"  AutoPostBack="true"></asp:DropDownList>--%>
         </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_PRO_AGE" runat="server" DataValueField="PRO_AGE_ID" DataTextField="PRO_AGE_NAME" Style="width: 100%"></asp:DropDownList>
+        <%-- <div class="col-lg-1" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="TREATMENT_AGE_MONTH" runat="server" BorderStyle="None" Width="200px" AutoPostBack="True"></asp:TextBox>
+        </div>--%>
+        <div class="col-lg-1" id="div_hide" runat="server" style="border-bottom: #999999 1px dotted">
+            <%--<label>หน่วย:</label><label style="color: red">*</label>--%>
+
+            <asp:DropDownList ID="TREATMENT_AGE_MONTH_SUB" runat="server" Width="80%">
+                <asp:ListItem Value="0">-</asp:ListItem>
+                <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:ListItem Value="2">2</asp:ListItem>
+                <asp:ListItem Value="3">3</asp:ListItem>
+                <asp:ListItem Value="4">4</asp:ListItem>
+                <asp:ListItem Value="5">5</asp:ListItem>
+                <asp:ListItem Value="6">6</asp:ListItem>
+                <asp:ListItem Value="7">7</asp:ListItem>
+                <asp:ListItem Value="8">8</asp:ListItem>
+                <asp:ListItem Value="9">9</asp:ListItem>
+                <asp:ListItem Value="10">10</asp:ListItem>
+                <asp:ListItem Value="11">11</asp:ListItem>
+                <%-- <asp:ListItem Value="12">12</asp:ListItem>--%>
+            </asp:DropDownList>
         </div>
-        <div class="col-lg-1"></div>
+        <div class="col-lg-1" id="div_hide2" runat="server">
+            <label>เดือน</label>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
@@ -484,13 +527,13 @@
             <label>ข้อห้ามใช้:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:RadioButtonList ID="R_CONTRAINDICATION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+            <asp:RadioButtonList ID="R_CONTRAINDICATION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
                 <asp:ListItem Value="1">มี</asp:ListItem>
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_CONTRAINDICATION_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="CONTRAINDICATION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="CONTRAINDICATION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -500,13 +543,13 @@
             <label>คำเตือน:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:RadioButtonList ID="R_WARNING" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+            <asp:RadioButtonList ID="R_WARNING" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
                 <asp:ListItem Value="1">มี</asp:ListItem>
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_WARNING_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="WARNING_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="WARNING_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -516,13 +559,13 @@
             <label>ข้อควรระวัง:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:RadioButtonList ID="R_CAUTION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+            <asp:RadioButtonList ID="R_CAUTION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
                 <asp:ListItem Value="1">มี</asp:ListItem>
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_CAUTION_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="CAUTION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="CAUTION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -532,13 +575,13 @@
             <label>อาการไม่พึงประสงค์:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:RadioButtonList ID="R_ADV_REACTIVETION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+            <asp:RadioButtonList ID="R_ADV_REACTIVETION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
                 <asp:ListItem Value="1">มี</asp:ListItem>
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" runat="server" id="R_ADV_REACTIVETION_TEXT" visible="false">
-            <asp:TextBox ID="ADV_REACTIVETION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="ADV_REACTIVETION_NAME" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -548,7 +591,7 @@
             <label>ช่องทางการขาย:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_SALE_CHANNEL" runat="server" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" AutoPostBack="True">
+            <asp:DropDownList ID="DD_SALE_CHANNEL" runat="server" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" AutoPostBack="True" Enabled="false">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
                 <asp:ListItem Value="1">ผลิตภัณฑ์สมุนไพรขายทั่วไป</asp:ListItem>
                 <asp:ListItem Value="2">ผลิตภัณฑ์ขายในสถานที่มีใบอนุญาต</asp:ListItem>
@@ -563,7 +606,7 @@
             <label>บทสรุป ด้านคุณภาพ ความปลอดภัย และประสิทธิภาพ:</label>
         </div>
         <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NOTE" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <asp:TextBox ID="NOTE" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>

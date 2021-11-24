@@ -3,16 +3,22 @@ Imports Telerik.Web.UI
 
 Public Class FRM_LCN_EDIT_STAFF_SIGN
     Inherits System.Web.UI.Page
-    Private _CLS As New CLS_SESSION
+
     Private _LCN_IDA As Integer
-    Private _TR_ID As String
     Private _ProcessID As String
     Private _REASON_TYPE As String
     Private _STATUS_GROUP As Integer
     Private _STATUS_ID As Integer
-    Private _dd1_file As Integer
-    Private _dd2_file As Integer
+    Private _ddl1 As Integer
+    Private _ddl2 As Integer
     Private _IDA As Integer
+
+    Private _TR_LCN_EDIT As String
+
+    Private _CLS As New CLS_SESSION
+    Private _CLS_CITIZEN_ID_AUTHORIZE As String = ""
+    Private _CLS_CITIZEN_ID As String = ""
+    Private _CLS_THANM As String = ""
 
     Sub RunSession()
 
@@ -21,9 +27,13 @@ Public Class FRM_LCN_EDIT_STAFF_SIGN
         _STATUS_GROUP = Request.QueryString("STATUS_GROUP")
         _STATUS_ID = Request.QueryString("STATUS_ID")
 
-        _dd1_file = Request.QueryString("ddl_up1")
-        _dd2_file = Request.QueryString("ddl_up2")
+        _ddl1 = Request.QueryString("ddl_up1")
+        _ddl2 = Request.QueryString("ddl_up2")
         _IDA = Request.QueryString("IDA")
+
+        _TR_LCN_EDIT = Request.QueryString("TR_LCN_EDIT")
+
+
 
         Try
             _CLS = Session("CLS")
@@ -42,12 +52,15 @@ Public Class FRM_LCN_EDIT_STAFF_SIGN
 
             Run_PDF_SMP3()
         End If
+        _CLS_CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+        _CLS_CITIZEN_ID = _CLS.CITIZEN_ID
+        _CLS_THANM = _CLS.THANM
     End Sub
 
     Public Sub bind_data()
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataby_LCN_IDA_AND_YEAR_TR_ID_AND_ACTIVE(_LCN_IDA, _YEAR, _TR_LCN_EDIT, True)
         TXT_RQ_NUMBER.Text = dao.fields.STAFF_RQ_NUMBER
         TXT_SIGN_DATE.Text = Date.Now.ToString("dd/MM/yyyy")
     End Sub
@@ -125,9 +138,18 @@ Public Class FRM_LCN_EDIT_STAFF_SIGN
     End Sub
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
+
+        Dim dao_log As New DAO_DRUG.TB_LOG_STATUS
+        dao_log.fields.STATUS_ID = DD_STATUS.SelectedValue
+        dao_log.fields.PROCESS_ID = 10201
+        dao_log.fields.STATUS_DATE = System.DateTime.Now
+        dao_log.fields.IDENTIFY = _CLS_CITIZEN_ID
+        dao_log.fields.FK_IDA = _LCN_IDA
+        dao_log.insert()
+
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _ddl1, _YEAR, True)
 
         dao.fields.STATUS_ID = DD_STATUS.SelectedValue
         dao.fields.STATUS_NAME = DD_STATUS.SelectedItem.Text
@@ -143,6 +165,8 @@ Public Class FRM_LCN_EDIT_STAFF_SIGN
         dao.fields.STAFF_SIGN_NOTE = TXT_SIGN_NOTE.Text
 
         dao.update()
+
+
 
         Dim ida_xml As Integer = 0
         Dim process_xml As Integer = 0

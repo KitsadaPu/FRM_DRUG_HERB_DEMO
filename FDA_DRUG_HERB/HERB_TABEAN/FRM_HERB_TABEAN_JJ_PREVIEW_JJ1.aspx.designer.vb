@@ -30,4 +30,22 @@ Partial Public Class FRM_HERB_TABEAN_JJ_PREVIEW_JJ1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
+    
+    '''<summary>
+    '''RadGrid2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
+    '''RadGrid3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
 End Class

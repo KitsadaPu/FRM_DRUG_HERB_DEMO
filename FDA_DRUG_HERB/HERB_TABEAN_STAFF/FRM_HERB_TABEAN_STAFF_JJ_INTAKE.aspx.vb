@@ -154,7 +154,15 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
     Public Sub bind_dd()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
-        dt = bao.SP_DD_STATUS_JJ(1)
+        Dim ss_id As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        If dao.fields.STATUS_ID = 3 Then
+            ss_id = 1
+        ElseIf dao.fields.STATUS_ID = 5 Then
+            ss_id = 4
+        End If
+        dt = bao.SP_DD_STATUS_JJ(ss_id)
 
         DD_STATUS.DataSource = dt
         DD_STATUS.DataBind()
@@ -197,7 +205,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
 
         Return dt
     End Function
@@ -224,7 +232,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
 
         Return dt
     End Function
@@ -250,75 +258,94 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
 
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
+        If DD_STATUS.SelectedItem.Text.Contains("กรุณาเลือก") Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกสถานะ');", True)
+        Else
+            dao.fields.STATUS_ID = DD_STATUS.SelectedValue
 
+            'dao.fields.STATUS_ID = DD_STATUS.SelectedValue
 
-        dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+            If DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Then
 
-        If DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Then
+                If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Or DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ หรือ เลือกเจ้าหน้าที่');", True)
+                Else
+                    'dao.fields.RGTTPCD_ID = ddl_rgttpcd.SelectedItem.Value
+                    dao.fields.RGTTPCD = "G"
+                    'dao.fields.RGTNO_JJ = RGTNO_JJ.Text
+                    'dao.fields.RGTTPCD_GROUP_ID = ddl_tabean_group.SelectedItem.Value
+                    'dao.fields.RGTTPCD_GROUP = ddl_tabean_group.SelectedItem.Text
 
-            If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Or DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ หรือ เลือกเจ้าหน้าที่');", True)
-            Else
-                'dao.fields.RGTTPCD_ID = ddl_rgttpcd.SelectedItem.Value
-                dao.fields.RGTTPCD = "G"
-                'dao.fields.RGTNO_JJ = RGTNO_JJ.Text
-                'dao.fields.RGTTPCD_GROUP_ID = ddl_tabean_group.SelectedItem.Value
-                'dao.fields.RGTTPCD_GROUP = ddl_tabean_group.SelectedItem.Text
+                    'Dim dao_druggroup As New DAO_DRUG.ClsDBdrdrgtype
+                    'dao_druggroup.GetDataby_drgtpcd(dao.fields.RGTTPCD_GROUP_ID)
+                    'dao.fields.RGTTPCD_GROUP_ENG = dao_druggroup.fields.engdrgtpnm
 
-                'Dim dao_druggroup As New DAO_DRUG.ClsDBdrdrgtype
-                'dao_druggroup.GetDataby_drgtpcd(dao.fields.RGTTPCD_GROUP_ID)
-                'dao.fields.RGTTPCD_GROUP_ENG = dao_druggroup.fields.engdrgtpnm
+                    'dao.fields.RGTNO_FULL = ddl_rgttpcd.SelectedItem.Text & " " & RGTNO_JJ.Text & " " & dao.fields.RGTTPCD_GROUP_ENG
 
-                'dao.fields.RGTNO_FULL = ddl_rgttpcd.SelectedItem.Text & " " & RGTNO_JJ.Text & " " & dao.fields.RGTTPCD_GROUP_ENG
+                    Try
+                        dao.fields.DATE_REQ = DateTime.ParseExact(DATE_REQ.Text, "dd/MM/yyyy", New CultureInfo("th-TH").DateTimeFormat)
+                    Catch ex As Exception
+                        dao.fields.DATE_REQ = Date.Now
+                    End Try
 
-                Try
-                    dao.fields.DATE_REQ = DateTime.ParseExact(DATE_REQ.Text, "dd/MM/yyyy", New CultureInfo("th-TH").DateTimeFormat)
-                Catch ex As Exception
-                    dao.fields.DATE_REQ = Date.Now
-                End Try
+                    'dao.fields.OFF_REQ = OFF_REQ.Text
+                    dao.fields.OFF_REQ_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.OFF_REQ = DD_OFF_REQ.SelectedItem.Text
 
-                'dao.fields.OFF_REQ = OFF_REQ.Text
-                dao.fields.OFF_REQ_ID = DD_OFF_REQ.SelectedValue
-                dao.fields.OFF_REQ = DD_OFF_REQ.SelectedItem.Text
+                    'Dim TR_ID As String = dao.fields.TR_ID_JJ
+                    'Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+                    'Dim RCVNO_FULL As String = "HB" & " " & dao.fields.PVNCD & "-" & _ProcessID & "-" & DATE_YEAR & "-" & TR_ID
 
-                Dim TR_ID As String = dao.fields.TR_ID_JJ
-                Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
-                Dim RCVNO_FULL As String = "HB" & " " & dao.fields.PVNCD & "-" & _ProcessID & "-" & DATE_YEAR & "-" & TR_ID
+                    'dao.fields.RCVNO_FULL = RCVNO_FULL
 
-                dao.fields.RCVNO_FULL = RCVNO_FULL
+                    dao.Update()
 
-                dao.Update()
+                    Dim bao_tran As New BAO_TRANSECTION
+                    bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+
+                    Run_Pdf_Tabean_Herb_12_11()
+                    'Run_Pdf_Tabean_Herb_APPROVE_12_11()
+                End If
+
+            ElseIf DD_STATUS.SelectedValue = 4 Then
+
+                Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
+                dao_up_mas.GetdatabyID_TYPE(2)
+                For Each dao_up_mas.fields In dao_up_mas.datas
+                    Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.TR_ID = _TR_ID
+                    dao_up.fields.PROCESS_ID = _ProcessID
+                    dao_up.fields.FK_IDA = _IDA
+                    dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                    dao_up.fields.TYPE = 2
+                    dao_up.insert()
+                Next
 
                 Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
 
-                Run_Pdf_Tabean_Herb_12_11()
+                dao.Update()
+            ElseIf DD_STATUS.SelectedValue = 9 Then
+                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.Update()
+
+                Dim bao_tran As New BAO_TRANSECTION
+                bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.Update()
+            ElseIf DD_STATUS.SelectedValue = 14 Then
+                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.Update()
+
+                Dim bao_tran As New BAO_TRANSECTION
+                bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.Update()
             End If
 
-        ElseIf DD_STATUS.SelectedValue = 4 Then
-
-            Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
-            dao_up_mas.GetdatabyID_TYPE(2)
-            For Each dao_up_mas.fields In dao_up_mas.datas
-                Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
-                dao_up.fields.TR_ID = _TR_ID
-                dao_up.fields.PROCESS_ID = _ProcessID
-                dao_up.fields.FK_IDA = _IDA
-                dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                dao_up.fields.TYPE = 2
-                dao_up.insert()
-            Next
-
-            Dim bao_tran As New BAO_TRANSECTION
-            bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
-
-            dao.Update()
-        ElseIf DD_STATUS.SelectedValue = 9 Then
-            dao.Update()
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
         End If
-
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
     End Sub
 
     Public Sub Run_Pdf_Tabean_Herb_12_11()
@@ -338,6 +365,31 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_JJ1\" & dao_pdftemplate.fields.PDF_TEMPLATE
         Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
         Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_JJ("HB_XML", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+
+        LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _ProcessID, PATH_PDF_OUTPUT)
+
+        _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
+        _CLS.PDFNAME = PATH_PDF_OUTPUT
+        _CLS.FILENAME_XML = Path_XML
+    End Sub
+
+    Public Sub Run_Pdf_Tabean_Herb_APPROVE_12_11()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        Dim XML As New CLASS_GEN_XML.TABEAN_HERB_JJ
+        TB_JJ = XML.gen_xml_approve(_IDA, _IDA_LCN)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "APPROVE_JJ_1", 0)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_APPROVE") 'path
+        Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_APPROVE\" & dao_pdftemplate.fields.PDF_TEMPLATE
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_APPOINTMENT("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+        Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_APPOINTMENT("HB_XML", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
 
         LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _ProcessID, PATH_PDF_OUTPUT)
 
@@ -368,7 +420,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         dao.GetdatabyID_IDA(_IDA)
         Dim HERB_ID As Integer = dao.fields.DD_HERB_NAME_ID
 
-        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(HERB_ID)
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(HERB_ID, _ProcessID)
 
         Return dt
     End Function

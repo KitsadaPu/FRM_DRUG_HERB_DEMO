@@ -3,9 +3,9 @@ Imports Telerik.Web.UI
 
 Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
     Inherits System.Web.UI.Page
-    Private _CLS As New CLS_SESSION
+
     Private _LCN_IDA As Integer
-    Private _TR_ID As String
+    Private _TR_LCN_EDIT As String
 
     Private _REASON_TYPE As String
     Private _STATUS_GROUP As Integer
@@ -15,9 +15,16 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
     Private _PROCESS_ID As Integer
     Private _IDA As Integer
 
+    Private _CLS As New CLS_SESSION
+    Private _CLS_CITIZEN_ID_AUTHORIZE As String = ""
+    Private _CLS_CITIZEN_ID As String = ""
+    Private _CLS_THANM As String = ""
+
+
     Sub RunSession()
 
         _LCN_IDA = Request.QueryString("LCN_IDA")
+
         _REASON_TYPE = Request.QueryString("LCN_EDIT_REASON_TYPE")
         _STATUS_GROUP = Request.QueryString("STATUS_GROUP")
         _STATUS_ID = Request.QueryString("STATUS_ID")
@@ -25,6 +32,9 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
         _dd1_file = Request.QueryString("ddl_up1")
         _dd2_file = Request.QueryString("ddl_up2")
         _IDA = Request.QueryString("IDA")
+        _TR_LCN_EDIT = Request.QueryString("TR_LCN_EDIT")
+
+
 
 
         Try
@@ -47,12 +57,16 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
 
             'DD_STATUS.SelectedValue = _STATUS_ID
         End If
+        _CLS_CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+        _CLS_CITIZEN_ID = _CLS.CITIZEN_ID
+        _CLS_THANM = _CLS.THANM
     End Sub
 
     Public Sub bind_data()
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataby_LCN_IDA_AND_YEAR_TR_ID_AND_ACTIVE(_LCN_IDA, _YEAR, _TR_LCN_EDIT, True)
+
         _PROCESS_ID = dao.fields.LCN_PROCESS_ID
         TXT_RQ_NUM.Text = dao.fields.STAFF_RQ_NUMBER
         TXT_CHECK_DATE.Text = Date.Now.ToString("dd/MM/yyyy")
@@ -138,10 +152,19 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
         If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกสถานะ');", True)
         Else
+
+            Dim dao_log As New DAO_DRUG.TB_LOG_STATUS
+            dao_log.fields.STATUS_ID = DD_STATUS.SelectedValue
+            dao_log.fields.PROCESS_ID = 10201
+            dao_log.fields.STATUS_DATE = System.DateTime.Now
+            dao_log.fields.IDENTIFY = _CLS_CITIZEN_ID
+            dao_log.fields.FK_IDA = _LCN_IDA
+            dao_log.insert()
+
             Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
 
             Dim _YEAR As String = con_year(Date.Now().Year())
-            dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+            dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
 
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.fields.STATUS_NAME = DD_STATUS.SelectedItem.Text

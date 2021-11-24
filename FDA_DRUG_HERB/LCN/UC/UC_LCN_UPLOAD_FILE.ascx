@@ -98,7 +98,7 @@
             var targetBox2 = $("." + 9);
             var targetBox3 = $("." + 8);
             var targetBox4 = $("." + 111);
-            if (inputValue < 10) {
+            if (inputValue < 9) {
                 $(".myDiv").not(targetBox).hide();
                 $(targetBox).show();
                 $(".myDiv2").not(targetBox2).hide();
@@ -184,89 +184,21 @@
         <div class="row">
             <div class="col-lg-10" style="padding-left: 4em">
                 <asp:RadioButtonList ID="rdl_chk_local" runat="server" BackColor="White" BorderColor="White" BorderStyle="None" ForeColor="Black">
+                    <asp:ListItem Value="10">กรณีที่ผู้ขอรับอนุญาตเป็นเจ้าของกรรมสิทธิ์</asp:ListItem>
                     <asp:ListItem Value="11">กรณีที่ผู้ขอรับอนุญาตไม่ได้เป็นเจ้าของกรรมสิทธิ์</asp:ListItem>
-                    <asp:ListItem Value="12">กรณีทะเบียนบ้านไม่มีผู้อยู่อาศัย (ทะเบียนบ้านลอย) ใช้เอกสารอย่างใดอย่างหนึ่ง ดังนี้ </asp:ListItem>
+                    <asp:ListItem Value="12">กรณีทะเบียนบ้านไม่มีผู้อยู่อาศัย (ทะเบียนบ้านลอย) </asp:ListItem>
                 </asp:RadioButtonList>
             </div>
         </div>
     </div>
-    <%--  <div class="11 sub_mydiv" id="testdv">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    สำเนาทะเบียนบ้านของสถานที่ผลิต/นำเข้า/ขายผลิตภัณฑ์สมุนไพร
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO1" />
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    หนังสือยินยอมให้ใช้สถานที่ (ฉบับจริง) หรือ สำเนาสัญญาเช่าสถานที่
-
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO1_1" />
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    กรณีผู้ยินยอมให้ใช้สถานที่หรือผู้ให้เช่าเป็นบุคคลธรรมดา ให้แนบสำเนาบัตรประจำตัวประชาชนผู้ยินยอมให้ใช้สถานที่ และเซ็นต์รับรองสำเนาถูกต้อง
-
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO1_2" />
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    กรณีผู้ยินยอมให้ใช้สถานที่หรือผู้ให้เช่าเป็นนิติบุคคล ให้แนบหนังสือรับรองการจดทะเบียนนิติบุคคล พร้อมสำเนาบัตรประชาชนกรรมการผู้มีอำนาจตามหนังสือรับรองบริษัทและเซ็นต์รับรองสำเนาถูกต้อง
-
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO1_3" />
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    กรณีนามสกุลเดียวกันหรือสามีภรรยาจดทะเบียนสมรส ถูกต้องตามกฎหมาย ต้องมีหนังสือยินยอมให้ใช้สถานที่ (ฉบับจริง) พร้อมสำเนาบัตรประชาชนผู้ยินยอมให้ใช้สถานที่และเซ็นต์รับรองสำเนาถูกต้อง (กรณีสามีภรรยาเพิ่มเอกสารสำเนาทะเบียนสมรส)
-
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO1_4" />
-                </div>
-            </div>
-            <hr />
-        </div>
-
-        <div class="12 sub_mydiv">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-8">
-                    สำเนาสัญญาซื้อขาย สิ่งปลูกสร้าง หรือ สำเนาใบอนุญาตก่อสร้าง หรือ สำเนาเอกสารอ้างกรรมสิทธิ์ เช่น ใบเสร็จชำระค่าน้ำ ค่าไฟ
-                </div>
-                <div class="col-lg-3">
-                    <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN_NO2" />
-                </div>
-            </div>
-        </div>
-    </div>--%>
 
     <div class="8 myDiv3" id="show_bsn_div" runat="server">
         <asp:Panel ID="Panel2" runat="server">
             <div class="row">
                 <div class="col-lg-8" style="padding-left: 4em">
                     <asp:RadioButtonList ID="rdl_chk_bsn" runat="server">
-                        <asp:ListItem Value="66">ผู้ดำเนินกิจการยื่นเอง</asp:ListItem>
-                        <asp:ListItem Value="77">ผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเป็นบุคคลต่างด้าว</asp:ListItem>
+                        <asp:ListItem Value="66">ผู้รับมอบอำนาจ ยื่นเรื่องแทนผู้ดำเนินกิจการสัญชาติไทย</asp:ListItem> <%-- ผู้ดำเนินกิจการยื่นเอง --%>
+                        <asp:ListItem Value="77">ผู้ได้รับมอบอำนาจ ยื่นเรื่องแทนผู้ดำเนินกิจการที่เป็นบุคคลต่างด้าว</asp:ListItem> <%-- ผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเป็นบุคคลต่างด้าว --%>
                     </asp:RadioButtonList>
                 </div>
             </div>

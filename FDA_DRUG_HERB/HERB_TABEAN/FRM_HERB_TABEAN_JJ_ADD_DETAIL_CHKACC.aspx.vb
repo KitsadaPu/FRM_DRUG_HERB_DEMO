@@ -8,7 +8,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
     Private _TR_ID_LCN As String = ""
     Private _IDA_LCN As String = ""
     Private _DD_HERB_NAME_ID As String = ""
-    Private _DDHERB As String = ""
+    Private _PROCESS_JJ As String = ""
     Private _IDA As String = ""
     Private _PROCESS_ID_LCN As String = ""
 
@@ -28,7 +28,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
         _TR_ID_LCN = Request.QueryString("TR_ID_LCN")
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _DD_HERB_NAME_ID = Request.QueryString("DD_HERB_NAME_ID")
-        _DDHERB = Request.QueryString("DDHERB")
+        _PROCESS_JJ = Request.QueryString("PROCESS_JJ")
         _IDA = Request.QueryString("IDA")
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
 
@@ -38,14 +38,26 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
         If Not IsPostBack Then
             'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_REPORT_RDLC.aspx?IDA=" & _IDA & "&rpt=1' ></iframe>"
             'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/จจ๑.pdf'></iframe>"
+            bind_rg()
         End If
+    End Sub
+
+    Public Sub bind_rg()
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        If dao.fields.ACCEPT_FORMULA_ID <> 0 Then
+            ACCEPT_FORMULA_TEXT.Visible = True
+            ACCEPT_FORMULA.SelectedValue = dao.fields.ACCEPT_FORMULA_ID
+            ACCEPT_FORMULA_NOTE.Text = dao.fields.ACCEPT_FORMULA_NOTE
+        End If
+
     End Sub
 
     Function bind_data_file_recipe_production()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(_DD_HERB_NAME_ID)
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(_DD_HERB_NAME_ID, _PROCESS_JJ)
 
         Return dt
     End Function
@@ -71,9 +83,11 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
 
     Protected Sub ACCEPT_FORMULA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ACCEPT_FORMULA.SelectedIndexChanged
         If ACCEPT_FORMULA.SelectedValue = 1 Then
-            ACCEPT_FORMULA_TEXT.Visible = False
+            ACCEPT_FORMULA_TEXT.Visible = True
+            ACCEPT_FORMULA_NOTE.Text = "ข้าพเจ้ารับทราบรายละเอียดสูตรตำรับ และ กรรมวิธีการผลิต ตามเอกสารแนบ โดยข้าพเจ้าจะปฏิบัติตามรายละเอียดดังกล่าวทุกประการ ทั้งนี้หากสำนักงานคณะกรรมการอาหารและยาตรวจพบว่าข้าพเจ้าไม่ปฏิบัติตามรายละเอียดดังกล่าว ข้าพเจ้ายินยอมให้เพิกถอนเลขจดแจ้งได้ตามกฎหมาย"
         Else
             ACCEPT_FORMULA_TEXT.Visible = True
+            ACCEPT_FORMULA_NOTE.Text = "เนื่องด้วยคำขอนี้ เป็นคำขอจดแจ้งผลิตภัณฑ์สมุนไพร ซึ่งต้องมีรายละเอียดตามที่กำหนดไว้ จึงไม่สามารถแก้ไขรายละเอียดที่ถูกกำหนดไว้ได้ ในกรณีที่ท่านไม่ยอมรับการใช้สูตรและกรรมวิธีการผลิตตามที่ระบุ ท่านจะไม่สามารถยื่นคำขอได้ หากท่านต้องการใช้สูตร และ/หรือ กรรมวิธีการผลิต ที่ต่างไปจากที่กำหนดไว้ ขอให้ท่านยื่นคำขอในรูปแบบ การขึ้นทะเบียน หรือการแจ้งรายละเอียด (แล้วแต่กรณี)"
         End If
     End Sub
 
@@ -87,9 +101,9 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
 
             dao.fields.ACCEPT_FORMULA_ID = ACCEPT_FORMULA.SelectedValue
             dao.fields.ACCEPT_FORMULA = ACCEPT_FORMULA.SelectedItem.Text
-
+            dao.fields.ACCEPT_FORMULA_NOTE = ACCEPT_FORMULA_NOTE.Text
             dao.Update()
-            alert_summit("ยินยอม กรุณาแนบไฟล์", dao.fields.IDA)
+            alert_summit("กรุณาแนบไฟล์", dao.fields.IDA)
         Else
             dao.fields.ACCEPT_FORMULA_ID = ACCEPT_FORMULA.SelectedValue
             dao.fields.ACCEPT_FORMULA = ACCEPT_FORMULA.SelectedItem.Text
@@ -98,25 +112,26 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
                 ACCEPT_FORMULA_TEXT.Visible = True
             End If
 
-            dao.fields.ACTIVEFACT = False
+            dao.fields.ACTIVEFACT = True
+
             dao.Update()
-            alert_nosummit("ไม่ผ่านการขอ", dao.fields.IDA)
+            alert_nosummit("เนื่องด้วยคำขอนี้ เป็นคำขอจดแจ้งผลิตภัณฑ์สมุนไพร ซึ่งต้องมีสูตรและกรรมวิธีการผลิต ตามที่กำหนดไว้ในประกาศกระทรวงสาธารณสุข เรื่อง ชื่อ ประเภท ชนิดหรือลักษณะของผลิตภัณฑ์สมุนไพร ซึ่งการผลิตหรือนำเข้าเพื่อขาย ต้องได้รับใบสำคัญการขึ้นทะเบียนตำรับ ใบรับแจ้งรายละเอียดหรือใบรับจดแจ้ง และชื่อ ปริมาณ และเงื่อนไขของวัตถุที่อาจใช้เป็นส่วนผสมในผลิตภัณฑ์สมุนไพร สำหรับผลิตภัณฑ์สมุนไพรที่ขอจดแจ้ง พ.ศ. ๒๕๖๔ ในกรณีที่ท่านไม่ยอมรับการใช้สูตรและกรรมวิธีการผลิตตามที่ระบุ ท่านจะไม่สามารถยื่นคำขอได้ หากท่านต้องการใช้สูตร และ/หรือ กรรมวิธีการผลิต ที่ต่างไปจากที่กำหนดไว้ ขอให้ท่านยื่นคำขอในรูปแบบ การขึ้นทะเบียน หรือการแจ้งรายละเอียด (แล้วแต่กรณี)", dao.fields.IDA)
         End If
 
         Dim bao_tran As New BAO_TRANSECTION
-        bao_tran.insert_transection_jj(_DDHERB, dao.fields.IDA, 2)
+        bao_tran.insert_transection_jj(_PROCESS_JJ, dao.fields.IDA, 2)
 
     End Sub
 
     Sub alert_summit(ByVal text As String, ByVal ida_jj As Integer)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _DDHERB & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 
     Sub alert_nosummit(ByVal text As String, ByVal ida_jj As Integer)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _DDHERB & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 

@@ -10,6 +10,28 @@
             margin-bottom: 20px;
         }
     </style>
+    <link href="../css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+    <link href="../css/smoothness/jquery2.custom.css" rel="stylesheet" />
+    <script src="../Jsdate/ui.datepicker-th.js"></script>
+    <script src="../Jsdate/ui.datepicker.js"></script>
+    <script src="../Jsdate/jsdatemain_mol3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl1_SIMINAR_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl3_sub2_GIVE_PASSPORT_EXPDATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl3_sub2_GIVE_WORK_LICENSE_EXPDATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub1_PASSPORT_EXPDATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub1_BS_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub1_WORK_LICENSE_EXPDATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub1_DOC_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub1_FRGN_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub2_DOC_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub2_FRGN_DATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub2_GIVE_PASSPORT_EXPDATE"));
+            showdate($("#ContentPlaceHolder1_UC_LCN_EDIT1_text_edit_ddl9_sub2_GIVE_WORK_LICENSE_EXPDATE"));
+        });
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <uc1:UC_LCN_EDIT runat="server" ID="UC_LCN_EDIT1" />

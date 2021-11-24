@@ -52,6 +52,8 @@
                 rdl_chk_local.SelectedValue = 11
             ElseIf dao.fields.TYPE_LOCAL = 2 Then
                 rdl_chk_local.SelectedValue = 12
+            ElseIf dao.fields.TYPE_LOCAL = 3 Then
+                rdl_chk_local.SelectedValue = 10
             End If
         End If
         If dao.fields.TYPE_PERSON IsNot Nothing Then
@@ -198,16 +200,19 @@
         ElseIf rdl_chk_local.SelectedValue = 12 Then
             id = 2
             type_l = "กรณีทะเบียนบ้านไม่มีผู้อยู่อาศัย(ทะเบียนบ้านลอย)"
+        ElseIf rdl_chk_local.SelectedValue = 10 Then
+            id = 3
+            type_l = "กรณีที่ผู้ขอรับอนุญาตเป็นเจ้าของกรรมสิทธิ์"
         End If
 
         If rdl_chk_bsn.SelectedValue = "" Then
             id2 = 0
         ElseIf rdl_chk_bsn.SelectedValue = 66 Then
             id2 = 1
-            type_b = "ผู้ดำเนินกิจการยื่นเอง"
+            type_b = "ผู้รับมอบอำนาจ ยื่นเรื่องแทนผู้ดำเนินกิจการสัญชาติไทย"
         ElseIf rdl_chk_bsn.SelectedValue = 77 Then
             id2 = 2
-            type_b = "ผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเป็นบุคคลต่างด้าว"
+            type_b = "ผู้ได้รับมอบอำนาจ ยื่นเรื่องแทนผู้ดำเนินกิจการที่เป็นบุคคลต่างด้าว"
         End If
 
 

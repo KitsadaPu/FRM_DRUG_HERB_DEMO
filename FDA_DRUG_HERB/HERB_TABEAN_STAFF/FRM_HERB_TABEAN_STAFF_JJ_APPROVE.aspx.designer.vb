@@ -95,6 +95,60 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
     Protected WithEvents btn_download_jj1 As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''uc_upload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents uc_upload1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''UC_ATTACH1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_ATTACH1 As Global.FDA_DRUG_HERB.UC_ATTACH
+    
+    '''<summary>
+    '''uc_upload1_btn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents uc_upload1_btn As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''btn_savefileapprove_jj2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_savefileapprove_jj2 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''uc_upload1_radgrid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents uc_upload1_radgrid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''RadGrid4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
     '''RadGrid1 control.
     '''</summary>
     '''<remarks>

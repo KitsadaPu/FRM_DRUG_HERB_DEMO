@@ -3,6 +3,8 @@
 <%@ Register Src="~/UC/UC_ATTACH_LCN.ascx" TagPrefix="uc1" TagName="UC_ATTACH_LCN" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
      <script type="text/javascript">
         $(document).ready(function () {
             $(window).load(function () {
@@ -66,11 +68,6 @@
             width: 250px;
         }
 
-        .auto-style2 {
-            width: 38px;
-            height: 152px;
-        }
-
         .auto-style3 {
             width: 20px;
             height: 20px;
@@ -131,7 +128,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
-            <h3>เอกสารแนบแก้ไขคำขอจดแจ้ง</h3>
+            <h3>เอกสารแนบแก้ไข</h3>
         </div>
     </div>
     <div class="row">
@@ -148,13 +145,13 @@
                  <div class="col-lg-1" style="text-align: right">
                     <div runat="server" id="img_not" >
                     <img class="auto-style3"
-                        src="/Images/cancel.png"
+                        src="../Images/cancel.png"
                         alt=""
                         runat="server">
                         </div>
                      <div runat="server" id="img_cf" visible="False">
                     <img class="auto-style3"
-                        src="/Images/correct.png"
+                        src="../Images/correct.png"
                         alt=""
                         runat="server">
                         </div>

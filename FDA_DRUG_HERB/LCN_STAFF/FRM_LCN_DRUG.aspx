@@ -99,7 +99,7 @@
     
     </div>
 
-       <div class="panel panel-body"  style="width:100%;padding-left:5%;">
+       <div class="panel panel-body"  style="width:95%;padding-left:1%;">
            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True" Width ="100%">
                <MasterTableView AutoGenerateColumns="False">
                    <Columns>
@@ -129,6 +129,10 @@
                        </telerik:GridBoundColumn>
                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_Select"
                            CommandName="sel" Text="ดูข้อมูล">
+                           <HeaderStyle Width="70px" />
+                       </telerik:GridButtonColumn>
+                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_drug_group"
+                           CommandName="drug_group" Text="หมวดยา">
                            <HeaderStyle Width="70px" />
                        </telerik:GridButtonColumn>
                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_edit"
@@ -196,7 +200,7 @@
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
 
-                    <iframe id="f1" style="width: 100%; height: 600px;"></iframe>
+                    <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
 
                 </div>
             </div>
@@ -211,7 +215,7 @@
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
 
-                    <iframe id="f2" style="width: 100%; height: 600px;"></iframe>
+                    <iframe id="f2" style="width: 100%; height: 800px;"></iframe>
 
                 </div>
             </div>

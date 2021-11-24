@@ -25,6 +25,20 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
             'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/จจ๒.pdf'></iframe>"
             Run_Pdf_Tabean_Herb_JJ2()
             bind_data()
+
+            UC_ATTACH1.NAME = "เอกสาร จจ.2 ที่อนุมัติแล้ว"
+            UC_ATTACH1.BindData("เอกสาร จจ.2 ที่อนุมัติแล้ว", 1, "pdf", "0", "13")
+
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+            dao.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
+            Dim status_upload13 As Integer = dao.fields.TYPE
+            If status_upload13 = 13 Then
+                uc_upload1.Visible = False
+                uc_upload1_btn.Visible = False
+                uc_upload1_radgrid.Visible = True
+                RadGrid4.DataBind()
+            End If
+
         End If
     End Sub
 
@@ -65,7 +79,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
 
         Return dt
     End Function
@@ -92,7 +106,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
 
         Return dt
     End Function
@@ -161,7 +175,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(dao.fields.DD_HERB_NAME_ID)
+        dt = bao.SP_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ(dao.fields.DD_HERB_NAME_ID, _ProcessID)
 
         Return dt
     End Function
@@ -183,6 +197,60 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
 
         End If
 
+    End Sub
+
+    Protected Sub btn_savefileapprove_jj2_Click(sender As Object, e As EventArgs) Handles btn_savefileapprove_jj2.Click
+
+        If UC_ATTACH1.CHK_JJ = False Then
+            alert_nature("กรุณาแนบไฟล์ เอกสาร จจ.2 ที่อนุมัติแล้ว")
+        ElseIf UC_ATTACH1.CHK_JJ = False Then
+            alert_nature("กรุณาแนบไฟล์ เอกสาร จจ.2 ที่อนุมัติแล้ว")
+        Else
+            UC_ATTACH1.insert_JJ2(_TR_ID, _ProcessID, _IDA, 13)
+            alert_summit("อัพโหลดเอกสารแนบ จจ.2 เรียบร้อย")
+        End If
+
+        uc_upload1.Visible = False
+        uc_upload1_btn.Visible = False
+        uc_upload1_radgrid.Visible = True
+        RadGrid4.Rebind()
+    End Sub
+
+    Sub alert_summit(ByVal text As String)
+        'Dim url As String = ""
+        'url = "FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & _IDA_DQ & "&PROCESS_ID_DQ=" & _PROCESS_ID_DQ
+        'Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
+    End Sub
+
+    Sub alert_nature(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
+    End Sub
+
+    Function bind_data_uploadfile_13()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 13, _ProcessID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_13()
+    End Sub
+
+    Private Sub RadGrid4_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid4.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
     End Sub
 
 End Class

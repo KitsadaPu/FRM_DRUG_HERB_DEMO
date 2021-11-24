@@ -21,7 +21,7 @@ Public Class FRM_STAFF_LOCATION_CONFIRM
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
-        UC_GRID_ATTACH.load_gv(_TR_ID)
+        UC_GRID_ATTACH.load_gv_LCT(_TR_ID)
         If Not IsPostBack Then
             Bind_ddl_Status_staff()
             BindData_PDF()
@@ -30,7 +30,7 @@ Public Class FRM_STAFF_LOCATION_CONFIRM
         End If
     End Sub
     Private Sub Bind_GRID()
-        UC_GRID_ATTACH.load_gv(_TR_ID)
+        UC_GRID_ATTACH.load_gv_LCT(_TR_ID)
     End Sub
     Public Sub Bind_ddl_Status_staff()
         Dim dt As New DataTable
@@ -218,6 +218,15 @@ Public Class FRM_STAFF_LOCATION_CONFIRM
             dao.update()
             alert("ทำการบันทึกข้อมูลเรียบร้อยแล้ว คุณได้เลขรับที่ " & rcvno)
         ElseIf statusID = "8" Then
+            bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, "99", _IDA)
+            bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), rcvno)
+            dao.fields.STATUS_ID = ddl_status.SelectedItem.Value
+            Try
+                dao.fields.rcvdate = CDate(txt_app_date.Text)
+            Catch ex As Exception
+
+            End Try
+            dao.fields.rcvno = rcvno
             dao.fields.STATUS_ID = ddl_status.SelectedItem.Value
             dao.update()
             alert("ทำการอนุมัติข้อมูลเรียบร้อยแล้ว")

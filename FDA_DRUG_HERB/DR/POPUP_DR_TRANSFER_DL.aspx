@@ -89,10 +89,10 @@
                            CommandName="dow" Text="ดาวน์โหลดคำขอ Transfer">
                            <HeaderStyle Width="70px" />
                        </telerik:GridButtonColumn>
-                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_tranfer"
+                       <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_tranfer"
                                     CommandName="tranfer" Text="Transfer คำขอ">
                                     <HeaderStyle Width="70px" />
-                                </telerik:GridButtonColumn>
+                                </telerik:GridButtonColumn>--%>
                        <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_add"
                            CommandName="add" Text="เพิ่มข้อมูลส่วนที่ 2">
                            <HeaderStyle Width="70px" />

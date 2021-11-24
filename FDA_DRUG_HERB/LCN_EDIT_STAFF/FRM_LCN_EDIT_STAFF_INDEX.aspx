@@ -62,6 +62,9 @@
                    <telerik:GridBoundColumn DataField="FK_LCN_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_LCN_IDA column" HeaderText="FK_LCN_IDA"
                            SortExpression="FK_LCN_IDA" UniqueName="FK_LCN_IDA" Display="false" AllowFiltering="true">
                        </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FK_LOCATION_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_LOCATION_IDA column" HeaderText="FK_LOCATION_IDA"
+                           SortExpression="FK_LOCATION_IDA" UniqueName="FK_LOCATION_IDA" Display="false" AllowFiltering="true">
+                       </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="LCNNO" FilterControlAltText="Filter LCNNO column"
                            HeaderText="เลขใบอนุญาต" SortExpression="LCNNO" UniqueName="LCNNO" HeaderStyle-Width="100px">
                        </telerik:GridBoundColumn>
@@ -94,6 +97,10 @@
                        </telerik:GridBoundColumn>
                    <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="LCN_EDIT_DETAIL" HeaderText="ดูข้อมูล"
                         CommandName="LCN_EDIT_DETAIL" Text="ดูข้อมูล" ImageUrl="">
+                        <HeaderStyle Width="70px" />
+                    </telerik:GridButtonColumn>
+                    <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="SEE_DETAIL_SUB" HeaderText="ดูข้อมูล"
+                        CommandName="SEE_DETAIL_SUB" Text="ดูรายละเอียดการแก้ไข" ImageUrl="">
                         <HeaderStyle Width="70px" />
                     </telerik:GridButtonColumn>
                    </Columns>

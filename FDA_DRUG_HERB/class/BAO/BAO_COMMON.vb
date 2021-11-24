@@ -235,12 +235,12 @@ Module BAO_COMMON
             _p_dalcn_subtitute = value
         End Set
     End Property
-    Private _TB_SMP3 As New XML_CENTER.CLASS_DALCN_SUBSTITUTE
-    Public Property TB_SMP3() As XML_CENTER.CLASS_DALCN_SUBSTITUTE
+    Private _TB_SMP3 As New CLS_LCN_EDIT_SMP3
+    Public Property TB_SMP3() As CLS_LCN_EDIT_SMP3
         Get
             Return _TB_SMP3
         End Get
-        Set(ByVal value As XML_CENTER.CLASS_DALCN_SUBSTITUTE)
+        Set(ByVal value As CLS_LCN_EDIT_SMP3)
             _TB_SMP3 = value
         End Set
     End Property
@@ -327,6 +327,16 @@ Module BAO_COMMON
         End Set
     End Property
 
+    Private _TB_DRRGT_SUBSTITUTE As New CLASS_DRRGT_SUB
+    Public Property TB_DRRGT_SUBSTITUTE() As CLASS_DRRGT_SUB
+        Get
+            Return _TB_DRRGT_SUBSTITUTE
+        End Get
+        Set(ByVal value As CLASS_DRRGT_SUB)
+            _TB_DRRGT_SUBSTITUTE = value
+        End Set
+    End Property
+
     Private _p_SPC As New CLASS_DRRGT_SPC
     Public Property p_SPC() As CLASS_DRRGT_SPC
         Get
@@ -376,6 +386,26 @@ Module BAO_COMMON
         End Set
     End Property
 
+    Private _TB_AP As CLASS_APPOINTMENT
+    Public Property TB_AP() As CLASS_APPOINTMENT
+        Get
+            Return _TB_AP
+        End Get
+        Set(ByVal value As CLASS_APPOINTMENT)
+            _TB_AP = value
+        End Set
+    End Property
+
+    Private _TBN_NEW As CLASS_DRRQT
+    Public Property TBN_NEW() As CLASS_DRRQT
+        Get
+            Return _TBN_NEW
+        End Get
+        Set(ByVal value As CLASS_DRRQT)
+            _TBN_NEW = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' ProcessID 
     ''' 1 = สถานที่
@@ -392,52 +422,52 @@ Module BAO_COMMON
         If Checkfile(PATH_PDF_OUTPUT) = False Then
             'ตรวจสอบว่ามี XML มั้ย
             If Checkfile(PATH_XML) = False Then
-                If PROSESS_ID = 101 Or PROSESS_ID = 102 Or PROSESS_ID = 103 _
-                    Or PROSESS_ID = 104 Or PROSESS_ID = 105 Or PROSESS_ID = 106 _
-                    Or PROSESS_ID = 107 Or PROSESS_ID = 108 Or PROSESS_ID = 109 Then 'คือสถานที่
+                If PROSESS_ID = "101" Or PROSESS_ID = "102" Or PROSESS_ID = "103" Or PROSESS_ID = "104" Or PROSESS_ID = "105" Or PROSESS_ID = "106" Or PROSESS_ID = "107" Or PROSESS_ID = "108" Or PROSESS_ID = "109" Then 'คือสถานที่
                     'ส่ง PATH_XML ไป GEN XML
                     Dim cls_xml As New CLASS_GEN_XML.DALCN
                     cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
-                ElseIf PROSESS_ID = 11103 Or PROSESS_ID = 11104 Then
+                ElseIf PROSESS_ID = "11103" Or PROSESS_ID = "11104" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_EDIT_REQUEST
                     cls_xml.GEN_XML_DALCN_EDT(PATH_XML, p_dalcn_rqt)
-                ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
+                ElseIf PROSESS_ID = "100766" Or PROSESS_ID = "100767" Or PROSESS_ID = "100768" _
+                    Or PROSESS_ID = "100769" Or PROSESS_ID = "100770" Or PROSESS_ID = "100771" _
+                    Or PROSESS_ID = "100772" Or PROSESS_ID = "100773" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                     cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
-                ElseIf PROSESS_ID = 1 Or PROSESS_ID = 2 Or PROSESS_ID = 3 _
-                Or PROSESS_ID = 4 Or PROSESS_ID = 5 Then 'นยม
+                ElseIf PROSESS_ID = "1" Or PROSESS_ID = "2" Or PROSESS_ID = "3" _
+                Or PROSESS_ID = "4" Or PROSESS_ID = "5" Then 'นยม
                     Dim cls_xml As New CLASS_GEN_XML.DI
                     cls_xml.GEN_XML_DI(PATH_XML, p_di)
 
-                ElseIf PROSESS_ID = 31 Or PROSESS_ID = 32 Or PROSESS_ID = 33 _
-                Or PROSESS_ID = 34 Or PROSESS_ID = 35 Or PROSESS_ID = 36 Then 'cer
+                ElseIf PROSESS_ID = "31" Or PROSESS_ID = "32" Or PROSESS_ID = "33" _
+                Or PROSESS_ID = "34" Or PROSESS_ID = "35" Or PROSESS_ID = "36" Then 'cer
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_CER(PATH_XML, p_cer)
 
-                ElseIf PROSESS_ID = 7 Then 'ยาตัวอย่าง
+                ElseIf PROSESS_ID = "7" Then 'ยาตัวอย่าง
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DS(PATH_XML, p_ds)
 
-                ElseIf PROSESS_ID = 8 Then 'Placebo
+                ElseIf PROSESS_ID = "8" Then 'Placebo
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DP(PATH_XML, p_dp)
 
-                ElseIf PROSESS_ID = 9 Or PROSESS_ID = 19 Then 'บัญชีรายการ
+                ElseIf PROSESS_ID = "9" Or PROSESS_ID = "19" Then 'บัญชีรายการ
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_REGISTRATION(PATH_XML, p_REGISTRATION)
-                ElseIf PROSESS_ID = 130001 Or PROSESS_ID = 130002 Then 'บัญชีรายการ
+                ElseIf PROSESS_ID = "130001" Or PROSESS_ID = "130002" Then 'บัญชีรายการ
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_REGISTRATION(PATH_XML, p_REGISTRATION)
-                ElseIf PROSESS_ID = 10 Then ' ขออนุญาตผลิตภัณฑ์ยา
+                ElseIf PROSESS_ID = "10" Then ' ขออนุญาตผลิตภัณฑ์ยา
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DR(PATH_XML, p_dr)
-                ElseIf PROSESS_ID = 11 Then ' ทะเบียนยา
+                ElseIf PROSESS_ID = "11" Then ' ทะเบียนยา
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DR(PATH_XML, p_dr)
                     '
-                ElseIf PROSESS_ID = 1200001 Or PROSESS_ID = 1200002 Or PROSESS_ID = 1200003 Or PROSESS_ID = 1200004 Or PROSESS_ID = 1200005 Or PROSESS_ID = 1200006 _
-                   Or PROSESS_ID = 1200007 Or PROSESS_ID = 1200008 Or PROSESS_ID = 1200009 Or PROSESS_ID = 1200010 Or PROSESS_ID = 1200011 Or PROSESS_ID = 1200012 Or PROSESS_ID = 1200013 _
-                   Or PROSESS_ID = 1200014 Or PROSESS_ID = 1200015 Or PROSESS_ID = 1200016 Or PROSESS_ID = 1200017 Or PROSESS_ID = 1200018 Then ' ทะเบียนยา
+                ElseIf PROSESS_ID = "1200001" Or PROSESS_ID = "1200002" Or PROSESS_ID = "1200003" Or PROSESS_ID = "1200004" Or PROSESS_ID = "1200005" Or PROSESS_ID = "1200006" _
+                   Or PROSESS_ID = "1200007" Or PROSESS_ID = "1200008" Or PROSESS_ID = "1200009" Or PROSESS_ID = "1200010" Or PROSESS_ID = "1200011" Or PROSESS_ID = "1200012" Or PROSESS_ID = "1200013" _
+                   Or PROSESS_ID = "1200014" Or PROSESS_ID = "1200015" Or PROSESS_ID = "1200016" Or PROSESS_ID = "1200017" Or PROSESS_ID = "1200018" Then ' ทะเบียนยา
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DR(PATH_XML, p_dr)
                 ElseIf PROSESS_ID = "1007411" Or PROSESS_ID = "1007412" Or PROSESS_ID = "1007413" Or PROSESS_ID = "1007414" Or PROSESS_ID = "1007421" Or PROSESS_ID = "1007431" Or PROSESS_ID = "1007441" _
@@ -449,53 +479,56 @@ Module BAO_COMMON
                     'ElseIf PROSESS_ID = "1400001" And SUBSTITUTE = "" Then ' ทะเบียนยา
                     '    Dim cls_xml As New CLASS_GEN_XML.Center
                     '    cls_xml.GEN_XML_DR(PATH_XML, p_dr)
-                ElseIf PROSESS_ID = 12 Then ' โครงการวิจัย
+                ElseIf PROSESS_ID = "12" Then ' โครงการวิจัย
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DR(PATH_XML, p_dr)
-                ElseIf PROSESS_ID = 14 Or PROSESS_ID = 15 Or PROSESS_ID = 16 Or PROSESS_ID = 17 Or PROSESS_ID = 18 Then ' เภสัชเคมีภัณฑ์
+                ElseIf PROSESS_ID = "14" Or PROSESS_ID = "15" Or PROSESS_ID = "16" Or PROSESS_ID = "17" Or PROSESS_ID = "18" Then ' เภสัชเคมีภัณฑ์
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DH(PATH_XML, p_dh)
 
-                ElseIf PROSESS_ID = 99 Then ' สถานที่
+                ElseIf PROSESS_ID = "99" Then ' สถานที่
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_LOCATION(PATH_XML, p_LOCATION)
 
-                ElseIf PROSESS_ID = 98 Then ' สถานที่เก็บ
+                ElseIf PROSESS_ID = "98" Then ' สถานที่เก็บ
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_LOCATION(PATH_XML, p_LOCATION)
 
-                ElseIf PROSESS_ID = 1007001 Then
+                ElseIf PROSESS_ID = "1007001" Then
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_DRUG_CONSIDER_REQUESTS(PATH_XML, _p_DRUG_CONSIDER_REQUESTS)
 
 
-                ElseIf (PROSESS_ID = 110 Or PROSESS_ID = 111 Or PROSESS_ID = 112 Or PROSESS_ID = 113 _
-                    Or PROSESS_ID = 114 Or PROSESS_ID = 115 Or PROSESS_ID = 116 Or PROSESS_ID = 117 _
-                    Or PROSESS_ID = 118 Or PROSESS_ID = 119 Or PROSESS_ID = 120 Or PROSESS_ID = 121 _
-                    Or PROSESS_ID = 122 Or PROSESS_ID = 123 Or PROSESS_ID = 124 Or PROSESS_ID = 125 _
-                    Or PROSESS_ID = 126 Or PROSESS_ID = 127 Or PROSESS_ID = 128 Or PROSESS_ID = 129 Or PROSESS_ID = 130 _
-                    Or PROSESS_ID = 131 Or PROSESS_ID = 132 Or PROSESS_ID = 133 Or PROSESS_ID = 134) And temps = "" Then
+                ElseIf (PROSESS_ID = "110" Or PROSESS_ID = "111" Or PROSESS_ID = "112" Or PROSESS_ID = "113" _
+                    Or PROSESS_ID = "114" Or PROSESS_ID = "115" Or PROSESS_ID = "116" Or PROSESS_ID = "117" _
+                    Or PROSESS_ID = "118" Or PROSESS_ID = "119" Or PROSESS_ID = "120" Or PROSESS_ID = "121" _
+                    Or PROSESS_ID = "122" Or PROSESS_ID = "123" Or PROSESS_ID = "124" Or PROSESS_ID = "125" _
+                    Or PROSESS_ID = "126" Or PROSESS_ID = "127" Or PROSESS_ID = "128" Or PROSESS_ID = "129" Or PROSESS_ID = "130" _
+                    Or PROSESS_ID = "131" Or PROSESS_ID = "132" Or PROSESS_ID = "133" Or PROSESS_ID = "134") And temps = "" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN
                     cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
-                ElseIf (PROSESS_ID = 123 Or PROSESS_ID = 124 Or PROSESS_ID = 125 Or PROSESS_ID = 126 _
-                    Or PROSESS_ID = 127 Or PROSESS_ID = 128 Or PROSESS_ID = 129 Or PROSESS_ID = 130 _
-                    Or PROSESS_ID = 131 Or PROSESS_ID = 132 Or PROSESS_ID = 133 Or PROSESS_ID = 134) And temps <> "" Then
+                ElseIf (PROSESS_ID = "123" Or PROSESS_ID = "124" Or PROSESS_ID = "125" Or PROSESS_ID = "126" _
+                    Or PROSESS_ID = "127" Or PROSESS_ID = "128" Or PROSESS_ID = "129" Or PROSESS_ID = "130" _
+                    Or PROSESS_ID = "131" Or PROSESS_ID = "132" Or PROSESS_ID = "133" Or PROSESS_ID = "134") And temps <> "" Then
                     Dim cls_xml As New CLASS_GEN_XML.T_NCT_DALCN_TEMP
                     cls_xml.GEN_TEMP_NCT_DALCN(PATH_XML, p_temp_nct)
-                ElseIf PROSESS_ID = 1027 Or PROSESS_ID = 1028 Or PROSESS_ID = 1029 Then
+                ElseIf PROSESS_ID = "1027" Or PROSESS_ID = "1028" Or PROSESS_ID = "1029" Then
                     Dim cls_xml As New CLASS_GEN_XML.drsamp
                     cls_xml.GEN_XML_DRSAMP(PATH_XML, p_drsamp)
-                ElseIf PROSESS_ID = 1026 Then
+                ElseIf PROSESS_ID = "1026" Then
                     Dim cls_xml As New CLASS_GEN_XML.NYM1
                     cls_xml.GEN_XML_NORYORMOR1(PATH_XML, p_nym1)
-                ElseIf PROSESS_ID = 1701 Or PROSESS_ID = 1702 Or PROSESS_ID = 1703 Or PROSESS_ID = 1704 Or PROSESS_ID = 1705 Or PROSESS_ID = 1706 Or PROSESS_ID = 1707 Then 'ตระกูล 8
+                ElseIf PROSESS_ID = "1701" Or PROSESS_ID = "1702" Or PROSESS_ID = "1703" Or PROSESS_ID = "1704" _
+                    Or PROSESS_ID = "1705" Or PROSESS_ID = "1706" Or PROSESS_ID = "1707" Then 'ตระกูล 8
                     Dim cls_xml As New CLASS_GEN_XML.drsamp2
                     cls_xml.GEN_XML_DRSAMP(PATH_XML, p_drsamp)
-                ElseIf PROSESS_ID = 10061 Then
+                ElseIf PROSESS_ID = "10061" Then
                     Dim cls_xml As New CLASS_GEN_XML.Cerf
                     cls_xml.GEN_XML_CER_FOREIGN(PATH_XML, p_cerf)
-                ElseIf PROSESS_ID = 100741 Or PROSESS_ID = 100742 Or PROSESS_ID = 100743 Or PROSESS_ID = 100744 Or PROSESS_ID = 100745 _
-                    Or PROSESS_ID = 100746 Or PROSESS_ID = 100747 Or PROSESS_ID = 100748 Or PROSESS_ID = 100749 Or PROSESS_ID = 100750 Or PROSESS_ID = 100751 Or PROSESS_ID = "100753" Or PROSESS_ID = "100752" Or PROSESS_ID = "100754" Or PROSESS_ID = "100755" Then 'ต่ออายุใบอนุญาตสถานที่
+                ElseIf PROSESS_ID = "100741" Or PROSESS_ID = "100742" Or PROSESS_ID = "100743" Or PROSESS_ID = "100744" Or PROSESS_ID = "100745" _
+                    Or PROSESS_ID = "100746" Or PROSESS_ID = "100747" Or PROSESS_ID = "100748" Or PROSESS_ID = "100749" Or PROSESS_ID = "100750" _
+                    Or PROSESS_ID = "100751" Or PROSESS_ID = "100753" Or PROSESS_ID = "100752" Or PROSESS_ID = "100754" _
+                    Or PROSESS_ID = "100755" Then 'ต่ออายุใบอนุญาตสถานที่
                     Dim cls_xml As New CLASS_GEN_XML.EXTEND
                     cls_xml.GEN_XML_EXTEND(PATH_XML, extend)
                 ElseIf PROSESS_ID = "130099" Then
@@ -516,43 +549,66 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = "1400093" Then
                     Dim cls_xml As New CLASS_GEN_XML.DRRGT_PIL_GEN
                     cls_xml.GEN_DRRGT_PIL(PATH_XML, p_PIL)
-                ElseIf PROSESS_ID = "20309" Then
+                ElseIf PROSESS_ID = "20301" Then
                     Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
                     cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+                ElseIf PROSESS_ID = "20302" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                    cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+                ElseIf PROSESS_ID = "20303" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                    cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+                ElseIf PROSESS_ID = "20304" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                    cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+                ElseIf PROSESS_ID = "AP" Then
+                    Dim cls_xml As New CLASS_GEN_XML.APPOINTMAENT
+                    cls_xml.GEN_XML_TABEAN_AP(PATH_XML, _TB_AP)
+                ElseIf PROSESS_ID = "20101" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
                 ElseIf PROSESS_ID = "10201" Then
                     Dim cls_xml As New CLASS_GEN_XML.LCN_EDIT_SMP3
                     cls_xml.GEN_XML_TABEAN_SMP3(PATH_XML, _TB_SMP3)
-                ElseIf PROSESS_ID = 10401 Then
+                ElseIf PROSESS_ID = "20810" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TB
+                    cls_xml.GEN_DRRGT_SUBSTITUTE(PATH_XML, _TB_DRRGT_SUBSTITUTE)
+                ElseIf PROSESS_ID = "10401" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
                 End If
 
 
             Else
-                If PROSESS_ID = 101 Or PROSESS_ID = 102 Or PROSESS_ID = 103 _
-                   Or PROSESS_ID = 104 Or PROSESS_ID = 105 Or PROSESS_ID = 106 _
-                   Or PROSESS_ID = 107 Or PROSESS_ID = 108 Or PROSESS_ID = 109 Then 'คือสถานที่
+                If PROSESS_ID = "101" Or PROSESS_ID = "102" Or PROSESS_ID = "103" _
+                   Or PROSESS_ID = "104" Or PROSESS_ID = "105" Or PROSESS_ID = "106" _
+                   Or PROSESS_ID = "107" Or PROSESS_ID = "108" Or PROSESS_ID = "109" Then 'คือสถานที่
                     'ส่ง PATH_XML ไป GEN XML
                     Dim cls_xml As New CLASS_GEN_XML.DALCN
                     cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
-                ElseIf (PROSESS_ID = 110 Or PROSESS_ID = 111 Or PROSESS_ID = 112 Or PROSESS_ID = 113 _
-                        Or PROSESS_ID = 114 Or PROSESS_ID = 115 Or PROSESS_ID = 116 Or PROSESS_ID = 117 Or PROSESS_ID = 118 Or PROSESS_ID = 119 Or PROSESS_ID = 120 Or PROSESS_ID = 121 Or PROSESS_ID = 122 _
-                        Or PROSESS_ID = 123 Or PROSESS_ID = 124 Or PROSESS_ID = 125 _
-                    Or PROSESS_ID = 126 Or PROSESS_ID = 127 Or PROSESS_ID = 128) And temps = "" Then
+                ElseIf (PROSESS_ID = "110" Or PROSESS_ID = "111" Or PROSESS_ID = "112" Or PROSESS_ID = "113" _
+                        Or PROSESS_ID = "114" Or PROSESS_ID = "115" Or PROSESS_ID = "116" Or PROSESS_ID = "117" _
+                        Or PROSESS_ID = "118" Or PROSESS_ID = "119" Or PROSESS_ID = "120" Or PROSESS_ID = "121" Or PROSESS_ID = "122" _
+                        Or PROSESS_ID = "123" Or PROSESS_ID = "124" Or PROSESS_ID = "125" _
+                    Or PROSESS_ID = "126" Or PROSESS_ID = "127" Or PROSESS_ID = "128") And temps = "" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN
                     cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
-                ElseIf PROSESS_ID = 130001 Or PROSESS_ID = 130002 Then 'บัญชีรายการ
+                ElseIf PROSESS_ID = "130001" Or PROSESS_ID = "130002" Then 'บัญชีรายการ
                     Dim cls_xml As New CLASS_GEN_XML.Center
                     cls_xml.GEN_XML_REGISTRATION(PATH_XML, p_REGISTRATION)
-                ElseIf PROSESS_ID = 11103 Or PROSESS_ID = 11104 Then
+                ElseIf PROSESS_ID = "11103" Or PROSESS_ID = "11104" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_EDIT_REQUEST
                     cls_xml.GEN_XML_DALCN_EDT(PATH_XML, p_dalcn_rqt)
-                ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
+                ElseIf PROSESS_ID = "100766" Or PROSESS_ID = "100767" Or PROSESS_ID = "100768" _
+                    Or PROSESS_ID = "100769" Or PROSESS_ID = "100770" Or PROSESS_ID = "100771" _
+                    Or PROSESS_ID = "100772" Or PROSESS_ID = "100773" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                     cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
+                    'ElseIf PROSESS_ID = "AP" Then
+                    '    Dim cls_xml As New CLASS_GEN_XML.APPOINTMAENT
+                    '    cls_xml.GEN_XML_TABEAN_AP(PATH_XML, _TB_AP)
 
-
-                ElseIf PROSESS_ID = 10401 Then
+                ElseIf PROSESS_ID = "10401" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
                     'ElseIf SUBSTITUTE <> "" And PROSESS_ID = "1400001" Then ' ทะเบียนยา
@@ -600,9 +656,9 @@ Module BAO_COMMON
                 End Using
             End Using
         Else
-            If PROSESS_ID = 101 Or PROSESS_ID = 102 Or PROSESS_ID = 103 _
-                   Or PROSESS_ID = 104 Or PROSESS_ID = 105 Or PROSESS_ID = 106 _
-                   Or PROSESS_ID = 107 Or PROSESS_ID = 108 Or PROSESS_ID = 109 Then 'คือสถานที่
+            If PROSESS_ID = "101" Or PROSESS_ID = "102" Or PROSESS_ID = "103" _
+                   Or PROSESS_ID = "104" Or PROSESS_ID = "105" Or PROSESS_ID = "106" _
+                   Or PROSESS_ID = "107" Or PROSESS_ID = "108" Or PROSESS_ID = "109" Then 'คือสถานที่
                 'ส่ง PATH_XML ไป GEN XML
                 Dim cls_xml As New CLASS_GEN_XML.DALCN
                 cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
@@ -614,7 +670,7 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf PROSESS_ID = 11103 Or PROSESS_ID = 11104 Then
+            ElseIf PROSESS_ID = "11103" Or PROSESS_ID = "11104" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_EDIT_REQUEST
                 cls_xml.GEN_XML_DALCN_EDT(PATH_XML, p_dalcn_rqt)
 
@@ -625,10 +681,11 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf (PROSESS_ID = 110 Or PROSESS_ID = 111 Or PROSESS_ID = 112 Or PROSESS_ID = 113 _
-               Or PROSESS_ID = 114 Or PROSESS_ID = 115 Or PROSESS_ID = 116 Or PROSESS_ID = 117 Or PROSESS_ID = 118 Or PROSESS_ID = 119 Or PROSESS_ID = 120 Or PROSESS_ID = 121 Or PROSESS_ID = 122 Or PROSESS_ID = 123 Or PROSESS_ID = 124 Or PROSESS_ID = 125 _
-                    Or PROSESS_ID = 126 Or PROSESS_ID = 127 Or PROSESS_ID = 128 Or PROSESS_ID = 129 Or PROSESS_ID = 130 _
-                    Or PROSESS_ID = 131 Or PROSESS_ID = 132 Or PROSESS_ID = 133 Or PROSESS_ID = 134) And temps = "" Then
+            ElseIf (PROSESS_ID = "110" Or PROSESS_ID = "111" Or PROSESS_ID = "112" Or PROSESS_ID = "113" _
+               Or PROSESS_ID = "114" Or PROSESS_ID = "115" Or PROSESS_ID = "116" Or PROSESS_ID = "117" Or PROSESS_ID = "118" Or PROSESS_ID = "119" _
+               Or PROSESS_ID = "120 " Or PROSESS_ID = "121" Or PROSESS_ID = "122" Or PROSESS_ID = "123" Or PROSESS_ID = "124" Or PROSESS_ID = "125" _
+                    Or PROSESS_ID = "126" Or PROSESS_ID = "127" Or PROSESS_ID = "128" Or PROSESS_ID = "129" Or PROSESS_ID = "130" _
+                    Or PROSESS_ID = "131" Or PROSESS_ID = "132" Or PROSESS_ID = "133" Or PROSESS_ID = "134") And temps = "" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN
                 cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
@@ -646,12 +703,13 @@ Module BAO_COMMON
                 '            End Using
                 '        End Using
                 '    End Using
-            ElseIf PROSESS_ID = 31 Or PROSESS_ID = 32 Or PROSESS_ID = 33 _
-            Or PROSESS_ID = 34 Or PROSESS_ID = 35 Or PROSESS_ID = 36 Then 'cer
+            ElseIf PROSESS_ID = "31" Or PROSESS_ID = "32" Or PROSESS_ID = "33" _
+            Or PROSESS_ID = "34" Or PROSESS_ID = "35" Or PROSESS_ID = "36" Then 'cer
                 Dim cls_xml As New CLASS_GEN_XML.Center
                 cls_xml.GEN_XML_CER(PATH_XML, p_cer)
-            ElseIf PROSESS_ID = 100741 Or PROSESS_ID = 100742 Or PROSESS_ID = 100743 Or PROSESS_ID = 100744 Or PROSESS_ID = 100745 _
-                    Or PROSESS_ID = 100746 Or PROSESS_ID = 100747 Or PROSESS_ID = 100748 Or PROSESS_ID = 100749 Or PROSESS_ID = 100750 Or PROSESS_ID = 100751 Or PROSESS_ID = "100753" Or PROSESS_ID = "100752" Or PROSESS_ID = "100754" Or PROSESS_ID = "100755" Then 'cer
+            ElseIf PROSESS_ID = "100741" Or PROSESS_ID = "100742" Or PROSESS_ID = "100743" Or PROSESS_ID = "100744" Or PROSESS_ID = "100745" _
+                    Or PROSESS_ID = "100746" Or PROSESS_ID = "100747" Or PROSESS_ID = "100748" Or PROSESS_ID = "100749" Or PROSESS_ID = "100750" _
+                    Or PROSESS_ID = "100751" Or PROSESS_ID = "100753" Or PROSESS_ID = "100752" Or PROSESS_ID = "100754" Or PROSESS_ID = "100755" Then 'cer
                 Dim cls_xml As New CLASS_GEN_XML.EXTEND
                 cls_xml.GEN_XML_EXTEND(PATH_XML, extend)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
@@ -681,7 +739,8 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf PROSESS_ID = 100766 Or PROSESS_ID = 100767 Or PROSESS_ID = 100768 Or PROSESS_ID = 100769 Or PROSESS_ID = 100770 Or PROSESS_ID = 100771 Or PROSESS_ID = 100772 Or PROSESS_ID = 100773 Then
+            ElseIf PROSESS_ID = "100766" Or PROSESS_ID = "100767" Or PROSESS_ID = "100768" Or PROSESS_ID = "100769" _
+                Or PROSESS_ID = "100770" Or PROSESS_ID = "100771" Or PROSESS_ID = "100772" Or PROSESS_ID = "100773" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_NCT_SUB
                 cls_xml.GEN_XML_DALCN_SUB(PATH_XML, p_dalcn_sub)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
@@ -716,10 +775,78 @@ Module BAO_COMMON
                     End Using
                 End Using
 
-            ElseIf PROSESS_ID = "20309" Then
+            ElseIf PROSESS_ID = "20301" Then
                 Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
                 cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
 
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "20302" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "20303" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "20304" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
+                cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "20810" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TB
+                cls_xml.GEN_DRRGT_SUBSTITUTE(PATH_XML, _TB_DRRGT_SUBSTITUTE)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20101" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
                     Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
 
@@ -740,9 +867,9 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf (PROSESS_ID = 123 Or PROSESS_ID = 124 Or PROSESS_ID = 125 Or PROSESS_ID = 126 _
-               Or PROSESS_ID = 127 Or PROSESS_ID = 128 Or PROSESS_ID = 129 Or PROSESS_ID = 130 _
-               Or PROSESS_ID = 131 Or PROSESS_ID = 132 Or PROSESS_ID = 133 Or PROSESS_ID = 134) And temps <> "" Then
+            ElseIf (PROSESS_ID = "123" Or PROSESS_ID = "124" Or PROSESS_ID = "125" Or PROSESS_ID = "126" _
+               Or PROSESS_ID = "127" Or PROSESS_ID = "128" Or PROSESS_ID = "129" Or PROSESS_ID = "130" _
+               Or PROSESS_ID = "131" Or PROSESS_ID = "132" Or PROSESS_ID = "133" Or PROSESS_ID = "134") And temps <> "" Then
                 Dim cls_xml As New CLASS_GEN_XML.T_NCT_DALCN_TEMP
                 cls_xml.GEN_TEMP_NCT_DALCN(PATH_XML, p_temp_nct)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
@@ -868,6 +995,42 @@ Module BAO_COMMON
 
     Public Function NAME_PDF_JJ(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
         Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+
+    Public Function NAME_PDF_TB(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+
+    Public Function NAME_PDF_TBN(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+
+    Public Function NAME_PDF_APPOINTMENT(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
+
+    Public Function NAME_XML_TBN(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+
+    Public Function NAME_XML_APPOINTMENT(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+
+    Public Function NAME_XML_TB(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
 
         Return filename
     End Function

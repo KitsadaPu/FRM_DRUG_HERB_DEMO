@@ -132,9 +132,25 @@ Namespace BAO
             dta = Queryds(sql)
             Return dta
         End Function
+
+        Public Function SP_DRRGT_SUBSTITUTE(ByVal IDA As Integer) As DataTable
+            Dim sql As String = "exec DRRGT_SUBSTITUTE @ida=" & IDA
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
         Public Function SP_CUSTOMER_LCN_BY_IDENTIFY(ByVal IDENTITY As String) As DataTable
 
             Dim sql As String = "exec SP_CUSTOMER_LCN_BY_IDENTIFY @iden= '" & IDENTITY & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
+        Public Function SP_CUSTOMER_LCN_BY_IDENTIFY_NO120(ByVal IDENTITY As String) As DataTable
+
+            Dim sql As String = "exec SP_CUSTOMER_LCN_BY_IDENTIFY_NO120 @iden= '" & IDENTITY & "'"
             Dim dta As New DataTable
             dta = Queryds(sql)
             Return dta
@@ -155,6 +171,17 @@ Namespace BAO
             dta = Queryds(sql)
             Return dta
         End Function
+
+
+        Public Function SP_HERB_TABEAN_BY_IDEN_AND_FK_IDA(ByVal IDENTITY As String, ByVal FK_IDA_LCN As Integer, ByVal PRO_ID As Integer) As DataTable
+
+            Dim sql As String = "exec SP_HERB_TABEAN_BY_IDEN_AND_FK_IDA @iden= '" & IDENTITY & "' ,@FK_LCN_IDA= " & FK_IDA_LCN & ",@PRO_ID=" & PRO_ID
+
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+
         '      'SELECT TOP 1000 [IDpimary]
         '    ,[IDgroup]
         '    ,[IDnamesys]
@@ -168,7 +195,7 @@ Namespace BAO
         'and [taxno_authorize] = ''
         Public Function Count_Permission_Menu(ByVal IDnamesys As Integer, ByVal IDgroup As Integer, ByVal idMenu As String, ByVal identify As String) As Integer
             Dim i As Integer = 0
-            Dim sql As String = "SELECT * from [dbo].[groupbysystembymenu] where [IDnamesys] =" & IDnamesys & " and [IDgroup]= " & IDgroup & "  and [IDmenu] = " & idMenu & " and [taxno_authorize] = '" & identify & "'"
+            Dim sql As String = "SELECT * from [dbo].[groupbysystembymenu] where [IDnamesys] =" & IDnamesys & " And [IDgroup]= " & IDgroup & "  And [IDmenu] = " & idMenu & " And [taxno_authorize] = '" & identify & "'"
             Dim dta As New DataTable
             dta = Queryds_PERMISSION(sql)
             For Each dr As DataRow In dta.Rows
@@ -1439,6 +1466,14 @@ Namespace BAO
             dta.TableName = "SP_DRRGT_SUBSTITUTE_BY_FK_IDA"
             Return dta
         End Function
+
+        Public Function SP_DRRGT_SUBSTITUTE_BY_IDA(ByVal IDA As Integer) As DataTable
+            Dim sql As String = "exec SP_DRRGT_SUBSTITUTE_BY_IDA @IDA=" & IDA
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_DRRGT_SUBSTITUTE_BY_IDA"
+            Return dta
+        End Function
         '
         Public Function SP_DALCN_SUBSTITUTE_BY_FK_IDA(ByVal FK_IDA As Integer) As DataTable
             Dim sql As String = "exec SP_DALCN_SUBSTITUTE_BY_FK_IDA @FK_IDA=" & FK_IDA
@@ -1675,6 +1710,14 @@ Namespace BAO
             Return dta
         End Function
         '
+        Public Function SP_LOCATION_FILE_UPLOAD(ByVal TR_ID As Integer) As DataTable
+            Dim clsds As New ClassDataset
+            Dim sql As String = "exec SP_LOCATION_FILE_UPLOAD @TR_ID='" & TR_ID & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            dta.TableName = "SP_LOCATION_FILE_UPLOAD"
+            Return dta
+        End Function
         Public Function SP_DDL_LCN_DI_by_PROCESS_ID(ByVal process As String, ByVal iden As String) As DataTable
             Dim sql As String = "exec SP_DDL_LCN_DI_by_PROCESS_ID @PROCESS_ID='" & process & "' ,@iden='" & iden & "'"
             Dim dta As New DataTable
@@ -2932,6 +2975,7 @@ Namespace BAO
             conn.Close()
 
         End Sub
+
         Public Sub SP_DRRGT_TABEAN_STAFF()
 
             strSQL = "SP_DRRGT_TABEAN_STAFF"
@@ -5476,6 +5520,7 @@ Namespace BAO
             dta = clsds.dsQueryselect(sql, conn.ConnectionString).Tables(0)
             Return dta
         End Function
+
         '
         Public Function SP_DRRGT124_ALL() As DataTable
             Dim clsds As New ClassDataset
@@ -5937,6 +5982,8 @@ Namespace BAO
         Public _RDLC As String = System.Configuration.ConfigurationManager.AppSettings("RDLC")
         Public _PATH_IMG As String = System.Configuration.ConfigurationManager.AppSettings("PATH_IMG")
         Public _PATH_XML_PDF_TABEAN_JJ As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ")
+        Public _PATH_XML_PDF_TABEAN_TB As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TB")
+        Public _PATH_XML_PDF_TABEAN_TBN As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN")
 
         Sub RunAppSettings()
             _PATH_PDF_TEMPLATE = System.Configuration.ConfigurationManager.AppSettings("PATH_PDF_TEMPLATE")                 'ที่อยู่ Path
@@ -5948,6 +5995,8 @@ Namespace BAO
             _RDLC = System.Configuration.ConfigurationManager.AppSettings("RDLC")
             _PATH_IMG = System.Configuration.ConfigurationManager.AppSettings("PATH_IMG")
             _PATH_XML_PDF_TABEAN_JJ = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ")
+            _PATH_XML_PDF_TABEAN_TB = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TB")
+            _PATH_XML_PDF_TABEAN_TBN = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN")
         End Sub
     End Class
 
@@ -6411,6 +6460,37 @@ Namespace BAO
             Return str_no
         End Function
 
+
+        Function GEN_NO_TBN(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal REF_IDA As String, ByVal IDA_LCNNO As String)
+            Dim int_no As Integer
+            Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN
+            dao.GetDataby_GEN(YEAR, PVCODE, TYPE, REF_IDA, IDA_LCNNO)
+            If IsNothing(dao.fields.GENNO) = True Then
+                int_no = 0
+            Else
+                int_no = dao.fields.GENNO
+            End If
+
+            int_no = int_no + 1
+            Dim str_no As String = int_no.ToString()
+            'str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            'str_no = YEAR.Substring(2, 2) & str_no
+
+            Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN
+            dao2.fields.YEAR = YEAR
+            dao2.fields.PVCODE = PVCODE
+            dao2.fields.TYPE = TYPE
+            dao2.fields.LCNNO = IDA_LCNNO
+            dao2.fields.FORMAT = 1
+            dao2.fields.GROUP_NO = 1
+            dao2.fields.REF_IDA = REF_IDA
+            dao2.fields.DESCRIPTION = str_no
+            dao2.fields.GENNO = int_no
+            dao2.insert()
+
+            Return str_no
+        End Function
+
         Function GEN_LCNNO_NEW(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal LCNNO As String,
                         ByVal FORMAT As String, ByVal GROUP_NO As String, ByVal REF_IDA As String, ByVal DESCRIPTION As String) As String
             Dim int_no As Integer
@@ -6751,6 +6831,29 @@ Namespace BAO
             dao.insert()
             Return str_no
         End Function
+        Public Function GEN_RCVNO_NO_OLD(ByVal YEAR As String, ByVal PVNCD As String, ByVal PROCESS_ID As String, ByVal FK_IDA As Integer) As String
+            Dim int_no As Integer
+            Dim dao As New DAO_DRUG.ClsDBGEN_RCVNO
+            dao.GetDataby_Year_PVNCD_PROCESS_ID_MAX(PVNCD, YEAR, PROCESS_ID)
+            If IsNothing(dao.fields.GEN_RCV) = True Then
+                int_no = 0
+            Else
+                int_no = dao.fields.GEN_RCV
+            End If
+            int_no = int_no + 1
+
+            Dim str_no As String = int_no.ToString()
+            str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            str_no = YEAR.Substring(2, 2) & str_no
+            dao = New DAO_DRUG.ClsDBGEN_RCVNO
+            dao.fields.YEARS = YEAR
+            dao.fields.PVNCD = PVNCD
+            dao.fields.GEN_RCV = int_no
+            dao.fields.PROCESS_ID = 20801
+            dao.fields.FK_IDA = FK_IDA
+            dao.insert()
+            Return str_no
+        End Function
         Public Function GEN_RCVNO_NO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal PROCESS_ID As String, ByVal FK_IDA As Integer) As String
             Dim int_no As Integer
             Dim dao As New DAO_DRUG.ClsDBGEN_RCVNO
@@ -6763,15 +6866,6 @@ Namespace BAO
             'int_no = int_no + 1
 
             Dim str_no As String = int_no.ToString()
-            ''str_no = String.Format("{0:00000}", int_no.ToString("00000"))
-            'str_no = YEAR.Substring(2, 2) & str_no
-            'dao = New DAO_DRUG.ClsDBGEN_RCVNO
-            'dao.fields.YEARS = YEAR
-            'dao.fields.PVNCD = PVNCD
-            'dao.fields.GEN_RCV = int_no
-            'dao.fields.PROCESS_ID = PROCESS_ID
-            'dao.fields.FK_IDA = FK_IDA
-            'dao.insert()
             Return str_no
         End Function
 

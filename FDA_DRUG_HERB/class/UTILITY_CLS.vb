@@ -27,6 +27,21 @@ Public Module UTILITY_CLS
         Return c
 
     End Function
+    Function ConvertFromXml(Of T As Class)(ByRef str As String) As T
+
+
+        Dim serializer As XmlSerializer = New XmlSerializer(GetType(T))
+
+
+        Dim reader As StringReader = New StringReader(str)
+
+
+        Dim c As T = TryCast(serializer.Deserialize(reader), T)
+
+
+        Return c
+
+    End Function
 
     <System.Runtime.CompilerServices.Extension()>
     Public Function b64encode(ByVal StrEncode As String)
@@ -332,7 +347,7 @@ Public Module UTILITY_CLS
 
         Return province_id
     End Function
-    <System.Runtime.CompilerServices.Extension> _
+    <System.Runtime.CompilerServices.Extension>
     Public Sub AddLogStatus(ByVal status_id As Integer, ByVal process_id As String, ByVal iden As String, Optional FK_IDA As Integer = 0)
         Try
             Dim dao As New DAO_DRUG.TB_LOG_STATUS
@@ -341,6 +356,23 @@ Public Module UTILITY_CLS
             dao.fields.STATUS_DATE = Date.Now
             dao.fields.STATUS_ID = status_id
             dao.fields.FK_IDA = FK_IDA
+            dao.insert()
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    <System.Runtime.CompilerServices.Extension>
+    Public Sub AddLogStatus_lcn(ByVal status_id As Integer, ByVal process_id As String, ByVal iden As String, Optional FK_IDA As Integer = 0, Optional ddl_id As Integer = 0, Optional ddl_name As String = "")
+        Try
+            Dim dao As New DAO_DRUG.TB_LOG_STATUS_LCN
+            dao.fields.IDENTIFY = iden
+            dao.fields.PROCESS_ID = process_id
+            dao.fields.STATUS_DATE = Date.Now
+            dao.fields.STATUS_ID = status_id
+            dao.fields.FK_IDA = FK_IDA
+            dao.fields.STAFF_ID = ddl_id
+            dao.fields.STAFF_NAME = ddl_name
             dao.insert()
         Catch ex As Exception
 

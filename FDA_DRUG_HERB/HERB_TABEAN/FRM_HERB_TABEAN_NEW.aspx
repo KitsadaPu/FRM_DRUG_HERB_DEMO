@@ -21,6 +21,7 @@
              <asp:Button ID="btn_tabean" runat="server" Text="ระบบขอขึ้นทะเบียน" />
             <asp:Button ID="btn_detail" runat="server" Text="ระบบขอแจ้งรายละเอียด" />
             <asp:Button ID="btn_jj" runat="server" Text="ระบบขอจดแจ้ง" />
+            <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>
 

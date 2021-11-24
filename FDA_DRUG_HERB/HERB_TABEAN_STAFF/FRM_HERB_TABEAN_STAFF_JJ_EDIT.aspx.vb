@@ -47,6 +47,14 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
                 dao_up.insert()
             End If
         Next
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        NATURE.Text = dao.fields.NATURE
+        NOTE_EDIT.Text = dao.fields.NOTE_EDIT
+        If R_NATURE.SelectedValue <> "" Then
+            R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
+        End If
     End Sub
 
     Function bind_data_uploadfile()
@@ -86,6 +94,10 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
         dao.fields.NOTE_EDIT = NOTE_EDIT.Text
+        If R_NATURE.SelectedValue <> "" Then
+            dao.fields.NATURE_ID_EDIT = R_NATURE.SelectedValue
+        End If
+
         dao.Update()
 
         Dim bao_tran As New BAO_TRANSECTION
@@ -103,7 +115,8 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
 
         If _TR_ID <> 0 Then
 
-            dao_up.GetdatabyID_IDA_TYPE(_IDA, 2)
+            'dao_up.GetdatabyID_IDA_TYPE(_IDA, 2)
+            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(_TR_ID, _ProcessID, 2)
 
             Dim rows As Integer = 1
             For Each dao_up.fields In dao_up.datas

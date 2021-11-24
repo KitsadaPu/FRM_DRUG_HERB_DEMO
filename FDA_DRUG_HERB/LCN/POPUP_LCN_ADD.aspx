@@ -20,11 +20,16 @@
             <asp:Panel ID="Panel4" runat="server" Style="display: none;">
                 <uc1:UC_HERB runat="server" ID="UC_HERB" />
             </asp:Panel>
+            <br />
             <div class="row">
-                <div class="col-lg-1" style="text-align: right"></div>
-                <div class="col-lg-3">
-                     <asp:Button ID="btn_save" runat="server" Text="บันทึกข้อมูลส่วนที่ 1" CssClass="btn-sm" OnClientClick="confirm('ต้องการบันทึกหรือไม่');" />
+                <div class="col-lg-4"></div>
+                <div class="col-lg-5" style="text-align:center">
+                    <asp:Button ID="btn_save" runat="server" Text="บันทึกข้อมูลส่วนที่ 1" CssClass="btn-sm" OnClientClick="confirm('ต้องการบันทึกหรือไม่');"  Height="45px" Width="320px"/>
+                    
                 </div>
+                <%--<div class="col-lg-3" style="text-align:right">
+                    <asp:Button ID="btn_close" runat="server" Text="ปิด" CssClass="btn-sm" Height="45px" Width="320px"/>
+                </div>--%>
             </div>
 
             <br />
@@ -43,7 +48,17 @@
             <asp:Panel ID="Panel3" runat="server" Style="display: none;">
                 <uc1:UC_LCN_UPLOAD_FILE runat="server" ID="UC_LCN_UPLOAD_FILE" />
                 <hr />
+
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10" style="text-align: center">
+                        <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="15%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');"/>
+                        <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิกคำขอ" CssClass="btn-lg" Width="15%" />
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
             </asp:Panel>
         </div>
+          
     </div>
 </asp:Content>

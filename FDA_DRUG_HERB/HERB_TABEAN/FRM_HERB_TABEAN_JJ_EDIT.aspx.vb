@@ -9,7 +9,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
     Private _IDA_LCN As String = ""
 
     Sub RunSession()
-        _ProcessID = Request.QueryString("process")
+        _ProcessID = Request.QueryString("PROCESS_JJ")
         _IDA = Request.QueryString("IDA")
         _TR_ID = Request.QueryString("TR_ID")
         _IDA_LCN = Request.QueryString("IDA_LCN")
@@ -37,13 +37,20 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Else
             NOTE_EDIT.Text = ""
         End If
+
+        If dao.fields.NATURE_ID_EDIT <> 0 Then
+            R_NATURE_EDIT.Visible = True
+            NATURE.Text = dao.fields.NATURE
+            R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
+        End If
+
     End Sub
 
     Function bind_data_uploadfile_edit()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
 
         Return dt
     End Function
@@ -70,7 +77,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
 
         Return dt
     End Function
@@ -107,6 +114,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
                 tr.Cells.Add(tc)
 
                 tc = New TableCell
+                tc.Width = 50
                 Try
                     tc.Text = Replace(dr("DUCUMENT_NAME"), "\n", "<br/>")
                 Catch ex As Exception
@@ -245,15 +253,21 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
 
-        dao.fields.STATUS_ID = 5
+        If dao.fields.NATURE_ID_EDIT = 1 And NATURE.Text = "" Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก กรอกข้อมูลลักษณะ');", True)
+        Else
+            dao.fields.NATURE = NATURE.Text
+            dao.fields.STATUS_ID = 5
 
-        dao.Update()
+            dao.Update()
 
-        Dim bao_tran As New BAO_TRANSECTION
-        bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, dao.fields.STATUS_ID)
+            Dim bao_tran As New BAO_TRANSECTION
+            bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, dao.fields.STATUS_ID)
 
-        Run_Pdf_Tabean_Herb_5()
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+            Run_Pdf_Tabean_Herb_5()
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+        End If
+
     End Sub
 
     Public Sub Run_Pdf_Tabean_Herb_5()

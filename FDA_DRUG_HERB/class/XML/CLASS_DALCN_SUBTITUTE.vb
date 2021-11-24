@@ -367,5 +367,16 @@
             End Set
         End Property
 #End Region
+
+        Private _DRRGT_SUB As DRRGT_SUBSTITUTE
+        Public Property DRRGT_SUB() As DRRGT_SUBSTITUTE
+            Get
+                Return _DRRGT_SUB
+            End Get
+            Set(ByVal value As DRRGT_SUBSTITUTE)
+                _DRRGT_SUB = value
+            End Set
+        End Property
+
     End Class
 End Namespace

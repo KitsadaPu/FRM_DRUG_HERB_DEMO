@@ -49,8 +49,8 @@ Public Class FRM_LCN_CONFIRM_DRUG
             End If
 
             show_btn(_IDA)
-            UC_GRID_PHARMACIST.load_gv(_IDA)
-            UC_GRID_ATTACH.load_gv(_TR_ID)
+            'UC_GRID_PHARMACIST.load_gv(_IDA)
+            'UC_GRID_ATTACH.load_gv(_TR_ID)
             If Request.QueryString("identify") <> "" Then
                 If Request.QueryString("identify") <> _CLS.CITIZEN_ID_AUTHORIZE Then
                     AddLogMultiTab(_CLS.CITIZEN_ID, Request.QueryString("identify"), 0, HttpContext.Current.Request.Url.AbsoluteUri)
@@ -783,9 +783,9 @@ Public Class FRM_LCN_CONFIRM_DRUG
         dao.GetDataby_IDA(ID)
         If dao.fields.STATUS_ID <> 1 Then
             btn_confirm.Enabled = False
-            btn_cancel.Enabled = False
+            'btn_cancel.Enabled = False
             btn_confirm.CssClass = "btn-danger btn-lg"
-            btn_cancel.CssClass = "btn-danger btn-lg"
+            'btn_cancel.CssClass = "btn-danger btn-lg"
             'ElseIf chk_pha() = True Then 'true คือเภสัชไม่ยืนยัน ,False คือเภสัชยืนยัน
             '    btn_confirm.Enabled = False
             '    btn_cancel.Enabled = False
@@ -794,6 +794,8 @@ Public Class FRM_LCN_CONFIRM_DRUG
         End If
         If dao.fields.STATUS_ID = 8 Then
             btn_load.Enabled = True
+            btn_cancel.Enabled = False
+            btn_cancel.CssClass = "btn-danger btn-lg"
             'btn_load.CssClass = "btn-danger btn-lg"
 
         Else

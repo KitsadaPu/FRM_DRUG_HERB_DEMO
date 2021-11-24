@@ -37,6 +37,30 @@ Public Class BAO_SHOW
         dt.Rows.Add(dr)
         Return dt
     End Function
+    Function AddDatatable2(ByVal dt As DataTable) As DataTable
+        Dim dr As DataRow = dt.NewRow
+        For Each c As DataColumn In dt.Columns
+            If c.DataType.Name.ToString() = "String" Then
+                dr(c.ColumnName) = "-"
+            ElseIf c.DataType.Name.ToString() = "Int32" Then
+                dr(c.ColumnName) = 0
+            ElseIf c.DataType.Name.ToString() = "DateTime" Then
+                dr(c.ColumnName) = Date.Now 'Nothing 'Date.Now
+            Else
+                Try
+                    dr(c.ColumnName) = Nothing
+                Catch ex As Exception
+                    dr(c.ColumnName) = 0
+                End Try
+
+
+            End If
+
+        Next
+
+        dt.Rows.Add(dr)
+        Return dt
+    End Function
     Public Function Queryds(ByVal Commands As String) As DataTable
         Dim dt As New DataTable
         Dim MyConnection As SqlConnection = New SqlConnection(ConfigurationManager.ConnectionStrings("LGT_DRUGConnectionString").ConnectionString)
@@ -1000,11 +1024,28 @@ Public Class BAO_SHOW
         Return dta
     End Function
     Public Function SP_DRRQT_CAS_EQTO(ByVal ida As Integer) As DataTable
-        Dim sql As String = "exec SP_DRRQT_CAS_EQTO @IDA=" & ida
-        Dim dta As New DataTable
-        dta = Queryds(sql)
+        'Dim sql As String = "exec SP_DRRQT_CAS_EQTO @IDA=" & ida
+        'Dim dt As New DataTable
+        'dt = Queryds(sql)
         'dta.TableName = "SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE"
-        Return dta
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DRRQT_CAS_EQTO @IDA=" & ida
+        Dim dt As New DataTable
+        Try
+            dt = Queryds(sql)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable2(dt)
+            End If
+        Catch ex As Exception
+
+        End Try
+
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable2(dt)
+        End If
+
+        dt.TableName = "SP_DRRQT_CAS_EQTO"
+        Return dt
     End Function
     Public Function SP_DRUG_REGISTRATION(ByVal ida As Integer) As DataTable
         Dim sql As String = "exec SP_DRUG_REGISTRATION @IDA=" & ida

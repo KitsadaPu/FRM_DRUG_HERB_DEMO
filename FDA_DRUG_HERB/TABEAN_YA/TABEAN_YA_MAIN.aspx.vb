@@ -949,7 +949,7 @@ Public Class TABEAN_YA_MAIN
     End Sub
 
     Private Sub btn_download_t2_Click(sender As Object, e As EventArgs) Handles btn_download_t2.Click
-        Panel1.Style.Add("display", "block")
-        'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('../DR/POPUP_DR_TRANSFER_DL.aspx?IDA=" & _main_ida & "&process=" & _process & "&lcn_ida=" & _lcn_ida & "');", True)
+        'Panel1.Style.Add("display", "block")
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('../DR/POPUP_DR_TRANSFER_DL.aspx?IDA=" & _main_ida & "&process=" & _process & "&lcn_ida=" & _lcn_ida & "');", True)
     End Sub
 End Class

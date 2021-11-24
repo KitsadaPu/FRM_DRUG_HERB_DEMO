@@ -392,6 +392,7 @@ Public Class POPUP_DR_CONFIRM
         bao.RunAppSettings()
 
         Dim lcnno_format As String = ""
+        Dim lcnno_format_OLD As String = ""
         Dim lcnno_auto As String = ""
         Dim lcn_long_type As String = ""
 
@@ -427,6 +428,7 @@ Public Class POPUP_DR_CONFIRM
         Dim TABEAN_TYPE1 As String = ""
         Dim TABEAN_TYPE2 As String = ""
         Dim LCNTPCD_GROUP As String = ""
+        Dim TRANSFE_ID As String = ""
 
         Dim class_xml As New CLASS_DR
         Dim tamrap_id As Integer = 0
@@ -568,6 +570,7 @@ Public Class POPUP_DR_CONFIRM
         Else
             Dim dao As New DAO_DRUG.ClsDBdrrqt
             dao.GetDataby_IDA(_IDA)
+            TRANSFE_ID = dao.fields.FK_TRANSFER
             Try
                 tamrap_id = dao.fields.feepayst
             Catch ex As Exception
@@ -874,15 +877,24 @@ Public Class POPUP_DR_CONFIRM
                     '    lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
                     'End If
                     If dao4.fields.USE_PVNABBR2 IsNot Nothing Then
+                        If Not dao_lcn.fields.LCNNO_DISPLAY_NEW Is Nothing Then
+                            lcnno_format = dao_lcn.fields.LCNNO_DISPLAY_NEW
+                        Else
+                            If Right(Left(lcnno_auto, 3), 1) = "5" Then
+                                lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
+                            Else
+                                lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                            End If
+                        End If
 
                         'lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                        If Right(Left(lcnno_auto, 3), 1) = "5" Then
-                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 4))) & "/25" & Left(lcnno_auto, 2)
-                        Else
-                            lcnno_format = dao4.fields.pvnabbr2 & " " & CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
-                        End If
+
                     Else
-                        lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        If Not dao_lcn.fields.LCNNO_DISPLAY_NEW Is Nothing Then
+                            lcnno_format = dao_lcn.fields.LCNNO_DISPLAY_NEW
+                        Else
+                            lcnno_format = CStr(CInt(Right(lcnno_auto, 5))) & "/25" & Left(lcnno_auto, 2)
+                        End If
                     End If
                 End If
             End If
@@ -1118,12 +1130,20 @@ Public Class POPUP_DR_CONFIRM
             End Try
             Dim dt_pack As New DataTable
             Dim bao_pack As New BAO_SHOW
+
             dt_pack = bao_pack.SP_GET_PACKAGE_TEXT_DRRQT_PACKAGE_DETAIL_BY_FK_IDA(_IDA)
             Try
-                'PACK_SIZE = dt_pack(0)("contain_detail")
-                'class_xml.PACK_SIZE = PACK_SIZE
-                PACK_SIZE = dao_re.fields.PACKAGE_DETAIL 'dt_pack(0)("contain_detail")
-                class_xml.PACK_SIZE = PACK_SIZE
+                If TRANSFE_ID = "" Then
+                    'PACK_SIZE = dt_pack(0)("contain_detail")
+                    'class_xml.PACK_SIZE = PACK_SIZE
+                    PACK_SIZE = dao_re.fields.PACKAGE_DETAIL 'dt_pack(0)("contain_detail")
+                    class_xml.PACK_SIZE = PACK_SIZE
+                Else
+
+                    dt_pack = bao_pack.SP_DRRGT_PACKAGE_DETAIL_BY_IDA_V2(TRANSFE_ID)
+                    class_xml.PACK_SIZE = dt_pack(0)("full_unit")
+                End If
+
             Catch ex As Exception
 
             End Try
@@ -1149,20 +1169,56 @@ Public Class POPUP_DR_CONFIRM
             'class_xml.DT_SHOW.DT14 = bao_show.SP_DRUG_REGISTRATION_MASTER(dao.fields.FK_IDA)
             class_xml.DT_SHOW.DT14 = bao_show.SP_DRRQT_DATA(_IDA)
 
-            class_xml.DT_SHOW.DT13 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 1)
-            class_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
-            class_xml.DT_SHOW.DT14 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 2)
-            class_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
-            class_xml.DT_SHOW.DT15 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 3)
-            class_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
-            class_xml.DT_SHOW.DT16 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 10)
-            class_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3_2NO"
+            If TRANSFE_ID = "" Then
+                class_xml.DT_SHOW.DT13 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 1)
+                class_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
+                class_xml.DT_SHOW.DT14 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 2)
+                class_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
+                class_xml.DT_SHOW.DT15 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 3)
+                class_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
+                class_xml.DT_SHOW.DT16 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 10)
+                class_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3_2NO"
 
+                class_xml.DT_SHOW.DT21 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER(_IDA, 9, LCNTPCD_GROUP)
+                class_xml.DT_SHOW.DT21.TableName = "SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER"
+            Else
+                'Dim dt13 As New DataTable
+                'Dim dt14 As New DataTable
+                'Dim dt15 As New DataTable
+                'dt13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 1, LCNTPCD_GROUP)
+                'dt14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 2, LCNTPCD_GROUP)
+                'dt15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 3, LCNTPCD_GROUP)
+                'If dt13.Rows.Count > 0 Then
+                '    class_xml.DT_SHOW.DT13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 1, LCNTPCD_GROUP)
+                '    class_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
+                'End If
+                'If dt14.Rows.Count > 0 Then
+                '    class_xml.DT_SHOW.DT14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 2, LCNTPCD_GROUP)
+                '    class_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
+                'End If
+                'If dt15.Rows.Count > 0 Then
+                '    class_xml.DT_SHOW.DT15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 3, LCNTPCD_GROUP)
+                '    class_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
+                'End If
+                'class_xml.DT_SHOW.DT21 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(_IDA, 9, LCNTPCD_GROUP)
+                'class_xml.DT_SHOW.DT21.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_OTHER"
+
+                class_xml.DT_SHOW.DT13 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 1)
+                class_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
+                class_xml.DT_SHOW.DT14 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 2)
+                class_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
+                class_xml.DT_SHOW.DT15 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 3)
+                class_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
+                class_xml.DT_SHOW.DT16 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_ANDTYPE(_IDA, 10)
+                class_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3_2NO"
+
+                class_xml.DT_SHOW.DT21 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER(_IDA, 9, LCNTPCD_GROUP)
+                class_xml.DT_SHOW.DT21.TableName = "SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER"
+            End If
 
             class_xml.DT_SHOW.DT18 = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
             class_xml.DT_SHOW.DT18.TableName = "SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA_FULLADDR"
-            class_xml.DT_SHOW.DT21 = bao_show.SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER(_IDA, 9, LCNTPCD_GROUP)
-            class_xml.DT_SHOW.DT21.TableName = "SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER"
+
 
             class_xml.DT_SHOW.DT23 = bao_show.SP_DRRQT_CAS_EQTO(_IDA)
             class_xml.DT_SHOW.DT23.TableName = "SP_regis"

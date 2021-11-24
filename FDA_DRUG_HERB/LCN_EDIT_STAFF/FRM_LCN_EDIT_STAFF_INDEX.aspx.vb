@@ -27,10 +27,8 @@ Public Class FRM_LCN_EDIT_STAFF_INDEX
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _LCNNO_DISPLAY = Request.QueryString("LCNNO_DISPLAY")
 
-        _IDA_LCN = 65254
-        '_STAFF = Request.QueryString("staff")
+        '_IDA_LCN = 65254
 
-        '_STAFF = 1
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
@@ -43,7 +41,7 @@ Public Class FRM_LCN_EDIT_STAFF_INDEX
         Dim dt As DataTable
         Dim bao As New BAO_LCN.TABLE_VIEW
         'Dim dao As New DAO_LCN
-        dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA(_IDA_LCN, 1)
+        dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA(0, 1)
 
         'For Each dr As DataRow In dt.Rows
         '    Dim STATUS_ID As String = ""
@@ -76,6 +74,7 @@ Public Class FRM_LCN_EDIT_STAFF_INDEX
             Dim item As GridDataItem = e.Item
 
             Dim _LCN_IDA As String = item("FK_LCN_IDA").Text
+            Dim _LCT_IDA As String = item("FK_LOCATION_IDA").Text
             Dim _IDA As String = item("IDA").Text
             'Dim _DDHERB As String = item("DDHERB").Text
             'Dim tr_id As String = item("TR_ID_JJ").Text
@@ -103,26 +102,30 @@ Public Class FRM_LCN_EDIT_STAFF_INDEX
             If e.CommandName = "LCN_EDIT_DETAIL" Then
                 If STATUS_ID = 2 Then
                     lbl_head1.Text = "ข้อมูลรับคำข้อ รับคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_INTAKE.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_INTAKE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 3 Then
                     lbl_head1.Text = "ข้อมูลตรวจสอบเอกสาร ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 9 Then
                     lbl_head1.Text = "ข้อมูลขอเอกสาร (เพิ่มเติม) ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_EDIT.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_EDIT.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 11 Then
                     lbl_head1.Text = "ข้อมูลตรวจสอบเอกสาร ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 4 Then 'ส่งไปอนุมัติลงนาม
                     lbl_head1.Text = "ข้อมูลยืนลงนาม ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SIGN.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SIGN.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 5 Then 'ส่งไปอนุมัติ
                     lbl_head1.Text = "ข้อมูลยืน ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 8 Then 'เข้าไปดูข้อมูลที่ อนุุมัติไป
                     lbl_head1.Text = "ข้อมูลยืนอนุมัติ ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&IDA=" & _IDA & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 End If
+
+            ElseIf e.CommandName = "SEE_DETAIL_SUB" Then
+                lbl_head1.Text = "ข้อมูลรายละเอียดการข้อแก้ไข"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL.aspx?SEE_DETAIL_LCN_IDA=" & _LCN_IDA & "&SEE_DETAIL_LCT_IDA=" & _LCT_IDA & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "');", True)
             End If
         End If
     End Sub

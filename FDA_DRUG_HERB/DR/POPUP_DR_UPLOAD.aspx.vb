@@ -763,11 +763,15 @@ Public Class POPUP_DR_UPLOAD
             Dim dao As New DAO_DRUG.ClsDBdrrqt
             Dim dao_rg As New DAO_DRUG.ClsDBDRUG_REGISTRATION
             dao_rg.GetDataby_IDA(_IDA)
-            'Dim IDA_TF As String = ""
-            'Dim TR_ID_TF As String = ""
-            'TR_ID_TF = Left(Right(FileName, 10), 6)
+            Dim TRANSRFER_ID As String = ""
+            Try
+                TRANSRFER_ID = p2.drrqts.FK_TRANSFER
+            Catch ex As Exception
 
-            If Trim(p2.TRANSFER) = "" Then
+            End Try
+
+
+            If Trim(p2.drrqts.FK_TRANSFER) = "" Then
                 dao.fields = p2.drrqts
                 Try
                     dao.fields.IDENTIFY = dao_lcn.fields.CITIZEN_ID_AUTHORIZE
@@ -1027,12 +1031,12 @@ Public Class POPUP_DR_UPLOAD
                 'Dim dao_rgt As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_SEARCH_PRODUCT_GROUP_ESUB        เก่า
                 Dim dao_rgt As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
                 Try
-                    dao_rgt1.GetDataby_IDA(Trim(p2.TRANSFER))
+                    dao_rgt1.GetDataby_IDA(Trim(p2.drrqts.FK_TRANSFER))
                 Catch ex As Exception
 
                 End Try
                 Try
-                    dao_rgt.GetDataby_IDA_drrgt(Trim(p2.TRANSFER))
+                    dao_rgt.GetDataby_IDA_drrgt(Trim(p2.drrqts.FK_TRANSFER))
                 Catch ex As Exception
 
                 End Try
@@ -1152,7 +1156,7 @@ Public Class POPUP_DR_UPLOAD
 
                 End Try
                 Try
-                    dao.fields.FK_TRANSFER = p2.TRANSFER
+                    dao.fields.FK_TRANSFER = p2.drrqts.FK_TRANSFER
                 Catch ex As Exception
 
                 End Try
@@ -1274,7 +1278,7 @@ Public Class POPUP_DR_UPLOAD
                 dao.insert()
             End If
 
-            If Trim(p2.TRANSFER) = "" Then
+            If Trim(p2.drrqts.FK_TRANSFER) = "" Then
                 Dim dao_atc As New DAO_DRUG.TB_DRRQT_ATC_DETAIL
                 For Each dao_atc.fields In p2.DRRQT_ATC_DETAIL
                     Dim dao_atc2 As New DAO_DRUG.TB_DRRQT_ATC_DETAIL
@@ -1305,14 +1309,14 @@ Public Class POPUP_DR_UPLOAD
 
                     dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(_IDA)
                 Else
-                    dt_DRUG_REGISTRATION_DETAIL_CAS = bao_show.SP_DRUG_REGISTRATION_DETAIL_CAS_BY_FK_IDA(_IDA_TF)
-                    dt_DRUG_REGISTRATION_PACKAGE = bao_show.SP_DRUG_REGISTRATION_PACKAGE_BY_IDA(_IDA_TF)
-                    dt_DRUG_REGISTRATION_ATC_DETAIL = bao_show.SP_DRUG_REGISTRATION_ATC_DETAIL_BY_FK_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_DETAIL_CAS = bao_show.SP_DRUG_REGISTRATION_DETAIL_CAS_BY_FK_IDA(TRANSRFER_ID)
+                    dt_DRUG_REGISTRATION_PACKAGE = bao_show.SP_DRUG_REGISTRATION_PACKAGE_BY_IDA(TRANSRFER_ID)
+                    dt_DRUG_REGISTRATION_ATC_DETAIL = bao_show.SP_DRUG_REGISTRATION_ATC_DETAIL_BY_FK_IDA(TRANSRFER_ID)
 
-                    dt_DRUG_REGISTRATION_PROPERTIES = bao_show.SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA(_IDA_TF)
-                    dt_DRUG_REGISTRATION_PRODUCER = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_PROPERTIES = bao_show.SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA(TRANSRFER_ID)
+                    dt_DRUG_REGISTRATION_PRODUCER = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA(TRANSRFER_ID)
 
-                    dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(_IDA_TF)
+                    dt_DRUG_REGISTRATION_PRODUCER_IN = bao_show.SP_DRUG_REGISTRATION_PRODUCER_IN_BY_FK_IDA(TRANSRFER_ID)
                 End If
 
 
@@ -1782,7 +1786,7 @@ Public Class POPUP_DR_UPLOAD
                 dao_up.update()
 
             Else
-                insert_tabean2(dao.fields.IDA, p2.TRANSFER)
+                insert_tabean2(dao.fields.IDA, p2.drrqts.FK_TRANSFER)
             End If
 
         Catch ex As Exception
@@ -2280,140 +2284,176 @@ Public Class POPUP_DR_UPLOAD
             End Try
 
             'Dim dao_XML_DRUG_FRGN As New DAO_XML_SEARCH_DRUG_LCN_ESUB.TB_XML_DRUG_FRGN         เก่า
-            Dim dao_XML_DRUG_FRGN As New DAO_XML_DRUG_HERB.TB_XML_DRUG_FRGN_HERB
-            dao_XML_DRUG_FRGN.GetDataby_u1(newcode)
-                If dao_XML_DRUG_FRGN.fields.engcntnm = "ไทย" Then
-                    For Each dao_XML_DRUG_FRGN.fields In dao_XML_DRUG_FRGN.datas
-                    Dim dao_in As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
-                    With dao_in.fields
-                            .FK_IDA = IDA_rgt
-                            Try
-                                Dim dao_dal As New DAO_DRUG.ClsDBdalcn
-                                'dao_dal.GetDataby_pvncd_lcnno_lcntpcd(dao_XML_DRUG_FRGN.fields.pvncd, dao_XML_DRUG_FRGN.fields.lcnno, dao_XML_DRUG_FRGN.fields.lcntpcd)
-                                dao_dal.GetDataby_citi_lcnno(dao_XML_DRUG_FRGN.fields.CITIZEN_AUTHORIZE, dao_XML_DRUG_FRGN.fields.lcnno)
-                                .FK_LCN_IDA = dao_dal.fields.IDA
-                            Catch ex As Exception
+            'Dim dao_XML_DRUG_FRGN As New DAO_XML_DRUG_HERB.TB_XML_DRUG_FRGN_HERB
+            'dao_XML_DRUG_FRGN.GetDataby_u1(newcode)
+            'If dao_XML_DRUG_FRGN.fields.engcntnm = "ไทย" Then
+            '    For Each dao_XML_DRUG_FRGN.fields In dao_XML_DRUG_FRGN.datas
+            '        Dim dao_in As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+            '        With dao_in.fields
+            '            .FK_IDA = IDA_rgt
+            '            Try
+            '                Dim dao_dal As New DAO_DRUG.ClsDBdalcn
+            '                'dao_dal.GetDataby_pvncd_lcnno_lcntpcd(dao_XML_DRUG_FRGN.fields.pvncd, dao_XML_DRUG_FRGN.fields.lcnno, dao_XML_DRUG_FRGN.fields.lcntpcd)
+            '                dao_dal.GetDataby_citi_lcnno(dao_XML_DRUG_FRGN.fields.CITIZEN_AUTHORIZE, dao_XML_DRUG_FRGN.fields.lcnno)
+            '                .FK_LCN_IDA = dao_dal.fields.IDA
+            '            Catch ex As Exception
 
-                            End Try
-                            .funccd = dao_XML_DRUG_FRGN.fields.funccd
-                            dao_in.insert()
-                        End With
-                    Next
-                Else
-                    For Each dao_XML_DRUG_FRGN.fields In dao_XML_DRUG_FRGN.datas
-                    Dim dao_pro As New DAO_DRUG.TB_DRRQT_PRODUCER
-                    With dao_pro.fields
-                            .FK_IDA = IDA_rgt
-                            .PRODUCER_WORK_TYPE = dao_XML_DRUG_FRGN.fields.funccd
-                            .funccd = dao_XML_DRUG_FRGN.fields.funccd
-                            Dim frgncd As Integer = 0
-                            Dim FK_PRODUCER As Integer = 0
-                            Dim addr_ida As Integer = 0
-                            Dim frgnlctcd As Integer = 0
-                            Dim dao_frgn_name As New DAO_DRUG.ClsDBsyspdcfrgn
-                            dao_frgn_name.GetData_by_engfrgnnm(dao_XML_DRUG_FRGN.fields.engfrgnnm)
-                            For Each dao_frgn_name.fields In dao_frgn_name.datas
-                                Dim icc As Integer = 0
-                                Dim bao_iso As New BAO.ClsDBSqlcommand
-                                Dim dt_iso As New DataTable
-                                dt_iso = bao_iso.SP_sysisocnt_SAI_by_engcntnm(dao_XML_DRUG_FRGN.fields.engcntnm) '
-                                Dim alpha3 As String = ""
-                                Try
-                                    alpha3 = dt_iso(0)("alpha3")
-                                Catch ex As Exception
+            '            End Try
+            '            .funccd = dao_XML_DRUG_FRGN.fields.funccd
+            '            dao_in.insert()
+            '        End With
+            '    Next
+            'Else
+            '    For Each dao_XML_DRUG_FRGN.fields In dao_XML_DRUG_FRGN.datas
+            '        Dim dao_pro As New DAO_DRUG.TB_DRRQT_PRODUCER
+            '        With dao_pro.fields
+            '            .FK_IDA = IDA_rgt
+            '            .PRODUCER_WORK_TYPE = dao_XML_DRUG_FRGN.fields.funccd
+            '            .funccd = dao_XML_DRUG_FRGN.fields.funccd
+            '            Dim frgncd As Integer = 0
+            '            Dim FK_PRODUCER As Integer = 0
+            '            Dim addr_ida As Integer = 0
+            '            Dim frgnlctcd As Integer = 0
+            '            Dim dao_frgn_name As New DAO_DRUG.ClsDBsyspdcfrgn
+            '            dao_frgn_name.GetData_by_engfrgnnm(dao_XML_DRUG_FRGN.fields.engfrgnnm)
+            '            For Each dao_frgn_name.fields In dao_frgn_name.datas
+            '                Dim icc As Integer = 0
+            '                Dim bao_iso As New BAO.ClsDBSqlcommand
+            '                Dim dt_iso As New DataTable
+            '                dt_iso = bao_iso.SP_sysisocnt_SAI_by_engcntnm(dao_XML_DRUG_FRGN.fields.engcntnm) '
+            '                Dim alpha3 As String = ""
+            '                Try
+            '                    alpha3 = dt_iso(0)("alpha3")
+            '                Catch ex As Exception
 
-                                End Try
-                                Dim dao_frgn_addr As New DAO_DRUG.ClsDBdrfrgnaddr
-                                'dao_frgn_addr.GetDataAll_v2(dao_XML_DRUG_FRGN.fields.addr, alpha3, dao_XML_DRUG_FRGN.fields.district, dao_XML_DRUG_FRGN.fields.fax, dao_XML_DRUG_FRGN.fields.mu, _
-                                'dao_XML_DRUG_FRGN.fields.Province, dao_XML_DRUG_FRGN.fields.road, dao_XML_DRUG_FRGN.fields.soi, dao_XML_DRUG_FRGN.fields.subdiv, dao_XML_DRUG_FRGN.fields.tel, _
-                                'dao_XML_DRUG_FRGN.fields.zipcode, dao_frgn_name.fields.frgncd)
-                                dao_frgn_addr.GetDataAll_v3(dao_XML_DRUG_FRGN.fields.addr, alpha3, dao_XML_DRUG_FRGN.fields.district, dao_XML_DRUG_FRGN.fields.Province, dao_XML_DRUG_FRGN.fields.subdiv, dao_frgn_name.fields.frgncd)
+            '                End Try
+            '                Dim dao_frgn_addr As New DAO_DRUG.ClsDBdrfrgnaddr
+            '                'dao_frgn_addr.GetDataAll_v2(dao_XML_DRUG_FRGN.fields.addr, alpha3, dao_XML_DRUG_FRGN.fields.district, dao_XML_DRUG_FRGN.fields.fax, dao_XML_DRUG_FRGN.fields.mu, _
+            '                'dao_XML_DRUG_FRGN.fields.Province, dao_XML_DRUG_FRGN.fields.road, dao_XML_DRUG_FRGN.fields.soi, dao_XML_DRUG_FRGN.fields.subdiv, dao_XML_DRUG_FRGN.fields.tel, _
+            '                'dao_XML_DRUG_FRGN.fields.zipcode, dao_frgn_name.fields.frgncd)
+            '                dao_frgn_addr.GetDataAll_v3(dao_XML_DRUG_FRGN.fields.addr, alpha3, dao_XML_DRUG_FRGN.fields.district, dao_XML_DRUG_FRGN.fields.Province, dao_XML_DRUG_FRGN.fields.subdiv, dao_frgn_name.fields.frgncd)
 
-                                For Each dao_frgn_addr.fields In dao_frgn_addr.datas
-                                    addr_ida = dao_frgn_addr.fields.IDA
-                                    frgnlctcd = dao_frgn_addr.fields.frgnlctcd
-                                    frgncd = dao_frgn_addr.fields.frgnlctcd
+            '                For Each dao_frgn_addr.fields In dao_frgn_addr.datas
+            '                    addr_ida = dao_frgn_addr.fields.IDA
+            '                    frgnlctcd = dao_frgn_addr.fields.frgnlctcd
+            '                    frgncd = dao_frgn_addr.fields.frgnlctcd
 
-                                Next
-                                FK_PRODUCER = dao_frgn_name.fields.IDA
-                            Next
+            '                Next
+            '                FK_PRODUCER = dao_frgn_name.fields.IDA
+            '            Next
 
-                            .frgncd = dao_frgn_name.fields.frgncd
-                            .addr_ida = addr_ida
-                            .FK_PRODUCER = FK_PRODUCER
-                            .frgnlctcd = frgnlctcd
-                        End With
-                        dao_pro.insert()
-                    Next
-
-
-                End If
+            '            .frgncd = dao_frgn_name.fields.frgncd
+            '            .addr_ida = addr_ida
+            '            .FK_PRODUCER = FK_PRODUCER
+            '            .frgnlctcd = frgnlctcd
+            '        End With
+            '        dao_pro.insert()
+            '    Next
 
 
-            'Dim dao_pack As New DAO_DRUG.TB_DRRGT_PACKAGE_DETAIL
-            'dao_pack.GetDataby_FKIDA(fk_transfer)
-            'For Each dao_pack.fields In dao_pack.datas
-            '    Dim dao_rgt_pack As New DAO_DRUG.TB_DRRQT_PACKAGE_DETAIL
-            '    With dao_rgt_pack.fields
-            '        .BARCODE = dao_pack.fields.BARCODE
-            '        .BIG_UNIT = dao_pack.fields.BIG_UNIT
-            '        .CHECK_PACKAGE = dao_pack.fields.CHECK_PACKAGE
-            '        .FK_IDA = IDA_rgt
-            '        .MEDIUM_AMOUNT = dao_pack.fields.MEDIUM_AMOUNT
-            '        .MEDIUM_UNIT = dao_pack.fields.MEDIUM_UNIT
-            '        .SMALL_AMOUNT = dao_pack.fields.SMALL_AMOUNT
-            '        .SMALL_UNIT = dao_pack.fields.SMALL_UNIT
-            '    End With
-            '    dao_rgt_pack.insert()
-            'Next
+            'End If
 
 
-            'Dim dao_pro As New DAO_DRUG.TB_DRRGT_PRODUCER
-            'dao_pro.GetDataby_FK_IDA(fk_transfer)
-            'For Each dao_pro.fields In dao_pro.datas
-            '    Dim dao_rgt_pro As New DAO_DRUG.TB_DRRQT_PRODUCER
-            '    With dao_rgt_pro.fields
-            '        .addr_ida = dao_pro.fields.addr_ida
-            '        .drgtpcd = dao_pro.fields.drgtpcd
-            '        .FK_IDA = IDA_rgt
-            '        .FK_PRODUCER = dao_pro.fields.FK_PRODUCER
-            '        .frgncd = dao_pro.fields.frgncd
-            '        .frgnlctcd = dao_pro.fields.frgnlctcd
-            '        .funccd = dao_pro.fields.funccd
-            '        .lcnno = dao_pro.fields.lcnno
-            '        .lcntpcd = dao_pro.fields.lcntpcd
-            '        .PRODUCER_WORK_TYPE = dao_pro.fields.PRODUCER_WORK_TYPE
-            '        .pvncd = dao_pro.fields.pvncd
-            '        .rcvno = dao_pro.fields.rcvno
-            '        .REFERENCE_GMP = dao_pro.fields.REFERENCE_GMP
-            '        .rgtno = dao_pro.fields.rgtno
-            '        .rgttpcd = dao_pro.fields.rgttpcd
-            '        .TR_ID = dao_pro.fields.TR_ID
-            '    End With
-            '    dao_rgt_pro.insert()
-            'Next
+            Dim dao_pack As New DAO_DRUG.TB_DRRGT_PACKAGE_DETAIL
+            dao_pack.GetDataby_FKIDA(fk_transfer)
+            For Each dao_pack.fields In dao_pack.datas
+                Dim dao_rgt_pack As New DAO_DRUG.TB_DRRQT_PACKAGE_DETAIL
+                With dao_rgt_pack.fields
+                    .BARCODE = dao_pack.fields.BARCODE
+                    .BIG_UNIT = dao_pack.fields.BIG_UNIT
+                    .CHECK_PACKAGE = dao_pack.fields.CHECK_PACKAGE
+                    .FK_IDA = IDA_rgt
+                    .MEDIUM_AMOUNT = dao_pack.fields.MEDIUM_AMOUNT
+                    .MEDIUM_UNIT = dao_pack.fields.MEDIUM_UNIT
+                    .SMALL_AMOUNT = dao_pack.fields.SMALL_AMOUNT
+                    .SMALL_UNIT = dao_pack.fields.SMALL_UNIT
+                End With
+                dao_rgt_pack.insert()
+            Next
 
 
-            'Dim dao_pro_in As New DAO_DRUG.TB_DRRGT_PRODUCER_IN
-            'dao_pro_in.GetDataby_FK_IDA(fk_transfer)
-            'For Each dao_pro_in.fields In dao_pro_in.datas
-            '    Dim dao_rgt_pro_in As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
-            '    With dao_rgt_pro_in.fields
-            '        .drgtpcd = dao_pro_in.fields.drgtpcd
-            '        .FK_IDA = IDA_rgt
-            '        .funccd = dao_pro_in.fields.funccd
-            '        .lcnno = dao_pro_in.fields.lcnno
-            '        .lcntpcd = dao_pro_in.fields.lcntpcd
-            '        .rgtno = dao_pro_in.fields.rgtno
-            '        .rgttpcd = dao_pro_in.fields.rgttpcd
-            '        .FK_LCN_IDA = dao_pro_in.fields.FK_LCN_IDA
-            '        .rgtno = dao_pro_in.fields.rgtno
-            '        .rgttpcd = dao_pro_in.fields.rgttpcd
-            '        .lctcd = dao_pro_in.fields.lctcd
-            '        .lcnsid = dao_pro_in.fields.lcnsid
-            '    End With
-            '    dao_rgt_pro_in.insert()
-            'Next
+
+            Dim dao_reg As New DAO_DRUG.TB_DRUG_REGISTRATION_PRODUCER
+            dao_reg.GetDatabyFK_IDA(fk_transfer)
+            For Each dao_reg.fields In dao_reg.datas
+                Dim dao_rgt_pro As New DAO_DRUG.TB_DRUG_REGISTRATION_PRODUCER
+                With dao_rgt_pro.fields
+                    .addr_ida = dao_reg.fields.addr_ida
+                    .FK_IDA = FK_IDA
+                    .FK_PRODUCER = dao_reg.fields.FK_PRODUCER
+                    .frgncd = dao_reg.fields.frgncd
+                    .frgnlctcd = dao_reg.fields.frgnlctcd
+                    .PRODUCER_WORK_TYPE = dao_reg.fields.PRODUCER_WORK_TYPE
+                    .REFERENCE_GMP = dao_reg.fields.REFERENCE_GMP
+                    .TR_ID = dao_reg.fields.TR_ID
+                End With
+                dao_rgt_pro.insert()
+            Next
+
+            Dim dao_reg_i As New DAO_DRUG.TB_DRUG_REGISTRATION_PRODUCER_IN
+            dao_reg_i.GetDataby_FK_IDA(fk_transfer)
+            For Each dao_reg_i.fields In dao_reg_i.datas
+                Dim dao_rgt_pro_i As New DAO_DRUG.TB_DRUG_REGISTRATION_PRODUCER_IN
+                With dao_rgt_pro_i.fields
+                    .addr_ida = dao_reg_i.fields.addr_ida
+                    .FK_IDA = FK_IDA
+                    .FK_PRODUCER = dao_reg_i.fields.FK_PRODUCER
+                    .frgncd = dao_reg_i.fields.frgncd
+                    .frgnlctcd = dao_reg_i.fields.frgnlctcd
+                    .PRODUCER_WORK_TYPE = dao_reg_i.fields.PRODUCER_WORK_TYPE
+                    .REFERENCE_GMP = dao_reg_i.fields.REFERENCE_GMP
+                    .TR_ID = dao_reg_i.fields.TR_ID
+                End With
+                dao_rgt_pro_i.insert()
+            Next
+
+
+            Dim dao_pro As New DAO_DRUG.TB_DRRGT_PRODUCER
+            dao_pro.GetDataby_FK_IDA(fk_transfer)
+            For Each dao_pro.fields In dao_pro.datas
+                Dim dao_rgt_pro As New DAO_DRUG.TB_DRRQT_PRODUCER
+                With dao_rgt_pro.fields
+                    .addr_ida = dao_pro.fields.addr_ida
+                    .drgtpcd = dao_pro.fields.drgtpcd
+                    .FK_IDA = IDA_rgt
+                    .FK_PRODUCER = dao_pro.fields.FK_PRODUCER
+                    .frgncd = dao_pro.fields.frgncd
+                    .frgnlctcd = dao_pro.fields.frgnlctcd
+                    .funccd = dao_pro.fields.funccd
+                    .lcnno = dao_pro.fields.lcnno
+                    .lcntpcd = dao_pro.fields.lcntpcd
+                    .PRODUCER_WORK_TYPE = dao_pro.fields.PRODUCER_WORK_TYPE
+                    .pvncd = dao_pro.fields.pvncd
+                    .rcvno = dao_pro.fields.rcvno
+                    .REFERENCE_GMP = dao_pro.fields.REFERENCE_GMP
+                    .rgtno = dao_pro.fields.rgtno
+                    .rgttpcd = dao_pro.fields.rgttpcd
+                    .TR_ID = dao_pro.fields.TR_ID
+                End With
+                dao_rgt_pro.insert()
+            Next
+
+
+            Dim dao_pro_in As New DAO_DRUG.TB_DRRGT_PRODUCER_IN
+            dao_pro_in.GetDataby_FK_IDA(fk_transfer)
+            For Each dao_pro_in.fields In dao_pro_in.datas
+                Dim dao_rgt_pro_in As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+                With dao_rgt_pro_in.fields
+                    .drgtpcd = dao_pro_in.fields.drgtpcd
+                    .FK_IDA = IDA_rgt
+                    .funccd = dao_pro_in.fields.funccd
+                    .lcnno = dao_pro_in.fields.lcnno
+                    .lcntpcd = dao_pro_in.fields.lcntpcd
+                    .rgtno = dao_pro_in.fields.rgtno
+                    .rgttpcd = dao_pro_in.fields.rgttpcd
+                    .FK_LCN_IDA = dao_pro_in.fields.FK_LCN_IDA
+                    .rgtno = dao_pro_in.fields.rgtno
+                    .rgttpcd = dao_pro_in.fields.rgttpcd
+                    .lctcd = dao_pro_in.fields.lctcd
+                    .lcnsid = dao_pro_in.fields.lcnsid
+                End With
+                dao_rgt_pro_in.insert()
+            Next
 
 
             'Dim dao_prop As New DAO_DRUG.TB_DRRGT_PROPERTIES

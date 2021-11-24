@@ -5,7 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
-            <h3>เอกสารยินยอมการใช้สูตร</h3>
+            <h3>เอกสารแสดงสูตรและกรรมวิธีการผลิต</h3>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+            <h3 style="color:red">โปรดกดดูเอกสารสูตรตำรับและกรรมวิธีการผลิต ก่อนยอมรับการใช้สูตรตำรับและกรรมวิธีการผลิต</h3>
         </div>
     </div>
     <div class="row">
@@ -60,17 +65,21 @@
     </div>
      <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-2">
-            <label>การยินยอมที่จะใช้สูตร:</label>
+        <div class="col-lg-4">
+            <label>การยอมรับการใช้สูตรตำรับและกรรมวิธีการผลิต:</label>
         </div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
             <asp:RadioButtonList ID="ACCEPT_FORMULA" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">ยินยอม</asp:ListItem>
-                <asp:ListItem Value="2">ไม่ยินยอม</asp:ListItem>
+                <asp:ListItem Value="1">ยอมรับ</asp:ListItem>
+                <asp:ListItem Value="2">ไม่ยอมรับ</asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div class="col-lg-6" id="ACCEPT_FORMULA_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="ACCEPT_FORMULA_NOTE" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10" id="ACCEPT_FORMULA_TEXT" runat="server" visible="false">
+            <asp:TextBox ID="ACCEPT_FORMULA_NOTE" runat="server" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>

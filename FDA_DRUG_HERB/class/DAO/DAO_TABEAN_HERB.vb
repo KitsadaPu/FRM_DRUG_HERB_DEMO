@@ -45,6 +45,14 @@
             Next
         End Sub
 
+        Public Sub GetdatabyID_IDA_DD_HERB_NAME_ID(ByVal IDA As Integer, ByVal DD_HERB_NAME As Integer)
+            datas = From p In db.TABEAN_JJs Where p.IDA = IDA And p.DD_HERB_NAME_ID = DD_HERB_NAME Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
         Public Sub GetdatabyID_IDA_LCN(ByVal IDA_LCN As Integer, ByVal DD_HERB_NAME As Integer)
             datas = From p In db.TABEAN_JJs Where p.LCN_ID = IDA_LCN And p.DD_HERB_NAME_ID = DD_HERB_NAME Select p
 
@@ -168,6 +176,22 @@
 
         Public Sub GetdatabyID_TR_ID_PROCESS_ID(ByVal TR_ID As Integer, ByVal PROCESS_ID As String)
             datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(ByVal TR_ID As Integer, ByVal FK_IDA As Integer, ByVal PROCESS_ID As String)
+            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_TR_ID_PROCESS_TYPE(ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE_ID As Integer)
+            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS_ID And p.TYPE = TYPE_ID Select p
 
             For Each Me.fields In datas
 
@@ -303,8 +327,8 @@
             Next
         End Sub
 
-        Public Sub GetdatabyID_DD_HERB_NAME_ID(ByVal DD_HERB_NAME_ID As Integer)
-            datas = From p In db.MAS_TABEAN_HERB_NAME_DETAIL_JJs Where p.DD_HERB_NAME_ID = DD_HERB_NAME_ID Select p
+        Public Sub GetdatabyID_DD_HERB_NAME_ID(ByVal DD_HERB_NAME_ID As Integer, ByVal P_ID As Integer)
+            datas = From p In db.MAS_TABEAN_HERB_NAME_DETAIL_JJs Where p.DD_HERB_NAME_ID = DD_HERB_NAME_ID And p.PROCESS_ID = P_ID Select p
 
             For Each Me.fields In datas
 
@@ -447,6 +471,173 @@
 
     End Class
 
+    Public Class TB_TABEAN_HERB_ML
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_TABEAN_HERB_ML
+
+        Public Sub insert()
+            db.MAS_TABEAN_HERB_MLs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.MAS_TABEAN_HERB_MLs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.MAS_TABEAN_HERB_MLs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.MAS_TABEAN_HERB_MLs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+    End Class
+
+    Public Class TB_TABEAN_HERB
+        Inherits MAINCONTEXT
+
+        Public fields As New TABEAN_HERB
+
+        Public Sub insert()
+            db.TABEAN_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.TABEAN_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.TABEAN_HERBs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA_DQ(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_HERBs Where p.FK_IDA_DQ = FK_IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+    End Class
+
+    Public Class TB_TABEAN_HERB_MANUFACTRUE
+        Inherits MAINCONTEXT
+
+        Public fields As New TABEAN_HERB_MANUFACTRUE
+
+        Public Sub insert()
+            db.TABEAN_HERB_MANUFACTRUEs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.TABEAN_HERB_MANUFACTRUEs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.TABEAN_HERB_MANUFACTRUEs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.TABEAN_HERB_MANUFACTRUEs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA_DQ(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_HERB_MANUFACTRUEs Where p.FK_IDA_DQ = FK_IDA And p.ACTIVEFACT = 1 Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA_DQ2(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_HERB_MANUFACTRUEs Where p.FK_IDA_DQ = FK_IDA And p.ACTIVEFACT = 1 Select p
+
+        End Sub
+    End Class
+
+    Public Class TB_TABEAN_HERB_SIZE_PACK_FST
+        Inherits MAINCONTEXT
+
+        Public fields As New TABEAN_HERB_SIZE_PACK_FST
+
+        Public Sub insert()
+            db.TABEAN_HERB_SIZE_PACK_FSTs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.TABEAN_HERB_SIZE_PACK_FSTs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.TABEAN_HERB_MANUFACTRUEs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.TABEAN_HERB_SIZE_PACK_FSTs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA_DQ(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_HERB_SIZE_PACK_FSTs Where p.FK_IDA_DQ = FK_IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA_DQ2(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_HERB_SIZE_PACK_FSTs Where p.FK_IDA_DQ = FK_IDA And p.ACTIVEFACT = 1 Select p
+
+        End Sub
+    End Class
+
     Public Class TB_GEN_NO_JJ
         Inherits MAINCONTEXT
 
@@ -480,4 +671,41 @@
         End Sub
 
     End Class
+
+    Public Class TB_GEN_NO_TBN
+        Inherits MAINCONTEXT
+
+        Public fields As New GEN_NO_TBN
+
+        Public Sub insert()
+            db.GEN_NO_TBNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.GEN_NO_TBNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.GEN_NO_TBNs Select p)
+
+        End Sub
+
+        Public Sub GetDataby_GEN(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal REF_IDA As String, ByVal IDA_LCNNO As String)
+            'datas = (From p In db.GEN_NO_01s Where p.IDA = YEAR Order By p.IDA Descending Select p)
+            datas = (From p In db.GEN_NO_TBNs Where p.PVCODE = PVCODE And p.YEAR = YEAR And p.TYPE = TYPE Order By CInt(p.GENNO) Descending Select p).Take(1)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+    End Class
+
+
+
 End Namespace

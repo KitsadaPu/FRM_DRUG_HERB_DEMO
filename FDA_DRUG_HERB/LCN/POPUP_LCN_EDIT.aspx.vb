@@ -110,12 +110,19 @@
 
             tc = New TableCell
             Dim img As New Image
-            Try
+            If dao_f.fields.NAME_REAL Is Nothing OrElse dao_f.fields.NAME_REAL = "" Then
+                Dim AA As String = "../Images/cancel.png"
+                img.ImageUrl = AA
+                img.Width = 20
+                img.Height = 20
+            Else
+                Dim AA As String = "../Images/correct.png"
+                img.ImageUrl = AA
+                img.Width = 20
+                img.Height = 20
+            End If
 
-            Catch ex As Exception
-
-            End Try
-
+            tc.Width = 50
             tc.Controls.Add(img)
             tr.Cells.Add(tc)
 
@@ -143,7 +150,7 @@
 
             'dao.fields.STATUS_ID = 3
             dao.fields.EDIT_UPLOAD_ID = 1
-            dao.fields.STATUS_ID = 2
+            dao.fields.STATUS_ID = 17
             dao.update()
         ElseIf dao.fields.STATUS_ID = 13 Then
             'dao_f.GetDataby_FK_IDA_AND_TR_ID_AND_TYPE(_IDA, _TR_ID, 5)
@@ -153,7 +160,7 @@
             'Next
 
             dao.fields.EDIT_UPLOAD_ID = 2
-            dao.fields.STATUS_ID = 11
+            dao.fields.STATUS_ID = 18
             dao.update()
         End If
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ยื่นคำขอแล้ว');parent.close_modal();", True)

@@ -11,7 +11,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
     Private _TR_ID_LCN As String = ""
     Private _IDA_LCN As String = ""
     Private _DD_HERB_NAME_ID As String = ""
-    Private _ProcessID As String = ""
+    Private _PROCESS_JJ As String = ""
     Private _IDA As String = ""
     Private _PROCESS_ID_LCN As String = ""
 
@@ -31,7 +31,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
         _TR_ID_LCN = Request.QueryString("TR_ID_LCN")
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _DD_HERB_NAME_ID = Request.QueryString("DD_HERB_NAME_ID")
-        _ProcessID = Request.QueryString("DDHERB")
+        _PROCESS_JJ = Request.QueryString("PROCESS_JJ")
         _IDA = Request.QueryString("IDA")
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
 
@@ -54,7 +54,8 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
 
         If dao_jj.fields.TR_ID_JJ <> 0 Then
             TR_ID_JJ = dao_jj.fields.TR_ID_JJ
-            dao_up.GetdatabyID_TR_ID(TR_ID_JJ)
+            'dao_up.GetdatabyID_TR_ID(TR_ID_JJ)
+            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(TR_ID_JJ, _PROCESS_JJ, 1)
 
             Dim rows As Integer = 1
             For Each dao_up.fields In dao_up.datas
@@ -91,6 +92,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
                 tr.Cells.Add(tc)
 
                 tc = New TableCell
+                tc.Width = 50
                 Dim img As New Image
                 Try
                     If dao_up.fields.NAME_REAL Is Nothing OrElse dao_up.fields.NAME_REAL = "" Then
@@ -129,7 +131,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA_LCN(_IDA_LCN, _DD_HERB_NAME_ID)
         Dim TR_ID_JJ As Integer = dao.fields.TR_ID_JJ
-        Dim DD_HERB_PROCESS As String = _ProcessID
+        Dim DD_HERB_PROCESS As String = _PROCESS_JJ
 
         For Each tr As TableRow In tb_type_menu.Rows
             Dim IDA As Integer = tr.Cells(1).Text
@@ -144,7 +146,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
                 If exten.ToUpper = "PDF" Then
                     Dim bao As New BAO.AppSettings
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    Dim Name_fake As String = "HB-" & DD_HERB_PROCESS & "-" & Date.Now.Year & "-" & TR_ID_JJ & "-" & IDA & ".pdf"
+                    Dim Name_fake As String = "HB-" & _PROCESS_JJ & "-" & Date.Now.Year & "-" & TR_ID_JJ & "-" & IDA & ".pdf"
 
                     dao_up.GetdatabyID_IDA(IDA)
 
@@ -162,14 +164,15 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
 
                     End Try
 
-                    dao_up.fields.PROCESS_ID = DD_HERB_PROCESS
+                    dao_up.fields.PROCESS_ID = _PROCESS_JJ
 
                     dao_up.Update()
 
                     Dim paths As String = bao._PATH_XML_PDF_TABEAN_JJ
                     f.SaveAs(paths & "UPLOAD_FILE_JJ\" & Name_fake)
                 Else
-                    alert_no_file(name_real & "กรุณาแนบเป็นไฟล์ PDF")
+                    alert_file_error(name_real & "กรุณาแนบเป็นไฟล์ PDF")
+                    'alert_no_file(name_real & "กรุณาแนบเป็นไฟล์ PDF")
                 End If
             End If
 
@@ -179,14 +182,22 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
             alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
         Else
 
+            Dim TR_ID As String = dao.fields.TR_ID_JJ
+            Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+            Dim RCVNO_FULL As String = "HB" & " " & dao.fields.PVNCD & "-" & _PROCESS_JJ & "-" & DATE_YEAR & "-" & TR_ID
+
+            dao.fields.RCVNO_FULL = RCVNO_FULL
+
             'ยื่นคำขอ รอชำระเงิน
             'dao.fields.STATUS_ID = 2
+            'dao.fields.DATE_CONFIRM = Date.Now
             'ชำระเงิน รอตรวจรับคำขอ
-            dao.fields.STATUS_ID = 3
+            dao.fields.DATE_CONFIRM = Date.Now
+            dao.fields.STATUS_ID = 1
             dao.Update()
 
             Dim bao_tran As New BAO_TRANSECTION
-            bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, dao.fields.STATUS_ID)
+            bao_tran.insert_transection_jj(_PROCESS_JJ, dao.fields.IDA, dao.fields.STATUS_ID)
 
             ''XML จจ.1
             'Dim XML As New CLS_TABEAN_HERB_JJ
@@ -216,14 +227,14 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
             TB_JJ = XML.gen_xml(_IDA, _IDA_LCN)
 
             Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
-            dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ1", 0)
+            dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_PROCESS_JJ, dao.fields.STATUS_ID, "จจ1", 0)
 
             Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ") 'path
             Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_JJ1\" & dao_pdftemplate.fields.PDF_TEMPLATE
-            Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
-            Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_JJ("HB_XML", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+            Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _PROCESS_JJ, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+            Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_JJ("HB_XML", _PROCESS_JJ, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
 
-            LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _ProcessID, PATH_PDF_OUTPUT)
+            LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _PROCESS_JJ, PATH_PDF_OUTPUT)
 
             _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
             _CLS.PDFNAME = PATH_PDF_OUTPUT
@@ -238,11 +249,11 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
     Private Function check_file()
 
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
-        dao.GetdatabyID_IDA_PROCESS(_IDA, _ProcessID)
+        dao.GetdatabyID_IDA_PROCESS(_IDA, _PROCESS_JJ)
         Dim TR_ID_JJ As Integer = dao.fields.TR_ID_JJ
 
         Dim dao_check As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-        dao_check.GetdatabyID_TR_ID_PROCESS_ID_ALL(TR_ID_JJ, _ProcessID, 1)
+        dao_check.GetdatabyID_TR_ID_PROCESS_ID_ALL(TR_ID_JJ, _PROCESS_JJ, 1)
 
         Dim ck_file As Boolean = True
 
@@ -258,7 +269,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
 
     Sub alert_normal(ByVal text As String)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _ProcessID & "&IDA=" & _IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & _IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 
@@ -266,6 +277,12 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
         Dim url As String = ""
         'url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _ProcessID & "&IDA=" & _IDA
         Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
+    End Sub
+
+    Sub alert_file_error(ByVal text As String)
+        Dim url As String = ""
+        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & _IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 
 End Class

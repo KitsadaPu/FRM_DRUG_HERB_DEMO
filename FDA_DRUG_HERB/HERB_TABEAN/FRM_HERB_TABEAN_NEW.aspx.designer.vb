@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_NEW
-    
+
     '''<summary>
     '''btn_tabean control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_NEW
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_tabean As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_detail control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_NEW
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_detail As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_jj control.
     '''</summary>
@@ -39,7 +39,16 @@ Partial Public Class FRM_HERB_TABEAN_NEW
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_jj As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''hdf_select control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdf_select As Global.System.Web.UI.WebControls.HiddenField
+
     '''<summary>
     '''T1 control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_NEW
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents T1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>

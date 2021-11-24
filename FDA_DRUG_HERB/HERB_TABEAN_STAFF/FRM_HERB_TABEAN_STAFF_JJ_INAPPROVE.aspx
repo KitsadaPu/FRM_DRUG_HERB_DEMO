@@ -83,7 +83,7 @@
                 <div class="col-lg-10">
                     <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="80%" />
                     <br />
-                    <asp:Button ID="btn_download_jj2" runat="server" Text="Download จจ.2" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_download_jj2" runat="server" Text="Preview จจ.2" CssClass="btn-lg" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -143,7 +143,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอจดแจ้ง(ผปก. แก้ไขข้อมูลเอกสาร)</h3>
+                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
                 </div>
             </div>
             <div class="row">
@@ -196,7 +196,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารยินยอมการใช้สูตร</h3>
+                    <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
             <div class="row">

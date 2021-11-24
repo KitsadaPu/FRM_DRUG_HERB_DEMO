@@ -1,12 +1,18 @@
 ﻿Public Class POPUP_LCN_EDIT1
     Inherits System.Web.UI.Page
-    Private _CLS As New CLS_SESSION
+
     'Private _IDA As String
     ' Private _ProcessID As String
     Private _iden As String
     Private _lct_ida As String
     Private _lcn_ida As String
     Private _STATUS_ID As Integer
+    Shared _detial_type As Integer
+
+    Private _CLS As New CLS_SESSION
+    Private _CLS_CITIZEN_ID_AUTHORIZE As String = ""
+    Private _CLS_CITIZEN_ID As String = ""
+    Private _CLS_THANM As String = ""
 
 
 
@@ -24,44 +30,98 @@
         '_IDA = Request.QueryString("IDA")
         _lcn_ida = Request.QueryString("LCN_IDA")
         _STATUS_ID = Request.QueryString("STATUS_ID")
+        _detial_type = Request.QueryString("detail")
 
-
+        _CLS = Session("CLS")
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
         If Not IsPostBack Then
             'set_txt_label()
+            If _detial_type = 1 Then
+                btn_save.Visible = False
+            ElseIf _detial_type = 2 Then
+                btn_save.Visible = False
+            Else
+                btn_save.Visible = True
+            End If
+        End If
 
-        End If
-        If _STATUS_ID = 9 Then
-            btn_save.Visible = False
-        End If
+        Dim dt As DataTable
+        Dim bao As New BAO_LCN.TABLE_VIEW
+        dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA(_lcn_ida, 2)
+
+        Dim status_id As Integer = 0
+
+        For Each dr In dt.Rows
+            status_id = dr("STATUS_ID")
+        Next
+
+        'UC_LCN_EDIT1.bind_type_CHK_BOX(_lcn_ida)
+        'UC_LCN_EDIT1.bind_table_CHK_BOX(_lcn_ida)
+
+
+
     End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        UC_LCN_EDIT1.save_data_DDL()
         UC_LCN_EDIT1.save_data(dao)
-        Dim dt As DataTable
-        dt = UC_LCN_EDIT1.get_dt_edit(_lcn_ida)
 
+        'Dim dt1 As New DataTable
+        'Try
+        '    dt1 = UC_LCN_EDIT1.get_dt_edit(_lcn_ida)
+        'Catch ex As Exception
+
+        'End Try
+
+
+        Dim tr_id As String = ""
+        Dim lcn_edit_process As Integer = 0
+        Dim ddl1 As Integer = 0
+        Dim ddl2 As Integer = 0
+        ddl1 = dao.fields.LCN_EDIT_REASON_TYPE
+        Try
+            ddl2 = dao.fields.FK_SUB_REASON_TYPE
+        Catch ex As Exception
+        End Try
+
+        tr_id = dao.fields.TR_ID
+        lcn_edit_process = dao.fields.LCN_PROCESS_ID
+
+        Dim dt As New DataTable
+        Dim bao As New BAO_LCN.TABLE_VIEW
         Dim YEAR_S As String = ""
         YEAR_S = con_year(Date.Now().Year())
+        dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA_FILE_UPLOAD_FOR_UPDATE(_lcn_ida, ddl1, ddl2, 1, YEAR_S)
 
-        If dt.Rows.Count <> 0 Then
+        For Each dr As DataRow In dt.Rows
+            Dim dao_up As New DAO_LCN.TB_LCN_APPROVE_EDIT_UPLOAD_FILE
+            Dim IDA As String = ""
+            IDA = dr("IDA")
+            dao_up.GetDataby_IDA(IDA)
+            dao_up.fields.TR_ID = tr_id
+            dao_up.update()
+        Next
 
-            For Each dr As DataRow In dt.Rows
-                Dim dao_update As New DAO_LCN.TB_LCN_APPROVE_EDIT
-                Dim get_ida As Integer = 0
-                get_ida = dr("IDA")
-                dao_update.GetDataby_IDA_YEAR(get_ida, YEAR_S, True)
-                dao_update.fields.ACTIVE = 0
-                dao_update.fields.UPDATE_DATE = System.DateTime.Now
-                dao_update.update()
-            Next
-        End If
 
-        dao.insert()
+
+        'If dt.Rows.Count <> 0 Then
+
+        '    For Each dr As DataRow In dt.Rows
+        '        Dim dao_update As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        '        Dim get_ida As Integer = 0
+        '        get_ida = dr("IDA")
+        '        dao_update.GetDataby_IDA_YEAR(get_ida, YEAR_S, True)
+        '        dao_update.fields.ACTIVE = 0
+        '        dao_update.fields.UPDATE_DATE = System.DateTime.Now
+        '        dao_update.update()
+        '    Next
+        'End If
+
+
 
         dao.GetDataby_IDA_YEAR(_lcn_ida, YEAR_S, True)
         Dim ida_xml As Integer = 0

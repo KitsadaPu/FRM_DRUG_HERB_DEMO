@@ -95,6 +95,36 @@
         End Set
     End Property
 
+    Private _date_approve_day_end As String
+    Public Property date_approve_day_end() As String
+        Get
+            Return _date_approve_day_end
+        End Get
+        Set(ByVal value As String)
+            _date_approve_day_end = value
+        End Set
+    End Property
+
+    Private _date_approve_month_end As String
+    Public Property date_approve_month_end() As String
+        Get
+            Return _date_approve_month_end
+        End Get
+        Set(ByVal value As String)
+            _date_approve_month_end = value
+        End Set
+    End Property
+
+    Private _date_approve_year_end As String
+    Public Property date_approve_year_end() As String
+        Get
+            Return _date_approve_year_end
+        End Get
+        Set(ByVal value As String)
+            _date_approve_year_end = value
+        End Set
+    End Property
+
     Private _date_req_day As String
     Public Property date_req_day() As String
         Get
@@ -135,13 +165,63 @@
         End Set
     End Property
 
-    Private _TYPE_PERSON As String
-    Public Property TYPE_PERSON() As String
+    Private _TYPE_PERSON_1 As String
+    Public Property TYPE_PERSON_1() As String
         Get
-            Return _TYPE_PERSON
+            Return _TYPE_PERSON_1
         End Get
         Set(ByVal value As String)
-            _TYPE_PERSON = value
+            _TYPE_PERSON_1 = value
+        End Set
+    End Property
+
+    Private _TYPE_PERSON_99 As String
+    Public Property TYPE_PERSON_99() As String
+        Get
+            Return _TYPE_PERSON_99
+        End Get
+        Set(ByVal value As String)
+            _TYPE_PERSON_99 = value
+        End Set
+    End Property
+
+    Private _PROCESS_NAME As String
+    Public Property PROCESS_NAME() As String
+        Get
+            Return _PROCESS_NAME
+        End Get
+        Set(ByVal value As String)
+            _PROCESS_NAME = value
+        End Set
+    End Property
+
+    Private _LCNNO_DISPLAY_NEW As String
+    Public Property LCNNO_DISPLAY_NEW() As String
+        Get
+            Return _LCNNO_DISPLAY_NEW
+        End Get
+        Set(ByVal value As String)
+            _LCNNO_DISPLAY_NEW = value
+        End Set
+    End Property
+
+    Private _RCVNO_FULL As String
+    Public Property RCVNO_FULL() As String
+        Get
+            Return _RCVNO_FULL
+        End Get
+        Set(ByVal value As String)
+            _RCVNO_FULL = value
+        End Set
+    End Property
+
+    Private _NAME_THAI_NAME_PLACE As String
+    Public Property NAME_THAI_NAME_PLACE() As String
+        Get
+            Return _NAME_THAI_NAME_PLACE
+        End Get
+        Set(ByVal value As String)
+            _NAME_THAI_NAME_PLACE = value
         End Set
     End Property
 

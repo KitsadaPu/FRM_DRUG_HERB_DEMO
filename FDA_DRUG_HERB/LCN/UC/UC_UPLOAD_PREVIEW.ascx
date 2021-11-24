@@ -148,7 +148,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
             <asp:GridView ID="GV_lcnno" runat="server" Width="87%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
-                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="8" Font-Size="8pt">
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="15" Font-Size="8pt">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
 
@@ -297,7 +297,11 @@
     </asp:Panel>
 
      <div class="row">
-        <div class="col-lg-12" style="text-align: center">
+         <div class="col-lg-4"></div>
+         <div class="col-lg-2">
+             <asp:Button ID="btn_up" runat="server" Text="อัพโหลดไฟล์เพิ่มเติม" CssClass="btn-lg" Height="40px" Visible="false"/>
+         </div>
+        <div class="col-lg-6">      
             <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Height="40px" />
 
         </div>

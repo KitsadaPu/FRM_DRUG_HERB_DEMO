@@ -165,7 +165,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอจดแจ้ง(ผปก. แก้ไขข้อมูลเอกสาร)</h3>
+                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
                 </div>
             </div>
             <div class="row">
@@ -218,7 +218,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารยินยอมการใช้สูตร</h3>
+                    <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
             <div class="row">

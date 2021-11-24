@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''lr_preview control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''DD_STATUS control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_STATUS As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''P12 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents P12 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''RCVNO_FULL control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RCVNO_FULL As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RGTNO_FULL control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RGTNO_FULL As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DATE_OFFER control.
     '''</summary>
@@ -75,7 +75,43 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DATE_OFFER As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''DD_ML_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_ML_ID As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TXT_BATH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_BATH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DDL_DISCOUNT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_DISCOUNT As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TXT_SUM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_SUM As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''NOTE_OFFER control.
     '''</summary>
@@ -84,7 +120,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE_OFFER As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DD_OFF_OFFER control.
     '''</summary>
@@ -93,7 +129,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_OFF_OFFER As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''btn_sumit control.
     '''</summary>
@@ -102,7 +138,16 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''btn_preview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_preview As Global.System.Web.UI.WebControls.Button
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -111,7 +156,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''RadGrid2 control.
     '''</summary>
@@ -120,7 +165,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''RadGrid3 control.
     '''</summary>

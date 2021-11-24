@@ -3,24 +3,36 @@ Imports Telerik.Web.UI
 
 Public Class FRM_LCN_EDIT_STAFF_INTAKE
     Inherits System.Web.UI.Page
-    Private _CLS As New CLS_SESSION
+
     Private _LCN_IDA As Integer
+    Private _LCT_IDA As Integer
     Private _TR_ID As String
     Private _ProcessID As Integer
     Private _REASON_TYPE As String
     Private _STATUS_GROUP As Integer
     Private _STATUS_ID As Integer
     Private _IDA As Integer
+    Private _dd1_file As Integer
+
+    Private _CLS As New CLS_SESSION
+    Private _CLS_CITIZEN_ID_AUTHORIZE As String = ""
+    Private _CLS_CITIZEN_ID As String = ""
+    Private _CLS_THANM As String = ""
+
 
     Sub RunSession()
         '_ProcessID = Request.QueryString("process")
         '_IDA = Request.QueryString("IDA")
         '_TR_ID = Request.QueryString("TR_ID")
         _LCN_IDA = Request.QueryString("LCN_IDA")
+        _LCT_IDA = Request.QueryString("LCT_IDA")
         _REASON_TYPE = Request.QueryString("LCN_EDIT_REASON_TYPE")
         _STATUS_GROUP = Request.QueryString("STATUS_GROUP")
         _STATUS_ID = Request.QueryString("STATUS_ID")
         _IDA = Request.QueryString("IDA")
+        _dd1_file = Request.QueryString("ddl_up1")
+
+
 
         Try
             _CLS = Session("CLS")
@@ -40,6 +52,9 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
 
             'DD_STATUS.SelectedValue = _STATUS_ID
         End If
+        _CLS_CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+        _CLS_CITIZEN_ID = _CLS.CITIZEN_ID
+        _CLS_THANM = _CLS.THANM
     End Sub
     Public Sub bind_data()
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
@@ -133,10 +148,46 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
         Return dao_up.fields.IDA
 
     End Function
+
+    Function GEN_NO_INTAKE(ByVal YEAR As String, ByVal PROCESS_ID As Integer, ByVal LCN_IDA As Integer)
+        Dim int_no As Integer
+
+        Dim dao1 As New DAO_LCN.TB_LCN_APPROVE_EDIT_TRANSACTION_RQ_NUMBER
+        dao1.GetDataby_GEN(YEAR, PROCESS_ID, LCN_IDA)
+        If IsNothing(dao1.fields.GEN_NO) = True Then
+            int_no = 0
+        Else
+            int_no = dao1.fields.GEN_NO
+        End If
+
+        int_no = int_no + 1
+        Dim str_no As String = int_no
+
+        Dim dao2 As New DAO_LCN.TB_LCN_APPROVE_EDIT_TRANSACTION_RQ_NUMBER
+        dao2.fields.PROCESS_ID = PROCESS_ID
+        dao2.fields.FK_IDA_LCN = LCN_IDA
+        dao2.fields.GEN_NO = str_no
+        dao2.fields.STATUS = 1
+        dao2.fields.UPLOAD_DATE = Date.Now()
+        dao2.fields.YEAR = con_year(Date.Now().Year())
+        dao2.insert()
+
+        Return str_no
+    End Function
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
         If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกสถานะ');", True)
         Else
+
+
+            Dim dao_log As New DAO_DRUG.TB_LOG_STATUS
+            dao_log.fields.STATUS_ID = DD_STATUS.SelectedValue
+            dao_log.fields.PROCESS_ID = 10201
+            dao_log.fields.STATUS_DATE = System.DateTime.Now
+            dao_log.fields.IDENTIFY = _CLS_CITIZEN_ID
+            dao_log.fields.FK_IDA = _LCN_IDA
+            dao_log.insert()
+
             Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
 
@@ -150,7 +201,8 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
 
             End Try
             Dim _YEAR As String = con_year(Date.Now().Year())
-            dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+            dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+
 
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.fields.STATUS_NAME = DD_STATUS.SelectedItem.Text
@@ -165,9 +217,14 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
             Dim RQ_NUM As Integer = 0
 
             bind_data()
+            Dim bao_gen As New BAO.GenNumber
 
-            RQ_NUM = insert_transection_lcn_edit(_ProcessID, _LCN_IDA)
+            RQ_NUM = GEN_NO_INTAKE(con_year(Date.Now.Year), dao.fields.LCN_PROCESS_ID, _LCN_IDA)
+            'RQ_NUM = insert_transection_lcn_edit(_ProcessID, _LCN_IDA)
+
             Dim RQ_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+
+
 
 
             'รันเลขรับคำขอ EX* HB 10-10201-64-1

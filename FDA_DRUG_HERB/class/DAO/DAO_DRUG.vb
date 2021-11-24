@@ -1013,7 +1013,7 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
-        Public Sub GetDataby_4key(ByVal rgtno As String, ByVal rgttpcd As String, ByVal drgtpcd As String, ByVal pvncd As Integer)
+        Public Sub GetDataby_4key(ByVal rgtno As String, ByVal drgtpcd As String, ByVal rgttpcd As String, ByVal pvncd As Integer)
 
             datas = (From p In db.drrgts Where p.rgtno = rgtno And p.drgtpcd = drgtpcd And p.rgttpcd = rgttpcd And p.pvncd = pvncd Select p)
             For Each Me.fields In datas
@@ -1089,6 +1089,12 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_FK_LCN_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.drrqts Where p.FK_LCN_IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_TR_ID(ByVal TR_ID As Integer)
 
             datas = (From p In db.drrqts Where p.TR_ID = TR_ID Select p)
@@ -1153,6 +1159,12 @@ Namespace DAO_DRUG
             Next
             Return i
         End Function
+
+        Public Sub GET_RGTNO_NEW_BYTPCD(ByVal rgttpcd As String)
+            datas = (From p In db.drrqts Where p.RGTNO_NEW <> "" And p.RGTNO_NEW.Contains(rgttpcd) Select p.RGTNO_NEW).ToList
+
+        End Sub
+
     End Class
     Public Class ClsDBdrpcksize
         Inherits MAINCONTEXT
@@ -1393,6 +1405,11 @@ Namespace DAO_DRUG
 
         Public fields As New GEN_RCVNO
         Public Sub GetDataby_Year_PVNCD_PROCESS_ID_MAX(ByVal PVNCD As String, ByVal YEARS As Integer, ByVal PROCESS_ID As Integer)
+            datas = (From p In db.GEN_RCVNOs Where p.PVNCD = PVNCD And p.YEARS = YEARS And p.PROCESS_ID = PROCESS_ID Order By CInt(p.GEN_RCV) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_Year_PVNCD_PROCESS_ID(ByVal PVNCD As String, ByVal YEARS As Integer, ByVal PROCESS_ID As Integer)
             datas = (From p In db.GEN_RCVNOs Where p.PVNCD = PVNCD And p.YEARS = YEARS And p.PROCESS_ID = PROCESS_ID Order By CInt(p.GEN_RCV) Descending Select p).Take(1)
             For Each Me.fields In datas
             Next
@@ -1767,6 +1784,70 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+    End Class
+    Public Class TB_FILE_ATTACH_LOCATION
+        Inherits MAINCONTEXT
+
+        Public fields As New FILE_ATTACH_LOCATION
+
+        Private _Details As New List(Of FILE_ATTACH_LOCATION)
+        Public Property Details() As List(Of FILE_ATTACH_LOCATION)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of FILE_ATTACH_LOCATION))
+                _Details = value
+            End Set
+        End Property
+        Public Sub insert()
+            db.FILE_ATTACH_LOCATIONs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.FILE_ATTACH_LOCATIONs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID(ByVal TR_ID As Integer)
+
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Where p.TR_ID = TR_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID_AND_PROCESS(ByVal TR_ID As Integer, ByVal PROCESS As Integer)
+
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID_AND_PROCESS_AND_TYPE(ByVal TR_ID As Integer, ByVal PROCESS As Integer, ByVal type As Integer)
+
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS And p.TYPE = type Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetMAXby_TR_ID_And_Process(ByVal TR_ID As Integer, ByVal process As String)
+            datas = (From p In db.FILE_ATTACH_LOCATIONs Where p.TR_ID = TR_ID And p.PROCESS_ID = process Order By CInt(p.TYPE) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
     End Class
 
     Public Class TB_MAS_DALCN_UPLOAD_PROCESS_NAME
@@ -2210,6 +2291,12 @@ Namespace DAO_DRUG
         Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
 
             datas = (From p In db.dalcns Where p.FK_IDA = FK_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA_and_PROCESS_ID(ByVal _IDA As Integer, ByVal PROCESS_ID As Integer)
+
+            datas = (From p In db.dalcns Where p.IDA = _IDA And p.PROCESS_ID = PROCESS_ID And p.STATUS_ID = 8 Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -2827,6 +2914,13 @@ Namespace DAO_DRUG
                 'AddDetails()
             Next
         End Sub
+        Public Sub GetDataby_FK_LCN_ACTIVE(ByVal FK_IDA As String, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_PHRs Where p.FK_IDA = CInt(FK_IDA) And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+                'AddDetails()
+            Next
+        End Sub
         Public Sub GetDataby_CTZNO(ByVal CTZNO As String)
             datas = (From p In db.DALCN_PHRs Where p.PHR_CTZNO = CTZNO Select p)
             For Each Me.fields In datas
@@ -3279,6 +3373,30 @@ Namespace DAO_DRUG
         'End Sub
 
         Public Sub GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+              And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GETDATA_TABEAN_HERB_TB_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+              And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+              And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GETDATA_TABEAN_HERB_APPOINTMENT(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
             datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
               And p.PREVIEW = PREVIEW Select p)
             For Each Me.fields In datas
@@ -5409,6 +5527,13 @@ Namespace DAO_DRUG
         Public Sub GetData_by_LOCATION_ADDRESS_IDA(ByVal LOCATION_ADDRESS_IDA As String)
 
             datas = (From p In db.DALCN_DETAIL_LOCATION_KEEPs Where p.LOCATION_ADDRESS_IDA = LOCATION_ADDRESS_IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetData_by_LOCATION_ADDRESS_IDA_AND_LCN_IDA(ByVal LOCATION_ADDRESS_IDA As String, ByVal LCN_IDA As String)
+
+            datas = (From p In db.DALCN_DETAIL_LOCATION_KEEPs Where p.LOCATION_ADDRESS_IDA = LOCATION_ADDRESS_IDA And p.LCN_IDA = LCN_IDA Select p)
             For Each Me.fields In datas
 
             Next
@@ -7747,6 +7872,37 @@ Namespace DAO_DRUG
             Next
         End Sub
     End Class
+    Public Class TB_LOG_STATUS_LCN
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New LOG_STATUS_LCN
+
+        Public Sub insert()
+            db.LOG_STATUS_LCNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.LOG_STATUS_LCNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataby_IDA(ByVal _IDA As Integer)
+
+            datas = (From p In db.LOG_STATUS_LCNs Where p.IDA = _IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataALL()
+            datas = (From p In db.LOG_STATUS_LCNs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class TB_MAS_CHEMICAL_LIST16
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
 
@@ -9022,6 +9178,13 @@ Namespace DAO_DRUG
 
             Next
         End Sub
+        Public Sub GetDatabyFK_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.DRUG_REGISTRATION_PRODUCERs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
         Public Function CountDataby_FK_IDA(ByVal IDA As Integer) As Integer
             Dim a As Integer = 0
             datas = (From p In db.DRUG_REGISTRATION_PRODUCERs Where p.FK_IDA = IDA Select p)
@@ -9609,6 +9772,13 @@ Namespace DAO_DRUG
         Public Sub GetDataby_IDA(ByVal IDA As Integer)
 
             datas = (From p In db.DALCN_LOCATION_ADDRESSes Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID(ByVal TR_ID As Integer)
+
+            datas = (From p In db.DALCN_LOCATION_ADDRESSes Where p.TR_ID = TR_ID Select p)
             For Each Me.fields In datas
 
             Next
@@ -14620,6 +14790,8 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+
+
         Public Sub GetDataby_FKIDA(ByVal IDA As Integer)
 
             datas = (From p In db.DALCN_IMPORT_DRUG_GROUP_HERB_DETAILs Where p.LCN_IDA = IDA Select p)
@@ -14708,6 +14880,12 @@ Namespace DAO_DRUG
         Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
 
             datas = (From p In db.DALCN_FRGN_DATAs Where p.FK_IDA = FK_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA_AND_PERSON_TYPE(ByVal FK_IDA As Integer, ByVal type As Integer)
+
+            datas = (From p In db.DALCN_FRGN_DATAs Where p.FK_IDA = FK_IDA And p.PERSONAL_TYPE = type Select p)
             For Each Me.fields In datas
             Next
         End Sub

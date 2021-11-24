@@ -28,14 +28,19 @@ Public Class FRM_HERB_TABEAN_NEW
     End Sub
 
     Protected Sub btn_tabean_Click(sender As Object, e As EventArgs) Handles btn_tabean.Click
-        Response.Redirect("")
+        hdf_select.Value = 1
+        T1.Visible = True
+        RadGrid1.Rebind()
     End Sub
 
     Protected Sub btn_detail_Click(sender As Object, e As EventArgs) Handles btn_detail.Click
-        Response.Redirect("")
+        hdf_select.Value = 2
+        T1.Visible = True
+        RadGrid1.Rebind()
     End Sub
 
     Protected Sub btn_jj_Click(sender As Object, e As EventArgs) Handles btn_jj.Click
+        hdf_select.Value = 3
         T1.Visible = True
         RadGrid1.Rebind()
     End Sub
@@ -45,7 +50,7 @@ Public Class FRM_HERB_TABEAN_NEW
         Dim dt As DataTable
         '"0000000000000"
         Dim CID As String = _CLS.CITIZEN_ID_AUTHORIZE
-        dt = bao.SP_CUSTOMER_LCN_BY_IDENTIFY(CID)
+        dt = bao.SP_CUSTOMER_LCN_BY_IDENTIFY_NO120(CID)
         Return dt
 
     End Function
@@ -62,7 +67,6 @@ Public Class FRM_HERB_TABEAN_NEW
             item = e.Item
             Dim IDA_LCN As Integer = item("IDA").Text
             Dim TR_ID_LCN As String = item("TR_ID").Text
-            'Dim LCNNO_DISPLAY As String = item("LCNNO_DISPLAY").Text
             Dim PROCESS_ID As String = item("PROCESS_ID").Text
             Dim FK_IDA_LCT As String = ""
             Try
@@ -72,8 +76,15 @@ Public Class FRM_HERB_TABEAN_NEW
             End Try
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
-            H.NavigateUrl = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
 
+            If hdf_select.Value = 1 Then
+                H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+            ElseIf hdf_select.Value = 2 Then
+
+            ElseIf hdf_select.Value = 3 Then
+                H.NavigateUrl = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+
+            End If
         End If
     End Sub
 

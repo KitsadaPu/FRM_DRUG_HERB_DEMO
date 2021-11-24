@@ -33,7 +33,7 @@
 
 
         Dim PATH_XML As String
-        PATH_XML = paths & "upload\" & FILENAME_XML
+        PATH_XML = paths & "upload\" & "LCN_EDIT\" & FILENAME_XML
         'PATH_XML = paths & "\upload\" & "DA-120-2021-220969-36.pdf"
 
         Dim clsds As New ClassDataset

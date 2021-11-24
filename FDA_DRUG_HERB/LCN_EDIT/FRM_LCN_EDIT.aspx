@@ -141,8 +141,14 @@
                        <telerik:GridBoundColumn DataField="LCNNO" FilterControlAltText="Filter LCNNO column"
                            HeaderText="เลขใบอนุญาต" SortExpression="LCNNO" UniqueName="LCNNO">
                        </telerik:GridBoundColumn>
+                       <telerik:GridBoundColumn DataField="LCN_PROCESS_ID" FilterControlAltText="Filter LCN_PROCESS_ID column"
+                           HeaderText="LCN_PROCESS_ID" SortExpression="LCN_PROCESS_ID" UniqueName="LCN_PROCESS_ID" AllowFiltering="true" >
+                       </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
                            HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID" AllowFiltering="true">
+                       </telerik:GridBoundColumn>
+                       <telerik:GridBoundColumn DataField="LCN_EDIT_REASON_TYPE" FilterControlAltText="Filter LCN_EDIT_REASON_TYPE column"
+                           HeaderText="รหัสเหตุผลการขอแก้ไขใบอนุญาต" SortExpression="LCN_EDIT_REASON_TYPE" UniqueName="LCN_EDIT_REASON_TYPE" Display="false">
                        </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="LCN_EDIT_REASON_NAME" FilterControlAltText="Filter LCN_EDIT_REASON_NAME column"
                            HeaderText="เหตุผล" SortExpression="LCN_EDIT_REASON_NAME" UniqueName="LCN_EDIT_REASON_NAME">
@@ -153,10 +159,15 @@
                        <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
                            HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
                        </telerik:GridBoundColumn>
-                     <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="LCN_EDIT_DETAIL" HeaderText=""
-                        CommandName="LCN_EDIT_DETAIL"  Text="แก้ไขเอกสาร อัพโหลด" ImageUrl="" Visible="false">
+                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="DETAIL" HeaderText=""
+                        CommandName="DETAIL"  Text="ดูข้อมูล" ImageUrl="" >
                         <HeaderStyle Width="70px" />
                     </telerik:GridButtonColumn>
+                     <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="LCN_EDIT_DETAIL" HeaderText=""
+                        CommandName="LCN_EDIT_DETAIL"  Text="แก้ไขเอกสาร อัพโหลด" ImageUrl="">
+                        <HeaderStyle Width="70px" />
+                    </telerik:GridButtonColumn>
+                       
                        <telerik:GridTemplateColumn>
                                     <ItemTemplate>
                                         <asp:HyperLink ID="PV_SELECT" runat="server" Font-Underline="true" ForeColor="Blue">ตัวอย่างเอกสารแก้ไข</asp:HyperLink>

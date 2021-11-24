@@ -70,15 +70,24 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ
                 If STATUS_ID = 3 Or STATUS_ID = 5 Then
                     lbl_head1.Text = "ข้อมูลจดแจ้งของผู้ประกอบการยื่นคำขอ"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_INTAKE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
-                ElseIf STATUS_ID = 12 Or STATUS_ID = 11 Then
+                ElseIf STATUS_ID = 16 Then
                     lbl_head1.Text = "ข้อมูลจดแจ้ง เสนอลงนาม"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_INOFFER.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
-                ElseIf STATUS_ID = 6 Then
+                ElseIf STATUS_ID = 13 Then
                     lbl_head1.Text = "ข้อมูลจดแจ้ง อนุมัติ"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
+                ElseIf STATUS_ID = 19 Then
+                    lbl_head1.Text = "ทบทวน"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_INTAKE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
                 ElseIf STATUS_ID = 4 Then
                     lbl_head1.Text = "แก้ไขข้อมูล"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
+                ElseIf STATUS_ID = 6 Then
+                    lbl_head1.Text = "แก้ไขข้อมูล"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
+                ElseIf STATUS_ID = 12 Or STATUS_ID = 11 Then
+                    lbl_head1.Text = "ตรวจสอบก่อนลงนาม"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_VALIDATE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
                 ElseIf STATUS_ID = 8 Then
                     lbl_head1.Text = "อนุมัติคำขอเรียบร้อยแล้ว"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_APPROVE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)

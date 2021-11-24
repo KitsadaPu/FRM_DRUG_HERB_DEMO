@@ -379,7 +379,7 @@ Public Class FRM_SUBSTITUTE_TABEAN_PREVIEW
         Dim head_type As String = ""
         Try
             head_type = ""
-            If lcntpcd.Contains("บ") Then
+            If lcntpcd.Contains("สม") Then
                 head_type = "โบราณ"
             Else
                 head_type = "ปัจจุบัน"

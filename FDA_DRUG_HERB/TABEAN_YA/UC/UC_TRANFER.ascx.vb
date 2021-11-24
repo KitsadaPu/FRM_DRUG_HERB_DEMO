@@ -245,7 +245,8 @@ Public Class UC_TRANFER
         Catch ex As Exception
 
         End Try
-
+        Dim TRANSFER_ID As String = ""
+        TRANSFER_ID = ida_transfer
 
         cls_xml.LCN_TYPE = LCN_TYPE
         cls_xml.LCNNO_FORMAT = LCNNO_FORMAT
@@ -255,6 +256,7 @@ Public Class UC_TRANFER
         cls_xml.DRUG_STRENGTH = dao_re.fields.DRUG_STRENGTH
         Try
             cls_xml.TRANSFER = ida_transfer
+            cls_xml.drrqts.FK_TRANSFER = TRANSFER_ID
         Catch ex As Exception
 
         End Try

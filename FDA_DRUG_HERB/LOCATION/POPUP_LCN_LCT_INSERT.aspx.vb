@@ -17,25 +17,48 @@
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
+
         _IDA = Request.QueryString("IDA")
         _iden = Request.QueryString("iden")
         If Not IsPostBack Then
-
+            Dim dao_loca_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+            dao_loca_addr.GetDataby_IDA(_IDA)
             chngwtcd()
             If _IDA <> "" Then
                 btn_send.Style.Add("display", "block")
                 bnt_submit.Style.Add("display", "none")
                 loadData_by_Identify()
-                Dim dao_loca_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
-                dao_loca_addr.GetDataby_IDA(_IDA)
+
                 If dao_loca_addr.fields.STATUS_ID > 1 Then
                     btn_send.Style.Add("display", "none")
                     bnt_submit.Style.Add("display", "none")
+                    btn_upload.Style.Add("display", "none")
+                    'UC_ATTACH_LCN.EnableViewState = False
+                ElseIf dao_loca_addr.fields.STATUS_ID = 1 Then
+                    btn_send.Style.Add("display", "block")
+                    bnt_submit.Style.Add("display", "block")
                 End If
             Else
+                div_set_show1.Style.Add("display", "none")
+                btn_upload.Style.Add("display", "none")
+                lbl_upload_file.Style.Add("display", "none")
                 btn_send.Style.Add("display", "none")
                 bnt_submit.Style.Add("display", "block")
             End If
+
+            Try
+                Dim up_edit As String = ""
+                Dim dao_a As New DAO_DRUG.TB_FILE_ATTACH_LOCATION
+                dao_a.GetDataby_TR_ID(dao_loca_addr.fields.TR_ID)
+                If dao_a.fields.IDA <> 0 Then
+                    img_cf.Visible = True
+                    img_not.Visible = False
+                    lbl_upload_file.Text = dao_a.fields.NAME_REAL
+                End If
+            Catch ex As Exception
+
+            End Try
+
         End If
     End Sub
     Public Sub loadData_by_Identify()
@@ -127,18 +150,18 @@
 
 
     End Sub
-    Public Sub save()
-
+    Public Sub save(ByVal TR_ID As Integer)
         Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
-        Dim dao_syschngwt As New DAO_CPN.ClsDBsyschngwt
-        Dim dao_sysamphr As New DAO_CPN.ClsDBsysamphr
-        Dim dao_systhmbl As New DAO_CPN.ClsDBsysthmbl
+
+        Dim dao_syschngwt As New DAO_CPN.clsDBsyschngwt
+        Dim dao_sysamphr As New DAO_CPN.clsDBsysamphr
+        Dim dao_systhmbl As New DAO_CPN.clsDBsysthmbl
 
         Dim chngwtcd As Integer = ddl_chngwt.SelectedValue
         Dim amphrcd As Integer = ddl_amphr.SelectedValue
         Dim thmblcd As Integer = ddl_thumbol.SelectedValue
 
-
+        dao_location_addr.fields.TR_ID = TR_ID
         dao_location_addr.fields.thanameplace = txt_thanameplace_lo.Text
         dao_location_addr.fields.engnameplace = txt_engnameplace_lo.Text
         dao_location_addr.fields.HOUSENO = txt_thacode_id_lo.Text
@@ -150,9 +173,22 @@
         dao_location_addr.fields.thasoi = txt_thasoi_lo.Text
         dao_location_addr.fields.tharoad = txt_tharoad_lo.Text
         dao_location_addr.fields.zipcode = txt_zipcode_lo.Text
-        dao_location_addr.fields.tel = txt_tel_lo.Text
-        dao_location_addr.fields.Mobile = txt_mobile_lo.Text
-        dao_location_addr.fields.fax = txt_fax_lo.Text
+        If txt_tel_lo.Text = "" Then
+            dao_location_addr.fields.tel = "-"
+        Else
+            dao_location_addr.fields.tel = txt_tel_lo.Text
+        End If
+
+        If txt_mobile_lo.Text = "" Then
+            dao_location_addr.fields.Mobile = "-"
+        Else
+            dao_location_addr.fields.Mobile = txt_mobile_lo.Text
+        End If
+        If txt_fax_lo.Text = "" Then
+            dao_location_addr.fields.fax = "-"
+        Else
+            dao_location_addr.fields.fax = txt_fax_lo.Text
+        End If
 
         dao_location_addr.fields.chngwtcd = chngwtcd
         dao_location_addr.fields.amphrcd = amphrcd
@@ -179,8 +215,17 @@
         End Try
 
         Try
-            dao_location_addr.fields.latitude = txt_latitude.Text
-            dao_location_addr.fields.longitude = txt_longitude.Text
+            If txt_latitude.Text = "" Then
+                dao_location_addr.fields.longitude = 0
+            Else
+                dao_location_addr.fields.latitude = txt_latitude.Text
+            End If
+            If txt_longitude.Text = "" Then
+                dao_location_addr.fields.longitude = 0
+            Else
+                dao_location_addr.fields.longitude = txt_longitude.Text
+            End If
+            dao_location_addr.fields.CREATE_DATE = Date.Now
         Catch ex As Exception
 
         End Try
@@ -214,9 +259,23 @@
         dao_location_addr.fields.thasoi = txt_thasoi_lo.Text
         dao_location_addr.fields.tharoad = txt_tharoad_lo.Text
         dao_location_addr.fields.zipcode = txt_zipcode_lo.Text
-        dao_location_addr.fields.tel = txt_tel_lo.Text
-        dao_location_addr.fields.Mobile = txt_mobile_lo.Text
-        dao_location_addr.fields.fax = txt_fax_lo.Text
+        If txt_tel_lo.Text = "" Then
+            dao_location_addr.fields.tel = "-"
+        Else
+            dao_location_addr.fields.tel = txt_tel_lo.Text
+        End If
+
+        If txt_mobile_lo.Text = "" Then
+            dao_location_addr.fields.Mobile = "-"
+        Else
+            dao_location_addr.fields.Mobile = txt_mobile_lo.Text
+        End If
+        If txt_fax_lo.Text = "" Then
+            dao_location_addr.fields.fax = "-"
+        Else
+            dao_location_addr.fields.fax = txt_fax_lo.Text
+        End If
+
 
         dao_location_addr.fields.chngwtcd = chngwtcd
         dao_location_addr.fields.amphrcd = amphrcd
@@ -235,15 +294,25 @@
 
         dao_location_addr.fields.LOCATION_TYPE_ID = rdl_place_type.SelectedValue
         Try
-            dao_location_addr.fields.latitude = txt_latitude.Text
-            dao_location_addr.fields.longitude = txt_longitude.Text
+            If txt_latitude.Text = "" Then
+                dao_location_addr.fields.longitude = 0
+            Else
+                dao_location_addr.fields.latitude = txt_latitude.Text
+            End If
+            If txt_longitude.Text = "" Then
+                dao_location_addr.fields.longitude = 0
+            Else
+                dao_location_addr.fields.longitude = txt_longitude.Text
+            End If
+
+
         Catch ex As Exception
 
         End Try
 
 
         dao_location_addr.update()
-        Response.Write("<script type='text/javascript'>alert('แก้ไขข้อมูลเรียบร้อยแล้ว'); parent.close_modal();</script> ")
+        Response.Write("<script type='text/javascript'>alert('แก้ไขข้อมูลเรียบร้อยแล้ว');</script> ")
         Response.Write("</script type >")
     End Sub
 
@@ -252,17 +321,54 @@
             edit()
 
         Else
-            save()
+            Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+            Dim Process_TB As String = "10100"
+            Dim TR_ID As String = ""
+            Dim bao_tran As New BAO_TRANSECTION
+
+            TR_ID = bao_tran.insert_transection(Process_TB)
+            If UC_ATTACH_LCN.CHK_Extension = 0 Then
+                If UC_ATTACH_LCN.CHK_upload_file = 1 Then
+                    save(TR_ID)
+                    dao_location_addr.GetDataby_TR_ID(TR_ID)
+                    Dim Year As String
+                    Year = con_year(Date.Now.Year)
+                    UC_ATTACH_LCN.ATTACH_LCT(dao_location_addr.fields.IDA, dao_location_addr.fields.TR_ID, Process_TB, Year, "1")
+
+                Else
+                    Response.Write("<script type='text/javascript'>alert('กรุแนบไฟล์ PDF');</script> ")
+                End If
+            Else
+                Response.Write("<script type='text/javascript'>alert('กรุแนบไฟล์ PDF');</script> ")
+        End If
         End If
     End Sub
 
     Private Sub btn_send_Click(sender As Object, e As EventArgs) Handles btn_send.Click
-        Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
-        dao_location_addr.GetDataby_IDA(_IDA)
-        dao_location_addr.fields.STATUS_ID = 2
-        dao_location_addr.update()
-        Response.Write("<script type='text/javascript'>alert('ส่งเรื่องเรียบร้อยแล้ว'); parent.close_modal();</script> ")
-        Response.Write("</script type >")
+        Try
+            Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+            dao_location_addr.GetDataby_IDA(_IDA)
+            Dim up_edit As String = ""
+            Dim dao_a As New DAO_DRUG.TB_FILE_ATTACH_LOCATION
+            dao_a.GetDataby_TR_ID(dao_location_addr.fields.TR_ID)
+            Dim IDA_UP As Integer = 0
+            IDA_UP = dao_a.fields.IDA
+            If IDA_UP = 0 Then
+                Response.Write("<script type='text/javascript'>alert('กรุณาอัพโหลดเอกสารแนบก่อนส่งเรื่อง');</script> ")
+                Response.Write("</script type >")
+            Else
+                dao_location_addr.fields.STATUS_ID = 2
+                dao_location_addr.fields.SENT_DATE = Date.Now
+                dao_location_addr.update()
+                Response.Write("<script type='text/javascript'>alert('ส่งเรื่องเรียบร้อยแล้ว'); parent.close_modal();</script> ")
+                Response.Write("</script type >")
+            End If
+        Catch ex As Exception
+            Response.Write("<script type='text/javascript'>alert('กรุณาอัพโหลดเอกสารแนบก่อนส่งเรื่อง');</script> ")
+            Response.Write("</script type >")
+        End Try
+
+
     End Sub
 
     Protected Sub btn_hno_Click(sender As Object, e As EventArgs) Handles btn_hno.Click
@@ -304,5 +410,61 @@
             'lb_thmbl_ws.Text = obj.Address_Tumbol
             'lb_chngwt_ws.Text = obj.Address_Province
         End If
+    End Sub
+
+    Protected Sub btn_upload_Click(sender As Object, e As EventArgs) Handles btn_upload.Click
+        Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        Dim Process_TB As String = "10100"
+        Dim TR_ID As String = ""
+        Dim bao_tran As New BAO_TRANSECTION
+        Dim Year As String
+        Dim up_edit As String = ""
+
+        Dim dao_a As New DAO_DRUG.TB_FILE_ATTACH_LOCATION
+        dao_location_addr.GetDataby_IDA(_IDA)
+        Dim get_tr As Integer = 0
+        Try
+            get_tr = dao_location_addr.fields.TR_ID
+        Catch ex As Exception
+            get_tr = 0
+        End Try
+
+        If get_tr <> 0 Then
+            Year = con_year(Date.Now.Year)
+            UC_ATTACH_LCN.ATTACH_LCT_UPDATE(_IDA, get_tr, Process_TB, Year, "1")
+
+            dao_a.GetDataby_TR_ID(TR_ID)
+            If dao_a.fields.IDA <> 0 Then
+                img_cf.Visible = True
+                img_not.Visible = False
+                lbl_upload_file.Text = dao_a.fields.NAME_REAL
+            End If
+        Else
+            TR_ID = bao_tran.insert_transection(Process_TB)
+            dao_location_addr.fields.TR_ID = TR_ID
+            dao_location_addr.update()
+
+            dao_location_addr.GetDataby_TR_ID(TR_ID)
+            Year = con_year(Date.Now.Year)
+            UC_ATTACH_LCN.ATTACH_LCT(_IDA, TR_ID, Process_TB, Year, "1")
+
+            dao_a.GetDataby_TR_ID(TR_ID)
+            If dao_a.fields.IDA <> 0 Then
+                img_cf.Visible = True
+                img_not.Visible = False
+                lbl_upload_file.Text = dao_a.fields.NAME_REAL
+            End If
+        End If
+
+
+
+        'TR_ID = bao_tran.insert_transection(Process_TB)
+        'dao_location_addr.fields.TR_ID = get_tr
+        'dao_location_addr.update()
+
+        'dao_location_addr.GetDataby_TR_ID(TR_ID)
+
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แนบไฟล์เรียบร้อยแล้ว');", True)
+        '    Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri & "&IDA=" & dao_location_addr.fields.IDA)
     End Sub
 End Class

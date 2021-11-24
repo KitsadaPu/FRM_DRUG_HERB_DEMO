@@ -60,9 +60,9 @@
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_CATEGORY_ID" runat="server" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="1">ผลิต</asp:ListItem>
-                <asp:ListItem Value="2">นำเข้า</asp:ListItem>
-                <asp:ListItem Value="3">ขาย</asp:ListItem>
+                <asp:ListItem Value="122">ผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="121">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="120">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
@@ -252,17 +252,21 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="row">
+    <%--<div class="col-lg-3" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="PRODUCT_PROCESS" runat="server" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
+        </div>--%>
+   <%-- <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
             <label>กรรมวิธีการผลิต:</label>
         </div>
-        <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="PRODUCT_PROCESS" runat="server" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
-        </div>
+        <div class="col-lg-3">
+            <asp:DropDownList ID="DD_MANUFAC_ID" runat="server" DataValueField="MANUFAC_ID" DataTextField="MANUFAC_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false"></asp:DropDownList>
+        <asp:TextBox ID="TXT_MENUFACTRUE_DETAIL" runat="server" TextMode="MultiLine" Height="60px" Width="100%" BorderStyle="None" ReadOnly="true"></asp:TextBox>
+       </div>
         <div class="col-lg-1"></div>
-    </div>
-    <div class="row">
+    </div>--%>
+    <%--<div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
             <label>น้ำหนักส่วนประกอบสำคัญต่อเม็ด / แคปซูล:</label>
@@ -278,7 +282,7 @@
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
-    </div>
+    </div>--%>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
@@ -295,13 +299,8 @@
             <label>กลุ่มอาการ:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_SYNDROME_ID" runat="server" DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false">
-                <%--<asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="1">ยาขับน้ำคาวปลา</asp:ListItem>
-                <asp:ListItem Value="2">ยาแก้ปวดท้อง</asp:ListItem>
-                <asp:ListItem Value="3">ยาขับลม/บำรุงธาตุ</asp:ListItem>
-                <asp:ListItem Value="4">แก้ไข้</asp:ListItem>--%>
-            </asp:DropDownList>
+            <%--<asp:DropDownList ID="DD_SYNDROME_ID" runat="server" DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false">            </asp:DropDownList>--%>
+        <asp:TextBox ID="TXT_SYNDROME_DETAIL" runat="server" BorderStyle="None" TextMode="MultiLine" Height="60px" Width="100%" ReadOnly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -365,24 +364,59 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
-            <label>การรักษา:</label>
+            <label>การเก็บรักษา:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="TREATMENT" runat="server" BorderStyle="None" Width="200px" ReadOnly="true"></asp:TextBox>
+        <%--<div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="TREATMENT" runat="server" BorderStyle="None" Width="200px"></asp:TextBox>
+        </div>--%>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="DD_STORAGE_ID" runat="server" DataValueField="PRO_MT_ID" DataTextField="PRO_MT_NAME" Style="width: 100%" Enabled="false"></asp:DropDownList>
         </div>
         <div class="col-lg-2">
             <label>อายุการเก็บรักษา:</label>
         </div>
         <div class="col-lg-1" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="TREATMENT_AGE" runat="server" BorderStyle="None" Width="200px" ReadOnly="true"></asp:TextBox>
+            <%-- <asp:TextBox ID="TREATMENT_AGE" runat="server" BorderStyle="None" Width="200px" AutoPostBack="True" TextMode="Number"></asp:TextBox>--%>
+            <asp:DropDownList ID="TREATMENT_AGE_YEAR" runat="server" Width="80%" AutoPostBack="true" Enabled="false">
+                <asp:ListItem Value="0">-</asp:ListItem>
+                <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:ListItem Value="2">2</asp:ListItem>
+                <asp:ListItem Value="3">3</asp:ListItem>
+            </asp:DropDownList>
         </div>
-        <div class="col-lg-1">
-            <label>หน่วย:</label>
+        <%--  <div class="col-lg-1">
+           <label>ปี</label><label style="color: red">*</label>
+        <label>หน่วย:</label><label style="color: red">*</label>
+        </div>--%>
+        <div class="col-lg-1" style="text-align: center">
+            <label>ปี</label><label style="color: red">*</label>
+            <%--<asp:DropDownList ID="DD_PRO_AGE" runat="server" DataValueField="PRO_AGE_ID" DataTextField="PRO_AGE_NAME"  AutoPostBack="true"></asp:DropDownList>--%>
         </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_PRO_AGE" runat="server" DataValueField="PRO_AGE_ID" DataTextField="PRO_AGE_NAME" Style="width: 100%" Enabled="false"></asp:DropDownList>
+        <%-- <div class="col-lg-1" style="border-bottom: #999999 1px dotted">
+            <asp:TextBox ID="TREATMENT_AGE_MONTH" runat="server" BorderStyle="None" Width="200px" AutoPostBack="True"></asp:TextBox>
+        </div>--%>
+        <div class="col-lg-1" id="div_hide" runat="server" style="border-bottom: #999999 1px dotted">
+            <%--<label>หน่วย:</label><label style="color: red">*</label>--%>
+
+            <asp:DropDownList ID="TREATMENT_AGE_MONTH_SUB" runat="server" Width="80%" Enabled="false">
+                <asp:ListItem Value="0">-</asp:ListItem>
+                <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:ListItem Value="2">2</asp:ListItem>
+                <asp:ListItem Value="3">3</asp:ListItem>
+                <asp:ListItem Value="4">4</asp:ListItem>
+                <asp:ListItem Value="5">5</asp:ListItem>
+                <asp:ListItem Value="6">6</asp:ListItem>
+                <asp:ListItem Value="7">7</asp:ListItem>
+                <asp:ListItem Value="8">8</asp:ListItem>
+                <asp:ListItem Value="9">9</asp:ListItem>
+                <asp:ListItem Value="10">10</asp:ListItem>
+                <asp:ListItem Value="11">11</asp:ListItem>
+                <%-- <asp:ListItem Value="12">12</asp:ListItem>--%>
+            </asp:DropDownList>
         </div>
-        <div class="col-lg-1"></div>
+        <div class="col-lg-1" id="div_hide2" runat="server">
+            <label>เดือน</label>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-1"></div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="FRM_HERB_TABEAN_JJ_EDIT.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ_EDIT" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_HERB_TABEAN_JJ_EDIT.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ_EDIT" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row" style="text-align: center">
-        <h3>รายการเอกสารที่แก้ไข</h3>
+        <h3>รายละเอียดข้อบกพร่อง ที่ท่านต้องแก้ไข</h3>
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
@@ -47,14 +47,7 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="row" runat="server">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-3" style="text-align: center">หมายเหตุการแก้ไข</div>
-        <div class="col-lg-6" style="text-align: left">
-            <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%"></asp:TextBox>
-        </div>
-        <div class="col-lg-1"></div>
-    </div>
+    <hr />
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <h3>เอกสารแนบประกอบการแก้ไขคำขอจดแจ้ง</h3>
@@ -111,7 +104,7 @@
     </div>
     <hr />
     <div class="row" style="text-align: center">
-        <h3>แนบเอกสารที่แก้ไข</h3>
+        <h3>แนบเอกสาร รายละเอียดข้อบกพร่อง ที่ท่านต้องแก้ไข</h3>
     </div>
     <div class="row">
         <div style="overflow-x: scroll; height: 200px; text-align: center">
@@ -119,7 +112,25 @@
             <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" />
         </div>
     </div>
-    <hr />
+    <div class="row" runat="server" id="R_NATURE_EDIT" visible="false">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">แก้ไข ลักษณะ</div>
+        <div class="col-lg-2">            
+            <asp:RadioButtonList ID="R_NATURE" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true" Enabled="false">
+                <asp:ListItem Value="1">แก้ไข</asp:ListItem>
+            </asp:RadioButtonList></div>
+        <div class="col-lg-1" style="color:red"> * </div>
+        <div class="col-lg-4"><asp:TextBox ID="NATURE" TextMode="MultiLine" runat="server" Style="height: 20%; width: 100%"></asp:TextBox></div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row" runat="server">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3" style="text-align: center">หมายเหตุการแก้ไข</div>
+        <div class="col-lg-6" style="text-align: left">
+            <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%" ReadOnly="true"></asp:TextBox>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10" style="text-align: center">

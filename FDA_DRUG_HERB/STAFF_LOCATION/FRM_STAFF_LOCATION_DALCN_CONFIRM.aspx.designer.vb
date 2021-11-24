@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class FRM_STAFF_LOCATION_DALCN_CONFIRM
 
     '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
     '''HiddenField1 control.
     '''</summary>
     '''<remarks>
@@ -437,11 +446,11 @@ Partial Public Class FRM_STAFF_LOCATION_DALCN_CONFIRM
     Protected WithEvents btn_load0 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''UC_GRID_ATTACH control.
+    '''RadGrid2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_GRID_ATTACH As Global.FDA_DRUG_HERB.UC_GRID_ATTACH
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 End Class

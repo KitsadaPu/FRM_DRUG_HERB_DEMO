@@ -10,7 +10,8 @@
     End Sub
 
     Private Sub btn_other_Click(sender As Object, e As EventArgs) Handles btn_other.Click
-        Response.Redirect("FRM_HERB_TABEAN_OTHER.aspx?MENU_GROUP=2")
+        'Response.Redirect("FRM_HERB_TABEAN_OTHER.aspx?MENU_GROUP=2")
+        Response.Redirect("../HERB_TABEAN_SUBSTITUTE/FRM_HERB_TABEAN_SUB_MENU.aspx?MENU_GROUP=2")
     End Sub
 
 End Class

@@ -111,20 +111,20 @@ Public Class POPUP_DR_TRANSFER_DL
 
                 End Try
 
-            ElseIf e.CommandName = "tranfer" Then
-                Try
-                    If RadioButtonList1.SelectedValue <> "" Then
-                        Dim dao As New DAO_DRUG.ClsDBdrrgt
-                        dao.GetDataby_IDA(IDA)
-                        'Panel1.Style.Add("display", "block")
-                        Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri & "&IDA_G=" & IDA)
-                    Else
-                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกประเภท');", True)
-                    End If
+                'ElseIf e.CommandName = "tranfer" Then
+                '    Try
+                '        If RadioButtonList1.SelectedValue <> "" Then
+                '            Dim dao As New DAO_DRUG.ClsDBdrrgt
+                '            dao.GetDataby_IDA(IDA)
+                '            'Panel1.Style.Add("display", "block")
+                '            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri & "&IDA_G=" & IDA)
+                '        Else
+                '            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกประเภท');", True)
+                '        End If
 
-                Catch ex As Exception
+                '    Catch ex As Exception
 
-                End Try
+                '    End Try
             End If
         End If
     End Sub
@@ -186,6 +186,15 @@ Public Class POPUP_DR_TRANSFER_DL
         Dim drug_name As String = ""
         Dim TABEAN_TYPE1 As String = ""
         Dim TABEAN_TYPE2 As String = ""
+        Dim dao_copy As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
+
+        Dim newcode As String = ""
+        Try
+            dao_copy.GetDataby_IDA_drrgt(ida_transfer)
+            newcode = dao_copy.fields.Newcode_U
+        Catch ex As Exception
+
+        End Try
         Try
             If dao.fields.lcntpcd.Contains("ผยบ") Or dao.fields.lcntpcd.Contains("นยบ") Then
                 TABEAN_TYPE1 = "0"
@@ -207,7 +216,7 @@ Public Class POPUP_DR_TRANSFER_DL
 
         End Try
         Try
-            If dao.fields.lcntpcd.Contains("ผย") Then
+            If dao.fields.lcntpcd.Contains("ผย") Or dao.fields.lcntpcd.Contains("ผส") Then
                 LCNTPCD_GROUP = "2"
             Else
                 LCNTPCD_GROUP = "1"
@@ -271,8 +280,11 @@ Public Class POPUP_DR_TRANSFER_DL
         cls_xml.TABEAN_TYPE1 = TABEAN_TYPE1
         cls_xml.TABEAN_TYPE2 = TABEAN_TYPE2
         cls_xml.DRUG_STRENGTH = dao_re.fields.DRUG_STRENGTH
+        Dim TRANSFER_ID As String = ""
+        TRANSFER_ID = ida_transfer
         Try
             cls_xml.TRANSFER = ida_transfer
+            cls_xml.drrqts.FK_TRANSFER = TRANSFER_ID
         Catch ex As Exception
 
         End Try
@@ -295,24 +307,36 @@ Public Class POPUP_DR_TRANSFER_DL
         cls_xml.DT_SHOW.DT12 = bao_show.SP_DRRGT_PROPERTIES_BY_FK_IDA(ida_transfer)
         cls_xml.DT_SHOW.DT12.TableName = "SP_DRUG_REGISTRATION_PROPERTIES_BY_FK_IDA"
 
-        Dim dt13 As New DataTable
-        Dim dt14 As New DataTable
-        Dim dt15 As New DataTable
-        dt13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 1, LCNTPCD_GROUP)
-        dt14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 2, LCNTPCD_GROUP)
-        dt15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 3, LCNTPCD_GROUP)
-        If dt13.Rows.Count > 0 Then
-            cls_xml.DT_SHOW.DT13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 1, LCNTPCD_GROUP)
-            cls_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
-        End If
-        If dt14.Rows.Count > 0 Then
-            cls_xml.DT_SHOW.DT14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 2, LCNTPCD_GROUP)
-            cls_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
-        End If
-        If dt15.Rows.Count > 0 Then
-            cls_xml.DT_SHOW.DT15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 3, LCNTPCD_GROUP)
-            cls_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
-        End If
+        'Dim dt13 As New DataTable
+        'Dim dt14 As New DataTable
+        'Dim dt15 As New DataTable
+        'dt13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 1, LCNTPCD_GROUP)
+        'dt14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 2, LCNTPCD_GROUP)
+        'dt15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 3, LCNTPCD_GROUP)
+        'If dt13.Rows.Count > 0 Then
+        '    cls_xml.DT_SHOW.DT13 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 1, LCNTPCD_GROUP)
+        '    cls_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
+        'End If
+        'If dt14.Rows.Count > 0 Then
+        '    cls_xml.DT_SHOW.DT14 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 2, LCNTPCD_GROUP)
+        '    cls_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
+        'End If
+        'If dt15.Rows.Count > 0 Then
+        '    cls_xml.DT_SHOW.DT15 = bao_show.SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 3, LCNTPCD_GROUP)
+        '    cls_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
+        'End If
+        cls_xml.DT_SHOW.DT13 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_ANDTYPE_V2(ida_transfer, 1)
+        cls_xml.DT_SHOW.DT13.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_2NO"
+        cls_xml.DT_SHOW.DT14 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_ANDTYPE_V2(ida_transfer, 2)
+        cls_xml.DT_SHOW.DT14.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3NO"
+        cls_xml.DT_SHOW.DT16 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_ANDTYPE_V2(ida_transfer, 10)
+        cls_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_3_2NO"
+        cls_xml.DT_SHOW.DT15 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_ANDTYPE_V2(ida_transfer, 3)
+        cls_xml.DT_SHOW.DT15.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_4NO"
+
+        cls_xml.DT_SHOW.DT21 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER(ida_transfer, 9, LCNTPCD_GROUP)
+        cls_xml.DT_SHOW.DT21.TableName = "SP_DRRQT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE_OTHER"
+
         cls_xml.DT_SHOW.DT16 = bao_show.SP_DRUG_REGISTRATION_MASTER(_main_ida)
         cls_xml.DT_SHOW.DT16.TableName = "SP_DRUG_REGISTRATION_MASTER"
 
@@ -323,9 +347,6 @@ Public Class POPUP_DR_TRANSFER_DL
 
         cls_xml.DT_SHOW.DT20 = bao_show.SP_DRRGT_DETAIL_CAS_BY_FK_IDA_NEW(ida_transfer) 'สารสำคัญ/ส่วนประกอบ(รวม)
         cls_xml.DT_SHOW.DT20.TableName = "SP_DRRGT_DETAIL_CAS_BY_FK_IDA"
-
-        cls_xml.DT_SHOW.DT21 = bao_show.SP_DRRGT_PRODUCER_BY_FK_IDA_AND_TYPE_AND_LCN_TYPE(ida_transfer, 9, LCNTPCD_GROUP)
-        cls_xml.DT_SHOW.DT21.TableName = "SP_DRUG_REGISTRATION_PRODUCER_BY_FK_IDA_AND_TYPE_OTHER"
 
         cls_xml.DT_SHOW.DT22 = bao_show.SP_DRRGT_PACKAGE_DETAIL_CHK_BY_FK_IDA(ida_transfer)
         cls_xml.DT_SHOW.DT22.TableName = "SP_DRSAMP_PACKAGE_DETAIL_CHK_BY_FK_IDA"

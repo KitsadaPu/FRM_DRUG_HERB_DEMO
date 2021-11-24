@@ -1,7 +1,8 @@
-﻿Public Class FRM_STAFF_LOCATION_DALCN_CONFIRM
+﻿Imports Telerik.Web.UI
+Public Class FRM_STAFF_LOCATION_DALCN_CONFIRM
     Inherits System.Web.UI.Page
 
-    Private _TR_ID As String
+    Private _TR_ID As Integer
     Private _IDA As Integer
     Private _Process As Integer
     Private _CLS As New CLS_SESSION
@@ -19,16 +20,15 @@
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
-        UC_GRID_ATTACH.load_gv(_TR_ID)
         If Not IsPostBack Then
             Bind_ddl_Status_staff()
-            Bind_GRID()
+            'Bind_GRID()
             txt_app_date.Text = Date.Now.ToShortDateString()
             loadData_by_Identify()
         End If
     End Sub
     Private Sub Bind_GRID()
-        UC_GRID_ATTACH.load_gv(_TR_ID)
+        'UC_GRID_ATTACH.load_gv_LCT(_TR_ID)
     End Sub
     Public Sub loadData_by_Identify()
         Dim dao_loca_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
@@ -131,7 +131,16 @@
             dao.update()
             alert("ทำการบันทึกข้อมูลเรียบร้อยแล้ว คุณได้เลขรับที่ " & rcvno)
         ElseIf statusID = "8" Then
+            rcvno = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, "99", _IDA)
+            bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), rcvno)
             dao.fields.STATUS_ID = ddl_status.SelectedItem.Value
+            Try
+                dao.fields.rcvdate = CDate(txt_app_date.Text)
+            Catch ex As Exception
+
+            End Try
+            dao.fields.STATUS_ID = ddl_status.SelectedItem.Value
+            dao.fields.rcvno = rcvno
             dao.update()
             alert("ทำการอนุมัติข้อมูลเรียบร้อยแล้ว")
         End If
@@ -149,7 +158,7 @@
     End Sub
     Sub chngwtcd()
         Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
-        Dim chn As New DAO_CPN.ClsDBsyschngwt
+        Dim chn As New DAO_CPN.clsDBsyschngwt
         Dim item As New ListItem("-----รายชื่อจังหวัด-----", "0")
         chn.GetDataAll()
         ddl_chngwt.DataSource = chn.datas
@@ -161,7 +170,7 @@
 
     Sub amphrcd()   'เป็นการนำข้อมูลในตารางใส่ DropDown  ข้อมูลอำเภอ
         Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
-        Dim amp As New DAO_CPN.ClsDBsysamphr
+        Dim amp As New DAO_CPN.clsDBsysamphr
         amp.GetDataby_chngwtcd(ddl_chngwt.SelectedValue)
         ddl_amphr.DataSource = amp.datas
         ddl_amphr.DataTextField = "thaamphrnm"
@@ -171,7 +180,7 @@
     End Sub
     Sub thmblcd()      'เป็นการนำข้อมูลในตารางใส่ DropDown  ข้อมูลตำบล
         Dim dao_loca_addr As New DAO_CPN.TB_LOCATION_ADDRESS
-        Dim thm As New DAO_CPN.ClsDBsysthmbl
+        Dim thm As New DAO_CPN.clsDBsysthmbl
         thm.GetDataby_thmbl(ddl_chngwt.SelectedValue, ddl_amphr.SelectedValue)
         ddl_thumbol.DataSource = thm.datas
         ddl_thumbol.DataTextField = "thathmblnm"
@@ -188,9 +197,30 @@
     End Sub
 
     Protected Sub ddl_amphr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_amphr.SelectedIndexChanged
-
         thmblcd()
+    End Sub
+    Function bind_data_loca()
+        Dim dt As DataTable
 
+        Dim bao As New BAO.ClsDBSqlcommand
 
+        dt = bao.SP_LOCATION_FILE_UPLOAD(_TR_ID)
+
+        Return dt
+    End Function
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_loca()
+    End Sub
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "FRM_LOCATION_STAFF_PREVIEW.aspx?ida=" & _TR_ID
+
+        End If
     End Sub
 End Class

@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<%@ Register src="../UC/UC_ATTACH.ascx" tagname="UC_ATTACH" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -62,10 +63,74 @@
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <asp:Button ID="btn_download_jj1" runat="server" Text="Download จจ.1" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_download_jj1" runat="server" Text="Preview จจ.1" CssClass="btn-lg" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-12" style="text-align: center">
+                    <h3>อัพโหลดเอกสาร จจ.2 ที่อนุมัติแล้ว</h3>
+                </div>
+            </div>
+            <div class="row" runat="server" id="uc_upload1" visible="true">
+                <div class="col-lg-12" style="text-align: center">
+                    <uc1:UC_ATTACH ID="UC_ATTACH1" runat="server" />
+                </div>
+            </div>
+            <div class="row" runat="server" id="uc_upload1_btn" visible="true">
+                <div class="col-lg-12" style="text-align: center">
+                    <asp:Button ID="btn_savefileapprove_jj2" runat="server" Text="บันทึกแบบไฟล์" CssClass="btn-lg" Width="80%" />
+                </div>
+            </div>
+            <div class="row" runat="server" id="uc_upload1_radgrid" visible="false">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10" style="width: 100%">
+                    <telerik:RadGrid ID="RadGrid4" runat="server">
+                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                            <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
+
+                            <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
+                                <HeaderStyle Width="20px"></HeaderStyle>
+                            </RowIndicatorColumn>
+
+                            <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
+                                <HeaderStyle Width="20px"></HeaderStyle>
+                            </ExpandCollapseColumn>
+                            <Columns>
+                                <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                                    SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
+                                    SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
+                                    HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridTemplateColumn>
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="PV_SELECT" runat="server">ดูเอกสาร</asp:HyperLink>
+                                    </ItemTemplate>
+                                </telerik:GridTemplateColumn>
+                            </Columns>
+                            <EditFormSettings>
+                                <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
+                            </EditFormSettings>
+
+                            <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                        </MasterTableView>
+
+                        <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+
+                        <FilterMenu EnableImageSprites="False"></FilterMenu>
+                    </telerik:RadGrid>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
                     <h3>เอกสารแนบคำขอจดแจ้ง</h3>
@@ -122,7 +187,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอจดแจ้ง(ผปก. แก้ไขข้อมูลเอกสาร)</h3>
+                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
                 </div>
             </div>
             <div class="row">
@@ -175,7 +240,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารยินยอมการใช้สูตร</h3>
+                    <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
             <div class="row">

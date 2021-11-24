@@ -203,4 +203,17 @@ Public Class UC_HERB_PHESAJ
             rgphr.DataSource = dt
         End If
     End Sub
+    Private Sub rgns_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgphr.ItemCommand
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = e.Item
+            Dim _ida As String = item("PHR_IDA").Text
+            Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
+            If e.CommandName = "r_del" Then
+                dao.GetDataby_IDA(_ida)
+                dao.delete()
+                rgphr.Rebind()
+
+            End If
+        End If
+    End Sub
 End Class

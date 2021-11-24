@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" CodeBehind="FRM_HERB_TABEAN_MAIN_MEMU.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_MAIN_MEMU" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" CodeBehind="FRM_HERB_TABEAN_MAIN_MEMU.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_MAIN_MEMU" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

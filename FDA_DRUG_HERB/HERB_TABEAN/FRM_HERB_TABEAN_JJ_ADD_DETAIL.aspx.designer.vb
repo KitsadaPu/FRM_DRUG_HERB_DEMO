@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
-    
+
     '''<summary>
     '''NAME_JJ control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_JJ As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''NAME_PLACE_JJ control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_PLACE_JJ As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DD_TYPE_NAME control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_TYPE_NAME As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''DD_TYPE_SUB_ID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_TYPE_SUB_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''DD_CATEGORY_ID control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_CATEGORY_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''foreign control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents foreign As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''txt_search control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txt_search_ida control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_search_ida As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''HiddenField1 control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HiddenField1 As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''btn_search control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''RadGrid2 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''txt_address control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_address As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txt_address_ida control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_address_ida As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RadGrid3 control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''NAME_THAI control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_THAI As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''NAME_ENG control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_ENG As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''NAME_OTHER control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_OTHER As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DD_STYPE_ID control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_STYPE_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''RECIPE_NAME control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RECIPE_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ACCOUNT_NO control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ACCOUNT_NO As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ARTICLE_NO control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ARTICLE_NO As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''PRODUCT_JJ control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents PRODUCT_JJ As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''SIZE_PACK control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SIZE_PACK As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''NATURE control.
     '''</summary>
@@ -237,43 +237,16 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NATURE As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
-    '''PRODUCT_PROCESS control.
+    '''TXT_SYNDROME_DETAIL control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents PRODUCT_PROCESS As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''WEIGHT_TABLE_CAP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents WEIGHT_TABLE_CAP As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''DD_WEIGHT_TABLE_CAP_UNIT_ID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DD_WEIGHT_TABLE_CAP_UNIT_ID As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''DD_SYNDROME_ID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DD_SYNDROME_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+    Protected WithEvents TXT_SYNDROME_DETAIL As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''PROPERTIES control.
     '''</summary>
@@ -282,7 +255,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents PROPERTIES As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''SIZE_USE control.
     '''</summary>
@@ -291,7 +264,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SIZE_USE As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''HOW_USE control.
     '''</summary>
@@ -300,7 +273,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HOW_USE As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DD_EATTING_ID control.
     '''</summary>
@@ -309,7 +282,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_EATTING_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''R_EATING_CONDITION control.
     '''</summary>
@@ -318,7 +291,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_EATING_CONDITION As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''R_EATING_CONDITION_TEXT control.
     '''</summary>
@@ -327,7 +300,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_EATING_CONDITION_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''EATING_CONDITION_NAME control.
     '''</summary>
@@ -336,34 +309,52 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents EATING_CONDITION_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
-    '''TREATMENT control.
+    '''DD_STORAGE_ID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TREATMENT As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents DD_STORAGE_ID As Global.System.Web.UI.WebControls.DropDownList
+
     '''<summary>
-    '''TREATMENT_AGE control.
+    '''TREATMENT_AGE_YEAR control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TREATMENT_AGE As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents TREATMENT_AGE_YEAR As Global.System.Web.UI.WebControls.DropDownList
+
     '''<summary>
-    '''DD_PRO_AGE control.
+    '''div_hide control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DD_PRO_AGE As Global.System.Web.UI.WebControls.DropDownList
-    
+    Protected WithEvents div_hide As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''TREATMENT_AGE_MONTH_SUB control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TREATMENT_AGE_MONTH_SUB As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''div_hide2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents div_hide2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''R_CONTRAINDICATION control.
     '''</summary>
@@ -372,7 +363,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_CONTRAINDICATION As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''R_CONTRAINDICATION_TEXT control.
     '''</summary>
@@ -381,7 +372,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_CONTRAINDICATION_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''CONTRAINDICATION_NAME control.
     '''</summary>
@@ -390,7 +381,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CONTRAINDICATION_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''R_WARNING control.
     '''</summary>
@@ -399,7 +390,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_WARNING As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''R_WARNING_TEXT control.
     '''</summary>
@@ -408,7 +399,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_WARNING_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''WARNING_NAME control.
     '''</summary>
@@ -417,7 +408,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents WARNING_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''R_CAUTION control.
     '''</summary>
@@ -426,7 +417,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_CAUTION As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''R_CAUTION_TEXT control.
     '''</summary>
@@ -435,7 +426,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_CAUTION_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''CAUTION_NAME control.
     '''</summary>
@@ -444,7 +435,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CAUTION_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''R_ADV_REACTIVETION control.
     '''</summary>
@@ -453,7 +444,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_ADV_REACTIVETION As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''R_ADV_REACTIVETION_TEXT control.
     '''</summary>
@@ -462,7 +453,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents R_ADV_REACTIVETION_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''ADV_REACTIVETION_NAME control.
     '''</summary>
@@ -471,7 +462,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ADV_REACTIVETION_NAME As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DD_SALE_CHANNEL control.
     '''</summary>
@@ -480,7 +471,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_SALE_CHANNEL As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''NOTE control.
     '''</summary>
@@ -489,7 +480,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btn_save control.
     '''</summary>
@@ -498,7 +489,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_cancel control.
     '''</summary>

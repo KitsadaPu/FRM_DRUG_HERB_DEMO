@@ -24,11 +24,11 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
         Try
             dao.GetDataby_IDA(Request.QueryString("ida"))
             If dao.fields.lcntpcd = "ขสม" Then
-                rdl_drug_type.SelectedValue = "1"
+                rdl_drug_type.SelectedValue = "3"
             ElseIf dao.fields.lcntpcd = "นสม" Then
                 rdl_drug_type.SelectedValue = "2"
             ElseIf dao.fields.lcntpcd = "ผสม" Then
-                rdl_drug_type.SelectedValue = "3"
+                rdl_drug_type.SelectedValue = "1"
             End If
         Catch ex As Exception
 

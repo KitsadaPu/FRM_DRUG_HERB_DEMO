@@ -142,13 +142,13 @@ Public Class FRM_LCN_DRUG1
 
             End Try
             'Try
-            '    identify = item("house_no").Text
+            '    identify = item("house_no").Texts
             'Catch ex As Exception
 
             'End Try
-
+            Dim dao As New DAO_DRUG.ClsDBdalcn
             If e.CommandName = "sel" Then
-                Dim dao As New DAO_DRUG.ClsDBdalcn
+                'Dim dao As New DAO_DRUG.ClsDBdalcn
                 dao.GetDataby_IDA(IDA)
                 Dim tr_id As String = 0
                 Try
@@ -162,6 +162,22 @@ Public Class FRM_LCN_DRUG1
                 Dim dao_pro As New DAO_DRUG.ClsDBPROCESS_NAME
                 dao_pro.GetDataby_Process_Name(dao.fields.lcntpcd)
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_LCN_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&process=" & dao.fields.PROCESS_ID & "&identify=" & identify & "&lct_ida=" & location_ida & "');", True)
+            ElseIf e.CommandName = "drug_group" Then
+                dao.GetDataby_IDA(IDA)
+                Dim tr_id As String = 0
+                Try
+                    tr_id = dao.fields.TR_ID
+                Catch ex As Exception
+
+                End Try
+                Dim dao_pro As New DAO_DRUG.ClsDBPROCESS_NAME
+                dao_pro.GetDataby_Process_Name(dao.fields.lcntpcd)
+                _process = dao_pro.fields.PROCESS_ID
+                If _process = "120" Or _process = "121" Or _process = "122" Then
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups3('" & "../LCN/POPUP_LCN_DRUG_GROUP_HERB.aspx?ida=" & IDA & "&TR_ID=" & tr_id & "&process=" & _process & "');", True)
+                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups3('" & "../LCN/POPUP_LCN_PRODUCTION_DRUG_GROUP_HEAD.aspx?ida=" & tr_id & "&TR_ID=" & tr_id & "&process=" & _process & "');", True)
+                End If
             End If
 
         End If
