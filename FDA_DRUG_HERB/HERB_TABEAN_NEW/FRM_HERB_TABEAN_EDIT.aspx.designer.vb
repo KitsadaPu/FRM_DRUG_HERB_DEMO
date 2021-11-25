@@ -77,24 +77,6 @@ Partial Public Class FRM_HERB_TABEAN_EDIT
     Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_sumit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_cancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''EDIT_TB1_SHOW control.
     '''</summary>
     '''<remarks>
@@ -120,4 +102,22 @@ Partial Public Class FRM_HERB_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_TABEAN_EDIT_TB1 As Global.FDA_DRUG_HERB.UC_TABEAN_EDIT_TB1
+
+    '''<summary>
+    '''btn_sumit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_cancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 End Class

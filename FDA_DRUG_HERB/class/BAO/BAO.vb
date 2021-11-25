@@ -2220,6 +2220,18 @@ Namespace BAO
 
             Return dta
         End Function
+        Public Function SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(ByVal fk_ida As Integer) As DataTable
+            Dim clsds As New ClassDataset
+            Dim sql As String = "exec SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2 @FK_IDA=" & fk_ida
+            Dim dta As New DataTable
+            Try
+                dta = clsds.dsQueryselect(sql, conn.ConnectionString).Tables(0)
+            Catch ex As Exception
+
+            End Try
+
+            Return dta
+        End Function
         Public Function SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDEN_V2(ByVal LOCATION_TYPE_CD As Integer, ByVal iden As String) As DataTable
             Dim clsds As New ClassDataset
             Dim sql As String = "exec SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDEN_V2 @iden='" & iden & "' ,@LOCATION_TYPE_CD=" & LOCATION_TYPE_CD

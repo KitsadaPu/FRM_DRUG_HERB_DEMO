@@ -4495,6 +4495,7 @@ Namespace CLASS_GEN_XML
             dt = BAO.SP_XML_DRUG_DRRQT(_IDA_DQ)
             dt.Columns.Add("TYPE_SUB_NAME_CHANGE")
             dt.Columns.Add("TREATMENT_AGE_FULL")
+            dt.Columns.Add("WARNIG_DETIAL")
             For Each dr As DataRow In dt.Rows
 
                 'If dr("TYPE_SUB_ID") = 1 Then
@@ -4503,7 +4504,16 @@ Namespace CLASS_GEN_XML
                 '    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนจีน"
                 'ElseIf dr("TYPE_SUB_ID") = 3 Then
                 '    dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
-                'End If
+                'End If  
+                Try
+                    If dr("WARNING_TYPE_ID") = 1 And dr("WARNING_ID") = 2 Then
+                        dr("WARNIG_DETIAL") = dao_tabean_herb.fields.WARNING_NAME
+                    Else
+                        dr("WARNIG_DETIAL") = dao_tabean_herb.fields.WARNING_SUB_NAME
+                    End If
+                Catch ex As Exception
+
+                End Try
 
                 Try
                     dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & dao_tabean_herb.fields.TREATMENT_AGE_NAME
@@ -4700,6 +4710,10 @@ Namespace CLASS_GEN_XML
                 dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPM"
                 XML.DT_SHOW.DT5 = dt_lcn_location
             End If
+
+            Dim bao_sp As New BAO.ClsDBSqlcommand
+            XML.DT_SHOW.DT6 = bao_sp.SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(_IDA_DQ)
+            XML.DT_SHOW.DT6.TableName = "SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2"
 
             Return XML
         End Function

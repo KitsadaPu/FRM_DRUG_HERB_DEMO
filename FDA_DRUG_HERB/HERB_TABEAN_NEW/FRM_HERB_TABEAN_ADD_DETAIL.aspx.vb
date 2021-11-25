@@ -643,6 +643,18 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
             'End If
 
             Try
+                dao.fields.PRODUCER_ID = RBL_CHK_PRODUCER.SelectedValue
+                If RBL_CHK_PRODUCER.SelectedValue = 1 Then
+                    dao.fields.PRODUCER_NAME = "มี"
+                Else
+                    dao.fields.PRODUCER_NAME = "ไม่มี"
+                End If
+
+            Catch ex As Exception
+
+            End Try
+
+            Try
                 dao.fields.EATING_CONDITION_ID = DD_EATING_CONDITION_ID.SelectedValue
                 dao.fields.EATING_CONDITION_NAME = DD_EATING_CONDITION_ID.SelectedItem.Text
                 If DD_EATING_CONDITION_ID.SelectedValue = 14 Then
@@ -691,7 +703,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
                     R_WARNING_TEXT.Visible = False
                 Else
                     dao.fields.WARNING_NAME = WARNING_NAME.Text
-
+                    dao.fields.WARNING_SUB_NAME = WARNING_NAME.Text
                     R_WARNING_TEXT.Visible = True
                 End If
 
@@ -855,6 +867,18 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
 
             End Try
 
+            Try
+                dao.fields.PRODUCER_ID = RBL_CHK_PRODUCER.SelectedValue
+                If RBL_CHK_PRODUCER.SelectedValue = 1 Then
+                    dao.fields.PRODUCER_NAME = "มี"
+                Else
+                    dao.fields.PRODUCER_NAME = "ไม่มี"
+                End If
+
+            Catch ex As Exception
+
+            End Try
+
             dao.fields.NAME_THAI = NAME_THAI.Text
             dao.fields.NAME_ENG = NAME_ENG.Text
             dao.fields.NAME_OTHER = NAME_OTHER.Text
@@ -952,7 +976,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
                     R_WARNING_TEXT.Visible = False
                 Else
                     dao.fields.WARNING_NAME = WARNING_NAME.Text
-
+                    dao.fields.WARNING_SUB_NAME = WARNING_NAME.Text
                     R_WARNING_TEXT.Visible = True
                 End If
 
@@ -1271,5 +1295,171 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
         Else
             TREATMENT_AGE_MONTH_SUB.Enabled = True
         End If
+    End Sub
+
+    Protected Sub RBL_CHK_PRODUCER_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RBL_CHK_PRODUCER.SelectedIndexChanged
+        If RBL_CHK_PRODUCER.SelectedValue = 1 Then
+            DIV_PRODUCER_SHOW.Visible = True
+        Else
+            DIV_PRODUCER_SHOW.Visible = False
+        End If
+    End Sub
+
+    Protected Sub BTN_SEARCH_PRODUCER_Click(sender As Object, e As EventArgs) Handles BTN_SEARCH_PRODUCER.Click
+        Search_FN()
+        RadGrid_LCNNO.Rebind()
+    End Sub
+    Sub Search_FN()
+        Dim pvncd As Integer = 0
+        Try
+            pvncd = _CLS.PVCODE
+        Catch ex As Exception
+            pvncd = 0
+        End Try
+
+        Dim bao As New BAO.ClsDBSqlcommand
+        bao.SP_DALCN_STAFF_SEARCH()
+        Dim dt As New DataTable
+        Try
+            dt = bao.dt
+        Catch ex As Exception
+
+        End Try
+        Dim r_result As DataRow()
+        Dim str_where As String = ""
+        Dim dt2 As New DataTable
+        'str_where = "CITIZEN_ID_AUTHORIZE='" & txt_CITIZEN_AUTHORIZE.Text & "'"
+        If TXT_LCNNO_SEARCH.Text <> "" Then
+
+            If str_where <> "" Then
+                str_where &= " and LCNNO_DISPLAY_NEW like '%" & TXT_LCNNO_SEARCH.Text & "%' or lcnno_no like '%" & TXT_LCNNO_SEARCH.Text & "%'"
+            Else
+                str_where &= " LCNNO_DISPLAY_NEW like '%" & TXT_LCNNO_SEARCH.Text & "%' or lcnno_no like '%" & TXT_LCNNO_SEARCH.Text & "%'"
+            End If
+        End If
+        ' pvncd = 12
+        If pvncd <> 10 Then
+            If str_where <> "" Then
+                str_where &= " and pvncd=" & pvncd
+            Else
+                str_where &= " pvncd=" & pvncd
+            End If
+
+        End If
+
+        r_result = dt.Select(str_where)
+
+        dt2 = dt.Clone
+
+        For Each dr As DataRow In r_result
+            dt2.Rows.Add(dr.ItemArray)
+        Next
+        DIV_LCNNO_SHOW_GRID.Visible = True
+        RadGrid_LCNNO.DataSource = dt2
+    End Sub
+    Private Sub btn_select_Click(sender As Object, e As EventArgs) Handles btn_select.Click
+
+        For Each item As GridDataItem In RadGrid_LCNNO.SelectedItems
+            Dim lcntpcd As String = ""
+            Dim dao_da As New DAO_DRUG.ClsDBdalcn
+            Try
+                dao_da.GetDataby_IDA(item("IDA").Text)
+                lcntpcd = dao_da.fields.lcntpcd
+            Catch ex As Exception
+
+            End Try
+
+            Dim dao As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+            dao.fields.FK_LCN_IDA = item("IDA").Text
+            dao.fields.FK_IDA = Request.QueryString("IDA_DQ")
+            'dao.fields.funccd = ddl_work_type.SelectedValue
+            dao.insert()
+        Next
+
+        'KEEP_LOGS_TABEAN_EDIT(Request.QueryString("IDA"), "เพิ่มผู้ผลิตในประเทศ", _CLS.CITIZEN_ID)
+        DIV_PRODUCER_SHOW_GRID.Visible = True
+        RadGrid_PRODUCER.Rebind()
+    End Sub
+    Private Sub RadGrid_PRODUCER_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid_PRODUCER.NeedDataSource
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim dt As New DataTable
+
+        dt = bao.SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(Request.QueryString("IDA_DQ"))
+
+        RadGrid_PRODUCER.DataSource = dt
+    End Sub
+    Private Sub RadGrid_PRODUCER_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid_PRODUCER.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim ida As String = item("IDA").Text
+            Dim lbl_comment As Label = DirectCast(item("work_type").FindControl("lbl_work_type"), Label)
+            Dim rcb_work_type As RadComboBox = DirectCast(item("work_type").FindControl("rcb_work_type"), RadComboBox)
+
+
+            Dim dao As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+            dao.GetDataby_IDA(item("IDA").Text)
+            Try
+                rcb_work_type.SelectedValue = dao.fields.funccd
+            Catch ex As Exception
+
+            End Try
+            Try
+
+                If dao.fields.funccd = 1 Then
+                    lbl_comment.Text = "ผลิตยาสำเร็จรูป"
+                ElseIf dao.fields.funccd = 2 Then
+                    lbl_comment.Text = "แบ่งบรรจุ"
+                ElseIf dao.fields.funccd = 3 Then
+                    lbl_comment.Text = "ตรวจปล่อยหรือผ่านเพื่อจำหน่าย"
+                ElseIf dao.fields.funccd = 9 Then
+                    lbl_comment.Text = "อื่นๆ"
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+    Private Sub RadGrid_PRODUCER_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles RadGrid_PRODUCER.ItemCommand
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim bao_infor As New BAO.information
+
+        If e.CommandName = "_del" Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim old_data As String = ""
+            Dim new_data As String = ""
+            If Request.QueryString("tt") <> "" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ไม่สามารถลบข้อมูลได้');", True)
+            Else
+                Try
+                    Dim dao As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+                    dao.GetDataby_IDA(item("IDA_DQ").Text)
+                    dao.delete()
+                    alert("ลบเรียบร้อยแล้ว")
+
+                Catch ex As Exception
+
+                End Try
+                'KEEP_LOGS_TABEAN_EDIT(Request.QueryString("IDA"), "ลบผู้ผลิตในประเทศ", _CLS.CITIZEN_ID)
+                RadGrid_PRODUCER.Rebind()
+            End If
+        End If
+    End Sub
+    Public Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>window.alert('" + text + "');</script> ")
+    End Sub
+
+    Private Sub btn_save_work_type_Click(sender As Object, e As EventArgs) Handles btn_save_work_type.Click
+        For Each item As GridDataItem In RadGrid_PRODUCER.Items
+            Dim rcb_work_type As RadComboBox = DirectCast(item("work_type").FindControl("rcb_work_type"), RadComboBox)
+
+            Dim dao_pro As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
+            dao_pro.GetDataby_IDA(item("IDA").Text)
+            dao_pro.fields.funccd = rcb_work_type.SelectedValue
+            dao_pro.update()
+        Next
+        alert("[บันทึกเรียบร้อยแล้ว")
+        RadGrid_PRODUCER.Rebind()
     End Sub
 End Class

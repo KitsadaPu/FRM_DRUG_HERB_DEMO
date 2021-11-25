@@ -475,41 +475,41 @@ Public Class UC_TABEAN_EDIT_TB1
         NOTE.Text = dao.fields.NOTE
 
     End Sub
-    Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+    'Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
-        'Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
-        'dao_lcn.GetDataby_IDA(_IDA_LCN)
-        'Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
-        'dao_deeqt.GetDataby_IDA(_IDA_DQ)
-        'Dim dao_tabean As New DAO_TABEAN_HERB.TB_TABEAN_HERB
-        'dao_tabean.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
+    '    'Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+    '    'dao_lcn.GetDataby_IDA(_IDA_LCN)
+    '    'Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+    '    'dao_deeqt.GetDataby_IDA(_IDA_DQ)
+    '    'Dim dao_tabean As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+    '    'dao_tabean.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
 
-        'If dao_tabean.fields.IDA <> 0 Then
-        '    update_data()
-        '    Response.Redirect("../HERB_TABEAN_STAFF_NEW/FRM_HERB_TABEAN_STAFF_TABEAN.aspx?TR_ID_LCN=" & dao_lcn.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_lcn.fields.IDA & "&PROCESS_ID_LCN=" & dao_lcn.fields.PROCESS_ID & "&IDA_DQ=" & dao_deeqt.fields.IDA & "&PROCESS_ID_DQ=" & dao_deeqt.fields.PROCESS_ID & "&staff=" & "1")
-        'Else
-        '    save_data()
-        'End If
+    '    'If dao_tabean.fields.IDA <> 0 Then
+    '    '    update_data()
+    '    '    Response.Redirect("../HERB_TABEAN_STAFF_NEW/FRM_HERB_TABEAN_STAFF_TABEAN.aspx?TR_ID_LCN=" & dao_lcn.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_lcn.fields.IDA & "&PROCESS_ID_LCN=" & dao_lcn.fields.PROCESS_ID & "&IDA_DQ=" & dao_deeqt.fields.IDA & "&PROCESS_ID_DQ=" & dao_deeqt.fields.PROCESS_ID & "&staff=" & "1")
+    '    'Else
+    '    '    save_data()
+    '    'End If
 
-        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
-        dao_deeqt.GetDataby_IDA(_IDA_DQ)
+    '    'Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+    '    'dao_deeqt.GetDataby_IDA(_IDA_DQ)
 
-        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
-        dao.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
+    '    'Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+    '    'dao.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
 
-        dao_deeqt.fields.STATUS_ID = 5
-        dao_deeqt.update()
-        dao.fields.STATUS_ID = 5
-        dao.Update()
+    '    'dao_deeqt.fields.STATUS_ID = 5
+    '    'dao_deeqt.update()
+    '    'dao.fields.STATUS_ID = 5
+    '    'dao.Update()
 
-        'Dim bao_tran As New BAO_TRANSECTION
-        'bao_tran.insert_transection_jj(_PROCESS_ID_DQ, dao.fields.IDA, dao.fields.STATUS_ID)
+    '    ''Dim bao_tran As New BAO_TRANSECTION
+    '    ''bao_tran.insert_transection_jj(_PROCESS_ID_DQ, dao.fields.IDA, dao.fields.STATUS_ID)
 
-        Run_Pdf_Tabean_Herb_5()
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
-        'Response.Redirect(Request.Url.AbsoluteUri)
-        'Response.Redirect("FRM_HERB_TABEAN_JJ_ADD_DETAIL.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _DDHERB & "&IDA=" & _IDA)
-    End Sub
+    '    'Run_Pdf_Tabean_Herb_5()
+    '    'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+    '    ''Response.Redirect(Request.Url.AbsoluteUri)
+    '    'Response.Redirect("FRM_HERB_TABEAN_JJ_ADD_DETAIL.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _DDHERB & "&IDA=" & _IDA)
+    'End Sub
     Public Sub Run_Pdf_Tabean_Herb_5()
         Dim bao_app As New BAO.AppSettings
         bao_app.RunAppSettings()
@@ -656,8 +656,13 @@ Public Class UC_TABEAN_EDIT_TB1
 
             'dao.fields.WEIGHT_TABLE_CAP_UNIT_ID = DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedValue
             'dao.fields.WEIGHT_TABLE_CAP_UNIT_NAME = DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedItem.Text
-            dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
-            dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+            Try
+                dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
+                dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+            Catch ex As Exception
+
+            End Try
+
 
             dao.fields.PROPERTIES = PROPERTIES.Text
             dao.fields.SIZE_USE = SIZE_USE.Text
@@ -726,7 +731,7 @@ Public Class UC_TABEAN_EDIT_TB1
                     R_WARNING_TEXT.Visible = False
                 Else
                     dao.fields.WARNING_NAME = WARNING_NAME.Text
-
+                    dao.fields.WARNING_SUB_NAME = WARNING_NAME.Text
                     R_WARNING_TEXT.Visible = True
                 End If
 
@@ -907,8 +912,13 @@ Public Class UC_TABEAN_EDIT_TB1
 
             'dao.fields.WEIGHT_TABLE_CAP_UNIT_ID = DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedValue
             'dao.fields.WEIGHT_TABLE_CAP_UNIT_NAME = DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedItem.Text
-            dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
-            dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+            Try
+                dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
+                dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+            Catch ex As Exception
+
+            End Try
+
 
             dao.fields.PROPERTIES = PROPERTIES.Text
             dao.fields.SIZE_USE = SIZE_USE.Text
@@ -977,7 +987,7 @@ Public Class UC_TABEAN_EDIT_TB1
                     R_WARNING_TEXT.Visible = False
                 Else
                     dao.fields.WARNING_NAME = WARNING_NAME.Text
-
+                    dao.fields.WARNING_SUB_NAME = WARNING_NAME.Text
                     R_WARNING_TEXT.Visible = True
                 End If
 
@@ -1054,19 +1064,19 @@ Public Class UC_TABEAN_EDIT_TB1
             dao_up.insert()
         Next
     End Sub
-    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
-        dao_lcn.GetDataby_IDA(_IDA_LCN)
-        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
-        dao_deeqt.GetDataby_IDA(_IDA_DQ)
-        Dim dao_tabean As New DAO_TABEAN_HERB.TB_TABEAN_HERB
-        dao_tabean.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
-        If Request.QueryString("staff") = 1 Then
-            Response.Redirect("../HERB_TABEAN_STAFF_NEW/FRM_HERB_TABEAN_STAFF_TABEAN.aspx?TR_ID_LCN=" & dao_lcn.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_lcn.fields.IDA & "&PROCESS_ID_LCN=" & dao_lcn.fields.PROCESS_ID & "&IDA_DQ=" & dao_deeqt.fields.IDA & "&PROCESS_ID_DQ=" & dao_deeqt.fields.PROCESS_ID & "&staff=" & "1")
-        Else
-            Response.Redirect("FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & _IDA_DQ & "&PROCESS_ID_DQ=" & _PROCESS_ID_DQ)
-        End If
-    End Sub
+    'Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+    '    Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+    '    dao_lcn.GetDataby_IDA(_IDA_LCN)
+    '    Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+    '    dao_deeqt.GetDataby_IDA(_IDA_DQ)
+    '    Dim dao_tabean As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+    '    dao_tabean.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
+    '    If Request.QueryString("staff") = 1 Then
+    '        Response.Redirect("../HERB_TABEAN_STAFF_NEW/FRM_HERB_TABEAN_STAFF_TABEAN.aspx?TR_ID_LCN=" & dao_lcn.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_lcn.fields.IDA & "&PROCESS_ID_LCN=" & dao_lcn.fields.PROCESS_ID & "&IDA_DQ=" & dao_deeqt.fields.IDA & "&PROCESS_ID_DQ=" & dao_deeqt.fields.PROCESS_ID & "&staff=" & "1")
+    '    Else
+    '        Response.Redirect("FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & _IDA_DQ & "&PROCESS_ID_DQ=" & _PROCESS_ID_DQ)
+    '    End If
+    'End Sub
     'Protected Sub R_EATING_CONDITION_SelectedIndexChanged(sender As Object, e As EventArgs) Handles R_EATING_CONDITION.SelectedIndexChanged
     '    If R_EATING_CONDITION.SelectedValue = 1 Then
     '        R_EATING_CONDITION_TEXT.Visible = True

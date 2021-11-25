@@ -5,6 +5,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+            <h3>เอกสารแนบแก้ไขคำขอทะเบียน</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div style="overflow-x: scroll; height: 200px; text-align: center">
+            <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>
+            <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" />
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <h3>กรุณาเลือกรายละเอียดแก้ไข</h3>
@@ -12,13 +25,13 @@
     </div>
     <div class="row">
         <div class="col-lg-5"></div>
-        <div class="col-lg-5"style="padding-left: 4em">
+        <div class="col-lg-5" style="padding-left: 4em">
             <asp:CheckBox ID="CHK_TB1_EDIT" runat="server" AutoPostBack="True" />
             <asp:Label ID="lbl_tb1_edit" runat="server" Text="แก้ไข ทบ.1"></asp:Label>
         </div>
     </div>
     <div class="row">
-         <div class="col-lg-5"></div>
+        <div class="col-lg-5"></div>
         <div class="col-lg-5" style="padding-left: 4em">
             <asp:CheckBox ID="CHK_UPLOAD_EDIT" runat="server" AutoPostBack="True" />
             <asp:Label ID="lbl_upload_edit" runat="server" Text="แก้ไข อัพโหลดเอกสาร"></asp:Label>
@@ -54,17 +67,7 @@
             <div class="col-lg-1"></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12" style="text-align: center">
-            <h3>เอกสารแนบแก้ไขคำขอทะเบียน</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div style="overflow-x: scroll; height: 200px; text-align: center">
-            <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>
-            <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" />
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-lg-1"></div>
     </div>

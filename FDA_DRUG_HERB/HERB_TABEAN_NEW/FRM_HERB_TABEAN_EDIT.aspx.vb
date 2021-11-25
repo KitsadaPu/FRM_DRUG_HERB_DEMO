@@ -37,14 +37,14 @@ Public Class FRM_HERB_TABEAN_EDIT
         Else
             NOTE_EDIT.Text = ""
         End If
-        If dao.fields.CHK_EDIT_TB1 = 1 Then
+        If dao.fields.CHK_EDIT_TB1 = 1 And dao.fields.CHK_UPLOAD_TB = 1 Then
             EDIT_TB1_SHOW.Visible = True
-            EDIT_UPLOAD_SHOW.Visible = False
+            EDIT_UPLOAD_SHOW.Visible = True
             TXT_EDIT_NOTE_TB1.Text = dao.fields.NOTE_EDIT_TB1
         ElseIf dao.fields.CHK_EDIT_TB1 = 1 Then
             EDIT_TB1_SHOW.Visible = False
-        ElseIf dao.fields.CHK_EDIT_TB1 = 1 And dao.fields.CHK_UPLOAD_TB = 1 Then
-            EDIT_TB1_SHOW.Visible = False
+        ElseIf dao.fields.CHK_EDIT_TB1 = 1 Then
+            EDIT_TB1_SHOW.Visible = True
             EDIT_UPLOAD_SHOW.Visible = False
             TXT_EDIT_NOTE_TB1.Text = dao.fields.NOTE_EDIT_TB1
         End If
@@ -258,6 +258,9 @@ Public Class FRM_HERB_TABEAN_EDIT
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
         dao.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
 
+        If dao.fields.CHK_EDIT_TB1 = 1 Then
+            UC_TABEAN_EDIT_TB1.update_data()
+        End If
         dao_deeqt.fields.STATUS_ID = 5
         dao_deeqt.update()
         dao.fields.STATUS_ID = 5

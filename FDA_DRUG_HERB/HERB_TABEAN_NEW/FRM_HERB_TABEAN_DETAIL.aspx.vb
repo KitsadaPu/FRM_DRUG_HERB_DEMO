@@ -286,8 +286,13 @@ Public Class FRM_HERB_TABEAN_DETAIL
         'WEIGHT_TABLE_CAP.Text = dao_tabean_herb.fields.WEIGHT_TABLE_CAP
         'DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedValue = dao_tabean_herb.fields.WEIGHT_TABLE_CAP_UNIT_ID
         'DD_WEIGHT_TABLE_CAP_UNIT_ID.SelectedItem.Text = dao_tabean_herb.fields.WEIGHT_TABLE_CAP_UNIT_NAME
-        DD_SYNDROME_ID.SelectedValue = dao_tabean_herb.fields.SYNDROME_ID
-        DD_SYNDROME_ID.SelectedItem.Text = dao_tabean_herb.fields.SYNDROME_NAME
+        Try
+            DD_SYNDROME_ID.SelectedValue = dao_tabean_herb.fields.SYNDROME_ID
+            DD_SYNDROME_ID.SelectedItem.Text = dao_tabean_herb.fields.SYNDROME_NAME
+        Catch ex As Exception
+
+        End Try
+
         PROPERTIES.Text = dao_tabean_herb.fields.PROPERTIES
         SIZE_USE.Text = dao_tabean_herb.fields.SIZE_USE
         HOW_USE.Text = dao_tabean_herb.fields.HOW_USE
@@ -305,12 +310,21 @@ Public Class FRM_HERB_TABEAN_DETAIL
             EATING_CONDITION_NAME.Text = dao_tabean_herb.fields.EATING_CONDITION_NAME_DETAIL
             R_EATING_CONDITION_TEXT.Visible = True
         End If
-        DD_STORAGE_ID.SelectedValue = dao_tabean_herb.fields.STORAGE_ID
+        Try
+            DD_STORAGE_ID.SelectedValue = dao_tabean_herb.fields.STORAGE_ID
+        Catch ex As Exception
+
+        End Try
+
         'TREATMENT.Text = dao_tabean_herb.fields.TREATMENT
         TREATMENT_AGE.Text = dao_tabean_herb.fields.TREATMENT_AGE
+        Try
+            DD_PRO_AGE.SelectedValue = dao_tabean_herb.fields.TREATMENT_AGE_ID
+            DD_PRO_AGE.SelectedItem.Text = dao_tabean_herb.fields.TREATMENT_AGE_NAME
+        Catch ex As Exception
 
-        DD_PRO_AGE.SelectedValue = dao_tabean_herb.fields.TREATMENT_AGE_ID
-        DD_PRO_AGE.SelectedItem.Text = dao_tabean_herb.fields.TREATMENT_AGE_NAME
+        End Try
+
 
         R_CONTRAINDICATION.SelectedValue = dao_tabean_herb.fields.CONTRAINDICATION_ID
         If R_CONTRAINDICATION.SelectedValue = 1 Then

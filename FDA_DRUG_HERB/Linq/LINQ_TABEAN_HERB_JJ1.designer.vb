@@ -9699,6 +9699,10 @@ Partial Public Class TABEAN_HERB
 	
 	Private _CHK_EDIT_TB1 As String
 	
+	Private _PRODUCER_NAME As String
+	
+	Private _PRODUCER_ID As System.Nullable(Of Integer)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -10177,6 +10181,14 @@ Partial Public Class TABEAN_HERB
     Partial Private Sub OnCHK_EDIT_TB1Changing(value As String)
     End Sub
     Partial Private Sub OnCHK_EDIT_TB1Changed()
+    End Sub
+    Partial Private Sub OnPRODUCER_NAMEChanging(value As String)
+    End Sub
+    Partial Private Sub OnPRODUCER_NAMEChanged()
+    End Sub
+    Partial Private Sub OnPRODUCER_IDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnPRODUCER_IDChanged()
     End Sub
     #End Region
 	
@@ -12070,6 +12082,38 @@ Partial Public Class TABEAN_HERB
 				Me._CHK_EDIT_TB1 = value
 				Me.SendPropertyChanged("CHK_EDIT_TB1")
 				Me.OnCHK_EDIT_TB1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PRODUCER_NAME", DbType:="NVarChar(MAX)")>  _
+	Public Property PRODUCER_NAME() As String
+		Get
+			Return Me._PRODUCER_NAME
+		End Get
+		Set
+			If (String.Equals(Me._PRODUCER_NAME, value) = false) Then
+				Me.OnPRODUCER_NAMEChanging(value)
+				Me.SendPropertyChanging
+				Me._PRODUCER_NAME = value
+				Me.SendPropertyChanged("PRODUCER_NAME")
+				Me.OnPRODUCER_NAMEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PRODUCER_ID", DbType:="Int")>  _
+	Public Property PRODUCER_ID() As System.Nullable(Of Integer)
+		Get
+			Return Me._PRODUCER_ID
+		End Get
+		Set
+			If (Me._PRODUCER_ID.Equals(value) = false) Then
+				Me.OnPRODUCER_IDChanging(value)
+				Me.SendPropertyChanging
+				Me._PRODUCER_ID = value
+				Me.SendPropertyChanged("PRODUCER_ID")
+				Me.OnPRODUCER_IDChanged
 			End If
 		End Set
 	End Property

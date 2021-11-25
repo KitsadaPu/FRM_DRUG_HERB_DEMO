@@ -696,22 +696,4 @@ Partial Public Class UC_TABEAN_EDIT_TB1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_ATTACH2 As Global.FDA_DRUG_HERB.UC_ATTACH
-
-    '''<summary>
-    '''btn_save control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_cancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 End Class

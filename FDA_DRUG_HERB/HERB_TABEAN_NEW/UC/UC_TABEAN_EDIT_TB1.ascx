@@ -754,11 +754,11 @@
         <hr />
     </div>
 
-    <div class="row">
+   <%-- <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <asp:Button ID="btn_save" runat="server" Text="บันทึก" />
             <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" />
         </div>
-    </div>
+    </div>--%>
 
 </div>

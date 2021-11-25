@@ -662,6 +662,96 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents NOTE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RBL_CHK_PRODUCER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RBL_CHK_PRODUCER As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''DIV_PRODUCER_SHOW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DIV_PRODUCER_SHOW As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''TXT_LCNNO_SEARCH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_LCNNO_SEARCH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BTN_SEARCH_PRODUCER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_SEARCH_PRODUCER As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''DIV_LCNNO_SHOW_GRID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DIV_LCNNO_SHOW_GRID As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''RadGrid_LCNNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid_LCNNO As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''btn_select control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_select As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''DIV_PRODUCER_SHOW_GRID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DIV_PRODUCER_SHOW_GRID As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''RadGrid_PRODUCER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid_PRODUCER As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''btn_save_work_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_save_work_type As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''STAFF_HIDE_SET control.
     '''</summary>
     '''<remarks>

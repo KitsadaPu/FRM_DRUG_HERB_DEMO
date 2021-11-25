@@ -55,7 +55,7 @@
                 <asp:ListItem Value="1">ยาจากสมุนไพร (ยาแผนไทย)</asp:ListItem>
                 <asp:ListItem Value="2">ยาจากสมุนไพร (ยาแผนจีน)</asp:ListItem>
                 <asp:ListItem Value="3">ยาจากสมุนไพร (ยาพัฒนาจากสมุนไพร)</asp:ListItem>
-                 <asp:ListItem Value="4">ผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
+                <asp:ListItem Value="4">ผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
                 <%--<asp:ListItem Value="5">ยาพัฒนาจากสมุนไพร</asp:ListItem>--%>
             </asp:DropDownList>
         </div>
@@ -721,6 +721,120 @@
         <div class="col-lg-1"></div>
     </div>
     <hr />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h3 style="text-align: center">รายละเอียดผู้ผลิตอื่นที่เกี่ยวข้อง</h3>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <label>รายละเอียดของผู้ผลิตอื่นที่เกี่ยวข้อง:</label>
+        </div>
+        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+            <asp:RadioButtonList ID="RBL_CHK_PRODUCER" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
+                <asp:ListItem Value="1">มี</asp:ListItem>
+                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+            </asp:RadioButtonList>
+        </div>
+        <div class="col-lg-6" id="DIV_PRODUCER_SHOW" runat="server" visible="false" style="padding-left: 2em">
+            <asp:TextBox ID="TXT_LCNNO_SEARCH" runat="server" TextMode="singleline" Height="20px" Width="25%"></asp:TextBox>
+            
+            <asp:Button ID="BTN_SEARCH_PRODUCER" runat="server" Text="ค้นหา" />
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+    <div runat="server" visible="false" id="DIV_LCNNO_SHOW_GRID">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <telerik:RadGrid ID="RadGrid_LCNNO" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True">
+                    <MasterTableView AutoGenerateColumns="False">
+                        <Columns>
+                            <telerik:GridClientSelectColumn UniqueName="chk" HeaderText="เลือก">
+                            </telerik:GridClientSelectColumn>
+                            <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                                SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="LCNNO_DISPLAY_NEW" FilterControlAltText="Filter LCNNO_DISPLAY_NEW column"
+                                HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO_DISPLAY_NEW" UniqueName="LCNNO_DISPLAY_NEW">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="lcntpcd" FilterControlAltText="Filter lcntpcd column"
+                                HeaderText="ประเภท" SortExpression="lcntpcd" UniqueName="lcntpcd">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="thanm_addr" FilterControlAltText="Filter thanm_addr column"
+                                HeaderText="ที่อยู่" SortExpression="thanm_addr" UniqueName="thanm_addr">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="lcnsid" FilterControlAltText="Filter lcnsid column"
+                                HeaderText="รหัสผู้ประกอบการ" SortExpression="lcnsid" UniqueName="lcnsid">
+                            </telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                    <ClientSettings EnableRowHoverStyle="true">
+                        <Selecting AllowRowSelect="true" />
+                    </ClientSettings>
+                </telerik:RadGrid>
+            </div>
+        </div>
+        <div class="row">
+            <div class="12" style="text-align: center">
+                <asp:Button ID="btn_select" runat="server" Text="เลือก" />
+            </div>
+        </div>
+    </div>
+    <div runat="server" visible="false" id="DIV_PRODUCER_SHOW_GRID">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <telerik:RadGrid ID="RadGrid_PRODUCER" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True">
+                    <MasterTableView AutoGenerateColumns="False">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                                SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="LCNNO_DISPLAY_NEW" FilterControlAltText="Filter LCNNO_DISPLAY_NEW column"
+                                HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO_DISPLAY_NEW" UniqueName="LCNNO_DISPLAY_NEW">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="lcntpcd" FilterControlAltText="Filter lcntpcd column"
+                                HeaderText="ประเภท" SortExpression="lcntpcd" UniqueName="lcntpcd">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column"
+                                HeaderText="ที่อยู่" SortExpression="fulladdr" UniqueName="fulladdr">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridTemplateColumn UniqueName="work_type" HeaderText="หน้าที่">
+                                <ItemTemplate>
+                                    <telerik:RadComboBox ID="rcb_work_type" runat="server" Filter="Contains" Label="กรุณาเลือก" Width="200px">
+                                        <Items>
+                                            <telerik:RadComboBoxItem runat="server" Text="ผลิตยาสำเร็จรูป" Value="1" />
+                                            <telerik:RadComboBoxItem runat="server" Text="แบ่งบรรจุ" Value="2" />
+                                            <telerik:RadComboBoxItem runat="server" Text="ตรวจปล่อยหรือผ่านเพื่อจำหน่าย" Value="3" />
+                                            <telerik:RadComboBoxItem runat="server" Text="ผู้แบ่งบรรจุผลิตภัณฑ์ยาที่ไม่สัมผัสยา" Value="4" />
+                                            <telerik:RadComboBoxItem runat="server" Text="อื่นๆ" Value="9" />
+                                            
+                                        </Items>
+                                    </telerik:RadComboBox>
+                                    <asp:Label ID="lbl_work_type" runat="server" Text="" Style="display: none;"></asp:Label>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="_del" HeaderText="ลบรายการ" ConfirmText="ต้องการลบหรือไม่?"
+                                CommandName="_del" Text="ลบ">
+                                <HeaderStyle Width="70px" />
+                            </telerik:GridButtonColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </div>
+        </div>
+        <div class="row">
+            <div class="12" style="text-align: center">
+                <asp:Button ID="btn_save_work_type" runat="server" Text="บันทึกหน้าที่ในตาราง" />
+            </div>
+        </div>
+    </div>
+        <hr />
     <div id="STAFF_HIDE_SET" runat="server" visible="false">
         <div class="row">
             <div class="col-lg-12" style="text-align: center">

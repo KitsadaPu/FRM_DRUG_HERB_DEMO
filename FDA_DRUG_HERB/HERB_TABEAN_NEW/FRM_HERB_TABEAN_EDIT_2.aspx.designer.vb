@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_EDIT_2
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''RadGrid2 control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-    
+
+    '''<summary>
+    '''EDIT_UPLOAD_SHOW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents EDIT_UPLOAD_SHOW As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''NOTE_EDIT control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE_EDIT As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''tb_type_menu control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''btn_add_upload control.
     '''</summary>
@@ -66,7 +75,34 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''EDIT_TB1_SHOW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents EDIT_TB1_SHOW As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''TXT_EDIT_NOTE_TB1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_EDIT_NOTE_TB1 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''UC_TABEAN_EDIT_TB1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_TABEAN_EDIT_TB1 As Global.FDA_DRUG_HERB.UC_TABEAN_EDIT_TB1
+
     '''<summary>
     '''btn_sumit control.
     '''</summary>
@@ -75,7 +111,7 @@ Partial Public Class FRM_HERB_TABEAN_EDIT_2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_cancel control.
     '''</summary>
