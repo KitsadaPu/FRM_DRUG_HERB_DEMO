@@ -19,8 +19,8 @@
         <div class="col-lg-2">
             <label>ผู้ยื่นคำขอ:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="NAME_TB" runat="server"></asp:TextBox>
+        <div class="col-lg-4" style="border-bottom: #999999 1px dotted;text-align:center">
+            <asp:TextBox ID="NAME_TB" runat="server" Width="90%" BorderStyle="None"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>ชื่อสถานที่:</label>
@@ -35,11 +35,13 @@
         <div class="col-lg-2">
             <label>ชนิด:</label>
         </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_TYPE_NAME" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap">
+        <div class="col-lg-4">
+            <asp:DropDownList ID="DD_TYPE_NAME" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="false">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="1">ยาจากสมุนไพร</asp:ListItem>
-                <asp:ListItem Value="2">ยาจากสมุนไพรเพื่อสุขภาพ</asp:ListItem>
+                  <asp:ListItem Value="20101">การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทยาแผนไทย</asp:ListItem>
+                <asp:ListItem Value="20102">การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทยาตามองค์ความรู้การแพทย์ทางเลือก</asp:ListItem>
+                <asp:ListItem Value="20103">การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทยาพัฒนาจากสมุนไพร</asp:ListItem>
+                <asp:ListItem Value="20104">การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="col-lg-2">
@@ -517,7 +519,7 @@
             </asp:DropDownList>
         </div>
         <div class="col-lg-6" id="R_EATTING_TEXT" runat="server" visible="false">
-            <asp:TextBox ID="EATTING_TEXT" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
+            <%--<asp:TextBox ID="EATTING_TEXT" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>--%>
         </div>
         <div class="col-lg-1"></div>
     </div>

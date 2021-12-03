@@ -905,6 +905,15 @@ Partial Public Class WebForm35
     Protected WithEvents lbl_consider_date As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''show2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents show2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Label5 control.
     '''</summary>
     '''<remarks>

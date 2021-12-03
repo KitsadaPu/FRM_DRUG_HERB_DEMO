@@ -54,6 +54,8 @@ Public Class WebForm35
 
                 If dao1.fields.STATUS_ID = 8 Then
                     BindData_PDF()
+                    show01.Visible = True
+                    show2.Visible = False
                     Panel1.Style.Add("display", "none")
                 Else
                     Panel1.Style.Add("display", "block")
@@ -1005,7 +1007,7 @@ Public Class WebForm35
 
                 'Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
                 alert("อัพเดทเรียบร้อยแล้ว")
-            ElseIf STATUS_ID = 5 Or STATUS_ID = 16 Then
+            ElseIf STATUS_ID = 5 Or STATUS_ID = 15 Or STATUS_ID = 16 Then
                 dao.fields.STATUS_ID = STATUS_ID
 
                 AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
@@ -1234,6 +1236,8 @@ Public Class WebForm35
             lbl_update_date.Text = "วันที่รับเรื่อง :"
         ElseIf dao.fields.STATUS_ID = 18 Then
             lbl_update_date.Text = "วันที่รับเรื่อง :"
+        ElseIf dao.fields.STATUS_ID = 8 Then
+            Label5.Visible = False
         End If
     End Sub
 

@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Xml.Serialization
 Imports iTextSharp.text.pdf
+Imports System.Globalization
 Imports FDA_DRUG_HERB.XML_CENTER
 Imports Telerik.Web.UI
 Public Class UC_UPLOAD_PREVIEW

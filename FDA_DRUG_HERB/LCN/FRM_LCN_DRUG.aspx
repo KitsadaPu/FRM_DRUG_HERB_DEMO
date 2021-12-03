@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Auto_Menu.Master" CodeBehind="FRM_LCN_DRUG.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_LCN_DRUG" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage/Main_Auto_Menu.Master" CodeBehind="FRM_LCN_DRUG.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_LCN_DRUG" %>
 
 <%@ Register Src="../UC/UC_INFMT.ascx" TagName="UC_INFMT" TagPrefix="uc4" %>
 

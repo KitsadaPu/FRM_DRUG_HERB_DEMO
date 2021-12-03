@@ -151,7 +151,7 @@
             </div>
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
             <div class="panel-body">
-                <iframe id="f1" style="width: 100%; height: 550px;"></iframe>
+                <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
             </div>
             <div class="panel-footer"></div>
         </div>

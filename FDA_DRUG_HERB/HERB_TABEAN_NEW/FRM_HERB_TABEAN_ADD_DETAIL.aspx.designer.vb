@@ -410,15 +410,6 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents R_EATTING_TEXT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''EATTING_TEXT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents EATTING_TEXT As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''DD_EATING_CONDITION_ID control.
     '''</summary>
     '''<remarks>

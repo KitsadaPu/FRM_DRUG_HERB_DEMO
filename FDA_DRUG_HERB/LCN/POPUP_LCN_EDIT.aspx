@@ -10,7 +10,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div style="width: 100%; padding-left: 10%; padding-right: 10%; background-color: gray;">
-        <div class="panel panel-body" style="width: auto; padding-left: 5%; padding-right: 5%; background-color: white;">
+        <div style="width: auto; padding-left: 5%; padding-right: 5%; background-color: white;">
             <asp:Panel ID="Panel1" runat="server">
               
                   <div class="row" style="text-align: center">
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="row">
-                <div style="overflow-x: scroll; height: 200px; text-align: center">
+                <div style="overflow-x: scroll; height: 500px; text-align: center">
                     <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>
                     <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" />
                 </div>

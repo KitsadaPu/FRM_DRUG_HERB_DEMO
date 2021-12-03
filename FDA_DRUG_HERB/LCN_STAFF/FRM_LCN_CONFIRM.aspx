@@ -1038,7 +1038,7 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-            <div class="row" runat="server" style="Height:20px">
+            <div class="row" runat="server" style="Height:20px"  id="show2">
                 <div class="col-lg-4" style="padding-left: 2em">
                     <asp:Label ID="Label5" runat="server" Text=" สถานะ :"></asp:Label>
                 </div>

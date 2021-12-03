@@ -670,6 +670,17 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
+            ElseIf PROSESS_ID = "120" Or PROSESS_ID = "121" Or PROSESS_ID = "122" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN
+                cls_xml.GEN_XML_DALCN(PATH_XML, p_dalcn)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
             ElseIf PROSESS_ID = "11103" Or PROSESS_ID = "11104" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_EDIT_REQUEST
                 cls_xml.GEN_XML_DALCN_EDT(PATH_XML, p_dalcn_rqt)

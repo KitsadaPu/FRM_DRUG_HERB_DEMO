@@ -1785,6 +1785,52 @@ Namespace DAO_DRUG
             Next
         End Sub
     End Class
+    Public Class TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_DUCUMENT_NAME_UPLOAD_DALCN
+
+        Private _Details As New List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN)
+        Public Property Details() As List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN))
+                _Details = value
+            End Set
+        End Property
+        Public Sub insert()
+            db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_ID(ByVal ID As Integer)
+
+            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Where p.DUCUMENT_ID = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class TB_FILE_ATTACH_LOCATION
         Inherits MAINCONTEXT
 
@@ -1904,6 +1950,12 @@ Namespace DAO_DRUG
         Public Sub GetDataby_HEAD_ID_AND_TYPE(ByVal ID As Integer, ByVal type As Integer)
 
             datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.TYPE_ID = type Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_HEAD_ID_AND_TITLE_ID_AND_PROCESS(ByVal ID As Integer, ByVal title_id As Integer, ByVal title_id2 As Integer, ByVal process_id As String)
+
+            datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.TITEL_ID = title_id And p.TITLE_ID2 = title_id2 And p.TYPE_ID = process_id Select p)
             For Each Me.fields In datas
             Next
         End Sub

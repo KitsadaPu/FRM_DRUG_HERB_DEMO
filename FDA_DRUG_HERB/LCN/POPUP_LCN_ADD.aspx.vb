@@ -1,4 +1,5 @@
-﻿Public Class POPUP_LCN_ADD
+﻿Imports System.Globalization
+Public Class POPUP_LCN_ADD
     Inherits System.Web.UI.Page
     Private _type_id As String = ""
     Private _IDA As String = ""
@@ -39,18 +40,18 @@
 
 
             If Request.QueryString("ida") <> "" Then
-                    Panel1.Style.Add("display", "block")
-                    Panel2.Style.Add("display", "block")
+                Panel1.Style.Add("display", "block")
+                Panel2.Style.Add("display", "block")
                 Panel3.Style.Add("display", "block")
                 Panel4.Style.Add("display", "none")
-                    btn_save.Style.Add("display", "none")
-                Else
-                    Panel1.Style.Add("display", "none")
-                    Panel2.Style.Add("display", "none")
+                btn_save.Style.Add("display", "none")
+            Else
+                Panel1.Style.Add("display", "none")
+                Panel2.Style.Add("display", "none")
                 Panel3.Style.Add("display", "none")
                 Panel4.Style.Add("display", "block")
-                    btn_save.Style.Add("display", "block")
-                End If
+                btn_save.Style.Add("display", "block")
+            End If
 
 
             'Panel3.Style.Add("display", "block")

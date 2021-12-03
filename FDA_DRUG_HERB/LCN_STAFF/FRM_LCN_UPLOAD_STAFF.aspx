@@ -147,7 +147,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
             <asp:GridView ID="GV_lcnno" runat="server" Width="87%" DataKeyNames="IDA" CellPadding="4" CssClass="table"
-                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="8" Font-Size="8pt">
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="16" Font-Size="8pt">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
 

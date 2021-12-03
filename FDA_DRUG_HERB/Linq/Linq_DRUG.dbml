@@ -3871,25 +3871,6 @@
       <Column Name="code_concept" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.DRRQT_PRODUCER_IN" Member="DRRQT_PRODUCER_INs">
-    <Type Name="DRRQT_PRODUCER_IN">
-      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="drgtpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="rgttpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="rgtno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lpvncd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lcntpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lcnno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="phm15dgt" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="funccd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lcnsid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lcnscd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lctnmcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lctcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.REGIST_FILE_ATTACH" Member="REGIST_FILE_ATTACHes">
     <Type Name="REGIST_FILE_ATTACH">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -7618,6 +7599,34 @@
       <Column Name="CHK_EDIT_TB1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="NOTE_EDIT_TB1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CHK_UPLOAD_TB" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DRRQT_PRODUCER_IN" Member="DRRQT_PRODUCER_INs">
+    <Type Name="DRRQT_PRODUCER_IN">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FK_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drgtpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rgttpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rgtno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lpvncd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lcntpcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lcnno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phm15dgt" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="funccd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lcnsid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lcnscd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lctnmcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lctcd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FK_LCN_IDA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROCESS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAS_DUCUMENT_NAME_UPLOAD_DALCN" Member="MAS_DUCUMENT_NAME_UPLOAD_DALCNs">
+    <Type Name="MAS_DUCUMENT_NAME_UPLOAD_DALCN">
+      <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DUCUMENT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DUCUMENT_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

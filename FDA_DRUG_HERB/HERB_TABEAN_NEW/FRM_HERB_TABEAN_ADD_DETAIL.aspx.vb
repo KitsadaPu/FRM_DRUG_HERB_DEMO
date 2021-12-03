@@ -59,6 +59,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
             bind_dd_unit_1()
             bind_dd_unit_2()
             bind_dd_unit_3()
+            bind_dd_herb()
 
             UC_ATTACH1.NAME = "เอกสารแนบ สูตรตำรับ"
             UC_ATTACH1.BindData("สูตรตำรับ", 1, "pdf", "0", "6")
@@ -116,8 +117,27 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
         Dim CATEGORY_ID As String = dao_lcn.fields.PROCESS_ID
         Dim locationaddress As String = dao_lcn.fields.LOCATION_ADDRESS_thanameplace
 
-        NAME_TB.Text = _CLS.THANM
+        If _CLS.THANM_CUSTOMER = Nothing Then
+            NAME_TB.Text = _CLS.THANM
+        Else
+            NAME_TB.Text = _CLS.THANM_CUSTOMER
+        End If
         NAME_PLACE_TB.Text = locationaddress
+    End Sub
+
+    Public Sub bind_dd_herb()
+
+        Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+        dao_lcn.GetDataby_IDA(_IDA_LCN)
+        If _PROCESS_ID_DQ = 20101 Then
+            DD_TYPE_NAME.SelectedValue = 20101
+        ElseIf _PROCESS_ID_DQ = 20102 Then
+            DD_TYPE_NAME.SelectedValue = 20102
+        ElseIf _PROCESS_ID_DQ = 20103 Then
+            DD_TYPE_NAME.SelectedValue = 20103
+        ElseIf _PROCESS_ID_DQ = 20104 Then
+            DD_TYPE_NAME.SelectedValue = 20104
+        End If
     End Sub
 
     Public Sub bind_dd_warning()
@@ -631,10 +651,9 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
             dao.fields.EATTING_ID = DD_EATTING_ID.SelectedValue
             dao.fields.EATTING_NAME = DD_EATTING_ID.SelectedItem.Text
             If DD_EATTING_ID.SelectedValue = 9 Then
-                dao.fields.EATTING_NAME_DETAIL = EATTING_TEXT.Text
-                R_EATTING_TEXT.Visible = True
-            Else
+                'dao.fields.EATTING_NAME_DETAIL = EATTING_TEXT.Text
                 dao.fields.EATTING_NAME_DETAIL = "ไม่มี"
+                R_EATTING_TEXT.Visible = True
             End If
             'dao.fields.EATING_CONDITION_ID = R_EATING_CONDITION.SelectedValue
             'If R_EATING_CONDITION.SelectedValue = 1 Then
@@ -658,9 +677,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
                 dao.fields.EATING_CONDITION_ID = DD_EATING_CONDITION_ID.SelectedValue
                 dao.fields.EATING_CONDITION_NAME = DD_EATING_CONDITION_ID.SelectedItem.Text
                 If DD_EATING_CONDITION_ID.SelectedValue = 14 Then
-                    dao.fields.EATING_CONDITION_NAME_DETAIL = EATING_CONDITION_NAME.Text
-                    R_EATING_CONDITION_TEXT.Visible = False
-                Else
+                    'dao.fields.EATING_CONDITION_NAME_DETAIL = EATING_CONDITION_NAME.Text
                     dao.fields.EATING_CONDITION_NAME_DETAIL = "ไม่มี"
                 End If
             Catch ex As Exception
@@ -911,10 +928,9 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
             dao.fields.EATTING_ID = DD_EATTING_ID.SelectedValue
             dao.fields.EATTING_NAME = DD_EATTING_ID.SelectedItem.Text
             If DD_EATTING_ID.SelectedValue = 9 Then
-                dao.fields.EATTING_NAME_DETAIL = EATTING_TEXT.Text
-                R_EATTING_TEXT.Visible = True
-            Else
+                'dao.fields.EATTING_NAME_DETAIL = EATTING_TEXT.Text
                 dao.fields.EATTING_NAME_DETAIL = "ไม่มี"
+                R_EATTING_TEXT.Visible = True
             End If
             'dao.fields.EATING_CONDITION_ID = R_EATING_CONDITION.SelectedValue
             'If R_EATING_CONDITION.SelectedValue = 1 Then
@@ -926,9 +942,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
                 dao.fields.EATING_CONDITION_ID = DD_EATING_CONDITION_ID.SelectedValue
                 dao.fields.EATING_CONDITION_NAME = DD_EATING_CONDITION_ID.SelectedItem.Text
                 If DD_EATING_CONDITION_ID.SelectedValue = 14 Then
-                    dao.fields.EATING_CONDITION_NAME_DETAIL = EATING_CONDITION_NAME.Text
-                    R_EATING_CONDITION_TEXT.Visible = False
-                Else
+                    'dao.fields.EATING_CONDITION_NAME_DETAIL = EATING_CONDITION_NAME.Text
                     dao.fields.EATING_CONDITION_NAME_DETAIL = "ไม่มี"
                 End If
             Catch ex As Exception
@@ -1146,7 +1160,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
         If DD_EATING_CONDITION_ID.SelectedValue = "-- กรุณาเลือก --" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูลให้ครับถ้วน');", True)
         ElseIf DD_EATING_CONDITION_ID.SelectedValue = 14 Then
-            R_EATING_CONDITION_TEXT.Visible = True
+            R_EATING_CONDITION_TEXT.Visible = False
         Else
             R_EATING_CONDITION_TEXT.Visible = False
         End If
@@ -1371,7 +1385,11 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
 
             Dim dao As New DAO_DRUG.TB_DRRQT_PRODUCER_IN
             dao.fields.FK_LCN_IDA = item("IDA").Text
+            dao.fields.lpvncd = dao.fields.lpvncd
+            dao.fields.lcnno = dao.fields.lcnno
+            dao.fields.lcnsid = dao.fields.lcnsid
             dao.fields.FK_IDA = Request.QueryString("IDA_DQ")
+            dao.fields.PROCESS_ID = _PROCESS_ID_DQ
             'dao.fields.funccd = ddl_work_type.SelectedValue
             dao.insert()
         Next
@@ -1459,7 +1477,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL
             dao_pro.fields.funccd = rcb_work_type.SelectedValue
             dao_pro.update()
         Next
-        alert("[บันทึกเรียบร้อยแล้ว")
+        alert("บันทึกเรียบร้อยแล้ว")
         RadGrid_PRODUCER.Rebind()
     End Sub
 End Class

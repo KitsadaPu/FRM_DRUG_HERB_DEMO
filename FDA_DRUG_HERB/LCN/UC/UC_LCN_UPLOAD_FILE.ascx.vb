@@ -1,4 +1,5 @@
-﻿Public Class UC_LCN_UPLOAD_FILE
+﻿Imports System.Globalization
+Public Class UC_LCN_UPLOAD_FILE
     Inherits System.Web.UI.UserControl
     Private _ProcessID As Integer
     Private _IDA As String
@@ -215,13 +216,20 @@
             type_b = "ผู้ได้รับมอบอำนาจ ยื่นเรื่องแทนผู้ดำเนินกิจการที่เป็นบุคคลต่างด้าว"
         End If
 
-
-        dao_attgroup.GetDataby_HEAD_ID_AND_TITLE_ID_2(head_id, id, id2)
-
         process = dao.fields.PROCESS_ID
+        Dim TYPE_ID As Integer
         If process = 122 Then
-            dao_attgroup2.GetDataby_HEAD_ID_AND_TYPE(head_id, process)
+            TYPE_ID = 2
+        Else
+            TYPE_ID = 1
         End If
+
+        dao_attgroup.GetDataby_HEAD_ID_AND_TITLE_ID_AND_PROCESS(head_id, id, id2, TYPE_ID)
+
+
+        'If process = 122 Then
+        '    dao_attgroup2.GetDataby_HEAD_ID_AND_TYPE(head_id, process)
+        'End If
 
 
         ClearTemplate()
@@ -230,7 +238,10 @@
 
         For Each dao_attgroup.fields In dao_attgroup.datas
             Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao_att.fields.DUCUMENT_NAME = dao_attgroup.fields.DUCUMENT_NAME
+            Dim dao_mas As New DAO_DRUG.TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+            dao_mas.GetDataby_ID(dao_attgroup.fields.MAIN_MENU)
+            dao_att.fields.DUCUMENT_NAME = dao_mas.fields.DUCUMENT_NAME
+            'dao_att.fields.DUCUMENT_NAME = dao_attgroup.fields.DUCUMENT_NAME
             dao_att.fields.TYPE_PERSON = head_id
             dao_att.fields.TYPE_LOCAL = id
             dao_att.fields.TYPE_BSN = id2
@@ -244,26 +255,26 @@
             dao_att.insert()
 
         Next
-        Try
-            For Each dao_attgroup2.fields In dao_attgroup2.datas
-                Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-                dao_att.fields.DUCUMENT_NAME = dao_attgroup2.fields.DUCUMENT_NAME
-                dao_att.fields.TYPE_PERSON = head_id
-                dao_att.fields.TYPE_LOCAL = id
-                dao_att.fields.TYPE_BSN = id2
-                dao_att.fields.TYPE = 1
-                dao_att.fields.FK_IDA = _IDA
-                dao_att.fields.TR_ID = tr_id
-                dao_att.fields.PROCESS_ID = dao.fields.PROCESS_ID
-                dao_att.fields.TYPE_PERSON_NAME = type_p
-                dao_att.fields.TYPE_LOCAL_NAME = type_l
-                dao_att.fields.TYPE_BSN_NAME = type_b
-                dao_att.insert()
+        'Try
+        '    For Each dao_attgroup2.fields In dao_attgroup2.datas
+        '        Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+        '        dao_att.fields.DUCUMENT_NAME = dao_attgroup2.fields.DUCUMENT_NAME
+        '        dao_att.fields.TYPE_PERSON = head_id
+        '        dao_att.fields.TYPE_LOCAL = id
+        '        dao_att.fields.TYPE_BSN = id2
+        '        dao_att.fields.TYPE = 1
+        '        dao_att.fields.FK_IDA = _IDA
+        '        dao_att.fields.TR_ID = tr_id
+        '        dao_att.fields.PROCESS_ID = dao.fields.PROCESS_ID
+        '        dao_att.fields.TYPE_PERSON_NAME = type_p
+        '        dao_att.fields.TYPE_LOCAL_NAME = type_l
+        '        dao_att.fields.TYPE_BSN_NAME = type_b
+        '        dao_att.insert()
 
-            Next
-        Catch ex As Exception
+        '    Next
+        'Catch ex As Exception
 
-        End Try
+        'End Try
 
 
         dao.fields.TYPE_PERSON = head_id
