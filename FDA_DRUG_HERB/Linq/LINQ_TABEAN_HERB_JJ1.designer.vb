@@ -9703,6 +9703,8 @@ Partial Public Class TABEAN_HERB
 	
 	Private _PRODUCER_ID As System.Nullable(Of Integer)
 	
+	Private _REF_NO As System.Nullable(Of Integer)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -10189,6 +10191,10 @@ Partial Public Class TABEAN_HERB
     Partial Private Sub OnPRODUCER_IDChanging(value As System.Nullable(Of Integer))
     End Sub
     Partial Private Sub OnPRODUCER_IDChanged()
+    End Sub
+    Partial Private Sub OnREF_NOChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnREF_NOChanged()
     End Sub
     #End Region
 	
@@ -12114,6 +12120,22 @@ Partial Public Class TABEAN_HERB
 				Me._PRODUCER_ID = value
 				Me.SendPropertyChanged("PRODUCER_ID")
 				Me.OnPRODUCER_IDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_REF_NO", DbType:="Int")>  _
+	Public Property REF_NO() As System.Nullable(Of Integer)
+		Get
+			Return Me._REF_NO
+		End Get
+		Set
+			If (Me._REF_NO.Equals(value) = false) Then
+				Me.OnREF_NOChanging(value)
+				Me.SendPropertyChanging
+				Me._REF_NO = value
+				Me.SendPropertyChanged("REF_NO")
+				Me.OnREF_NOChanged
 			End If
 		End Set
 	End Property

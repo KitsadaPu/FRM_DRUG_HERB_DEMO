@@ -147,7 +147,7 @@
         <div class="panel panel-info" style="width: 100%;">
             <div class="panel-heading  text-center">
                 <h1>
-                    <asp:Label ID="lbl_head1" runat="server" Text="-"></asp:Label></h1>
+                    <asp:Label ID="lbl_head1" runat="server" Text="รายละเอียดทะเบียน"></asp:Label></h1>
             </div>
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
             <div class="panel-body">

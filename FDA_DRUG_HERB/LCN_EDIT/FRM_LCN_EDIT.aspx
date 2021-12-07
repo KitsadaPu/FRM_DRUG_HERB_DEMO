@@ -142,7 +142,7 @@
                            HeaderText="เลขใบอนุญาต" SortExpression="LCNNO" UniqueName="LCNNO">
                        </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="LCN_PROCESS_ID" FilterControlAltText="Filter LCN_PROCESS_ID column"
-                           HeaderText="LCN_PROCESS_ID" SortExpression="LCN_PROCESS_ID" UniqueName="LCN_PROCESS_ID" AllowFiltering="true" >
+                           HeaderText="เลขกระบวนการ" SortExpression="LCN_PROCESS_ID" UniqueName="LCN_PROCESS_ID" AllowFiltering="true" >
                        </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
                            HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID" AllowFiltering="true">

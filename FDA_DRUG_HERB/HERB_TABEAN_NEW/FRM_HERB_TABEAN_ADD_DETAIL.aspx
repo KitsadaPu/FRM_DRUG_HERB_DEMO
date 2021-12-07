@@ -741,6 +741,9 @@
                 <asp:ListItem Value="2">ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
+        <div class="col-lg-1">
+             <label>กรุณากรอกเลขใบอนุญาต</label>
+        </div>
         <div class="col-lg-6" id="DIV_PRODUCER_SHOW" runat="server" visible="false" style="padding-left: 2em">
             <asp:TextBox ID="TXT_LCNNO_SEARCH" runat="server" TextMode="singleline" Height="20px" Width="25%"></asp:TextBox>
             

@@ -182,9 +182,11 @@ Public Class FRM_HERB_TABEAN
                     lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร ครั้งที่ 2"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EDIT_2.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
                 ElseIf STATUS_ID = 1 Then
-                    Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
+                    'Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 ElseIf STATUS_ID = 2 Then
-                    Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
+                    'Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 Else
                     Response.Redirect("FRM_HERB_TABEAN_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 End If

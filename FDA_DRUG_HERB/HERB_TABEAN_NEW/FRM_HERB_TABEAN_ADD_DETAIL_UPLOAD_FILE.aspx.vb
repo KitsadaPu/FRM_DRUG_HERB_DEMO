@@ -220,12 +220,12 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
 
             dao_deeqt.fields.DATE_CONFIRM = Date.Now
             dao_deeqt.fields.NAME_CONFIRM = _CLS.THANM
-            dao_deeqt.fields.STATUS_ID = 3
+            dao_deeqt.fields.STATUS_ID = 1
             dao_deeqt.update()
 
             dao.fields.DATE_CONFIRM = Date.Now
             dao.fields.NAME_CONFIRM = _CLS.THANM
-            dao.fields.STATUS_ID = 3
+            dao.fields.STATUS_ID = 1
             dao.Update()
 
             Dim XML As New CLASS_GEN_XML.TABEAN_HERB_TBN

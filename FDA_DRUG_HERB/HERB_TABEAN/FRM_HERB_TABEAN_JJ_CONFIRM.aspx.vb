@@ -16,8 +16,8 @@ Public Class FRM_HERB_TABEAN_JJ_CONFIRM
     Private _MENU_GROUP As String
 
     Sub RunSession()
-        _ProcessID = Request.QueryString("PROCESS_JJ")
-        _IDA = Request.QueryString("IDA")
+        _ProcessID = Request.QueryString("PROCESS_ID_DQ")
+        _IDA = Request.QueryString("IDA_DQ")
         _TR_ID = Request.QueryString("TR_ID")
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _TR_ID_LCN = Request.QueryString("TR_ID_LCN")

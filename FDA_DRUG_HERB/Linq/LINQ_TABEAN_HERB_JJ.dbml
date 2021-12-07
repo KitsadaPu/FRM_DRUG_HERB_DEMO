@@ -583,6 +583,7 @@
       <Column Name="CHK_EDIT_TB1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="PRODUCER_NAME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="PRODUCER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REF_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

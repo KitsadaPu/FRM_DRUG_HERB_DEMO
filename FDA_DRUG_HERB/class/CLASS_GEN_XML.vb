@@ -4515,12 +4515,24 @@ Namespace CLASS_GEN_XML
 
                 End Try
 
+                'Try
+                '    dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & dao_tabean_herb.fields.TREATMENT_AGE_NAME
+                'Catch ex As Exception
+
+                'End Try
                 Try
-                    dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & dao_tabean_herb.fields.TREATMENT_AGE_NAME
+                    If dao_tabean_herb.fields.TREATMENT_AGE Is Nothing Or dao_tabean_herb.fields.TREATMENT_AGE = 0 Then
+                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    ElseIf dao_tabean_herb.fields.TREATMENT_AGE_MONTH Is Nothing Or dao_tabean_herb.fields.TREATMENT_AGE_MONTH = 0 Then
+                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี"
+                    Else
+                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี" & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    End If
+                    'dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & dao.fields.TREATMENT_AGE_NAME
+
                 Catch ex As Exception
-
+                    dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
                 End Try
-
                 'If dr("TYPE_SUB_ID") = 2 Then
                 '    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนจีน"
                 'End If
@@ -4704,7 +4716,6 @@ Namespace CLASS_GEN_XML
                     Catch ex As Exception
 
                     End Try
-
                 Next
 
                 dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPM"
