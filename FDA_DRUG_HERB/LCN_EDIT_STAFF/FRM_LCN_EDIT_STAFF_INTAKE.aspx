@@ -3,6 +3,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../css/css_rg_herb.css" rel="stylesheet" />
     <link href="../css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
     <link href="../css/smoothness/jquery2.custom.css" rel="stylesheet" />
     <script src="../Jsdate/ui.datepicker-th.js"></script>
@@ -57,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำข้อแก้ไขใบอนุญาติ</h3>
+                    <h3>เอกสารแนบคำขอแก้ไขใบอนุญาติ</h3>
                 </div>
             </div>
             <div class="row">
@@ -81,8 +82,8 @@
                                 <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                     SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="FILE_NUMBER_NAME" FilterControlAltText="Filter FILE_NUMBER_NAME column"
                                     HeaderText="file_id" SortExpression="FILE_NUMBER_NAME" UniqueName="FILE_NUMBER_NAME" Display="false">

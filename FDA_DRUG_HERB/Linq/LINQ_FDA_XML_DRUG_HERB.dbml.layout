@@ -62,12 +62,6 @@
         <elementListCompartment Id="2b173c66-1ac5-4c0e-ac1e-bb4a82fa28c6" absoluteBounds="12.765, 1.21, 1.9700000000000002, 7.941446940104167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0c013ddc-3325-439f-b554-42afc32dafa4" absoluteBounds="12.75, 10.75, 2, 8.3091455078125023">
-      <DataClassMoniker Name="/LINQ_FDA_XML_DRUG_HERBDataContext/XML_DRUG_IOW_EQ_HERB" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f602b5e7-1f85-47e4-90dc-b52d45d04515" absoluteBounds="12.765, 11.21, 1.9700000000000002, 7.7491455078125009" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="fd5f9596-5761-41ad-baeb-6cb6d62b1aed" absoluteBounds="6.75, 14.75, 2, 9.27065266927083">
       <DataClassMoniker Name="/LINQ_FDA_XML_DRUG_HERBDataContext/XML_DRUG_IOW_HERB" />
       <nestedChildShapes>
@@ -144,6 +138,12 @@
       <DataClassMoniker Name="/LINQ_FDA_XML_DRUG_HERBDataContext/XML_SEARCH_DRUG_LCN_HERB" />
       <nestedChildShapes>
         <elementListCompartment Id="081162cf-9cc8-4210-8fdc-b0b4a8a270a8" absoluteBounds="25.015, 1.21, 2.8449999999999998, 10.249064127604166" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d01ec55b-241b-4d40-95ad-3e6930f20a9e" absoluteBounds="12.75, 10.875, 2, 8.3091455078125">
+      <DataClassMoniker Name="/LINQ_FDA_XML_DRUG_HERBDataContext/XML_DRUG_IOW_EQ_HERB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c607790e-f3d3-4e74-9d92-1cc2d87bac4e" absoluteBounds="12.765, 11.335, 1.9700000000000002, 7.7491455078125009" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

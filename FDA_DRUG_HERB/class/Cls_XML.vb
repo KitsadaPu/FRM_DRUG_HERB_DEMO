@@ -29,7 +29,7 @@ Public Class Cls_XML
     Public Sub ReadData(ByVal content As String)
         Dim xmltxt As String = ""
         Dim xmlStream As New System.IO.MemoryStream()
-        ' Dim doc As New System.Xml.XmlDocument
+        'Dim doc As New System.Xml.XmlDocument
         doc.LoadXml(content)
 
         'Dim item_P_ID As String = ""

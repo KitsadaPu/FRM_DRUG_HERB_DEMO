@@ -112,20 +112,27 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
         DDL_CHECK_STAFF.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
 
-
-
-
-
-
-
     Function bind_data_uploadfile()
         Dim dt As DataTable
-        Dim bao As New BAO_LCN.TABLE_VIEW
+        ' Dim bao As New BAO_LCN.TABLE_VIEW
+        Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        dao.GetDataby_IDA(_IDA)
+        Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
+        dt = bao.SP_DALCN_EDIT_UPLOAD_FILE(dao.fields.TR_ID, 1)
+        'dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
 
         Return dt
     End Function
+
+    'Function bind_data_uploadfile()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_LCN.TABLE_VIEW
+
+    '    dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
+
+    '    Return dt
+    'End Function
 
     Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
         RadGrid1.DataSource = bind_data_uploadfile()
@@ -164,7 +171,8 @@ Public Class FRM_LCN_EDIT_STAFF_CHEAK_PAPER
             Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
 
             Dim _YEAR As String = con_year(Date.Now().Year())
-            dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+            'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+            dao.GetDataby_IDA(_IDA)
 
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.fields.STATUS_NAME = DD_STATUS.SelectedItem.Text

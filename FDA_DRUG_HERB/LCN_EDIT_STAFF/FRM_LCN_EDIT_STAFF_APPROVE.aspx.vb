@@ -49,16 +49,11 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
         RunSession()
         If Not IsPostBack Then
             'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_REPORT_RDLC.aspx?IDA=" & _IDA & "&rpt=1' ></iframe>"
-            lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/สมพ๓.pdf'></iframe>"
-
-
-
+            lr_preview.Text = "<iframe id='iframe1'  style='height:850px;width:100%;' src='../PDF/สมพ๓.pdf'></iframe>"
             BIND_STATUS()
             bind_mas_staff()
             bind_data()
-
             Run_PDF_SMP3()
-
             If _STATUS_ID = 8 Then
                 DD_STATUS.SelectedValue = _STATUS_ID
                 DD_STATUS.Enabled = False
@@ -109,15 +104,27 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
         DDL_APPROVE_STAFF.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
 
-
     Function bind_data_uploadfile()
         Dim dt As DataTable
-        Dim bao As New BAO_LCN.TABLE_VIEW
+        ' Dim bao As New BAO_LCN.TABLE_VIEW
+        Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        dao.GetDataby_IDA(_IDA)
+        Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
+        dt = bao.SP_DALCN_EDIT_UPLOAD_FILE(dao.fields.TR_ID, 1)
+        'dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
 
         Return dt
     End Function
+
+    'Function bind_data_uploadfile()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_LCN.TABLE_VIEW
+
+    '    dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
+
+    '    Return dt
+    'End Function
 
     Public Sub Run_PDF_SMP3()
 
@@ -134,7 +141,7 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
 
         Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_SMP3("HB_PDF", dao.fields.LCN_PROCESS_ID, dao.fields.DATE_YEAR, dao.fields.TR_ID, dao.fields.IDA, dao.fields.STATUS_ID)
 
-        lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+        lr_preview.Text = "<iframe id='iframe1'  style='height:850px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
 
     End Sub
 
@@ -169,7 +176,8 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _ddl1, _YEAR, True)
+        'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _ddl1, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
 
         dao.fields.STATUS_ID = DD_STATUS.SelectedValue
         dao.fields.STATUS_NAME = DD_STATUS.SelectedItem.Text
@@ -185,6 +193,8 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
         dao.fields.STAFF_APPROVE_NOTE = TXT_APPROVE_NOTE.Text
 
         dao.update()
+
+        AddLogStatus(dao.fields.STATUS_ID, dao.fields.LCN_PROCESS_ID, _CLS.CITIZEN_ID, dao.fields.IDA)
 
         If DD_STATUS.SelectedValue = 8 Then
 
@@ -223,6 +233,7 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
             End If
         End If
 
+        LOG_EDIT_MIGRATE()
         Dim ida_xml As Integer = 0
         Dim process_xml As Integer = 0
         Dim year_xml As Integer = 0
@@ -233,10 +244,12 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
         tr_id_xml = dao.fields.TR_ID
 
         bind_pdf_xml_8(ida_xml, _LCN_IDA, process_xml, dao.fields.STATUS_ID, year_xml, tr_id_xml)
-
+        'Run_Service(_LCN_IDA)
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
-
-
+    End Sub
+    Sub Run_Service(ByVal IDA As Integer)
+        Dim ws_update As New WS_DRUG.WS_DRUG
+        ws_update.HERB_UPDATE_LICEN(IDA, _CLS.CITIZEN_ID)
     End Sub
     Public Sub bind_pdf_xml_8(ByVal _IDA As Integer, ByVal LCN_IDA As Integer, ByVal _ProcessID As Integer, ByVal _StatusID As Integer, ByVal _YEAR As String, ByVal _tr_id_xml As String)
         Dim XML As New CLASS_GEN_XML.LCN_EDIT_SMP3
@@ -277,26 +290,54 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
         Dim dao1 As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
         dao1.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
 
-
-
         GET_1 = dao1.fields.PHR_TEXT_JOB
         GET_2 = dao1.fields.PHR_TEXT_NUM
         GET_3 = dao1.fields.STUDY_LEVEL
         GET_4 = dao1.fields.PHR_SAKHA
         GET_5 = dao1.fields.NAME_SIMINAR
-        GET_6 = dao1.fields.SIMINAR_DATE
+        If dao1.fields.SIMINAR_DATE IsNot Nothing Then
+            GET_6 = dao1.fields.SIMINAR_DATE
+        End If
 
+        For Each dao1.fields In dao1.datas
+            Dim dao_update As New DAO_DRUG.ClsDBDALCN_PHR
+            dao_update.GetDataby_IDA(dao1.fields.PHR_IDA) 'เพิ่ม get ตัวใหม่
+            If dao_update.fields.PHR_IDA = 0 Then
+                dao_update.fields.PHR_TEXT_JOB = GET_1
+                dao_update.fields.PHR_TEXT_NUM = GET_2
+                dao_update.fields.STUDY_LEVEL = GET_3
+                dao_update.fields.PHR_SAKHA = GET_4
+                dao_update.fields.NAME_SIMINAR = GET_5
+                If dao1.fields.SIMINAR_DATE IsNot Nothing Then
+                    dao_update.fields.SIMINAR_DATE = GET_6
+                End If
+                dao_update.fields.SIMINAR_DATE = GET_6
+                dao_update.fields.PHR_CTZNO = dao1.fields.PHR_CTZNO
+                dao_update.fields.PHR_PREFIX_ID = dao1.fields.PHR_PREFIX_ID
+                dao_update.fields.PHR_NAME = dao1.fields.PHR_NAME
+                dao_update.fields.PHR_TEXT_WORK_TIME = dao1.fields.PHR_TEXT_WORK_TIME
+                dao_update.fields.PHR_LAW_SECTION = dao1.fields.PHR_LAW_SECTION
+                'dao_update.fields.PHR_TEXT_JOB = dao1.fields.PHR_TEXT_JOB
+                dao_update.insert()
+            Else
+                dao_update.fields.PHR_TEXT_JOB = GET_1
+                dao_update.fields.PHR_TEXT_NUM = GET_2
+                dao_update.fields.STUDY_LEVEL = GET_3
+                dao_update.fields.PHR_SAKHA = GET_4
+                dao_update.fields.NAME_SIMINAR = GET_5
+                If dao1.fields.SIMINAR_DATE IsNot Nothing Then
+                    dao_update.fields.SIMINAR_DATE = GET_6
+                End If
+                dao_update.fields.PHR_CTZNO = dao1.fields.PHR_CTZNO
+                dao_update.fields.PHR_PREFIX_ID = dao1.fields.PHR_PREFIX_ID
+                dao_update.fields.PHR_NAME = dao1.fields.PHR_NAME
+                dao_update.fields.PHR_TEXT_WORK_TIME = dao1.fields.PHR_TEXT_WORK_TIME
+                dao_update.fields.PHR_LAW_SECTION = dao1.fields.PHR_LAW_SECTION
+                'dao_update.fields.PHR_TEXT_JOB = dao1.fields.PHR_TEXT_JOB
+                dao_update.update()
+            End If
+        Next
 
-        Dim dao_update As New DAO_DRUG.ClsDBDALCN_PHR
-        dao_update.GetDataby_FK_LCN_ACTIVE(_LCN_IDA, True) 'เพิ่ม get ตัวใหม่
-        dao_update.fields.PHR_TEXT_JOB = GET_1
-        dao_update.fields.PHR_TEXT_NUM = GET_2
-        dao_update.fields.STUDY_LEVEL = GET_3
-        dao_update.fields.PHR_SAKHA = GET_4
-        dao_update.fields.NAME_SIMINAR = GET_5
-        dao_update.fields.SIMINAR_DATE = GET_6
-
-        dao_update.update()
     End Sub
     Public Sub SET_UPDATE_DDL2()
         Dim GET_1 As String = ""
@@ -861,12 +902,6 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
 
             dao_update.insert()
         End If
-
-
-
-
-
-
     End Sub
     Public Sub SET_UPDATE_DDL9_SUB2()
         Dim GET_1 As String = ""
@@ -1045,6 +1080,197 @@ Public Class FRM_LCN_EDIT_STAFF_APPROVE
             dao_new.insert()
 
         Next
+    End Sub
+    Sub LOG_EDIT_MIGRATE()
+        Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        dao.GetDataby_IDA(_IDA)
+        Dim URL As String = ""
+        Dim Before_des As String = ""
+        Dim After_des As String = ""
+        Dim Citizen_ID As String = dao.fields.LCN_IDENTIFY
+        If _ddl1 = 1 Then
+            Before_des = "แก้ไขผู้มีหน้าที่ปฏิบัติการ เดิม "
+            After_des = "แก้ไขผู้มีหน้าที่ปฏิบัติการ เป็น "
+            Dim dao_dd1 As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
+            dao_dd1.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            After_des = After_des & dao_dd1.fields.PHR_NAME
+            Dim dao_odd1 As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL1_REASON
+            dao_odd1.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            Before_des = Before_des & dao_odd1.fields.PHR_NAME
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 2 Then
+            Dim thanameplace As String = ""
+            Dim keep_thanameplace As String = ""
+            Before_des = "แก้ไขสถานที่ตั้ง/เก็บ เดิม "
+            After_des = "แก้ไขสถานที่ตั้ง/เก็บ เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL2_REASON
+            dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            If dao_before.fields.thanameplace Is Nothing Then
+                thanameplace = " "
+            Else
+                thanameplace = dao_before.fields.thanameplace
+            End If
+            If dao_before.fields.KEEP_thanameplace Is Nothing Then
+                keep_thanameplace = "-"
+            Else
+                keep_thanameplace = dao_before.fields.KEEP_thanameplace
+            End If
+            Before_des = Before_des & thanameplace & "/" & keep_thanameplace
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL2_REASON
+            dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            If dao_after.fields.thanameplace Is Nothing Then
+                thanameplace = "-"
+            Else
+                thanameplace = dao_after.fields.thanameplace
+            End If
+            If dao_after.fields.KEEP_thanameplace Is Nothing Then
+                keep_thanameplace = "-"
+            Else
+                keep_thanameplace = dao_after.fields.KEEP_thanameplace
+            End If
+            After_des = After_des & thanameplace & "/" & keep_thanameplace
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 3 Then
+            If _ddl2 = 1 Then
+                SET_UPDATE_DDL3_SUB1()
+                Before_des = "แก้ไขที่อยู่ผู้รับมอบหมายหรือผู้ดำเนินกิจการ เดิม "
+                After_des = "แก้ไขที่อยู่ผู้รับมอบหมายหรือผู้ดำเนินกิจการ เป็น "
+                Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL3_REASON
+                dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                Dim dao_c As New DAO_CPN.clsDBsyschngwt
+                Try
+                    dao_c.GetData_by_chngwtcd(dao_before.fields.chngwtcd)
+                Catch ex As Exception
+
+                End Try
+                Before_des = Before_des & dao_c.fields.engchngwtnm
+                Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL3_REASON
+                dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                Try
+                    dao_c.GetData_by_chngwtcd(dao_after.fields.chngwtcd)
+                Catch ex As Exception
+
+                End Try
+                Before_des = Before_des & dao_c.fields.engchngwtnm
+                After_des = After_des & dao_c.fields.engchngwtnm
+                KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+            ElseIf _ddl2 = 2 Then
+                Before_des = "แก้ไขเลขหนังสือเดินทางผู้ดำเนินกิจการ เดิม "
+                After_des = "แก้ไขเลขหนังสือเดินทางผู้ดำเนินกิจการ เป็น "
+                Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL3_REASON
+                dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                Before_des = Before_des & dao_before.fields.GIVE_PASSPORT_NO
+                Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL3_REASON
+                dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                After_des = After_des & dao_after.fields.GIVE_PASSPORT_NO
+                KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+            End If
+        ElseIf _ddl1 = 4 Then
+            Before_des = "แก้ไขเวลาทำการ เดิม "
+            After_des = "แก้ไขเวลาทำการ เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL4_REASON
+            dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            Before_des = Before_des & dao_before.fields.opentime
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL4_REASON
+            dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            After_des = After_des & dao_after.fields.opentime
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 5 Then
+            Before_des = "แก้ไขเบอร์โทรศัพท์ เดิม "
+            After_des = "แก้ไขเบอร์โทรศัพท์ เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL5_REASON
+            dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            Before_des = Before_des & dao_before.fields.tel
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL5_REASON
+            dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            After_des = After_des & dao_after.fields.tel
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 6 Then
+            Before_des = "แก้ไขหมายเลขบ้าน/รายละเอียดของสถานที่ตั้ง  เดิม "
+            After_des = "แก้ไขหมายเลขบ้าน/รายละเอียดของสถานที่ตั้ง  เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL6_REASON
+            dao_before.GET_DATA_BY_FK_LCT_IDA(_LCT_IDA, True)
+            Before_des = Before_des & dao_before.fields.thanameplace
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL6_REASON
+            dao_after.GET_DATA_BY_FK_LCT_IDA(_LCT_IDA, True)
+            After_des = After_des & dao_after.fields.thanameplace
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 7 Then
+            Dim thanm_name As String = ""
+            Dim bsn_name As String = ""
+            Dim phr_name As String = ""
+            Before_des = "แก้ไขคำนำหน้า/ชื่อตัว/ชื่อสกุล/ ของผู้รับอนุญาต ผู้มีหน้าที่ปฏิบัติการ ผู้ดำเนินกิจการ  เดิม "
+            After_des = "แก้ไขคำนำหน้า/ชื่อตัว/ชื่อสกุล/ ของผู้รับอนุญาต ผู้มีหน้าที่ปฏิบัติการ ผู้ดำเนินกิจการ  เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL7_REASON
+            dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            If dao_before.fields.DALCN_BSN_THAIFULLNAME Is Nothing Then
+                thanm_name = "-"
+            Else
+                thanm_name = dao_before.fields.DALCN_BSN_THAIFULLNAME
+            End If
+            If dao_before.fields.BSN_THAIFULLNAME Is Nothing Then
+                bsn_name = "-"
+            Else
+                bsn_name = dao_before.fields.BSN_THAIFULLNAME
+            End If
+            If dao_before.fields.PHR_TEXT_JOB Is Nothing Then
+                phr_name = "-"
+            Else
+                phr_name = dao_before.fields.PHR_TEXT_JOB
+            End If
+            Before_des = Before_des & thanm_name & "/ " & bsn_name & "/ " & phr_name
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL7_REASON
+            dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            If dao_after.fields.DALCN_BSN_THAIFULLNAME Is Nothing Then
+                thanm_name = "-"
+            Else
+                thanm_name = dao_after.fields.DALCN_BSN_THAIFULLNAME
+            End If
+            If dao_after.fields.BSN_THAIFULLNAME Is Nothing Then
+                bsn_name = "-"
+            Else
+                bsn_name = dao_after.fields.BSN_THAIFULLNAME
+            End If
+            If dao_after.fields.PHR_TEXT_JOB Is Nothing Then
+                phr_name = "-"
+            Else
+                phr_name = dao_after.fields.PHR_TEXT_JOB
+            End If
+            After_des = After_des & thanm_name & "/ " & bsn_name & "/ " & phr_name
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 8 Then
+            Before_des = "แก้ไขชื่อร้าน/ชื่อสถานที่  เดิม "
+            After_des = "แก้ไขชื่อร้าน/ชื่อสถานที่ เป็น "
+            Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL8_REASON
+            dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            Before_des = Before_des & dao_before.fields.thanameplace
+            Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL8_REASON
+            dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+            After_des = After_des & dao_after.fields.thanameplace
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 9 Then
+            Before_des = "แก้ไขชื่อร้าน/ชื่อสถานที่  เดิม "
+                After_des = "แก้ไขชื่อร้าน/ชื่อสถานที่ เป็น "
+                Dim dao_before As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL8_REASON
+                dao_before.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                Before_des = Before_des & dao_before.fields.thanameplace
+                Dim dao_after As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL8_REASON
+                dao_after.GET_DATA_BY_FK_LCN_IDA(_LCN_IDA, True)
+                After_des = After_des & dao_after.fields.thanameplace
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 10 Then
+            SET_UPDATE_DDL10()
+            Before_des = " "
+            After_des = "เพิ่มประเภทการผลิต"
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        ElseIf _ddl1 = 11 Then
+            SET_UPDATE_DDL11()
+            Before_des = " "
+            After_des = "เพิ่มรายการผลิตผลิตภัณฑ์สมุนไพรที่ขออนุญาตนำเข้าหรือขาย"
+            KEEP_LOGS_EDIT_LCN(_IDA, Before_des, After_des, Citizen_ID, URL)
+        End If
+
+
     End Sub
 
 End Class

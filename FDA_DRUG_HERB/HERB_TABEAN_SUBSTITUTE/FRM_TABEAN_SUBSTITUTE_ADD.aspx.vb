@@ -101,7 +101,9 @@
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim sl As Integer = ddl_reason.SelectedValue
 
-        Dim dao As New DAO_DRUG.ClsDBdrrgt
+        'Dim dao As New DAO_DRUG.ClsDBdrrgt
+        'dao.GetDataby_IDA(_IDA_DR)
+        Dim dao As New DAO_DRUG.ClsDBdrrqt
         dao.GetDataby_IDA(_IDA_DR)
 
         Dim dao_sub As New DAO_DRUG.TB_DRRGT_SUBSTITUTE

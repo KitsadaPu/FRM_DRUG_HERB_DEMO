@@ -58,36 +58,35 @@
         <div class="row">
             <div class="col-md-12" style="text-align: left">
                 <center>
-                   <asp:RadioButtonList ID="rdl_lcn_type" runat="server">
-                    <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                    <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                    <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                </asp:RadioButtonList></center>
+                    <asp:RadioButtonList ID="rdl_lcn_type" runat="server">
+                        <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                        <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                        <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                    </asp:RadioButtonList></center>
             </div>
 
         </div>
         <br />
         <div>
             <center>
-            <table>
-                <tr>
-                <td>
-                    เลือก &ensp;&ensp;
-                </td>
-                <td>
-                
-               <asp:RadioButtonList ID="rdl_sanchaat" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" >
-                        <asp:ListItem Value="1">&ensp;ไทย&ensp;</asp:ListItem>
-                        <asp:ListItem Value="2">&ensp;ต่างด้าว&ensp;</asp:ListItem>
-                    </asp:RadioButtonList> 
-               
-              
-                    <asp:Label ID="Label60" runat="server" Text="" style="display:none"><p style="color:red">*กรุณาเลือกสัญชาติ</p></asp:Label>
-               
-              
-                </td>
-             </tr>
-            </table>                                       
+                <table>
+                    <tr>
+                        <td>เลือก &ensp;&ensp;
+                        </td>
+                        <td>
+
+                            <asp:RadioButtonList ID="rdl_sanchaat" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
+                                <asp:ListItem Value="1">&ensp;ไทย&ensp;</asp:ListItem>
+                                <asp:ListItem Value="2">&ensp;ต่างด้าว&ensp;</asp:ListItem>
+                            </asp:RadioButtonList>
+
+
+                            <asp:Label ID="Label60" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาเลือกสัญชาติ</p></asp:Label>
+
+
+                        </td>
+                    </tr>
+                </table>
             </center>
 
         </div>
@@ -123,13 +122,13 @@
                     อายุ 
                 </div>
                 <div class="col-lg-1" style="border-bottom: #999999 1px dotted; text-align: center">
-                    <asp:TextBox ID="lbl_lcn_ages"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    <asp:TextBox ID="lbl_lcn_ages" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
                     <%-- <asp:Label ID="lbl_lcn_ages" runat="server" Text=""></asp:Label>--%>
                 </div>
                 <div class="col-lg-2" style="text-align: center">ปี</div>
                 <div class="col-lg-1" style="text-align: center">สัญชาติ</div>
                 <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                    <asp:TextBox ID="lbl_lcn_nation"  runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="lbl_lcn_nation" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                     <%-- <asp:Label ID="lbl_lcn_nation" runat="server" Text=""></asp:Label>--%>
                 </div>
                 <div class="col-lg-2"></div>
@@ -442,137 +441,141 @@
                 </table>
             </asp:Panel>
 
-
         </div>
         <div>
             <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
                ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการหรือดำเนนินกิจการเกี่ยวกับใบอนุญาต</h4>
-                <div id="main_menu2">
-                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">ชื่อผู้ดำเนินการ</div>
-                                        <div class="col-lg-3" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_THAIFULLNAME"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10" style="color: red">*ท่านสามารถกรอกข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการในส่วนที่2</div>
+                <div class="col-lg-6"></div>
+            </div>
+            <%--    <div id="main_menu2">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">ชื่อผู้ดำเนินการ</div>
+                    <div class="col-lg-3" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_THAIFULLNAME" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
 
-                                        </div>
-                                        <div class="col-lg-6"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-1">อายุ</div>
-                                        <div class="col-lg-1" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_AGE"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                             </div>
-                                        <div class="col-lg-1" style="text-align: center">ปี</div>
-                                        <div class="col-lg-1" style="text-align: center"></div>
-                                        <div class="col-lg-1">สัญชาติ</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="Label20"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>                                           
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">เลขประจำตัวประชาชน</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_IDENTIFY"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                            </div>
-                                        <div class="col-lg-6">&nbsp;</div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">ที่อยู่ตามทะเบียนบ้าน อยู่เลขที่</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_ADDR"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">ชั้นที่</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_FLOOR"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">ห้องเลขที่</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_ROOM"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">หมู่บ้าน/อาคาร</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_BUILDING"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">หมู่ที่</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_MOO"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">ตรอก/ซอย</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_SOI"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">ถนน</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_ROAD"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-6">&nbsp;</div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">ตำบล/แขวง</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_THMBL_NAME"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">อำเภอ/เขต</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_AMPHR_NAME"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">จังหวัด</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_thachngwtnm"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">รหัสไปรษณีย์</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_ZIPCODE"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">โทรสาร</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_FAX"  runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-2">โทรศัพท์</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="lbl_BSN_TEL" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                            
-                                        </div>
-                                        <div class="col-lg-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-2">E-mail</div>
-                                        <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
-                                            <asp:TextBox ID="Label33" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
-                                             
-                                        </div>
-                                        <div class="col-lg-6">&nbsp;</div>
-                                    </div>
+                    </div>
+                    <div class="col-lg-6"></div>
                 </div>
-                <table>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-1">อายุ</div>
+                    <div class="col-lg-1" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_AGE" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1" style="text-align: center">ปี</div>
+                    <div class="col-lg-1" style="text-align: center"></div>
+                    <div class="col-lg-1">สัญชาติ</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="Label20" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">เลขประจำตัวประชาชน</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_IDENTIFY" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-6">&nbsp;</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">ที่อยู่ตามทะเบียนบ้าน อยู่เลขที่</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_ADDR" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">ชั้นที่</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_FLOOR" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">ห้องเลขที่</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_ROOM" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">หมู่บ้าน/อาคาร</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_BUILDING" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">หมู่ที่</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_MOO" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">ตรอก/ซอย</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_SOI" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">ถนน</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_ROAD" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-6">&nbsp;</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">ตำบล/แขวง</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_THMBL_NAME" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">อำเภอ/เขต</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_AMPHR_NAME" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">จังหวัด</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_thachngwtnm" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">รหัสไปรษณีย์</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_ZIPCODE" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">โทรสาร</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_FAX" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-2">โทรศัพท์</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="lbl_BSN_TEL" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">E-mail</div>
+                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted; text-align: center">
+                        <asp:TextBox ID="Label33" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+
+                    </div>
+                    <div class="col-lg-6">&nbsp;</div>
+                </div>
+            </div>
+            <table>
                 <tr>
                     <td class="auto-style3"></td>
                     <td class="auto-style18">&nbsp;ที่อยู่ที่สามารถติดต่อได้ &nbsp;<asp:CheckBox ID="cb_addr" runat="server" AutoPostBack="True" />
@@ -594,7 +597,7 @@
                         <asp:Label ID="Label64" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาใส่เลขที่</p></asp:Label>
                     </td>
                     <td>ชั้นที่</td>
-                    <td style="border-bottom: #999999 1px dotted" class="auto-style19">
+                    <td class="auto-style19">
                         <asp:TextBox ID="txt_c_floor" runat="server"></asp:TextBox>
                     </td>
                 </tr>
@@ -662,6 +665,7 @@
                     <td class="auto-style19">
 
                         <asp:TextBox ID="txt_c_zipcode" runat="server"></asp:TextBox>
+                        <asp:Label ID="lbl_zipcheck" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุ รหัสไปรษณีย์</p></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -673,8 +677,8 @@
                     </td>
                     <td>โทรศัพท์</td>
                     <td class="auto-style19">
-                        <asp:TextBox ID="txt_c_tel" runat="server" MaxLength="10" ></asp:TextBox>
-                         <asp:Label ID="lbl_chk_tel" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุเบอร์โทรศัพท์</p></asp:Label>
+                        <asp:TextBox ID="txt_c_tel" runat="server" MaxLength="10"></asp:TextBox>
+                        <asp:Label ID="lbl_chk_tel" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุเบอร์โทรศัพท์</p></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -682,16 +686,51 @@
                     <td class="auto-style18">E-mail</td>
                     <td class="auto-style20">
                         <asp:TextBox ID="txt_c_email" runat="server" TextMode="Email"></asp:TextBox>
-                        <asp:Label ID="lbl_chk_email" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุ e-mail</p></asp:Label>
+                       <asp:Label ID="lbl_chk_email" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณาระบุ e-mail</p></asp:Label>
                     </td>
                     <td>&nbsp;</td>
-                    <td class="auto-style19">&nbsp;</td>
-                </tr>
+            <td class="auto-style19">&nbsp;</td>
+            </tr>
             </table>
 
-
+            <div class="row">
+                <div classs="col-lg-1"></div>
+                <div classs="col-lg-10" style="text-align: center">
+                    <asp:Button ID="btn_save_bsn" runat="server" Text="เพิ่มผู้ดำเนินกิจการ" Height="45px" Width="320px" />
+                </div>
+                <div classs="col-lg-1"></div>
+            </div>
+            <div class="row">
+                <div classs="col-lg-1"></div>
+                <div classs="col-lg-10">
+                    <telerik:RadGrid ID="rg_bsn" runat="server" Width="90%">
+                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA" NoMasterRecordsText="ไม่พบข้อมูล">
+                            <Columns>
+                                <telerik:GridBoundColumn DataField="IDA" FilterControlAltText="Filter IDA column"
+                                    HeaderText="IDA" SortExpression="IDA" UniqueName="IDA" Display="false">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="BSN_IDENTIFY" FilterControlAltText="Filter BSN_IDENTIFY column"
+                                    HeaderText="เลขบัตรปชช." SortExpression="BSN_IDENTIFY" UniqueName="BSN_IDENTIFY">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="BSN_THAIFULLNAME" FilterControlAltText="Filter BSN_THAIFULLNAME column"
+                                    HeaderText="ชื่อผู้ดำเนินนกิจการ" SortExpression="BSN_THAIFULLNAME" UniqueName="BSN_THAIFULLNAME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="BSN_TEL" FilterControlAltText="Filter BSN_TEL column"
+                                    HeaderText="โทรศัพท์" SortExpression="BSN_TEL" UniqueName="BSN_TEL">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
+                                    CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="คุณต้องการลบผู้ดำเนินการหรือไม่">
+                                    <HeaderStyle Width="70px" />
+                                </telerik:GridButtonColumn>
+                            </Columns>
+                        </MasterTableView>
+                    </telerik:RadGrid>
+                </div>
+                <div classs="col-lg-1"></div>
+            </div>
+            --%>
         </div>
-        <div>
+   <%--     <div>
             <h4>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
                กรณีผู้ได้รับมอบหมายหรือแต่งตั้งให้กำหนดกิจการเป็นบุคคลต่างด้าว ระบุ</h4>
             &ensp;
@@ -729,14 +768,9 @@
                    </td>
                </tr>
            </table>
-
-
             <br />
-            &ensp;
-          
-           
-        </div>
-
+            &ensp;              
+        </div>--%>
         <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
                ๓. &ensp;ข้อมูลสถานที่ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร</h4>
         &ensp;
@@ -744,7 +778,7 @@
                <div class="row">
 
                    <div class="col-lg-1" class="auto-style3"></div>
-                   <div class="col-lg-2"><b>สถานที่ประกอบธุรกิจชื่อ</b></div>
+                   <div class="col-lg-2"><b>สถานที่ประกอบธุรกิจชื่อ :</b></div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <%--  <asp:Label ID="lbl_lct_thanameplace" runat="server" Text=""></asp:Label>--%>
                        <asp:TextBox ID="lbl_lct_thanameplace" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
@@ -753,46 +787,44 @@
 
                </div>
                <div class="row">
-
                    <div class="col-lg-1"></div>
-                   <div class="col-lg-2">เลขรหัสประจำบ้าน</div>
+                   <div class="col-lg-2">เลขรหัสประจำบ้าน :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_HOUSENO" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_HOUSENO" runat="server" Text=""></asp:Label>--%>
                    </div>
                    <div class="col-lg-6"></div>
-
                </div>
                <div class="row">
-
                    <div class="col-lg-1"></div>
-                   <div class="col-lg-2">อยู่เลขที่</div>
+                   <div class="col-lg-2">อยู่เลขที่ :</div>
                    <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thaaddr" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_thaaddr" runat="server" Text=""></asp:Label>--%>
                    </div>
-                  
                    <div class="col-lg-1"></div>
-
-               </div>
-                <div class="row">
-
-                   <div class="col-lg-1"></div>
-                   <div class="col-lg-2">หมู่บ้าน/อาคาร</div>
-                   <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
-                       <asp:TextBox ID="lbl_lct_thabuilding" runat="server" BorderStyle="None" ReadOnly="True"  Width="100%"></asp:TextBox>
-                       <%-- <asp:Label ID="lbl_lct_thabuilding" runat="server" Text=""></asp:Label>--%>
-                       </div>
-                   <div class="col-lg-1"></div>
-
                </div>
                <div class="row">
                    <div class="col-lg-1"></div>
-                   <div class="col-lg-2">หมู่ที่</div>
+                   <div class="col-lg-2">หมู่บ้าน/อาคาร :</div>
+                   <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+                       <asp:TextBox ID="lbl_lct_thabuilding" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                       <%-- <asp:Label ID="lbl_lct_thabuilding" runat="server" Text=""></asp:Label>--%>
+                   </div>
+                   <div class="col-lg-2" style="text-align: center">ชั้น :</div>
+                   <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+                       <asp:TextBox ID="lbl_lct_floor" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
+                       <%-- <asp:Label ID="lbl_lct_thasoi" runat="server" Text=""></asp:Label>--%>
+                   </div>
+                   <div class="col-lg-1"></div>
+               </div>
+               <div class="row">
+                   <div class="col-lg-1"></div>
+                   <div class="col-lg-2">หมู่ที่ :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thamu" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                    </div>
-                   <div class="col-lg-2" style="text-align: center">ตรอก/ซอย</div>
+                   <div class="col-lg-2" style="text-align: center">ตรอก/ซอย :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thasoi" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_thasoi" runat="server" Text=""></asp:Label>--%>
@@ -801,7 +833,7 @@
                </div>
                <div class="row">
                    <div class="col-lg-1"></div>
-                   <div class="col-lg-2">&nbsp;ถนน</div>
+                   <div class="col-lg-2">&nbsp;ถนน :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_tharoad" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%--  <asp:Label ID="lbl_lct_tharoad" runat="server" Text=""></asp:Label>--%>
@@ -810,12 +842,12 @@
                </div>
                <div class="row">
                    <div class="col-lg-1" class="auto-style3"></div>
-                   <div class="col-lg-2">ตำบล/แขวง</div>
+                   <div class="col-lg-2">ตำบล/แขวง :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thathmblnm" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_thathmblnm" runat="server" Text=""></asp:Label>--%>
                    </div>
-                   <div class="col-lg-2" style="text-align: center">&nbsp;อำเภอ/เขต</div>
+                   <div class="col-lg-2" style="text-align: center">&nbsp;อำเภอ/เขต :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thaamphrnm" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%--  <asp:Label ID="lbl_lct_thaamphrnm" runat="server" Text=""></asp:Label></div>--%>
@@ -824,11 +856,11 @@
                </div>
                <div class="row">
                    <div class="col-lg-1"></div>
-                   <div class="col-lg-2">จังหวัด</div>
+                   <div class="col-lg-2">จังหวัด :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_thachngwtnm" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                    </div>
-                   <div class="col-lg-2" style="text-align: center">รหัสไปรษณีย์</div>
+                   <div class="col-lg-2" style="text-align: center">รหัสไปรษณีย์ :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_zipcode" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_zipcode" runat="server" Text=""></asp:Label>--%>
@@ -837,12 +869,12 @@
                </div>
                <div class="row">
                    <div class="col-lg-1" class="auto-style3"></div>
-                   <div class="col-lg-2">โทรสาร</div>
+                   <div class="col-lg-2">โทรสาร :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_fax" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_fax" runat="server" Text=""></asp:Label>--%>
                    </div>
-                   <div class="col-lg-2" style="text-align: center">โทรศัพท์</div>
+                   <div class="col-lg-2" style="text-align: center">โทรศัพท์ :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
                        <asp:TextBox ID="lbl_lct_tel" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                        <%-- <asp:Label ID="lbl_lct_tel" runat="server" Text=""></asp:Label>--%>
@@ -851,13 +883,11 @@
                </div>
                <div class="row">
                    <div class="col-lg-1" class="auto-style3"></div>
-                   <div class="col-lg-2">E-mail</div>
+                   <div class="col-lg-2">E-mail :</div>
                    <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-                       <asp:TextBox ID="Label59" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>                     
+                       <asp:TextBox ID="Label59" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
                    </div>
                </div>
-
            </div>
-
     </form>
 </div>

@@ -7,8 +7,8 @@
     Private _CLS As New CLS_SESSION
     Private _TOKEN As String
     Private Sub RunQuery()
-        '_TOKEN = Request("Token").ToString()
-        _TOKEN = "vbOzkSc0ReYSQLEertUEAQUU"
+        _TOKEN = Request("Token").ToString()
+        ' _TOKEN = "j60QAtlVWTp8ek9Aj2BE/QUU"
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

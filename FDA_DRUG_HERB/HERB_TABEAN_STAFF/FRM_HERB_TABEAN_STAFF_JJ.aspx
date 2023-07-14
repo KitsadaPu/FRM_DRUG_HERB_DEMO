@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../css/css_rg_herb.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
             $(window).load(function () {
@@ -45,7 +46,7 @@
     </div>
     <div class="panel panel-body" style="width: 100%; padding-left: 2%;">
         <div class="row">
-            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="25" AllowFilteringByColumn="True" Width ="100%">
+            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="25" AllowFilteringByColumn="True" Width="100%">
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
                     <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
@@ -67,6 +68,12 @@
                         <telerik:GridBoundColumn DataField="TR_ID_JJ" FilterControlAltText="Filter TR_ID_JJ column"
                             HeaderText="เลขดำเนินการ" SortExpression="TR_ID_JJ" UniqueName="TR_ID_JJ">
                         </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="DATE_CONFIRM" DataType="System.DateTime" FilterControlAltText="Filter DATE_CONFIRM column"
+                            HeaderText="วันที่ส่งเรื่อง" SortExpression="DATE_CONFIRM" UniqueName="DATE_CONFIRM" DataFormatString="{0:dd/MM/yyyy}">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="EXPECTED_DATE" DataType="System.DateTime" FilterControlAltText="Filter EXPECTED_DATE column"
+                            HeaderText="วันที่คาดว่าจะแล้วเสร็จ" SortExpression="EXPECTED_DATE" UniqueName="EXPECTED_DATE" DataFormatString="{0:dd/MM/yyyy}">
+                        </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="RCVNO_FULL" FilterControlAltText="Filter RCVNO_FULL column"
                             HeaderText="เลขรับ" SortExpression="RCVNO_FULL" UniqueName="RCVNO_FULL">
                         </telerik:GridBoundColumn>
@@ -80,7 +87,7 @@
                             HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO" UniqueName="LCNNO">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="LCN_NAME" FilterControlAltText="Filter LCN_NAME column"
-                            HeaderText="ชื่อสถานที่" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
+                            HeaderText="ชื่อผู้รับอนุญาต" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="NAME_THAI" FilterControlAltText="Filter NAME_THAI column"
                             HeaderText="ชื่อไทย" SortExpression="NAME_THAI" UniqueName="NAME_THAI">
@@ -91,7 +98,7 @@
                         <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
                             HeaderText="สถานนะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
                         </telerik:GridBoundColumn>
-                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_SELECT" 
+                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_SELECT"
                             CommandName="JJ_SELECT" Text="ดูข้อมูล">
                             <HeaderStyle Width="70px" />
                         </telerik:GridButtonColumn>
@@ -104,6 +111,7 @@
                 <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
                 <FilterMenu EnableImageSprites="False"></FilterMenu>
             </telerik:RadGrid>
+
         </div>
     </div>
     <div class=" modal fade" id="myModal">

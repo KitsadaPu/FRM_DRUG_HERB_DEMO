@@ -32,6 +32,42 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
     Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
     
     '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbl_create_by control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_create_by As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbl_create_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_create_date As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''STATUS control.
     '''</summary>
     '''<remarks>
@@ -84,6 +120,15 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents OFF_APP As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''DDL_JJ2_SELECT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_JJ2_SELECT As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''btn_download_jj1 control.
@@ -158,6 +203,24 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
     
     '''<summary>
+    '''RadGrid5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid5 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
+    '''txt_edit_staff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_edit_staff As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''RadGrid2 control.
     '''</summary>
     '''<remarks>
@@ -165,6 +228,24 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_APPROVE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''STAFF_NAME control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents STAFF_NAME As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''RadGrid3 control.

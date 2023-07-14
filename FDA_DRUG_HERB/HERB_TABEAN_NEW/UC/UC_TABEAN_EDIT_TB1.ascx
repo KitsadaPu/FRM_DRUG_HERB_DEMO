@@ -261,6 +261,7 @@
         <div class="col-lg-1"></div>
     </div>
     <div class="row">
+        <div class="col-lg-1"></div>
         <div class="col-lg-2">Primary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_1" runat="server" DataValueField="PACK_PRIMARY_ID" DataTextField="PACK_PRIMARY_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
@@ -275,29 +276,31 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-1"></div>
         <div class="col-lg-2">Seceondary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_2" runat="server" DataValueField="PACK_SEC_ID" DataTextField="PACK_SEC_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
         </div>
-        <div class="col-lg-2" style="text-align: right">จำนวน:</div>
+        <div class="col-lg-1" style="text-align: right">จำนวน:</div>
         <div class="col-lg-2">
             <asp:TextBox ID="NO_2" runat="server" TextMode="Number" Width="100%"></asp:TextBox>
         </div>
-        <div class="col-lg-2" style="text-align: right">หน่วย:</div>
+        <div class="col-lg-1" style="text-align: right">หน่วย:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_UNIT_2" runat="server" DataValueField="UNIT_SECONDARY_ID" DataTextField="UNIT_SECONDARY_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-1"></div>
         <div class="col-lg-2">Tertiary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_3" runat="server" DataValueField="PACK_TER_ID" DataTextField="PACK_TER_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
         </div>
-        <div class="col-lg-2" style="text-align: right">จำนวน:</div>
+        <div class="col-lg-1" style="text-align: right">จำนวน:</div>
         <div class="col-lg-2">
             <asp:TextBox ID="NO_3" runat="server" TextMode="Number" Width="100%"></asp:TextBox>
         </div>
-        <div class="col-lg-2" style="text-align: right">หน่วย:</div>
+        <div class="col-lg-1" style="text-align: right">หน่วย:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_UNIT_3" runat="server" DataValueField="UNIT_TERTIARY_ID" DataTextField="UNIT_TERTIARY_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
         </div>

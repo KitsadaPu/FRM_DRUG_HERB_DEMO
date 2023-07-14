@@ -32,9 +32,9 @@
         <tr>
             <td style="text-align:center;vertical-align: middle;">
                   <telerik:RadComboBox ID="rcb_Process" Runat="server" Width="50%" Height="400px" 
-                    EmptyMessage="กรุณาเลือก"  AllowCustomText="true">
+                    EmptyMessage="กรุณาเลือก"  AllowCustomText="False" AccessibilityMode="False">
                         <Items>
-                            <telerik:RadComboBoxItem Text="" />
+                            <telerik:RadComboBoxItem Text="" Selected="False" />
                         </Items>
                     <ItemTemplate>
                         <div id="div1" onclick="StopPropagation(event)">

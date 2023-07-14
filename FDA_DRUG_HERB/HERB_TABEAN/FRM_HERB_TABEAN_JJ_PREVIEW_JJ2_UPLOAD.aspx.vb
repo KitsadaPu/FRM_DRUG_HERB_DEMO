@@ -18,7 +18,8 @@
 
     Private Sub bind_file()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-        dao.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_TR_ID, _id, _PROCESS_JJ)
+        'dao.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_TR_ID, _id, _PROCESS_JJ)
+        dao.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _PROCESS_JJ)
 
         Dim FILENAME_XML As String = dao.fields.NAME_FAKE
         Dim bao As New BAO.AppSettings

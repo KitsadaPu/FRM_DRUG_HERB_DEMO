@@ -297,7 +297,7 @@ Public Class POPUP_DR_CONFIRM
         dao.fields.STATUS_ID = 78
         dao.update()
 
-        alert("ยกเลิกข้อมุลเรียบร้อยแล้ว")
+        alert("ยกเลิกข้อมูลเรียบร้อยแล้ว")
     End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click

@@ -86,6 +86,15 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
     Protected WithEvents OFF_APP As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''DDL_TB2_SELECT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_TB2_SELECT As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''uc_upload1 control.
     '''</summary>
     '''<remarks>
@@ -156,6 +165,42 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_download_tb1 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''RadGrid6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid6 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
+    '''txt_edit_staff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_edit_staff As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''TXT_STAFF_NAME_EDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_STAFF_NAME_EDIT As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''RadGrid2 control.

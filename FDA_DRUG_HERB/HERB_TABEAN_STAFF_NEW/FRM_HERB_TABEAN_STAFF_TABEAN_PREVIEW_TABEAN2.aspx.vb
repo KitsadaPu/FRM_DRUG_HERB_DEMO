@@ -2,10 +2,11 @@
     Inherits System.Web.UI.Page
     Private _CLS As New CLS_SESSION
     Private _IDA As String
+    Private _SLDDL As String
 
     Sub RunSession()
         _IDA = Request.QueryString("IDA")
-
+        _SLDDL = Request.QueryString("SLDDL")
         Try
             _CLS = Session("CLS")
         Catch ex As Exception
@@ -15,8 +16,12 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
-
-            Run_Pdf_Tabean_Herb()
+            If _SLDDL = 2 Then
+                Run_Pdf_Tabean_Herb_Long()
+            Else
+                Run_Pdf_Tabean_Herb()
+            End If
+            'Run_Pdf_Tabean_Herb()
 
         End If
     End Sub
@@ -39,5 +44,20 @@
         lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
 
     End Sub
+    Public Sub Run_Pdf_Tabean_Herb_Long()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
 
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(dao_deeqt.fields.PROCESS_ID, dao_deeqt.fields.STATUS_ID, "ทบ2", 1)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN") 'path
+
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_TBN("HB_PDF", dao_deeqt.fields.PROCESS_ID, dao_deeqt.fields.DATE_YEAR, dao_deeqt.fields.TR_ID, _IDA, dao_deeqt.fields.STATUS_ID)
+
+        lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+    End Sub
 End Class

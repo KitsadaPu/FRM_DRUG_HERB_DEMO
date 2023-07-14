@@ -26,10 +26,29 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
         RunSession()
         If Not IsPostBack Then
             bind_data()
+            Run_Pdf_Tabean_Herb()
         End If
         BindTable()
     End Sub
 
+    Public Sub Run_Pdf_Tabean_Herb()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+        Dim dao_dq As New DAO_DRUG.ClsDBdrrqt
+        dao_dq.GetDataby_IDA(_IDA)
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+        dao.GetdatabyID_FK_IDA_DQ(_IDA)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(_ProcessID, dao_dq.fields.STATUS_ID, "ทบ1", 0)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN") 'path
+
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_TBN("HB_PDF", _ProcessID, dao_dq.fields.DATE_YEAR, dao_dq.fields.TR_ID, _IDA, dao_dq.fields.STATUS_ID)
+
+        lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+
+    End Sub
     Public Sub bind_data()
         Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
         dao_up_mas.GetdatabyID_TYPE(7)
@@ -49,11 +68,65 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
                 dao_up.insert()
             End If
         Next
+
+        Dim dao As New DAO_DRUG.ClsDBdrrqt
+        dao.GetDataby_IDA(_IDA)
+        Try
+            If dao.fields.CHK_EDIT_TB1 = "1" Then
+                CHK_TB1_EDIT.Checked = True
+                DIV_SHOW_TXT_EDIT_TB1.Visible = True
+            Else
+                DIV_SHOW_TXT_EDIT_TB1.Visible = False
+            End If
+            NOTE_EDIT.Text = dao.fields.NOTE_EDIT
+            TXT_EDIT_NOTE_TB1.Text = dao.fields.NOTE_EDIT_TB1
+            If dao.fields.CHK_UPLOAD_TB = "1" Then
+                CHK_UPLOAD_EDIT.Checked = True
+                DIV_EDIT_UPLOAD1.Visible = True
+                DIV_EDIT_UPLOAD2.Visible = True
+                RadGrid1.Rebind()
+                RadGrid3.Rebind()
+            Else
+                DIV_EDIT_UPLOAD1.Visible = False
+                DIV_EDIT_UPLOAD2.Visible = False
+            End If
+            If dao.fields.CHK_EDIT_TB1 = "1" Or dao.fields.CHK_UPLOAD_TB = "1" Then
+                RadGrid1.Visible = False
+                'RadGrid4.Visible = True
+
+                btn_sumit.Enabled = False
+                btn_sumit.CssClass = "btn-danger btn-lg"
+                btn_add_upload.Enabled = False
+                set_show.Visible = False
+            End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Function bind_data_uploadfile()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        Dim Type_ID As Integer = 0
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        If Type_ID = 1 Or Type_ID = 9 Then
+            'RadGrid1.Visible = False
+            RadGrid4.Visible = False
+
+            ' dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_NO()
+        Else
+            RadGrid1.Visible = False
+            'RadGrid4.Visible = True
+
+            btn_sumit.Enabled = False
+            btn_sumit.CssClass = "btn-danger btn-lg"
+            btn_add_upload.Enabled = False
+            set_show.Visible = False
+        End If
 
         dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_TBN_NO()
 
@@ -99,6 +172,13 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
         Else
             dao.fields.CHK_UPLOAD_TB = "0"
         End If
+        Try
+            dao.fields.EDIT_RQ_ID = _CLS.CITIZEN_ID
+            dao.fields.EDIT_RQ_NAME = _CLS.NAME
+            dao.fields.EDIT_RQ_DATE = Date.Now
+        Catch ex As Exception
+
+        End Try
         dao.Update()
 
         Dim bao_tran As New BAO_TRANSECTION
@@ -108,7 +188,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('ยกเลิก');parent.close_modal();", True)
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "parent.close_modal();", True)
     End Sub
 
     Public Sub BindTable()
@@ -228,7 +308,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
         Next
 
         If check_file() = False Then
-            alert_normal("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+            'alert_normal("กรุณาแนบไฟล์ให้ครบทุกข้อ")
         Else
             alert_normal("แนบไฟล์เรียบร้อยแล้ว กดบันทึก")
         End If
@@ -280,9 +360,83 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
             DIV_EDIT_UPLOAD1.Visible = True
             DIV_EDIT_UPLOAD2.Visible = True
             RadGrid1.Rebind()
+            RadGrid3.Rebind()
         Else
             DIV_EDIT_UPLOAD1.Visible = False
             DIV_EDIT_UPLOAD2.Visible = False
         End If
     End Sub
+    Function bind_data_uploadfile_edit()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+
+        Return dt
+    End Function
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_uploadfile_edit()
+    End Sub
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile_7()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
+        RadGrid3.DataSource = bind_data_uploadfile_7()
+    End Sub
+
+    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid3.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+        Dim dao_tbn As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+        dao_tbn.GetdatabyID_FK_IDA_DQ(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_FK_IDA_LCN(_TR_ID, 10, _ProcessID, dao_tbn.fields.LCN_ID)
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
+
 End Class

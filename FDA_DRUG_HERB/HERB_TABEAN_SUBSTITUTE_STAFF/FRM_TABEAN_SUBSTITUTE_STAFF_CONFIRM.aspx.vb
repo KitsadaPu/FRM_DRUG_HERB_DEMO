@@ -80,7 +80,11 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM
             btn_confirm.CssClass = "btn-danger btn-lg"
             'btn_cancel.CssClass = "btn-danger btn-lg"     
         End If
-
+        If dao.fields.STATUS_ID = 6 Then
+            BTN_KEEP_PAY.Visible = True
+        Else
+            BTN_KEEP_PAY.Visible = False
+        End If
         If dao.fields.STATUS_ID >= 3 Then
             'Panel1.Style.Add("display", "block")
         Else
@@ -870,6 +874,19 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM
             End If
         End If
     End Sub
+    Private Sub BTN_KEEP_PAY_Click(sender As Object, e As EventArgs) Handles BTN_KEEP_PAY.Click
+        Dim STATUS_ID As Integer = ddl_cnsdcd.SelectedItem.Value
+        Dim RCVNO As Integer = 0
+        Dim dao As New DAO_DRUG.TB_DRRGT_SUBSTITUTE
+        dao.GetDatabyIDA(_IDA)
+        If STATUS_ID = 6 Then
+            dao.fields.STATUS_ID = 4
+            dao.fields.APPROVE_ID_STAFF = DD_OFF_REQ.SelectedValue
+            dao.fields.APPROVE_NAME_STAFF = DD_OFF_REQ.SelectedItem.Text
+            dao.update()
+        End If
+
+    End Sub
     Function bind_data_uploadfile()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
@@ -1537,4 +1554,6 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM
 
         Return fullname
     End Function
+
+
 End Class

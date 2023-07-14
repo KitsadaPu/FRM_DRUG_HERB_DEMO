@@ -226,7 +226,7 @@ Public Class FRM_LCN_DRUG_TRANSFER_SEARCH
 
                 'If _process >= 100741 And _process <= 100749 Then
                 If _staff = 1 Then
-                    Response.Redirect("../LCN_TRANSFER/FRM_LCN_DRUG_TRANSFER.aspx?lcn_ida=" & str_ID & "&lct_ida=" & dao.fields.FK_IDA & "&process=" & dao.fields.PROCESS_ID & "&staff=" & _staff & "&identify=" & _identify)
+                    Response.Redirect("../LCN_TRANSFER/FRM_LCN_DRUG_TRANSFER.aspx?lcn_ida=" & str_ID & "&lct_ida=" & dao.fields.FK_IDA & "&process=" & _process & "&staff=" & _staff & "&identify=" & _identify)
                 Else
                     Response.Redirect("../LCN_TRANSFER/FRM_LCN_DRUG_TRANSFER.aspx?lcn_ida=" & str_ID & "&lct_ida=" & dao.fields.FK_IDA & "&process=" & _process)
 

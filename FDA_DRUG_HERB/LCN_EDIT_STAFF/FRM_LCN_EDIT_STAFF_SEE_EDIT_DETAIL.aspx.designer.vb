@@ -86,6 +86,15 @@ Partial Public Class FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL
     Protected WithEvents text_edit_ddl1_SIMINAR_DATE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''rgphr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rgphr As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''edit_dd2 control.
     '''</summary>
     '''<remarks>

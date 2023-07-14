@@ -1,9 +1,22 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_HERB_TABEAN_JJ_ADD_DETAIL.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ_ADD_DETAIL" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_HERB_TABEAN_JJ_ADD_DETAIL.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ_ADD_DETAIL" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            position: relative;
+            min-height: 1px;
+            float: left;
+            width: 16.66666667%;
+            top: 0px;
+            left: 1px;
+            padding-left: 7px;
+            padding-right: 7px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
@@ -27,6 +40,45 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
+     <div class="row" id="data_show3" runat="server" visible="false">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <label>ผู้แทนนิติบุคคล:</label>
+        </div>
+        <div class="col-lg-4" style="border-bottom: #999999 1px dotted; text-align: center">
+            <asp:TextBox ID="txt_agent99" runat="server" Width="90%" BorderStyle="None"></asp:TextBox>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2" style="text-align: left">
+            <label>อายุ:</label>
+        </div>
+        <div class="col-lg-1" style="border-bottom: #999999 1px dotted;">
+            <asp:TextBox ID="txt_person_age" runat="server" TextMode="Number" Width="100%"></asp:TextBox>
+        </div>
+        <div class="col-lg-1" style="text-align: center">
+            <label>ปี</label>
+        </div>
+        <div class="col-lg-1" style="text-align: center">
+            <label>สัญชาติ:</label>
+        </div>
+        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+            <asp:DropDownList ID="DDL_NATION" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" AutoPostBack="true">
+                <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
+                <asp:ListItem Value="1">ไทย</asp:ListItem>
+                <asp:ListItem Value="2">อื่นๆ</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div class="col-lg-1" style="text-align: center" runat="server" visible="false" id="data_show1">
+            <label>กรุณาระบุ:</label>
+        </div>
+        <div class="col-lg-2" style="border-bottom: #999999 1px dotted" id="data_show2" runat="server" visible="false">
+            <asp:TextBox ID="txt_nation_person" runat="server"></asp:TextBox>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
@@ -43,7 +95,7 @@
             <label>ชนิดจากสมุนไพร:</label>
         </div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_TYPE_SUB_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="true">
+            <asp:DropDownList ID="DD_TYPE_SUB_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="false">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
                 <asp:ListItem Value="1">ยาจากสมุนไพร (ยาแผนไทย)</asp:ListItem>
                 <asp:ListItem Value="2">ยาจากสมุนไพร (ยาแผนจีน)</asp:ListItem>
@@ -62,8 +114,8 @@
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_CATEGORY_ID" runat="server" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap" Enabled="true">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="122">ผลิต ผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="121">นำเข้า ผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="122">ผลิต</asp:ListItem>
+                <asp:ListItem Value="121">นำเข้า</asp:ListItem>
                 <asp:ListItem Value="1220">ผลิตเพื่อส่งออกเท่านั้น</asp:ListItem>
                 <asp:ListItem Value="1210">นำเข้าเพื่อส่งออกเท่านั้น</asp:ListItem>
                 <%--<asp:ListItem Value="120">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>--%>
@@ -271,8 +323,14 @@
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-2">
-            <label>ขนาดบรรจุ:</label>
+        <div class="row">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-2">
+                <h4>ข้อมูลเดิม</h4>
+            </div>
+            <div class="col-lg-1">
+            </div>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -307,33 +365,37 @@
                         <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                             SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="PACK_FSIZE_VOLUME" FilterControlAltText="Filter PACK_FSIZE_VOLUME column"
-                            HeaderText="primary packaging" SortExpression="PACK_FSIZE_VOLUME" UniqueName="PACK_FSIZE_VOLUME">
-                        </telerik:GridBoundColumn>
+
                         <telerik:GridBoundColumn DataField="PACK_FSIZE_NAME" FilterControlAltText="Filter PACK_FSIZE_NAME column"
-                            HeaderText="ขนาด" SortExpression="PACK_FSIZE_NAME" UniqueName="PACK_FSIZE_NAME">
+                            HeaderText="primary packaging" SortExpression="PACK_FSIZE_NAME" UniqueName="PACK_FSIZE_NAME">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="PACK_FSIZE_VOLUME" FilterControlAltText="Filter PACK_FSIZE_VOLUME column"
+                            HeaderText="ขนาด" SortExpression="PACK_FSIZE_VOLUME" UniqueName="PACK_FSIZE_VOLUME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="PACK_FSIZE_UNIT_NAME" FilterControlAltText="Filter PACK_FSIZE_UNIT_NAME column"
                             HeaderText="หน่วย" SortExpression="PACK_FSIZE_UNIT_NAME" UniqueName="PACK_FSIZE_UNIT_NAME">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="PACK_SECSIZE_VOLUME" FilterControlAltText="Filter PACK_SECSIZE_VOLUME column"
-                            HeaderText="secondary packaging" SortExpression="PACK_SECSIZE_VOLUME" UniqueName="PACK_SECSIZE_VOLUME">
-                        </telerik:GridBoundColumn>
+
                         <telerik:GridBoundColumn DataField="PACK_SECSIZE_NAME" FilterControlAltText="Filter PACK_SECSIZE_NAME column"
-                            HeaderText="ขนาด" SortExpression="PACK_SECSIZE_NAME" UniqueName="PACK_SECSIZE_NAME">
+                            HeaderText="secondary packaging" SortExpression="PACK_SECSIZE_NAME" UniqueName="PACK_SECSIZE_NAME">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="PACK_SECSIZE_VOLUME" FilterControlAltText="Filter PACK_SECSIZE_VOLUME column"
+                            HeaderText="ขนาด" SortExpression="PACK_SECSIZE_VOLUME" UniqueName="PACK_SECSIZE_VOLUME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="PACK_SECSIZE_UNIT_NAME" FilterControlAltText="Filter PACK_SECSIZE_UNIT_NAME column"
                             HeaderText="หน่วย" SortExpression="PACK_SECSIZE_UNIT_NAME" UniqueName="PACK_SECSIZE_UNIT_NAME">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="PACK_THSSIZE_VOLUME" FilterControlAltText="Filter PACK_THSSIZE_VOLUME column"
-                            HeaderText="tertiary packaging" SortExpression="PACK_THSSIZE_VOLUME" UniqueName="PACK_THSSIZE_VOLUME">
+
+                        <telerik:GridBoundColumn DataField="PACK_THSIZE_UNIT_NAME" FilterControlAltText="Filter PACK_THSIZE_UNIT_NAME column"
+                            HeaderText="tertiary packaging" SortExpression="PACK_THSIZE_UNIT_NAME" UniqueName="PACK_THSIZE_UNIT_NAME">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="PACK_THSIZE_NAME" FilterControlAltText="Filter PACK_THSIZE_NAME column"
-                            HeaderText="ขนาด" SortExpression="PACK_THSIZE_NAME" UniqueName="PACK_THSIZE_NAME">
+                        <telerik:GridBoundColumn DataField="PACK_THSSIZE_VOLUME" FilterControlAltText="Filter PACK_THSSIZE_VOLUME column"
+                            HeaderText="ขนาด" SortExpression="PACK_THSSIZE_VOLUME" UniqueName="PACK_THSSIZE_VOLUME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="PACK_THSIZE_UNIT_NAME" FilterControlAltText="Filter PACK_THSIZE_UNIT_NAME column"
                             HeaderText="หน่วย" SortExpression="PACK_THSIZE_UNIT_NAME" UniqueName="PACK_THSIZE_UNIT_NAME">
                         </telerik:GridBoundColumn>
+
                     </Columns>
                     <EditFormSettings>
                         <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>

@@ -1,5 +1,7 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports System.Net
+Imports System.Security.Principal
 Imports iTextSharp.text.pdf
 Imports Telerik.Web.UI
 
@@ -27,15 +29,29 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         If Not IsPostBack Then
             'lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src=''></iframe>"
 
-            Run_Pdf_Tabean_Herb()
+            Gen_Pdf_Tabean_Herb()
+            'Run_Pdf_Tabean_Herb()
             bind_data()
             bind_dd()
             bind_mas_staff()
             'bind_tabean_group()
             'bind_ddl_rgttpcd()
+            bind_mas_cancel()
+
+            UC_ATTACH1.NAME = "เอกสารแนบ"
+            UC_ATTACH1.BindData("เอกสารแนบ", 1, "pdf", "0", "77")
         End If
     End Sub
+    Public Sub bind_mas_cancel()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STATUS_CANCEL_TABEAN_HERB(1)
+        'dt = bao.SP_MAS_DDL_SECTION_CANCEL()
 
+        DDL_CANCLE_REMARK.DataSource = dt
+        DDL_CANCLE_REMARK.DataBind()
+        DDL_CANCLE_REMARK.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
     Public Sub bind_mas_staff()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
@@ -141,7 +157,8 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
     Public Sub bind_data()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
-
+        lbl_create_by.Text = dao.fields.CREATE_BY
+        lbl_create_date.Text = dao.fields.CREATE_DATE
         If dao.fields.RCVNO_FULL <> "" Then
             P12.Visible = True
             ROVNO_FULL.Text = dao.fields.RCVNO_FULL
@@ -149,6 +166,17 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         DD_OFF_REQ.Text = _CLS.NAME
 
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
+
+        Dim dao_tr As New DAO_TABEAN_HERB.TB_TABEAN_TRANSACTION_JJ
+        dao_tr.GetdatabyID_FK_IDA_JJ(_IDA)
+        Dim dao_st As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_STATUS_JJ
+        dao_st.Getdataby_STATUS_ID_GROUP(dao.fields.STATUS_ID, 2)
+        'NAME_ST.Text = dao_st.fields.STATUS_NAME
+        STAFF_NAME.Text = dao.fields.EDIT_RQ_NAME
+
+        txt_edit_staff.Text = dao.fields.NOTE_EDIT
+
+
     End Sub
 
     Public Sub bind_dd()
@@ -256,6 +284,14 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
 
+        Dim bao_tran As New BAO_TRANSECTION
+        Try
+            bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
+            bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+            bao_tran.THANM = _CLS.THANM
+        Catch ex As Exception
+
+        End Try
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
         If DD_STATUS.SelectedItem.Text.Contains("กรุณาเลือก") Then
@@ -300,11 +336,21 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
 
                     dao.Update()
 
-                    Dim bao_tran As New BAO_TRANSECTION
+                    ' Dim bao_tran As New BAO_TRANSECTION
                     bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
 
-                    Run_Pdf_Tabean_Herb_12_11()
+                    Gen_Pdf_Tabean_Herb()
                     'Run_Pdf_Tabean_Herb_APPROVE_12_11()
+                    Dim title As String
+                    Dim Content As String
+                    Dim EMAIL As String = "leem.3005@gmail.com"
+                    Content = "คำขอจดแจ้งผลิตภัณฑ์สมุนไพร รหัสดำเนินการ : " & _TR_ID & " , ได้รับการ" & DD_STATUS.SelectedItem.Text & "แล้ว"
+                    title = "คำขอจดแจ้งผลิตภัณฑ์สมุนไพร"
+                    log_email(_IDA, _ProcessID, _CLS.CITIZEN_ID, EMAIL, title, Content)
+
+                    ''SendMail(Content, "tanachot.m@fsa.co.th", title) 'พี่บิ๊ก(ว่ายน้ำ)
+                    SendMail(Content, "koeza2009@gmail.com", title) 'ก้อ
+                    SendMail(Content, EMAIL, title) 'ลีม
                 End If
 
             ElseIf DD_STATUS.SelectedValue = 4 Then
@@ -322,33 +368,100 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
                     dao_up.insert()
                 Next
 
-                Dim bao_tran As New BAO_TRANSECTION
+                dao.fields.EDIT_RQ_ID = _CLS.CITIZEN_ID
+                dao.fields.EDIT_RQ_NAME = _CLS.THANM
+                dao.fields.EDIT_RQ_DATE = Date.Now
+                ' Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
 
                 dao.Update()
+
+                Gen_Pdf_Tabean_Herb()
+                Dim title As String
+                Dim Content As String
+                Dim EMAIL As String = "leem.3005@gmail.com"
+                Content = "คำขอจดแจ้งผลิตภัณฑ์สมุนไพร รหัสดำเนินการ : " & _TR_ID & " , ได้รับการ" & DD_STATUS.SelectedItem.Text & "แล้ว"
+                title = "คำขอจดแจ้งผลิตภัณฑ์สมุนไพร"
+                log_email(_IDA, _ProcessID, _CLS.CITIZEN_ID, EMAIL, title, Content)
+
+                ''SendMail(Content, "tanachot.m@fsa.co.th", title) 'พี่บิ๊ก(ว่ายน้ำ)
+                SendMail(Content, "koeza2009@gmail.com", title) 'ก้อ
+                SendMail(Content, EMAIL, title) 'ลีม
+                Response.Redirect("FRM_HERB_TABEAN_STAFF_JJ_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & _ProcessID & "&IDA_LCN=" & _IDA_LCN)
             ElseIf DD_STATUS.SelectedValue = 9 Then
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.fields.NOTE_CANCEL = NOTE_CANCLE.Text
+                dao.fields.DD_CANCEL_ID = DDL_CANCLE_REMARK.SelectedValue
+                dao.fields.DD_CANCEL_NM = DDL_CANCLE_REMARK.SelectedItem.Text
                 dao.Update()
 
-                Dim bao_tran As New BAO_TRANSECTION
+                ' Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.Update()
+
+                Gen_Pdf_Tabean_Herb()
+                UC_ATTACH1.insert_JJ2(_TR_ID, _ProcessID, dao.fields.IDA, 77)
             ElseIf DD_STATUS.SelectedValue = 14 Then
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao.fields.NOTE_CANCEL = NOTE_CANCLE.Text
+                dao.fields.DD_CANCEL_ID = DDL_CANCLE_REMARK.SelectedValue
+                dao.fields.DD_CANCEL_NM = DDL_CANCLE_REMARK.SelectedItem.Text
                 dao.Update()
 
-                Dim bao_tran As New BAO_TRANSECTION
+                ' Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.Update()
+
+                UC_ATTACH1.insert_JJ2(_TR_ID, _ProcessID, dao.fields.IDA, 77)
+                Gen_Pdf_Tabean_Herb()
             End If
 
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
         End If
     End Sub
+    Private Sub log_email(ByVal IDA As String, ByVal PROCESS_ID As String, ByVal IDENTIFY As String, ByVal EMAIL As String, ByVal TITLE As String, ByVal CONTENT As String)
+        Dim dao_log As New DAO_TABEAN_HERB.TB_LOG_EMAIL
+        With dao_log
+            .fields.FK_IDA = IDA
+            .fields.CONTENT_MAIL = CONTENT 'รายละเอียด
+            .fields.TITLE_MAIL = TITLE 'หัวข้อที่ส่ง
+            .fields.PROCESS_ID = PROCESS_ID 'เลขกระบวนการ
+            .fields.SEND_TO = EMAIL
+            .fields.IDENTIFY = _CLS.CITIZEN_ID
+            .fields.SEND_DATE = Date.Now  'เข้ามาเมื่อไร
+            .insert()
+        End With
+    End Sub
+    Public Sub SendMail(ByVal Content As String, ByVal email As String, ByVal title As String)
+        Dim mm As New FDA_MAIL.FDA_MAIL
+        Dim mcontent As New FDA_MAIL.Fields_Mail
 
-    Public Sub Run_Pdf_Tabean_Herb_12_11()
+        mcontent.EMAIL_CONTENT = Content
+        mcontent.EMAIL_FROM = "fda_info@fda.moph.go.th"
+        mcontent.EMAIL_PASS = "deeku181"
+        mcontent.EMAIL_TILE = title
+        mcontent.EMAIL_TO = email
+
+        mm.SendMail(mcontent)
+    End Sub
+    Function Get_mail(ByVal Citizen_ID As String)
+        Dim email As String = ""
+        Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+        Dim obj As New XML_DATA
+        'Dim cls As New CLS_COMMON.convert
+        Dim result As String = ""
+        'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+        result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
+        obj = ConvertFromXml(Of XML_DATA)(result)
+        email = obj.EMAIL
+        Return email
+    End Function
+    Sub alert_nature(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
+    End Sub
+    Public Sub Gen_Pdf_Tabean_Herb()
         Dim bao_app As New BAO.AppSettings
         bao_app.RunAppSettings()
 
@@ -371,6 +484,9 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
         _CLS.PDFNAME = PATH_PDF_OUTPUT
         _CLS.FILENAME_XML = Path_XML
+
+        lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+
     End Sub
 
     Public Sub Run_Pdf_Tabean_Herb_APPROVE_12_11()
@@ -403,8 +519,14 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ');", True)
         ElseIf DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Then
             P12.Visible = True
+            p2.Visible = False
+        ElseIf DD_STATUS.SelectedValue = 77 Or DD_STATUS.SelectedValue = 78 Or DD_STATUS.SelectedValue = 79 Or DD_STATUS.SelectedValue = 7 _
+            Or DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 10 Or DD_STATUS.SelectedValue = 17 Then
+            p2.Visible = True
+            P12.Visible = False
         Else
             P12.Visible = False
+            p2.Visible = False
         End If
     End Sub
 
@@ -447,6 +569,35 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         If DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกเจ้าหน้าที่');", True)
         End If
+    End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
+    Private Sub RadGrid4_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid4.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
     End Sub
 
 End Class

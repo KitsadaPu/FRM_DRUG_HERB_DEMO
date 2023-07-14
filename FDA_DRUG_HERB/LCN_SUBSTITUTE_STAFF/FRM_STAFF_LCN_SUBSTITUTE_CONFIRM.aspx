@@ -7,70 +7,64 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     &nbsp;<script type="text/javascript">
-        $(document).ready(function () {
-            $(window).load(function () {
-                $.ajax({
-                    type: 'POST',
-                    data: { submit: true },
-                    success: function (result) {
-                        //    $('#spinner').fadeOut('slow');
-                    }
-                });
-            });
+              $(document).ready(function () {
+                  $(window).load(function () {
+                      $.ajax({
+                          type: 'POST',
+                          data: { submit: true },
+                          success: function (result) {
+                              //    $('#spinner').fadeOut('slow');
+                          }
+                      });
+                  });
 
-            function CloseSpin() {
-                $('#spinner').toggle('slow');
-            }
+                  function CloseSpin() {
+                      $('#spinner').toggle('slow');
+                  }
 
-            $('#ContentPlaceHolder1_btn_upload').click(function () {
+                  $('#ContentPlaceHolder1_btn_upload').click(function () {
 
-                $('#spinner').toggle('slow');
-                Popups('POPUP_LCN_UPLOAD.aspx');
-                return false;
-            });
+                      $('#spinner').toggle('slow');
+                      Popups('POPUP_LCN_UPLOAD.aspx');
+                      return false;
+                  });
 
-            $('#ContentPlaceHolder1_btn_download').click(function () {
-                $('#spinner').fadeIn('slow');
-                Popups('POPUP_LCN_DOWNLOAD.aspx');
-                return false;
-            });
+                  $('#ContentPlaceHolder1_btn_download').click(function () {
+                      $('#spinner').fadeIn('slow');
+                      Popups('POPUP_LCN_DOWNLOAD.aspx');
+                      return false;
+                  });
 
-            function Popups(url) { // สำหรับทำ Div Popup
-                $('#myModal').modal('toggle'); // เป็นคำสั่งเปิดปิด
-                var i = $('#f1'); // ID ของ iframe   
-                i.attr("src", url); //  url ของ form ที่จะเปิด
-            }
+                  function Popups(url) { // สำหรับทำ Div Popup
+                      $('#myModal').modal('toggle'); // เป็นคำสั่งเปิดปิด
+                      var i = $('#f1'); // ID ของ iframe   
+                      i.attr("src", url); //  url ของ form ที่จะเปิด
+                  }
 
-            function close_modal() { // คำสั่งสั่งปิด PopUp
-                $('#myModal').modal('hide');
-                $('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
-            }
-        });
+                  function close_modal() { // คำสั่งสั่งปิด PopUp
+                      $('#myModal').modal('hide');
+                      $('#ContentPlaceHolder1_btn_reload').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
+                  }
+              });
 
-        function spin_space() { // คำสั่งสั่งปิด PopUp
-            //    alert('123456');
-            $('#spinner').toggle('slow');
-            //$('#myModal').modal('hide');
-            //$('#ContentPlaceHolder1_Button2').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
+              function spin_space() { // คำสั่งสั่งปิด PopUp
+                  //    alert('123456');
+                  $('#spinner').toggle('slow');
+                  //$('#myModal').modal('hide');
+                  //$('#ContentPlaceHolder1_Button2').click(); // ตัวอย่างให้คำสั่งปุ่มที่ซ่อนอยู่ Click
 
-        }
-        function closespinner() {
-            $('#spinner').fadeOut('slow');
-            alert('Download Success');
-            Loaddata();
-        }
+              }
+              function closespinner() {
+                  $('#spinner').fadeOut('slow');
+                  alert('Download Success');
+                  Loaddata();
+              }
     </script><div id="spinner" style="background-color: transparent; display: none;">
         <img src="../imgs/spinner.gif" alt="Loading" style="position: absolute; top: 120px; left: 293px; height: 185px; width: 207px;" />
-
     </div>
-
     <div>
-
-        <asp:HyperLink ID="hl_reader" runat="server" Target="_blank" CssClass="btn-control">
-                 <input type="button" value="เปิดจาก acrobat reader"   class="btn-lg"   style="  Width:70%;" />
-        </asp:HyperLink>
+        <asp:HyperLink ID="hl_reader" runat="server" Target="_blank" CssClass="btn-control"> <input type="button" value="เปิดจาก acrobat reader"   class="btn-lg"   style="  Width:70%;" /></asp:HyperLink>
         <asp:HiddenField ID="HiddenField1" runat="server" />
     </div>
     <table style="width: 100%; height: 500px;">
@@ -92,37 +86,58 @@
                              </telerik:radcombobox>
                          </td>
                      </tr>--%>
-                      <tr>
-                         <td>
-                         <asp:Panel ID="Panel3" runat="server">
-                             <asp:Label ID="Label2" runat="server" Text="แบบฟอร์ม PDF:"></asp:Label></asp:Panel>
-                             </td>
-                     </tr>
+                    <asp:Panel ID="Panel2" runat="server" Style="display: none;">
                         <tr>
                             <td>
-                               <asp:Panel ID="Panel1" runat="server">
+                                <asp:Label ID="Label1" runat="server" Text="กรุณาเลือกสถานะ:"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="ddl_cnsdcd" runat="server" Width="100%" DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label4" runat="server" Text="จนท.ที่รับผิดชอบ:"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label3" runat="server" Text="วันที่ดำเนินการ:"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <telerik:RadDatePicker ID="DATE_REQ" runat="server" Width="100%"></telerik:RadDatePicker>
+                            </td>
+                        </tr>
+                    </asp:Panel>
+                    <asp:Panel ID="Panel3" runat="server" Style="display: none;">
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label2" runat="server" Text="แบบฟอร์ม PDF:"></asp:Label>
+                            </td>
+                        </tr>
+                    </asp:Panel>
+                    <asp:Panel ID="Panel1" runat="server" Style="display: none;">
+                        <tr>
+                            <td>
                                 <asp:DropDownList ID="ddl_template" runat="server" Width="80%" AutoPostBack="True">
                                     <asp:ListItem Value="0">---เลือกแบบ pdf---</asp:ListItem>
                                     <asp:ListItem Value="1">pdf แบบปกติ</asp:ListItem>
                                     <asp:ListItem Value="2">pdf แบบบ้านเลขที่ยาว</asp:ListItem>
                                 </asp:DropDownList>
-                                    </asp:Panel>
-                            </td>                             
+                            </td>
                         </tr>
-                       <tr>
-                         <td>
-                         <asp:Panel ID="Panel2" runat="server">
-                             <asp:Label ID="Label1" runat="server" Text="กรุณาเลือกสถานะ:"></asp:Label></asp:Panel>
-                             </td>
-                     </tr>
-                    <tr>
-                        
-                        <td>
-                            <asp:DropDownList ID="ddl_cnsdcd" runat="server" Width="80%" DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
-                            </asp:DropDownList>
+                    </asp:Panel>
 
-                        </td>
-                    </tr>
                     <%--<tr>
                          <td>
                          <asp:Panel ID="Panel4" runat="server">
@@ -137,38 +152,33 @@
                     </tr>--%>
                     <tr>
                         <td>
-                            <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
+                            <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" />
+                            <asp:Button ID="btn_keep" runat="server" Text="ข้ามจ่ายเงิน" Visible="false" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('ยืนยันการข้ามสถานะ');" />
+                        </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการยกเลิกข้อคำขอหรือไม่');"/></td>
-                    </tr>
-                     <tr>
-                        <td>
-                            <asp:Button ID="btn_preview" runat="server" Text="Preview สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
-                    </tr>
-                   <%-- <tr>
+        <tr>
+            <td>
+                <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="100%" OnClientClick="return confirm('คุณต้องการยกเลิกข้อคำขอหรือไม่');" /></td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btn_preview" runat="server" Text="Preview สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
+        </tr>
+        <%-- <tr>
                         <td>
                             <asp:Button ID="btn_load" runat="server" Text="ดาวน์โหลด สมพ.๒(ใบแทน)" CssClass="btn-lg" Width="100%" /></td>
                     </tr>--%>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="100%" /></td>
-                    </tr>
-
-                </table>
-
-
-
-            </td>
+        <tr>
+            <td>
+                <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="100%" /></td>
+        </tr>
+    </table>
+    </td>
         </tr>
         <tr>
             <td style="width: 30%; height: 50%; padding-left: 10%">
-
                 <uc1:UC_GRID_ATTACH runat="server" ID="UC_GRID_ATTACH" />
-
                 <br />
-
             </td>
         </tr>
     </table>

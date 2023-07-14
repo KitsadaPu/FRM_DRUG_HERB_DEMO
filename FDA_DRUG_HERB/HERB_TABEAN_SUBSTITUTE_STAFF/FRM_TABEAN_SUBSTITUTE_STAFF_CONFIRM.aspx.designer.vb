@@ -95,6 +95,15 @@ Partial Public Class FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM
     Protected WithEvents DD_OFF_REQ As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''BTN_KEEP_PAY control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_KEEP_PAY As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btn_confirm control.
     '''</summary>
     '''<remarks>

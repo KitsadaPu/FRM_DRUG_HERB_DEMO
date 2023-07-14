@@ -119,6 +119,16 @@
         End Set
     End Property
 
+    Private _TR_ID As String
+    Public Property TR_ID() As String
+        Get
+            Return _TR_ID
+        End Get
+        Set(ByVal value As String)
+            _TR_ID = value
+        End Set
+    End Property
+
     Private _group_assign As String
     Public Property group_assign() As String
         Get
@@ -126,6 +136,33 @@
         End Get
         Set(ByVal value As String)
             _group_assign = value
+        End Set
+    End Property
+    Private _DISCOUNT_DETAIL As String
+    Public Property DISCOUNT_DETAIL() As String
+        Get
+            Return _DISCOUNT_DETAIL
+        End Get
+        Set(ByVal value As String)
+            _DISCOUNT_DETAIL = value
+        End Set
+    End Property
+    Private _estimate_date As String
+    Public Property estimate_date() As String
+        Get
+            Return _estimate_date
+        End Get
+        Set(ByVal value As String)
+            _estimate_date = value
+        End Set
+    End Property
+    Private _estimate_date_max As String
+    Public Property estimate_date_max() As String
+        Get
+            Return _estimate_date_max
+        End Get
+        Set(ByVal value As String)
+            _estimate_date_max = value
         End Set
     End Property
 End Class

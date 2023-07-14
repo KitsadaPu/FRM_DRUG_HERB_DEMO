@@ -23,6 +23,11 @@
             }
         }
     </script>
+    <style type="text/css">
+        .auto-style1 {
+            height: 50px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <br />
@@ -30,7 +35,7 @@
                 <hr />
     <table style="width:100%;height:50px;font-size:18px;">
         <tr>
-            <td style="text-align:center;vertical-align: middle;">
+            <td style="text-align:center;vertical-align: middle;" class="auto-style1">
                   <telerik:RadComboBox ID="rcb_Process" Runat="server" Width="50%" Height="400px" 
                     EmptyMessage="กรุณาเลือก"  AllowCustomText="true">
                         <Items>
@@ -48,4 +53,7 @@
             </td>
         </tr>
           </table>
+    <asp:Panel ID="Panel1" style="border-left:3px;border-right:3px;border:5px" runat="server">
+
+    </asp:Panel>
     </asp:Content>

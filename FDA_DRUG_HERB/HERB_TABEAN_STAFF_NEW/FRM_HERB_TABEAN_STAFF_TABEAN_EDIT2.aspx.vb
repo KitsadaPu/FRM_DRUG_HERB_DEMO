@@ -54,6 +54,25 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT2
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
+        Dim Type_ID As Integer = 0
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        If Type_ID = 11 Then
+            'RadGrid1.Visible = False
+            RadGrid4.Visible = False
+
+            ' dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_NO()
+        Else
+            RadGrid1.Visible = False
+            'RadGrid4.Visible = True
+
+            btn_sumit.Enabled = False
+            btn_sumit.CssClass = "btn-danger btn-lg"
+            btn_add_upload.Enabled = False
+            set_show.Visible = False
+        End If
+
         dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_TBN_NO()
 
         Return dt
@@ -98,6 +117,13 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT2
         Else
             dao.fields.CHK_UPLOAD_TB = "0"
         End If
+        Try
+            dao.fields.EDIT_RQ2_ID = _CLS.CITIZEN_ID
+            dao.fields.EDIT_RQ2_NAME = _CLS.NAME
+            dao.fields.EDIT_RQ2_DATE = Date.Now
+        Catch ex As Exception
+
+        End Try
         dao.update()
 
         Dim bao_tran As New BAO_TRANSECTION
@@ -283,4 +309,77 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT2
             DIV_EDIT_UPLOAD2.Visible = False
         End If
     End Sub
+    Function bind_data_uploadfile_edit_11()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID)
+
+        Return dt
+    End Function
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_uploadfile_edit_11()
+    End Sub
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile_7()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
+        RadGrid3.DataSource = bind_data_uploadfile_7()
+    End Sub
+
+    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid3.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+        Dim dao_tbn As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+        dao_tbn.GetdatabyID_FK_IDA_DQ(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_FK_IDA_LCN(_TR_ID, 13, _ProcessID, dao_tbn.fields.LCN_ID)
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
+
 End Class

@@ -19,7 +19,7 @@
         _iden = Request.QueryString("identify")
         _lct_ida = Request.QueryString("lct_ida")
         _IDA = Request.QueryString("IDA")
-        _lcn_ida = Request.QueryString("LCN_IDA")
+        _lcn_ida = Request.QueryString("lcn_ida")
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -56,10 +56,15 @@
         'uc102_3.get_label("3.สำเนาใบอนุญาตผลิต หรือนำหรือสั่งยาเข้ามาในราชอาณาจักร")
 
     End Sub
-    Public Sub SET_ATTACH(ByVal TR_ID As String, ByVal PROCESS_ID As String, ByVal YEAR As String)
-
-        uc102_1.ATTACH1(TR_ID, PROCESS_ID, YEAR, "1")
-        uc102_2.ATTACH1(TR_ID, PROCESS_ID, YEAR, "2")
+    Sub SET_ATTACH(ByVal IDA As String, ByVal TR_ID As String, ByVal PROCESS_ID As String, ByVal YEAR As String, ByVal PURPOSE As String)
+        Dim label_name As String = ""
+        If PURPOSE = 1 Then
+            Label_name = "แนบใบอนุญาตถูกทำลาย หรือ ลบเลือนในสาระสำคัญ"
+            uc102_1.ATTACH_SUB(IDA, TR_ID, PROCESS_ID, YEAR, "1", Label_name)
+        ElseIf PURPOSE = 2 Then
+            label_name = "ใบรับแจ้งความของสถานีตำรวจท้องที่ที่ใบอนุญาตนั้นสูญหาย"
+            uc102_2.ATTACH_SUB(IDA, TR_ID, PROCESS_ID, YEAR, "1", label_name)
+        End If
         'uc102_3.ATTACH1(TR_ID, PROCESS_ID, YEAR, "3")
 
     End Sub
@@ -80,123 +85,171 @@
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt_lcn As New DataTable
-        dt_lcn = bao.SP_Lisense_Name_and_Addr(_iden) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
+        'dt_lcn = bao.SP_Lisense_Name_and_Addr(_iden) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
+        dt_lcn = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(_lct_ida)
 
-        For Each dr As DataRow In dt_lcn.Rows
-            'Try
-            '    txt_da_opentime.Text = dr("thaaddr")
-            'Catch ex As Exception
+        'For Each dr As DataRow In dt_lcn.Rows
+        '    'Try
+        '    '    txt_da_opentime.Text = dr("thaaddr")
+        '    'Catch ex As Exception
 
-            'End Try
-            Try
-                txt_sub_addr.Text = dr("thaaddr")
-            Catch ex As Exception
+        '    'End Try
+        '    Try
+        '        txt_sub_addr.Text = dr("thaaddr")
+        '    Catch ex As Exception
 
-            End Try
-            'Try
-            '    lbl_lcn_floor.Text = dr("floor")
-            'Catch ex As Exception
+        '    End Try
+        '    'Try
+        '    '    lbl_lcn_floor.Text = dr("floor")
+        '    'Catch ex As Exception
 
-            'End Try
-            'Try
-            '    txt_sub_room.Text = dr("room")
-            'Catch ex As Exception
+        '    'End Try
+        '    'Try
+        '    '    txt_sub_room.Text = dr("room")
+        '    'Catch ex As Exception
 
-            'End Try
-            'Try
-            '    txt_sub_ages.Text = dr("age")
-            'Catch ex As Exception
+        '    'End Try
+        '    'Try
+        '    '    txt_sub_ages.Text = dr("age")
+        '    'Catch ex As Exception
 
-            'End Try
-            Try
-                txt_sub_amphor.Text = dr("amphrnm")
-            Catch ex As Exception
+        '    'End Try
+        '    Try
+        '        'txt_sub_amphor.Text = dr("amphrnm")
+        '        txt_sub_amphor.Text = dr("thaamphrnm")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_building.Text = dr("building")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        'txt_sub_building.Text = dr("building")
+        '        txt_sub_building.Text = dr("thabuilding")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_changwat.Text = dr("chngwtnm")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        'txt_sub_changwat.Text = dr("chngwtnm")
+        '        txt_sub_changwat.Text = dr("thachngwtnm")
+        '    Catch ex As Exception
 
-            End Try
-            'Try
-            '    lbl_lcn_email.Text = dr("email")
-            'Catch ex As Exception
+        '    End Try
+        '    'Try
+        '    '    lbl_lcn_email.Text = dr("email")
+        '    'Catch ex As Exception
 
-            'End Try
-            'Try
-            '    txt_sub_fax.Text = dr("fax")
-            'Catch ex As Exception
+        '    'End Try
+        '    'Try
+        '    '    txt_sub_fax.Text = dr("fax")
+        '    'Catch ex As Exception
 
-            'End Try
-            Try
-                txt_sub_iden.Text = dr("identify")
-            Catch ex As Exception
+        '    'End Try
+        '    Try
+        '        txt_sub_iden.Text = dr("identify")
+        '    Catch ex As Exception
 
-            End Try
-            'Try
-            '    lbl_lcn_iden2.Text = dr("identify")
-            'Catch ex As Exception
+        '    End Try
+        '    'Try
+        '    '    lbl_lcn_iden2.Text = dr("identify")
+        '    'Catch ex As Exception
 
-            'End Try
-            Try
-                txt_sub_mu.Text = dr("mu")
-            Catch ex As Exception
+        '    'End Try
+        '    Try
+        '        txt_sub_mu.Text = dr("thamu")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_name.Text = dr("tha_fullname")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        txt_sub_name.Text = dr("tha_fullname")
+        '    Catch ex As Exception
 
-            End Try
-            'Try
-            '    txt_sub_nation.Text = dr("nation")
-            'Catch ex As Exception
+        '    End Try
+        '    'Try
+        '    '    txt_sub_nation.Text = dr("nation")
+        '    'Catch ex As Exception
 
-            'End Try
-            Try
-                txt_sub_road.Text = dr("tharoad")
-            Catch ex As Exception
+        '    'End Try
+        '    Try
+        '        txt_sub_road.Text = dr("tharoad")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_soi.Text = dr("thasoi")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        txt_sub_soi.Text = dr("thasoi")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_tambol.Text = dr("thmblnm")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        'txt_sub_tambol.Text = dr("thmblnm")
+        '        txt_sub_tambol.Text = dr("thathmblnm")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_tel.Text = dr("tel")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        txt_sub_tel.Text = dr("tel")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                txt_sub_zipcode.Text = dr("zipcode")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        txt_sub_zipcode.Text = dr("zipcode")
+        '    Catch ex As Exception
 
-            End Try
-        Next
+        '    End Try
+        'Next
 
-        Dim dao_main As New DAO_DRUG.ClsDBdalcn
-        dao_main.GetDataby_IDA(_lcn_ida)
-        txt_sub_opentime.Text = dao_main.fields.opentime
-        txt_sub_location.Text = dao_main.fields.LOCATION_ADDRESS_thanameplace
-        txt_sub_lcnno.Text = dao_main.fields.LCNNO_DISPLAY_NEW
+
+        Dim dao_main As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+        dao_main.GetDataby_LCN_IDA(_lcn_ida)
+        Dim dao_main2 As New DAO_DRUG.ClsDBdalcn
+        dao_main2.GetDataby_IDA(_lcn_ida)
+        Dim dao_loca As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        Try
+            dao_loca.GetDataby_IDA(dao_main2.fields.FK_IDA)
+        Catch ex As Exception
+
+        End Try
+        'dao_main2.GetDataby_IDA(_lcn_ida)
+        txt_sub_opentime.Text = dao_main2.fields.opentime
+        If dao_main.fields.IDA <> 0 Then
+            txt_sub_addr.Text = dao_main.fields.thaaddr
+            txt_sub_amphor.Text = dao_main.fields.thaamphrnm
+            txt_sub_building.Text = dao_main.fields.thabuilding
+            txt_sub_changwat.Text = dao_main.fields.thachngwtnm
+            txt_sub_iden.Text = dao_main.fields.Identify
+            txt_sub_mu.Text = dao_main.fields.thamu
+            txt_sub_name.Text = dao_main.fields.licen
+            txt_sub_road.Text = dao_main.fields.tharoad
+            txt_sub_soi.Text = dao_main.fields.thasoi
+            txt_sub_tambol.Text = dao_main.fields.thathmblnm
+            txt_sub_tel.Text = dao_main.fields.tel
+            txt_sub_zipcode.Text = dao_main.fields.zipcode
+            txt_sub_lcnno.Text = dao_main.fields.lcnno_display_new
+            txt_sub_location.Text = dao_main.fields.thanm
+        Else
+            txt_sub_addr.Text = dao_loca.fields.thaaddr
+            txt_sub_amphor.Text = dao_loca.fields.thaamphrnm
+            txt_sub_building.Text = dao_loca.fields.thabuilding
+            txt_sub_changwat.Text = dao_loca.fields.thachngwtnm
+            txt_sub_iden.Text = dao_loca.fields.IDENTIFY
+            txt_sub_mu.Text = dao_loca.fields.thamu
+            txt_sub_name.Text = GET_NAME_BY_IDENTIFY(_iden)
+            txt_sub_road.Text = dao_loca.fields.tharoad
+            txt_sub_soi.Text = dao_loca.fields.thasoi
+            txt_sub_tambol.Text = dao_loca.fields.thathmblnm
+            txt_sub_tel.Text = dao_loca.fields.tel
+            txt_sub_zipcode.Text = dao_loca.fields.zipcode
+            txt_sub_lcnno.Text = dao_main2.fields.LCNNO_DISPLAY_NEW
+            txt_sub_location.Text = dao_loca.fields.thanameplace
+        End If
 
         Dim dao_phr As New DAO_DRUG.ClsDBDALCN_PHR
         dao_phr.GetDataby_FK_IDA(_lcn_ida)
-        If dao_phr.fields.PHR_NAME = Nothing Then
-            txt_sub_phr_name.Text = "-"
+
+        Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+        dao_bsn.GetDataby_LCN_IDA(_lcn_ida)
+        If dao_main.fields.grannm_lo = Nothing Then
+            txt_sub_bsn_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
         Else
-            txt_sub_phr_name.Text = dao_phr.fields.PHR_NAME
+            'txt_sub_bsn_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
+            txt_sub_bsn_name.Text = dao_main.fields.grannm_lo
         End If
 
     End Sub
@@ -275,13 +328,16 @@
         If ddl_sub_purpose.SelectedValue = "1" Then
             Panel1.Style.Add("display", "block")
             Panel2.Style.Add("display", "none")
+            Panel2_1.Style.Add("display", "none")
             Panel3.Style.Add("display", "block")
         ElseIf ddl_sub_purpose.SelectedValue = "2" Then
             Panel1.Style.Add("display", "none")
             Panel2.Style.Add("display", "block")
+            Panel2_1.Style.Add("display", "block")
             Panel3.Style.Add("display", "block")
         Else
             Panel1.Style.Add("display", "none")
+            Panel2_1.Style.Add("display", "none")
             Panel2.Style.Add("display", "none")
         End If
     End Sub

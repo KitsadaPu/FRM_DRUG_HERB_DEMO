@@ -101,32 +101,32 @@ Public Class UC_Packing_Size_V2
                     main_ida = CInt(_main_ida)
                 Catch ex As Exception
                 End Try
-                Try
-                    _process = Request("process").ToString()
-                Catch ex As Exception
-                End Try
-                Try
-                    _sunit_ida = Request("sunit_ida").ToString()
-                Catch ex As Exception
-                End Try
-                Try
-                    _lcn_ida = Request("lcn_ida").ToString()
-                Catch ex As Exception
+                'Try
+                '    _process = Request("process").ToString()
+                'Catch ex As Exception
+                'End Try
+                'Try
+                '    _sunit_ida = Request("sunit_ida").ToString()
+                'Catch ex As Exception
+                'End Try
+                'Try
+                '    _lcn_ida = Request("lcn_ida").ToString()
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    _write_at = Request("write_at").ToString()
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    _write_at = Request("write_at").ToString()
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    _phesaj = Request("phesaj").ToString()
-                Catch ex As Exception
-                End Try
-                Try
-                    _forother = Request("forother").ToString()
-                Catch ex As Exception
-                End Try
+                'End Try
+                'Try
+                '    _phesaj = Request("phesaj").ToString()
+                'Catch ex As Exception
+                'End Try
+                'Try
+                '    _forother = Request("forother").ToString()
+                'Catch ex As Exception
+                'End Try
 
             End If
 

@@ -19,8 +19,8 @@ Public Class WebForm21
     End Property
 
     Private Sub RunQuery()
-        '_TOKEN = Request("Token").ToString()
-        _TOKEN = "A01pzn/8CcDvAUOE2lmn6gUU" 'test
+        _TOKEN = Request("Token").ToString()
+        '_TOKEN = "eFq87PxNszT6ABEfgT1z2wUU" 'test
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -118,10 +118,14 @@ Public Class WebForm21
         Dim description As String = ""
         Dim code As String = clsxml.Get_Value_XML("CODE")
         If code = "900" Then
+            If CLS.SYSTEM_ID = 11223 Then
+                Response.Redirect("../LCN_PHR/FRM_PHR_HERB.aspx")
+            Else
+                Response.Redirect("../MAIN/FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx")
+            End If
             'Response.Redirect("../LCN/FRM_LCN_DRUG.aspx")
             'Response.Redirect("../LOCATION/FRM_LCN_LCT.aspx")
             'Response.Redirect("../MAIN/MAIN_PRODUCTS.aspx")
-            Response.Redirect("../MAIN/FRM_REPLACEMENT_LICENSE_PANEL_CHOOSE.aspx")
         ElseIf code = "100" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "Codeblock", "alert('TOKEN Expire');window.location.href = 'http://privus.fda.moph.go.th';", True)
         ElseIf code = "101" Then

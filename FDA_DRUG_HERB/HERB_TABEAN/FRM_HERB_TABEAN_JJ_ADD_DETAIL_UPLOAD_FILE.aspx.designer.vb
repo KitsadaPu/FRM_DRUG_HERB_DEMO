@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''HyperLink1 control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
-    
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''tb_type_menu control.
     '''</summary>
@@ -39,7 +48,16 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
-    
+
+    '''<summary>
+    '''btn_add_no control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_add_no As Global.System.Web.UI.WebControls.Button
+
     '''<summary>
     '''btn_add_upload control.
     '''</summary>

@@ -317,30 +317,35 @@
     End Sub
 
     Protected Sub bnt_submit_Click(sender As Object, e As EventArgs) Handles bnt_submit.Click
-        If _IDA <> "" Then
-            edit()
+        Dim Bit As Integer
+        Bit = Forbidden_Word()
+        If Bit <> 1 Then
+            If _IDA <> "" Then
+                edit()
+            Else
+                Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+                Dim Process_TB As String = "10100"
+                Dim TR_ID As String = ""
+                Dim bao_tran As New BAO_TRANSECTION
 
-        Else
-            Dim dao_location_addr As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
-            Dim Process_TB As String = "10100"
-            Dim TR_ID As String = ""
-            Dim bao_tran As New BAO_TRANSECTION
+                TR_ID = bao_tran.insert_transection(Process_TB)
+                If UC_ATTACH_LCN.CHK_Extension = 0 Then
+                    If UC_ATTACH_LCN.CHK_upload_file = 1 Then
+                        save(TR_ID)
+                        dao_location_addr.GetDataby_TR_ID(TR_ID)
+                        Dim Year As String
+                        Year = con_year(Date.Now.Year)
+                        UC_ATTACH_LCN.ATTACH_LCT(dao_location_addr.fields.IDA, dao_location_addr.fields.TR_ID, Process_TB, Year, "1")
 
-            TR_ID = bao_tran.insert_transection(Process_TB)
-            If UC_ATTACH_LCN.CHK_Extension = 0 Then
-                If UC_ATTACH_LCN.CHK_upload_file = 1 Then
-                    save(TR_ID)
-                    dao_location_addr.GetDataby_TR_ID(TR_ID)
-                    Dim Year As String
-                    Year = con_year(Date.Now.Year)
-                    UC_ATTACH_LCN.ATTACH_LCT(dao_location_addr.fields.IDA, dao_location_addr.fields.TR_ID, Process_TB, Year, "1")
-
+                    Else
+                        Response.Write("<script type='text/javascript'>alert('กรุแนบไฟล์ PDF');</script> ")
+                    End If
                 Else
                     Response.Write("<script type='text/javascript'>alert('กรุแนบไฟล์ PDF');</script> ")
                 End If
-            Else
-                Response.Write("<script type='text/javascript'>alert('กรุแนบไฟล์ PDF');</script> ")
-        End If
+            End If
+        Else
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกตรวจสอบชื่อสถานที่ ');", True)
         End If
     End Sub
 
@@ -421,50 +426,108 @@
         Dim up_edit As String = ""
 
         Dim dao_a As New DAO_DRUG.TB_FILE_ATTACH_LOCATION
-        dao_location_addr.GetDataby_IDA(_IDA)
-        Dim get_tr As Integer = 0
-        Try
-            get_tr = dao_location_addr.fields.TR_ID
-        Catch ex As Exception
-            get_tr = 0
-        End Try
+            dao_location_addr.GetDataby_IDA(_IDA)
+            Dim get_tr As Integer = 0
+            Try
+                get_tr = dao_location_addr.fields.TR_ID
+            Catch ex As Exception
+                get_tr = 0
+            End Try
 
-        If get_tr <> 0 Then
-            Year = con_year(Date.Now.Year)
-            UC_ATTACH_LCN.ATTACH_LCT_UPDATE(_IDA, get_tr, Process_TB, Year, "1")
+            If get_tr <> 0 Then
+                Year = con_year(Date.Now.Year)
+                UC_ATTACH_LCN.ATTACH_LCT_UPDATE(_IDA, get_tr, Process_TB, Year, "1")
 
-            dao_a.GetDataby_TR_ID(TR_ID)
-            If dao_a.fields.IDA <> 0 Then
-                img_cf.Visible = True
-                img_not.Visible = False
-                lbl_upload_file.Text = dao_a.fields.NAME_REAL
+                dao_a.GetDataby_TR_ID(TR_ID)
+                If dao_a.fields.IDA <> 0 Then
+                    img_cf.Visible = True
+                    img_not.Visible = False
+                    lbl_upload_file.Text = dao_a.fields.NAME_REAL
+                End If
+            Else
+                TR_ID = bao_tran.insert_transection(Process_TB)
+                dao_location_addr.fields.TR_ID = TR_ID
+                dao_location_addr.update()
+
+                dao_location_addr.GetDataby_TR_ID(TR_ID)
+                Year = con_year(Date.Now.Year)
+                UC_ATTACH_LCN.ATTACH_LCT(_IDA, TR_ID, Process_TB, Year, "1")
+
+                dao_a.GetDataby_TR_ID(TR_ID)
+                If dao_a.fields.IDA <> 0 Then
+                    img_cf.Visible = True
+                    img_not.Visible = False
+                    lbl_upload_file.Text = dao_a.fields.NAME_REAL
+                End If
             End If
-        Else
-            TR_ID = bao_tran.insert_transection(Process_TB)
-            dao_location_addr.fields.TR_ID = TR_ID
-            dao_location_addr.update()
-
-            dao_location_addr.GetDataby_TR_ID(TR_ID)
-            Year = con_year(Date.Now.Year)
-            UC_ATTACH_LCN.ATTACH_LCT(_IDA, TR_ID, Process_TB, Year, "1")
-
-            dao_a.GetDataby_TR_ID(TR_ID)
-            If dao_a.fields.IDA <> 0 Then
-                img_cf.Visible = True
-                img_not.Visible = False
-                lbl_upload_file.Text = dao_a.fields.NAME_REAL
-            End If
-        End If
-
-
-
-        'TR_ID = bao_tran.insert_transection(Process_TB)
-        'dao_location_addr.fields.TR_ID = get_tr
-        'dao_location_addr.update()
-
-        'dao_location_addr.GetDataby_TR_ID(TR_ID)
-
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แนบไฟล์เรียบร้อยแล้ว');", True)
+            'TR_ID = bao_tran.insert_transection(Process_TB)
+            'dao_location_addr.fields.TR_ID = get_tr
+            'dao_location_addr.update()
+            'dao_location_addr.GetDataby_TR_ID(TR_ID)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('แนบไฟล์เรียบร้อยแล้ว');", True)
         '    Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri & "&IDA=" & dao_location_addr.fields.IDA)
+
+    End Sub
+    Public Function Forbidden_Word()
+        Dim Bit As Integer
+        Dim Word As String = ""
+        Word = txt_thanameplace_lo.Text
+        Dim dt As DataTable
+        Dim dt_eng As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        dt = bao.SP_MAS_FORBIDDEN_WORD_THAI(Word)
+        For Each dr As DataRow In dt.Rows
+            If txt_thanameplace_lo.Text.ToString.Contains(dr("WORD_THAI")) Then
+                lbl_word_thai.Visible = True
+                lbl_word_thai.Text = dr("WORD_THAI_CONDITION")
+                Bit = 1
+            End If
+        Next
+        dt_eng = bao.SP_MAS_FORBIDDEN_WORD_ENG(Word)
+        For Each dr As DataRow In dt_eng.Rows
+            If txt_engnameplace_lo.Text.ToString.Contains(dr("WORD_ENG")) Then
+                lbl_word_eng.Visible = True
+                lbl_word_eng.Text = dr("WORD_ENG_CONDITION")
+                Bit = 1
+            End If
+        Next
+        Return Bit
+    End Function
+    Protected Sub txt_thanameplace_lo_TextChanged(sender As Object, e As EventArgs) Handles txt_thanameplace_lo.TextChanged
+        Dim Bit As Integer = 0
+        Dim Word As String = ""
+        Word = txt_thanameplace_lo.Text
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        dt = bao.SP_MAS_FORBIDDEN_WORD_THAI(Word)
+        For Each dr As DataRow In dt.Rows
+            If txt_thanameplace_lo.Text.ToString.Contains(dr("WORD_THAI")) Then
+                lbl_word_thai.Visible = True
+                lbl_word_thai.Text = dr("WORD_THAI_CONDITION")
+                Bit = 1
+            End If
+        Next
+        If Bit <> 1 Then
+            lbl_word_thai.Visible = False
+        End If
+    End Sub
+
+    Protected Sub txt_engnameplace_lo_TextChanged(sender As Object, e As EventArgs) Handles txt_engnameplace_lo.TextChanged
+        Dim Bit As Integer = 0
+        Dim Word As String = ""
+        Word = txt_engnameplace_lo.Text
+        Dim dt_eng As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        dt_eng = bao.SP_MAS_FORBIDDEN_WORD_ENG(Word)
+        For Each dr As DataRow In dt_eng.Rows
+            If txt_engnameplace_lo.Text.ToString.Contains(dr("WORD_ENG")) Then
+                lbl_word_eng.Visible = True
+                lbl_word_eng.Text = dr("WORD_ENG_CONDITION")
+                Bit = 1
+            End If
+        Next
+        If Bit <> 1 Then
+            lbl_word_eng.Visible = False
+        End If
     End Sub
 End Class

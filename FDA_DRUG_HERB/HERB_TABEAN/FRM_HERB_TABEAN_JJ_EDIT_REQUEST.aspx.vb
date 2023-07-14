@@ -655,7 +655,12 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_REQUEST
                 dao.fields.CREATE_BY = _CLS.AUTHORIZE_NAME
                 dao.fields.CREATE_DATE = Date.Now
 
-                dao.fields.MENU_GROUP = _MENU_GROUP
+                Try
+                    dao.fields.MENU_GROUP = _MENU_GROUP
+                Catch ex As Exception
+
+                End Try
+
                 Try
                     dao.fields.IDA_LCT = _IDA_LCT
                 Catch ex As Exception
@@ -685,7 +690,14 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_REQUEST
             End If
 
             gen_xml_jj1()
-            alert("บันทึกข้อมูลคำข้อแล้ว")
+            Dim url As String = ""
+            If Request.QueryString("OPF") = "1" Then
+                'alert_no_file("ยื่นคำขอแล้ว กรุณาชำระค่าคำขอ")
+                url = "http://202.139.212.70/ONE-PLATFORM/?Token=" & _CLS.TOKEN
+                Response.Redirect(url)
+            Else
+                alert("บันทึกข้อมูลคำขอแล้ว")
+            End If
         Else
             alert_nature("กรุณากรอกข้อมูล ลักษณะยา และ อายุ หน่วยอายุ")
         End If
@@ -694,7 +706,15 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_REQUEST
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        Response.Redirect("FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ)
+        Dim url As String = ""
+        If Request.QueryString("OPF") = "1" Then
+            alert("")
+            url = "http://202.139.212.70/ONE-PLATFORM/?Token=" & _CLS.TOKEN
+            Response.Redirect(url)
+        Else
+            ' Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
+            Response.Redirect("FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ)
+        End If
     End Sub
     Protected Sub R_EATING_CONDITION_SelectedIndexChanged(sender As Object, e As EventArgs) Handles R_EATING_CONDITION.SelectedIndexChanged
         If R_EATING_CONDITION.SelectedValue = 1 Then
@@ -746,8 +766,14 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_REQUEST
 
     Sub alert_summit(ByVal text As String, ByVal ida_jj As Integer)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
-        Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+        If Request.QueryString("OPF") = "1" Then
+            alert("")
+            url = "http://202.139.212.70/ONE-PLATFORM/?Token=" & _CLS.TOKEN
+            Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+        Else
+            url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+            Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+        End If
     End Sub
 
     Sub alert_nature(ByVal text As String)

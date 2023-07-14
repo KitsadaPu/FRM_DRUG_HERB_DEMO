@@ -1,35 +1,37 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" CodeBehind="FRM_HERB_TABEAN_NEW.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_NEW" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_PPK.Master" CodeBehind="FRM_HERB_TABEAN_NEW.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_NEW" %>
+
+
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Src="~/UC/UC_NEWS.ascx" TagPrefix="uc1" TagName="UC_NEWS" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 20px;
-        }
-    </style>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+ <%--   <div class="row">
         <div class="col-lg-12" style="text-align:center">ผู้ประกอบการ</div>
-    </div>
+    </div>--%>
 
     <div class="row">
-        <div class="col-lg-12" style="text-align:center">
-             <asp:Button ID="btn_tabean" runat="server" Text="ระบบขอขึ้นทะเบียน" />
-            <asp:Button ID="btn_detail" runat="server" Text="ระบบขอแจ้งรายละเอียด" />
+        <div class="col-lg-12" style="text-align:center" runat="server" id="div_news">
+            <uc1:UC_NEWS runat="server" ID="UC_NEWS" />
+            <%-- <asp:Button ID="btn_tabean" runat="server" Text="ระบบขอขึ้นทะเบียน" />
+            <asp:Button ID="btn_detail" runat="server" Text="ระบบขอแจ้งรายละเอียด" Enabled="true"/>
             <asp:Button ID="btn_jj" runat="server" Text="ระบบขอจดแจ้ง" />
+            <asp:Button ID="btn_EX" runat="server" Text="ระบบขอยาตัวอย่าง"/>--%>
             <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>
 
     <div class="row" id="T1" runat="server" Visible="false">
 
-            <p class="h3">ใบอนุญาต</p>
-            <hr />
-        <telerik:RadGrid ID="RadGrid1" runat="server">
+        <div >
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10" style="text-align:center">
+               <p class="h3" style="text-align:center;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
+
+                <telerik:RadGrid ID="RadGrid1" runat="server">
             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                 <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -80,6 +82,13 @@
 
             <FilterMenu EnableImageSprites="False"></FilterMenu>
         </telerik:RadGrid>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+
+           <%-- <p class="h3">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>--%>
+            <hr />
+        
 
     </div>
 

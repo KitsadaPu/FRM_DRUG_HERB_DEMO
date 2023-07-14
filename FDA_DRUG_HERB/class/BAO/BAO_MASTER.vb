@@ -196,7 +196,25 @@
         End If
         Return dt
     End Function
+    Public Function SP_DALCN_PHR_TRAINING(ByVal IDA As String) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_DALCN_PHR_TRAINING @FK_IDA = " & IDA
+        Dim dt As New DataTable
+        dt = clsds.dsQueryselect(sql, conn).Tables(0)
+        dt.TableName = "SP_DALCN_PHR_TRAINING"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+            End If
+        Catch ex As Exception
 
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+        End If
+        Return dt
+    End Function
 
     Public Function SP_MASTER_dalcntype_by_IDA(ByVal IDA As String) As DataTable
         Dim clsds As New ClassDataset
@@ -972,6 +990,31 @@
         Dim sql As String = "exec SP_DALCN_PHR_BY_FK_IDA_2 @IDA =  " & IDA
         Dim dt As New DataTable
         dt.TableName = "SP_DALCN_PHR_BY_FK_IDA_2"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+                'dt.Clear()
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+            'dt.Clear()
+        End If
+        Return dt
+    End Function
+    ''' <summary>
+    ''' ข้อมูลใบอนุญาตหลักเอาไปใส่ย่อย
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function SP_LCN_EDIT_PHR_BY_FK_IDA(ByVal IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_LCN_EDIT_PHR_BY_FK_IDA @IDA =  " & IDA
+        Dim dt As New DataTable
+        dt.TableName = "SP_LCN_EDIT_PHR_BY_FK_IDA"
         Try
             dt = clsds.dsQueryselect(sql, conn).Tables(0)
             If dt.Rows.Count() = 0 Then

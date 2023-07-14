@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_EX_STAFF
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -21,4 +21,22 @@ Partial Public Class FRM_HERB_TABEAN_EX_STAFF
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''lbl_head1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_head1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btn_reload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_reload As Global.System.Web.UI.WebControls.Button
 End Class

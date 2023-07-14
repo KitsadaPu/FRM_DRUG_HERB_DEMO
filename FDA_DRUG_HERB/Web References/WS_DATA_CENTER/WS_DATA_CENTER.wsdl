@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="FDA_HOUSE_NO">
@@ -352,10 +352,10 @@
   </wsdl:binding>
   <wsdl:service name="WS_DATA_CENTER">
     <wsdl:port name="WS_DATA_CENTERSoap" binding="tns:WS_DATA_CENTERSoap">
-      <soap:address location="http://10.111.28.118/WS_CENTER_CPN/WS_DATA_CENTER.asmx" />
+      <soap:address location="http://10.111.28.104/WS_CENTER_CPN/WS_DATA_CENTER.asmx" />
     </wsdl:port>
     <wsdl:port name="WS_DATA_CENTERSoap12" binding="tns:WS_DATA_CENTERSoap12">
-      <soap12:address location="http://10.111.28.118/WS_CENTER_CPN/WS_DATA_CENTER.asmx" />
+      <soap12:address location="http://10.111.28.104/WS_CENTER_CPN/WS_DATA_CENTER.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

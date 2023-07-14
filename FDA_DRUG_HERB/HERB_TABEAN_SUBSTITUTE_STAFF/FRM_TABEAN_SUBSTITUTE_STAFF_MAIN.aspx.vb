@@ -35,42 +35,54 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_MAIN
             Dim item As GridDataItem = e.Item
 
             Dim IDA As Integer = 0
+            Dim PROCESS_ID As Integer = 0
+            Dim IDA_DR As Integer = 0
+            Dim IDA_LCN As Integer = 0
+            Dim STATUS_ID As Integer = 0
+            Dim TR_ID As Integer = 0
             Try
                 IDA = item("IDA").Text
+                PROCESS_ID = item("PROCESS_ID").Text
+                IDA_DR = item("IDA_DR").Text
+                IDA_LCN = item("FK_LCN").Text
+                STATUS_ID = item("STATUS_ID").Text
+                TR_ID = item("TR_ID").Text
             Catch ex As Exception
 
             End Try
-            Dim dao As New DAO_DRUG.TB_DRRGT_SUBSTITUTE
-            dao.GetDatabyIDA(IDA)
-            Dim tr_id As String = 0
-            Try
-                tr_id = dao.fields.TR_ID
-            Catch ex As Exception
+            'Dim dao As New DAO_DRUG.TB_DRRGT_SUBSTITUTE
+            'dao.GetDatabyIDA(IDA)
+            'Dim tr_id As String = 0
+            'Try
+            '    tr_id = dao.fields.TR_ID
+            'Catch ex As Exception
 
-            End Try
-            Dim tebean_ida As Integer = 0
-            Try
-                tebean_ida = dao.fields.FK_IDA
-            Catch ex As Exception
+            'End Try
+            'Dim tebean_ida As Integer = 0
+            'Try
+            '    tebean_ida = dao.fields.FK_IDA
+            'Catch ex As Exception
 
-            End Try
-            Dim _process_id As Integer = 0
+            'End Try
+            'Dim _process_id As Integer = 0
 
-            Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
-            Try
-                dao_tr.GetDataby_IDA(tr_id)
-                _process_id = dao_tr.fields.PROCESS_ID
-            Catch ex As Exception
+            'Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
+            'Try
+            '    dao_tr.GetDataby_IDA(tr_id)
+            '    _process_id = dao_tr.fields.PROCESS_ID
+            'Catch ex As Exception
 
-            End Try
+            'End Try
             If e.CommandName = "sel" Then
+                If STATUS_ID = 11 Then
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_TABEAN_SUBSTITUTE_STAFF_EDIT.aspx?IDA=" & IDA & "&process_id=" & PROCESS_ID & "&IDA_DR=" & IDA_DR & "&IDA_LCN=" & IDA_LCN & "&TR_ID=" & TR_ID & "');", True)
+                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_TABEAN_SUBSTITUTE_STAFF_CONFIRM.aspx?IDA=" & IDA & "&process_id=" & PROCESS_ID & "&IDA_DR=" & IDA_DR & "&IDA_LCN=" & IDA_LCN & "');", True)
+                End If
                 'lbl_titlename.Text = "พิจารณาคำขอขึ้นทะเบียนตำรับ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&newcode=" & item("newcode").Text & "&Process=" & _process_id & "&rgt_ida=" & tebean_ida & "');", True)
-            ElseIf e.CommandName = "print" Then
-                Dim dao_rg As New DAO_DRUG.ClsDBdrrgt
-                dao_rg.GetDataby_IDA(dao.fields.FK_IDA)
-                _process_id = "1400001"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_TABEAN_SUBSTITUTE_STAFF_PREVIEW.aspx?IDA=" & IDA & "&TR_ID=" & dao_rg.fields.TR_ID & "&newcode=" & item("newcode").Text & "&Process=" & _process_id & "&rgt_ida=" & tebean_ida & "');", True)
+                'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_TABEAN_SUBSTITUTE_STAFF_CONFIRM.aspx?IDA=" & IDA & "&process_id=" & PROCESS_ID & "&IDA_DR=" & IDA_DR & "&IDA_LCN=" & IDA_LCN & "');", True)
+                'ElseIf e.CommandName = "print" Then
+                '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_TABEAN_SUBSTITUTE_STAFF_PREVIEW.aspx?IDA=" & IDA & "');", True)
             End If
 
         End If
@@ -80,7 +92,7 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_MAIN
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt As New DataTable
         Try
-            dt = bao.SP_DRRGT_SUBSTITUTE_STAFF()
+            dt = bao.SP_TABEAN_HERB_SUBNEW_STAFF()
         Catch ex As Exception
 
         End Try

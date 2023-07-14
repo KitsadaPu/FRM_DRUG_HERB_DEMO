@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''lr_preview control.
     '''</summary>
@@ -30,7 +30,43 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
-
+    
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbl_create_by control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_create_by As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbl_create_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_create_date As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''btn_pass_ssid control.
     '''</summary>
@@ -39,7 +75,25 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_pass_ssid As Global.System.Web.UI.WebControls.Button
-
+    
+    '''<summary>
+    '''DDL_JJ2_SELECT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_JJ2_SELECT As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''btn_download_jj2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_download_jj2 As Global.System.Web.UI.WebControls.Button
+    
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -48,7 +102,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''RadGrid2 control.
     '''</summary>
@@ -57,7 +111,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''RadGrid3 control.
     '''</summary>

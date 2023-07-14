@@ -32,6 +32,24 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents rdl_lcn_type As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
+    '''Txt_Write_At control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Txt_Write_At As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_Write_Date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_Write_Date As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lbl_name control.
     '''</summary>
     '''<remarks>
@@ -59,22 +77,22 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents lbl_name_lcn As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lbl_phr_name control.
+    '''lbl_bsn_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_phr_name As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_bsn_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_phr_name control.
+    '''txt_bsn_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_phr_name As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_bsn_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_niti control.
@@ -311,13 +329,13 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents lbl_time_work As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''RadTimePicker1 control.
+    '''txt_time_work control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadTimePicker1 As Global.Telerik.Web.UI.RadTimePicker
+    Protected WithEvents txt_time_work As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lbl_trnf_iden control.
@@ -419,13 +437,40 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents lbl_transfer_to As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txt_ctzid_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_ctzid_lcn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search_lcn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''hf_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hf_lcn As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''txt_transfer_to control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_transfer_to As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_transfer_to As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbl_trnf_name control.
@@ -437,6 +482,15 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents lbl_trnf_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbl_transfer_infor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_transfer_infor As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbl_operator_name control.
     '''</summary>
     '''<remarks>
@@ -446,13 +500,40 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents lbl_operator_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_operator_name control.
+    '''txt_ctzid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_operator_name As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_ctzid As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''hf_bsn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hf_bsn As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''operator_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents operator_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbl_start_trnf control.
@@ -500,47 +581,47 @@ Partial Public Class POPUP_LCN_TRANSFER
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Label4 control.
+    '''CHK_Agree control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents CHK_Agree As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''Label5 control.
+    '''Label1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Label6 control.
+    '''lbl_check control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_check As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Confirm control.
+    '''btn_cancel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Confirm As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Cancel control.
+    '''btn_Confirm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Cancel As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_Confirm As Global.System.Web.UI.WebControls.Button
 End Class

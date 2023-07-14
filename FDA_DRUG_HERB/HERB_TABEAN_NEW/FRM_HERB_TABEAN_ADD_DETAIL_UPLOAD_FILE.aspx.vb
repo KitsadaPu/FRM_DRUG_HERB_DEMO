@@ -12,6 +12,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
     Private _PROCESS_ID_LCN As String = ""
     Private _IDA_DQ As String = ""
     Private _PROCESS_ID_DQ As String = ""
+    Private _SID As String = ""
 
     Sub RunSession()
         Try
@@ -30,6 +31,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
         _IDA_DQ = Request.QueryString("IDA_DQ")
         _PROCESS_ID_DQ = Request.QueryString("PROCESS_ID_DQ")
+        _SID = Request.QueryString("SID")
 
     End Sub
 
@@ -52,7 +54,8 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
         If dao_deeqt.fields.TR_ID <> 0 Then
             TR_ID = dao_deeqt.fields.TR_ID
             'dao_up.GetdatabyID_TR_ID(TR_ID)
-            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(TR_ID, _PROCESS_ID_DQ, 7)
+            'dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(TR_ID, _PROCESS_ID_DQ, 7)
+            dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID_AND_TYPE(_IDA_DQ, TR_ID, _PROCESS_ID_DQ, 7)
 
             Dim rows As Integer = 1
             For Each dao_up.fields In dao_up.datas
@@ -135,88 +138,17 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
         Dim TR_ID As Integer = dao_deeqt.fields.TR_ID
         Dim DD_HERB_PROCESS As String = dao_deeqt.fields.PROCESS_ID
 
-        'For Each tr As TableRow In tb_type_menu.Rows
-        '    Dim IDA As Integer = tr.Cells(1).Text
+        If Request.QueryString("staff") = "1" And check_file() = False Then
+            'alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+            alert_normal("แนบไฟล์เรียบร้อยแล้ว กรุณากดดูข้อมูลเพื่อตรวจสอบความถูกต้องก่อนยื่นคำขอ")
+        ElseIf check_file() = True Then
 
-        '    Dim f As New FileUpload
-        '    f = tr.FindControl("F" & IDA)
-        '    If f.HasFile Then
-        '        Dim name_real As String = f.FileName
-        '        Dim Array_NAME_REAL() As String = Split(name_real, ".")
-        '        Dim Last_Length As Integer = Array_NAME_REAL.Length - 1
-        '        Dim exten As String = Array_NAME_REAL(Last_Length).ToString()
-        '        If exten.ToUpper = "PDF" Then
-        '            Dim bao As New BAO.AppSettings
-        '            Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-        '            Dim Name_fake As String = "HB-" & DD_HERB_PROCESS & "-" & Date.Now.Year & "-" & TR_ID & "-" & IDA & ".pdf"
-
-        '            dao_up.GetdatabyID_IDA(IDA)
-
-        '            dao_up.fields.NAME_FAKE = Name_fake
-        '            dao_up.fields.NAME_REAL = f.FileName
-        '            dao_up.fields.CREATE_DATE = Date.Now
-        '            'dao_up.fields.FK_IDA = dao.fields.IDA
-        '            'dao_up.fields.FK_IDA_LCN = _IDA_LCN
-        '            dao_up.fields.CREATE_DATE = Date.Now
-        '            dao_up.fields.ACTIVE = 1
-
-        '            Try
-        '                dao_up.fields.TR_ID = _TR_ID_LCN
-        '            Catch ex As Exception
-
-        '            End Try
-
-        '            dao_up.fields.PROCESS_ID = DD_HERB_PROCESS
-
-        '            dao_up.Update()
-
-        '            Dim paths As String = bao._PATH_XML_PDF_TABEAN_TBN
-        '            f.SaveAs(paths & "UPLOAD_PDF_TABEAN_TBN\" & Name_fake)
-        '        Else
-        '            alert_file_error(name_real & "กรุณาแนบเป็นไฟล์ PDF")
-        '        End If
-        '    End If
-
-        'Next
-
-        If check_file() = False Then
-            alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
-        Else
-
-            ''ยื่นคำขอ รอชำระเงิน
-            'dao_deeqt.fields.STATUS_ID = 2
-            'dao_deeqt.update()
-            ''ชำระเงิน รอตรวจรับคำขอ
-            'dao.fields.STATUS_ID = 2
-            'dao.Update()
-
-            'If dao_deeqt.fields.STATUS_ID = 2 And dao.fields.STATUS_ID = 2 Then
-            '    Dim XML As New CLASS_GEN_XML.TABEAN_HERB_TBN
-            '    TBN_NEW = XML.gen_xml_tbn(dao.fields.IDA, _IDA_DQ, _IDA_LCN)
-
-            '    Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
-            '    dao_pdftemplate.GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(_PROCESS_ID_DQ, dao.fields.STATUS_ID, "ทบ1", 0)
-
-            '    Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN") 'path
-            '    Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_TBN_1\" & dao_pdftemplate.fields.PDF_TEMPLATE
-            '    Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_TBN("HB_PDF", _PROCESS_ID_DQ, dao_deeqt.fields.DATE_YEAR, dao_deeqt.fields.TR_ID, _IDA_DQ, dao_deeqt.fields.STATUS_ID)
-            '    Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_TBN("HB_XML", _PROCESS_ID_DQ, dao_deeqt.fields.DATE_YEAR, dao_deeqt.fields.TR_ID, _IDA_DQ, dao_deeqt.fields.STATUS_ID)
-
-            '    LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _PROCESS_ID_DQ, PATH_PDF_OUTPUT)
-
-            '    _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
-            '    _CLS.PDFNAME = PATH_PDF_OUTPUT
-            '    _CLS.FILENAME_XML = Path_XML
-
-            '    alert_normal("แนบไฟล์เรียบร้อยแล้ว กรุณาออกใบสั่งชำระค่าคำขอ")
-            'End If
-
-            Dim RCVNO As Integer
-            Dim bao_gen As New BAO.GenNumber
-            RCVNO = bao_gen.GEN_NO_TBN(con_year(Date.Now.Year), dao_deeqt.fields.pvncd, 1, _IDA_DQ, dao_deeqt.fields.FK_LCN_IDA)
-            Dim DATE_YEAR As String = con_year(Date.Now.Year).Substring(2, 2)
-            Dim RCVNO_FULL As String = "HB" & " " & dao_deeqt.fields.pvncd & "-" & _PROCESS_ID_DQ & "-" & DATE_YEAR & "-" & RCVNO
-            dao_deeqt.fields.RCVNO_NEW = RCVNO_FULL
+            'Dim RCVNO As Integer
+            'Dim bao_gen As New BAO.GenNumber
+            'RCVNO = bao_gen.GEN_NO_TBN(con_year(Date.Now.Year), dao_deeqt.fields.pvncd, 1, _IDA_DQ, dao_deeqt.fields.FK_LCN_IDA)
+            'Dim DATE_YEAR As String = con_year(Date.Now.Year).Substring(2, 2)
+            'Dim RCVNO_FULL As String = "HB" & " " & dao_deeqt.fields.pvncd & "-" & _PROCESS_ID_DQ & "-" & DATE_YEAR & "-" & RCVNO
+            'dao_deeqt.fields.RCVNO_NEW = RCVNO_FULL
 
             dao_deeqt.fields.DATE_CONFIRM = Date.Now
             dao_deeqt.fields.NAME_CONFIRM = _CLS.THANM
@@ -247,6 +179,10 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
 
             alert_normal("แนบไฟล์เรียบร้อยแล้ว กรุณาชำระค่าคำขอ")
             'Response.Redirect(Request.Url.AbsoluteUri)
+
+        Else
+            alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+            ' alert_normal("แนบไฟล์เรียบร้อยแล้ว กรุณาชำระค่าคำขอ")
         End If
 
     End Sub
@@ -274,7 +210,7 @@ Public Class FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE
 
     Sub alert_normal(ByVal text As String)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & _IDA_DQ & "&PROCESS_ID_DQ=" & _PROCESS_ID_DQ
+        url = "FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & _IDA_DQ & "&PROCESS_ID_DQ=" & _PROCESS_ID_DQ & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 

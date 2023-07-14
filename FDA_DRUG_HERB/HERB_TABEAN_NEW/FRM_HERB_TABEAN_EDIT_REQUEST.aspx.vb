@@ -748,7 +748,7 @@ Public Class FRM_TABEAN_HERB_EDIT_REQUEST
 
             Run_Pdf_Tabean_Herb_new()
 
-            alert("บันทึกข้อมูลคำข้อแล้ว")
+            alert("บันทึกข้อมูลคำขอแล้ว")
         End If
     End Sub
     Private Sub alert(ByVal text As String)

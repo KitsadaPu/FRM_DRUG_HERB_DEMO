@@ -8,6 +8,9 @@ Public Class FRM_HERB_TABEAN
     Private _IDA_LCN As String = ""
     Private _LCNNO_DISPLAY As String = ""
     Private _PROCESS_ID_LCN As String = ""
+    Private _TYPEPERSON As String = ""
+    Private _SID As String = ""
+    Private _WHO_IDA As String = ""
 
     Sub RunSession()
         Try
@@ -26,6 +29,10 @@ Public Class FRM_HERB_TABEAN
         _IDA_LCN = Request.QueryString("IDA_LCN")
         _LCNNO_DISPLAY = Request.QueryString("LCNNO_DISPLAY")
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
+        _TYPEPERSON = Request.QueryString("TYPEPERSON")
+        _SID = Request.QueryString("SID")
+        _WHO_IDA = Request.QueryString("WHO_IDA")
+
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -40,45 +47,58 @@ Public Class FRM_HERB_TABEAN
         If R_DD_HERB.SelectedValue = 1 Then
             DD_HERB.Visible = True
             dd_type.Visible = True
-            DD_HERB_OUT.Visible = False
+            bind_dd_HERB()
+            'DD_HERB_OUT.Visible = False
             btn_tb_herb.Visible = False
         ElseIf R_DD_HERB.SelectedValue = 2 Then
-            DD_HERB.Visible = False
-            dd_type.Visible = False
-            DD_HERB_OUT.Visible = False
+            DD_HERB.Visible = True
+            dd_type.Visible = True
+            bind_dd_HERB()
+            'DD_HERB_OUT.Visible = False
             btn_tb_herb.Visible = False
         End If
     End Sub
 
+    Public Sub bind_dd_HERB()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_DD_HERB(R_DD_HERB.SelectedValue)
+
+        DD_HERB.DataSource = dt
+        DD_HERB.DataBind()
+        DD_HERB.Items.Insert(0, "-- กรุณาเลือก --")
+
+    End Sub
     Protected Sub DD_HERB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB.SelectedIndexChanged
-        If DD_HERB.SelectedValue = 20101 Then
+        If DD_HERB.SelectedValue Is Nothing = False Then
+            'If DD_HERB.SelectedValue = 20101 Then
             btn_tb_herb.Visible = True
-        ElseIf DD_HERB.SelectedValue = 20102 Then
-            btn_tb_herb.Visible = False
-        ElseIf DD_HERB.SelectedValue = 20103 Then
-            btn_tb_herb.Visible = False
-        ElseIf DD_HERB.SelectedValue = 20104 Then
-            btn_tb_herb.Visible = False
+            'ElseIf DD_HERB.SelectedValue = 20102 Then
+            '    btn_tb_herb.Visible = True
+            'ElseIf DD_HERB.SelectedValue = 20103 Then
+            '    btn_tb_herb.Visible = True
+            'ElseIf DD_HERB.SelectedValue = 20104 Then
+            '    btn_tb_herb.Visible = True
         Else
             btn_tb_herb.Visible = False
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
         End If
     End Sub
 
-    Private Sub DD_HERB_OUT_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB_OUT.SelectedIndexChanged
-        If DD_HERB_OUT.SelectedValue = 20901 Then
-            btn_tb_herb.Visible = True
-        ElseIf DD_HERB_OUT.SelectedValue = 20902 Then
-            btn_tb_herb.Visible = False
-        ElseIf DD_HERB_OUT.SelectedValue = 20903 Then
-            btn_tb_herb.Visible = False
-        ElseIf DD_HERB_OUT.SelectedValue = 20904 Then
-            btn_tb_herb.Visible = False
-        Else
-            btn_tb_herb.Visible = False
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
-        End If
-    End Sub
+    'Private Sub DD_HERB_OUT_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB_OUT.SelectedIndexChanged
+    '    If DD_HERB_OUT.SelectedValue = 20901 Then
+    '        btn_tb_herb.Visible = True
+    '    ElseIf DD_HERB_OUT.SelectedValue = 20902 Then
+    '        btn_tb_herb.Visible = False
+    '    ElseIf DD_HERB_OUT.SelectedValue = 20903 Then
+    '        btn_tb_herb.Visible = False
+    '    ElseIf DD_HERB_OUT.SelectedValue = 20904 Then
+    '        btn_tb_herb.Visible = False
+    '    Else
+    '        btn_tb_herb.Visible = False
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
+    '    End If
+    'End Sub
 
     Protected Sub btn_tb_herb_Click(sender As Object, e As EventArgs) Handles btn_tb_herb.Click
         Dim dao As New DAO_DRUG.ClsDBdrrqt
@@ -88,13 +108,13 @@ Public Class FRM_HERB_TABEAN
         If R_DD_HERB.SelectedValue = 1 Then
             DD_H = DD_HERB.SelectedValue
         ElseIf R_DD_HERB.SelectedValue = 2 Then
-            DD_H = DD_HERB_OUT.SelectedValue
+            DD_H = DD_HERB.SelectedValue
         End If
         If Request.QueryString("staff") = 1 Then
             _MENU_GROUP = 1
-            Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_H & "&staff=" & Request.QueryString("staff"))
+            Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_H & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID & "&R_ID=" & R_DD_HERB.SelectedValue & "&PAGE_ID=1" & "&WHO_IDA=" & _WHO_IDA)
         Else
-            Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_H)
+            Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_H & "&SID=" & _SID & "&R_ID=" & R_DD_HERB.SelectedValue & "&PAGE_ID=1" & "&WHO_IDA=" & _WHO_IDA)
 
         End If
         'Response.Redirect("FRM_HERB_TABEAN_JJ_ADD_DETAIL.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_HEALTH_2 & "&DDHERB=" & DD_H & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN)
@@ -108,7 +128,27 @@ Public Class FRM_HERB_TABEAN
         Dim bao As New BAO_TABEAN_HERB.tb_main
         'Dim C_ID As String = _CLS.CITIZEN_ID_AUTHORIZE
         'dt = bao.SP_TABEAN_JJ(C_ID)       
-        dt = bao.SP_TABEAN_HERB_BY_FK_IDA_LCN(_IDA_LCN)
+        Dim DAO_WHO As New DAO_WHO.TB_WHO_DALCN
+        DAO_WHO.GetdatabyID_FK_LCN(_IDA_LCN)
+        Dim TP_PERSON As Integer = 0
+        Try
+            TP_PERSON = DAO_WHO.fields.TYPEPERSON
+        Catch ex As Exception
+            TP_PERSON = 0
+        End Try
+
+        If Request.QueryString("SID") = 2 Then
+            '     dt = bao.SP_TABEAN_HERB_BY_FK_IDA_LCN_AND_CID_WHO(_IDA_LCN, _CLS.CITIZEN_ID)
+            dt = bao.SP_TABEAN_HERB_WHO(_IDA_LCN, _CLS.CITIZEN_ID_AUTHORIZE)
+        Else
+            'If TP_PERSON = 999 Then
+            '    dt = bao.SP_TABEAN_HERB_BY_FK_IDA_LCN_WHO(_IDA_LCN, _CLS.CITIZEN_ID, TP_PERSON)
+            'Else
+            '    dt = bao.SP_TABEAN_HERB_BY_FK_IDA_LCN(_IDA_LCN)
+            'End If
+            dt = bao.SP_TABEAN_HERB_BY_FK_IDA_LCN(_IDA_LCN)
+        End If
+
 
         Return dt
     End Function
@@ -182,13 +222,14 @@ Public Class FRM_HERB_TABEAN
                     lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร ครั้งที่ 2"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EDIT_2.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
                 ElseIf STATUS_ID = 1 Then
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "&staff=" & Request.QueryString("staff") & "');", True)
                     'Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 ElseIf STATUS_ID = 2 Then
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "&staff=" & Request.QueryString("staff") & "');", True)
                     'Response.Redirect("FRM_HERB_TABEAN_ADD_DETAIL_UPLOAD_FILE.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 Else
-                    Response.Redirect("FRM_HERB_TABEAN_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ & "');", True)
+                    'Response.Redirect("FRM_HERB_TABEAN_DETAIL.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & IDA_DQ & "&PROCESS_ID_DQ=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID_DQ)
                 End If
             ElseIf e.CommandName = "HL1_SELECT" Then
                 lbl_head1.Text = "คำขอทะเบียนผลิตภัณฑ์สมุนไพร แบบ ทบ1"
@@ -218,11 +259,26 @@ Public Class FRM_HERB_TABEAN
             Dim HL2_SELECT As LinkButton = DirectCast(item("HL2_SELECT").Controls(0), LinkButton)
             Dim HL3_SELECT As LinkButton = DirectCast(item("HL3_SELECT").Controls(0), LinkButton)
             Dim HL4_SELECT As LinkButton = DirectCast(item("HL4_SELECT").Controls(0), LinkButton)
+            'Dim HL5_SELECT As LinkButton = DirectCast(item("HL5_SELECT").Controls(0), LinkButton)
 
             HL1_SELECT.Style.Add("display", "none")
             HL2_SELECT.Style.Add("display", "none")
             HL3_SELECT.Style.Add("display", "none")
             HL4_SELECT.Style.Add("display", "none")
+            'HL5_SELECT.Style.Add("display", "none")
+
+            Dim urls As String = "https://platba.fda.moph.go.th/FDA_FEE/MAIN/check_token.aspx?Token=" & _CLS.TOKEN
+            ' Dim urls As String = "https://platba.fda.moph.go.th/FDA_FEE/MAIN/check_token.aspx?Token=" & _CLS.TOKEN & "&system=HERB&acc_type=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE
+            If Request.QueryString("staff") <> "" Then
+                urls &= "&staff=1&identify=" & Request.QueryString("identify") & "&system=staffherb"
+            Else
+                urls &= "&staff=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE & "&system=herb"
+            End If
+
+            Dim H As HyperLink = e.Item.FindControl("HL5_SELECT")
+            H.Style.Add("display", "none")
+            H.Target = "_blank"
+            H.NavigateUrl = urls
 
             If STATUS_ID = 8 Then
                 HL2_SELECT.Style.Add("display", "block")
@@ -231,15 +287,17 @@ Public Class FRM_HERB_TABEAN
                 'ElseIf STATUS_ID = 6 Or STATUS_ID = 11 Or STATUS_ID = 12 Or STATUS_ID = 13 Then
             ElseIf STATUS_ID >= 1 Then
                 HL1_SELECT.Style.Add("display", "block")
-                If STATUS_ID = 13 Then
-                    HL4_SELECT.Style.Add("display", "block")
-                End If
-            ElseIf STATUS_ID = 3 Then
-                HL3_SELECT.Style.Add("display", "block")
-            End If
 
+            End If
+            If STATUS_ID = 3 Then
+                HL3_SELECT.Style.Add("display", "block")
+            ElseIf STATUS_ID = 6 Or STATUS_ID = 2 Then
+                H.Style.Add("display", "block")
+                'HL4_SELECT.Style.Add("display", "block")
+            ElseIf STATUS_ID = 13 Then
+                HL4_SELECT.Style.Add("display", "block")
+            End If
         End If
     End Sub
-
 
 End Class

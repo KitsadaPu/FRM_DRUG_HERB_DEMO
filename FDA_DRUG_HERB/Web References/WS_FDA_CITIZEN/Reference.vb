@@ -24,7 +24,7 @@ Imports System.Xml.Serialization
 Namespace WS_FDA_CITIZEN
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
      System.Web.Services.WebServiceBindingAttribute(Name:="WS_FDA_CITIZENSoap", [Namespace]:="http://tempuri.org/")>  _
@@ -36,6 +36,10 @@ Namespace WS_FDA_CITIZEN
         Private FDA_CITIZEN_CHANGEOperationCompleted As System.Threading.SendOrPostCallback
         
         Private FDA_HOUSE_NOOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private FDA_COMPANYOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private FDA_NAME_SURNAMEOperationCompleted As System.Threading.SendOrPostCallback
         
         Private useDefaultCredentialsSetExplicitly As Boolean
         
@@ -83,6 +87,12 @@ Namespace WS_FDA_CITIZEN
         
         '''<remarks/>
         Public Event FDA_HOUSE_NOCompleted As FDA_HOUSE_NOCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event FDA_COMPANYCompleted As FDA_COMPANYCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event FDA_NAME_SURNAMECompleted As FDA_NAME_SURNAMECompletedEventHandler
         
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FDA_CITIZEN", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
@@ -166,6 +176,60 @@ Namespace WS_FDA_CITIZEN
         End Sub
         
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FDA_COMPANY", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function FDA_COMPANY(ByVal COMPANY As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String) As String
+            Dim results() As Object = Me.Invoke("FDA_COMPANY", New Object() {COMPANY, citizen_authorize, UserName, Password})
+            Return CType(results(0),String)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub FDA_COMPANYAsync(ByVal COMPANY As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String)
+            Me.FDA_COMPANYAsync(COMPANY, citizen_authorize, UserName, Password, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub FDA_COMPANYAsync(ByVal COMPANY As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String, ByVal userState As Object)
+            If (Me.FDA_COMPANYOperationCompleted Is Nothing) Then
+                Me.FDA_COMPANYOperationCompleted = AddressOf Me.OnFDA_COMPANYOperationCompleted
+            End If
+            Me.InvokeAsync("FDA_COMPANY", New Object() {COMPANY, citizen_authorize, UserName, Password}, Me.FDA_COMPANYOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnFDA_COMPANYOperationCompleted(ByVal arg As Object)
+            If (Not (Me.FDA_COMPANYCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent FDA_COMPANYCompleted(Me, New FDA_COMPANYCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FDA_NAME_SURNAME", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function FDA_NAME_SURNAME(ByVal NAME As String, ByVal SURNAME As String, ByVal MIDDLE_NAME As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String, ByVal recordnumber As String) As String
+            Dim results() As Object = Me.Invoke("FDA_NAME_SURNAME", New Object() {NAME, SURNAME, MIDDLE_NAME, citizen_authorize, UserName, Password, recordnumber})
+            Return CType(results(0),String)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub FDA_NAME_SURNAMEAsync(ByVal NAME As String, ByVal SURNAME As String, ByVal MIDDLE_NAME As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String, ByVal recordnumber As String)
+            Me.FDA_NAME_SURNAMEAsync(NAME, SURNAME, MIDDLE_NAME, citizen_authorize, UserName, Password, recordnumber, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub FDA_NAME_SURNAMEAsync(ByVal NAME As String, ByVal SURNAME As String, ByVal MIDDLE_NAME As String, ByVal citizen_authorize As String, ByVal UserName As String, ByVal Password As String, ByVal recordnumber As String, ByVal userState As Object)
+            If (Me.FDA_NAME_SURNAMEOperationCompleted Is Nothing) Then
+                Me.FDA_NAME_SURNAMEOperationCompleted = AddressOf Me.OnFDA_NAME_SURNAMEOperationCompleted
+            End If
+            Me.InvokeAsync("FDA_NAME_SURNAME", New Object() {NAME, SURNAME, MIDDLE_NAME, citizen_authorize, UserName, Password, recordnumber}, Me.FDA_NAME_SURNAMEOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnFDA_NAME_SURNAMEOperationCompleted(ByVal arg As Object)
+            If (Not (Me.FDA_NAME_SURNAMECompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent FDA_NAME_SURNAMECompleted(Me, New FDA_NAME_SURNAMECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
         Public Shadows Sub CancelAsync(ByVal userState As Object)
             MyBase.CancelAsync(userState)
         End Sub
@@ -185,7 +249,7 @@ Namespace WS_FDA_CITIZEN
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4161.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -710,7 +774,7 @@ Namespace WS_FDA_CITIZEN
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4161.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1139,11 +1203,11 @@ Namespace WS_FDA_CITIZEN
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
     Public Delegate Sub FDA_CITIZENCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_CITIZENCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_CITIZENCompletedEventArgs
@@ -1166,11 +1230,11 @@ Namespace WS_FDA_CITIZEN
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
     Public Delegate Sub FDA_CITIZEN_CHANGECompletedEventHandler(ByVal sender As Object, ByVal e As FDA_CITIZEN_CHANGECompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_CITIZEN_CHANGECompletedEventArgs
@@ -1193,11 +1257,11 @@ Namespace WS_FDA_CITIZEN
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
     Public Delegate Sub FDA_HOUSE_NOCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_HOUSE_NOCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_HOUSE_NOCompletedEventArgs
@@ -1215,6 +1279,60 @@ Namespace WS_FDA_CITIZEN
             Get
                 Me.RaiseExceptionIfNecessary
                 Return CType(Me.results(0),HOUSE)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    Public Delegate Sub FDA_COMPANYCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_COMPANYCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class FDA_COMPANYCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),String)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    Public Delegate Sub FDA_NAME_SURNAMECompletedEventHandler(ByVal sender As Object, ByVal e As FDA_NAME_SURNAMECompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class FDA_NAME_SURNAMECompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),String)
             End Get
         End Property
     End Class

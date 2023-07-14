@@ -317,7 +317,7 @@ Public Class POPUP_DS_CONFIRM
         dao.GetDataby_IDA(Integer.Parse(_IDA))
         dao.fields.STATUS_ID = 7
         dao.update()
-        alert("ยกเลิกข้อมุลเรียบร้อยแล้ว")
+        alert("ยกเลิกข้อมูลเรียบร้อยแล้ว")
         Dim ws As New AUTHENTICATION_104.Authentication
         ws.AUTHEN_LOG_DATA(_CLS.TOKEN, _CLS.CITIZEN_ID, _CLS.SYSTEM_ID, _CLS.GROUPS, _CLS.ID_MENU, "DRUG", dao.fields.TR_ID, HttpContext.Current.Request.Url.AbsoluteUri, "ยกเลิกคำขอยาตัวอย่าง", _ProcessID)
         Response.Write("<script type langue =javascript>")

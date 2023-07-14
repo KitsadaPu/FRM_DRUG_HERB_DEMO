@@ -348,6 +348,15 @@
                 _WTIRE_DATE = value
             End Set
         End Property
+        Private _WTIRE_AT As String
+        Public Property WTIRE_AT() As String
+            Get
+                Return _WTIRE_AT
+            End Get
+            Set(ByVal value As String)
+                _WTIRE_AT = value
+            End Set
+        End Property
         Private _PHR_NAME As String
         Public Property PHR_NAME() As String
             Get

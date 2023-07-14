@@ -135,6 +135,15 @@
                 _DALCN_PHR = Value
             End Set
         End Property
+        Private _DALCN_PHR_NEW As New DALCN_PHR
+        Public Property DALCN_PHR_NEW() As DALCN_PHR
+            Get
+                Return _DALCN_PHR_NEW
+            End Get
+            Set(ByVal value As DALCN_PHR)
+                _DALCN_PHR_NEW = value
+            End Set
+        End Property
 #End Region
 
 #Region "DALCN_PHR_2"

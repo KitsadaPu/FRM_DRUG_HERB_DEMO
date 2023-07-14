@@ -77,24 +77,76 @@
         Dim date_result_est_start As Date
         Dim date_result_est_end As Date
         Dim days_start As Integer = 1
-        Dim days_end As Integer = 151
+        Dim days_end As Integer = 5
         Dim days_est_start As Integer = 1
-        Dim days_est_end As Integer = 151
+        Dim days_est_end As Integer = 30
+
+        Dim days_est_logStart As Integer = 1
+        Dim days_est_longEnd As Integer = 186
+        Dim date_result_est_longStart As Date
+        Dim date_result_est_longEnd As Date
+        Dim number_day_est_longStart As String = ""
+        Dim number_day_est_longEnd As String = ""
+
         Dim number_day_start As String = ""
         Dim number_day_end As String = ""
         Dim number_day_est_start As String = ""
         Dim number_day_est_end As String = ""
+
+        Dim all_days As Integer = 1
+        Dim end_days As Integer = 30
+
         ws.GETDATE_WORKING(CDate(dao.fields.DATE_CONFIRM), True, days_start, True, date_result_start, True)
         ws.GETDATE_WORKING(CDate(dao.fields.DATE_CONFIRM), True, days_end, True, date_result_end, True)
-        ws.GETDATE_WORKING(CDate(dao_deeqt.fields.ESTIMATE_DATE), True, days_est_start, True, date_result_est_start, True)
-        ws.GETDATE_WORKING(CDate(dao_deeqt.fields.ESTIMATE_DATE), True, days_est_end, True, date_result_est_end, True)
+        Dim bao2 As New BAO.ClsDBSqlcommand
+        Dim stop_days As Double = 0
+        'Try
+        'stop_days = bao2.SP_GET_DAY_EXTEND_BY_RCVNO_RGTTPCD(dr("rcvno"), dr("rgttpcd"))
+        Dim bao_ex As New BAO.ClsDBSqlcommand
+        Dim dtex As New DataTable
+        Dim ws2 As New WS_GETDATE_WORKING.BasicHttpBinding_IService1
+            Dim start_date2 As Date
+            Dim end_date2 As Date
+            Dim holiday2 As Integer = 0
+            Dim day_all2 As Integer = 0
+        'Try
+        '    start_date2 = CDate(drex("START_DATE"))
+        'Catch ex As Exception
+
+        'End Try
+        'Try
+        '    end_date2 = CDate(drex("END_DATE"))
+        'Catch ex As Exception
+
+        'End Try
+        day_all2 = DateDiff(DateInterval.Day, start_date2, end_date2)
+            ws2.GETDATE_COUNT_DAY(start_date2, True, end_date2, True, holiday2, True)
+
+        stop_days += (day_all2 - holiday2)
+
+        number_day_start = stop_days
+
+        Dim days_result As Double = 0
+        Try
+            days_result = 1 + all_days + stop_days '(all_days + 1) - stop_days  'Math.Abs((dr("stdno") + stop_days) - all_days)
+        Catch ex As Exception
+
+        End Try
+        'ws.GETDATE_WORKING(CDate(dao.fields.DATE_CONFIRM), True, days_start, True, date_result_start, True)
+        'ws.GETDATE_WORKING(CDate(dao.fields.DATE_CONFIRM), True, days_end, True, date_result_end, True)
+        'Try
+        '    ws.GETDATE_WORKING(CDate(dao_deeqt.fields.ESTIMATE_DATE), True, days_est_start, True, date_result_est_start, True)
+        '    ws.GETDATE_WORKING(CDate(dao_deeqt.fields.ESTIMATE_DATE), True, days_est_end, True, date_result_est_end, True)
+        'Catch ex As Exception
+
+        'End Try
         number_day_start = date_result_start.ToLongDateString()
         number_day_end = date_result_end.ToLongDateString()
-        number_day_est_start = date_result_est_start.ToLongDateString()
-        number_day_est_end = date_result_est_end.ToLongDateString()
+
 
         If dao.fields.STATUS_ID = 3 Then
             dao_pdftemplate.GETDATA_TABEAN_HERB_APPOINTMENT(_ProcessID, dao.fields.STATUS_ID, "APPROVE_TBN_1", 0)
+
 
             'date_con_day = dao_deeqt.fields.DATE_CONFIRM
             'date_con_month = dao_deeqt.fields.DATE_CONFIRM
@@ -105,6 +157,11 @@
 
             date_con_full = number_day_start
             date_appo_full = number_day_end
+
+            dao.fields.EXPECTED_DATE = date_result_end
+            dao.Update()
+            cls.appointment_date = date_appo_full
+            cls.DISCOUNT_DETAIL = dao.fields.Discount_RequestName
 
         ElseIf dao.fields.STATUS_ID = 11 Or dao.fields.STATUS_ID = 12 Then
             dao_pdftemplate.GETDATA_TABEAN_HERB_APPOINTMENT(_ProcessID, dao.fields.STATUS_ID, "APPROVE_TBN_1", 0)
@@ -119,12 +176,46 @@
             date_con_full = number_day_start
             date_appo_full = number_day_end
 
+            dao.fields.EXPECTED_DATE = date_result_end
+            dao.Update()
         ElseIf dao.fields.STATUS_ID = 13 Then
+            If _ProcessID = 20101 Or _ProcessID = 20102 Or _ProcessID = 20191 Or _ProcessID = 20192 Then
+                days_est_end = 50
+                days_est_longEnd = 210
+            ElseIf _ProcessID = 20103 Or _ProcessID = 20104 Or _ProcessID = 20105 _
+                Or _ProcessID = 20193 Or _ProcessID = 20194 Or _ProcessID = 20195 Then
+                days_est_end = 64
+                days_est_longEnd = 235
+            End If
+
+            'Dim date_pay As Date = dao_deeqt.fields.ESTIMATE_DATE
+            Dim date_pay As Date = Date.Now
+            '     ws.GETDATE_WORKING(CDate(dao_deeqt.fields.ESTIMATE_DATE), True, days_est_start, True, date_result_est_start, True)
+            ws.GETDATE_WORKING(CDate(date_pay), True, days_est_start, True, date_result_est_start, True)
+            ws.GETDATE_WORKING(CDate(date_pay), True, days_est_end, True, date_result_est_end, True)
+
+            ws.GETDATE_WORKING(CDate(date_pay), True, days_est_logStart, True, date_result_est_longStart, True)
+            ws.GETDATE_WORKING(CDate(date_pay), True, days_est_longEnd, True, date_result_est_longEnd, True)
+
+            number_day_est_start = date_result_est_start.ToLongDateString()
+            number_day_est_end = date_result_est_end.ToLongDateString()
+            number_day_est_longStart = date_result_est_longStart.ToLongDateString()
+            number_day_est_longEnd = date_result_est_longEnd.ToLongDateString()
+
             dao_pdftemplate.GETDATA_TABEAN_HERB_APPOINTMENT(_ProcessID, dao.fields.STATUS_ID, "APPROVE_TBN_2", 0)
 
             date_con_full = number_day_est_start
             date_appo_full = number_day_est_end
 
+            cls.DISCOUNT_DETAIL = dao.fields.Discount_EstimateName
+            date_con_full = number_day_est_longStart
+            cls.date_period_estimate_full = number_day_est_longEnd 'ระยะเวลาในการดำเนินการจนแล้วเสร็จ
+            cls.appointment_date = date_appo_full 'วันที่นัดรับผลการประเมินเอกสารวิชาการครั้งที่ 1
+            cls.date_estimate_full = date_con_full 'วันที่เริ่มประเมินเอกสารวิชาการ
+
+            dao.fields.EXPECTED_DATE = date_result_est_end
+            dao.fields.EXPECTED_DATE2 = date_result_est_end
+            dao.Update()
             'date_est_day = dao_deeqt.fields.ESTIMATE_DATE
             'date_est_month = dao_deeqt.fields.ESTIMATE_DATE
             'date_est_year = dao_deeqt.fields.ESTIMATE_DATE
@@ -148,11 +239,19 @@
         cls.name_thai_name_place = NAME_THAI_NAME_PLACE
         cls.date_req_full = date_con_full
         cls.thanm = thanm
-        cls.NAME_CONTACT = NAME_JJ
-        cls.tel_callback = tel
+        'cls.thanm = thanm
+        cls.NAME_CONTACT = dao.fields.Appoinment_Contact
+        'cls.NAME_CONTACT = NAME_JJ
+        cls.E_MAIL = dao.fields.Appoinment_Email
+        cls.tel_callback = dao.fields.Appoinment_Phone
+        'cls.tel_callback = tel
         cls.citizen_id = _CLS.CITIZEN_ID
-        cls.appointment_date = date_appo_full
-        cls.group_assign = "กลุ่มทะเบียนผลิตภัณฑ์"
+        cls.group_assign = "กลุ่มทะเบียนผลิตภัณฑ์ กองผลิตภัณฑ์สมุนไพร"
+        Try
+            cls.TR_ID = dao.fields.TR_ID
+        Catch ex As Exception
+
+        End Try
 
         xml = cls.XML_APOINTMENT()
         TB_AP = xml

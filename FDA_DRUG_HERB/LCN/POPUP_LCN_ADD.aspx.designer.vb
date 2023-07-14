@@ -77,6 +77,15 @@ Partial Public Class POPUP_LCN_ADD
     Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''UC_HERB_BSN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_HERB_BSN As Global.FDA_DRUG_HERB.UC_HERB_BSN
+
+    '''<summary>
     '''UC_HERB_PHESAJ control.
     '''</summary>
     '''<remarks>

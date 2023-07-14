@@ -68,6 +68,12 @@
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_pvnlcncd(ByVal pvncd As Integer, ByVal lcntpcd As String, ByVal lcnno As Integer)
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_HERBs Where p.pvncd = pvncd And p.lcntpcd = lcntpcd And p.lcnno = lcnno Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
     End Class
 
     Public Class TB_XML_SEARCH_DRUG_LCN_LICEN_HERB
@@ -130,6 +136,12 @@
 
             datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.lcnno_no = lcnno_no Select p)
             For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_pvnlcncd(ByVal pvncd As Integer, ByVal lcntpcd As String, ByVal lcnno As Integer)
+            datas = (From p In db.XML_SEARCH_DRUG_LCN_LICEN_HERBs Where p.pvncd = pvncd And p.lcntpcd = lcntpcd And p.lcnno = lcnno Select p)
+            For Each Me.fields In datas
+
             Next
         End Sub
     End Class
@@ -399,6 +411,22 @@
         Public Sub GetDataby_Newcode_rid_flineno(ByVal newcode_rid As String, ByVal flineno As String)
 
             datas = (From p In db.XML_DRUG_IOW_EQ_HERBs Where p.Newcode_rid = newcode_rid Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetDataby_Newcode_rid(ByVal newcode_rid As String)
+
+            datas = (From p In db.XML_DRUG_IOW_EQ_HERBs Where p.Newcode_rid = newcode_rid Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetDataby_Newcode(ByVal newcode As String)
+
+            datas = (From p In db.XML_DRUG_IOW_EQ_HERBs Where p.Newcode = newcode Select p)
             For Each Me.fields In datas
 
             Next

@@ -24,15 +24,17 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
         RunSession()
         If Not IsPostBack Then
             bind_data()
+            Run_Pdf_Tabean_Herb()
         End If
         BindTable()
     End Sub
 
     Public Sub bind_data()
+        Dim dao_chk As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
         dao_up_mas.GetdatabyID_TYPE(2)
         For Each dao_up_mas.fields In dao_up_mas.datas
-            Dim dao_chk As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+
             dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
             If dao_chk.fields.IDA = 0 Then
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
@@ -52,15 +54,64 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
         dao.GetdatabyID_IDA(_IDA)
         NATURE.Text = dao.fields.NATURE
         NOTE_EDIT.Text = dao.fields.NOTE_EDIT
-        If R_NATURE.SelectedValue <> "" Then
-            R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
-        End If
+        'If R_NATURE.SelectedValue <> "" Then
+        '    R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
+        'End If
+        'Try
+        '    R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
+        'Catch ex As Exception
+
+        'End Try
+
+        lbl_edit_by.Text = dao.fields.EDIT_RQ_NAME
+        Try
+            lbl_edit_date.Text = dao.fields.EDIT_RQ_DATE
+        Catch ex As Exception
+
+        End Try
+
+
+        'Dim Type_ID As Integer = 0
+        ''Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        'dao_chk.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        'Type_ID = dao_chk.fields.TYPE
+        'If Type_ID = 1 Or Type_ID = 2 Then
+        '    RadGrid1.Visible = False
+        '    RadGrid4.Visible = True
+        'Else
+        '    RadGrid1.Visible = False
+        '    RadGrid4.Visible = True
+
+        '    btn_sumit.Enabled = False
+        '    btn_sumit.CssClass = "btn-danger btn-lg"
+        'End If
+
     End Sub
 
     Function bind_data_uploadfile()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
+        'Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
 
+        'dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_NO()
+
+        Dim Type_ID As Integer = 0
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        If Type_ID = 1 Or Type_ID = 2 Then
+            'RadGrid1.Visible = False
+            RadGrid4.Visible = False
+        Else
+            RadGrid1.Visible = False
+
+            btn_sumit.Enabled = False
+            btn_sumit.CssClass = "btn-danger btn-lg"
+            btn_add_upload.Enabled = False
+            set_show.Visible = False
+        End If
         dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_NO()
 
         Return dt
@@ -88,15 +139,20 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
             dao_up.fields.ACTIVE = 1
             dao_up.fields.CREATE_DATE = Date.Now
             dao_up.insert()
-
         Next
-
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
         dao.fields.NOTE_EDIT = NOTE_EDIT.Text
-        If R_NATURE.SelectedValue <> "" Then
-            dao.fields.NATURE_ID_EDIT = R_NATURE.SelectedValue
-        End If
+        'If R_NATURE.SelectedValue <> "" Then
+        '    dao.fields.NATURE_ID_EDIT = R_NATURE.SelectedValue
+        'End If
+        Try
+            dao.fields.EDIT_RQ_ID = _CLS.CITIZEN_ID
+            dao.fields.EDIT_RQ_NAME = _CLS.THANM
+            dao.fields.EDIT_RQ_DATE = Date.Now
+        Catch ex As Exception
+
+        End Try
 
         dao.Update()
 
@@ -261,5 +317,88 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_EDIT
         Dim url As String = ""
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
+    Function bind_data_uploadfile_edit()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
 
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
+
+        Return dt
+    End Function
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_uploadfile_edit()
+    End Sub
+
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile1()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
+        RadGrid3.DataSource = bind_data_uploadfile1()
+    End Sub
+
+    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid3.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Public Sub Run_Pdf_Tabean_Herb()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ1", 0)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ") 'path
+
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+
+        lr_preview.Text = "<iframe id='iframe1'  style='height:600px;width:100%;' src='../PDF/FRM_PDF.aspx?fileName=" & PATH_PDF_OUTPUT & "' ></iframe>"
+
+    End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_FK_IDA_LCN(_TR_ID, 3, _ProcessID, dao.fields.IDA_LCN)
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
 End Class

@@ -12,7 +12,16 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_SUB_MENU
-    
+
+    '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
     '''<summary>
     '''btn_tabean_edit control.
     '''</summary>
@@ -21,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_SUB_MENU
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_tabean_edit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_tabean_sub control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_SUB_MENU
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_tabean_sub As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_tabean_date control.
     '''</summary>
@@ -39,7 +48,16 @@ Partial Public Class FRM_HERB_TABEAN_SUB_MENU
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_tabean_date As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''Literal1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Literal1 As Global.System.Web.UI.WebControls.Literal
+
     '''<summary>
     '''T1 control.
     '''</summary>
@@ -48,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_SUB_MENU
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents T1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>

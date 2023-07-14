@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_JJ_EDIT
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,16 +21,16 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
-    '''RadGrid2 control.
+    '''txt_date_edit_end control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-    
+    Protected WithEvents txt_date_edit_end As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -39,52 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-    
-    '''<summary>
-    '''tb_type_menu control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
-    
-    '''<summary>
-    '''btn_add_upload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''R_NATURE_EDIT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents R_NATURE_EDIT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''R_NATURE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents R_NATURE As Global.System.Web.UI.WebControls.RadioButtonList
-    
-    '''<summary>
-    '''NATURE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents NATURE As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''NOTE_EDIT control.
     '''</summary>
@@ -93,7 +48,52 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE_EDIT As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''tb_type_menu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
+
+    '''<summary>
+    '''btn_add_upload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''R_NATURE_EDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents R_NATURE_EDIT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''NATURE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NATURE As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RadGrid2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
+
     '''<summary>
     '''btn_sumit control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_cancel control.
     '''</summary>

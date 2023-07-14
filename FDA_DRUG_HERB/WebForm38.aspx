@@ -50,6 +50,7 @@
             <asp:Button ID="insert_dr" runat="server" Text="insert" />
             <asp:Button ID="update_dr" runat="server" Text="update" />
             <asp:Button ID="delete_dr" runat="server" Text="delete" />
+             <asp:Button ID="insert_dr107" runat="server" Text="insert107" />
         </p>
         <p>
             &nbsp;</p>
@@ -118,6 +119,64 @@
             </p>
         <p>
             &nbsp;</p>
+         <h3 class="auto-style1" style="font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">เจน XML ใบอนุญาติทั้งหมด</h3>
+        <p>
+            <span style="color: rgb(0, 0, 0); font-family: &quot;Times New Roman&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">เลขบัตรคนกด&nbsp;
+            <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none">
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            </span></span>
+            </p>
+        <p>
+            <asp:Button ID="btn_gen_xml" runat="server" Text="ยืนยันการสร้าง"  Enabled="false"/>
+            </p>
+        <p>
+            &nbsp;</p>
+         <h3 class="auto-style1" style="font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">เจน XML จดแจ้ง(DEMO)</h3>
+        <p>
+            <asp:TextBox ID="txt_iden_jj" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;
+            <span style="color: rgb(0, 0, 0); font-family: &quot;Times New Roman&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">เลขบัตรคนกด&nbsp;
+            <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none">
+           
+                <br />              
+                 <asp:TextBox ID="txt_tr_id_jj" runat="server"></asp:TextBox>&nbsp;&nbsp;
+                 <asp:Label ID="Label1" runat="server" Text="เลขดำเนินการ"></asp:Label>
+                <br />
+                
+                 <asp:TextBox ID="txt_IDA_jj" runat="server"></asp:TextBox>&nbsp;&nbsp;
+                <asp:Label ID="Label2" runat="server" Text="เลข IDA ทะเบียน"></asp:Label>
+                 <br />
+               
+                 <asp:TextBox ID="txt_IDA_LCN_JJ" runat="server"></asp:TextBox>&nbsp;&nbsp;
+                 <asp:Label ID="Label3" runat="server" Text="เลข IDA ใบอนูญาต"></asp:Label>
+                 <br />            
+                <asp:TextBox ID="txt_PROCESS_ID_JJ" runat="server"></asp:TextBox> &nbsp;&nbsp;
+                 <asp:Label ID="Label4" runat="server" Text="เลข PROCESS_ID ทะเบียน"></asp:Label>
+                 <br />            
+                <asp:TextBox ID="txt_detail_jj" runat="server"></asp:TextBox> &nbsp;&nbsp;
+                 <asp:Label ID="lbl_jj_des" runat="server" Text="รายละเอียด"></asp:Label>
+            </span></span>
+            </p>       
+        
+        <p>
+            <asp:Button ID="BTN_GEN_XML_JJ1" runat="server" Text="สร้าง xml จจ1"  />
+            <asp:Button ID="BTN_GEN_XML_JJ2" runat="server" Text="สร้าง xml จจ2"  />
+            </p>
+        <p>
+            &nbsp;</p>
+
+         <p>
+            &nbsp;</p>
+         <h3 class="auto-style1" style="font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">เจน XML ทะเบียนทั้งหมด</h3>
+        <p>
+            <span style="color: rgb(0, 0, 0); font-family: &quot;Times New Roman&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">เลขบัตรคนกด&nbsp;
+            <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none">
+            <asp:TextBox ID="TXT_IDEN" runat="server"></asp:TextBox>
+            </span></span>
+            </p>
+        <p>
+            <asp:Button ID="btn_gen_xml_pro" runat="server" Text="ยืนยันการสร้าง"/>
+            </p>
     </form>
 </body>
 </html>

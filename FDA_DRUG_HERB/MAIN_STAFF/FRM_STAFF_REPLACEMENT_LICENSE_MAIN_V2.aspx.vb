@@ -6,6 +6,7 @@ Public Class FRM_STAFF_REPLACEMENT_LICENSE_MAIN_V2
     Private subtype As String
     Private _ProcessID As Integer
     Private _MENU_GROUP As String = ""
+    Private _SID As String = ""
     Sub RunSession()
         Try
             If Session("CLS") Is Nothing Then
@@ -89,11 +90,24 @@ Public Class FRM_STAFF_REPLACEMENT_LICENSE_MAIN_V2
             Dim IDA As Integer = item("IDA").Text
             Dim TR_ID As String = item("TR_ID").Text
             Dim FK_IDA As String = ""
+            Dim WHO_IDA As String = ""
             Try
                 FK_IDA = item("FK_IDA").Text
             Catch ex As Exception
 
             End Try
+            Try
+                WHO_IDA = item("WHO_IDA").Text
+            Catch ex As Exception
+
+            End Try
+
+            Dim TYPEPERSON As String
+            If item("TYPEPERSON").Text Is Nothing Then
+                TYPEPERSON = ""
+            Else
+                TYPEPERSON = item("TYPEPERSON").Text
+            End If
             'Dim DAO As New DAO_CPN.clsDBsyslcnsnm
 
             'Dim sql As String
@@ -101,9 +115,9 @@ Public Class FRM_STAFF_REPLACEMENT_LICENSE_MAIN_V2
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
             If Request.QueryString("ttt") = 2 Then
-                H.NavigateUrl = "FRM_REPLACEMENT_LICENSE_LOCATION_MENU2.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") 'URL หน้า ยืนยัน
+                H.NavigateUrl = "FRM_REPLACEMENT_LICENSE_LOCATION_MENU2.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") & "&TYPEPERSON=" & TYPEPERSON & "&SID=" & _SID & "&WHO_IDA=" & WHO_IDA  'URL หน้า ยืนยัน
             Else
-                H.NavigateUrl = "FRM_REPLACEMENT_LICENSE_LOCATION_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt")  'URL หน้า ยืนยัน
+                H.NavigateUrl = "FRM_REPLACEMENT_LICENSE_LOCATION_MENU.aspx?lct_ida=" & FK_IDA & "&TR_ID=" & TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&lcn_ida=" & IDA & "&ttt=" & Request.QueryString("ttt") & "&TYPEPERSON=" & TYPEPERSON & "&SID=" & _SID & "&WHO_IDA=" & WHO_IDA 'URL หน้า ยืนยัน
             End If
 
             'H.Style.Add("display", "none")
@@ -133,15 +147,15 @@ Public Class FRM_STAFF_REPLACEMENT_LICENSE_MAIN_V2
     Private Sub rg_name_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles rg_name.ItemCommand
         Dim bao As New BAO.ClsDBSqlcommand
         Dim bao_infor As New BAO.information
+        Dim CID As String = _CLS.CITIZEN_ID
+        Dim item As GridDataItem
+        item = e.Item
+        _CLS.CITIZEN_ID_AUTHORIZE = item("IDENTIFY").Text
+        _CLS = bao_infor.load_lcnsid_customer(_CLS)
+        _CLS = bao_infor.load_name(_CLS)
+        Session("CLS") = _CLS
 
         If e.CommandName = "sel" Then
-            Dim item As GridDataItem
-            item = e.Item
-            _CLS.CITIZEN_ID_AUTHORIZE = item("IDENTIFY").Text
-            _CLS = bao_infor.load_lcnsid_customer(_CLS)
-            _CLS = bao_infor.load_name(_CLS)
-            Session("CLS") = _CLS
-
             'RadGrid1.DataSource = BAO.SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDEN(1, _CLS.LCNSID_CUSTOMER) 'เรียกใช้เพื่อดึงข้อมูลสถานที่ตั้ง
             'RadGrid1.DataSource = bao.SP_CUSTOMER_LOCATION_ADDRESS_by_LOCATION_TYPE_ID_and_IDEN(1, _CLS.CITIZEN_ID_AUTHORIZE)
             If Request.QueryString("MENU_GROUP") = "2" Then
@@ -150,12 +164,20 @@ Public Class FRM_STAFF_REPLACEMENT_LICENSE_MAIN_V2
                 RadGrid1.DataSource = bao.SP_CUSTOMER_LCN_DR_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
             Else
                 RadGrid1.DataSource = bao.SP_CUSTOMER_LCN_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
-            End If
 
-            RadGrid1.Rebind()
+            End If
+            _SID = 1
+
+        ElseIf e.CommandName = "sel2" Then
+            RadGrid1.DataSource = bao.SP_WHO_CUSTOMER_LCN_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
+            _SID = 2
         End If
+        RadGrid1.Rebind()
+
     End Sub
 
-
+    Protected Sub btn_reload_Click(sender As Object, e As EventArgs) Handles btn_reload.Click
+        RadGrid1.Rebind()
+    End Sub
 
 End Class

@@ -1,8 +1,10 @@
-﻿Public Class UC_HERB
+﻿Imports Telerik.Web.UI
+Public Class UC_HERB
     Inherits System.Web.UI.UserControl
     Private _CLS As New CLS_SESSION
     Private _pvncd As Integer
     Private _ProcessID As Integer
+    Private _TYPE_ID As Integer
     Sub RunSession()
         _ProcessID = Request.QueryString("process")
         Try
@@ -39,12 +41,43 @@
             _pvncd = 10
         End Try
     End Sub
+    Function CHECK_ID_TYPE(ByVal CITIZEN_ID_AUTHORIZE As String)
+        Dim TYPE_PERSON As String = 0
+        Dim thanm_fullname As String = 0
+        Dim citizen_id As String = CITIZEN_ID_AUTHORIZE
+        Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+        Dim obj As New XML_DATA
+        'Dim cls As New CLS_COMMON.convert
+        Dim result As String = ""
+        'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+        result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
+        obj = ConvertFromXml(Of XML_DATA)(result)
+        Try
+            TYPE_PERSON = obj.SYSLCNSIDs.type
+            If TYPE_PERSON = 1 Then
+                thanm_fullname = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+            ElseIf TYPE_PERSON = 99 Then
+                thanm_fullname = _CLS.THANM_CUSTOMER
+                'thanm = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+            Else
+                If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                    thanm_fullname = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                Else
+                    thanm_fullname = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return TYPE_PERSON
+    End Function
     Sub Set_Label(ByVal CITIZEN_ID_AUTHORIZE As String)
         Dim bao_show As New BAO_SHOW
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt_lcn As New DataTable
         dt_lcn = bao.SP_Lisense_Name_and_Addr(CITIZEN_ID_AUTHORIZE) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
         '
+        _TYPE_ID = CHECK_ID_TYPE(CITIZEN_ID_AUTHORIZE)
         For Each dr As DataRow In dt_lcn.Rows
             'Try
             '    txt_da_opentime.Text = dr("thaaddr")
@@ -67,7 +100,11 @@
 
             End Try
             Try
-                lbl_lcn_ages.Text = dr("age")
+                If _TYPE_ID = 1 Then
+                    lbl_lcn_ages.Text = dr("age")
+                Else
+                    lbl_lcn_ages.Text = "-"
+                End If
             Catch ex As Exception
 
             End Try
@@ -117,7 +154,12 @@
 
             End Try
             Try
-                lbl_lcn_nation.Text = dr("nation")
+                If _TYPE_ID = 1 Then
+                    lbl_lcn_nation.Text = dr("nation")
+                Else
+                    lbl_lcn_nation.Text = "-"
+                End If
+
             Catch ex As Exception
 
             End Try
@@ -149,90 +191,90 @@
         Next 'set ข้อ1
 
 
-        Dim dt_bsn As New DataTable
-        dt_bsn = bao_show.SP_LOCATION_BSN_BY_IDENTIFY(Request.QueryString("bsn"))
-        For Each dr As DataRow In dt_bsn.Rows
-            Try
-                lbl_BSN_ADDR.Text = dr("BSN_ADDR")
-            Catch ex As Exception
+        'Dim dt_bsn As New DataTable
+        'dt_bsn = bao_show.SP_LOCATION_BSN_BY_IDENTIFY(Request.QueryString("bsn"))
+        'For Each dr As DataRow In dt_bsn.Rows
+        '    Try
+        '        lbl_BSN_ADDR.Text = dr("BSN_ADDR")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_FLOOR.Text = dr("BSN_FLOOR")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_FLOOR.Text = dr("BSN_FLOOR")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_ROOM.Text = dr("BSN_ROOM")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_ROOM.Text = dr("BSN_ROOM")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_AGE.Text = dr("AGE")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_AGE.Text = dr("AGE")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_AMPHR_NAME.Text = dr("BSN_AMPHR_NAME")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_AMPHR_NAME.Text = dr("BSN_AMPHR_NAME")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_BUILDING.Text = dr("BSN_BUILDING")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_BUILDING.Text = dr("BSN_BUILDING")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_FAX.Text = dr("BSN_FAX")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_FAX.Text = dr("BSN_FAX")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_IDENTIFY.Text = dr("BSN_IDENTIFY")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_IDENTIFY.Text = dr("BSN_IDENTIFY")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_MOO.Text = dr("BSN_MOO")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_MOO.Text = dr("BSN_MOO")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_ROAD.Text = dr("BSN_ROAD")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_ROAD.Text = dr("BSN_ROAD")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_SOI.Text = dr("BSN_SOI")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_SOI.Text = dr("BSN_SOI")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_TEL.Text = dr("BSN_TEL")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_TEL.Text = dr("BSN_TEL")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_THAIFULLNAME.Text = dr("BSN_THAIFULLNAME")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_THAIFULLNAME.Text = dr("BSN_THAIFULLNAME")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_THMBL_NAME.Text = dr("BSN_THMBL_NAME")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_THMBL_NAME.Text = dr("BSN_THMBL_NAME")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_BSN_ZIPCODE.Text = dr("BSN_ZIPCODE")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_BSN_ZIPCODE.Text = dr("BSN_ZIPCODE")
+        '    Catch ex As Exception
 
-            End Try
-            Try
-                lbl_thachngwtnm.Text = dr("thachngwtnm")
-            Catch ex As Exception
+        '    End Try
+        '    Try
+        '        lbl_thachngwtnm.Text = dr("thachngwtnm")
+        '    Catch ex As Exception
 
-            End Try
-        Next 'set ข้อ2
+        '    End Try
+        'Next 'set ข้อ2
 
         Dim dt_lct As New DataTable
         dt_lct = bao_show.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(Request.QueryString("lct_ida"))
@@ -264,6 +306,11 @@
             End Try
             Try
                 lbl_lct_thaaddr.Text = dr("thaaddr")
+            Catch ex As Exception
+
+            End Try
+            Try
+                lbl_lct_floor.Text = dr("thafloor")
             Catch ex As Exception
 
             End Try
@@ -341,27 +388,27 @@
                     RDP_FRGN_DATE1.SelectedDate = dao_frgn.fields.FRGN_DATE1
                 End If
             End If
-            If dao_frgn.fields.addr_status = 1 Then 'set ที่อยู่ที่ติดต่อ
-                Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
-                dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
-                cb_addr.Checked = True
-                ddl_amphor.SelectedValue = dao_curent.fields.amphrcd
-                ddl_Province.SelectedValue = dao_curent.fields.chngwtcd
-                txt_c_email.Text = dao_curent.fields.email
-                txt_c_fax.Text = dao_curent.fields.fax
-                '.FK_IDA = 
-                txt_c_tel.Text = dao_curent.fields.tel
-                txt_c_thaaddr.Text = dao_curent.fields.thaaddr
-                txt_c_floor.Text = dao_curent.fields.thafloor
-                txt_c_thabuilding.Text = dao_curent.fields.thabuilding
-                txt_c_thamu.Text = dao_curent.fields.thamu
-                '.thanameplace = ""
-                txt_c_tharoad.Text = dao_curent.fields.tharoad
-                txt_c_room.Text = dao_curent.fields.tharoom
-                txt_c_thasoi.Text = dao_curent.fields.thasoi
-                ddl_tambol.SelectedValue = dao_curent.fields.thmblcd
-                txt_c_zipcode.Text = dao_curent.fields.zipcode
-            End If
+            'If dao_frgn.fields.addr_status = 1 Then 'set ที่อยู่ที่ติดต่อ
+            '    Dim dao_curent As New DAO_DRUG.TB_DALCN_CURRENT_ADDRESS
+            '    dao_curent.GetData_By_FK_IDA(Request.QueryString("ida"))
+            '    cb_addr.Checked = True
+            '    ddl_amphor.SelectedValue = dao_curent.fields.amphrcd
+            '    ddl_Province.SelectedValue = dao_curent.fields.chngwtcd
+            '    txt_c_email.Text = dao_curent.fields.email
+            '    txt_c_fax.Text = dao_curent.fields.fax
+            '    '.FK_IDA = 
+            '    txt_c_tel.Text = dao_curent.fields.tel
+            '    txt_c_thaaddr.Text = dao_curent.fields.thaaddr
+            '    txt_c_floor.Text = dao_curent.fields.thafloor
+            '    txt_c_thabuilding.Text = dao_curent.fields.thabuilding
+            '    txt_c_thamu.Text = dao_curent.fields.thamu
+            '    '.thanameplace = ""
+            '    txt_c_tharoad.Text = dao_curent.fields.tharoad
+            '    txt_c_room.Text = dao_curent.fields.tharoom
+            '    txt_c_thasoi.Text = dao_curent.fields.thasoi
+            '    ddl_tambol.SelectedValue = dao_curent.fields.thmblcd
+            '    txt_c_zipcode.Text = dao_curent.fields.zipcode
+            'End If
         End If
     End Sub
     Private Function set_lcntpcd() As String
@@ -372,22 +419,22 @@
     Sub setdata(ByRef dao As DAO_DRUG.ClsDBdalcn, ByVal TR_ID As Integer)
         With dao.fields
 
-            .GIVE_PASSPORT_NO = txt_GIVE_PASSPORT_NO.Text
-            Try
-                .GIVE_PASSPORT_EXPDATE = rdp_GIVE_PASSPORT_EXPDATE.SelectedDate
-            Catch ex As Exception
+            '.GIVE_PASSPORT_NO = txt_GIVE_PASSPORT_NO.Text
+            'Try
+            '    .GIVE_PASSPORT_EXPDATE = rdp_GIVE_PASSPORT_EXPDATE.SelectedDate
+            'Catch ex As Exception
 
-            End Try
-            Try
-                .GIVE_WORK_LICENSE_NO = txt_GIVE_WORK_LICENSE_NO.Text
-            Catch ex As Exception
+            'End Try
+            'Try
+            '    .GIVE_WORK_LICENSE_NO = txt_GIVE_WORK_LICENSE_NO.Text
+            'Catch ex As Exception
 
-            End Try
-            Try
-                .GIVE_WORK_LICENSE_EXPDATE = rdp_GIVE_WORK_LICENSE_EXPDATE.SelectedDate
-            Catch ex As Exception
+            'End Try
+            'Try
+            '    .GIVE_WORK_LICENSE_EXPDATE = rdp_GIVE_WORK_LICENSE_EXPDATE.SelectedDate
+            'Catch ex As Exception
 
-            End Try
+            'End Try
             Try
                 .opentime = txt_da_opentime.Text
             Catch ex As Exception
@@ -593,15 +640,15 @@
                 .PASSPORT_EXPDATE = CDate(RDP_PASSPORT_EXPDATE.SelectedDate)
             Catch ex As Exception
             End Try
-            Try
-                If cb_addr.Checked = True Then
-                    .addr_status = 1
-                Else
-                    .addr_status = 0
-                End If
-            Catch ex As Exception
+            'Try
+            '    If cb_addr.Checked = True Then
+            '        .addr_status = 1
+            '    Else
+            '        .addr_status = 0
+            '    End If
+            'Catch ex As Exception
 
-            End Try
+            'End Try
 
             'cb_addr_CheckedChanged(1)
         End With
@@ -808,123 +855,123 @@
         Next
 
     End Sub
-    Sub set_date_current_addr(ByRef dao As DAO_DRUG.TB_DALCN_CURRENT_ADDRESS) 'insert ที่อยู่ติดต่อได้
+    'Sub set_date_current_addr(ByRef dao As DAO_DRUG.TB_DALCN_CURRENT_ADDRESS) 'insert ที่อยู่ติดต่อได้
 
-        With dao.fields
-            Try
-                .chngwtcd = ddl_Province.SelectedValue
-                .amphrcd = ddl_amphor.SelectedValue
-                .thmblcd = ddl_tambol.SelectedValue
-            Catch ex As Exception
+    '    With dao.fields
+    '        Try
+    '            .chngwtcd = ddl_Province.SelectedValue
+    '            .amphrcd = ddl_amphor.SelectedValue
+    '            .thmblcd = ddl_tambol.SelectedValue
+    '        Catch ex As Exception
 
-            End Try
+    '        End Try
 
-            .email = txt_c_email.Text
-            .fax = txt_c_fax.Text
-            '.FK_IDA = 
-            .tel = txt_c_tel.Text
-            .thaaddr = txt_c_thaaddr.Text
-            .thafloor = txt_c_floor.Text
-            .thabuilding = txt_c_thabuilding.Text
-            .thamu = txt_c_thamu.Text
-            .thanameplace = ""
-            .tharoad = txt_c_tharoad.Text
-            .tharoom = txt_c_room.Text
-            .thasoi = txt_c_thasoi.Text
+    '        .email = txt_c_email.Text
+    '        .fax = txt_c_fax.Text
+    '        '.FK_IDA = 
+    '        .tel = txt_c_tel.Text
+    '        .thaaddr = txt_c_thaaddr.Text
+    '        .thafloor = txt_c_floor.Text
+    '        .thabuilding = txt_c_thabuilding.Text
+    '        .thamu = txt_c_thamu.Text
+    '        .thanameplace = ""
+    '        .tharoad = txt_c_tharoad.Text
+    '        .tharoom = txt_c_room.Text
+    '        .thasoi = txt_c_thasoi.Text
 
-            .zipcode = txt_c_zipcode.Text
+    '        .zipcode = txt_c_zipcode.Text
 
-        End With
-    End Sub
-    Public Sub load_ddl_chwt()
-        Dim bao As New BAO_SHOW
-        Dim dt As DataTable = bao.SP_SP_SYSCHNGWT()
-        ddl_Province.DataSource = dt
+    '    End With
+    'End Sub
+    'Public Sub load_ddl_chwt()
+    '    Dim bao As New BAO_SHOW
+    '    Dim dt As DataTable = bao.SP_SP_SYSCHNGWT()
+    '    ddl_Province.DataSource = dt
 
-        ddl_Province.DataBind()
-    End Sub
-    Public Sub load_ddl_amp()
+    '    ddl_Province.DataBind()
+    'End Sub
+    'Public Sub load_ddl_amp()
 
-        Dim bao As New BAO_SHOW
-        Dim dt As New DataTable
-        dt = bao.SP_SYSAMPHR_BY_CHNGWTCD(ddl_Province.SelectedValue)
+    '    Dim bao As New BAO_SHOW
+    '    Dim dt As New DataTable
+    '    dt = bao.SP_SYSAMPHR_BY_CHNGWTCD(ddl_Province.SelectedValue)
 
-        ddl_amphor.DataSource = dt
-        ddl_amphor.DataBind()
-    End Sub
-    Public Sub load_ddl_thambol()
-        Dim bao As New BAO_SHOW
-        Dim dt As New DataTable
-        dt = bao.SP_SYSTHMBL_BY_CHNGWTCD_AND_AMPHRCD(ddl_Province.SelectedValue, ddl_amphor.SelectedValue)
-        ddl_tambol.DataSource = dt
-        ddl_tambol.DataBind()
-    End Sub
+    '    ddl_amphor.DataSource = dt
+    '    ddl_amphor.DataBind()
+    'End Sub
+    'Public Sub load_ddl_thambol()
+    '    Dim bao As New BAO_SHOW
+    '    Dim dt As New DataTable
+    '    dt = bao.SP_SYSTHMBL_BY_CHNGWTCD_AND_AMPHRCD(ddl_Province.SelectedValue, ddl_amphor.SelectedValue)
+    '    ddl_tambol.DataSource = dt
+    '    ddl_tambol.DataBind()
+    'End Sub
 
-    Private Sub ddl_Province_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_Province.SelectedIndexChanged
-        load_ddl_amp()
-        load_ddl_thambol()
-    End Sub
+    'Private Sub ddl_Province_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_Province.SelectedIndexChanged
+    '    load_ddl_amp()
+    '    load_ddl_thambol()
+    'End Sub
 
-    Private Sub ddl_amphor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_amphor.SelectedIndexChanged
-        load_ddl_thambol()
-    End Sub
+    'Private Sub ddl_amphor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_amphor.SelectedIndexChanged
+    '    load_ddl_thambol()
+    'End Sub
 
-    Protected Sub cb_addr_CheckedChanged(sender As Object, e As EventArgs) Handles cb_addr.CheckedChanged
+    'Protected Sub cb_addr_CheckedChanged(sender As Object, e As EventArgs) Handles cb_addr.CheckedChanged
 
-        If cb_addr.Checked = True Then
-            txt_c_thaaddr.Text = lbl_BSN_ADDR.Text
-            txt_c_floor.Text = lbl_BSN_FLOOR.Text
-            txt_c_room.Text = lbl_BSN_ROOM.Text
-            txt_c_thabuilding.Text = lbl_BSN_BUILDING.Text
-            txt_c_thamu.Text = lbl_BSN_MOO.Text
-            txt_c_thasoi.Text = lbl_BSN_SOI.Text
-            txt_c_tharoad.Text = lbl_BSN_ROAD.Text
-            load_ddl_chwt()
-            Try
-                ddl_Province.Items.FindByText(lbl_thachngwtnm.Text).Selected = True
-            Catch ex As Exception
-            End Try
-            'ddl_Province.SelectedItem.Text = lbl_thachngwtnm.Text
-            Try
-                load_ddl_amp()
-                ddl_amphor.Items.FindByText(lbl_BSN_AMPHR_NAME.Text).Selected = True
-            Catch ex As Exception
-                ddl_amphor.DropDownInsertDataFirstRow("-", "")
-                ddl_amphor.Items.FindByText("-").Selected = True
-            End Try
+    '    If cb_addr.Checked = True Then
+    '        txt_c_thaaddr.Text = lbl_BSN_ADDR.Text
+    '        txt_c_floor.Text = lbl_BSN_FLOOR.Text
+    '        txt_c_room.Text = lbl_BSN_ROOM.Text
+    '        txt_c_thabuilding.Text = lbl_BSN_BUILDING.Text
+    '        txt_c_thamu.Text = lbl_BSN_MOO.Text
+    '        txt_c_thasoi.Text = lbl_BSN_SOI.Text
+    '        txt_c_tharoad.Text = lbl_BSN_ROAD.Text
+    '        load_ddl_chwt()
+    '        Try
+    '            ddl_Province.Items.FindByText(lbl_thachngwtnm.Text).Selected = True
+    '        Catch ex As Exception
+    '        End Try
+    '        'ddl_Province.SelectedItem.Text = lbl_thachngwtnm.Text
+    '        Try
+    '            load_ddl_amp()
+    '            ddl_amphor.Items.FindByText(lbl_BSN_AMPHR_NAME.Text).Selected = True
+    '        Catch ex As Exception
+    '            ddl_amphor.DropDownInsertDataFirstRow("-", "")
+    '            ddl_amphor.Items.FindByText("-").Selected = True
+    '        End Try
 
-            'ddl_amphor.SelectedItem.Text = lbl_BSN_AMPHR_NAME.Text
-            Try
-                load_ddl_thambol()
-                ddl_tambol.Items.FindByText(lbl_BSN_THMBL_NAME.Text).Selected = True
-            Catch ex As Exception
-                ddl_tambol.DropDownInsertDataFirstRow("-", "")
-                ddl_tambol.Items.FindByText("-").Selected = True
+    '        'ddl_amphor.SelectedItem.Text = lbl_BSN_AMPHR_NAME.Text
+    '        Try
+    '            load_ddl_thambol()
+    '            ddl_tambol.Items.FindByText(lbl_BSN_THMBL_NAME.Text).Selected = True
+    '        Catch ex As Exception
+    '            ddl_tambol.DropDownInsertDataFirstRow("-", "")
+    '            ddl_tambol.Items.FindByText("-").Selected = True
 
-            End Try
-            txt_c_zipcode.Text = lbl_BSN_ZIPCODE.Text
-            txt_c_fax.Text = lbl_BSN_FAX.Text
-            txt_c_tel.Text = lbl_BSN_TEL.Text
-            txt_c_email.Text = Label33.Text
-        Else
-            txt_c_thaaddr.Text = Nothing
-            txt_c_thabuilding.Text = Nothing
-            txt_c_thamu.Text = Nothing
-            txt_c_thasoi.Text = Nothing
-            txt_c_tharoad.Text = Nothing
-            load_ddl_chwt()
-            load_ddl_amp()
-            load_ddl_thambol()
-            'ddl_tambol.SelectedItem.Text = "-"
-            'ddl_tambol.SelectedItem.Text = Nothing
-            txt_c_zipcode.Text = Nothing
-            txt_c_fax.Text = Nothing
-            txt_c_tel.Text = Nothing
-            txt_c_email.Text = Nothing
+    '        End Try
+    '        txt_c_zipcode.Text = lbl_BSN_ZIPCODE.Text
+    '        txt_c_fax.Text = lbl_BSN_FAX.Text
+    '        txt_c_tel.Text = lbl_BSN_TEL.Text
+    '        txt_c_email.Text = Label33.Text
+    '    Else
+    '        txt_c_thaaddr.Text = Nothing
+    '        txt_c_thabuilding.Text = Nothing
+    '        txt_c_thamu.Text = Nothing
+    '        txt_c_thasoi.Text = Nothing
+    '        txt_c_tharoad.Text = Nothing
+    '        load_ddl_chwt()
+    '        load_ddl_amp()
+    '        load_ddl_thambol()
+    '        'ddl_tambol.SelectedItem.Text = "-"
+    '        'ddl_tambol.SelectedItem.Text = Nothing
+    '        txt_c_zipcode.Text = Nothing
+    '        txt_c_fax.Text = Nothing
+    '        txt_c_tel.Text = Nothing
+    '        txt_c_email.Text = Nothing
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
     Protected Sub rdl_sanchaat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rdl_sanchaat.SelectedIndexChanged
         If rdl_sanchaat.SelectedValue = 2 Then
@@ -974,29 +1021,33 @@
                     Return False
                 End If
             End If
-        ElseIf txt_c_thaaddr.Text = "" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
-            Return False
+            'ElseIf txt_c_zipcode.Text = "" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกรหัสไปรษณีย์');</script> ")
+            '    Return False
 
-        ElseIf ddl_Province.SelectedValue = "0" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกจังหวัด');</script> ")
-            Return False
+            'ElseIf txt_c_thaaddr.Text = "" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเลขที่');</script> ")
+            '    Return False
 
-        ElseIf txt_c_tel.Text = "" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเบอร์มือถือ');</script> ")
-            Return False
+            'ElseIf ddl_Province.SelectedValue = "0" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกจังหวัด');</script> ")
+            '    Return False
 
-        ElseIf txt_c_email.Text = "" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุข้อมูล e-mail');</script> ")
-            Return False
+            'ElseIf txt_c_tel.Text = "" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกข้อมูลเบอร์มือถือ');</script> ")
+            '    Return False
 
-        ElseIf ddl_amphor.SelectedValue = "0" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกอำเภอ');</script> ")
-            Return False
+            '    'ElseIf txt_c_email.Text = "" Then
+            '    '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุข้อมูล e-mail');</script> ")
+            '    '    Return False
 
-        ElseIf ddl_tambol.SelectedValue = "0" Then
-            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกตำบล');</script> ")
-            Return False
+            'ElseIf ddl_amphor.SelectedValue = "0" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกอำเภอ');</script> ")
+            '    Return False
+
+            'ElseIf ddl_tambol.SelectedValue = "0" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกตำบล');</script> ")
+            '    Return False
         End If
         Return True
     End Function
@@ -1018,30 +1069,83 @@
             Label60.Style.Add("display", "initial")
         Else Label60.Style.Add("display", "none")
         End If
+        'If txt_c_zipcode.Text = "" Then
+        '    lbl_zipcheck.Style.Add("display", "initial")
+        'Else lbl_zipcheck.Style.Add("display", "none")
+        'End If
         If txt_da_opentime.Text = "" Then
             Label61.Style.Add("display", "initial")
         Else Label61.Style.Add("display", "none")
         End If
-        If txt_c_thaaddr.Text = "" Then
-            Label64.Style.Add("display", "initial")
-        Else Label64.Style.Add("display", "none")
-        End If
+        'If txt_c_thaaddr.Text = "" Then
+        '    Label64.Style.Add("display", "initial")
+        'Else Label64.Style.Add("display", "none")
+        'End If
 
-        If ddl_Province.SelectedValue = "0" Then
-            Label65.Style.Add("display", "initial")
-        Else Label65.Style.Add("display", "none")
+        'If ddl_Province.SelectedValue = "0" Then
+        '    Label65.Style.Add("display", "initial")
+        'Else Label65.Style.Add("display", "none")
 
-        End If
-        If txt_c_email.Text = "" Then
-            lbl_chk_email.Style.Add("display", "initial")
-        Else
-            lbl_chk_email.Style.Add("display", "none")
-        End If
-        If txt_c_tel.Text = "" Then
-            lbl_chk_tel.Style.Add("display", "initial")
-        Else
-            lbl_chk_tel.Style.Add("display", "none")
-        End If
+        'End If
+        'If txt_c_email.Text = "" Then
+        '    lbl_chk_email.Style.Add("display", "initial")
+        'Else
+        '    lbl_chk_email.Style.Add("display", "none")
+        'End If
+        'If txt_c_tel.Text = "" Then
+        '    lbl_chk_tel.Style.Add("display", "initial")
+        'Else
+        '    lbl_chk_tel.Style.Add("display", "none")
+        'End If
 
     End Sub
+
+    'Protected Sub btn_save_bsn_Click(sender As Object, e As EventArgs) Handles btn_save_bsn.Click
+    '    Dim dao As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+    '    If ddl_Province.Text = "0" Then
+    '        Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+    '    ElseIf ddl_amphor.SelectedValue = "0" Then
+    '        Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+    '    ElseIf ddl_tambol.Text = "" Then
+    '        Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+    '    Else
+    '        set_data(dao)
+    '        dao.fields.FK_IDA = Request.QueryString("ida")
+    '        dao.insert()
+
+    '        Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
+    '        rg_bsn.Rebind()
+    '    End If
+    'End Sub
+
+    'Shared DALCN_BSN As New DALCN_LOCATION_BSN
+    'Shared list_bsn As New List(Of DALCN_LOCATION_BSN)
+    'Public Function GET_DATA_LIST_DALCN() As Object
+    '    Dim dao As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+    '    dao.GetDataby_IDA(Convert.ToInt32(Request.QueryString("IDA")))
+    '    Return dao.Details
+    'End Function
+    'Private Sub rg_bsn_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rg_bsn.NeedDataSource
+    '    Dim bao As New BAO_MASTER
+    '    Dim dt As New DataTable
+    '    If Request.QueryString("ida") <> "" Then
+    '        dt = bao.SP_DALCN_PHR_BY_FK_IDA_2(Request.QueryString("ida"))
+    '    End If
+
+    '    If dt.Rows.Count > 0 Then
+    '        rg_bsn.DataSource = dt
+    '    End If
+    'End Sub
+    'Private Sub rg_bsn_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rg_bsn.ItemCommand
+    '    If TypeOf e.Item Is GridDataItem Then
+    '        Dim item As GridDataItem = e.Item
+    '        Dim _ida As String = item("IDA").Text
+    '        Dim dao As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+    '        If e.CommandName = "r_del" Then
+    '            dao.GetDataby_IDA(_ida)
+    '            dao.delete()
+    '            rg_bsn.Rebind()
+    '        End If
+    '    End If
+    'End Sub
 End Class

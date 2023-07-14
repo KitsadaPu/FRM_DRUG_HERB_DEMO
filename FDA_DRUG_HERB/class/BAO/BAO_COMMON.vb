@@ -385,6 +385,133 @@ Module BAO_COMMON
             _TB_JJ = value
         End Set
     End Property
+    Private _DALCN_PHR As CLASS_DALCN_PHR
+    Public Property LCN_PHR() As CLASS_DALCN_PHR
+        Get
+            Return _DALCN_PHR
+        End Get
+        Set(ByVal value As CLASS_DALCN_PHR)
+            _DALCN_PHR = value
+        End Set
+    End Property
+    Private _DALCN_TRANSFER As CLASS_DALCN_TRANSFER
+    Public Property LCN_TRANSFER() As CLASS_DALCN_TRANSFER
+        Get
+            Return _DALCN_TRANSFER
+        End Get
+        Set(ByVal value As CLASS_DALCN_TRANSFER)
+            _DALCN_TRANSFER = value
+        End Set
+    End Property
+    Private _DALCN_RENEW As CLASS_DALCN_RENEW
+    Public Property LCN_RENEW() As CLASS_DALCN_RENEW
+        Get
+            Return _DALCN_RENEW
+        End Get
+        Set(ByVal value As CLASS_DALCN_RENEW)
+            _DALCN_RENEW = value
+        End Set
+    End Property
+    Private _DALCN_PLAN As CLASS_DALCN_PLAN
+    Public Property LCN_PLAN() As CLASS_DALCN_PLAN
+        Get
+            Return _DALCN_PLAN
+        End Get
+        Set(ByVal value As CLASS_DALCN_PLAN)
+            _DALCN_PLAN = value
+        End Set
+    End Property
+    Private _DALCN_AUDIT As CLASS_DALCN_AUDIT
+    Public Property DALCN_AUDIT() As CLASS_DALCN_AUDIT
+        Get
+            Return _DALCN_AUDIT
+        End Get
+        Set(ByVal value As CLASS_DALCN_AUDIT)
+            _DALCN_AUDIT = value
+        End Set
+    End Property
+    Private _TB_JJ_EDIT As CLASS_TABEAN_JJ_EDIT
+    Public Property TB_JJ_EDIT() As CLASS_TABEAN_JJ_EDIT
+        Get
+            Return _TB_JJ_EDIT
+        End Get
+        Set(ByVal value As CLASS_TABEAN_JJ_EDIT)
+            _TB_JJ_EDIT = value
+        End Set
+    End Property
+    Private _TBN_RENEW As CLASS_DR_RENEW
+    Public Property TBN_RENEW() As CLASS_DR_RENEW
+        Get
+            Return _TBN_RENEW
+        End Get
+        Set(ByVal value As CLASS_DR_RENEW)
+            _TBN_RENEW = value
+        End Set
+    End Property
+    Private _TBN_INFORM As CLASS_DR_INFORM
+    Public Property TBN_INFORM() As CLASS_DR_INFORM
+        Get
+            Return _TBN_INFORM
+        End Get
+        Set(ByVal value As CLASS_DR_INFORM)
+            _TBN_INFORM = value
+        End Set
+    End Property
+    Private _TBN_INFORM_EDIT As CLASS_DR_INFORM_EDIT
+    Public Property TBN_INFORM_EDIT() As CLASS_DR_INFORM_EDIT
+        Get
+            Return _TBN_INFORM_EDIT
+        End Get
+        Set(ByVal value As CLASS_DR_INFORM_EDIT)
+            _TBN_INFORM_EDIT = value
+        End Set
+    End Property
+    Private _TBN_NOTIFY As CLASS_DR_NOTIFY
+    Public Property TBN_NOTIFY() As CLASS_DR_NOTIFY
+        Get
+            Return _TBN_NOTIFY
+        End Get
+        Set(ByVal value As CLASS_DR_NOTIFY)
+            _TBN_NOTIFY = value
+        End Set
+    End Property
+    Private _TBN_NEW_EDIT As CLASS_DR_EDIT
+    Public Property TBN_NEW_EDIT() As CLASS_DR_EDIT
+        Get
+            Return _TBN_NEW_EDIT
+        End Get
+        Set(ByVal value As CLASS_DR_EDIT)
+            _TBN_NEW_EDIT = value
+        End Set
+    End Property
+    Private _TBN_ANALYZE As CLASS_DR_ANALYZE
+    Public Property TBN_ANALYZE() As CLASS_DR_ANALYZE
+        Get
+            Return _TBN_ANALYZE
+        End Get
+        Set(ByVal value As CLASS_DR_ANALYZE)
+            _TBN_ANALYZE = value
+        End Set
+    End Property
+    Private _TBN_EXHIBITION As CLASS_DR_EXHIBITION
+    Public Property TBN_EXHIBITION() As CLASS_DR_EXHIBITION
+        Get
+            Return _TBN_EXHIBITION
+        End Get
+        Set(ByVal value As CLASS_DR_EXHIBITION)
+            _TBN_EXHIBITION = value
+        End Set
+    End Property
+    Private _TBN_DONATE As CLASS_DR_DONATE
+    Public Property TBN_DONATE() As CLASS_DR_DONATE
+        Get
+            Return _TBN_DONATE
+        End Get
+        Set(ByVal value As CLASS_DR_DONATE)
+            _TBN_DONATE = value
+        End Set
+    End Property
+
 
     Private _TB_AP As CLASS_APPOINTMENT
     Public Property TB_AP() As CLASS_APPOINTMENT
@@ -403,6 +530,26 @@ Module BAO_COMMON
         End Get
         Set(ByVal value As CLASS_DRRQT)
             _TBN_NEW = value
+        End Set
+    End Property
+
+    Private _TBN_SUB As CLASS_DR_SUB
+    Public Property TBN_SUB() As CLASS_DR_SUB
+        Get
+            Return _TBN_SUB
+        End Get
+        Set(ByVal value As CLASS_DR_SUB)
+            _TBN_SUB = value
+        End Set
+    End Property
+
+    Private _TB_EX As CLASS_TABEAN_EX
+    Public Property TABEAN_EX() As CLASS_TABEAN_EX
+        Get
+            Return _TB_EX
+        End Get
+        Set(ByVal value As CLASS_TABEAN_EX)
+            _TB_EX = value
         End Set
     End Property
 
@@ -567,15 +714,136 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = "20101" Then
                     Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
                     cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20102" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20103" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20104" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20191" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20192" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20193" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20194" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                    cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                ElseIf PROSESS_ID = "20201" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM
+                    cls_xml.GEN_XML_TABEAN_INFORM(PATH_XML, _TBN_INFORM)
+                ElseIf PROSESS_ID = "20202" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM
+                    cls_xml.GEN_XML_TABEAN_INFORM(PATH_XML, _TBN_INFORM)
+                ElseIf PROSESS_ID = "20203" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM
+                    cls_xml.GEN_XML_TABEAN_INFORM(PATH_XML, _TBN_INFORM)
+                ElseIf PROSESS_ID = "20204" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM
+                    cls_xml.GEN_XML_TABEAN_INFORM(PATH_XML, _TBN_INFORM)
                 ElseIf PROSESS_ID = "10201" Then
                     Dim cls_xml As New CLASS_GEN_XML.LCN_EDIT_SMP3
                     cls_xml.GEN_XML_TABEAN_SMP3(PATH_XML, _TB_SMP3)
                 ElseIf PROSESS_ID = "20810" Then
-                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TB
-                    cls_xml.GEN_DRRGT_SUBSTITUTE(PATH_XML, _TB_DRRGT_SUBSTITUTE)
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                    cls_xml.GEN_XML_TABEAN_EX(PATH_XML, _TB_EX)
+                    'ElseIf PROSESS_ID = "20810" Then
+                    '    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TB
+                    '    cls_xml.GEN_DRRGT_SUBSTITUTE(PATH_XML, _TB_DRRGT_SUBSTITUTE)
                 ElseIf PROSESS_ID = "10401" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
+                ElseIf PROSESS_ID = "200001" Or PROSESS_ID = "200008" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                    cls_xml.GEN_XML_TABEAN_EX(PATH_XML, TABEAN_EX)
+                ElseIf PROSESS_ID = "200008" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                    cls_xml.GEN_XML_TABEAN_EX(PATH_XML, TABEAN_EX)
+                ElseIf PROSESS_ID = "10104" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                    cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                ElseIf PROSESS_ID = "10501" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_RENEW
+                    cls_xml.GEN_XML_DALCN_RENEW(PATH_XML, LCN_RENEW)
+                ElseIf PROSESS_ID = "10601" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_TRANSFER
+                    cls_xml.GEN_XML_DALCN_TRANSFER(PATH_XML, LCN_TRANSFER)
+                ElseIf PROSESS_ID = "10301" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_TRANSFER
+                    cls_xml.GEN_XML_DALCN_TRANSFER(PATH_XML, LCN_TRANSFER)
+                ElseIf PROSESS_ID = "10801" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                    cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                    'Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
+                    'cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
+                ElseIf PROSESS_ID = "10901" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                ElseIf PROSESS_ID = "10902" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                ElseIf PROSESS_ID = "10110" Then
+                    'Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                    'cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
+                    cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
+                ElseIf PROSESS_ID = "20410" Or PROSESS_ID = "30001" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                    cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                ElseIf PROSESS_ID = "20411" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                    cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                ElseIf PROSESS_ID = "20412" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                    cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                ElseIf PROSESS_ID = "20420" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM_EDIT
+                    cls_xml.GEN_XML_TABEAN_INFORM_EDIT(PATH_XML, TBN_INFORM_EDIT)
+                ElseIf PROSESS_ID = "20430" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ_EDIT
+                    cls_xml.GEN_XML_TABEAN_JJ_EDIT(PATH_XML, TB_JJ_EDIT)
+                ElseIf PROSESS_ID = "20710" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                    cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+                ElseIf PROSESS_ID = "20720" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                    cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+                ElseIf PROSESS_ID = "20730" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                    cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+                ElseIf PROSESS_ID = "20610" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                    cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
+                ElseIf PROSESS_ID = "20620" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                    cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
+                ElseIf PROSESS_ID = "20630" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                    cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
+                ElseIf PROSESS_ID = "20910" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_ANALYZE
+                    cls_xml.GEN_XML_TABEAN_ANALYZE(PATH_XML, TBN_ANALYZE)
+                ElseIf PROSESS_ID = "21410" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                    cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+                ElseIf PROSESS_ID = "21420" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                    cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+                ElseIf PROSESS_ID = "21430" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                    cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+                ElseIf PROSESS_ID = "21010" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_EXHIBITION
+                    cls_xml.GEN_XML_TABEAN_EXHIBITION(PATH_XML, TBN_EXHIBITION)
+                ElseIf PROSESS_ID = "21110" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_DONATE
+                    cls_xml.GEN_XML_TABEAN_DONATE(PATH_XML, TBN_DONATE)
                 End If
 
 
@@ -607,16 +875,36 @@ Module BAO_COMMON
                     'ElseIf PROSESS_ID = "AP" Then
                     '    Dim cls_xml As New CLASS_GEN_XML.APPOINTMAENT
                     '    cls_xml.GEN_XML_TABEAN_AP(PATH_XML, _TB_AP)
+                ElseIf PROSESS_ID = "20430" Then
+                    Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ_EDIT
+                    cls_xml.GEN_XML_TABEAN_JJ_EDIT(PATH_XML, TB_JJ_EDIT)
 
                 ElseIf PROSESS_ID = "10401" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_SUB
                     cls_xml.GEN_XML_DALCN_SUBTITUTE(PATH_XML, p_dalcn_subtitute)
+                ElseIf PROSESS_ID = "10104" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                    cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                ElseIf PROSESS_ID = "10301" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_TRANSFER
+                    cls_xml.GEN_XML_DALCN_TRANSFER(PATH_XML, LCN_TRANSFER)
+                ElseIf PROSESS_ID = "10801" Then
+                    'Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
+                    'cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                    cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                ElseIf PROSESS_ID = "10901" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                ElseIf PROSESS_ID = "10902" Then
+                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
                     'ElseIf SUBSTITUTE <> "" And PROSESS_ID = "1400001" Then ' ทะเบียนยา
                     '    Dim cls_xml As New CLASS_GEN_XML.Center
                     '    cls_xml.GEN_XML_DR(PATH_XML, p_dr)
                     '    '     ElseIf PROSESS_ID = 14 Or PROSESS_ID = 15 Or PROSESS_ID = 16 Or PROSESS_ID = 17 Or PROSESS_ID = 18 Then ' เภสัชเคมีภัณฑ์
                     '    '         Dim cls_xml As New CLASS_GEN_XML.Center
-                    '    '         cls_xml.GEN_XML_DH(PATH_XML, p_dh)
+                    '    '         cls_xml.GEN_XML_DH(PATH_XML, p_dh)x
                     '    '     ElseIf PROSESS_ID = 31 Or PROSESS_ID = 32 Or PROSESS_ID = 33 _
                     '    'Or PROSESS_ID = 34 Or PROSESS_ID = 35 Or PROSESS_ID = 36 Then 'cer
                     '    '         Dim cls_xml As New CLASS_GEN_XML.Center
@@ -771,6 +1059,59 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
+            ElseIf PROSESS_ID = "10501" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_RENEW
+                cls_xml.GEN_XML_DALCN_RENEW(PATH_XML, LCN_RENEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "10701" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_TRANSFER
+                cls_xml.GEN_XML_DALCN_TRANSFER(PATH_XML, LCN_TRANSFER)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "10801" Then
+                'Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
+                'cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
+                cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "10901" Or PROSESS_ID = "10902" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
+
+            ElseIf PROSESS_ID = "10110" Then
+                Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
+                cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+                    End Using
+                End Using
 
             ElseIf PROSESS_ID = "10201" Then
                 Dim cls_xml As New CLASS_GEN_XML.LCN_EDIT_SMP3
@@ -786,6 +1127,45 @@ Module BAO_COMMON
                     End Using
                 End Using
 
+            ElseIf PROSESS_ID = "200001" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                cls_xml.GEN_XML_TABEAN_EX(PATH_XML, TABEAN_EX)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "200008" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                cls_xml.GEN_XML_TABEAN_EX(PATH_XML, TABEAN_EX)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20201" Or PROSESS_ID = "20202" Or PROSESS_ID = "20203" Or PROSESS_ID = "20204" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM
+                cls_xml.GEN_XML_TABEAN_INFORM(PATH_XML, _TBN_INFORM)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
             ElseIf PROSESS_ID = "20301" Then
                 Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ
                 cls_xml.GEN_XML_TABEAN_JJ(PATH_XML, _TB_JJ)
@@ -841,10 +1221,213 @@ Module BAO_COMMON
 
                     End Using
                 End Using
+            ElseIf PROSESS_ID = "20410" Or PROSESS_ID = "30001" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
 
-            ElseIf PROSESS_ID = "20810" Then
-                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TB
-                cls_xml.GEN_DRRGT_SUBSTITUTE(PATH_XML, _TB_DRRGT_SUBSTITUTE)
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20411" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20412" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NEW_EDIT
+                cls_xml.GEN_XML_TABEAN_EDIT(PATH_XML, TBN_NEW_EDIT)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20420" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_INFORM_EDIT
+                cls_xml.GEN_XML_TABEAN_INFORM_EDIT(PATH_XML, TBN_INFORM_EDIT)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20430" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_JJ_EDIT
+                cls_xml.GEN_XML_TABEAN_JJ_EDIT(PATH_XML, TB_JJ_EDIT)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20710" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20720" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20730" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_RENEW
+                cls_xml.GEN_XML_TABEAN_RENEW(PATH_XML, TBN_RENEW)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20910" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_ANALYZE
+                cls_xml.GEN_XML_TABEAN_ANALYZE(PATH_XML, TBN_ANALYZE)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "21010" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_EXHIBITION
+                cls_xml.GEN_XML_TABEAN_EXHIBITION(PATH_XML, TBN_EXHIBITION)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "21110" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_DONATE
+                cls_xml.GEN_XML_TABEAN_DONATE(PATH_XML, TBN_DONATE)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "21410" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "21420" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "21430" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_NOTIFY_EDIT
+                cls_xml.GEN_XML_TABEAN_NOTIFY(PATH_XML, TBN_NOTIFY)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20610" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20620" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
+
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20630" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_SUBSTITUTE
+                cls_xml.GEN_XML_TABEAN_SUB(PATH_XML, TBN_SUB)
 
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
                     Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
@@ -867,7 +1450,102 @@ Module BAO_COMMON
 
                     End Using
                 End Using
+            ElseIf PROSESS_ID = "20102" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
 
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20103" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20104" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20191" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20192" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20193" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20194" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_TBN
+                cls_xml.GEN_XML_TABEAN_TBN(PATH_XML, _TBN_NEW)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
+            ElseIf PROSESS_ID = "20810" Then
+                Dim cls_xml As New CLASS_GEN_XML.TABEAN_HERB_EX
+                cls_xml.GEN_XML_TABEAN_EX(PATH_XML, _TB_EX)
+                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+
+                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                        End Using
+
+                    End Using
+                End Using
             ElseIf PROSESS_ID = "1400001" And STATUS_ID <> "1" Then ' ทะเบียนยา
                 Dim cls_xml As New CLASS_GEN_XML.Center
                 cls_xml.GEN_XML_DR(PATH_XML, p_dr)
@@ -1010,6 +1688,11 @@ Module BAO_COMMON
         Return filename
     End Function
 
+    Public Function NAME_PDF_PHR(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+
+        Return filename
+    End Function
     Public Function NAME_PDF_TB(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
         Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
 
@@ -1047,6 +1730,21 @@ Module BAO_COMMON
     End Function
 
     Public Function NAME_XML_JJ(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+    Public Function NAME_XML_PHR(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
+
+        Return filename
+    End Function
+
+    Public Function NAME_PDF_TABEAN_EX(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
+        Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".pdf"
+        Return filename
+    End Function
+    Public Function NAME_XML_TABEAN_EX(ByVal SYS As String, ByVal PROSESS_ID As String, ByVal YEAR As String, ByVal ID_TRANSECTION_UPLOAD As String, ByVal IDA As Integer, ByVal STATUS_ID As Integer) As String
         Dim filename As String = SYS & "-" & PROSESS_ID & "-" & con_year(YEAR) & "-" & STATUS_ID & "-" & ID_TRANSECTION_UPLOAD.Trim() & "-" & IDA & ".xml"
 
         Return filename

@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_HERB_TABEAN_JJ.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_HERB_TABEAN_JJ.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_JJ" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+      <link href="../css/css_rg_herb.css" rel="stylesheet" />
     <script src="../Scripts/jquery.searchabledropdown-1.0.7.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -38,6 +39,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row" style="text-align: center">
         <div class="col-lg-1"></div>
         <div class="col-lg-2" style="width: 20%; text-align: right">เลือกประเภท</div>
@@ -48,6 +50,7 @@
                 <asp:ListItem Value="20302">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาตามองค์ความรู้การแพทย์ทางเลือก</asp:ListItem>
                 <asp:ListItem Value="20303">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาพัฒนาจากสมุนไพร</asp:ListItem>
                 <asp:ListItem Value="20304">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ</asp:ListItem>
+                <asp:ListItem Value="20306">การจดแจ้งผลิตภัณฑ์สมุนไพร ประเภทยาพัฒนาจากสมุนไพร (มีสารช่วย)</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
@@ -59,7 +62,12 @@
         </div>
         <div class="col-lg-6" style="width: 40%; text-align: center">
             <asp:DropDownList ID="DD_HERB_NAME_PRODUCT" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME_DD" Visible="false"></asp:DropDownList>
-            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME" Visible="false"></asp:DropDownList>
+            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" DataValueField="ID" DataTextField="PRODUCT_NAME" Visible="false"></asp:DropDownList>
+          <%--        <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" AutoPostBack="true"  Visible="false">
+                <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
+                <asp:ListItem Value="1">ชื่อยา1</asp:ListItem>
+                <asp:ListItem Value="2">ชื่อยา2</asp:ListItem>
+            </asp:DropDownList>--%>
         </div>
         <div class="col-lg-2" style="width: 20%; text-align: left">
             <asp:Button ID="btn_jj_herb" runat="server" Text="เพิ่มคำขอจดแจ้ง" Visible="false" />
@@ -69,7 +77,7 @@
     <hr />
     <div class="row" id="T1" runat="server">
 
-        <p class="h3">ข้อมุล</p>
+        <p class="h3">ข้อมูล</p>
         <hr />
         <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="15">
             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
@@ -108,6 +116,9 @@
                     <telerik:GridBoundColumn DataField="STATUS_ID" DataType="System.Int32" FilterControlAltText="Filter STATUS_ID column"
                         HeaderText="STATUS_ID" ReadOnly="True" SortExpression="STATUS_ID" UniqueName="STATUS_ID" Display="false">
                     </telerik:GridBoundColumn>
+                     <%--    <telerik:GridBoundColumn DataField="CREATE_BY" FilterControlAltText="Filter CREATE_BY column"
+                        HeaderText="ชื่อผู้ยื่น" ReadOnly="True" SortExpression="CREATE_BY" UniqueName="CREATE_BY">
+                    </telerik:GridBoundColumn>--%>
                     <telerik:GridBoundColumn DataField="LCNNO" FilterControlAltText="Filter LCNNO column"
                         HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO" UniqueName="LCNNO">
                     </telerik:GridBoundColumn>
@@ -115,10 +126,16 @@
                         HeaderText="เลขรับ" ReadOnly="True" SortExpression="RCVNO_FULL" UniqueName="RCVNO_FULL">
                     </telerik:GridBoundColumn>
                     <telerik:GridBoundColumn DataField="RGTNO_FULL" FilterControlAltText="Filter RGTNO_FULL column"
-                        HeaderText="เลขทะเบียน" ReadOnly="True" SortExpression="RGTNO_FULL" UniqueName="RGTNO_FULL">
+                        HeaderText="เลขทะเบียน" ReadOnly="True" SortExpression="RGTNO_FULL" UniqueName="RGTNO_FULL" Display="false">
+                    </telerik:GridBoundColumn>
+                     <telerik:GridBoundColumn DataField="DATE_CONFIRM" DataType="System.DateTime" FilterControlAltText="Filter DATE_CONFIRM column"
+                        HeaderText="วันที่ยื่นคำขอ" SortExpression="DATE_CONFIRM" UniqueName="DATE_CONFIRM" DataFormatString="{0:dd/MM/yyyy}">
+                    </telerik:GridBoundColumn>
+                     <telerik:GridBoundColumn DataField="EXPECTED_DATE" DataType="System.DateTime" FilterControlAltText="Filter EXPECTED_DATE column"
+                        HeaderText="วันที่คาดว่าจะแล้วเสร็จ" SortExpression="EXPECTED_DATE" UniqueName="EXPECTED_DATE" DataFormatString="{0:dd/MM/yyyy}">
                     </telerik:GridBoundColumn>
                     <telerik:GridBoundColumn DataField="LCN_NAME" FilterControlAltText="Filter LCN_NAME column"
-                        HeaderText="ชื่อสถานที่" ReadOnly="True" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
+                        HeaderText="ชื่อผู้รับ" ReadOnly="True" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
                     </telerik:GridBoundColumn>
                     <telerik:GridBoundColumn DataField="NAME_THAI" FilterControlAltText="Filter fulladdr column"
                         HeaderText="ชื่อไทย" SortExpression="NAME_THAI" UniqueName="NAME_THAI">
@@ -131,7 +148,7 @@
                             <asp:HyperLink ID="HL_SELECT" runat="server">ดูรายละเอียด</asp:HyperLink>
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>--%>
-                    <telerik:GridButtonColumn ButtonType="LinkButton" Text="ดูรายละเอียด"
+                    <telerik:GridButtonColumn ButtonType="LinkButton" Text="ตรวจสอบ/แก้ไขรายละเอียด และกดยื่นคำขอ"
                         CommandName="HL_SELECT" UniqueName="HL_SELECT">
                     </telerik:GridButtonColumn>
                     <telerik:GridButtonColumn ButtonType="LinkButton" Text="จจ.1"
@@ -170,10 +187,28 @@
 
             <FilterMenu EnableImageSprites="False"></FilterMenu>
         </telerik:RadGrid>
-
+         <div class="h5" style="padding-left: 87%;">
+            <asp:HyperLink ID="hl_pay" runat="server" Target="_blank"> ชำระเงินคลิกที่นี้</asp:HyperLink>
+        </div>
     </div>
 
-    <div class=" modal fade" id="myModal">
+       <div class="modal fade " id="myModal">
+        <div class="panel panel-info" style="width: 100%">
+            <div class="panel-heading">
+                <div class="modal-title text-center h1 ">
+                    รายละเอียด คำขอจดแจ้ง
+                 <%--   <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>--%>
+                </div>
+                <div class="panel-body panel-info" style="width: 100%">
+
+                    <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=" modal fade" id="myModal2">
         <div class="panel panel-info" style="width: 100%;">
             <div class="panel-heading  text-center">
                 <h1>
@@ -181,7 +216,7 @@
             </div>
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
             <div class="panel-body">
-                <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
+                <iframe id="f2" style="width: 100%; height: 800px;"></iframe>
             </div>
             <div class="panel-footer"></div>
         </div>

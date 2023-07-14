@@ -117,7 +117,7 @@ Public Class FRM_RQT_REGIST_INFORMATION
                 'RadTabStrip1.SelectedTab.Value = Request.QueryString("tab")
             End If
         End If
-
+        'UC_general.bind_label()
 
 
     End Sub
@@ -684,7 +684,7 @@ Public Class FRM_RQT_REGIST_INFORMATION
 
             KEEP_LOGS_TABEAN_EDIT(Request.QueryString("IDA"), "แก้ไขรายละเอียดทะเบียน", _CLS.CITIZEN_ID)
         End If
-
+        ' UC_general.bind_label()
         alert("แก้ไขเรียบร้อยแล้ว")
     End Sub
     Public Sub alert(ByVal text As String)

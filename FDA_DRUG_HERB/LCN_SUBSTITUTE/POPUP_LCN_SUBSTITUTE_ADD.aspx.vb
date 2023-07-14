@@ -52,6 +52,7 @@ Public Class POPUP_LCN_SUBSTITUTE_ADD
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
         Dim dao_sub As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+        dao_sub.Getdata_by_IDA(_IDA)
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(_lcn_ida)
 
@@ -64,31 +65,25 @@ Public Class POPUP_LCN_SUBSTITUTE_ADD
             Try
                 If UC_LCN_SUB.CHK_ATTACH_PDF() = 0 Then
                     If UC_LCN_SUB.CHK_upload_file() = 1 Then
-                        UC_LCN_SUB.SET_ATTACH(dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year))
+
+                        If Request.QueryString("staff") = 1 Then
+                            Try
+                                dao_sub.fields.Create_Date = Date.Now
+                                dao_sub.fields.Create_Name = _CLS.THANM
+                                dao_sub.fields.Create_Staff_ID = _CLS.CITIZEN_ID
+                            Catch ex As Exception
+                            End Try
+                        End If
                         dao_sub.insert()
-
-                        Dim bao As New BAO.AppSettings
-                        bao.RunAppSettings()
-
-                        Dim TR_ID As String = ""
-                        Dim bao_tran As New BAO_TRANSECTION
-                        bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
-                        bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
-
+                        UC_LCN_SUB.SET_ATTACH(dao_sub.fields.IDA, dao_sub.fields.TR_ID, dao_sub.fields.PROCESS_ID, con_year(Date.Now.Year), dao_sub.fields.PURPOSE_ID)
                         'alert("รหัสการดำเนินการ คือ DA-" & dao_sub.fields.PROCESS_ID & "-" & con_year(Date.Now.Date().Year()) & "-" + dao_sub.fields.TR_ID)
-
                         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
                     Else
                         alert("กรุณาแนบไฟล์ PDF")
                     End If
-
                 Else
                     alert("กรุณาแนบไฟล์ PDF")
                 End If
-
-
-
-
                 'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
 
                 'Response.Redirect("FRM_LCN_SUBTITUTE_UPLOAD.aspx?IDA=" & dao_sub.fields.IDA & "&TR_ID=" & dao_sub.fields.TR_ID & "&process=" & dao_sub.fields.PROCESS_ID & "&LCN_IDA=" & dao_sub.fields.FK_IDA)

@@ -125,5 +125,41 @@
             _date_rgt_exdate_year = value
         End Set
     End Property
+    Private _BSN_THAINAME As String
+    Public Property BSN_THAINAME() As String
+        Get
+            Return _BSN_THAINAME
+        End Get
+        Set(ByVal value As String)
+            _BSN_THAINAME = value
+        End Set
+    End Property
+    Private _BSN_THAIFULLNAME As String
+    Public Property BSN_THAIFULLNAME() As String
+        Get
+            Return _BSN_THAIFULLNAME
+        End Get
+        Set(ByVal value As String)
+            _BSN_THAIFULLNAME = value
+        End Set
+    End Property
+    Private _NATIONALITY_PERSON As String
+    Public Property NATIONALITY_PERSON() As String
+        Get
+            Return _NATIONALITY_PERSON
+        End Get
+        Set(ByVal value As String)
+            _NATIONALITY_PERSON = value
+        End Set
+    End Property
+    Private _THANM_THAIFULLNAME As String
+    Public Property THANM_THAIFULLNAME() As String
+        Get
+            Return _THANM_THAIFULLNAME
+        End Get
+        Set(ByVal value As String)
+            _THANM_THAIFULLNAME = value
+        End Set
+    End Property
 
 End Class

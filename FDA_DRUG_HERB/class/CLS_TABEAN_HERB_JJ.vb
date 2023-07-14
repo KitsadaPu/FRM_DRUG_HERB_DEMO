@@ -145,6 +145,26 @@
         End Set
     End Property
 
+    Private _QR_JJ As String
+    Public Property QR_JJ() As String
+        Get
+            Return _QR_JJ
+        End Get
+        Set(ByVal value As String)
+            _QR_JJ = value
+        End Set
+    End Property
+
+    Private _SIGN_APP As String
+    Public Property SIGN_APP() As String
+        Get
+            Return _SIGN_APP
+        End Get
+        Set(ByVal value As String)
+            _SIGN_APP = value
+        End Set
+    End Property
+
     Private _date_req_year As String
     Public Property date_req_year() As String
         Get
@@ -224,5 +244,31 @@
             _NAME_THAI_NAME_PLACE = value
         End Set
     End Property
-
+    Private _BSN_THAIFULLNAME As String
+    Public Property BSN_THAIFULLNAME() As String
+        Get
+            Return _BSN_THAIFULLNAME
+        End Get
+        Set(ByVal value As String)
+            _BSN_THAIFULLNAME = value
+        End Set
+    End Property
+    Private _BSN_THAINAME As String
+    Public Property BSN_THAINAME() As String
+        Get
+            Return _BSN_THAINAME
+        End Get
+        Set(ByVal value As String)
+            _BSN_THAINAME = value
+        End Set
+    End Property
+    Private _THANM_THAIFULLNAME As String
+    Public Property THANM_THAIFULLNAME() As String
+        Get
+            Return _THANM_THAIFULLNAME
+        End Get
+        Set(ByVal value As String)
+            _THANM_THAIFULLNAME = value
+        End Set
+    End Property
 End Class

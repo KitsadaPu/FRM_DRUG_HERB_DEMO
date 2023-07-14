@@ -4,6 +4,7 @@
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register Src="../UC/UC_ATTACH.ascx" TagName="UC_ATTACH" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../css/css_rg_herb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -60,10 +61,22 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <label>รูปแบบเอกสาร ทบ2.:</label>
+                </div>
+                <div class="col-lg-2">
+                    <asp:DropDownList ID="DDL_TB2_SELECT" runat="server" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" AutoPostBack="true">
+                        <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
+                        <asp:ListItem Value="1">แบบสั้น</asp:ListItem>
+                        <asp:ListItem Value="2">แบบยาว</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>อัพโหลดเอกสาร จจ.2 ที่อนุมัติแล้ว</h3>
+                    <h3>อัพโหลดเอกสาร ทบ.2 ที่อนุมัติแล้ว</h3>
                 </div>
             </div>
             <div class="row" runat="server" id="uc_upload1" visible="true">
@@ -184,6 +197,69 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
+            <hr />
+             <div class="row">
+                <div class="col-lg-12" style="text-align: center">
+                    <h3>เอกสารแนบเจ้าหน้าที่สั่งแก้ไข</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <telerik:RadGrid ID="RadGrid6" runat="server">
+                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                            <CommandItemSettings ExportToPdfText="Export to PDF" />
+                            <RowIndicatorColumn FilterControlAltText="Filter RowIndicator column" Visible="True">
+                                <HeaderStyle Width="20px" />
+                            </RowIndicatorColumn>
+                            <ExpandCollapseColumn FilterControlAltText="Filter ExpandColumn column" Visible="True">
+                                <HeaderStyle Width="20px" />
+                            </ExpandCollapseColumn>
+                            <Columns>
+                                <telerik:GridBoundColumn AllowFiltering="true" DataField="IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter IDA column" HeaderText="IDA" SortExpression="IDA" UniqueName="IDA">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn AllowFiltering="true" DataField="FK_IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column" HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridTemplateColumn>
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="PV_ST" runat="server">ดูเอกสาร</asp:HyperLink>
+                                    </ItemTemplate>
+                                </telerik:GridTemplateColumn>
+                            </Columns>
+                            <EditFormSettings>
+                                <EditColumn FilterControlAltText="Filter EditCommandColumn column">
+                                </EditColumn>
+                            </EditFormSettings>
+                            <PagerStyle PageSizeControlType="RadComboBox" />
+                        </MasterTableView>
+                        <PagerStyle PageSizeControlType="RadComboBox" />
+                        <FilterMenu EnableImageSprites="False">
+                        </FilterMenu>
+                    </telerik:RadGrid>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row" runat="server">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">รายละเอียดการแก้ไข</div>
+                <div class="col-lg-6">
+                    <asp:TextBox ID="txt_edit_staff" TextMode="MultiLine" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+                 <div class="row" runat="server">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">
+                    <asp:Label ID="Label4" runat="server" Text="เจ้าหน้าที่ส่งเรื่องแก้ไข:" Font-Size="small"></asp:Label>
+                </div>
+                <div class="col-lg-6">
+                    <asp:TextBox ID="TXT_STAFF_NAME_EDIT" text="-" TextMode="SingleLine" runat="server" Style="height: 20%; width: 100%" ReadOnly="true" BorderStyle="None"></asp:TextBox>
+                </div>
+             </div>
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
@@ -344,7 +420,7 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-        </div>
+    </div>
     </div>
 
 </asp:Content>

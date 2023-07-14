@@ -14,31 +14,31 @@ Option Explicit On
 Partial Public Class FRM_HERB_TABEAN_NEW
 
     '''<summary>
-    '''btn_tabean control.
+    '''ScriptManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_tabean As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''btn_detail control.
+    '''div_news control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_detail As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents div_news As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''btn_jj control.
+    '''UC_NEWS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_jj As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents UC_NEWS As Global.FDA_DRUG_HERB.UC_NEWS
 
     '''<summary>
     '''hdf_select control.

@@ -126,7 +126,7 @@ Public Class POPUP_NYM_CONFIRM
         dao.fields.STATUS_ID = 7
         dao.update()
 
-        alert("ยกเลิกข้อมุลเรียบร้อยแล้ว")
+        alert("ยกเลิกข้อมูลเรียบร้อยแล้ว")
         Response.Write("<script type langue =javascript>")
         Response.Write("window.location.href = '../DRUG_IMPORT/DRUG_NORYORMOR.aspx?process=" & _ProcessID & "';")
         Response.Write("</script type >")

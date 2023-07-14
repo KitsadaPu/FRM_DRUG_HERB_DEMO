@@ -32,6 +32,15 @@ Partial Public Class UC_LCN_EDIT
     Protected WithEvents txt_sub_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_bsn_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_bsn_name As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txt_sub_phr_name control.
     '''</summary>
     '''<remarks>
@@ -221,6 +230,33 @@ Partial Public Class UC_LCN_EDIT
     Protected WithEvents edit_dd1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''txt_PHR_CTZNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_PHR_CTZNO As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''ddl_prefix control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_prefix As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''text_edit_ddl1_PHR_TEXT_JOB control.
     '''</summary>
     '''<remarks>
@@ -273,6 +309,42 @@ Partial Public Class UC_LCN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents text_edit_ddl1_SIMINAR_DATE As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''text_edit_ddl1_TIME_WORK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents text_edit_ddl1_TIME_WORK As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''rdl_mastra control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_mastra As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''btn_save control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''rgphr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rgphr As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''edit_dd2 control.

@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="UC_INFMT.ascx.vb" Inherits="FDA_DRUG_HERB.UC_INFMT" %>
 
-  <table style="width:100%;">
+  <style type="text/css">
+      .auto-style1 {
+          width: 100%;
+      }
+  </style>
+
+  <table class="auto-style1">
         <tr>
             <td style="width:20%;">
 

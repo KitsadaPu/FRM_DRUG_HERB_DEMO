@@ -108,7 +108,7 @@
    <tr>
         <td  bgcolor="Lavender" bgcolor="Wheat" align="right" >ชนิดยา :</td>
          <td style="padding:0px 0px 0px 50px;">
-            <asp:Label ID="lbl_drug_type" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lbl_drug_type" runat="server" Text="" ></asp:Label>
 
         </td>
         <td style="padding:0px 0px 0px 50px;">

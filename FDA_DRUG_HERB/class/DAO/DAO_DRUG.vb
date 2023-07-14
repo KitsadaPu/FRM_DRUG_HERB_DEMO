@@ -1164,7 +1164,9 @@ Namespace DAO_DRUG
             datas = (From p In db.drrqts Where p.RGTNO_NEW <> "" And p.RGTNO_NEW.Contains(rgttpcd) Select p.RGTNO_NEW).ToList
 
         End Sub
-
+        Public Sub GET_RGTNO_NEW_BYTPCD2(ByVal rgttpcd As String)
+            datas = (From p In db.drrqts Where (p.HerbFromNarcotics_ID Is Nothing Or p.HerbFromNarcotics_ID = 0) And p.RGTNO_NEW <> "" And p.RGTNO_NEW.Contains(rgttpcd) Select p.RGTNO_NEW).ToList
+        End Sub
     End Class
     Public Class ClsDBdrpcksize
         Inherits MAINCONTEXT
@@ -1237,6 +1239,18 @@ Namespace DAO_DRUG
         Public Sub GetDataby_FK_IDA(ByVal IDA As Integer)
 
             datas = (From p In db.drsamps Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_LCN_IDA(ByVal LCN_IDA As Integer)
+
+            datas = (From p In db.drsamps Where p.LCN_IDA = LCN_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub Getdataby_IDA_PROCESS(ByVal LCN_IDA As Integer, ByVal PROCESS_ID As Integer)
+
+            datas = (From p In db.drsamps Where p.LCN_IDA = LCN_IDA And p.process_id = PROCESS_ID Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1767,6 +1781,12 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_FK_IDA_AND_TR_ID_AND_PROCESS(ByVal FK_IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_FK_IDA(ByVal FK_IDA As Integer)
 
             datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA Select p)
@@ -1788,19 +1808,19 @@ Namespace DAO_DRUG
     Public Class TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
         Inherits MAINCONTEXT
 
-        Public fields As New MAS_DUCUMENT_NAME_UPLOAD_DALCN
+        Public fields As New MAS_DOCUMENT_NAME_UPLOAD_DALCN
 
-        Private _Details As New List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN)
-        Public Property Details() As List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN)
+        Private _Details As New List(Of MAS_DOCUMENT_NAME_UPLOAD_DALCN)
+        Public Property Details() As List(Of MAS_DOCUMENT_NAME_UPLOAD_DALCN)
             Get
                 Return _Details
             End Get
-            Set(ByVal value As List(Of MAS_DUCUMENT_NAME_UPLOAD_DALCN))
+            Set(ByVal value As List(Of MAS_DOCUMENT_NAME_UPLOAD_DALCN))
                 _Details = value
             End Set
         End Property
         Public Sub insert()
-            db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs.InsertOnSubmit(fields)
+            db.MAS_DOCUMENT_NAME_UPLOAD_DALCNs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
         Public Sub update()
@@ -1808,25 +1828,25 @@ Namespace DAO_DRUG
         End Sub
 
         Public Sub delete()
-            db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs.DeleteOnSubmit(fields)
+            db.MAS_DOCUMENT_NAME_UPLOAD_DALCNs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetDataAll()
 
-            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Select p)
+            datas = (From p In db.MAS_DOCUMENT_NAME_UPLOAD_DALCNs Select p)
             For Each Me.fields In datas
             Next
         End Sub
         Public Sub GetDataby_IDA(ByVal IDA As Integer)
 
-            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Where p.IDA = IDA Select p)
+            datas = (From p In db.MAS_DOCUMENT_NAME_UPLOAD_DALCNs Where p.IDA = IDA Select p)
             For Each Me.fields In datas
             Next
         End Sub
         Public Sub GetDataby_ID(ByVal ID As Integer)
 
-            datas = (From p In db.MAS_DUCUMENT_NAME_UPLOAD_DALCNs Where p.DUCUMENT_ID = ID Select p)
+            datas = (From p In db.MAS_DOCUMENT_NAME_UPLOAD_DALCNs Where p.DUCUMENT_ID = ID Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1935,6 +1955,12 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_HEAD_ID_AND_PROCESS(ByVal ID As Integer, ByVal process_id As Integer)
+
+            datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.PROCESS_ID = process_id Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_HEAD_ID_AND_TITLE_ID(ByVal ID As Integer, ByVal title_id As Integer)
 
             datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.TITEL_ID = title_id Select p)
@@ -1956,6 +1982,12 @@ Namespace DAO_DRUG
         Public Sub GetDataby_HEAD_ID_AND_TITLE_ID_AND_PROCESS(ByVal ID As Integer, ByVal title_id As Integer, ByVal title_id2 As Integer, ByVal process_id As String)
 
             datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.TITEL_ID = title_id And p.TITLE_ID2 = title_id2 And p.TYPE_ID = process_id Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TYPE_ID_AND_PROCESS(ByVal TYPE_ID As Integer, ByVal process_id As String)
+
+            datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.TYPE_ID = TYPE_ID And p.PROCESS_ID = process_id Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -2402,6 +2434,12 @@ Namespace DAO_DRUG
         Public Sub GetDataby_lcnsid_lcnno(ByVal lcnsid As Integer, ByVal lcnno As Integer)
 
             datas = (From p In db.dalcns Where p.lcnsid = lcnsid And p.lcnno = lcnno Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_lcnno_new(ByVal Lcnno_new As String)
+
+            datas = (From p In db.dalcns Where p.LCNNO_DISPLAY_NEW = Lcnno_new Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -3051,7 +3089,59 @@ Namespace DAO_DRUG
         End Sub
     End Class
 
+    Public Class ClsDBDALCN_PHR_ADDR_BSN
+        Inherits MAINCONTEXT
 
+        Public fields As New DALCN_PHR_ADDR_BSN
+
+        Private _Details As New List(Of DALCN_PHR_ADDR_BSN)
+        Public Property Details() As List(Of DALCN_PHR_ADDR_BSN)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_PHR_ADDR_BSN))
+                _Details = value
+            End Set
+        End Property
+        Public Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_PHR_ADDR_BSN
+        End Sub
+        Public Sub insert()
+            db.DALCN_PHR_ADDR_BSNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_PHR_ADDR_BSNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_PHR_ADDR_BSNs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.DALCN_PHR_ADDR_BSNs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As String)
+
+            datas = (From p In db.DALCN_PHR_ADDR_BSNs Where p.FK_IDA = CInt(FK_IDA) Select p)
+            For Each Me.fields In datas
+                'AddDetails()
+            Next
+        End Sub
+
+    End Class
 
     Public Class ClsDBDALCN_WORKTIME
         Inherits MAINCONTEXT
@@ -3431,6 +3521,13 @@ Namespace DAO_DRUG
 
             Next
         End Sub
+        Public Sub GETDATA_TABEAN_HERB_EX_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+              And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
 
         Public Sub GETDATA_TABEAN_HERB_TB_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
             datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
@@ -3443,6 +3540,13 @@ Namespace DAO_DRUG
         Public Sub GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal PREVIEW As Integer)
             datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
               And p.PREVIEW = PREVIEW Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GETDATA_TABEAN_HERB_TBN_TEMPLAETE_GROUP(ByVal P_ID As Integer, ByVal STATUS As Integer, ByVal lcntype As String, ByVal GROUPS As Integer)
+            datas = (From p In db.MAS_TEMPLATE_PROCESSes Where p.PROCESS_ID = P_ID And p.LCNTYPECD = lcntype And p.STATUS_ID = STATUS _
+              And p.GROUPS = GROUPS Select p)
             For Each Me.fields In datas
 
             Next
@@ -4612,6 +4716,12 @@ Namespace DAO_DRUG
             Next
         End Sub
         Public Sub GetDataby_HEAD_ID(ByVal head_id As Integer, ByVal group_p As Integer)
+            datas = (From p In db.MAS_MENU_AUTOs Where p.HEAD_ID = head_id And p.GROUP_PAGE = group_p Select p Order By p.SEQ Ascending)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_HEAD_ID_AND_GROUP(ByVal head_id As Integer, ByVal group_p As Integer)
             datas = (From p In db.MAS_MENU_AUTOs Where p.HEAD_ID = head_id And p.GROUP_PAGE = group_p Select p Order By p.SEQ Ascending)
             For Each Me.fields In datas
 
@@ -9842,12 +9952,32 @@ Namespace DAO_DRUG
 
             Next
         End Sub
+        Public Sub GetDataby_HOUSE_NO(ByVal House_no As String)
+
+            datas = (From p In db.DALCN_LOCATION_ADDRESSes Where p.HOUSENO = House_no Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
     End Class
     Public Class TB_DALCN_LOCATION_BSN
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
 
         Public fields As New DALCN_LOCATION_BSN
 
+        Private _Details As New List(Of DALCN_LOCATION_BSN)
+        Public Property Details() As List(Of DALCN_LOCATION_BSN)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_LOCATION_BSN))
+                _Details = value
+            End Set
+        End Property
+        Public Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_LOCATION_BSN
+        End Sub
         Public Sub insert()
             db.DALCN_LOCATION_BSNs.InsertOnSubmit(fields)
             db.SubmitChanges()

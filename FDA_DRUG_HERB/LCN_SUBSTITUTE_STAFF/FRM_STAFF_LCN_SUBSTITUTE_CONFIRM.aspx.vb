@@ -26,6 +26,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
         If Not IsPostBack Then
+            bind_mas_staff()
             'txt_appdate.Text = Date.Now.ToShortDateString()
             Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
             dao.Getdata_by_IDA(_IDA)
@@ -37,15 +38,31 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             If dao.fields.STATUS_ID = 8 Then
                 Panel1.Style.Add("display", "block")
                 Panel3.Style.Add("display", "block")
+            ElseIf dao.fields.STATUS_ID = 5 Then
+                Panel1.Style.Add("display", "block")
+                Panel2.Style.Add("display", "block")
+                Panel3.Style.Add("display", "none")
+                Panel2.Visible = False
+                btn_keep.Visible = True
+                btn_confirm.Visible = False
             Else
                 Panel1.Style.Add("display", "none")
                 Panel3.Style.Add("display", "none")
             End If
             'bind_ddl_rqt()
             show_btn(_IDA)
-                UC_GRID_ATTACH.load_gv(_TR_ID)
-                Bind_ddl_Status_staff()
-            End If
+            UC_GRID_ATTACH.load_gv(_TR_ID)
+            Bind_ddl_Status_staff()
+        End If
+    End Sub
+    Public Sub bind_mas_staff()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STAFF_NAME_HERB()
+
+        DD_OFF_REQ.DataSource = dt
+        DD_OFF_REQ.DataBind()
+        DD_OFF_REQ.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
     Sub show_btn(ByVal ID As String)
 
@@ -63,7 +80,10 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             ddl_cnsdcd.Style.Add("display", "none")
 
         End If
-        If dao.fields.STATUS_ID <> 9 Then
+        If dao.fields.STATUS_ID = 9 Or dao.fields.STATUS_ID = 8 Or dao.fields.STATUS_ID = 11 Or dao.fields.STATUS_ID = 5 Then
+            btn_preview.Enabled = True
+            'btn_preview.CssClass = "btn-danger btn-lg"
+        Else
             btn_preview.Enabled = False
             btn_preview.CssClass = "btn-danger btn-lg"
         End If
@@ -75,7 +95,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         '    'btn_load.Enabled = False
         '    'btn_load.CssClass = "btn-danger btn-lg"
         'End If
-
+        DATE_REQ.SelectedDate = Date.Now
     End Sub
     Public Sub Bind_ddl_Status_staff()
         Dim dt As New DataTable
@@ -108,10 +128,28 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         If status_id1 = 2 Then
             int_group_ddl1 = 1
             int_group_ddl2 = 0
-        ElseIf status_id1 = 9 Then
-            int_group_ddl1 = 2
+        ElseIf status_id1 = 4 Then
+            int_group_ddl1 = 6
             int_group_ddl2 = 0
+        ElseIf status_id1 = 15 Then
+            int_group_ddl1 = 7
+            int_group_ddl2 = 0
+        ElseIf status_id1 = 16 Then
+            int_group_ddl1 = 8
+            int_group_ddl2 = 0
+        ElseIf status_id1 = 17 Then
+            int_group_ddl1 = 9
+            int_group_ddl2 = 0
+        ElseIf status_id1 = 18 Then
+            int_group_ddl1 = 10
+            int_group_ddl2 = 0
+        'ElseIf status_id1 = 19 Then
+        '    int_group_ddl1 = 10
+        '    int_group_ddl2 = 0
         ElseIf status_id1 = 11 Then
+            int_group_ddl1 = 3
+            int_group_ddl2 = 0
+        ElseIf status_id1 = 10 Then
             int_group_ddl1 = 3
             int_group_ddl2 = 0
         End If
@@ -329,10 +367,11 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
 
 
         Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
-        dao_pdftemplate.GetDataby_TEMPLAETE_and_GROUP_PREVIEW(Process_ID, statusId, 0, 0)
+        'dao_pdftemplate.GetDataby_TEMPLAETE_and_GROUP_PREVIEW(Process_ID, statusId, 0, 0)
+        dao_pdftemplate.GetDataby_TEMPLAETE_and_GROUP(Process_ID, "สมพ3", statusId, 0, 0)
         Dim YEAR As String = dao_up.fields.YEAR
 
-        Dim paths As String = bao._PATH_DEFAULT
+        Dim paths As String = bao._PATH_XML_PDF_LCN_SUB
         Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
 
         Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", Process_ID, YEAR, TR_ID)
@@ -376,73 +415,7 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         dao_date.fields.DATE_NOW = Date.Now
         dao_date.fields.PROCESS_ID = PROCESS_ID
         dao_date.insert()
-
-        If STATUS_ID = 3 Then
-            'dao.fields.STATUS_ID = STATUS_ID
-            'Dim bao2 As New BAO.GenNumber
-            'RCVNO = bao2.GEN_NO_07(con_year(Date.Now.Year), _CLS.PVCODE, IIf(IsDBNull(dao.fields.lcnno), "", dao.fields.lcnno), PROCESS_ID, 0, 0, _IDA, "")
-            'dao.fields.rcvno = RCVNO
-            'Try
-            '    dao.fields.rcvdate = txt_appdate.Text
-            'Catch ex As Exception
-
-            'End Try
-            'dao.fields.STATUS_ID = STATUS_ID
-            'RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
-            'dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
-
-            'Try
-            '    dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
-            'Catch ex As Exception
-
-            'End Try
-            'dao.fields.STATUS_ID = STATUS_ID
-            'dao.update()
-
-            'alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
-        ElseIf STATUS_ID = 5 Then
-            Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
-
-        ElseIf STATUS_ID = 4 Then
-            dao.fields.STATUS_ID = STATUS_ID
-            RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
-            dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
-
-            Dim dao_p As New DAO_DRUG.ClsDBPROCESS_NAME
-            dao_p.GetDataby_Process_ID(PROCESS_ID)
-            Dim GROUP_NUMBER As Integer = dao_p.fields.PROCESS_ID
-
-            Dim bao2 As New BAO.GenNumber
-            Dim RCVNO_HERB_NEW As Integer
-            Dim LCNNO_V2 As Integer
-            RCVNO_HERB_NEW = bao2.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
-
-            Dim _year As Integer = con_year(Date.Now.Year)
-            If _year < 2500 Then
-                _year += 543
-            End If
-
-            LCNNO_V2 = con_year(Date.Now.Year).Substring(2, 2) & RCVNO_HERB_NEW
-            dao.fields.lcnno = LCNNO_V2
-
-            dao.fields.rcvno_new = "HB " & _CLS.PVCODE & "-" & PROCESS_ID & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & RCVNO_HERB_NEW
-
-            'RCVNO_NEW = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
-            'dao.fields.rcvno_new = RCVNO_NEW 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
-            Try
-                dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
-            Catch ex As Exception
-
-            End Try
-            dao.fields.STATUS_ID = 9
-            dao.update()
-
-            alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
-
-            'dao.fields.STATUS_ID = 9
-            'dao.update()
-            'alert("รับคำขอแล้ว")
-        ElseIf STATUS_ID = 8 Then
+        If STATUS_ID = 8 Then
             'dao.fields.appdate = CDate(txt_appdate.Text)
             Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_APP_DATE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
 
@@ -453,11 +426,134 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             AddLogStatus(STATUS_ID, Request.QueryString("process"), _CLS.CITIZEN_ID, _IDA)
             'alert("ดำเนินการเรียบร้อยแล้ว")
             Response.Redirect("FRM_SUBTITUBE_REMARK_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
+        Else
+            If DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
+                alert_normal("กรุณาเลือก จนท.ที่รับผิดชอบ")
+            Else
+                If STATUS_ID = 3 Then
+                    'dao.fields.STATUS_ID = STATUS_ID
+                    'Dim bao2 As New BAO.GenNumber
+                    'RCVNO = bao2.GEN_NO_07(con_year(Date.Now.Year), _CLS.PVCODE, IIf(IsDBNull(dao.fields.lcnno), "", dao.fields.lcnno), PROCESS_ID, 0, 0, _IDA, "")
+                    'dao.fields.rcvno = RCVNO
+                    'Try
+                    '    dao.fields.rcvdate = txt_appdate.Text
+                    'Catch ex As Exception
 
+                    'End Try
+                    'dao.fields.STATUS_ID = STATUS_ID
+                    'RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+                    'dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
+
+                    'Try
+                    '    dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
+                    'Catch ex As Exception
+
+                    'End Try
+                    'dao.fields.STATUS_ID = STATUS_ID
+                    'dao.update()
+
+                    'alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
+                ElseIf STATUS_ID = 5 Then
+                    dao.fields.consider_Staff_Name = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.CONSIDER_DATE = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.consider_Staff_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+                    'Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & PROCESS_ID)
+                ElseIf STATUS_ID = 14 Then
+                    dao.fields.staff_edit_name = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.staff_edit_date = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.staff_edit_id = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    Response.Redirect("POPUP_STAFF_LCN_SUBTITUTE_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & dao.fields.TR_ID & "&PROCESS_ID=" & _ProcessID)
+                ElseIf STATUS_ID = 15 Then
+                    dao.fields.Offer_Supervider = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.Offer_Supervider_Date = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.Offer_Supervider_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    alert("บันทึกข้อมูลสำเร็จ")
+                ElseIf STATUS_ID = 16 Then
+                    dao.fields.Offer_Group_Leader = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.Offer_Group_Leader_Date = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.Offer_Group_Leader_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    alert("บันทึกข้อมูลสำเร็จ")
+                ElseIf STATUS_ID = 17 Then
+                    dao.fields.Offer_Director = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.Offer_Director_Date = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.Offer_Director_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    alert("บันทึกข้อมูลสำเร็จ")
+                ElseIf STATUS_ID = 18 Then
+                    dao.fields.Offer_Secretary = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.Offer_Secretary_Date = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.Offer_Secretary_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = 5
+                    dao.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    alert("บันทึกข้อมูลสำเร็จ")
+                ElseIf STATUS_ID = 4 Then
+                    dao.fields.STATUS_ID = STATUS_ID
+                    If dao.fields.rcvno_new Is Nothing Then
+                        RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+                        dao.fields.rcvno = RCVNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
+
+                        Dim dao_p As New DAO_DRUG.ClsDBPROCESS_NAME
+                        dao_p.GetDataby_Process_ID(PROCESS_ID)
+                        Dim GROUP_NUMBER As Integer = dao_p.fields.PROCESS_ID
+
+                        Dim bao2 As New BAO.GenNumber
+                        Dim RCVNO_HERB_NEW As Integer
+                        Dim LCNNO_V2 As Integer
+
+                        RCVNO_HERB_NEW = bao2.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+
+                        Dim _year As Integer = con_year(Date.Now.Year)
+                        If _year < 2500 Then
+                            _year += 543
+                        End If
+
+                        LCNNO_V2 = con_year(Date.Now.Year).Substring(2, 2) & RCVNO_HERB_NEW
+                        dao.fields.lcnno = LCNNO_V2
+
+                        dao.fields.rcvno_new = "HB " & _CLS.PVCODE & "-" & PROCESS_ID & "-" & con_year(Date.Now.Year).Substring(2, 2) & "-" & RCVNO_HERB_NEW
+                    End If
+                    'RCVNO_NEW = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), _CLS.PVCODE, PROCESS_ID, _IDA)
+                    'dao.fields.rcvno_new = RCVNO_NEW 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year()), RCVNO)
+                    Try
+                        dao.fields.rcvdate = Date.Now 'CDate(txt_app_date.Text)
+                    Catch ex As Exception
+
+                    End Try
+                    dao.fields.rcv_staff_Name = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.rcvdate = CDate(DATE_REQ.SelectedDate)
+                    dao.fields.rcv_staff_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.STATUS_ID = STATUS_ID
+                    dao.update()
+
+                    alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
+                    'dao.fields.STATUS_ID = 9
+                    'dao.update()
+                    'alert("รับคำขอแล้ว")
+
+                End If
+            End If
         End If
+
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
+    End Sub
+    Private Sub alert_normal(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
     End Sub
     Private Sub BindData_PDF_LCN(Optional _group As Integer = 0)
         Dim bao As New BAO.AppSettings
@@ -1257,52 +1353,145 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         'End If
         class_xml.CHK_VALUE = dao_PHR.fields.PHR_MEDICAL_TYPE
 
+
+
         If IsNothing(dao.fields.appdate) = False Then
             Dim appdate As Date
-            If Date.TryParse(dao.fields.appdate, appdate) = True Then
-                class_xml.SHOW_LCNDATE_DAY = NumEng2Thai(appdate.Day)
-                class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
-                class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
+            If dao_sub.fields.STATUS_ID = 8 Then
+                If Date.TryParse(dao_sub.fields.appdate, appdate) = True Then
+                    class_xml.SHOW_LCNDATE_DAY = NumEng2Thai(appdate.Day)
+                    class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
+                    class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
 
-                If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
+                    If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
 
-                    class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
-                    class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
-                    class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
+                        class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
+                        class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
 
-                    class_xml.RCVDAY_NEW = appdate.Day.ToString()
-                    class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
-                    class_xml.RCVYEAR_NEW = con_year(appdate.Year)
-
-
-                End If
+                        class_xml.RCVDAY_NEW = appdate.Day.ToString()
+                        class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NEW = con_year(appdate.Year)
 
 
-                class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
-                class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
-                class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
-
-                class_xml.RCVDAY = appdate.Day.ToString()
-                class_xml.RCVMONTH = appdate.ToString("MMMM")
-                class_xml.RCVYEAR = con_year(appdate.Year)
-                Dim expyear As Integer = 0
-                Try
-                    expyear = dao.fields.expyear
-                    If expyear <> 0 Then
-                        If expyear < 2500 Then
-                            expyear += 543
-                        End If
                     End If
-                Catch ex As Exception
 
-                End Try
-                If expyear = 0 Then
-                    expyear = con_year(appdate.Year)
+
+                    class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
+                    class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+
+                    If Date.TryParse(dao.fields.appdate, appdate) = True Then
+                        class_xml.RCVDAY = appdate.Day.ToString()
+                        class_xml.RCVMONTH = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR = con_year(appdate.Year)
+                    End If
+                    Dim expyear As Integer = 0
+                    Try
+                        expyear = dao.fields.expyear
+                        If expyear <> 0 Then
+                            If expyear < 2500 Then
+                                expyear += 543
+                            End If
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                    If expyear = 0 Then
+                        expyear = con_year(appdate.Year)
+                    End If
+                    class_xml.EXP_YEAR = NumEng2Thai(expyear)
                 End If
-                class_xml.EXP_YEAR = NumEng2Thai(expyear)
+            Else
+                If Date.TryParse(dao.fields.appdate, appdate) = True Then
+                    class_xml.SHOW_LCNDATE_DAY = NumEng2Thai(appdate.Day)
+                    class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
+                    class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
+
+                    If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
+
+                        class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
+                        class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
+
+                        class_xml.RCVDAY_NEW = appdate.Day.ToString()
+                        class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NEW = con_year(appdate.Year)
+
+
+                    End If
+
+
+                    class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
+                    class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+
+                    If Date.TryParse(dao.fields.appdate, appdate) = True Then
+                        class_xml.RCVDAY = appdate.Day.ToString()
+                        class_xml.RCVMONTH = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR = con_year(appdate.Year)
+                    End If
+                    Dim expyear As Integer = 0
+                    Try
+                        expyear = dao.fields.expyear
+                        If expyear <> 0 Then
+                            If expyear < 2500 Then
+                                expyear += 543
+                            End If
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                    If expyear = 0 Then
+                        expyear = con_year(appdate.Year)
+                    End If
+                    class_xml.EXP_YEAR = NumEng2Thai(expyear)
+                ElseIf Date.TryParse(dao.fields.appdate, appdate) = True Then
+                    class_xml.SHOW_LCNDATE_DAY = NumEng2Thai(appdate.Day)
+                    class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
+                    class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
+
+                    If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
+
+                        class_xml.RCVDAY_NUMTHAI_NEW = NumEng2Thai(appdate.Day.ToString())
+                        class_xml.RCVMONTH_NUMTHAI_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NUMTHAI_NEW = NumEng2Thai(con_year(appdate.Year))
+
+                        class_xml.RCVDAY_NEW = appdate.Day.ToString()
+                        class_xml.RCVMONTH_NEW = appdate.ToString("MMMM")
+                        class_xml.RCVYEAR_NEW = con_year(appdate.Year)
+
+
+                    End If
+
+
+                    class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
+                    class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
+
+                    class_xml.RCVDAY = appdate.Day.ToString()
+                    class_xml.RCVMONTH = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR = con_year(appdate.Year)
+                    Dim expyear As Integer = 0
+                    Try
+                        expyear = dao.fields.expyear
+                        If expyear <> 0 Then
+                            If expyear < 2500 Then
+                                expyear += 543
+                            End If
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                    If expyear = 0 Then
+                        expyear = con_year(appdate.Year)
+                    End If
+                    class_xml.EXP_YEAR = NumEng2Thai(expyear)
+                End If
             End If
+
         Else
-            If IsNothing(dao.fields.expyear) = False Then
+                If IsNothing(dao.fields.expyear) = False Then
                 Dim expyear As Integer = 0
                 Try
                     expyear = dao.fields.expyear
@@ -1461,7 +1650,8 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
 
         End Try
         Try
-            class_xml.dalcns.opentime = NumEng2Thai(dao.fields.opentime)
+            'class_xml.dalcns.opentime = NumEng2Thai(dao.fields.opentime)
+            class_xml.dalcns.opentime = dao.fields.opentime
         Catch ex As Exception
 
         End Try
@@ -1555,7 +1745,9 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
             dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP_V1(Process_sub, 8, 0, _group:=0)
         End If
 
-        Dim paths As String = bao._PATH_DEFAULT
+        'Dim paths As String = bao._PATH_DEFAULT
+        Dim paths As String = bao._PATH_XML_PDF_LCN_SUB
+        'Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
         Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
         Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
         Dim Path_XML As String = paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML("DA", PROCESS_ID, YEAR, _TR_ID)
@@ -1666,4 +1858,13 @@ Public Class FRM_LCN_SUBSTITUTE_CONFIRM
         alert("ดำเนินการยกเลิกคำขอแล้ว")
     End Sub
 
+    Protected Sub btn_keep_Click(sender As Object, e As EventArgs) Handles btn_keep.Click
+        Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+        dao.Getdata_by_IDA(_IDA)
+        dao.fields.STATUS_ID = 11
+        dao.update()
+
+        AddLogStatus(11, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        alert("บันทึกข้อมูลคำขอแล้ว")
+    End Sub
 End Class

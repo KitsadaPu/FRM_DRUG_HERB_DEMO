@@ -12,7 +12,25 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_EX
-    
+
+    '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
+    '''UC_Information control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_Information As Global.FDA_DRUG_HERB.UC_Information
+
     '''<summary>
     '''btn_ex_add control.
     '''</summary>
@@ -21,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_EX
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_ex_add As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -30,4 +48,31 @@ Partial Public Class FRM_HERB_TABEAN_EX
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''hl_pay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_pay As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''lbl_head1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_head1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btn_reload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_reload As Global.System.Web.UI.WebControls.Button
 End Class

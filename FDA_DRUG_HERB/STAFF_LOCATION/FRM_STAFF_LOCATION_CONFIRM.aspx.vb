@@ -113,8 +113,17 @@ Public Class FRM_STAFF_LOCATION_CONFIRM
         '_______________SHOW___________________
 
         Dim bao_show As New BAO_SHOW
+        Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+        Dim obj As New XML_DATA
+        Dim dt_cp As New DataTable
+        Dim result As String = ""
+        'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+        result = ws_center.GET_DATA_IDENTIFY(CITIZEN_ID, CITIZEN_ID, "FUSION", "P@ssw0rdfusion440")
+        obj = ConvertFromXml(Of XML_DATA)(result)
         Try
-            class_xml.DT_SHOW.DT1 = bao_show.SP_MAINPERSON_CTZNO(CITIZEN_ID) 'ชื่อผู้ ทำ PDF
+            'class_xml.DT_SHOW.DT1 = bao_show.SP_MAINPERSON_CTZNO(CITIZEN_ID) 'ชื่อผู้ ทำ PDF
+            'class_xml.DT_SHOW.DT1 = bao_show.SP_MAINPERSON_CTZNO(CITIZEN_ID) 'ชื่อผู้ ทำ PDF
+            class_xml.DT_SHOW.DT1 = ws_center.GET_DATA_IDENTIFY_DT(CITIZEN_ID, CITIZEN_ID, "DT1", "FUSION", "P@ssw0rdfusion440")
         Catch ex As Exception
 
         End Try

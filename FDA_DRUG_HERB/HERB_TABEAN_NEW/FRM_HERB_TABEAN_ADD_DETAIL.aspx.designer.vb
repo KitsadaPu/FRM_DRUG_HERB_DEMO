@@ -32,6 +32,87 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents NAME_PLACE_TB As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''data_show3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents data_show3 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''txt_agent99 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_agent99 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TXT_SEARCH_TN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_SEARCH_TN As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BTN_SEARCH_TN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_SEARCH_TN As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''txt_person_age control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_person_age As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DDL_NATION control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_NATION As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''data_show1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents data_show1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''data_show2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents data_show2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''txt_nation_person control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_nation_person As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''DD_TYPE_NAME control.
     '''</summary>
     '''<remarks>
@@ -131,6 +212,15 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''RadGrid3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''txt_address control.
     '''</summary>
     '''<remarks>
@@ -149,15 +239,6 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents txt_address_ida As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RadGrid3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
     '''NAME_THAI control.
     '''</summary>
     '''<remarks>
@@ -167,6 +248,15 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents NAME_THAI As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lbl_word_thai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_word_thai As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''NAME_ENG control.
     '''</summary>
     '''<remarks>
@@ -174,6 +264,15 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NAME_ENG As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_word_eng control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_word_eng As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''NAME_OTHER control.
@@ -662,13 +761,22 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents RBL_CHK_PRODUCER As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''DIV_PRODUCER_SHOW control.
+    '''DIV_PRODUCER_SHOW1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DIV_PRODUCER_SHOW As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents DIV_PRODUCER_SHOW1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''DIV_PRODUCER_SHOW2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DIV_PRODUCER_SHOW2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''TXT_LCNNO_SEARCH control.
@@ -743,6 +851,24 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     Protected WithEvents btn_save_work_type As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''RECIPE_NAME control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RECIPE_NAME As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DDL_RECIPE_NAME control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_RECIPE_NAME As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''STAFF_HIDE_SET control.
     '''</summary>
     '''<remarks>
@@ -768,6 +894,15 @@ Partial Public Class FRM_HERB_TABEAN_ADD_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_ATTACH2 As Global.FDA_DRUG_HERB.UC_ATTACH
+
+    '''<summary>
+    '''UC_officer_che control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_officer_che As Global.FDA_DRUG_HERB.UC_officer_che
 
     '''<summary>
     '''btn_save control.

@@ -7,6 +7,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
     Private _TR_ID As String
     Private _ProcessID As String
     Private _IDA_LCN As String = ""
+    Private NATURE_OLD As String = ""
 
     Sub RunSession()
         _ProcessID = Request.QueryString("PROCESS_JJ")
@@ -34,15 +35,17 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         dao.GetdatabyID_IDA(_IDA)
         If dao.fields.NOTE_EDIT IsNot Nothing Then
             NOTE_EDIT.Text = dao.fields.NOTE_EDIT
+
         Else
             NOTE_EDIT.Text = ""
         End If
 
-        If dao.fields.NATURE_ID_EDIT <> 0 Then
-            R_NATURE_EDIT.Visible = True
-            NATURE.Text = dao.fields.NATURE
-            R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
-        End If
+        'If dao.fields.NATURE_ID_EDIT <> 0 Then
+        '    R_NATURE_EDIT.Visible = True
+        NATURE.Text = dao.fields.NATURE
+        NATURE_OLD = dao.fields.NATURE
+        'R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
+        'End If
 
     End Sub
 
@@ -82,9 +85,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Return dt
     End Function
 
-    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
-        RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
-    End Sub
+    'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+    '    RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
+    'End Sub
 
     Public Sub BindTable()
 
@@ -130,7 +133,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
                     tc.Text = ""
                 End Try
 
-                tc.Width = 100
+                tc.Width = 300
                 tr.Cells.Add(tc)
 
                 tc = New TableCell
@@ -214,11 +217,13 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
 
         Next
 
-        If check_file() = False Then
-            alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
-        Else
-            alert_normal("แนบไฟล์เรียบร้อยแล้ว กดบันทึก รอจนท.ตรวจสอบ")
-        End If
+        'If check_file() = False Then
+        '    alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+        'Else
+        '    alert_normal("แนบไฟล์เรียบร้อยแล้ว กดบันทึก รอจนท.ตรวจสอบ")
+        'End If
+        'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "", True)
+        Response.Redirect(Request.Url.AbsoluteUri)
 
     End Sub
 
@@ -247,25 +252,65 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Dim url As String = ""
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
-
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        Dim url As String = ""
+        If Request.QueryString("OPF") = "1" Then
+            url = "http://202.139.212.70/ONE-PLATFORM/?Token=" & _CLS.TOKEN
+            Response.Redirect(url)
+        Else
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "parent.close_modal();", True)
+        End If
+    End Sub
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
 
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
 
-        If dao.fields.NATURE_ID_EDIT = 1 And NATURE.Text = "" Then
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก กรอกข้อมูลลักษณะ');", True)
+        If check_file() = False Then
+            alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
         Else
-            dao.fields.NATURE = NATURE.Text
-            dao.fields.STATUS_ID = 5
+            If NATURE.Text = "" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก กรอกข้อมูลลักษณะ');", True)
+            Else
+                'If dao.fields.NATURE_ID_EDIT <> 0 Then
+                '    dao.fields.NATURE = NATURE.Text
+                'End If
+                Dim log As New DAO_TABEAN_HERB.TB_LOG_CUSTOMER_JJ_EDIT
+                Try
+                    log.fields.NATURE_OLD = dao.fields.NATURE
+                    log.fields.NATURE_NEW = NATURE.Text
+                    log.fields.DATE = Date.Now
+                    log.fields.IDENTIFY = _CLS.CITIZEN_ID
+                    log.fields.FK_IDA = _IDA
+                    log.insert()
+                Catch ex As Exception
+                    log.fields.NATURE_OLD = NATURE_OLD
+                    log.fields.NATURE_NEW = NATURE.Text
+                    log.fields.DATE = Date.Now
+                    log.fields.IDENTIFY = _CLS.CITIZEN_ID
+                    log.fields.FK_IDA = _IDA
+                    log.fields.DESCRIPTION = ex.Message
+                    log.insert()
+                End Try
 
-            dao.Update()
+                dao.fields.NATURE = NATURE.Text
+                dao.fields.STATUS_ID = 5
+                dao.Update()
 
-            Dim bao_tran As New BAO_TRANSECTION
-            bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, dao.fields.STATUS_ID)
+                Dim bao_tran As New BAO_TRANSECTION
+                bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, dao.fields.STATUS_ID)
 
-            Run_Pdf_Tabean_Herb_5()
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+                Run_Pdf_Tabean_Herb_5()
+
+                Dim url As String = ""
+                If Request.QueryString("OPF") = "1" Then
+                    alert_no_file("บันทึกเรียบร้อย")
+                    url = "http://202.139.212.70/ONE-PLATFORM/?Token=" & _CLS.TOKEN
+                    Response.Redirect(url)
+                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+                End If
+            End If
         End If
 
     End Sub
@@ -299,6 +344,32 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT
         Dim url As String = ""
         'url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&DDHERB=" & _ProcessID & "&IDA=" & _IDA
         Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
+    End Sub
+    Function bind_data_uploadfile()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+
+        Return dt
+    End Function
+
+    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+        RadGrid2.DataSource = bind_data_uploadfile()
+    End Sub
+
+    Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
     End Sub
 
 End Class

@@ -101,31 +101,31 @@ Public Class FRM_LCN_EDIT_STAFF_INDEX
             'STATUS_ID = "3"
             If e.CommandName = "LCN_EDIT_DETAIL" Then
                 If STATUS_ID = 2 Then
-                    lbl_head1.Text = "ข้อมูลรับคำข้อ รับคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_INTAKE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 3 Then
-                    lbl_head1.Text = "ข้อมูลตรวจสอบเอกสาร ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 9 Then
-                    lbl_head1.Text = "ข้อมูลขอเอกสาร (เพิ่มเติม) ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_EDIT.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 11 Then
-                    lbl_head1.Text = "ข้อมูลตรวจสอบเอกสาร ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 4 Then 'ส่งไปอนุมัติลงนาม
-                    lbl_head1.Text = "ข้อมูลยืนลงนาม ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SIGN.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 5 Then 'ส่งไปอนุมัติ
-                    lbl_head1.Text = "ข้อมูลยืน ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 ElseIf STATUS_ID = 8 Then 'เข้าไปดูข้อมูลที่ อนุุมัติไป
-                    lbl_head1.Text = "ข้อมูลยืนอนุมัติ ยื่นคำขอแก้ไขใบอนุญาต"
+                    lbl_head1.Text = "ข้อมูลรายละเอียดคำขอแก้ไขใบอนุญาต"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_APPROVE.aspx?LCN_IDA=" & _LCN_IDA & "&LCT_IDA=" & _LCT_IDA & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&STATUS_GROUP=" & STATUS_GROUP & "&STATUS_ID=" & STATUS_ID & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "&TR_LCN_EDIT=" & _TR_ID & "');", True)
                 End If
 
             ElseIf e.CommandName = "SEE_DETAIL_SUB" Then
                 lbl_head1.Text = "ข้อมูลรายละเอียดการข้อแก้ไข"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL.aspx?SEE_DETAIL_LCN_IDA=" & _LCN_IDA & "&SEE_DETAIL_LCT_IDA=" & _LCT_IDA & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "');", True)
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL.aspx?SEE_DETAIL_LCN_IDA=" & _LCN_IDA & "&SEE_DETAIL_LCT_IDA=" & _LCT_IDA & "&ddl_up1=" & ddl_up1 & "&ddl_up2=" & ddl_up2 & "&detail=" & 1 & "&IDA=" & _IDA & "');", True)
             End If
         End If
     End Sub

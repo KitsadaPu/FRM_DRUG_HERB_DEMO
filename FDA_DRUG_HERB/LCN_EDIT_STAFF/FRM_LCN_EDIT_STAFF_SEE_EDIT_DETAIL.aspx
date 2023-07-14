@@ -73,6 +73,49 @@
                     <asp:TextBox ID="text_edit_ddl1_SIMINAR_DATE" runat="server" ReadOnly="True"></asp:TextBox>
                 </div>
             </div>
+        <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <telerik:RadGrid ID="rgphr" runat="server" Width="90%">
+                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA" NoMasterRecordsText="ไม่พบข้อมูล">
+                            <Columns>
+                                <telerik:GridBoundColumn DataField="IDA" FilterControlAltText="Filter IDA column"
+                                    HeaderText="IDA" SortExpression="IDA" UniqueName="IDA" Display="false">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="PHR_IDA" FilterControlAltText="Filter PHR_IDA column"
+                                    HeaderText="PHR_IDA" SortExpression="PHR_IDA" UniqueName="PHR_IDA" Display="false">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="PHR_CTZNO" FilterControlAltText="Filter PHR_CTZNO column"
+                                    HeaderText="เลขบัตรปชช." SortExpression="PHR_CTZNO" UniqueName="PHR_CTZNO">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="PHR_FULLNAME" FilterControlAltText="Filter PHR_FULLNAME column"
+                                    HeaderText="ชื่อผู้มีหน้าที่ปฏิบัติการ" SortExpression="PHR_FULLNAME" UniqueName="PHR_FULLNAME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="PHR_TEXT_WORK_TIME" FilterControlAltText="Filter PHR_TEXT_WORK_TIME column"
+                                    HeaderText="เวลาทำการ" SortExpression="PHR_TEXT_WORK_TIME" UniqueName="PHR_TEXT_WORK_TIME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="STUDY_LEVEL" FilterControlAltText="Filter STUDY_LEVEL column"
+                                    HeaderText="คุณวุฒิ" SortExpression="STUDY_LEVEL" UniqueName="STUDY_LEVEL">
+                                </telerik:GridBoundColumn>
+                                <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="edt"
+                    CommandName="edt" Text="แก้ไข">
+                    <HeaderStyle Width="70px" />
+                </telerik:GridButtonColumn>--%>
+                                <%--<telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_edit" ItemStyle-Width="15%"
+                                    CommandName="r_edit" Text="แก้ไขข้อมูล" ConfirmText="คุณต้องการแก้ไขผู้ปฏิบัติการหรือไม่">
+                                    <HeaderStyle Width="70px" />
+                                </telerik:GridButtonColumn>--%>
+                             <%--   <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
+                                    CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="คุณต้องการลบผู้ปฏิบัติการหรือไม่">
+                                    <HeaderStyle Width="70px" />
+                                </telerik:GridButtonColumn>--%>
+                            </Columns>
+                        </MasterTableView>
+                    </telerik:RadGrid>
+                </div>
+
+            </div>
+
 
         </div>
         <div id="edit_dd2" runat="server" visible="false">

@@ -121,6 +121,32 @@ Public Class CLS_SESSION
         End Set
     End Property
     ''' <summary>
+    ''' GROUPS ที่ได้จาก TOKEN
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private _BTN_GROUPS As String
+    Public Property BTN_GROUPS() As String
+        Get
+            Return _BTN_GROUPS
+        End Get
+        Set(ByVal value As String)
+            _BTN_GROUPS = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' GROUPS ที่ได้จาก TOKEN
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private _SID_ID As String
+    Public Property SID_ID() As String
+        Get
+            Return _SID_ID
+        End Get
+        Set(ByVal value As String)
+            _SID_ID = value
+        End Set
+    End Property
+    ''' <summary>
     ''' PVCODE ที่ได้จาก TOKEN
     ''' </summary>
     ''' <remarks></remarks>

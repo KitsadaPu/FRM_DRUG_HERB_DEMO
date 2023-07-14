@@ -85,7 +85,17 @@ Public Class FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL
         End If
 
     End Sub
+    Private Sub rgphr_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgphr.NeedDataSource
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+        'If _lcn_ida <> "" Then
+        dt = bao.SP_LCN_EDIT_PHR_BY_FK_IDA(_lcn_ida)
+        'End If
 
+        If dt.Rows.Count > 0 Then
+            rgphr.DataSource = dt
+        End If
+    End Sub
 
     Sub SET_DATA_REASON_DDL1()
 

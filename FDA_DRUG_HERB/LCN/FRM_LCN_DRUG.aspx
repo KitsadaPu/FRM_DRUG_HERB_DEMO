@@ -265,6 +265,13 @@
                     </ItemTemplate>
                     <ItemStyle Width="10%"></ItemStyle>
                 </asp:TemplateField>
+                <asp:TemplateField ItemStyle-Width="10%">
+                    <ItemTemplate>
+                        <asp:Button ID="btn_apm" runat="server" Text="ใบนัดหมาย" CommandName="drug_amp" Width="100%" CssClass="btn-link" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>' />
+                        &nbsp; &nbsp; &nbsp;                     
+                    </ItemTemplate>
+                    <ItemStyle Width="10%"></ItemStyle>
+                </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>
                 <center>ไม่พบข้อมูล</center>

@@ -41,6 +41,24 @@ Partial Public Class POPUP_STAFF_LCN_SUBTITUTE_APP_DATE
     Protected WithEvents RDP_APP_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''DD_OFF_REQ control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_OFF_REQ As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''UC_ATTACH_LCN1 control.
     '''</summary>
     '''<remarks>

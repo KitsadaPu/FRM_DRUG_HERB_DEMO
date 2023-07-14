@@ -86,9 +86,9 @@ Public Class FRM_HERB_TABEAN_EDIT_2
         Return dt
     End Function
 
-    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
-        RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
-    End Sub
+    'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+    '    RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
+    'End Sub
 
     Public Sub BindTable()
 

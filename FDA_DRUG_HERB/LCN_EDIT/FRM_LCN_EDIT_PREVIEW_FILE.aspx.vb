@@ -4,12 +4,14 @@
 
     Private _file_ida As Integer
     Private _lcn_ida As Integer
+    Private _ida As Integer
 
 
     Private Sub get_querystring()
 
         _file_ida = Request.QueryString("file_id")
         _lcn_ida = Request.QueryString("lcn_ida")
+        _ida = Request.QueryString("ida")
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         get_querystring()
@@ -24,7 +26,8 @@
         'dao.GetdatabyID_IDA(_id)
 
         Dim dao1 As New DAO_LCN.TB_LCN_APPROVE_EDIT_UPLOAD_FILE
-        dao1.GET_DATA_BY_FILE_NUMBER(file_id, lcn)
+        'dao1.GET_DATA_BY_FILE_NUMBER(file_id, lcn)
+        dao1.GetDataby_IDA(_ida)
 
         Dim FILENAME_XML As String = dao1.fields.NAME_FAKE
         Dim bao As New BAO.AppSettings

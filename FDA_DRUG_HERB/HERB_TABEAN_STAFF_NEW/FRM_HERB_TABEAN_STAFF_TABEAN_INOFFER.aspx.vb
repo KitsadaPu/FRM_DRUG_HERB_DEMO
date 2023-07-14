@@ -8,7 +8,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
     Private _TR_ID As String
     Private _ProcessID As String
     Private _IDA_LCN As String
-
+    Private PAGE_ID As String = "2"
     Sub RunSession()
         _ProcessID = Request.QueryString("process")
         _IDA = Request.QueryString("IDA")
@@ -31,8 +31,26 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
             bind_mas_staff()
             bind_data_rgtno()
             bind_mas_ml()
-            bind_dd_discount()
+            'bind_dd_discount()
+            bind_SALE_CHANNEL()
+            bind_dd_syndrome()
+            bind_dd_syndrome2()
+            bind_dd_manufac()
+            bind_mas_cancel()
+
+            UC_ATTACH1.NAME = "เอกสารแนบ"
+            UC_ATTACH1.BindData("เอกสารแนบ", 1, "pdf", "0", "77")
         End If
+    End Sub
+    Public Sub bind_mas_cancel()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STATUS_CANCEL_TABEAN_HERB(2)
+        'dt = bao.SP_MAS_DDL_SECTION_CANCEL()
+
+        DDL_CANCLE_REMARK.DataSource = dt
+        DDL_CANCLE_REMARK.DataBind()
+        DDL_CANCLE_REMARK.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
 
     Public Sub Run_Pdf_Tabean_Herb()
@@ -65,113 +83,65 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         DD_OFF_OFFER.DataBind()
         DD_OFF_OFFER.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
-
-    Public Sub bind_mas_ml()
+    Public Sub bind_SALE_CHANNEL()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
-        'dt = bao.SP_MAS_TABEAN_HERB_ML()
+        dt = bao.SP_MAS_TABEAN_HERB_SALE()
+
+        DD_SALE_CHANNEL.DataSource = dt
+        DD_SALE_CHANNEL.DataBind()
+        DD_SALE_CHANNEL.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
+
+    'Public Sub bind_mas_ml()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_dd
+    '    'dt = bao.SP_MAS_TABEAN_HERB_ML()
+    '    dt = bao.SP_MAS_TABEAN_HERB_ML_PROCESSID(_ProcessID)
+
+    '    DD_ML_ID.DataSource = dt
+    '    DD_ML_ID.DataBind()
+    '    DD_ML_ID.Items.Insert(0, "-- กรุณาเลือก --")
+
+    'End Sub
+    Sub bind_mas_ml()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
         dt = bao.SP_MAS_TABEAN_HERB_ML_PROCESSID(_ProcessID)
 
         DD_ML_ID.DataSource = dt
+        DD_ML_ID.DataValueField = "ML_ID"
+        DD_ML_ID.DataTextField = "ML_NAME"
         DD_ML_ID.DataBind()
-        DD_ML_ID.Items.Insert(0, "-- กรุณาเลือก --")
+        'DD_DISCOUNT.Items.Insert(0, "-- กรุณาเลือก --")
 
+        Dim item As New RadComboBoxItem
+        item.Text = "-"
+        item.Value = "0"
+        DD_ML_ID.Items.Insert(0, item)
     End Sub
 
     Public Sub bind_data()
         Dim dao As New DAO_DRUG.ClsDBdrrqt
         dao.GetDataby_IDA(_IDA)
+        Try
+            lbl_create_by.Text = dao.fields.CREATE_BY
+            lbl_create_date.Text = dao.fields.CREATE_DATE
+        Catch ex As Exception
+
+        End Try
+
         RCVNO_FULL.Text = dao.fields.RCVNO_NEW
         DD_OFF_OFFER.Text = _CLS.NAME
         DATE_OFFER.Text = Date.Now.ToString("dd/MM/yyyy")
+
+        txt_edit_staff.Text = dao.fields.NOTE_EDIT
+        txt_edit_staff2.Text = dao.fields.NOTE_EDIT2
+
+        TXT_STAFF_NAME_EDIT.Text = dao.fields.EDIT_RQ_NAME
+        TXT_STAFF_NAME_EDIT2.Text = dao.fields.EDIT_RQ2_NAME
+
     End Sub
-
-    Public Sub bind_data_rgtno()
-        Dim dao As New DAO_DRUG.ClsDBdrrqt
-        dao.GetDataby_IDA(_IDA)
-        'If dao.fields.RGTNO_FULL = "" Then
-        If dao.fields.RGTNO_NEW Is Nothing Then
-            'Dim RG As String = GEN_RGTNO(dao.fields.rgttpcd)
-            Dim dao_maxrgt_dq As New DAO_DRUG.ClsDBdrrqt
-            dao_maxrgt_dq.GET_RGTNO_NEW_BYTPCD(dao.fields.rgttpcd)
-            Dim dict = New Dictionary(Of String, Object)
-            Dim tempb = Convert.ToInt32(DateTime.Now.Year.ToString()) + 543
-            If dao.fields.DATE_YEAR IsNot Nothing Then tempb = dao.fields.DATE_YEAR
-            tempb = tempb.ToString().Substring(2, 2)
-            dict(tempb) = 0
-            For Each item In dao_maxrgt_dq.datas
-                Dim str = item.ToString.Substring(2).Split("/")
-                Dim n = CInt(str(0))
-                Dim y = CInt(str(1))
-                If dict(tempb) < n Then
-                    dict(tempb) = (n)
-                End If
-            Next
-            Dim num As Integer = dict(tempb)
-            num += 1
-            'Dim str_no = String.Format("{0:50000}", num.ToString("50000"))
-            RGTNO_FULL.Text = dao.fields.rgttpcd & " " & num.ToString & "/" & tempb.ToString()
-            'dao.fields.RGTNO_FULL = RGTNO_FULL.Text
-            'dao.Update()
-        Else
-            RGTNO_FULL.Text = dao.fields.RGTNO_NEW
-        End If
-        'RGTNO_FULL.Text = dao.fields.RGTNO_FULL
-    End Sub
-
-    Private Function GEN_RGTNO(ByVal rgttpcd As String) As String
-
-        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
-        dao.GetdatabyID_IDA(_IDA)
-
-        Dim str_no As String = ""
-
-        If dao.fields.IDA = 1 And dao.fields.DATE_YEAR = con_year(Date.Now.Year) Then
-            Dim max_no As Integer = 0
-            Try
-                max_no = CInt("00002")
-                max_no += 1
-
-            Catch ex As Exception
-
-            End Try
-
-            str_no = max_no.ToString()
-            str_no = String.Format("{0:50000}", max_no.ToString("50000"))
-            dao.fields.RGTNO_JJ = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
-            dao.Update()
-            'str_no = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
-            str_no = str_no & "/" & dao.fields.DATE_YEAR.Substring(2, 2)
-        Else
-            Dim max_no As Integer = 0
-
-            Dim dt As New DataTable
-            Dim bao_max As New BAO_TABEAN_HERB.tb_main
-            Dim _YEAR As String
-            _YEAR = con_year(Date.Now.Year)
-            dt = bao_max.SP_TABEAN_HERB_GET_MAX_RGTNO_JJ(rgttpcd, _YEAR.Substring(2, 2))
-            Try
-                max_no = dt(0)("MAX_ID")
-                max_no += 1
-            Catch ex As Exception
-
-            End Try
-
-            str_no = max_no.ToString()
-            str_no = String.Format("{0:50000}", max_no.ToString("50000"))
-            If dao.fields.DATE_YEAR IsNot Nothing Then
-                dao.fields.RGTNO_JJ = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
-            Else
-                Dim tempb = Convert.ToInt32(DateTime.Now.Year.ToString()) + 543
-                dao.fields.RGTNO_JJ = tempb.ToString().Substring(2, 2) & str_no
-            End If
-            dao.Update()
-            str_no = str_no & "/" & _YEAR.Substring(2, 2)
-            'str_no = _YEAR.Substring(2, 2) & str_no
-        End If
-
-        Return str_no
-    End Function
 
     Public Sub bind_dd()
         Dim dt As DataTable
@@ -182,6 +152,34 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         DD_STATUS.DataBind()
         DD_STATUS.Items.Insert(0, "-- กรุณาเลือก --")
 
+    End Sub
+    Public Sub bind_data_rgtno()
+        Dim dao As New DAO_DRUG.ClsDBdrrqt
+        dao.GetDataby_IDA(_IDA)
+        If dao.fields.RGTNO_NEW Is Nothing Then
+            If dao.fields.HerbFromNarcotics_ID Is Nothing = False Then
+                If dao.fields.HerbFromNarcotics_ID = 1 Then
+                    Dim str_no As String = ""
+                    'str_no = Bind_RGTNO80K(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd)
+                    str_no = Bind_RGTNO80K(con_year(Date.Now.Year), dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd)
+                ElseIf dao.fields.HerbFromNarcotics_ID = 2 Then
+                    Bind_RGTNO158K(con_year(Date.Now.Year), dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd, dao.fields.HerbFromNarcotics_ID)
+                    'Bind_RGTNO158K(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd, dao.fields.HerbFromNarcotics_ID)
+                Else
+                    Try
+                        BIND_RGTNO_NEW(con_year(Date.Now.Year), dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+                        'BIND_RGTNO_NEW(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+                    Catch ex As Exception
+
+                    End Try
+                End If
+            Else
+                'BIND_RGTNO_NEW(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+                BIND_RGTNO_NEW(con_year(Date.Now.Year), dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+            End If
+        Else
+            RGTNO_FULL.Text = dao.fields.RGTNO_NEW
+        End If
     End Sub
 
     Function bind_data_uploadfile()
@@ -266,12 +264,26 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกประเภททะเบียน');", True)
         ElseIf DD_STATUS.SelectedValue = 6 Then
             P12.Visible = True
+            p2.Visible = False
+        ElseIf DD_STATUS.SelectedValue = 77 Or DD_STATUS.SelectedValue = 78 Or DD_STATUS.SelectedValue = 79 Or DD_STATUS.SelectedValue = 7 _
+            Or DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 10 Then
+            p2.Visible = True
+            P12.Visible = False
         Else
             P12.Visible = False
+            p2.Visible = False
         End If
     End Sub
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
+        Dim bao_tran As New BAO_TRANSECTION
+        Try
+            bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
+            bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+            bao_tran.THANM = _CLS.THANM
+        Catch ex As Exception
+
+        End Try
         Dim dao As New DAO_DRUG.ClsDBdrrqt
         dao.GetDataby_IDA(_IDA)
 
@@ -282,28 +294,49 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.update()
 
-            Dim bao_tran As New BAO_TRANSECTION
+            'Dim bao_tran As New BAO_TRANSECTION
             bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.update()
 
             dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao_tabean_herb.Update()
+
+            Run_Pdf_Tabean_Herb_6()
+            'Run_Pdf_Tabean_Herb_6_2()
+            AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
         ElseIf DD_STATUS.SelectedValue = 10 Then
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.update()
 
-            Dim bao_tran As New BAO_TRANSECTION
+            ' Dim bao_tran As New BAO_TRANSECTION
             bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
             dao.update()
 
             dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
+            dao_tabean_herb.fields.cancel_by = _CLS.THANM
+            dao_tabean_herb.fields.cancel_date = Date.Now
+            dao_tabean_herb.fields.cancel_iden = _CLS.CITIZEN_ID
+            dao_tabean_herb.fields.DD_CANCEL_ID = DDL_CANCLE_REMARK.SelectedValue
+            dao_tabean_herb.fields.DD_CANCEL_NM = DDL_CANCLE_REMARK.SelectedItem.Text
+            dao_tabean_herb.fields.NOTE_CANCEL = NOTE_CANCLE.Text
             dao_tabean_herb.Update()
+
+            UC_ATTACH1.insert_TBN(_TR_ID, _ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+            Run_Pdf_Tabean_Herb_6()
+            'Run_Pdf_Tabean_Herb_6_2()
+
+            AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
         Else
             If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Or DD_OFF_OFFER.SelectedValue = "-- กรุณาเลือก --" _
             Or DD_ML_ID.SelectedValue = "-- กรุณาเลือก --" Or TXT_SUM.Text = "" Then
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ ประเภท ยอดสุทธิ หรือ เลือกเจ้าหน้าที่');", True)
+            ElseIf DD_SYNDROME_ID.SelectedValue = "-- กรุณาเลือก --" Or DD_SALE_CHANNEL.SelectedValue = "-- กรุณาเลือก --" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกช่องทางการขาย หรือกลุ่มอาการ');", True)
             ElseIf DD_STATUS.SelectedValue = 6 Then
                 Try
                     dao.fields.CONSIDER_DATE = DateTime.ParseExact(DATE_OFFER.Text, "dd/MM/yyyy", New CultureInfo("th-TH").DateTimeFormat)
@@ -314,6 +347,24 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
                 dao.fields.FK_STAFF_OFFER_IDA = DD_OFF_OFFER.SelectedValue
                 dao.fields.STAFF_OFFER_NAME = DD_OFF_OFFER.SelectedItem.Text
                 dao.fields.RGTNO_NEW = RGTNO_FULL.Text
+                Dim RGTNO As String = ""
+                If dao.fields.HerbFromNarcotics_ID Is Nothing = False Then
+                    If dao.fields.HerbFromNarcotics_ID = 1 Then
+                        Dim str_no As String = ""
+                        RGTNO = GEN_RGTNO80K(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd)
+                    ElseIf dao.fields.HerbFromNarcotics_ID = 2 Then
+                        RGTNO = GEN_RGTNO158K(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.drgtpcd, dao.fields.HerbFromNarcotics_ID)
+                    Else
+                        Try
+                            RGTNO = GEN_RGTNO_NEW(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+                        Catch ex As Exception
+
+                        End Try
+                    End If
+                Else
+                    RGTNO = GEN_RGTNO_NEW(dao.fields.DATE_YEAR, dao.fields.pvncd, dao.fields.rgttpcd, dao.fields.IDA, dao.fields.PROCESS_ID, dao.fields.drgtpcd)
+                End If
+                dao.fields.rgtno = RGTNO
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.update()
 
@@ -324,6 +375,24 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
                     dao_tabean_herb.fields.ML_PAY = TXT_BATH.Text
                     'dao_tabean_herb.fields.ML_MINUS = TXT_MINUS.Text
                     dao_tabean_herb.fields.ML_MINUS = DDL_DISCOUNT.SelectedItem.Text
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dao_tabean_herb.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
+                    dao_tabean_herb.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dao_tabean_herb.fields.SYNDROME_ID2 = DD_SYNDROME_ID2.SelectedValue
+                    dao_tabean_herb.fields.SYNDROME_NAME2 = DD_SYNDROME_ID2.SelectedItem.Text
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dao_tabean_herb.fields.SALE_CHANNEL_ID = DD_SALE_CHANNEL.SelectedValue
+                    dao_tabean_herb.fields.SALE_CHANNEL_NAME = DD_SALE_CHANNEL.SelectedItem.Text
                 Catch ex As Exception
 
                 End Try
@@ -342,10 +411,13 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
 
                 Run_Pdf_Tabean_Herb_6()
                 Run_Pdf_Tabean_Herb_6_2()
+                Run_Pdf_Tabean_Herb_6_2_Long()
                 'Run_Pdf_Tabean_Herb_APPROVE_2_11_12()   
+
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
             End If
         End If
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+
     End Sub
 
     Public Sub Run_Pdf_Tabean_Herb_6()
@@ -405,6 +477,35 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         _CLS.FILENAME_XML = Path_XML
 
     End Sub
+    Public Sub Run_Pdf_Tabean_Herb_6_2_Long()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+
+        Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+        dao_deeqt.GetDataby_IDA(_IDA)
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+        dao.GetdatabyID_FK_IDA_DQ(_IDA)
+
+        Dim XML As New CLASS_GEN_XML.TABEAN_HERB_TBN
+        TBN_NEW = XML.gen_xml_tbn_2(dao.fields.IDA, _IDA, _IDA_LCN)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_TBN_TEMPLAETE1(_ProcessID, dao_deeqt.fields.STATUS_ID, "ทบ2", 1)
+
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_TBN") 'path
+        Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_TBN_2\" & dao_pdftemplate.fields.PDF_TEMPLATE
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_TBN("HB_PDF", _ProcessID, dao_deeqt.fields.DATE_YEAR, dao_deeqt.fields.TR_ID, _IDA, dao_deeqt.fields.STATUS_ID)
+        Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_TBN("HB_XML", _ProcessID, dao_deeqt.fields.DATE_YEAR, dao_deeqt.fields.TR_ID, _IDA, dao_deeqt.fields.STATUS_ID)
+
+        LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _ProcessID, PATH_PDF_OUTPUT)
+
+        _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
+        _CLS.PDFNAME = PATH_PDF_OUTPUT
+        _CLS.FILENAME_XML = Path_XML
+
+    End Sub
 
     Public Sub Run_Pdf_Tabean_Herb_APPROVE_2_11_12()
         Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
@@ -432,7 +533,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
     End Sub
 
     Protected Sub btn_preview_tb2_Click(sender As Object, e As EventArgs) Handles btn_preview_tb2.Click
-        Dim Url As String = "FRM_HERB_TABEAN_STAFF_TABEAN_PREVIEW_TABEAN2.aspx?IDA=" & _IDA
+        Dim Url As String = "FRM_HERB_TABEAN_STAFF_TABEAN_PREVIEW_TABEAN2.aspx?IDA=" & _IDA & "&SLDDL=" & DDL_TB2_SELECT.SelectedValue
         Response.Write("<script>window.open('" & Url & "','_blank')</script>")
         'load_PDF(_CLS.PDFNAME, _CLS.FILENAME_PDF)
     End Sub
@@ -517,25 +618,11 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
             TXT_SUM.Text = ""
             'TXT_MINUS.Text = ""
             'TXT_SUM.Text = ""
+            bind_dd_discount()
         End If
 
     End Sub
-    'Protected Sub TXT_MINUS_TextChanged(sender As Object, e As EventArgs) Handles TXT_MINUS.TextChanged
-    '    Dim number1 As Integer = 0
-    '    Dim number2 As Integer = 0
-    '    Dim number3 As Integer = 100
-    '    Dim answer1 As Decimal
-    '    Dim sum1 As Integer
-    '    Dim sum2 As Integer
 
-    '    number1 = TXT_BATH.Text
-    '    ' number2 = TXT_MINUS.Text
-    '    number2 = DDL_DISCOUNT.SelectedItem.Text
-    '    sum1 = number1 * number2
-    '    sum2 = sum1 / number3
-    '    answer1 = number1 - sum2
-    '    TXT_SUM.Text = answer1
-    'End Sub
     Public Sub bind_dd_discount()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
@@ -567,5 +654,592 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
             TXT_SUM.Text = answer1
         End If
 
+    End Sub
+    Protected Sub btn_add_muc_add_Click(sender As Object, e As EventArgs) Handles btn_add_muc_add.Click
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_MANUFACTRUE
+
+        dao.fields.FK_IDA_DQ = _IDA
+        dao.fields.NO_ID = NO_ID.Text
+        If DD_MANUFAC_ID.SelectedValue = "-- กรุณาเลือก --" Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก ประเภทกระบวนการ');", True)
+        Else
+            dao.fields.MENUFAC_ID = DD_MANUFAC_ID.SelectedValue
+            dao.fields.MENUFAC_NAME = DD_MANUFAC_ID.SelectedItem.Text
+
+            dao.fields.ACTIVEFACT = 1
+            dao.fields.CREATE_DATE = Date.Now
+            dao.fields.CREATE_USER = _CLS.THANM
+
+            dao.insert()
+        End If
+
+        DD_MANUFAC_ID.ClearSelection()
+        NO_ID.Text = ""
+
+        RadGrid6.Rebind()
+    End Sub
+    Private Sub bind_manu()
+        Dim dao_manu As New DAO_TABEAN_HERB.TB_TABEAN_HERB_MANUFACTRUE
+        dao_manu.GetdatabyID_FK_IDA_DQ2(_IDA)
+
+        RadGrid6.DataSource = dao_manu.datas
+
+    End Sub
+
+    Private Sub RadGrid6_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid6.NeedDataSource
+        bind_manu()
+    End Sub
+    'Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+    '    Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
+    '    dao_deeqt.GetDataby_IDA(_IDA)
+    '    Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+    '    dao.GetdatabyID_FK_IDA_DQ(_IDA)
+    '    If DD_SYNDROME_ID.SelectedValue = "-- กรุณาเลือก --" Or DD_SALE_CHANNEL.SelectedValue = "-- กรุณาเลือก --" Then
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูลให้ครับถ้วน');", True)
+    '    Else
+    '        Try
+    '            dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
+    '            dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+    '        Catch ex As Exception
+
+    '        End Try
+    '        Try
+    '            dao.fields.SYNDROME_ID2 = DD_SYNDROME_ID2.SelectedValue
+    '            dao.fields.SYNDROME_NAME2 = DD_SYNDROME_ID2.SelectedItem.Text
+    '        Catch ex As Exception
+
+    '        End Try
+    '        Try
+    '            dao.fields.SALE_CHANNEL_ID = DD_SALE_CHANNEL.SelectedValue
+    '            dao.fields.SALE_CHANNEL_NAME = DD_SALE_CHANNEL.SelectedItem.Text
+    '        Catch ex As Exception
+
+    '        End Try
+
+    '    End If
+    '    dao.Update()
+    'End Sub
+    Public Sub bind_dd_syndrome()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_DD_MAS_TABEAN_HERB_SYNDROME_JJ()
+
+        DD_SYNDROME_ID.DataSource = dt
+        DD_SYNDROME_ID.DataBind()
+        DD_SYNDROME_ID.Items.Insert(0, "-- กรุณาเลือก --")
+
+    End Sub
+    Public Sub bind_dd_syndrome2()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_DD_MAS_TABEAN_HERB_SYNDROME_JJ()
+
+        DD_SYNDROME_ID2.DataSource = dt
+        DD_SYNDROME_ID2.DataBind()
+        DD_SYNDROME_ID2.Items.Insert(0, "-- กรุณาเลือก --")
+
+    End Sub
+    Public Sub bind_dd_manufac()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_DD_MAS_TABEAN_HERB_MENUFACTRUE()
+
+        DD_MANUFAC_ID.DataSource = dt
+        DD_MANUFAC_ID.DataBind()
+        DD_MANUFAC_ID.Items.Insert(0, "-- กรุณาเลือก --")
+
+    End Sub
+
+    Private Sub bind_size()
+        Dim dao_size As New DAO_TABEAN_HERB.TB_TABEAN_HERB_SIZE_PACK_FST
+        dao_size.GetdatabyID_FK_IDA_DQ2(_IDA)
+
+        RadGrid7.DataSource = dao_size.datas
+
+    End Sub
+
+    Private Sub RadGrid7_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid7.NeedDataSource
+        bind_size()
+    End Sub
+    Function bind_data_uploadfile_11()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID)
+        Return dt
+    End Function
+
+    Private Sub RadGrid8_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid8.NeedDataSource
+        RadGrid8.DataSource = bind_data_uploadfile_11()
+    End Sub
+    Private Sub RadGrid8_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid8.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile_9()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        Return dt
+    End Function
+
+    Private Sub RadGrid9_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid9.NeedDataSource
+        RadGrid8.DataSource = bind_data_uploadfile_9()
+    End Sub
+    Private Sub RadGrid9_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid9.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+
+    Private Function GEN_RGTNO(ByVal rgttpcd As String) As String
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        Dim str_no As String = ""
+
+        If dao.fields.IDA = 1 And dao.fields.DATE_YEAR = con_year(Date.Now.Year) Then
+            Dim max_no As Integer = 0
+            Try
+                max_no = CInt("00002")
+                max_no += 1
+
+            Catch ex As Exception
+
+            End Try
+
+            str_no = max_no.ToString()
+            str_no = String.Format("{0:50000}", max_no.ToString("50000"))
+            dao.fields.RGTNO_JJ = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
+            dao.Update()
+            'str_no = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
+            str_no = str_no & "/" & dao.fields.DATE_YEAR.Substring(2, 2)
+        Else
+            Dim max_no As Integer = 0
+
+            Dim dt As New DataTable
+            Dim bao_max As New BAO_TABEAN_HERB.tb_main
+            Dim _YEAR As String
+            _YEAR = con_year(Date.Now.Year)
+            dt = bao_max.SP_TABEAN_HERB_GET_MAX_RGTNO_JJ(rgttpcd, _YEAR.Substring(2, 2))
+            Try
+                max_no = dt(0)("MAX_ID")
+                max_no += 1
+            Catch ex As Exception
+
+            End Try
+
+            str_no = max_no.ToString()
+            str_no = String.Format("{0:50000}", max_no.ToString("50000"))
+            If dao.fields.DATE_YEAR IsNot Nothing Then
+                dao.fields.RGTNO_JJ = dao.fields.DATE_YEAR.Substring(2, 2) & str_no
+            Else
+                Dim tempb = Convert.ToInt32(DateTime.Now.Year.ToString()) + 543
+                dao.fields.RGTNO_JJ = tempb.ToString().Substring(2, 2) & str_no
+            End If
+            dao.Update()
+            str_no = str_no & "/" & _YEAR.Substring(2, 2)
+            'str_no = _YEAR.Substring(2, 2) & str_no
+        End If
+
+        Return str_no
+    End Function
+
+    Public Function GEN_RGTNO50K(ByVal IDA As String) As String
+        Dim int_no As Integer
+        Dim subString As String = ""
+        Dim dao As New DAO_DRUG.ClsDBdrrqt  '
+        dao.GetDataby_IDA(IDA)
+        Try
+            If IsNothing(dao.fields.RGTNO_NEW) = False Then
+                Dim RGTNO As String = Right(dao.fields.RGTNO_NEW, 8)
+                int_no = Left(RGTNO, 5)
+            End If
+        Catch ex As Exception
+            Try
+                If IsNothing(dao.fields.RGTNO_NEW) = False Then
+                    Dim RGTNO As String = Right(dao.fields.RGTNO_NEW, 7)
+                    int_no = Left(RGTNO, 4)
+                End If
+            Catch ex1 As Exception
+                Try
+                    If IsNothing(dao.fields.RGTNO_NEW) = False Then
+                        Dim RGTNO As String = Right(dao.fields.RGTNO_NEW, 6)
+                        int_no = Left(RGTNO, 3)
+                    End If
+                Catch ex2 As Exception
+                    Try
+                        If IsNothing(dao.fields.RGTNO_NEW) = False Then
+                            Dim RGTNO As String = Right(dao.fields.RGTNO_NEW, 5)
+                            int_no = Left(RGTNO, 2)
+                        End If
+                    Catch ex3 As Exception
+
+                    End Try
+                End Try
+            End Try
+        End Try
+
+        'int_no = int_no + 1
+        Dim Year As String = ""
+        Year = dao.fields.DATE_YEAR
+        Dim str_no As String = int_no.ToString()
+        str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+        str_no = Year.Substring(2, 2) & str_no
+        dao.fields.rgtno = str_no
+        dao.update()
+        Return str_no
+    End Function
+    Public Function GEN_RGTNO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal PROCESS_ID As Integer, ByVal drgtpcd As String) As String
+        Dim int_no As Integer
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_NEW
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_NEW
+        Dim dao_dr As New DAO_DRUG.ClsDBdrdrgtype
+        dao_dr.GetDataby_drgtpcd(drgtpcd)
+        dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA, PROCESS_ID, drgtpcd)
+        ' dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        If dao2.fields.IDA = Nothing Then
+            int_no = int_no + 1
+            str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+
+            dao = New DAO_TABEAN_HERB.TB_GEN_NO_TBN_NEW
+            dao.fields.YEAR = YEAR
+            dao.fields.PVCODE = PVNCD
+            dao.fields.GENNO = int_no
+            dao.fields.TYPE = RGTTPCD
+            dao.fields.REF_IDA = FK_IDA
+            dao.fields.RGTNO = str_no2
+            dao.fields.DESCRIPTION = int_no
+            dao.fields.PROCESS_ID = PROCESS_ID
+            dao.fields.GROUP_NO = drgtpcd
+            Try
+                If drgtpcd = 3 Then
+                    dao.fields.FORMAT = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_dr.fields.engdrgtpnm
+                Else
+                    dao.fields.FORMAT = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2)
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            dao.insert()
+        Else
+            str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+        End If
+
+        If drgtpcd = 3 Then
+            RGTNO_FULL.Text = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_dr.fields.engdrgtpnm
+        Else
+            RGTNO_FULL.Text = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2)
+        End If
+
+        Return str_no2
+    End Function
+    Public Function BIND_RGTNO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal PROCESS_ID As Integer, ByVal drgtpcd As String) As String
+        Dim int_no As Integer
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_NEW
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_NEW
+        Dim dao_dr As New DAO_DRUG.ClsDBdrdrgtype
+        dao_dr.GetDataby_drgtpcd(drgtpcd)
+        'dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA, PROCESS_ID, drgtpcd)
+        'dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao.GetDataby_RGTTPCD_MAX(YEAR, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        int_no = int_no + 1
+        str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+        str_no2 = YEAR.Substring(2, 2) & str_no
+
+        Dim full_rgtno As String = ""
+        If drgtpcd = "3" Then
+            full_rgtno = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2)
+            'full_rgtno = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_dr.fields.engdrgtpnm
+            Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+            Try
+                dao_ty.GetDataby_drgtpcd(drgtpcd)
+                full_rgtno &= " " & dao_ty.fields.engdrgtpnm
+            Catch ex As Exception
+
+            End Try
+            RGTNO_FULL.Text = full_rgtno
+        Else
+            full_rgtno = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2)
+            'RGTNO_FULL.Text = RGTTPCD & " " & int_no.ToString() & "/" & YEAR.Substring(2, 2)
+
+            Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+            Try
+                dao_ty.GetDataby_drgtpcd(drgtpcd)
+                RGTNO_FULL.Text = full_rgtno & "" & dao_ty.fields.engdrgtpnm
+            Catch ex As Exception
+
+            End Try
+        End If
+
+        Return str_no2
+    End Function
+    Public Function Bind_RGTNO158K(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal drgtpcd As String, ByVal Condition As String) As String
+        Dim int_no As Integer
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        dao.GetDataby_Condition_MAX(YEAR, RGTTPCD, drgtpcd, Condition)
+        Dim dao_type As New DAO_DRUG.ClsDBdrdrgtype
+        dao_type.GetDataby_drgtpcd(drgtpcd)
+        ' dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+
+        End If
+        Dim full_rgtno As String = ""
+        int_no = int_no + 1
+        str_no = String.Format("{0:15800}", int_no.ToString("15800"))
+        str_no2 = YEAR.Substring(2, 2) & str_no
+        full_rgtno = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2)
+        'RGTNO_FULL.Text = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_type.fields.engdrgtpnm
+        Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+        Try
+            dao_ty.GetDataby_drgtpcd(drgtpcd)
+            RGTNO_FULL.Text = full_rgtno & "" & dao_ty.fields.engdrgtpnm
+        Catch ex As Exception
+
+        End Try
+
+        Return str_no2
+    End Function
+    Public Function GEN_RGTNO158K(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal drgtpcd As String, ByVal Condition As String) As String
+        Dim int_no As Integer
+        Dim full_rgtno As String = ""
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        dao.GetDataby_Condition_MAX(YEAR, RGTTPCD, drgtpcd, Condition)
+        Dim dao_type As New DAO_DRUG.ClsDBdrdrgtype
+        dao_type.GetDataby_drgtpcd(drgtpcd)
+        ' dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        If dao2.fields.IDA = Nothing Then
+            int_no = int_no + 1
+            str_no = String.Format("{0:15800}", int_no.ToString("15800"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+
+            dao = New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+            dao.fields.YEAR = YEAR
+            dao.fields.PVCODE = PVNCD
+            dao.fields.GENNO = int_no
+            dao.fields.TYPE = RGTTPCD
+            dao.fields.REF_IDA = FK_IDA
+            dao.fields.RGTNO = str_no2
+            dao.fields.GROUP_NO = drgtpcd
+            dao.fields.DESCRIPTION = str_no
+            dao.fields.Condition = Condition
+            full_rgtno = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2)
+            Try
+                dao_ty.GetDataby_drgtpcd(drgtpcd)
+                full_rgtno &= "" & dao_ty.fields.engdrgtpnm
+            Catch ex As Exception
+
+            End Try
+            dao.fields.FORMAT = full_rgtno
+            dao.insert()
+        Else
+            str_no = String.Format("{0:15800}", int_no.ToString("15800"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+        End If
+
+        full_rgtno = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2)
+        'RGTNO_FULL.Text = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_type.fields.engdrgtpnm
+        Try
+            dao_ty.GetDataby_drgtpcd(drgtpcd)
+            RGTNO_FULL.Text = full_rgtno & "" & dao_ty.fields.engdrgtpnm
+        Catch ex As Exception
+
+        End Try
+
+        Return str_no2
+    End Function
+    Public Function Bind_RGTNO80K(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal drgtpcd As String) As String
+        Dim int_no As Integer
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        dao.GetDataby_RGTTPCD_MAX(YEAR, RGTTPCD, drgtpcd)
+        Dim dao_type As New DAO_DRUG.ClsDBdrdrgtype
+        dao_type.GetDataby_drgtpcd(drgtpcd)
+        ' dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+
+        End If
+        Dim full_rgtno As String = ""
+        int_no = int_no + 1
+        str_no = String.Format("{0:80000}", int_no.ToString("80000"))
+        str_no2 = YEAR.Substring(2, 2) & str_no
+        full_rgtno = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2)
+        'RGTNO_FULL.Text = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_type.fields.engdrgtpnm
+        Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+        Try
+            dao_ty.GetDataby_drgtpcd(drgtpcd)
+            RGTNO_FULL.Text = full_rgtno & "" & dao_ty.fields.engdrgtpnm
+        Catch ex As Exception
+
+        End Try
+
+        Return str_no2
+    End Function
+    Public Function GEN_RGTNO80K(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer, ByVal drgtpcd As String) As String
+        Dim int_no As Integer
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        'Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+        dao.GetDataby_RGTTPCD_MAX(YEAR, RGTTPCD, drgtpcd)
+        Dim dao_type As New DAO_DRUG.ClsDBdrdrgtype
+        dao_type.GetDataby_drgtpcd(drgtpcd)
+        ' dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        If dao2.fields.IDA = Nothing Then
+            int_no = int_no + 1
+            str_no = String.Format("{0:80000}", int_no.ToString("80000"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+
+            dao = New DAO_TABEAN_HERB.TB_GEN_NO_TBN_FronNarcotic
+            dao.fields.YEAR = YEAR
+            dao.fields.PVCODE = PVNCD
+            dao.fields.GENNO = int_no
+            dao.fields.TYPE = RGTTPCD
+            dao.fields.REF_IDA = FK_IDA
+            dao.fields.RGTNO = str_no2
+            dao.fields.GROUP_NO = drgtpcd
+            dao.fields.DESCRIPTION = str_no
+            dao.fields.FORMAT = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_type.fields.engdrgtpnm
+            dao.insert()
+        Else
+            str_no = String.Format("{0:80000}", int_no.ToString("80000"))
+            str_no2 = YEAR.Substring(2, 2) & str_no
+        End If
+
+        'RGTNO_FULL.Text = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2) & dao_type.fields.engdrgtpnm
+
+        Dim full_rgtno As String = ""
+        full_rgtno = RGTTPCD & " " & str_no.ToString() & "/" & YEAR.Substring(2, 2)
+        Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+        Try
+            dao_ty.GetDataby_drgtpcd(drgtpcd)
+            RGTNO_FULL.Text = full_rgtno & " " & dao_ty.fields.engdrgtpnm
+        Catch ex As Exception
+
+        End Try
+
+        Return str_no2
+    End Function
+
+    Public Function GEN_RGTNO(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal FK_IDA As Integer) As String
+        Dim int_no As Integer
+
+        Dim dao As New DAO_DRUG.clsDBGEN_NO_01
+        '
+        If RGTTPCD = "1" Or RGTTPCD = "6" Then
+            dao.GetDataby_RGTNO_MAX_N_NC(YEAR, PVNCD, FK_IDA)
+        ElseIf RGTTPCD = "7" Or RGTTPCD = "B" Then
+            dao.GetDataby_RGTNO_MAX_NB_NBC(YEAR, PVNCD, FK_IDA)
+        Else
+            dao.GetDataby_RGTNO_MAX(YEAR, PVNCD, RGTTPCD, FK_IDA)
+        End If
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        int_no = int_no + 1
+
+        Dim str_no As String = int_no.ToString()
+        str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+        str_no = YEAR.Substring(2, 2) & str_no
+        dao = New DAO_DRUG.clsDBGEN_NO_01
+        dao.fields.YEAR = YEAR
+        dao.fields.PVCODE = PVNCD
+        dao.fields.GENNO = int_no
+        dao.fields.TYPE = RGTTPCD
+        dao.fields.IDA = FK_IDA
+        dao.fields.LCNNO = str_no
+        dao.fields.DESCRIPTION = str_no
+        dao.insert()
+        Return str_no
+    End Function
+
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        Response.Redirect("POPUP_HERB_TABEAN_STAFF_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID)
     End Sub
 End Class

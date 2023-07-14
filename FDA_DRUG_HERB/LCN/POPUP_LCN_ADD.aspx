@@ -1,9 +1,11 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POPUP_LCN_ADD.aspx.vb" Inherits="FDA_DRUG_HERB.POPUP_LCN_ADD" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false"  MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POPUP_LCN_ADD.aspx.vb" Inherits="FDA_DRUG_HERB.POPUP_LCN_ADD" %>
 
 <%@ Register Src="~/LCN/UC/UC_HERB.ascx" TagPrefix="uc1" TagName="UC_HERB" %>
 <%@ Register Src="~/LCN/UC/UC_HERB_KEEP.ascx" TagPrefix="uc1" TagName="UC_HERB_KEEP" %>
 <%@ Register Src="~/LCN/UC/UC_HERB_PHESAJ.ascx" TagPrefix="uc1" TagName="UC_HERB_PHESAJ" %>
 <%@ Register Src="~/LCN/UC/UC_LCN_UPLOAD_FILE.ascx" TagPrefix="uc1" TagName="UC_LCN_UPLOAD_FILE" %>
+<%@ Register Src="~/LCN/UC/UC_HERB_BSN.ascx" TagPrefix="uc1" TagName="UC_HERB_BSN" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -36,7 +38,12 @@
             </asp:Panel>
 
             <asp:Panel ID="Panel2" runat="server" Style="display: none;">
-                <uc1:UC_HERB_PHESAJ runat="server" ID="UC_HERB_PHESAJ" />
+                <div class ="row">
+                    <uc1:UC_HERB_BSN runat="server" id="UC_HERB_BSN" />
+                </div>
+                 <div class ="row">
+                    <uc1:UC_HERB_PHESAJ runat="server" ID="UC_HERB_PHESAJ" />
+                </div>              
                 <hr />
             </asp:Panel>
 

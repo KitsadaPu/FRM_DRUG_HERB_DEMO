@@ -40,16 +40,16 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-2">ข้าพเจ้า :</div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="txt_sub_name" runat="server" BorderStyle="None" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="txt_sub_name" runat="server" BorderStyle="None" ReadOnly="True" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-2">(ชื่อผู้รับอนุญาต)</div>
         <div class="col-lg-5"></div>
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-2">ซึ้งมีผู้มีหน้าที่ปฏิบัติการชื่อ :</div>
+        <div class="col-lg-2">ซึ่งมีผู้ดำเนินกิจการชื่อ :</div>
         <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="txt_sub_phr_name" runat="server" BorderColor="Lime" BorderStyle="None" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="txt_sub_bsn_name" runat="server" BorderColor="Lime" BorderStyle="None" ReadOnly="True"></asp:TextBox>
         </div>
         <div class="col-lg-2">(เฉพาะกรณีนิติบุคคล)</div>
         <div class="col-lg-5"></div>
@@ -172,6 +172,17 @@
     </div>
     <div>
         <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <asp:Panel ID="Panel2_1" runat="server" Style="display: none; color: red">
+                    <p style="color: red">
+                        *หมายเหตุภายหลังจากที่การดำเนินการแล้วเสร็จขอให้ท่านส่งเอกสารใบอนุญาตฉบับจริงมายังกลุ่มสถานที่ กองผลิตภัณฑ์สมุนไพร สำนักงานคณะกรรมการอาหารและยา เลขที่ 88/24 ถนนติวานนท์ ตำบลตลาดขวัญ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000 เพื่อประกอบการดำเนินการต่อไป
+                    </p>
+                </asp:Panel>
+            </div>
+            <div class="col-lg-8"></div>
+        </div>
+        <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-8">
                 <asp:Panel ID="Panel3" runat="server" Style="display: none;">
@@ -182,17 +193,6 @@
                     <tr>
                         <td colspan="2">
                             <asp:Panel ID="Panel1" runat="server" Style="display: none;">
-                                <div class="row">
-                                    <div class="col-lg-1"></div>
-                                    <div class="col-lg-10">
-                                        <p style="color: red">
-                                            *หมายเหตุ
-ภายหลังจากที่การดำเนินการแล้วเสร็จขอให้ท่านส่งเอกสารใบอนุญาตฉบับจริงมายังกลุ่มสถานที่ กองผลิตภัณฑ์สมุนไพร สำนักงานคณะกรรมการอาหารและยา เลขที่ 88/24 ถนนติวานนท์ ตำบลตลาดขวัญ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000 เพื่อประกอบการดำเนินการต่อไป
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-8"></div>
-                                </div>
-
                                 <uc1:UC_ATTACH_DRUG ID="uc102_1" runat="server" />
                                 <%-- <uc1:UC_ATTACH_DRUG ID="uc102_2" runat="server" />
                                     <uc1:UC_ATTACH_DRUG ID="uc102_3" runat="server" />--%>

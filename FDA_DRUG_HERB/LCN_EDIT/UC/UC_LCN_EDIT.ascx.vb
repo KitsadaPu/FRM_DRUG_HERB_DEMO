@@ -1,5 +1,5 @@
 ﻿Imports System.Globalization
-
+Imports Telerik.Web.UI
 Public Class UC_LCN_EDIT
     Inherits System.Web.UI.UserControl
     Private _IDA As String
@@ -8,6 +8,9 @@ Public Class UC_LCN_EDIT
     Private _lct_ida As String
     Private _lcn_ida As String
 
+
+
+    Shared _phr_ida As String
     Private _year As String
     Private _STATUS_ID As Integer
     Private _STAFF_ID As Integer
@@ -70,7 +73,8 @@ Public Class UC_LCN_EDIT
         'เจ้าหน้าที่ทำแทน ผปก
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_lcn_ida, _dd1_file, _YEAR, True)
+        'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_lcn_ida, _dd1_file, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
 
 
         Dim ddl1 As Integer = 0
@@ -115,6 +119,7 @@ Public Class UC_LCN_EDIT
             ElseIf _ProcessID = "120" Then
                 rdl_lcn_type.SelectedValue = "3"
             End If
+            bind_ddl_prefix()
 
             dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA(_lcn_ida, 2)
 
@@ -162,14 +167,17 @@ Public Class UC_LCN_EDIT
                 '        BindTable(DDL_EDIT_REASON.SelectedValue, 0)
                 '    End If
                 'End If
-
             End If
             If ddl1 <> 0 Then
                 bind_detail(ddl1, ddl2, note)
                 'bind_reason()
             End If
 
-
+            If _IDA <> 0 Then
+                btn_save.Visible = False
+            Else
+                btn_save.Visible = True
+            End If
 
         End If
 
@@ -389,6 +397,13 @@ Public Class UC_LCN_EDIT
             txt_sub_phr_name.Text = dao_phr.fields.PHR_NAME
         End If
 
+        Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+        dao_bsn.GetDataby_LCN_IDA(_lcn_ida)
+        If dao_bsn.fields.BSN_THAIFULLNAME = Nothing Then
+            txt_bsn_name.Text = "-"
+        Else
+            txt_bsn_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
+        End If
     End Sub
 
     Public Function get_dt_edit()
@@ -419,7 +434,8 @@ Public Class UC_LCN_EDIT
         'Dim bao_tran As New BAO_LCN_TRANSECTION
         Dim bao_tran As New BAO_TRANSECTION
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_lcn_ida, DDL_EDIT_REASON.SelectedValue, _YEAR, True)
+        'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_lcn_ida, DDL_EDIT_REASON.SelectedValue, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
         Try
             get_reson_type = dao.fields.LCN_EDIT_REASON_TYPE
         Catch ex As Exception
@@ -651,6 +667,7 @@ Public Class UC_LCN_EDIT
             text_edit_ddl1_STUDY_LEVEL.Text = dao_phr.fields.STUDY_LEVEL
             text_edit_ddl1_PHR_SAKHA.Text = dao_phr.fields.PHR_SAKHA
             text_edit_ddl1_NAME_SIMINAR.Text = dao_phr.fields.NAME_SIMINAR
+            text_edit_ddl1_TIME_WORK.Text = dao_phr.fields.PHR_TEXT_WORK_TIME
             '12/10/2564
             Dim datefull_siminar As Date
             Dim SIMINAR_DATE As String = ""
@@ -670,7 +687,12 @@ Public Class UC_LCN_EDIT
             text_edit_ddl1_STUDY_LEVEL.Text = dao1.fields.STUDY_LEVEL
             text_edit_ddl1_PHR_SAKHA.Text = dao1.fields.PHR_SAKHA
             text_edit_ddl1_NAME_SIMINAR.Text = dao1.fields.NAME_SIMINAR
-            text_edit_ddl1_SIMINAR_DATE.Text = dao1.fields.SIMINAR_DATE
+            Try
+                text_edit_ddl1_SIMINAR_DATE.Text = dao1.fields.SIMINAR_DATE
+            Catch ex As Exception
+
+            End Try
+            text_edit_ddl1_TIME_WORK.Text = dao1.fields.PHR_TEXT_WORK_TIME
 
         End If
 
@@ -995,13 +1017,21 @@ Public Class UC_LCN_EDIT
                 edit_dd9_sub3.Visible = False
                 edit_dd10.Visible = False
                 edit_dd11.Visible = False
+                If _ProcessID = "122" Then
+                    rdl_mastra.SelectedValue = "1"
+                ElseIf _ProcessID = "121" Then
+                    rdl_mastra.SelectedValue = "2"
+                ElseIf _ProcessID = "120" Then
+                    rdl_mastra.SelectedValue = "3"
+                End If
 
                 'GET_DATA
                 GET_DDL_REASON_DETAIL(DDL_EDIT_REASON.SelectedValue, 0)
-
+                insert_phr_old_data()
                 DDL_EDIT_REASON_SUB.Visible = False 'ddl_ย่อย
                 lb1.Visible = False
                 BindTable(DDL_EDIT_REASON.SelectedValue, 0)
+                rgphr.Rebind()
             ElseIf DDL_EDIT_REASON.SelectedValue = 4 Then
                 'เพิ่มรายละเอียดการแก้ไข *ปิด
                 edit_dd1.Visible = False
@@ -1784,7 +1814,7 @@ Public Class UC_LCN_EDIT
         dao.fields.CREATE_DATE = System.DateTime.Now
         dao.fields.ACTIVE = 1
 
-        dao.insert()
+        'dao.insert()
 
 
     End Sub
@@ -2606,7 +2636,285 @@ Public Class UC_LCN_EDIT
         dao.insert()
     End Sub
 
+    Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+        Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
+        'dao.GET_DATA_BY_FK_LCN_IDA(_lcn_ida, True)
+        'dao.GET_DATA_BY_FK_LCN_IDA_AND_PHR_IDA(_lcn_ida, _phr_ida.Replace("&nbsp;", 0), True)
+        If ddl_prefix.Text = "0" Then
+            Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาเลือกคำนำหน้า');</script> ")
+            'ElseIf ddl_phr_type.SelectedValue = "0" And txt_STUDY_LEVEL.Text = "" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณาระบุคุณวุฒิ');</script> ")
+            'ElseIf txt_PHR_TEXT_WORK_TIME.Text = "" Then
+            '    Response.Write("<script type='text/javascript'>window.parent.alert('กรุณากรอกเวลาทำการ');</script> ")
+        Else
+            'If dao.fields.IDA = 0 Then
+            set_data(dao)
+            dao.fields.FK_LCN_IDA = _lcn_ida
+            dao.fields.FK_IDA = Request.QueryString("ida")
+            dao.fields.ACTIVE = True
+            dao.insert()
+            'Else
+            '    set_data(dao)
+            '    dao.fields.FK_LCN_IDA = _lcn_ida
+            '    dao.fields.FK_IDA = Request.QueryString("ida")
+            '    dao.fields.ACTIVE = 1
+            '    dao.update()
+            'End If
+            CLEAR_TEXT()
+            rgphr.Rebind()
+            BindTable(DDL_EDIT_REASON.SelectedValue, 0)
+            Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');</script> ")
+        End If
+        'Check_infor()
 
+    End Sub
+    Sub CLEAR_TEXT()
+        Try
+            ddl_prefix.SelectedValue = 0
+        Catch ex As Exception
 
+        End Try
+        text_edit_ddl1_PHR_TEXT_JOB.Text = Nothing
+        text_edit_ddl1_PHR_TEXT_NUM.Text = Nothing
+        text_edit_ddl1_STUDY_LEVEL.Text = Nothing
+        text_edit_ddl1_PHR_SAKHA.Text = Nothing
+        text_edit_ddl1_NAME_SIMINAR.Text = Nothing
+        txt_PHR_CTZNO.Text = Nothing
+        text_edit_ddl1_SIMINAR_DATE.Text = Nothing
+        text_edit_ddl1_TIME_WORK.Text = Nothing
+        _phr_ida = Nothing
+    End Sub
+    Public Sub set_data(ByRef dao As DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON)
+        With dao.fields
+            .PHR_NAME = text_edit_ddl1_PHR_TEXT_JOB.Text
+            '.PHR_LEVEL = txt_PHR_LEVEL.Text
+            .PHR_PREFIX_ID = ddl_prefix.SelectedValue
+            .PHR_PREFIX_NAME = ddl_prefix.SelectedItem.Text
+            .PHR_CTZNO = txt_PHR_CTZNO.Text
+            .PHR_TEXT_NUM = text_edit_ddl1_PHR_TEXT_NUM.Text
+            '.PHR_TEXT_WORK_TIME = txt_PHR_TEXT_WORK_TIME.Text
+            Try
+                .PHR_VETERINARY_FIELD = text_edit_ddl1_PHR_SAKHA.Text
+            Catch ex As Exception
 
+            End Try
+            Try
+                .PHR_LAW_SECTION = rdl_mastra.SelectedValue
+            Catch ex As Exception
+
+            End Try
+            dao.fields.FK_LCN_IDA = _lcn_ida
+            dao.fields.PHR_TEXT_JOB = text_edit_ddl1_PHR_TEXT_JOB.Text
+            dao.fields.PHR_TEXT_NUM = text_edit_ddl1_PHR_TEXT_NUM.Text
+            dao.fields.STUDY_LEVEL = text_edit_ddl1_STUDY_LEVEL.Text
+            dao.fields.PHR_SAKHA = text_edit_ddl1_PHR_SAKHA.Text
+            dao.fields.NAME_SIMINAR = text_edit_ddl1_NAME_SIMINAR.Text
+            dao.fields.PHR_TEXT_WORK_TIME = text_edit_ddl1_TIME_WORK.Text
+
+            Try
+                dao.fields.SIMINAR_DATE = DateTime.ParseExact(text_edit_ddl1_SIMINAR_DATE.Text, "dd/MM/yyyy", New CultureInfo("th-TH").DateTimeFormat)
+            Catch ex As Exception
+                dao.fields.SIMINAR_DATE = System.DateTime.Now
+            End Try
+            dao.fields.CREATE_DATE = System.DateTime.Now
+            'Try
+            '    .PHR_LAW_SECTION = rdl_mastra.SelectedValue
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .SIMINAR_DATE = rdp_SIMINAR_DATE.SelectedDate
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .NAME_SIMINAR = txt_NAME_SIMINAR.Text
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .PHR_JOB_TYPE = ddl_job.SelectedValue
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .PERSONAL_TYPE = ddl_phr_type.SelectedValue 'rdl_per_type.SelectedValue
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    If ddl_worker_type.SelectedValue = "12" Or ddl_worker_type.SelectedValue = "15" Then
+            '        .PHR_MEDICAL_TYPE = 3
+            '    End If
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .PHR_TEXT_JOB = txt_PHR_TEXT_JOB.Text
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    .PHR_MEDICAL_TYPE = ddl_PHR_MEDICAL_TYPE.SelectedValue
+            'Catch ex As Exception
+
+            'End Try
+        End With
+    End Sub
+    Public Sub bind_ddl_prefix()
+        Dim bao As New BAO_SHOW
+        Dim dt As DataTable = bao.SP_SYSPREFIX_DDL()
+
+        ddl_prefix.DataSource = dt
+        ddl_prefix.DataBind()
+    End Sub
+
+    Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+        Dim CITIZEN_ID_AUTHORIZE As String = ""
+        Try
+            CITIZEN_ID_AUTHORIZE = txt_PHR_CTZNO.Text
+            'CITIZEN_ID_AUTHORIZE = text_edit_ddl1_PHR_TEXT_JOB.Text
+        Catch ex As Exception
+
+        End Try
+
+        Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
+        Dim ws_taxno = ws2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
+
+        Dim dao_syslcnsid As New DAO_CPN.clsDBsyslcnsid
+        dao_syslcnsid.GetDataby_identify(CITIZEN_ID_AUTHORIZE)
+        If dao_syslcnsid.fields.IDA = 0 Then
+            Response.Write("<script type='text/javascript'>alert('ไม่พบข้อมูล');</script> ")
+        Else
+            Try
+                'txt_PHR_NAME.Text = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
+                text_edit_ddl1_PHR_TEXT_JOB.Text = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
+            Catch ex As Exception
+
+            End Try
+            Try
+                ddl_prefix.DropDownSelectData(ws_taxno.SYSLCNSNMs.prefixcd)
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+    Sub insert_phr_old_data()
+        Dim dao_phr As New DAO_DRUG.ClsDBDALCN_PHR
+        dao_phr.GetDataby_FK_IDA(_lcn_ida)
+        Dim dao_ddl1 As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
+        dao_ddl1.GET_DATA_BY_FK_LCN_IDA(_lcn_ida, True)
+        If dao_ddl1.fields.IDA = 0 Then
+            If dao_phr.fields.PHR_IDA <> 0 Then
+                For Each dao_phr.fields In dao_phr.datas
+                    Dim dao_ddl1_EDIT As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
+                    dao_ddl1_EDIT.fields.FK_LCN_IDA = dao_phr.fields.FK_IDA
+                    dao_ddl1_EDIT.fields.PHR_IDA = dao_phr.fields.PHR_IDA
+                    dao_ddl1_EDIT.fields.PHR_TEXT_JOB = dao_phr.fields.PHR_TEXT_JOB
+                    dao_ddl1_EDIT.fields.PHR_TEXT_NUM = dao_phr.fields.PHR_TEXT_NUM
+                    dao_ddl1_EDIT.fields.STUDY_LEVEL = dao_phr.fields.STUDY_LEVEL
+                    dao_ddl1_EDIT.fields.PHR_SAKHA = dao_phr.fields.PHR_SAKHA
+                    dao_ddl1_EDIT.fields.NAME_SIMINAR = dao_phr.fields.NAME_SIMINAR
+                    dao_ddl1_EDIT.fields.PHR_CTZNO = dao_phr.fields.PHR_CTZNO
+                    dao_ddl1_EDIT.fields.PHR_PREFIX_ID = dao_phr.fields.PHR_PREFIX_ID
+                    dao_ddl1_EDIT.fields.PHR_PREFIX_NAME = dao_phr.fields.PHR_PREFIX_NAME
+                    dao_ddl1_EDIT.fields.PHR_NAME = dao_phr.fields.PHR_NAME
+                    dao_ddl1_EDIT.fields.PHR_VETERINARY_FIELD = dao_phr.fields.PHR_VETERINARY_FIELD
+                    dao_ddl1_EDIT.fields.PHR_TEXT_WORK_TIME = dao_phr.fields.PHR_TEXT_WORK_TIME
+                    dao_ddl1_EDIT.fields.PHR_LAW_SECTION = dao_phr.fields.PHR_LAW_SECTION
+                    dao_ddl1_EDIT.fields.FK_IDA = _IDA
+                    dao_ddl1_EDIT.fields.ACTIVE = True
+                    dao_ddl1_EDIT.insert()
+                Next
+                For Each dao_phr.fields In dao_phr.datas
+                    Dim dao_ddl1_OLD As New DAO_LCN.TB_OLD_LCN_APPROVE_EDIT_DDL1_REASON
+                    dao_ddl1_OLD.fields.FK_LCN_IDA = dao_phr.fields.FK_IDA
+                    dao_ddl1_OLD.fields.PHR_IDA = dao_phr.fields.PHR_IDA
+                    dao_ddl1_OLD.fields.PHR_TEXT_JOB = dao_phr.fields.PHR_TEXT_JOB
+                    dao_ddl1_OLD.fields.PHR_TEXT_NUM = dao_phr.fields.PHR_TEXT_NUM
+                    dao_ddl1_OLD.fields.STUDY_LEVEL = dao_phr.fields.STUDY_LEVEL
+                    dao_ddl1_OLD.fields.PHR_SAKHA = dao_phr.fields.PHR_SAKHA
+                    dao_ddl1_OLD.fields.NAME_SIMINAR = dao_phr.fields.NAME_SIMINAR
+                    dao_ddl1_OLD.fields.PHR_CTZNO = dao_phr.fields.PHR_CTZNO
+                    dao_ddl1_OLD.fields.PHR_PREFIX_ID = dao_phr.fields.PHR_PREFIX_ID
+                    dao_ddl1_OLD.fields.PHR_PREFIX_NAME = dao_phr.fields.PHR_PREFIX_NAME
+                    dao_ddl1_OLD.fields.PHR_NAME = dao_phr.fields.PHR_NAME
+                    dao_ddl1_OLD.fields.PHR_VETERINARY_FIELD = dao_phr.fields.PHR_VETERINARY_FIELD
+                    dao_ddl1_OLD.fields.PHR_TEXT_WORK_TIME = dao_phr.fields.PHR_TEXT_WORK_TIME
+                    dao_ddl1_OLD.fields.PHR_LAW_SECTION = dao_phr.fields.PHR_LAW_SECTION
+                    dao_ddl1_OLD.fields.FK_IDA = _IDA
+                    dao_ddl1_OLD.fields.ACTIVE = True
+                    dao_ddl1_OLD.insert()
+                Next
+            End If
+        End If
+    End Sub
+    Private Sub rgphr_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgphr.NeedDataSource
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+        If _lcn_ida <> "" Then
+            dt = bao.SP_LCN_EDIT_PHR_BY_FK_IDA(_lcn_ida)
+        End If
+
+        If dt.Rows.Count > 0 Then
+            rgphr.DataSource = dt
+        End If
+    End Sub
+    Private Sub rgns_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgphr.ItemCommand
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = e.Item
+            Dim _ida As String = item("IDA").Text
+            Dim PHR_IDA As String = item("PHR_IDA").Text
+            'If _ida = 0 Then
+            Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT_DDL1_REASON
+            If e.CommandName = "r_del" Then
+                    dao.GET_DATA_BY_IDA(_ida, True)
+                    dao.fields.ACTIVE = False
+                    dao.update()
+                    'dao.delete()
+                    rgphr.Rebind()
+                    'ElseIf e.CommandName = "r_edit" Then
+                    '    dao.GET_DATA_BY_IDA(_ida, True)
+                    '    Try
+                    '        ddl_prefix.SelectedValue = dao.fields.PHR_PREFIX_ID
+                    '    Catch ex As Exception
+
+                    '    End Try
+                    '    text_edit_ddl1_PHR_TEXT_JOB.Text = dao.fields.PHR_TEXT_JOB
+                    '    text_edit_ddl1_PHR_TEXT_NUM.Text = dao.fields.PHR_TEXT_NUM
+                    '    text_edit_ddl1_STUDY_LEVEL.Text = dao.fields.STUDY_LEVEL
+                    '    text_edit_ddl1_PHR_SAKHA.Text = dao.fields.PHR_SAKHA
+                    '    text_edit_ddl1_NAME_SIMINAR.Text = dao.fields.NAME_SIMINAR
+                    '    text_edit_ddl1_TIME_WORK.Text = dao.fields.PHR_TEXT_WORK_TIME
+                    '    txt_PHR_CTZNO.Text = dao.fields.PHR_CTZNO
+                    '    If dao.fields.SIMINAR_DATE IsNot Nothing Then text_edit_ddl1_SIMINAR_DATE.Text = dao.fields.SIMINAR_DATE
+                    '    _phr_ida = PHR_IDA
+                    '    'rgphr.Rebind()S
+                End If
+                BindTable(DDL_EDIT_REASON.SelectedValue, 0)
+            End If
+        'Else
+
+        'End If
+    End Sub
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgphr.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As String = item("IDA").Text
+            Dim btn_del As LinkButton = DirectCast(item("r_del").Controls(0), LinkButton)
+            'Dim dao As New DAO_DRUG.ClsDBdalcn
+            'dao.GetDataby_IDA(IDA)
+            'btn_del.Style.Add("display", "none")
+            Try
+                If _IDA <> 0 Then
+                    btn_del.Style.Add("display", "none")
+                Else
+                    btn_del.Style.Add("display", "block")
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
 End Class

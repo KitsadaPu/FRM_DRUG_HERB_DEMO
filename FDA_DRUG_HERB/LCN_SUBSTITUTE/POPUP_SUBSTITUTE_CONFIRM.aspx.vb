@@ -240,7 +240,8 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
         Cls_XML.RCVDATE_DISPLAY = rcvdate2
         Cls_XML.RCVNO_FORMAT_NEW = rcvno_format
         Cls_XML.PHR_NAME = dao_phr.fields.PHR_NAME
-        Cls_XML.WTIRE_DATE = dao.fields.WTIRE_DATE
+        Cls_XML.WTIRE_DATE = CDate(dao.fields.WTIRE_DATE).ToString("dd MMMM yyy")
+        Cls_XML.WTIRE_AT = "อย"
         Cls_XML.PUR_POSE = dao.fields.PURPOSE
         Cls_XML.OPENTIME = dao_main.fields.opentime
         Cls_XML.LCN_TYPE = dao.fields.LCN_TYPE
@@ -264,18 +265,18 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
         dao_pdftemplate.GetDataby_TEMPLAETE_and_GROUP_PREVIEW(Process_ID, statusId, 0, 0)
         Dim YEAR As String = dao_up.fields.YEAR
 
-        Dim paths As String = bao._PATH_DEFAULT
+        Dim paths As String = bao._PATH_XML_PDF_LCN_SUB
         Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
+        'Dim paths As String = bao._PATH_DEFAULT
+        'Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
 
         Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", Process_ID, YEAR, TR_ID)
         Dim Path_XML As String = paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML("DA", Process_ID, YEAR, TR_ID)
         'load_PDF(filename)
         LOAD_XML_PDF(Path_XML, PDF_TEMPLATE, Process_ID, filename) 'ระบบจะทำการตรวจสอบ Template  และจะทำการสร้าง XML เอง AUTO
 
-
         lr_preview.Text = "<iframe id='iframe1'  style='height:800px;width:100%;' src='../PDF/FRM_PDF.aspx?FileName=" & filename & "' ></iframe>"
         hl_reader.NavigateUrl = "../PDF/FRM_PDF_VIEW.aspx?FileName=" & filename ' Link เปิดไฟล์ตัวใหญ่
-
 
         HiddenField1.Value = filename
         _CLS.FILENAME_PDF = NAME_PDF("DA", Process_ID, YEAR, TR_ID)
@@ -284,15 +285,18 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
     End Sub
 
     Private Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
-        Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
-        Dim bao As New BAO.ClsDBSqlcommand
-        dao.Getdata_by_IDA(_IDA)
-        dao.fields.STATUS_ID = 2
-        dao.update()
+        'Dim dao As New DAO_DRUG.TB_DALCN_SUBSTITUTE
+        'Dim bao As New BAO.ClsDBSqlcommand
+        'dao.Getdata_by_IDA(_IDA)
+        'dao.fields.STATUS_ID = 2
+        'dao.fields.DATE_CONFIRM = Date.Now
+        'dao.update()
 
-        Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
-        dao_tr.GetDataby_IDA(dao.fields.TR_ID)
-        alert("ยื่นเรื่องเรียบร้อยแล้ว")
+        'Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
+        'dao_tr.GetDataby_IDA(dao.fields.TR_ID)
+        'alert("ยื่นเรื่องเรียบร้อยแล้ว")
+        Response.Redirect("POPUP_SUBSTITUTE_CONFIRM_DETAIL.aspx?IDA=" & _IDA & "&PROCESS_ID=" & _ProcessID)
+        'Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
@@ -1119,7 +1123,7 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
 
         If IsNothing(dao.fields.appdate) = False Then
             Dim appdate As Date
-            If Date.TryParse(dao.fields.appdate, appdate) = True Then
+            If Date.TryParse(dao_sub.fields.appdate, appdate) = True Then
                 class_xml.SHOW_LCNDATE_DAY = NumEng2Thai(appdate.Day)
                 class_xml.SHOW_LCNDATE_MONTH = appdate.ToString("MMMM")
                 class_xml.SHOW_LCNDATE_YEAR = NumEng2Thai(con_year(appdate.Year))
@@ -1137,14 +1141,15 @@ Public Class POPUP_SUBSTITUTE_CONFIRM
 
                 End If
 
-
+                If Date.TryParse(dao.fields.appdate, appdate) = True Then
+                    class_xml.RCVDAY = appdate.Day.ToString()
+                    class_xml.RCVMONTH = appdate.ToString("MMMM")
+                    class_xml.RCVYEAR = con_year(appdate.Year)
+                End If
                 class_xml.RCVDAY_NUMTHAI = NumEng2Thai(appdate.Day.ToString())
                 class_xml.RCVMONTH_NUMTHAI = appdate.ToString("MMMM")
                 class_xml.RCVYEAR_NUMTHAI = NumEng2Thai(con_year(appdate.Year))
 
-                class_xml.RCVDAY = appdate.Day.ToString()
-                class_xml.RCVMONTH = appdate.ToString("MMMM")
-                class_xml.RCVYEAR = con_year(appdate.Year)
                 Dim expyear As Integer = 0
                 Try
                     expyear = dao.fields.expyear

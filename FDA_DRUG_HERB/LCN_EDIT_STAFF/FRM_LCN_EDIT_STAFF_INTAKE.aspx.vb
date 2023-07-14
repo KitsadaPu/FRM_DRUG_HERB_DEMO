@@ -59,7 +59,8 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
     Public Sub bind_data()
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        'dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
         _ProcessID = dao.fields.LCN_PROCESS_ID
 
         TXT_RQ_DATE.Text = Date.Now.ToString("dd/MM/yyyy")
@@ -108,9 +109,13 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
 
     Function bind_data_uploadfile()
         Dim dt As DataTable
-        Dim bao As New BAO_LCN.TABLE_VIEW
+        ' Dim bao As New BAO_LCN.TABLE_VIEW
+        Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+        dao.GetDataby_IDA(_IDA)
+        Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
+        dt = bao.SP_DALCN_EDIT_UPLOAD_FILE(dao.fields.TR_ID, 1)
+        'dt = bao.SP_LCN_APPROVE_EDIT_GET_UPLOAD_FILE(_REASON_TYPE)
 
         Return dt
     End Function
@@ -201,7 +206,8 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
 
             End Try
             Dim _YEAR As String = con_year(Date.Now().Year())
-            dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+            'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+            dao.GetDataby_IDA(_IDA)
 
 
             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
@@ -214,28 +220,30 @@ Public Class FRM_LCN_EDIT_STAFF_INTAKE
             End Try
 
             'เลขรับคำขอ รันใหม่
-            Dim RQ_NUM As Integer = 0
+            'Dim RQ_NUM As Integer = 0
 
-            bind_data()
-            Dim bao_gen As New BAO.GenNumber
+            'bind_data()
+            'Dim bao_gen As New BAO.GenNumber
 
-            RQ_NUM = GEN_NO_INTAKE(con_year(Date.Now.Year), dao.fields.LCN_PROCESS_ID, _LCN_IDA)
-            'RQ_NUM = insert_transection_lcn_edit(_ProcessID, _LCN_IDA)
+            'RQ_NUM = GEN_NO_INTAKE(con_year(Date.Now.Year), dao.fields.LCN_PROCESS_ID, _LCN_IDA)
+            ''RQ_NUM = insert_transection_lcn_edit(_ProcessID, _LCN_IDA)
 
-            Dim RQ_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
-
-
+            'Dim RQ_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
 
 
-            'รันเลขรับคำขอ EX* HB 10-10201-64-1
-            'Dim RCVNO_FULL As String = "HB" & " " & dao.fields.PVNCD & "-" & _ProcessID & "-" & DATE_YEAR & "-" & RUN_ID
 
-            dao.fields.STAFF_RQ_NUMBER = "HB " & PVNCD & "-" & _ProcessID.ToString & "-" & RQ_YEAR & "-" & RQ_NUM.ToString
+
+            ''รันเลขรับคำขอ EX* HB 10-10201-64-1
+            ''Dim RCVNO_FULL As String = "HB" & " " & dao.fields.PVNCD & "-" & _ProcessID & "-" & DATE_YEAR & "-" & RUN_ID
+
+            'dao.fields.STAFF_RQ_NUMBER = "HB " & PVNCD & "-" & _ProcessID.ToString & "-" & RQ_YEAR & "-" & RQ_NUM.ToString
             dao.fields.STAFF_RQ_NAME_ID = DDL_RQ_STAFF.SelectedValue
             dao.fields.STAFF_RQ_NAME = DDL_RQ_STAFF.SelectedItem.Text
 
 
             dao.update()
+
+            AddLogStatus(dao.fields.STATUS_ID, dao.fields.LCN_PROCESS_ID, _CLS.CITIZEN_ID, dao.fields.IDA)
 
             Dim ida_xml As Integer = 0
             Dim process_xml As Integer = 0

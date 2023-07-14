@@ -42,7 +42,8 @@ Public Class FRM_HERB_TABEAN_EDIT
             EDIT_UPLOAD_SHOW.Visible = True
             TXT_EDIT_NOTE_TB1.Text = dao.fields.NOTE_EDIT_TB1
         ElseIf dao.fields.CHK_EDIT_TB1 = 1 Then
-            EDIT_TB1_SHOW.Visible = False
+            UPLOAD_EDIT.Visible = False
+            EDIT_TB1_SHOW.Visible = True
         ElseIf dao.fields.CHK_EDIT_TB1 = 1 Then
             EDIT_TB1_SHOW.Visible = True
             EDIT_UPLOAD_SHOW.Visible = False
@@ -86,9 +87,9 @@ Public Class FRM_HERB_TABEAN_EDIT
         Return dt
     End Function
 
-    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
-        RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
-    End Sub
+    'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+    '    RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
+    'End Sub
 
     Public Sub BindTable()
 

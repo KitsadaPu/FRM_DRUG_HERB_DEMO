@@ -1,10 +1,10 @@
 ﻿Public Class LGT_XML_DRUG_CONTAIN
-    Private _XML_DRUG_CONTAIN As New XML_DRUG_CONTAIN
-    Public Property XML_DRUG_CONTAIN() As XML_DRUG_CONTAIN
+    Private _XML_DRUG_CONTAIN As New XML_DRUG_CONTAIN_HERB
+    Public Property XML_DRUG_CONTAIN() As XML_DRUG_CONTAIN_HERB
         Get
             Return _XML_DRUG_CONTAIN
         End Get
-        Set(ByVal value As XML_DRUG_CONTAIN)
+        Set(ByVal value As XML_DRUG_CONTAIN_HERB)
             _XML_DRUG_CONTAIN = value
         End Set
     End Property

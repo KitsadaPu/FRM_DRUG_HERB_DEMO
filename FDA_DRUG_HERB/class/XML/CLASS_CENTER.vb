@@ -150,6 +150,24 @@
             _SHOW_LCNNO = value
         End Set
     End Property
+    Private _TRANSFER_NAME As String
+    Public Property TRANSFER_NAME() As String
+        Get
+            Return _TRANSFER_NAME
+        End Get
+        Set(ByVal value As String)
+            _TRANSFER_NAME = value
+        End Set
+    End Property
+    Private _TRANSFER_DATE As String
+    Public Property TRANSFER_DATE() As String
+        Get
+            Return _TRANSFER_DATE
+        End Get
+        Set(ByVal value As String)
+            _TRANSFER_DATE = value
+        End Set
+    End Property
     Private _SHOW_LCNNO_NUMTHAI As String
     Public Property SHOW_LCNNO_NUMTHAI() As String
         Get

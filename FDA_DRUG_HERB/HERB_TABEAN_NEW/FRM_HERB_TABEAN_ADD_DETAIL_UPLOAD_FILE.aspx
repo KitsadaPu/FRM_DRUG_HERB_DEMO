@@ -15,12 +15,12 @@
         </div>
     </div>
     <hr />
-    <div class="row">
-        <div class="col-lg-12" style="text-align: center">
-            <asp:Label ID="Label2" runat="server" ForeColor="Red" Text="Label"> ***การแนบกรุณาแนบครั้งละ 5 ไฟล์ และ ขนาดไฟล์ต้องไม่เกิน 8 Mb >>> </asp:Label>
-            <asp:Button ID="btn_add_no" runat="server" Text="แนบเอกสาร" />
+        <div class="row">
+            <div class="col-lg-12" style="text-align: center">
+                <asp:Label ID="Label2" runat="server" ForeColor="Red" Text="Label"> ***การแนบกรุณาแนบครั้งละ 5 ไฟล์ และ ขนาดไฟล์ต้องไม่เกิน 8 Mb >>> </asp:Label>
+                <asp:Button ID="btn_add_no" runat="server" Text="แนบเอกสาร" />
+            </div>
         </div>
-    </div>
     <div class="row">
         <div style="overflow-x: scroll; height: 600px; text-align: center">
             <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>

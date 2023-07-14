@@ -25,16 +25,62 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
-            bind_data()
+
             bind_dd()
             bind_mas_staff()
             'Run_Pdf_Tabean_Herb()
             Run_PDF_Tabean()
             bind_ddl_rgttpcd()
+            'bind_mas_cancel()
+            bind_tabean_group()
+            bind_data()
+            Bind_PRICE_ESTIMATE_REQUEST()
+            Bind_DD_Discount()
 
+            UC_ATTACH1.NAME = "เอกสารแนบ"
+            UC_ATTACH1.BindData("เอกสารแนบ", 1, "pdf", "0", "77")
         End If
     End Sub
+    Sub bind_tabean_group()
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim dt As New DataTable
+        dt = bao.SP_drdrgtype_Tabean_New()
+        ddl_tabean_group.DataSource = dt
+        ddl_tabean_group.DataTextField = "thadrgtpnm"
+        ddl_tabean_group.DataValueField = "drgtpcd"
+        ddl_tabean_group.DataBind()
 
+        Dim item As New ListItem
+        item.Text = "-"
+        item.Value = ""
+        ddl_tabean_group.Items.Insert(0, item)
+    End Sub
+    'Public Sub bind_mas_cancel(ByVal ID As String)
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_dd
+    '    dt = bao.SP_MAS_STATUS_CANCEL_TABEAN_HERB(ID)
+    '    'dt = bao.SP_MAS_DDL_STAFF_REMARK_CANCEL()
+
+    '    DDL_CANCLE_REMARK.DataSource = dt
+    '    DDL_CANCLE_REMARK.DataBind()
+    '    DDL_CANCLE_REMARK.Items.Insert(0, "-- กรุณาเลือก --")
+    'End Sub
+    Sub bind_mas_cancel(ByVal ID As String)
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STATUS_CANCEL_TABEAN_HERB(ID)
+
+        DDL_CANCLE_REMARK.DataSource = dt
+        DDL_CANCLE_REMARK.DataValueField = "ID"
+        DDL_CANCLE_REMARK.DataTextField = "STATUS_CAUSE"
+        DDL_CANCLE_REMARK.DataBind()
+        'DD_DISCOUNT.Items.Insert(0, "-- กรุณาเลือก --")
+
+        Dim item As New RadComboBoxItem
+        item.Text = "-- กรุณาเลือก --"
+        item.Value = "0"
+        DDL_CANCLE_REMARK.Items.Insert(0, item)
+    End Sub
     Public Sub bind_mas_staff()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
@@ -43,6 +89,37 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         DD_OFF_REQ.DataSource = dt
         DD_OFF_REQ.DataBind()
         DD_OFF_REQ.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
+    Public Sub Bind_PRICE_ESTIMATE_REQUEST()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_DD_PRICE_ESTIMATE_REQUEST(_ProcessID)
+
+        DD_ESTIMATE_PAY.DataSource = dt
+        DD_ESTIMATE_PAY.DataValueField = "ID"
+        DD_ESTIMATE_PAY.DataTextField = "Request_Show"
+        DD_ESTIMATE_PAY.DataBind()
+
+        Dim item As New RadComboBoxItem
+        item.Text = "-- กรุณาเลือก --"
+        item.Value = "0"
+        DD_ESTIMATE_PAY.Items.Insert(0, item)
+    End Sub
+    Sub Bind_DD_Discount()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_PRICE_DISCOUNT_TABEAN_HERB()
+
+        DD_DISCOUNT.DataSource = dt
+        DD_DISCOUNT.DataValueField = "ID"
+        DD_DISCOUNT.DataTextField = "DiscountName"
+        DD_DISCOUNT.DataBind()
+        'DD_DISCOUNT.Items.Insert(0, "-- กรุณาเลือก --")
+
+        Dim item As New RadComboBoxItem
+        item.Text = "ไม่มีส่วนลดตามประกาศฯ ค่าใช้จ่ายที่จะจัดเก็บจากผู้ยื่นคำขอ"
+        item.Value = "0"
+        DD_DISCOUNT.Items.Insert(0, item)
     End Sub
     Public Sub Run_Pdf_Tabean_Herb()
         Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
@@ -101,6 +178,13 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         Dim dao As New DAO_DRUG.ClsDBdrrqt
         dao.GetDataby_IDA(_IDA)
 
+        Try
+            lbl_create_by.Text = dao.fields.CREATE_BY
+            lbl_create_date.Text = dao.fields.CREATE_DATE
+        Catch ex As Exception
+
+        End Try
+
         If dao.fields.rcvno <> "" Then
             P12.Visible = True
             ROVNO_FULL.Text = dao.fields.rcvno
@@ -108,6 +192,19 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         DD_OFF_REQ.Text = _CLS.NAME
 
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
+
+        Dim dao_tr As New DAO_TABEAN_HERB.TB_TABEAN_TRANSACTION_JJ
+        dao_tr.GetdatabyID_FK_IDA_JJ(_IDA)
+        Dim dao_st As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_NEW_STATUS
+        dao_st.Getdataby_STATUS_ID_GROUP(dao.fields.STATUS_ID, 2)
+
+        STAFF_NAME.Text = dao.fields.EDIT_RQ_NAME
+
+        txt_edit_staff.Text = dao.fields.NOTE_EDIT
+        Dim Process_ID As String = dao.fields.PROCESS_ID
+        If Process_ID.Contains("2019") Then
+            ddl_tabean_group.SelectedValue = 3
+        End If
     End Sub
 
     Public Sub bind_dd()
@@ -129,6 +226,14 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         DD_STATUS.Items.Insert(0, "-- กรุณาเลือก --")
 
     End Sub
+    'Function bind_data_drtype()
+    '    Dim dt As DataTable
+    '    Dim bao As New BAO_TABEAN_HERB.tb_main
+
+    '    dt = bao.SP_drdrgtype_Tabean_New()
+
+    '    Return dt
+    'End Function
     Function bind_data_uploadfile()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
@@ -140,7 +245,6 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
 
         Return dt
     End Function
-
     Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
         RadGrid1.DataSource = bind_data_uploadfile()
     End Sub
@@ -190,21 +294,36 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
 
+        Dim bao_tran As New BAO_TRANSECTION
+        Try
+            bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
+            bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
+            bao_tran.THANM = _CLS.THANM
+        Catch ex As Exception
+
+        End Try
         Dim dao As New DAO_DRUG.ClsDBdrrqt
         dao.GetDataby_IDA(_IDA)
 
         Dim dao_tabean_herb As New DAO_TABEAN_HERB.TB_TABEAN_HERB
         dao_tabean_herb.GetdatabyID_FK_IDA_DQ(_IDA)
-
         If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ ');", True)
+
+            'ElseIf DD_STATUS.SelectedValue = 77 Then
+            '    Response.Redirect("POPUP_HERB_TABEAN_STAFF_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & _ProcessID & "&IDA_LCN=" & _IDA_LCN & "&STATUS_ID=" & DD_STATUS.SelectedValue)
+
+        ElseIf DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Then
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกประเภททะเบียน');", True)
         Else
             If DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Or DD_STATUS.SelectedValue = 9 Then
                 If Chk_ddl() = 0 Then
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกประเภททะเบียน');", True)
                 Else
-                    If DD_STATUS.SelectedValue = "-- กรุณาเลือก --" Or DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
-                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกสถานะ หรือ เลือกเจ้าหน้าที่');", True)
+                    If DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เลือกเจ้าหน้าที่');", True)
+                    ElseIf DD_ESTIMATE_PAY.SelectedValue = 0 Then
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก ค่าประเมินเอกสารทางวิชาการ');", True)
                     Else
 
                         Try
@@ -213,6 +332,12 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
                             dao.fields.rcvdate = Date.Now
                         End Try
 
+                        Try
+                            dao.fields.HerbFromNarcotics_ID = DD_HerbFromNarcotics.SelectedValue
+                            dao.fields.HerbFromNarcotics_Name = DD_HerbFromNarcotics.SelectedItem.Text
+                        Catch ex As Exception
+
+                        End Try
                         'Dim RCVNO As Integer
                         'Dim bao_gen As New BAO.GenNumber
                         'RCVNO = bao_gen.GEN_NO_TBN(con_year(Date.Now.Year), dao.fields.pvncd, 1, _IDA, dao.fields.FK_LCN_IDA)
@@ -225,6 +350,16 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
                         Else
                             dao.fields.rgttpcd_id = ddl_rgttpcd.SelectedValue
                             dao.fields.rgttpcd = ddl_rgttpcd.SelectedItem.Text
+
+                            Try
+                                If ddl_tabean_group.SelectedValue = "-" Or ddl_tabean_group.SelectedValue = "" Then
+                                    dao.fields.drgtpcd = 2
+                                Else
+                                    dao.fields.drgtpcd = ddl_tabean_group.SelectedValue
+                                End If
+                            Catch ex As Exception
+                                dao.fields.drgtpcd = 2
+                            End Try
                         End If
 
                         If DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
@@ -240,12 +375,33 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
                             dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                             dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
                         End If
+                        Try
+                            dao_tabean_herb.fields.Discount_EstimateID = DD_DISCOUNT.SelectedValue
+                            dao_tabean_herb.fields.Discount_EstimateName = DD_DISCOUNT.SelectedItem.Text
+                            dao_tabean_herb.fields.Estimate_PAY_ID = DD_ESTIMATE_PAY.SelectedValue
+                            dao_tabean_herb.fields.Estimate_PAY_Name = DD_ESTIMATE_PAY.SelectedItem.Text
+                            dao_tabean_herb.fields.ML_ESTIMATE = TXT_BATH.Text
+                        Catch ex As Exception
+
+                        End Try
+
+                        If (DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Or DD_STATUS.SelectedValue = 9) And TXT_BATH.Text = 0 Then
+                            dao.fields.STATUS_ID = 23
+                            dao_tabean_herb.fields.STATUS_ID = 23
+                            'Else
+                            '    dao.fields.STATUS_ID = 12
+                            '    dao_tabean_herb.fields.STATUS_ID = 12
+                        End If
 
                         dao.update()
                         dao_tabean_herb.Update()
 
                         Run_Pdf_Tabean_Herb_12_11()
                         'Run_Pdf_Tabean_Herb_APPROVE_1_11_12()
+                        'Dim bao_tran As New BAO_TRANSECTION
+                        bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+
+                        AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
                     End If
                 End If
 
@@ -266,13 +422,15 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
                     dao_up.insert()
                 Next
 
-                Dim bao_tran As New BAO_TRANSECTION
+                ' Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.update()
 
                 dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao_tabean_herb.Update()
+
+                Run_Pdf_Tabean_Herb_12_11()
                 'ElseIf DD_STATUS.SelectedValue = 9 Then
                 '    dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 '    dao.update()
@@ -284,28 +442,49 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
 
                 '    dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
                 '    dao_tabean_herb.Update()
-            ElseIf DD_STATUS.SelectedValue = 18 Then
-                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
-                dao.update()
+            ElseIf DD_STATUS.SelectedValue = 18 Or DD_STATUS.SelectedValue = 77 Then
+                If DDL_CANCLE_REMARK.SelectedValue = 0 Then
+                    lbl_CANCLE_REMARK.Visible = True
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาตรวจสอบข้อมูล');", True)
+                Else
+                    dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                    dao.fields.REMARK = NOTE_CANCLE.Text
+                    dao.update()
 
-                Dim bao_tran As New BAO_TRANSECTION
-                bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
-                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
-                dao.update()
+                    dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
+                    dao_tabean_herb.fields.cancel_by = _CLS.THANM
+                    dao_tabean_herb.fields.cancel_date = Date.Now
+                    dao_tabean_herb.fields.cancel_iden = _CLS.CITIZEN_ID
+                    dao_tabean_herb.fields.DD_CANCEL_ID = DDL_CANCLE_REMARK.SelectedValue
+                    dao_tabean_herb.fields.DD_CANCEL_NM = DDL_CANCLE_REMARK.SelectedItem.Text
+                    dao_tabean_herb.fields.NOTE_CANCEL = NOTE_CANCLE.Text
+                    dao_tabean_herb.Update()
 
-                dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
-                dao_tabean_herb.Update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                    bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+                    Run_Pdf_Tabean_Herb_12_11()
+                    UC_ATTACH1.insert_TBN(_TR_ID, _ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
+                End If
             ElseIf DD_STATUS.SelectedValue = 20 Then
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.update()
 
-                Dim bao_tran As New BAO_TRANSECTION
+                'Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(_ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
+                dao_tabean_herb.fields.cancel_by = _CLS.THANM
+                dao_tabean_herb.fields.cancel_date = Date.Now
+                dao_tabean_herb.fields.cancel_iden = _CLS.CITIZEN_ID
+                dao_tabean_herb.fields.DD_CANCEL_ID = DDL_CANCLE_REMARK.SelectedValue
+                dao_tabean_herb.fields.DD_CANCEL_NM = DDL_CANCLE_REMARK.SelectedItem.Text
+                dao_tabean_herb.fields.NOTE_CANCEL = NOTE_CANCLE.Text
                 dao.update()
 
                 dao_tabean_herb.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao_tabean_herb.Update()
+
+                Run_Pdf_Tabean_Herb_12_11()
+                UC_ATTACH1.insert_TBN(_TR_ID, _ProcessID, dao.fields.IDA, DD_STATUS.SelectedValue)
             End If
         End If
 
@@ -367,8 +546,23 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         ElseIf DD_STATUS.SelectedValue = 12 Or DD_STATUS.SelectedValue = 11 Or DD_STATUS.SelectedValue = 9 Then
             P12.Visible = True
             P15.Visible = True
+            p2.Visible = False
+        ElseIf DD_STATUS.SelectedValue = 79 Or DD_STATUS.SelectedValue = 7 _
+            Or DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 10 Or DD_STATUS.SelectedValue = 19 Or DD_STATUS.SelectedValue = 18 _
+            Or DD_STATUS.SelectedValue = 20 Then
+            p2.Visible = True
+            P12.Visible = False
+            P15.Visible = False
+            bind_mas_cancel(1)
+        ElseIf DD_STATUS.SelectedValue = 77 Or DD_STATUS.SelectedValue = 78 Then
+            p2.Visible = True
+            P12.Visible = False
+            P15.Visible = False
+            bind_mas_cancel(3)
         Else
             P12.Visible = False
+            P15.Visible = False
+            p2.Visible = False
         End If
     End Sub
     Function Chk_ddl() As Integer
@@ -458,5 +652,80 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
 
         End If
     End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Type_ID As Integer = 0
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        Type_ID = dao_up.fields.TYPE
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        Return dt
+    End Function
 
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
+    Private Sub RadGrid4_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid4.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
+            H.Target = "_blank"
+            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_DETAIL_PREVIEW_FILE.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Protected Sub DD_ESTIMATE_PAY_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_ESTIMATE_PAY.SelectedIndexChanged
+        If DD_ESTIMATE_PAY.SelectedValue = 0 Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก ค่าประเมินเอกสารทางวิชาการ');", True)
+        Else
+            Dim ML_PAY As Double = 0
+            ML_PAY = SUM_Discount(_ProcessID)
+            TXT_BATH.Text = ML_PAY
+        End If
+    End Sub
+    Protected Sub DD_DISCOUNT_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_DISCOUNT.SelectedIndexChanged
+        If DD_ESTIMATE_PAY.SelectedValue = 0 Then
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก ค่าประเมินเอกสารทางวิชาการ');", True)
+        Else
+            Dim ML_PAY As Double = 0
+            ML_PAY = SUM_Discount(_ProcessID)
+            TXT_BATH.Text = ML_PAY
+        End If
+    End Sub
+    Function SUM_Discount(ByVal Process_ID As Integer)
+        'Dim dao_ml As New DAO_TABEAN_HERB.TB_MAS_PRICE_REQUEST_HERB
+        'dao_ml.Getdataby_Process_ID(Process_ID)
+        Dim dao_ml As New DAO_TABEAN_HERB.TB_MAS_PRICE_ESTIMATE_REQUEST_HERB
+        dao_ml.Getdataby_Process_ID_AND_ID(Process_ID, DD_ESTIMATE_PAY.SelectedValue)
+        Dim dao_p As New DAO_TABEAN_HERB.TB_MAS_PRICE_DISCOUNT_TABEAN_HERB
+        dao_p.GetdatabyID_ID(DD_DISCOUNT.SelectedValue)
+        Dim number1 As Integer = 0
+        Dim number2 As Integer = 0
+        Dim number3 As Integer = 100
+        Dim answer1 As Decimal
+        Dim sum1 As Integer
+        Dim sum2 As Integer
+        If dao_p.fields.REQUEST_Fee = Nothing Then
+            number2 = 0
+        Else
+            number2 = dao_p.fields.ESTIMATE_Fee
+        End If
+        number1 = dao_ml.fields.Price
+
+        sum1 = number1 * number2
+        sum2 = sum1 / number3
+        answer1 = number1 - sum2
+        Return answer1
+    End Function
+
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        Response.Redirect("POPUP_HERB_TABEAN_STAFF_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID)
+    End Sub
 End Class

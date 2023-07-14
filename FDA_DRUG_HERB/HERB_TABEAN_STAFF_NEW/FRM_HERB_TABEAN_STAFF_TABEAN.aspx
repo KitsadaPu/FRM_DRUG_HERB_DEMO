@@ -45,7 +45,7 @@
     </div>
     <div class="panel panel-body" style="width: 1032px; padding-left: 2%;">
         <div class="row">
-            <telerik:RadGrid ID="RadGrid1" runat="server"  AllowPaging="true" PageSize="25" AllowFilteringByColumn="True" >
+            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="25" AllowFilteringByColumn="True">
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
                     <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
@@ -64,11 +64,21 @@
                         <telerik:GridBoundColumn DataField="STATUS_ID" FilterControlAltText="Filter STATUS_ID column"
                             HeaderText="สถานะเลข" SortExpression="STATUS_ID" UniqueName="STATUS_ID" Display="false">
                         </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="DATE_CONFIRM" DataType="System.DateTime" FilterControlAltText="Filter DATE_CONFIRM column"
+                            HeaderText="วันที่ส่งเรื่อง" SortExpression="DATE_CONFIRM" UniqueName="DATE_CONFIRM" DataFormatString="{0:dd/MM/yyyy}">
+                        </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
                             HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID">
+                            <HeaderStyle Width="20px"></HeaderStyle>
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="rcvdate" FilterControlAltText="Filter rcvdate column"
+                            HeaderText="วันที่รับ" SortExpression="rcvdate" UniqueName="rcvdate" DataFormatString="{0:dd/MM/yyyy}">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="EXPECTED_DATE" DataType="System.DateTime" FilterControlAltText="Filter EXPECTED_DATE column"
+                            HeaderText="วันที่คาดว่าจะแล้วเสร็จ" SortExpression="EXPECTED_DATE" UniqueName="EXPECTED_DATE" DataFormatString="{0:dd/MM/yyyy}">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="RCVNO_NEW" FilterControlAltText="Filter RCVNO_NEW column"
-                            HeaderText="เลขรับ" SortExpression="RCVNO_NEW" UniqueName="RCVNO_FULL">
+                            HeaderText="เลขรับ" SortExpression="RCVNO_NEW" UniqueName="RCVNO_NEW">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="RGTNO_NEW" FilterControlAltText="Filter RGTNO_NEW column"
                             HeaderText="เลขทะเบียน" SortExpression="RGTNO_NEW" UniqueName="RGTNO_FULL">
@@ -80,7 +90,7 @@
                             HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO_NEW" UniqueName="LCNNO_NEW">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="LCN_NAME" FilterControlAltText="Filter LCN_NAME column"
-                            HeaderText="ชื่อสถานที่" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
+                            HeaderText="ชื่อผู้รับอนุญาต" SortExpression="LCN_NAME" UniqueName="LCN_NAME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="thadrgnm" FilterControlAltText="Filter thadrgnm column"
                             HeaderText="ชื่อไทย" SortExpression="thadrgnm" UniqueName="NAME_THAI">
@@ -91,12 +101,12 @@
                         <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
                             HeaderText="สถานนะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
                         </telerik:GridBoundColumn>
-                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_SELECT" 
+                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_SELECT"
                             CommandName="JJ_SELECT" Text="ดูข้อมูล">
                             <HeaderStyle Width="70px" />
                         </telerik:GridButtonColumn>
-                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_ADD_SELECT" 
-                            CommandName="JJ_ADD_SELECT" Text="กรอกข้อมูลเพิ่ม">
+                        <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="JJ_ADD_SELECT"
+                            CommandName="JJ_ADD_SELECT" Text="เพิ่มข้อมูล ทบ.๑">
                             <HeaderStyle Width="70px" />
                         </telerik:GridButtonColumn>
                     </Columns>

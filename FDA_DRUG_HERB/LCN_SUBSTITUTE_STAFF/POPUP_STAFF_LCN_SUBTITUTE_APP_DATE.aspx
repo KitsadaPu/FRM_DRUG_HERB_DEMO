@@ -33,7 +33,6 @@
             </div>
 
         </div>
-
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-4">
@@ -50,6 +49,20 @@
                 </div>
                 <div class="col-lg-2">
                     <p style="color: red">*(วัน/เดือน/ปี พ.ศ. => 1/10/2563)</p>
+                </div>
+                <div class="col-lg-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-1">
+                    <asp:Label ID="Label1" runat="server" Text="จนท.ที่รับผิดชอบ:" Font-Size="Medium"></asp:Label>
+                    <%--<p>วันที่อนุมัติ</p>--%>
+                </div>
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-2">
+                    <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME"  Width="100%"></asp:DropDownList>
                 </div>
                 <div class="col-lg-5"></div>
             </div>

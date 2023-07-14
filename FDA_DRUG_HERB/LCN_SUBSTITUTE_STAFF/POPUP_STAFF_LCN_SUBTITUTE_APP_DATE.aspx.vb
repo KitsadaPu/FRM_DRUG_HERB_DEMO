@@ -20,8 +20,18 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         runQuery()
         If Not IsPostBack Then
+            bind_mas_staff()
             RDP_APP_DATE.SelectedDate = Date.Now.ToShortDateString()
         End If
+    End Sub
+    Public Sub bind_mas_staff()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STAFF_NAME_HERB()
+
+        DD_OFF_REQ.DataSource = dt
+        DD_OFF_REQ.DataBind()
+        DD_OFF_REQ.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
 
     Sub alert(ByVal text As String)
@@ -57,6 +67,8 @@
                     Catch ex As Exception
 
                     End Try
+                    dao.fields.app_Staff_ID = DD_OFF_REQ.SelectedValue
+                    dao.fields.app_Staff_Name = DD_OFF_REQ.SelectedItem.Text
                     dao.update()
 
 

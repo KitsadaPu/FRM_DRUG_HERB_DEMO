@@ -26,8 +26,10 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN
             Dim item As GridDataItem = e.Item
 
             Dim IDA As Integer = 0
+            Dim STATUS_ID As Integer = 0
             Try
                 IDA = item("IDA").Text
+                STATUS_ID = item("STATUS_ID").Text
             Catch ex As Exception
 
             End Try
@@ -56,7 +58,11 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN
             End Try
             If e.CommandName = "sel" Then
                 'lbl_titlename.Text = "พิจารณาคำขอขึ้นทะเบียนตำรับ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE_STAFF/FRM_STAFF_LCN_SUBSTITUTE_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&Process=" & _process_id & "');", True)
+                If STATUS_ID = 14 Then
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE_STAFF/POPUP_STAFF_LCN_SUBTITUTE_EDIT.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _process_id & "');", True)
+                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE_STAFF/FRM_STAFF_LCN_SUBSTITUTE_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & tr_id & "&Process=" & _process_id & "');", True)
+                End If
             ElseIf e.CommandName = "print" Then
                 Dim dao_rg As New DAO_DRUG.ClsDBdalcn
                 dao_rg.GetDataby_IDA(dao.fields.FK_IDA)

@@ -116,66 +116,73 @@
             <td style="padding-left: 1%; height: 50%; padding-bottom: 5em;">
                 <%--<telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>--%>
                 <center>
-                <table class="table" style="width: 80%; padding-right: 2%;padding-left: 5%;">
-                    <%--<tr>
+                    <table class="table" style="width: 80%; padding-right: 2%; padding-left: 5%;">
+                        <%--<tr>
                          <td>
                              <asp:Label ID="lbl_rqt" runat="server" Text="โปรดเลือกกระบวนงานที่ท่านต้องการยื่น"></asp:Label>
                              <telerik:radcombobox ID="ddl_req_type" Runat="server" Width="80%" Filter="Contains">
                              </telerik:radcombobox>
                          </td>
                      </tr>--%>
-                    
-                    <tr><td style="width: 80%">
-                         <asp:Panel ID="Panel1" runat="server" style="display:none;">
-                        <p>รูปแแบ PDF:</p>
-                         <asp:DropDownList ID="ddl_template" runat="server" Width="70%"  AutoPostBack="True" DataTextField="NAME_TEMPLATE" DataValueField="ROWS">
-                         </asp:DropDownList>
-                          </asp:Panel>
-                         </td></tr>
-                        
-                    <tr>
-                        <td style="width: 80%">
-                            <p>สถานะ:</p>
-                            &ensp;&ensp;<asp:DropDownList ID="ddl_cnsdcd" runat="server" Width="70%" DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
-                            </asp:DropDownList>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 80%">
-                             <p>วันที่ตรวจรับคำขอ:</p>
-                            &ensp;&ensp; <asp:TextBox ID="txt_appdate" runat="server" Width="70%"></asp:TextBox>
+                        <tr>
+                            <td style="width: 80%">
+                                <asp:Panel ID="Panel1" runat="server" Style="display: none;">
+                                    <p>รูปแแบ PDF:</p>
+                                    <asp:DropDownList ID="ddl_template" runat="server" Width="70%" AutoPostBack="True" DataTextField="NAME_TEMPLATE" DataValueField="ROWS">
+                                    </asp:DropDownList>
+                                </asp:Panel>
+                            </td>
+                        </tr>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 80%">
-                             <p>จนท. ที่รับผิดชอบ:</p>
-                               <asp:DropDownList ID="DD_OFF_REQ" runat="server"  Width="80%"  DataValueField="IDA" DataTextField="STAFF_NAME" AutoPostBack="true"></asp:DropDownList>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
-                    </tr>
-                    <%--<tr>
+                        <tr>
+                            <td style="width: 80%">
+                                <p>สถานะ:</p>
+                                &ensp;&ensp;<asp:DropDownList ID="ddl_cnsdcd" runat="server" Width="70%" DataTextField="STATUS_NAME" DataValueField="STATUS_ID">
+                                </asp:DropDownList>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 80%">
+                                <p>วันที่ตรวจรับคำขอ:</p>
+                                &ensp;&ensp;
+                                <asp:TextBox ID="txt_appdate" runat="server" Width="70%"></asp:TextBox>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 80%">
+                                <p>จนท. ที่รับผิดชอบ:</p>
+                                <asp:DropDownList ID="DD_OFF_REQ" runat="server" Width="80%" DataValueField="IDA" DataTextField="STAFF_NAME" AutoPostBack="true"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="BTN_KEEP_PAY" runat="server" Text="ข้ามสถานะ" CssClass="btn-lg" Visible="false" Width="80%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btn_confirm" runat="server" Text="ยืนยัน" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการบันทึกข้อมูลหรือไม่');" /></td>
+                        </tr>
+                        <%--<tr>
                         <td>
                             <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="80%" /></td>
                     </tr>--%>
-                   <%-- <tr>
+                        <%-- <tr>
                         <td>
                             <asp:Button ID="btn_load" runat="server" Text="Download PDF" CssClass="btn-lg" Width="80%" /></td>
                     </tr>--%>
-                     <tr>
-                        <td>
-                            <asp:Button ID="btn_preview" runat="server" Text="Preview PDF" CssClass="btn-lg" Width="80%" /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="80%" style="height: 53px" /></td>
-                    </tr>
-                     </table>
-                    </center>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btn_preview" runat="server" Text="Preview PDF" CssClass="btn-lg" Width="80%" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btn_load0" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="80%" Style="height: 53px" /></td>
+                        </tr>
+                    </table>
+                </center>
                 <table class="table" style="width: 100%; padding-right: 2%;">
                     <tr>
                         <td>

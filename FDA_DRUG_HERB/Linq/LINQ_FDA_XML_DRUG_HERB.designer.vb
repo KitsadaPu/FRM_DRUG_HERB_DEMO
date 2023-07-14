@@ -91,12 +91,6 @@ Partial Public Class LINQ_FDA_XML_DRUG_HERBDataContext
     End Sub
   Partial Private Sub DeleteXML_DRUG_FRGN_HERB(instance As XML_DRUG_FRGN_HERB)
     End Sub
-  Partial Private Sub InsertXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
-    End Sub
-  Partial Private Sub UpdateXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
-    End Sub
-  Partial Private Sub DeleteXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
-    End Sub
   Partial Private Sub InsertXML_DRUG_IOW_HERB(instance As XML_DRUG_IOW_HERB)
     End Sub
   Partial Private Sub UpdateXML_DRUG_IOW_HERB(instance As XML_DRUG_IOW_HERB)
@@ -168,6 +162,12 @@ Partial Public Class LINQ_FDA_XML_DRUG_HERBDataContext
   Partial Private Sub UpdateXML_SEARCH_DRUG_LCN_HERB(instance As XML_SEARCH_DRUG_LCN_HERB)
     End Sub
   Partial Private Sub DeleteXML_SEARCH_DRUG_LCN_HERB(instance As XML_SEARCH_DRUG_LCN_HERB)
+    End Sub
+  Partial Private Sub InsertXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
+    End Sub
+  Partial Private Sub UpdateXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
+    End Sub
+  Partial Private Sub DeleteXML_DRUG_IOW_EQ_HERB(instance As XML_DRUG_IOW_EQ_HERB)
     End Sub
   #End Region
 	
@@ -256,12 +256,6 @@ Partial Public Class LINQ_FDA_XML_DRUG_HERBDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property XML_DRUG_IOW_EQ_HERBs() As System.Data.Linq.Table(Of XML_DRUG_IOW_EQ_HERB)
-		Get
-			Return Me.GetTable(Of XML_DRUG_IOW_EQ_HERB)
-		End Get
-	End Property
-	
 	Public ReadOnly Property XML_DRUG_IOW_HERBs() As System.Data.Linq.Table(Of XML_DRUG_IOW_HERB)
 		Get
 			Return Me.GetTable(Of XML_DRUG_IOW_HERB)
@@ -337,6 +331,12 @@ Partial Public Class LINQ_FDA_XML_DRUG_HERBDataContext
 	Public ReadOnly Property XML_SEARCH_DRUG_LCN_HERBs() As System.Data.Linq.Table(Of XML_SEARCH_DRUG_LCN_HERB)
 		Get
 			Return Me.GetTable(Of XML_SEARCH_DRUG_LCN_HERB)
+		End Get
+	End Property
+	
+	Public ReadOnly Property XML_DRUG_IOW_EQ_HERBs() As System.Data.Linq.Table(Of XML_DRUG_IOW_EQ_HERB)
+		Get
+			Return Me.GetTable(Of XML_DRUG_IOW_EQ_HERB)
 		End Get
 	End Property
 End Class
@@ -4502,904 +4502,6 @@ Partial Public Class XML_DRUG_FRGN_HERB
 				Me._frgnlctcd = value
 				Me.SendPropertyChanged("frgnlctcd")
 				Me.OnfrgnlctcdChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.XML_DRUG_IOW_EQ_HERB")>  _
-Partial Public Class XML_DRUG_IOW_EQ_HERB
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _IDA As Integer
-	
-	Private _pvncd As String
-	
-	Private _drgtpcd As String
-	
-	Private _rgttpcd As String
-	
-	Private _rgtno As String
-	
-	Private _register As String
-	
-	Private _CITIZEN_AUTHORIZE As String
-	
-	Private _thadrgnm As String
-	
-	Private _engdrgnm As String
-	
-	Private _flineno As String
-	
-	Private _drgqty As String
-	
-	Private _drgperunit As String
-	
-	Private _drgcdt As String
-	
-	Private _drgcdt_condition As String
-	
-	Private _rid As String
-	
-	Private _elineno As String
-	
-	Private _iowacd As String
-	
-	Private _iowanm As String
-	
-	Private _SinggleContent As String
-	
-	Private _UnitForSinggleContent As String
-	
-	Private _qty As String
-	
-	Private _ConditionContent As String
-	
-	Private _MultiplyNumberStart As String
-	
-	Private _BaseNumberStart As String
-	
-	Private _PowerNumberStart As String
-	
-	Private _MultiplyNumberEND As String
-	
-	Private _BaseNumberEND As String
-	
-	Private _PowerNumberEND As String
-	
-	Private _UnitForRangeContent As String
-	
-	Private _aori As String
-	
-	Private _Newcode As String
-	
-	Private _Newcode_rid As String
-	
-	Private _Newcode_R As String
-	
-	Private _licen_loca As String
-	
-	Private _thaclassnm As String
-	
-	Private _cncnm As String
-	
-	Private _Newcode_rid_eq As String
-	
-	Private _lcnno As String
-	
-	Private _remark As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDAChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIDAChanged()
-    End Sub
-    Partial Private Sub OnpvncdChanging(value As String)
-    End Sub
-    Partial Private Sub OnpvncdChanged()
-    End Sub
-    Partial Private Sub OndrgtpcdChanging(value As String)
-    End Sub
-    Partial Private Sub OndrgtpcdChanged()
-    End Sub
-    Partial Private Sub OnrgttpcdChanging(value As String)
-    End Sub
-    Partial Private Sub OnrgttpcdChanged()
-    End Sub
-    Partial Private Sub OnrgtnoChanging(value As String)
-    End Sub
-    Partial Private Sub OnrgtnoChanged()
-    End Sub
-    Partial Private Sub OnregisterChanging(value As String)
-    End Sub
-    Partial Private Sub OnregisterChanged()
-    End Sub
-    Partial Private Sub OnCITIZEN_AUTHORIZEChanging(value As String)
-    End Sub
-    Partial Private Sub OnCITIZEN_AUTHORIZEChanged()
-    End Sub
-    Partial Private Sub OnthadrgnmChanging(value As String)
-    End Sub
-    Partial Private Sub OnthadrgnmChanged()
-    End Sub
-    Partial Private Sub OnengdrgnmChanging(value As String)
-    End Sub
-    Partial Private Sub OnengdrgnmChanged()
-    End Sub
-    Partial Private Sub OnflinenoChanging(value As String)
-    End Sub
-    Partial Private Sub OnflinenoChanged()
-    End Sub
-    Partial Private Sub OndrgqtyChanging(value As String)
-    End Sub
-    Partial Private Sub OndrgqtyChanged()
-    End Sub
-    Partial Private Sub OndrgperunitChanging(value As String)
-    End Sub
-    Partial Private Sub OndrgperunitChanged()
-    End Sub
-    Partial Private Sub OndrgcdtChanging(value As String)
-    End Sub
-    Partial Private Sub OndrgcdtChanged()
-    End Sub
-    Partial Private Sub Ondrgcdt_conditionChanging(value As String)
-    End Sub
-    Partial Private Sub Ondrgcdt_conditionChanged()
-    End Sub
-    Partial Private Sub OnridChanging(value As String)
-    End Sub
-    Partial Private Sub OnridChanged()
-    End Sub
-    Partial Private Sub OnelinenoChanging(value As String)
-    End Sub
-    Partial Private Sub OnelinenoChanged()
-    End Sub
-    Partial Private Sub OniowacdChanging(value As String)
-    End Sub
-    Partial Private Sub OniowacdChanged()
-    End Sub
-    Partial Private Sub OniowanmChanging(value As String)
-    End Sub
-    Partial Private Sub OniowanmChanged()
-    End Sub
-    Partial Private Sub OnSinggleContentChanging(value As String)
-    End Sub
-    Partial Private Sub OnSinggleContentChanged()
-    End Sub
-    Partial Private Sub OnUnitForSinggleContentChanging(value As String)
-    End Sub
-    Partial Private Sub OnUnitForSinggleContentChanged()
-    End Sub
-    Partial Private Sub OnqtyChanging(value As String)
-    End Sub
-    Partial Private Sub OnqtyChanged()
-    End Sub
-    Partial Private Sub OnConditionContentChanging(value As String)
-    End Sub
-    Partial Private Sub OnConditionContentChanged()
-    End Sub
-    Partial Private Sub OnMultiplyNumberStartChanging(value As String)
-    End Sub
-    Partial Private Sub OnMultiplyNumberStartChanged()
-    End Sub
-    Partial Private Sub OnBaseNumberStartChanging(value As String)
-    End Sub
-    Partial Private Sub OnBaseNumberStartChanged()
-    End Sub
-    Partial Private Sub OnPowerNumberStartChanging(value As String)
-    End Sub
-    Partial Private Sub OnPowerNumberStartChanged()
-    End Sub
-    Partial Private Sub OnMultiplyNumberENDChanging(value As String)
-    End Sub
-    Partial Private Sub OnMultiplyNumberENDChanged()
-    End Sub
-    Partial Private Sub OnBaseNumberENDChanging(value As String)
-    End Sub
-    Partial Private Sub OnBaseNumberENDChanged()
-    End Sub
-    Partial Private Sub OnPowerNumberENDChanging(value As String)
-    End Sub
-    Partial Private Sub OnPowerNumberENDChanged()
-    End Sub
-    Partial Private Sub OnUnitForRangeContentChanging(value As String)
-    End Sub
-    Partial Private Sub OnUnitForRangeContentChanged()
-    End Sub
-    Partial Private Sub OnaoriChanging(value As String)
-    End Sub
-    Partial Private Sub OnaoriChanged()
-    End Sub
-    Partial Private Sub OnNewcodeChanging(value As String)
-    End Sub
-    Partial Private Sub OnNewcodeChanged()
-    End Sub
-    Partial Private Sub OnNewcode_ridChanging(value As String)
-    End Sub
-    Partial Private Sub OnNewcode_ridChanged()
-    End Sub
-    Partial Private Sub OnNewcode_RChanging(value As String)
-    End Sub
-    Partial Private Sub OnNewcode_RChanged()
-    End Sub
-    Partial Private Sub Onlicen_locaChanging(value As String)
-    End Sub
-    Partial Private Sub Onlicen_locaChanged()
-    End Sub
-    Partial Private Sub OnthaclassnmChanging(value As String)
-    End Sub
-    Partial Private Sub OnthaclassnmChanged()
-    End Sub
-    Partial Private Sub OncncnmChanging(value As String)
-    End Sub
-    Partial Private Sub OncncnmChanged()
-    End Sub
-    Partial Private Sub OnNewcode_rid_eqChanging(value As String)
-    End Sub
-    Partial Private Sub OnNewcode_rid_eqChanged()
-    End Sub
-    Partial Private Sub OnlcnnoChanging(value As String)
-    End Sub
-    Partial Private Sub OnlcnnoChanged()
-    End Sub
-    Partial Private Sub OnremarkChanging(value As String)
-    End Sub
-    Partial Private Sub OnremarkChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDA", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property IDA() As Integer
-		Get
-			Return Me._IDA
-		End Get
-		Set
-			If ((Me._IDA = value)  _
-						= false) Then
-				Me.OnIDAChanging(value)
-				Me.SendPropertyChanging
-				Me._IDA = value
-				Me.SendPropertyChanged("IDA")
-				Me.OnIDAChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_pvncd", DbType:="NVarChar(50)")>  _
-	Public Property pvncd() As String
-		Get
-			Return Me._pvncd
-		End Get
-		Set
-			If (String.Equals(Me._pvncd, value) = false) Then
-				Me.OnpvncdChanging(value)
-				Me.SendPropertyChanging
-				Me._pvncd = value
-				Me.SendPropertyChanged("pvncd")
-				Me.OnpvncdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgtpcd", DbType:="NVarChar(50)")>  _
-	Public Property drgtpcd() As String
-		Get
-			Return Me._drgtpcd
-		End Get
-		Set
-			If (String.Equals(Me._drgtpcd, value) = false) Then
-				Me.OndrgtpcdChanging(value)
-				Me.SendPropertyChanging
-				Me._drgtpcd = value
-				Me.SendPropertyChanged("drgtpcd")
-				Me.OndrgtpcdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rgttpcd", DbType:="NVarChar(50)")>  _
-	Public Property rgttpcd() As String
-		Get
-			Return Me._rgttpcd
-		End Get
-		Set
-			If (String.Equals(Me._rgttpcd, value) = false) Then
-				Me.OnrgttpcdChanging(value)
-				Me.SendPropertyChanging
-				Me._rgttpcd = value
-				Me.SendPropertyChanged("rgttpcd")
-				Me.OnrgttpcdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rgtno", DbType:="NVarChar(50)")>  _
-	Public Property rgtno() As String
-		Get
-			Return Me._rgtno
-		End Get
-		Set
-			If (String.Equals(Me._rgtno, value) = false) Then
-				Me.OnrgtnoChanging(value)
-				Me.SendPropertyChanging
-				Me._rgtno = value
-				Me.SendPropertyChanged("rgtno")
-				Me.OnrgtnoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_register", DbType:="NVarChar(MAX)")>  _
-	Public Property register() As String
-		Get
-			Return Me._register
-		End Get
-		Set
-			If (String.Equals(Me._register, value) = false) Then
-				Me.OnregisterChanging(value)
-				Me.SendPropertyChanging
-				Me._register = value
-				Me.SendPropertyChanged("register")
-				Me.OnregisterChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CITIZEN_AUTHORIZE", DbType:="NVarChar(50)")>  _
-	Public Property CITIZEN_AUTHORIZE() As String
-		Get
-			Return Me._CITIZEN_AUTHORIZE
-		End Get
-		Set
-			If (String.Equals(Me._CITIZEN_AUTHORIZE, value) = false) Then
-				Me.OnCITIZEN_AUTHORIZEChanging(value)
-				Me.SendPropertyChanging
-				Me._CITIZEN_AUTHORIZE = value
-				Me.SendPropertyChanged("CITIZEN_AUTHORIZE")
-				Me.OnCITIZEN_AUTHORIZEChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_thadrgnm", DbType:="NVarChar(MAX)")>  _
-	Public Property thadrgnm() As String
-		Get
-			Return Me._thadrgnm
-		End Get
-		Set
-			If (String.Equals(Me._thadrgnm, value) = false) Then
-				Me.OnthadrgnmChanging(value)
-				Me.SendPropertyChanging
-				Me._thadrgnm = value
-				Me.SendPropertyChanged("thadrgnm")
-				Me.OnthadrgnmChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_engdrgnm", DbType:="NVarChar(MAX)")>  _
-	Public Property engdrgnm() As String
-		Get
-			Return Me._engdrgnm
-		End Get
-		Set
-			If (String.Equals(Me._engdrgnm, value) = false) Then
-				Me.OnengdrgnmChanging(value)
-				Me.SendPropertyChanging
-				Me._engdrgnm = value
-				Me.SendPropertyChanged("engdrgnm")
-				Me.OnengdrgnmChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_flineno", DbType:="NVarChar(10)")>  _
-	Public Property flineno() As String
-		Get
-			Return Me._flineno
-		End Get
-		Set
-			If (String.Equals(Me._flineno, value) = false) Then
-				Me.OnflinenoChanging(value)
-				Me.SendPropertyChanging
-				Me._flineno = value
-				Me.SendPropertyChanged("flineno")
-				Me.OnflinenoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgqty", DbType:="NVarChar(50)")>  _
-	Public Property drgqty() As String
-		Get
-			Return Me._drgqty
-		End Get
-		Set
-			If (String.Equals(Me._drgqty, value) = false) Then
-				Me.OndrgqtyChanging(value)
-				Me.SendPropertyChanging
-				Me._drgqty = value
-				Me.SendPropertyChanged("drgqty")
-				Me.OndrgqtyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgperunit", DbType:="NVarChar(MAX)")>  _
-	Public Property drgperunit() As String
-		Get
-			Return Me._drgperunit
-		End Get
-		Set
-			If (String.Equals(Me._drgperunit, value) = false) Then
-				Me.OndrgperunitChanging(value)
-				Me.SendPropertyChanging
-				Me._drgperunit = value
-				Me.SendPropertyChanged("drgperunit")
-				Me.OndrgperunitChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgcdt", DbType:="NVarChar(MAX)")>  _
-	Public Property drgcdt() As String
-		Get
-			Return Me._drgcdt
-		End Get
-		Set
-			If (String.Equals(Me._drgcdt, value) = false) Then
-				Me.OndrgcdtChanging(value)
-				Me.SendPropertyChanging
-				Me._drgcdt = value
-				Me.SendPropertyChanged("drgcdt")
-				Me.OndrgcdtChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgcdt_condition", DbType:="NVarChar(MAX)")>  _
-	Public Property drgcdt_condition() As String
-		Get
-			Return Me._drgcdt_condition
-		End Get
-		Set
-			If (String.Equals(Me._drgcdt_condition, value) = false) Then
-				Me.Ondrgcdt_conditionChanging(value)
-				Me.SendPropertyChanging
-				Me._drgcdt_condition = value
-				Me.SendPropertyChanged("drgcdt_condition")
-				Me.Ondrgcdt_conditionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rid", DbType:="NVarChar(10)")>  _
-	Public Property rid() As String
-		Get
-			Return Me._rid
-		End Get
-		Set
-			If (String.Equals(Me._rid, value) = false) Then
-				Me.OnridChanging(value)
-				Me.SendPropertyChanging
-				Me._rid = value
-				Me.SendPropertyChanged("rid")
-				Me.OnridChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_elineno", DbType:="NVarChar(50)")>  _
-	Public Property elineno() As String
-		Get
-			Return Me._elineno
-		End Get
-		Set
-			If (String.Equals(Me._elineno, value) = false) Then
-				Me.OnelinenoChanging(value)
-				Me.SendPropertyChanging
-				Me._elineno = value
-				Me.SendPropertyChanged("elineno")
-				Me.OnelinenoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iowacd", DbType:="NVarChar(MAX)")>  _
-	Public Property iowacd() As String
-		Get
-			Return Me._iowacd
-		End Get
-		Set
-			If (String.Equals(Me._iowacd, value) = false) Then
-				Me.OniowacdChanging(value)
-				Me.SendPropertyChanging
-				Me._iowacd = value
-				Me.SendPropertyChanged("iowacd")
-				Me.OniowacdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iowanm", DbType:="NVarChar(MAX)")>  _
-	Public Property iowanm() As String
-		Get
-			Return Me._iowanm
-		End Get
-		Set
-			If (String.Equals(Me._iowanm, value) = false) Then
-				Me.OniowanmChanging(value)
-				Me.SendPropertyChanging
-				Me._iowanm = value
-				Me.SendPropertyChanged("iowanm")
-				Me.OniowanmChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SinggleContent", DbType:="NVarChar(MAX)")>  _
-	Public Property SinggleContent() As String
-		Get
-			Return Me._SinggleContent
-		End Get
-		Set
-			If (String.Equals(Me._SinggleContent, value) = false) Then
-				Me.OnSinggleContentChanging(value)
-				Me.SendPropertyChanging
-				Me._SinggleContent = value
-				Me.SendPropertyChanged("SinggleContent")
-				Me.OnSinggleContentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitForSinggleContent", DbType:="NVarChar(MAX)")>  _
-	Public Property UnitForSinggleContent() As String
-		Get
-			Return Me._UnitForSinggleContent
-		End Get
-		Set
-			If (String.Equals(Me._UnitForSinggleContent, value) = false) Then
-				Me.OnUnitForSinggleContentChanging(value)
-				Me.SendPropertyChanging
-				Me._UnitForSinggleContent = value
-				Me.SendPropertyChanged("UnitForSinggleContent")
-				Me.OnUnitForSinggleContentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_qty", DbType:="NVarChar(50)")>  _
-	Public Property qty() As String
-		Get
-			Return Me._qty
-		End Get
-		Set
-			If (String.Equals(Me._qty, value) = false) Then
-				Me.OnqtyChanging(value)
-				Me.SendPropertyChanging
-				Me._qty = value
-				Me.SendPropertyChanged("qty")
-				Me.OnqtyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ConditionContent", DbType:="NVarChar(MAX)")>  _
-	Public Property ConditionContent() As String
-		Get
-			Return Me._ConditionContent
-		End Get
-		Set
-			If (String.Equals(Me._ConditionContent, value) = false) Then
-				Me.OnConditionContentChanging(value)
-				Me.SendPropertyChanging
-				Me._ConditionContent = value
-				Me.SendPropertyChanged("ConditionContent")
-				Me.OnConditionContentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MultiplyNumberStart", DbType:="NVarChar(MAX)")>  _
-	Public Property MultiplyNumberStart() As String
-		Get
-			Return Me._MultiplyNumberStart
-		End Get
-		Set
-			If (String.Equals(Me._MultiplyNumberStart, value) = false) Then
-				Me.OnMultiplyNumberStartChanging(value)
-				Me.SendPropertyChanging
-				Me._MultiplyNumberStart = value
-				Me.SendPropertyChanged("MultiplyNumberStart")
-				Me.OnMultiplyNumberStartChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BaseNumberStart", DbType:="NVarChar(MAX)")>  _
-	Public Property BaseNumberStart() As String
-		Get
-			Return Me._BaseNumberStart
-		End Get
-		Set
-			If (String.Equals(Me._BaseNumberStart, value) = false) Then
-				Me.OnBaseNumberStartChanging(value)
-				Me.SendPropertyChanging
-				Me._BaseNumberStart = value
-				Me.SendPropertyChanged("BaseNumberStart")
-				Me.OnBaseNumberStartChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PowerNumberStart", DbType:="NVarChar(MAX)")>  _
-	Public Property PowerNumberStart() As String
-		Get
-			Return Me._PowerNumberStart
-		End Get
-		Set
-			If (String.Equals(Me._PowerNumberStart, value) = false) Then
-				Me.OnPowerNumberStartChanging(value)
-				Me.SendPropertyChanging
-				Me._PowerNumberStart = value
-				Me.SendPropertyChanged("PowerNumberStart")
-				Me.OnPowerNumberStartChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MultiplyNumberEND", DbType:="NVarChar(MAX)")>  _
-	Public Property MultiplyNumberEND() As String
-		Get
-			Return Me._MultiplyNumberEND
-		End Get
-		Set
-			If (String.Equals(Me._MultiplyNumberEND, value) = false) Then
-				Me.OnMultiplyNumberENDChanging(value)
-				Me.SendPropertyChanging
-				Me._MultiplyNumberEND = value
-				Me.SendPropertyChanged("MultiplyNumberEND")
-				Me.OnMultiplyNumberENDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BaseNumberEND", DbType:="NVarChar(MAX)")>  _
-	Public Property BaseNumberEND() As String
-		Get
-			Return Me._BaseNumberEND
-		End Get
-		Set
-			If (String.Equals(Me._BaseNumberEND, value) = false) Then
-				Me.OnBaseNumberENDChanging(value)
-				Me.SendPropertyChanging
-				Me._BaseNumberEND = value
-				Me.SendPropertyChanged("BaseNumberEND")
-				Me.OnBaseNumberENDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PowerNumberEND", DbType:="NVarChar(MAX)")>  _
-	Public Property PowerNumberEND() As String
-		Get
-			Return Me._PowerNumberEND
-		End Get
-		Set
-			If (String.Equals(Me._PowerNumberEND, value) = false) Then
-				Me.OnPowerNumberENDChanging(value)
-				Me.SendPropertyChanging
-				Me._PowerNumberEND = value
-				Me.SendPropertyChanged("PowerNumberEND")
-				Me.OnPowerNumberENDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitForRangeContent", DbType:="NVarChar(MAX)")>  _
-	Public Property UnitForRangeContent() As String
-		Get
-			Return Me._UnitForRangeContent
-		End Get
-		Set
-			If (String.Equals(Me._UnitForRangeContent, value) = false) Then
-				Me.OnUnitForRangeContentChanging(value)
-				Me.SendPropertyChanging
-				Me._UnitForRangeContent = value
-				Me.SendPropertyChanged("UnitForRangeContent")
-				Me.OnUnitForRangeContentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_aori", DbType:="NVarChar(50)")>  _
-	Public Property aori() As String
-		Get
-			Return Me._aori
-		End Get
-		Set
-			If (String.Equals(Me._aori, value) = false) Then
-				Me.OnaoriChanging(value)
-				Me.SendPropertyChanging
-				Me._aori = value
-				Me.SendPropertyChanged("aori")
-				Me.OnaoriChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode", DbType:="NVarChar(MAX)")>  _
-	Public Property Newcode() As String
-		Get
-			Return Me._Newcode
-		End Get
-		Set
-			If (String.Equals(Me._Newcode, value) = false) Then
-				Me.OnNewcodeChanging(value)
-				Me.SendPropertyChanging
-				Me._Newcode = value
-				Me.SendPropertyChanged("Newcode")
-				Me.OnNewcodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_rid", DbType:="NVarChar(MAX)")>  _
-	Public Property Newcode_rid() As String
-		Get
-			Return Me._Newcode_rid
-		End Get
-		Set
-			If (String.Equals(Me._Newcode_rid, value) = false) Then
-				Me.OnNewcode_ridChanging(value)
-				Me.SendPropertyChanging
-				Me._Newcode_rid = value
-				Me.SendPropertyChanged("Newcode_rid")
-				Me.OnNewcode_ridChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_R", DbType:="NVarChar(MAX)")>  _
-	Public Property Newcode_R() As String
-		Get
-			Return Me._Newcode_R
-		End Get
-		Set
-			If (String.Equals(Me._Newcode_R, value) = false) Then
-				Me.OnNewcode_RChanging(value)
-				Me.SendPropertyChanging
-				Me._Newcode_R = value
-				Me.SendPropertyChanged("Newcode_R")
-				Me.OnNewcode_RChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_licen_loca", DbType:="NVarChar(MAX)")>  _
-	Public Property licen_loca() As String
-		Get
-			Return Me._licen_loca
-		End Get
-		Set
-			If (String.Equals(Me._licen_loca, value) = false) Then
-				Me.Onlicen_locaChanging(value)
-				Me.SendPropertyChanging
-				Me._licen_loca = value
-				Me.SendPropertyChanged("licen_loca")
-				Me.Onlicen_locaChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_thaclassnm", DbType:="NVarChar(MAX)")>  _
-	Public Property thaclassnm() As String
-		Get
-			Return Me._thaclassnm
-		End Get
-		Set
-			If (String.Equals(Me._thaclassnm, value) = false) Then
-				Me.OnthaclassnmChanging(value)
-				Me.SendPropertyChanging
-				Me._thaclassnm = value
-				Me.SendPropertyChanged("thaclassnm")
-				Me.OnthaclassnmChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cncnm", DbType:="NVarChar(50)")>  _
-	Public Property cncnm() As String
-		Get
-			Return Me._cncnm
-		End Get
-		Set
-			If (String.Equals(Me._cncnm, value) = false) Then
-				Me.OncncnmChanging(value)
-				Me.SendPropertyChanging
-				Me._cncnm = value
-				Me.SendPropertyChanged("cncnm")
-				Me.OncncnmChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_rid_eq", DbType:="NVarChar(MAX)")>  _
-	Public Property Newcode_rid_eq() As String
-		Get
-			Return Me._Newcode_rid_eq
-		End Get
-		Set
-			If (String.Equals(Me._Newcode_rid_eq, value) = false) Then
-				Me.OnNewcode_rid_eqChanging(value)
-				Me.SendPropertyChanging
-				Me._Newcode_rid_eq = value
-				Me.SendPropertyChanged("Newcode_rid_eq")
-				Me.OnNewcode_rid_eqChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_lcnno", DbType:="NVarChar(50)")>  _
-	Public Property lcnno() As String
-		Get
-			Return Me._lcnno
-		End Get
-		Set
-			If (String.Equals(Me._lcnno, value) = false) Then
-				Me.OnlcnnoChanging(value)
-				Me.SendPropertyChanging
-				Me._lcnno = value
-				Me.SendPropertyChanged("lcnno")
-				Me.OnlcnnoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_remark", DbType:="NVarChar(MAX)")>  _
-	Public Property remark() As String
-		Get
-			Return Me._remark
-		End Get
-		Set
-			If (String.Equals(Me._remark, value) = false) Then
-				Me.OnremarkChanging(value)
-				Me.SendPropertyChanging
-				Me._remark = value
-				Me.SendPropertyChanged("remark")
-				Me.OnremarkChanged
 			End If
 		End Set
 	End Property
@@ -18301,6 +17403,904 @@ Partial Public Class XML_SEARCH_DRUG_LCN_HERB
 				Me._lcnno_display_new = value
 				Me.SendPropertyChanged("lcnno_display_new")
 				Me.Onlcnno_display_newChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.XML_DRUG_IOW_EQ_HERB")>  _
+Partial Public Class XML_DRUG_IOW_EQ_HERB
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _IDA As Integer
+	
+	Private _pvncd As String
+	
+	Private _drgtpcd As String
+	
+	Private _rgttpcd As String
+	
+	Private _rgtno As String
+	
+	Private _register As String
+	
+	Private _CITIZEN_AUTHORIZE As String
+	
+	Private _thadrgnm As String
+	
+	Private _engdrgnm As String
+	
+	Private _flineno As String
+	
+	Private _drgqty As String
+	
+	Private _drgperunit As String
+	
+	Private _drgcdt As String
+	
+	Private _drgcdt_condition As String
+	
+	Private _rid As String
+	
+	Private _elineno As String
+	
+	Private _iowacd As String
+	
+	Private _iowanm As String
+	
+	Private _SinggleContent As String
+	
+	Private _UnitForSinggleContent As String
+	
+	Private _qty As String
+	
+	Private _ConditionContent As String
+	
+	Private _MultiplyNumberStart As String
+	
+	Private _BaseNumberStart As String
+	
+	Private _PowerNumberStart As String
+	
+	Private _MultiplyNumberEND As String
+	
+	Private _BaseNumberEND As String
+	
+	Private _PowerNumberEND As String
+	
+	Private _UnitForRangeContent As String
+	
+	Private _aori As String
+	
+	Private _Newcode As String
+	
+	Private _Newcode_rid As String
+	
+	Private _Newcode_R As String
+	
+	Private _licen_loca As String
+	
+	Private _thaclassnm As String
+	
+	Private _cncnm As String
+	
+	Private _Newcode_rid_eq As String
+	
+	Private _lcnno As String
+	
+	Private _remark As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDAChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDAChanged()
+    End Sub
+    Partial Private Sub OnpvncdChanging(value As String)
+    End Sub
+    Partial Private Sub OnpvncdChanged()
+    End Sub
+    Partial Private Sub OndrgtpcdChanging(value As String)
+    End Sub
+    Partial Private Sub OndrgtpcdChanged()
+    End Sub
+    Partial Private Sub OnrgttpcdChanging(value As String)
+    End Sub
+    Partial Private Sub OnrgttpcdChanged()
+    End Sub
+    Partial Private Sub OnrgtnoChanging(value As String)
+    End Sub
+    Partial Private Sub OnrgtnoChanged()
+    End Sub
+    Partial Private Sub OnregisterChanging(value As String)
+    End Sub
+    Partial Private Sub OnregisterChanged()
+    End Sub
+    Partial Private Sub OnCITIZEN_AUTHORIZEChanging(value As String)
+    End Sub
+    Partial Private Sub OnCITIZEN_AUTHORIZEChanged()
+    End Sub
+    Partial Private Sub OnthadrgnmChanging(value As String)
+    End Sub
+    Partial Private Sub OnthadrgnmChanged()
+    End Sub
+    Partial Private Sub OnengdrgnmChanging(value As String)
+    End Sub
+    Partial Private Sub OnengdrgnmChanged()
+    End Sub
+    Partial Private Sub OnflinenoChanging(value As String)
+    End Sub
+    Partial Private Sub OnflinenoChanged()
+    End Sub
+    Partial Private Sub OndrgqtyChanging(value As String)
+    End Sub
+    Partial Private Sub OndrgqtyChanged()
+    End Sub
+    Partial Private Sub OndrgperunitChanging(value As String)
+    End Sub
+    Partial Private Sub OndrgperunitChanged()
+    End Sub
+    Partial Private Sub OndrgcdtChanging(value As String)
+    End Sub
+    Partial Private Sub OndrgcdtChanged()
+    End Sub
+    Partial Private Sub Ondrgcdt_conditionChanging(value As String)
+    End Sub
+    Partial Private Sub Ondrgcdt_conditionChanged()
+    End Sub
+    Partial Private Sub OnridChanging(value As String)
+    End Sub
+    Partial Private Sub OnridChanged()
+    End Sub
+    Partial Private Sub OnelinenoChanging(value As String)
+    End Sub
+    Partial Private Sub OnelinenoChanged()
+    End Sub
+    Partial Private Sub OniowacdChanging(value As String)
+    End Sub
+    Partial Private Sub OniowacdChanged()
+    End Sub
+    Partial Private Sub OniowanmChanging(value As String)
+    End Sub
+    Partial Private Sub OniowanmChanged()
+    End Sub
+    Partial Private Sub OnSinggleContentChanging(value As String)
+    End Sub
+    Partial Private Sub OnSinggleContentChanged()
+    End Sub
+    Partial Private Sub OnUnitForSinggleContentChanging(value As String)
+    End Sub
+    Partial Private Sub OnUnitForSinggleContentChanged()
+    End Sub
+    Partial Private Sub OnqtyChanging(value As String)
+    End Sub
+    Partial Private Sub OnqtyChanged()
+    End Sub
+    Partial Private Sub OnConditionContentChanging(value As String)
+    End Sub
+    Partial Private Sub OnConditionContentChanged()
+    End Sub
+    Partial Private Sub OnMultiplyNumberStartChanging(value As String)
+    End Sub
+    Partial Private Sub OnMultiplyNumberStartChanged()
+    End Sub
+    Partial Private Sub OnBaseNumberStartChanging(value As String)
+    End Sub
+    Partial Private Sub OnBaseNumberStartChanged()
+    End Sub
+    Partial Private Sub OnPowerNumberStartChanging(value As String)
+    End Sub
+    Partial Private Sub OnPowerNumberStartChanged()
+    End Sub
+    Partial Private Sub OnMultiplyNumberENDChanging(value As String)
+    End Sub
+    Partial Private Sub OnMultiplyNumberENDChanged()
+    End Sub
+    Partial Private Sub OnBaseNumberENDChanging(value As String)
+    End Sub
+    Partial Private Sub OnBaseNumberENDChanged()
+    End Sub
+    Partial Private Sub OnPowerNumberENDChanging(value As String)
+    End Sub
+    Partial Private Sub OnPowerNumberENDChanged()
+    End Sub
+    Partial Private Sub OnUnitForRangeContentChanging(value As String)
+    End Sub
+    Partial Private Sub OnUnitForRangeContentChanged()
+    End Sub
+    Partial Private Sub OnaoriChanging(value As String)
+    End Sub
+    Partial Private Sub OnaoriChanged()
+    End Sub
+    Partial Private Sub OnNewcodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnNewcodeChanged()
+    End Sub
+    Partial Private Sub OnNewcode_ridChanging(value As String)
+    End Sub
+    Partial Private Sub OnNewcode_ridChanged()
+    End Sub
+    Partial Private Sub OnNewcode_RChanging(value As String)
+    End Sub
+    Partial Private Sub OnNewcode_RChanged()
+    End Sub
+    Partial Private Sub Onlicen_locaChanging(value As String)
+    End Sub
+    Partial Private Sub Onlicen_locaChanged()
+    End Sub
+    Partial Private Sub OnthaclassnmChanging(value As String)
+    End Sub
+    Partial Private Sub OnthaclassnmChanged()
+    End Sub
+    Partial Private Sub OncncnmChanging(value As String)
+    End Sub
+    Partial Private Sub OncncnmChanged()
+    End Sub
+    Partial Private Sub OnNewcode_rid_eqChanging(value As String)
+    End Sub
+    Partial Private Sub OnNewcode_rid_eqChanged()
+    End Sub
+    Partial Private Sub OnlcnnoChanging(value As String)
+    End Sub
+    Partial Private Sub OnlcnnoChanged()
+    End Sub
+    Partial Private Sub OnremarkChanging(value As String)
+    End Sub
+    Partial Private Sub OnremarkChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDA", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property IDA() As Integer
+		Get
+			Return Me._IDA
+		End Get
+		Set
+			If ((Me._IDA = value)  _
+						= false) Then
+				Me.OnIDAChanging(value)
+				Me.SendPropertyChanging
+				Me._IDA = value
+				Me.SendPropertyChanged("IDA")
+				Me.OnIDAChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_pvncd", DbType:="NVarChar(50)")>  _
+	Public Property pvncd() As String
+		Get
+			Return Me._pvncd
+		End Get
+		Set
+			If (String.Equals(Me._pvncd, value) = false) Then
+				Me.OnpvncdChanging(value)
+				Me.SendPropertyChanging
+				Me._pvncd = value
+				Me.SendPropertyChanged("pvncd")
+				Me.OnpvncdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgtpcd", DbType:="NVarChar(50)")>  _
+	Public Property drgtpcd() As String
+		Get
+			Return Me._drgtpcd
+		End Get
+		Set
+			If (String.Equals(Me._drgtpcd, value) = false) Then
+				Me.OndrgtpcdChanging(value)
+				Me.SendPropertyChanging
+				Me._drgtpcd = value
+				Me.SendPropertyChanged("drgtpcd")
+				Me.OndrgtpcdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rgttpcd", DbType:="NVarChar(50)")>  _
+	Public Property rgttpcd() As String
+		Get
+			Return Me._rgttpcd
+		End Get
+		Set
+			If (String.Equals(Me._rgttpcd, value) = false) Then
+				Me.OnrgttpcdChanging(value)
+				Me.SendPropertyChanging
+				Me._rgttpcd = value
+				Me.SendPropertyChanged("rgttpcd")
+				Me.OnrgttpcdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rgtno", DbType:="NVarChar(50)")>  _
+	Public Property rgtno() As String
+		Get
+			Return Me._rgtno
+		End Get
+		Set
+			If (String.Equals(Me._rgtno, value) = false) Then
+				Me.OnrgtnoChanging(value)
+				Me.SendPropertyChanging
+				Me._rgtno = value
+				Me.SendPropertyChanged("rgtno")
+				Me.OnrgtnoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_register", DbType:="NVarChar(MAX)")>  _
+	Public Property register() As String
+		Get
+			Return Me._register
+		End Get
+		Set
+			If (String.Equals(Me._register, value) = false) Then
+				Me.OnregisterChanging(value)
+				Me.SendPropertyChanging
+				Me._register = value
+				Me.SendPropertyChanged("register")
+				Me.OnregisterChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CITIZEN_AUTHORIZE", DbType:="NVarChar(50)")>  _
+	Public Property CITIZEN_AUTHORIZE() As String
+		Get
+			Return Me._CITIZEN_AUTHORIZE
+		End Get
+		Set
+			If (String.Equals(Me._CITIZEN_AUTHORIZE, value) = false) Then
+				Me.OnCITIZEN_AUTHORIZEChanging(value)
+				Me.SendPropertyChanging
+				Me._CITIZEN_AUTHORIZE = value
+				Me.SendPropertyChanged("CITIZEN_AUTHORIZE")
+				Me.OnCITIZEN_AUTHORIZEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_thadrgnm", DbType:="NVarChar(MAX)")>  _
+	Public Property thadrgnm() As String
+		Get
+			Return Me._thadrgnm
+		End Get
+		Set
+			If (String.Equals(Me._thadrgnm, value) = false) Then
+				Me.OnthadrgnmChanging(value)
+				Me.SendPropertyChanging
+				Me._thadrgnm = value
+				Me.SendPropertyChanged("thadrgnm")
+				Me.OnthadrgnmChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_engdrgnm", DbType:="NVarChar(MAX)")>  _
+	Public Property engdrgnm() As String
+		Get
+			Return Me._engdrgnm
+		End Get
+		Set
+			If (String.Equals(Me._engdrgnm, value) = false) Then
+				Me.OnengdrgnmChanging(value)
+				Me.SendPropertyChanging
+				Me._engdrgnm = value
+				Me.SendPropertyChanged("engdrgnm")
+				Me.OnengdrgnmChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_flineno", DbType:="NVarChar(10)")>  _
+	Public Property flineno() As String
+		Get
+			Return Me._flineno
+		End Get
+		Set
+			If (String.Equals(Me._flineno, value) = false) Then
+				Me.OnflinenoChanging(value)
+				Me.SendPropertyChanging
+				Me._flineno = value
+				Me.SendPropertyChanged("flineno")
+				Me.OnflinenoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgqty", DbType:="NVarChar(50)")>  _
+	Public Property drgqty() As String
+		Get
+			Return Me._drgqty
+		End Get
+		Set
+			If (String.Equals(Me._drgqty, value) = false) Then
+				Me.OndrgqtyChanging(value)
+				Me.SendPropertyChanging
+				Me._drgqty = value
+				Me.SendPropertyChanged("drgqty")
+				Me.OndrgqtyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgperunit", DbType:="NVarChar(MAX)")>  _
+	Public Property drgperunit() As String
+		Get
+			Return Me._drgperunit
+		End Get
+		Set
+			If (String.Equals(Me._drgperunit, value) = false) Then
+				Me.OndrgperunitChanging(value)
+				Me.SendPropertyChanging
+				Me._drgperunit = value
+				Me.SendPropertyChanged("drgperunit")
+				Me.OndrgperunitChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgcdt", DbType:="NVarChar(MAX)")>  _
+	Public Property drgcdt() As String
+		Get
+			Return Me._drgcdt
+		End Get
+		Set
+			If (String.Equals(Me._drgcdt, value) = false) Then
+				Me.OndrgcdtChanging(value)
+				Me.SendPropertyChanging
+				Me._drgcdt = value
+				Me.SendPropertyChanged("drgcdt")
+				Me.OndrgcdtChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_drgcdt_condition", DbType:="NVarChar(MAX)")>  _
+	Public Property drgcdt_condition() As String
+		Get
+			Return Me._drgcdt_condition
+		End Get
+		Set
+			If (String.Equals(Me._drgcdt_condition, value) = false) Then
+				Me.Ondrgcdt_conditionChanging(value)
+				Me.SendPropertyChanging
+				Me._drgcdt_condition = value
+				Me.SendPropertyChanged("drgcdt_condition")
+				Me.Ondrgcdt_conditionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_rid", DbType:="NVarChar(10)")>  _
+	Public Property rid() As String
+		Get
+			Return Me._rid
+		End Get
+		Set
+			If (String.Equals(Me._rid, value) = false) Then
+				Me.OnridChanging(value)
+				Me.SendPropertyChanging
+				Me._rid = value
+				Me.SendPropertyChanged("rid")
+				Me.OnridChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_elineno", DbType:="NVarChar(50)")>  _
+	Public Property elineno() As String
+		Get
+			Return Me._elineno
+		End Get
+		Set
+			If (String.Equals(Me._elineno, value) = false) Then
+				Me.OnelinenoChanging(value)
+				Me.SendPropertyChanging
+				Me._elineno = value
+				Me.SendPropertyChanged("elineno")
+				Me.OnelinenoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iowacd", DbType:="NVarChar(MAX)")>  _
+	Public Property iowacd() As String
+		Get
+			Return Me._iowacd
+		End Get
+		Set
+			If (String.Equals(Me._iowacd, value) = false) Then
+				Me.OniowacdChanging(value)
+				Me.SendPropertyChanging
+				Me._iowacd = value
+				Me.SendPropertyChanged("iowacd")
+				Me.OniowacdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iowanm", DbType:="NVarChar(MAX)")>  _
+	Public Property iowanm() As String
+		Get
+			Return Me._iowanm
+		End Get
+		Set
+			If (String.Equals(Me._iowanm, value) = false) Then
+				Me.OniowanmChanging(value)
+				Me.SendPropertyChanging
+				Me._iowanm = value
+				Me.SendPropertyChanged("iowanm")
+				Me.OniowanmChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SinggleContent", DbType:="NVarChar(MAX)")>  _
+	Public Property SinggleContent() As String
+		Get
+			Return Me._SinggleContent
+		End Get
+		Set
+			If (String.Equals(Me._SinggleContent, value) = false) Then
+				Me.OnSinggleContentChanging(value)
+				Me.SendPropertyChanging
+				Me._SinggleContent = value
+				Me.SendPropertyChanged("SinggleContent")
+				Me.OnSinggleContentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitForSinggleContent", DbType:="NVarChar(MAX)")>  _
+	Public Property UnitForSinggleContent() As String
+		Get
+			Return Me._UnitForSinggleContent
+		End Get
+		Set
+			If (String.Equals(Me._UnitForSinggleContent, value) = false) Then
+				Me.OnUnitForSinggleContentChanging(value)
+				Me.SendPropertyChanging
+				Me._UnitForSinggleContent = value
+				Me.SendPropertyChanged("UnitForSinggleContent")
+				Me.OnUnitForSinggleContentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_qty", DbType:="NVarChar(50)")>  _
+	Public Property qty() As String
+		Get
+			Return Me._qty
+		End Get
+		Set
+			If (String.Equals(Me._qty, value) = false) Then
+				Me.OnqtyChanging(value)
+				Me.SendPropertyChanging
+				Me._qty = value
+				Me.SendPropertyChanged("qty")
+				Me.OnqtyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ConditionContent", DbType:="NVarChar(MAX)")>  _
+	Public Property ConditionContent() As String
+		Get
+			Return Me._ConditionContent
+		End Get
+		Set
+			If (String.Equals(Me._ConditionContent, value) = false) Then
+				Me.OnConditionContentChanging(value)
+				Me.SendPropertyChanging
+				Me._ConditionContent = value
+				Me.SendPropertyChanged("ConditionContent")
+				Me.OnConditionContentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MultiplyNumberStart", DbType:="NVarChar(MAX)")>  _
+	Public Property MultiplyNumberStart() As String
+		Get
+			Return Me._MultiplyNumberStart
+		End Get
+		Set
+			If (String.Equals(Me._MultiplyNumberStart, value) = false) Then
+				Me.OnMultiplyNumberStartChanging(value)
+				Me.SendPropertyChanging
+				Me._MultiplyNumberStart = value
+				Me.SendPropertyChanged("MultiplyNumberStart")
+				Me.OnMultiplyNumberStartChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BaseNumberStart", DbType:="NVarChar(MAX)")>  _
+	Public Property BaseNumberStart() As String
+		Get
+			Return Me._BaseNumberStart
+		End Get
+		Set
+			If (String.Equals(Me._BaseNumberStart, value) = false) Then
+				Me.OnBaseNumberStartChanging(value)
+				Me.SendPropertyChanging
+				Me._BaseNumberStart = value
+				Me.SendPropertyChanged("BaseNumberStart")
+				Me.OnBaseNumberStartChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PowerNumberStart", DbType:="NVarChar(MAX)")>  _
+	Public Property PowerNumberStart() As String
+		Get
+			Return Me._PowerNumberStart
+		End Get
+		Set
+			If (String.Equals(Me._PowerNumberStart, value) = false) Then
+				Me.OnPowerNumberStartChanging(value)
+				Me.SendPropertyChanging
+				Me._PowerNumberStart = value
+				Me.SendPropertyChanged("PowerNumberStart")
+				Me.OnPowerNumberStartChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MultiplyNumberEND", DbType:="NVarChar(MAX)")>  _
+	Public Property MultiplyNumberEND() As String
+		Get
+			Return Me._MultiplyNumberEND
+		End Get
+		Set
+			If (String.Equals(Me._MultiplyNumberEND, value) = false) Then
+				Me.OnMultiplyNumberENDChanging(value)
+				Me.SendPropertyChanging
+				Me._MultiplyNumberEND = value
+				Me.SendPropertyChanged("MultiplyNumberEND")
+				Me.OnMultiplyNumberENDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BaseNumberEND", DbType:="NVarChar(MAX)")>  _
+	Public Property BaseNumberEND() As String
+		Get
+			Return Me._BaseNumberEND
+		End Get
+		Set
+			If (String.Equals(Me._BaseNumberEND, value) = false) Then
+				Me.OnBaseNumberENDChanging(value)
+				Me.SendPropertyChanging
+				Me._BaseNumberEND = value
+				Me.SendPropertyChanged("BaseNumberEND")
+				Me.OnBaseNumberENDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PowerNumberEND", DbType:="NVarChar(MAX)")>  _
+	Public Property PowerNumberEND() As String
+		Get
+			Return Me._PowerNumberEND
+		End Get
+		Set
+			If (String.Equals(Me._PowerNumberEND, value) = false) Then
+				Me.OnPowerNumberENDChanging(value)
+				Me.SendPropertyChanging
+				Me._PowerNumberEND = value
+				Me.SendPropertyChanged("PowerNumberEND")
+				Me.OnPowerNumberENDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitForRangeContent", DbType:="NVarChar(MAX)")>  _
+	Public Property UnitForRangeContent() As String
+		Get
+			Return Me._UnitForRangeContent
+		End Get
+		Set
+			If (String.Equals(Me._UnitForRangeContent, value) = false) Then
+				Me.OnUnitForRangeContentChanging(value)
+				Me.SendPropertyChanging
+				Me._UnitForRangeContent = value
+				Me.SendPropertyChanged("UnitForRangeContent")
+				Me.OnUnitForRangeContentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_aori", DbType:="NVarChar(50)")>  _
+	Public Property aori() As String
+		Get
+			Return Me._aori
+		End Get
+		Set
+			If (String.Equals(Me._aori, value) = false) Then
+				Me.OnaoriChanging(value)
+				Me.SendPropertyChanging
+				Me._aori = value
+				Me.SendPropertyChanged("aori")
+				Me.OnaoriChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode", DbType:="NVarChar(MAX)")>  _
+	Public Property Newcode() As String
+		Get
+			Return Me._Newcode
+		End Get
+		Set
+			If (String.Equals(Me._Newcode, value) = false) Then
+				Me.OnNewcodeChanging(value)
+				Me.SendPropertyChanging
+				Me._Newcode = value
+				Me.SendPropertyChanged("Newcode")
+				Me.OnNewcodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_rid", DbType:="NVarChar(MAX)")>  _
+	Public Property Newcode_rid() As String
+		Get
+			Return Me._Newcode_rid
+		End Get
+		Set
+			If (String.Equals(Me._Newcode_rid, value) = false) Then
+				Me.OnNewcode_ridChanging(value)
+				Me.SendPropertyChanging
+				Me._Newcode_rid = value
+				Me.SendPropertyChanged("Newcode_rid")
+				Me.OnNewcode_ridChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_R", DbType:="NVarChar(MAX)")>  _
+	Public Property Newcode_R() As String
+		Get
+			Return Me._Newcode_R
+		End Get
+		Set
+			If (String.Equals(Me._Newcode_R, value) = false) Then
+				Me.OnNewcode_RChanging(value)
+				Me.SendPropertyChanging
+				Me._Newcode_R = value
+				Me.SendPropertyChanged("Newcode_R")
+				Me.OnNewcode_RChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_licen_loca", DbType:="NVarChar(MAX)")>  _
+	Public Property licen_loca() As String
+		Get
+			Return Me._licen_loca
+		End Get
+		Set
+			If (String.Equals(Me._licen_loca, value) = false) Then
+				Me.Onlicen_locaChanging(value)
+				Me.SendPropertyChanging
+				Me._licen_loca = value
+				Me.SendPropertyChanged("licen_loca")
+				Me.Onlicen_locaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_thaclassnm", DbType:="NVarChar(MAX)")>  _
+	Public Property thaclassnm() As String
+		Get
+			Return Me._thaclassnm
+		End Get
+		Set
+			If (String.Equals(Me._thaclassnm, value) = false) Then
+				Me.OnthaclassnmChanging(value)
+				Me.SendPropertyChanging
+				Me._thaclassnm = value
+				Me.SendPropertyChanged("thaclassnm")
+				Me.OnthaclassnmChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cncnm", DbType:="NVarChar(50)")>  _
+	Public Property cncnm() As String
+		Get
+			Return Me._cncnm
+		End Get
+		Set
+			If (String.Equals(Me._cncnm, value) = false) Then
+				Me.OncncnmChanging(value)
+				Me.SendPropertyChanging
+				Me._cncnm = value
+				Me.SendPropertyChanged("cncnm")
+				Me.OncncnmChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Newcode_rid_eq", DbType:="NVarChar(MAX)")>  _
+	Public Property Newcode_rid_eq() As String
+		Get
+			Return Me._Newcode_rid_eq
+		End Get
+		Set
+			If (String.Equals(Me._Newcode_rid_eq, value) = false) Then
+				Me.OnNewcode_rid_eqChanging(value)
+				Me.SendPropertyChanging
+				Me._Newcode_rid_eq = value
+				Me.SendPropertyChanged("Newcode_rid_eq")
+				Me.OnNewcode_rid_eqChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_lcnno", DbType:="NVarChar(50)")>  _
+	Public Property lcnno() As String
+		Get
+			Return Me._lcnno
+		End Get
+		Set
+			If (String.Equals(Me._lcnno, value) = false) Then
+				Me.OnlcnnoChanging(value)
+				Me.SendPropertyChanging
+				Me._lcnno = value
+				Me.SendPropertyChanged("lcnno")
+				Me.OnlcnnoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_remark", DbType:="NVarChar(MAX)")>  _
+	Public Property remark() As String
+		Get
+			Return Me._remark
+		End Get
+		Set
+			If (String.Equals(Me._remark, value) = false) Then
+				Me.OnremarkChanging(value)
+				Me.SendPropertyChanging
+				Me._remark = value
+				Me.SendPropertyChanged("remark")
+				Me.OnremarkChanged
 			End If
 		End Set
 	End Property

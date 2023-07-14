@@ -297,7 +297,7 @@ Public Class POPUP_DR_TRANFER_CONFRIM
         dao.fields.STATUS_ID = 78
         dao.update()
 
-        alert("ยกเลิกข้อมุลเรียบร้อยแล้ว")
+        alert("ยกเลิกข้อมูลเรียบร้อยแล้ว")
     End Sub
     ''' <summary>
     ''' รวม XML เข้าไปที่ PDF จดทะเบียน

@@ -17,6 +17,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="HERB_INSERT_XML_LICEN_ALL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDENTIFY_EDIT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HERB_INSERT_XML_LICEN_ALLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HERB_INSERT_XML_LICEN_ALLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HERB_UPDATE_LICEN">
         <s:complexType>
           <s:sequence>
@@ -156,6 +170,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UPDATE_DR_HERB_FOR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="remark" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDENTIFY_EDIT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="system" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_DR_HERB_FORResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_DR_HERB_FORResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HERB_DELETE_DR">
         <s:complexType>
           <s:sequence>
@@ -266,6 +296,12 @@
   <wsdl:message name="HERB_INSERT_LICENSoapOut">
     <wsdl:part name="parameters" element="tns:HERB_INSERT_LICENResponse" />
   </wsdl:message>
+  <wsdl:message name="HERB_INSERT_XML_LICEN_ALLSoapIn">
+    <wsdl:part name="parameters" element="tns:HERB_INSERT_XML_LICEN_ALL" />
+  </wsdl:message>
+  <wsdl:message name="HERB_INSERT_XML_LICEN_ALLSoapOut">
+    <wsdl:part name="parameters" element="tns:HERB_INSERT_XML_LICEN_ALLResponse" />
+  </wsdl:message>
   <wsdl:message name="HERB_UPDATE_LICENSoapIn">
     <wsdl:part name="parameters" element="tns:HERB_UPDATE_LICEN" />
   </wsdl:message>
@@ -313,6 +349,12 @@
   </wsdl:message>
   <wsdl:message name="HERB_UPDATE_DRSoapOut">
     <wsdl:part name="parameters" element="tns:HERB_UPDATE_DRResponse" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_DR_HERB_FORSoapIn">
+    <wsdl:part name="parameters" element="tns:UPDATE_DR_HERB_FOR" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_DR_HERB_FORSoapOut">
+    <wsdl:part name="parameters" element="tns:UPDATE_DR_HERB_FORResponse" />
   </wsdl:message>
   <wsdl:message name="HERB_DELETE_DRSoapIn">
     <wsdl:part name="parameters" element="tns:HERB_DELETE_DR" />
@@ -362,6 +404,11 @@
       <wsdl:input message="tns:HERB_INSERT_LICENSoapIn" />
       <wsdl:output message="tns:HERB_INSERT_LICENSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="HERB_INSERT_XML_LICEN_ALL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">HERB_INSERT_XML_LICEN_ALL</wsdl:documentation>
+      <wsdl:input message="tns:HERB_INSERT_XML_LICEN_ALLSoapIn" />
+      <wsdl:output message="tns:HERB_INSERT_XML_LICEN_ALLSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HERB_UPDATE_LICEN">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">UPDATE_LICENSE_HERB</wsdl:documentation>
       <wsdl:input message="tns:HERB_UPDATE_LICENSoapIn" />
@@ -401,6 +448,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">UPDATE_DR_HERB</wsdl:documentation>
       <wsdl:input message="tns:HERB_UPDATE_DRSoapIn" />
       <wsdl:output message="tns:HERB_UPDATE_DRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_DR_HERB_FOR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">UPDATE_DR_HERB_FOR</wsdl:documentation>
+      <wsdl:input message="tns:UPDATE_DR_HERB_FORSoapIn" />
+      <wsdl:output message="tns:UPDATE_DR_HERB_FORSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HERB_DELETE_DR">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">UPDATE_DR_ESUB</wsdl:documentation>
@@ -442,6 +494,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HERB_INSERT_LICEN">
       <soap:operation soapAction="http://tempuri.org/HERB_INSERT_LICEN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HERB_INSERT_XML_LICEN_ALL">
+      <soap:operation soapAction="http://tempuri.org/HERB_INSERT_XML_LICEN_ALL" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -514,6 +575,15 @@
     </wsdl:operation>
     <wsdl:operation name="HERB_UPDATE_DR">
       <soap:operation soapAction="http://tempuri.org/HERB_UPDATE_DR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_DR_HERB_FOR">
+      <soap:operation soapAction="http://tempuri.org/UPDATE_DR_HERB_FOR" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -596,6 +666,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HERB_INSERT_XML_LICEN_ALL">
+      <soap12:operation soapAction="http://tempuri.org/HERB_INSERT_XML_LICEN_ALL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="HERB_UPDATE_LICEN">
       <soap12:operation soapAction="http://tempuri.org/HERB_UPDATE_LICEN" style="document" />
       <wsdl:input>
@@ -661,6 +740,15 @@
     </wsdl:operation>
     <wsdl:operation name="HERB_UPDATE_DR">
       <soap12:operation soapAction="http://tempuri.org/HERB_UPDATE_DR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_DR_HERB_FOR">
+      <soap12:operation soapAction="http://tempuri.org/UPDATE_DR_HERB_FOR" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -734,10 +822,10 @@
   </wsdl:binding>
   <wsdl:service name="WS_DRUG">
     <wsdl:port name="WS_DRUGSoap" binding="tns:WS_DRUGSoap">
-      <soap:address location="http://10.111.28.167/WS_DRUG_UPDATE_LCN_HERB/WS_DRUG_LCN/WS_DRUG.asmx" />
+      <soap:address location="https://meshlog.fda.moph.go.th/WS_DRUG_UPDATE_LCN_HERB/WS_DRUG_LCN/WS_DRUG.asmx" />
     </wsdl:port>
     <wsdl:port name="WS_DRUGSoap12" binding="tns:WS_DRUGSoap12">
-      <soap12:address location="http://10.111.28.167/WS_DRUG_UPDATE_LCN_HERB/WS_DRUG_LCN/WS_DRUG.asmx" />
+      <soap12:address location="https://meshlog.fda.moph.go.th/WS_DRUG_UPDATE_LCN_HERB/WS_DRUG_LCN/WS_DRUG.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

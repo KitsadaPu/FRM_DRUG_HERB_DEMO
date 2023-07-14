@@ -68,6 +68,15 @@ Partial Public Class POPUP_LCN_LCT_INSERT
     Protected WithEvents txt_thanameplace_lo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lbl_word_thai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_word_thai As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Lb_engnameplace_lo control.
     '''</summary>
     '''<remarks>
@@ -84,6 +93,15 @@ Partial Public Class POPUP_LCN_LCT_INSERT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_engnameplace_lo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_word_eng control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_word_eng As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Label24 control.

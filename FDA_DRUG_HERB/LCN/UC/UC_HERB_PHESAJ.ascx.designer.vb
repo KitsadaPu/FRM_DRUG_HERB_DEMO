@@ -77,6 +77,15 @@ Partial Public Class UC_HERB_PHESAJ
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''Div_Txt_num control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Div_Txt_num As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''txt_PHR_TEXT_NUM control.
     '''</summary>
     '''<remarks>
@@ -86,13 +95,22 @@ Partial Public Class UC_HERB_PHESAJ
     Protected WithEvents txt_PHR_TEXT_NUM As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_STUDY_LEVEL control.
+    '''Div_Qualificate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_STUDY_LEVEL As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Div_Qualificate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''DDL_STUDY_LEVEL control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_STUDY_LEVEL As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Label2 control.
@@ -104,31 +122,22 @@ Partial Public Class UC_HERB_PHESAJ
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_PHR_VETERINARY_FIELD control.
+    '''Div_Major control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_PHR_VETERINARY_FIELD As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Div_Major As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''txt_NAME_SIMINAR control.
+    '''DDL_VETERINARY_FIELD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_NAME_SIMINAR As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''rdp_SIMINAR_DATE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdp_SIMINAR_DATE As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents DDL_VETERINARY_FIELD As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''txt_PHR_TEXT_WORK_TIME control.
@@ -147,6 +156,33 @@ Partial Public Class UC_HERB_PHESAJ
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddl_training_phr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_training_phr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''rdp_SIMINAR_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdp_SIMINAR_DATE As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''rdp_SIMINAR_DATE_END control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdp_SIMINAR_DATE_END As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''rdl_mastra control.

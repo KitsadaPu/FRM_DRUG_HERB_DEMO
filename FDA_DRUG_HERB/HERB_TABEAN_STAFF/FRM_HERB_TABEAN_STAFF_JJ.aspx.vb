@@ -91,6 +91,9 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ
                 ElseIf STATUS_ID = 8 Then
                     lbl_head1.Text = "อนุมัติคำขอเรียบร้อยแล้ว"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_APPROVE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
+                Else
+                    lbl_head1.Text = "รายละเอียดคำขอ"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_JJ_DETAIL.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
                 End If
 
             End If
@@ -101,4 +104,31 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ
         RadGrid1.Rebind()
     End Sub
 
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim _IDA As String = item("IDA").Text
+            Dim _DDHERB As String = item("DDHERB").Text
+            Dim tr_id As String = item("TR_ID_JJ").Text
+            Dim STATUS_ID As String = item("STATUS_ID").Text
+            Dim LCN_ID As String = item("LCN_ID").Text
+
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+            dao.GetdatabyID_IDA(_IDA)
+
+
+            Dim JJ_SELECT As LinkButton = DirectCast(item("JJ_SELECT").Controls(0), LinkButton)
+            'JJ_SELECT.Style.Add("display", "none")
+
+            If dao.fields.STATUS_ID = 4 Then
+                'item("JJ_SELECT").Text = "รายละเอียดการแก้ไข"
+                JJ_SELECT.Text = "รายละเอียดของการแก้ไข"
+            Else
+                JJ_SELECT.Text = "ดูข้อมูล"
+            End If
+
+        End If
+
+    End Sub
 End Class

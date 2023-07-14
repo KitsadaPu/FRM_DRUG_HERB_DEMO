@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_TABEAN_SUBSTITUTE_MAIN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_SUBSTITUTE_MAIN" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_PPK.Master" MaintainScrollPositionOnPostback="true" CodeBehind="FRM_TABEAN_SUBSTITUTE_MAIN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_SUBSTITUTE_MAIN" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row">
         <div class="col-lg-12" style="text-align: center">รายการทะเบียน</div>
     </div>
@@ -13,9 +14,9 @@
         <div class="col-lg-6" style="width: 40%; text-align: center">
             <asp:DropDownList ID="DD_DRRGT_PROCESS_ID" runat="server" AutoPostBack="true">
                 <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
-                <asp:ListItem Value="20810">คำขอใบแทนใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="20820">คำขอใบแทนใบรับแจ้งรายละเอียดผลิตภัณฑ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="20830">คำขอใบแทนใบรับจดแจ้งผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="20610">คำขอใบแทนใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="20620">คำขอใบแทนใบรับแจ้งรายละเอียดผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="20630">คำขอใบแทนใบรับจดแจ้งผลิตภัณฑ์สมุนไพร</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
@@ -46,8 +47,14 @@
                     <telerik:GridBoundColumn DataField="PROCESS_ID" DataType="System.Int32" FilterControlAltText="Filter PROCESS_ID column"
                         HeaderText="PROCESS_ID" ReadOnly="True" SortExpression="PROCESS_ID" UniqueName="PROCESS_ID" Display="false">
                     </telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn DataField="rgtno_display" FilterControlAltText="Filter rgtno_display column"
-                        HeaderText="เลขที่ทะเบียน" SortExpression="rgtno_display" UniqueName="rgtno_display">
+                     <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
+                        HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID">
+                    </telerik:GridBoundColumn>
+                          <telerik:GridBoundColumn DataField="RCVNO_DISPLAY" FilterControlAltText="Filter RCVNO_DISPLAY column"
+                        HeaderText="เลขที่รับคำขอ" SortExpression="RCVNO_DISPLAY" UniqueName="RCVNO_DISPLAY">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="RGTNO_DISPLAY" FilterControlAltText="Filter RGTNO_DISPLAY column"
+                        HeaderText="เลขที่ทะเบียน" SortExpression="RGTNO_DISPLAY" UniqueName="RGTNO_DISPLAY">
                     </telerik:GridBoundColumn>
                     <telerik:GridBoundColumn DataField="thadrgnm" FilterControlAltText="Filter thadrgnm column" HeaderText="ชื่อยา" ReadOnly="True" SortExpression="thadrgnm" UniqueName="thadrgnm">
                     </telerik:GridBoundColumn>

@@ -52,10 +52,10 @@ Public Class FRM_LCN_CONFIRM_DRUG
             'UC_GRID_PHARMACIST.load_gv(_IDA)
             'UC_GRID_ATTACH.load_gv(_TR_ID)
             If Request.QueryString("identify") <> "" Then
-                If Request.QueryString("identify") <> _CLS.CITIZEN_ID_AUTHORIZE Then
-                    AddLogMultiTab(_CLS.CITIZEN_ID, Request.QueryString("identify"), 0, HttpContext.Current.Request.Url.AbsoluteUri)
+                'If Request.QueryString("identify") <> _CLS.CITIZEN_ID_AUTHORIZE Then
+                '    AddLogMultiTab(_CLS.CITIZEN_ID, Request.QueryString("identify"), 0, HttpContext.Current.Request.Url.AbsoluteUri)
 
-                End If
+                'End If
             End If
             Try
                 If Not IsPostBack Then
@@ -792,6 +792,10 @@ Public Class FRM_LCN_CONFIRM_DRUG
             '    btn_confirm.CssClass = "btn-danger btn-lg"
             '    btn_cancel.CssClass = "btn-danger btn-lg"
         End If
+        If dao.fields.STATUS_ID = 78 Or dao.fields.STATUS_ID = 75 Or dao.fields.STATUS_ID = 7 Or dao.fields.STATUS_ID = 9 Then
+            btn_cancel.Enabled = False
+            btn_cancel.CssClass = "btn-danger btn-lg"
+        End If
         If dao.fields.STATUS_ID = 8 Then
             btn_load.Enabled = True
             btn_cancel.Enabled = False
@@ -826,50 +830,52 @@ Public Class FRM_LCN_CONFIRM_DRUG
         Return rcvno
     End Function
     Protected Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        Dim bao As New BAO.ClsDBSqlcommand
-        dao.GetDataby_IDA(Integer.Parse(_IDA))
-        If Request.QueryString("staff") <> "" Then
-            dao.fields.STATUS_ID = 11
-        Else
-            dao.fields.STATUS_ID = 2
-        End If
-        dao.update()
+        'Dim dao As New DAO_DRUG.ClsDBdalcn
+        'Dim bao As New BAO.ClsDBSqlcommand
+        'dao.GetDataby_IDA(Integer.Parse(_IDA))
+        'If Request.QueryString("staff") <> "" Then
+        '    dao.fields.STATUS_ID = 11
+        'Else
+        '    dao.fields.STATUS_ID = 2
+        'End If
+        'dao.update()
 
-        If b64 = Nothing Then
-            b64 = Session("b64")
-        End If
-        Dim years As String = ""
-        Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
-        dao_tr.GetDataby_IDA(dao.fields.TR_ID)
-        Try
-            years = dao_tr.fields.YEAR
+        'If b64 = Nothing Then
+        '    b64 = Session("b64")
+        'End If
+        'Dim years As String = ""
+        'Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
+        'dao_tr.GetDataby_IDA(dao.fields.TR_ID)
+        'Try
+        '    years = dao_tr.fields.YEAR
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
-        Dim tr_id As String = ""
-        tr_id = "DA-" & _ProcessID & "-" & years & "-" & _TR_ID
+        'End Try
+        'Dim tr_id As String = ""
+        'tr_id = "DA-" & _ProcessID & "-" & years & "-" & _TR_ID
 
-        Dim cls_sop As New CLS_SOP
-        cls_sop.BLOCK_SOP(_CLS.CITIZEN_ID, _ProcessID, "2", "ยื่นคำขอ", tr_id, b64)
-        cls_sop.BLOCK_STAFF(_CLS.CITIZEN_ID, "USER", _ProcessID, _CLS.PVCODE, 2, "ส่งเรื่องและรอพิจารณา", "SOP-DRUG-10-" & _ProcessID & "-1", "รับคำขอ", "รอเจ้าหน้าที่รับคำขอ", "STAFF", tr_id, SOP_STATUS:="ยื่นคำขอ")
+        'Dim cls_sop As New CLS_SOP
+        'cls_sop.BLOCK_SOP(_CLS.CITIZEN_ID, _ProcessID, "2", "ยื่นคำขอ", tr_id, b64)
+        'cls_sop.BLOCK_STAFF(_CLS.CITIZEN_ID, "USER", _ProcessID, _CLS.PVCODE, 2, "ส่งเรื่องและรอพิจารณา", "SOP-DRUG-10-" & _ProcessID & "-1", "รับคำขอ", "รอเจ้าหน้าที่รับคำขอ", "STAFF", tr_id, SOP_STATUS:="ยื่นคำขอ")
 
-        AddLogStatus(2, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        'AddLogStatus(2, _ProcessID, _CLS.CITIZEN_ID, _IDA)
 
-        Session("b64") = Nothing
-        alert("ยื่นเรื่องเรียบร้อยแล้ว")
-
+        'Session("b64") = Nothing
+        'alert("ยื่นเรื่องเรียบร้อยแล้ว")
+        Response.Redirect("FRM_LCN_CONFIRM_DETAIL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID)
     End Sub
     Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
     End Sub
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
-        Dim dao As New DAO_DRUG.ClsDBdalcn
-        dao.GetDataby_IDA(Integer.Parse(_IDA))
-        dao.fields.STATUS_ID = 78
-        dao.update()
-        AddLogStatus(78, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        'Dim dao As New DAO_DRUG.ClsDBdalcn
+        'dao.GetDataby_IDA(Integer.Parse(_IDA))
+        'dao.fields.STATUS_ID = 78
+        'dao.update()
+        'AddLogStatus(78, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        Dim Status_ID As String = 78
+        Response.Redirect("FRM_LCN_DRUG_HERB_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID & "&STATUS_ID=" & Status_ID)
     End Sub
 
     Protected Sub btn_load_Click(sender As Object, e As EventArgs) Handles btn_load.Click
@@ -986,7 +992,8 @@ Public Class FRM_LCN_CONFIRM_DRUG
 
         End Try
 
-        Dim cls_dalcn As New CLASS_GEN_XML.DALCN(_CLS.CITIZEN_ID, lcnsid_da, lcntpcd_da, pvncd_da, CHK_SELL_TYPE:=CHK_SELL_TYPE)
+        'Dim cls_dalcn As New CLASS_GEN_XML.DALCN(_CLS.CITIZEN_ID, lcnsid_da, lcntpcd_da, pvncd_da, CHK_SELL_TYPE:=CHK_SELL_TYPE)
+        Dim cls_dalcn As New CLASS_GEN_XML.DALCN(dao.fields.CITIZEN_ID, lcnsid_da, lcntpcd_da, pvncd_da, CHK_SELL_TYPE:=CHK_SELL_TYPE)
 
 
         Dim class_xml As New CLASS_DALCN
@@ -2045,8 +2052,12 @@ Public Class FRM_LCN_CONFIRM_DRUG
 
         Dim statusId As Integer = dao.fields.STATUS_ID
         Dim lcntype As String = dao.fields.lcntpcd
-        Dim PROCESS_ID As String = dao_up.fields.PROCESS_ID
+        Dim PROCESS_ID As String = dao.fields.PROCESS_ID
         Dim YEAR As String = dao_up.fields.YEAR
+        Dim ST1 As String = dao.fields.lcnno
+        If YEAR = "" Then
+            YEAR = con_year(Date.Now.Year).Substring(0, 2) & (ST1).Substring(0, 2)
+        End If
 
         Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
         'If statusId = 8 Then
@@ -2191,8 +2202,8 @@ Public Class FRM_LCN_CONFIRM_DRUG
 
 
         HiddenField1.Value = filename
-        _CLS.FILENAME_PDF = NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
-        _CLS.PDFNAME = filename
+        '_CLS.FILENAME_PDF = NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
+        '_CLS.PDFNAME = filename
         '    show_btn() 'ตรวจสอบปุ่ม
     End Sub
     Private Sub load_pdf(ByVal FilePath As String)

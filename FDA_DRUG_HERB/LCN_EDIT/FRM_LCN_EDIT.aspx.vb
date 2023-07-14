@@ -31,9 +31,7 @@ Public Class FRM_LCN_EDIT
         RunSession()
         If Not IsPostBack Then
             TEXT_LOAD()
-
-
-
+            load_HL()
         End If
 
     End Sub
@@ -59,12 +57,14 @@ Public Class FRM_LCN_EDIT
             Dim bao_infor As New BAO.information
             Dim item As GridDataItem = e.Item
 
-
-
-
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
+            Dim IDA As Integer = item("IDA").Text
             Dim TR_ID As String = item("TR_ID").Text
             Dim LCN_EDIT_REASON_TYPE As Integer = item("LCN_EDIT_REASON_TYPE").Text
+
+            Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
+            dao.GetDataby_IDA(IDA)
+            Dim PROCESS_ID As Integer = dao.fields.LCN_PROCESS_ID
 
             Dim _process As String = ""
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
@@ -73,12 +73,16 @@ Public Class FRM_LCN_EDIT
 
 
 
-            If e.CommandName = "DETAIL" Then
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 1 & "');", True)
+            If e.CommandName = "HL_SELECT" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT_CONFIRM.aspx?process=" & PROCESS_ID & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 1 & "&IDA=" & IDA & "');", True)
+            ElseIf e.CommandName = "DETAIL" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 1 & "&IDA=" & IDA & "');", True)
+            ElseIf e.CommandName = "HL3_SELECT" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('FRM_LCN_EDIT_APPOINMENNT.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & PROCESS_ID & "&IDA_LCN=" & _lct_ida & "');", True)
             ElseIf e.CommandName = "LCN_EDIT_DETAIL" Then
                 If STATUS_ID = 9 Then
                     'lbl_head1.Text = "ข้อมูลขอเอกสาร (เพิ่มเติม) ยื่นคำขอแก้ไขใบอนุญาต"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 2 & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&TR_ID_LCN_EDIT=" & TR_ID & "&LCN_EDIT_REASON_TYPE=" & LCN_EDIT_REASON_TYPE & "&detail=" & 2 & "&IDA=" & IDA & "');", True)
                 End If
             End If
         End If
@@ -118,7 +122,16 @@ Public Class FRM_LCN_EDIT
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_EDIT.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&STATUS_ID=" & status_id & "&detail=" & 0 & "');", True)
         End If
     End Sub
+    Private Sub load_HL()
+        Dim urls As String = "https://platba.fda.moph.go.th/FDA_FEE/MAIN/check_token.aspx?Token=" & _CLS.TOKEN
+        If Request.QueryString("staff") <> "" Then
+            urls &= "&staff=1&identify=" & Request.QueryString("identify") & "&system=staffherb"
+        Else
+            urls &= "&staff=1&identify=" & Request.QueryString("identify") & "&system=herb"
+        End If
 
+        hl_pay.NavigateUrl = urls
+    End Sub
     Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
@@ -137,6 +150,12 @@ Public Class FRM_LCN_EDIT
             'HL2_SELECT.Style.Add("display", "none")
 
             'HL2_SELECT.Style.Add("display", "none")
+            Dim HL3_SELECT As LinkButton = DirectCast(item("HL3_SELECT").Controls(0), LinkButton)
+
+            HL3_SELECT.Style.Add("display", "none")
+            If STATUS_ID = 2 Then
+                HL3_SELECT.Style.Add("display", "block")
+            End If
 
             If STATUS_ID <> 9 Then
                 HL2_SELECT.Style.Add("display", "none")

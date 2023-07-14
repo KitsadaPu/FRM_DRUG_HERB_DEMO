@@ -68,10 +68,10 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN1
             'If rcb_search.SelectedValue = "" Then
             '    alert("กรุณาเลือกเลขที่ใบอนุญาต")
             'Else
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_SUBSTITUTE_ADD.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&IDA=" & _IDA & "');", True)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_SUBSTITUTE_ADD.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&IDA=" & _IDA & "&staff=" & Request.QueryString("staff") & "');", True)
             'End If
         Else
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_SUBSTITUTE_ADD.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "');", True)
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POPUP_LCN_SUBSTITUTE_ADD.aspx?process=" & _process & "&lct_ida=" & _lct_ida & "&identify=" & _iden & "&LCN_IDA=" & _IDA & "&staff=" & Request.QueryString("staff") & "');", True)
         End If
     End Sub
     Protected Sub btn_reload_Click(sender As Object, e As EventArgs) Handles btn_reload.Click
@@ -83,6 +83,7 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN1
             Dim item As GridDataItem = e.Item
 
             Dim IDA As Integer = 0
+            Dim STATUS_ID As Integer = 0
             Try
                 IDA = item("IDA").Text
             Catch ex As Exception
@@ -93,25 +94,31 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN1
             Dim tr_id As String = 0
             Try
                 tr_id = dao.fields.TR_ID
+                STATUS_ID = dao.fields.STATUS_ID
+            Catch ex As Exception
+
+            End Try
+            Dim _process_id As Integer = 0
+
+            Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
+            Try
+                dao_tr.GetDataby_IDA(tr_id)
+                _process_id = dao_tr.fields.PROCESS_ID
             Catch ex As Exception
 
             End Try
             If e.CommandName = "sel" Then
-                Dim _process_id As Integer = 0
-
-                Dim dao_tr As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
-                Try
-                    dao_tr.GetDataby_IDA(tr_id)
-                    _process_id = dao_tr.fields.PROCESS_ID
-                Catch ex As Exception
-
-                End Try
 
                 'Dim dao_pro As New DAO_DRUG.ClsDBPROCESS_NAME
                 'dao_pro.GetDataby_Process_Name(dao.fields.lcntpcd)
                 'lbl_titlename.Text = "พิจารณาคำขอขึ้นทะเบียนตำรับ"
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE/POPUP_SUBSTITUTE_CONFIRM.aspx?LCN_IDA=" & dao.fields.FK_IDA & "&IDA=" & IDA & "&TR_ID=" & tr_id & "&Process=" & _process_id & "&identify=" & _iden & "');", True)
-
+                If status_id = 14 Then
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE/POPUP_SUBSTITUTE_EDIT_REQUEST.aspx?LCN_IDA=" & dao.fields.FK_IDA & "&IDA=" & IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _process_id & "&identify=" & _iden & "');", True)
+                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE/POPUP_SUBSTITUTE_CONFIRM.aspx?LCN_IDA=" & dao.fields.FK_IDA & "&IDA=" & IDA & "&TR_ID=" & tr_id & "&Process=" & _process_id & "&identify=" & _iden & "');", True)
+                End If
+            ElseIf e.CommandName = "HL_SELECT" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../LCN_SUBSTITUTE/FRM_LCN_SUBSTITUTE_APPOINMENT.aspx?LCN_IDA=" & dao.fields.FK_IDA & "&IDA=" & IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _process_id & "&identify=" & _iden & "');", True)
             End If
 
         End If
@@ -132,5 +139,20 @@ Public Class FRM_LCN_SUBSTITUTE_MAIN1
         End Try
 
         RadGrid1.DataSource = dt
+    End Sub
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+
+            Dim STATUS_ID As String = item("STATUS_ID").Text
+            Dim HL1_SELECT As LinkButton = DirectCast(item("HL_SELECT").Controls(0), LinkButton)
+            HL1_SELECT.Style.Add("display", "none")
+            Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
+            If STATUS_ID >= 2 Then
+                HL1_SELECT.Style.Add("display", "block")
+            End If
+
+        End If
     End Sub
 End Class

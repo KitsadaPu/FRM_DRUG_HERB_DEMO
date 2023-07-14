@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN_PRODUCT_ID.Master" CodeBehind="FRM_SUBSTITUTE_MAIN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_SUBSTITUTE_MAIN" %>
+
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/css_radgrid.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript" >
+    <script type="text/javascript">
         $(document).ready(function () {
             $(window).load(function () {
                 $.ajax({
@@ -75,104 +76,96 @@
             $('#ContentPlaceHolder1_Button1').click();
 
         }
-        </script> 
-    <div id="spinner" style="background-color: transparent;display:none;">
+    </script>
+    <div id="spinner" style="background-color: transparent; display: none;">
         <img src="../imgs/spinner.gif" alt="Loading" style="position: absolute; top: 120px; left: 293px; height: 185px; width: 207px;" />
     </div>
+    <div class="h3" style="padding-left: 5%;">
+        <asp:Label ID="lbl_name" runat="server" Visible="false" Text=""></asp:Label>
+    </div>
 
-    
-    <div class="h3" style="padding-left:5%;">  <asp:Label ID="lbl_name" runat="server" Visible="false" Text=""></asp:Label> </div>
-    
-     <div class="panel" style="text-align:left ;width:100%">
-         <div  style="height:70px" > 
-            
-             <div  class="col-lg-4 col-md-4"><h4> คำขอใบแทนใบสำคัญ &gt;
+    <div class="panel" style="text-align: left; width: 100%">
+        <div style="height: 70px">
+
+            <div class="col-lg-4 col-md-4">
+                <h4>คำขอใบแทนใบสำคัญ &gt;
                  <asp:Label ID="lbl_rgtno" runat="server" Text="-"></asp:Label>
-                 </h4> </div>
-             <div  class="col-lg-8 col-md-8">
-                               <p style="text-align:right;padding-right:5%;">
-                                   <table width="100%">
-                                       <tr>
-                                           <td align="right">
-                                               <table>
-                                                   <tr>
-                                                       <td>&nbsp;</td>
-                                                       <td width="40%">
-                                                           <%--<asp:DropDownList ID="ddl_phr_name" runat="server">
+                </h4>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <p style="text-align: right; padding-right: 5%;">
+                    <table width="100%">
+                        <tr>
+                            <td align="right">
+                                <table>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td width="40%">
+                                            <%--<asp:DropDownList ID="ddl_phr_name" runat="server">
                                                            </asp:DropDownList>--%>
-
-                                                       </td>
-                                                       <td align="right">
-                                                           <asp:Button ID="btn_download" runat="server" Text="ดาวน์โหลดคำขอ" CssClass="btn-lg" />&nbsp;&nbsp;
-                                                       </td>
-                                                       <td>
-                                                           <asp:Button ID="btn_upload" runat="server" Text="อัพโหลดคำขอ" CssClass="btn-lg" />
-                                                       </td>
-                                                   </tr>
-                                               </table>
-                                           </td>
-                                       </tr>
-                                   </table>
-                                   
-                                   
-            
-        
-            
-                                     <asp:Button ID="Button1" runat="server" Text="" style="display:none;"  />
-                                     <asp:Button ID="Button2" runat="server" Text="" style="display:none;"  />
-        </p>
-                          </div>
-         </div>
-    
+                                        </td>
+                                        <td align="right">
+                                            <asp:Button ID="btn_download" runat="server" Text="ดาวน์โหลดคำขอ" CssClass="btn-lg" />&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btn_upload" runat="server" Text="อัพโหลดคำขอ" CssClass="btn-lg" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:Button ID="Button1" runat="server" Text="" Style="display: none;" />
+                    <asp:Button ID="Button2" runat="server" Text="" Style="display: none;" />
+                </p>
+            </div>
+        </div>
     </div>
-
-       <div class="panel panel-body"  style="width:100%;padding-left:5%;">
-           <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True">
-               <MasterTableView AutoGenerateColumns="False">
-                   <Columns>
-                       <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
-                           SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="RCVNO_MANUAL" FilterControlAltText="Filter RCVNO_MANUAL column"
-                           HeaderText="เลขรับที่" SortExpression="RCVNO_MANUAL" UniqueName="RCVNO_MANUAL">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="RGTNO_DISPLAY" FilterControlAltText="Filter RGTNO_DISPLAY column"
-                           HeaderText="เลขทะเบียน" SortExpression="RGTNO_DISPLAY" UniqueName="RGTNO_DISPLAY">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
-                           HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID" AllowFiltering="true">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="PURPOSE" FilterControlAltText="Filter PURPOSE column"
-                           HeaderText="เหตุผล" SortExpression="PURPOSE" UniqueName="PURPOSE">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
-                           HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
-                       </telerik:GridBoundColumn>
-                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_Select"
-                           CommandName="sel" Text="ดูข้อมูล">
-                           <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
-                   </Columns>
-               </MasterTableView>
-           </telerik:RadGrid>
-           <div class="h5" style="padding-left:87%;">  
-                      <asp:HyperLink ID="hl_pay" runat="server"  target="_blank" style="display:none;"> ชำระเงินคลิกที่นี้</asp:HyperLink>
-                        </div>
+    <div class="panel panel-body" style="width: 100%; padding-left: 5%;">
+        <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="15" AllowFilteringByColumn="True">
+            <MasterTableView AutoGenerateColumns="False">
+                <Columns>
+                    <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                        SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="RCVNO_MANUAL" FilterControlAltText="Filter RCVNO_MANUAL column"
+                        HeaderText="เลขรับที่" SortExpression="RCVNO_MANUAL" UniqueName="RCVNO_MANUAL">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="RGTNO_DISPLAY" FilterControlAltText="Filter RGTNO_DISPLAY column"
+                        HeaderText="เลขทะเบียน" SortExpression="RGTNO_DISPLAY" UniqueName="RGTNO_DISPLAY">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="newcode" FilterControlAltText="Filter newcode column"
+                        HeaderText="newcode" SortExpression="newcode" UniqueName="newcode" AllowFiltering="true">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
+                        HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID" AllowFiltering="true">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="PURPOSE" FilterControlAltText="Filter PURPOSE column"
+                        HeaderText="เหตุผล" SortExpression="PURPOSE" UniqueName="PURPOSE">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
+                        HeaderText="สถานะ" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_Select"
+                        CommandName="sel" Text="ดูข้อมูล">
+                        <HeaderStyle Width="70px" />
+                    </telerik:GridButtonColumn>
+                </Columns>
+            </MasterTableView>
+        </telerik:RadGrid>
+        <div class="h5" style="padding-left: 87%;">
+            <asp:HyperLink ID="hl_pay" runat="server" Target="_blank" Style="display: none;"> ชำระเงินคลิกที่นี้</asp:HyperLink>
+        </div>
     </div>
-   
-
-
-
     <div class="modal fade " id="myModal">
         <div class="panel panel-info" style="width: 100%">
             <div class="panel-heading">
                 <div class="modal-title text-center h1 ">
-                    รายละเอียดคำขอ<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                    รายละเอียดคำขอ
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
-
                     <iframe id="f1" style="width: 100%; height: 600px;"></iframe>
-
                 </div>
             </div>
         </div>
@@ -185,13 +178,10 @@
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
-
                     <iframe id="f2" style="width: 100%; height: 600px;"></iframe>
-
                 </div>
             </div>
         </div>
     </div>
-     <asp:Button ID="btn_reload" runat="server" Text="" style="display:none;"  />
-
+    <asp:Button ID="btn_reload" runat="server" Text="" Style="display: none;" />
 </asp:Content>

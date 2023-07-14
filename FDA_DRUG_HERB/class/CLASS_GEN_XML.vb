@@ -28,6 +28,7 @@ Namespace CLASS_GEN_XML
 #End Region
 
 
+
         Public Sub ADD_CHEMICAL()
             Dim bao_master As New BAO_MASTER
             Dim class_xml_cer As New CLASS_CER
@@ -312,6 +313,70 @@ Namespace CLASS_GEN_XML
 
         End Sub
 
+        Public Sub GEN_XML_TABEAN_EDIT(ByVal PATH As String, ByVal p2 As CLASS_DR_EDIT)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_JJ_EDIT(ByVal PATH As String, ByVal p2 As CLASS_TABEAN_JJ_EDIT)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_RENEW(ByVal PATH As String, ByVal p2 As CLASS_DR_RENEW)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_SUB(ByVal PATH As String, ByVal p2 As CLASS_DR_SUB)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_ANALYZE(ByVal PATH As String, ByVal p2 As CLASS_DR_ANALYZE)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_NOTIFY(ByVal PATH As String, ByVal p2 As CLASS_DR_NOTIFY)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_DONATE(ByVal PATH As String, ByVal p2 As CLASS_DR_DONATE)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_EXHIBITION(ByVal PATH As String, ByVal p2 As CLASS_DR_EXHIBITION)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
         Public Sub GEN_XML_TABEAN_AP(ByVal PATH As String, ByVal p2 As CLASS_APPOINTMENT)
 
             Dim objStreamWriter As New StreamWriter(PATH)
@@ -329,7 +394,124 @@ Namespace CLASS_GEN_XML
             objStreamWriter.Close()
 
         End Sub
+        Public Sub GEN_XML_TABEAN_INFORM(ByVal PATH As String, ByVal p2 As CLASS_DR_INFORM)
 
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_INFORM_EDIT(ByVal PATH As String, ByVal p2 As CLASS_DR_INFORM_EDIT)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_TABEAN_EX(ByVal PATH As String, ByVal p2 As CLASS_TABEAN_EX)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+
+        Public Sub GEN_XML_DALCN_PHR(ByVal PATH As String, ByVal p2 As CLASS_DALCN_PHR)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_DALCN_PLAN(ByVal PATH As String, ByVal p2 As CLASS_DALCN_PLAN)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_DALCN_AUDIT(ByVal PATH As String, ByVal p2 As CLASS_DALCN_AUDIT)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_DALCN_RENEW(ByVal PATH As String, ByVal p2 As CLASS_DALCN_RENEW)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+        Public Sub GEN_XML_DALCN_TRANSFER(ByVal PATH As String, ByVal p2 As CLASS_DALCN_TRANSFER)
+
+            Dim objStreamWriter As New StreamWriter(PATH)
+            Dim x As New XmlSerializer(p2.GetType)
+            x.Serialize(objStreamWriter, p2)
+            objStreamWriter.Close()
+
+        End Sub
+
+        Public Function date_to_thai(ByVal _date As Date)
+            Dim dateD_TH As String = ""
+            Dim dateM_TH As String = ""
+            Dim dateY_TH As String = ""
+            Dim dateD As Date
+            Dim dateM As Date
+            Dim dateY As Date
+            Dim date_FULL As String = ""
+            Try
+                _date = _date
+                _date = CDate(_date).ToString("dd/MM/yyy")
+                dateD = _date
+                dateM = _date
+                dateY = _date
+
+                dateD_TH = dateD.Day.ToString()
+                dateM_TH = dateM.ToString("MMMM")
+                dateY_TH = con_year(dateY.Year)
+                date_FULL = dateD_TH & " " & dateM_TH & " " & dateY_TH
+            Catch ex As Exception
+
+            End Try
+
+            Return date_FULL
+        End Function
+
+        Public Function FULLNAME_CPN(ByVal citizen_id As String)
+            Dim NAME As String = ""
+            Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+            Dim obj As New XML_DATA
+            'Dim cls As New CLS_COMMON.convert
+            Dim result As String = ""
+            'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+            result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
+            obj = ConvertFromXml(Of XML_DATA)(result)
+            Try
+                Dim TYPE_PERSON As Integer = obj.SYSLCNSIDs.type
+                If TYPE_PERSON = 1 Then
+                    NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                Else
+                    If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                        NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                    Else
+                        NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Return NAME
+        End Function
     End Class
 
     Public Class DALCN
@@ -3670,9 +3852,17 @@ Namespace CLASS_GEN_XML
             dt2.TableName = "XML_LCN_APPROVE_EDIT_FILE_UPLOAD"
 
 
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(IDA_LCN)
+            Dim dt_lcn As New DataTable
+            Dim bao_lcn As New BAO_SHOW
+
+            dt_lcn = BAO_LCN.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_LCN_EDIT_LOCATION_ADDRESS"
 
             XML.DT_SHOW.DT1 = dt1
             XML.DT_SHOW.DT2 = dt2
+            XML.DT_SHOW.DT3 = dt_lcn
 
             Return XML
         End Function
@@ -3699,121 +3889,517 @@ Namespace CLASS_GEN_XML
             dao_lcn.GetDataby_IDA(IDA_LCN)
 
             Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            Dim dao_cpn2 As New DAO_CPN.clsDBsyslcnsid
             dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+            dao_cpn2.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+
+            Dim citizen_bsn As String = tb_location.fields.BSN_IDENTIFY
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+
+            Dim person_age As String = ""
+            Dim NATIONALITY_PERSON As String = ""
+            Try
+                person_age = dao.fields.PERSON_AGE
+                If dao.fields.NATIONALITY_PERSON_ID = 1 Then
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON
+                Else
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
 
             Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim TYPE_PERSON_WHO As Integer = dao_cpn2.fields.type
             Dim NATION As String = dao_lcn.fields.NATION
-            Dim THANM As String = dao_lcn.fields.thanm
+            'Dim THANM As String = dao_lcn.fields.thanm
 
             Dim CITIZEN_ID As String = dao.fields.CITIZEN_ID
             Dim CITIZEN_ID_AUTHORIZE As String = dao.fields.CITIZEN_ID_AUTHORIZE
             Dim NAME_JJ As String = dao.fields.NAME_JJ
             Dim THANAMEPLACE As String = dao.fields.LCN_THANAMEPLACE
 
+            Dim bao As New BAO.ClsDBSqlcommand
+            Dim dt_lcn2 As New DataTable
+
+
+            Dim DT_WHO As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_WHO = BAO_SP.SP_XML_WHO_DALCN(IDA)
             'ข้อ 2 
             If TYPE_PERSON = 1 Then
                 XML.TYPE_PERSON_1 = TYPE_PERSON
-                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                If dao.fields.WHO_ID = True Then
+                    dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
 
-                dt_lcn.Columns.Add("NATION")
-                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
-                dt_lcn.Columns.Add("CITIZEN_ID")
-                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
-                dt_lcn.Columns.Add("NAME_JJ")
-                dt_lcn.Columns.Add("THANM")
-                dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    'dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
-                For Each dr As DataRow In dt_lcn.Rows
-                    Try
-                        dr("NATION") = NATION
-                    Catch ex As Exception
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
-                    Catch ex As Exception
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID") = CITIZEN_ID
-                    Catch ex As Exception
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("NAME_JJ") = NAME_JJ
-                    Catch ex As Exception
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANM") = THANM
-                    Catch ex As Exception
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANAMEPLACE") = THANAMEPLACE
-                    Catch ex As Exception
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
 
-                    End Try
-                Next
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+
                 dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_PERSON_1"
                 XML.DT_SHOW.DT3 = dt_lcn
             ElseIf TYPE_PERSON = 99 Then
                 XML.TYPE_PERSON_99 = TYPE_PERSON
-                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                If dao.fields.WHO_ID = True Then
+                    If TYPE_PERSON_WHO = 1 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_who.fields.FK_LCT)
 
-                dt_lcn.Columns.Add("NATION")
-                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
-                dt_lcn.Columns.Add("CITIZEN_ID")
-                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
-                dt_lcn.Columns.Add("NAME_JJ")
-                dt_lcn.Columns.Add("THANM")
-                dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        'dt_lcn.Columns.Add("CITIZEN_ID")
+                        'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                        dt_lcn.Columns.Add("NAME_JJ")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
-                For Each dr As DataRow In dt_lcn.Rows
-                    Try
-                        dr("NATION") = NATION
-                    Catch ex As Exception
+                        For Each dr As DataRow In dt_lcn.Rows
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
-                    Catch ex As Exception
+                            End Try
+                            'Try
+                            '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                            '        If dr("Mobile") = Nothing Then
+                            '            dr("tel") = "-"
+                            '        Else
+                            '            dr("tel") = dr("Mobile")
+                            '        End If
+                            '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                            '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            '    End If
+                            'Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID") = CITIZEN_ID
-                    Catch ex As Exception
+                            'End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("NAME_JJ") = NAME_JJ
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANM") = THANM
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = citizen_bsn
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANAMEPLACE") = THANAMEPLACE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("NAME_JJ") = BSN_THAIFULLNAME
+                            Catch ex As Exception
 
-                    End Try
+                            End Try
+                            Try
+                                dr("THANM") = THANM
+                            Catch ex As Exception
 
-                Next
+                            End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    ElseIf TYPE_PERSON = 99 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao.fields.IDA_LCT)
+                        dt_lcn2 = bao.SP_Lisense_Name_and_Addr(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        dt_lcn.Columns.Add("NAME_JJ")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+                        dt_lcn.Columns.Add("CITIZEN_ID")
+                        dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            For Each dr2 As DataRow In dt_lcn2.Rows
+                                Try
+                                    dr("thanm") = dr2("tha_fullname")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaaddr") = dr2("thaaddr")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID") = CITIZEN_ID
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thamu") = dr2("mu")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tharoad") = dr2("tharoad")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thabuilding") = dr2("thabuilding")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thasoi") = dr2("thasoi")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thathmblnm") = dr2("thathmblnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaamphrnm") = dr2("thaamphrnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("zipcode") = dr2("zipcode")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("NAME_JJ") = NAME_JJ
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tel") = dr2("tel")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("fax") = dr2("fax")
+                                Catch ex As Exception
+
+                                End Try
+                            Next
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+
+                            'Try
+                            '    dr("THANM") = THANM
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    End If
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                End If
+
                 dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_NITI_99"
                 XML.DT_SHOW.DT4 = dt_lcn
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.BSN_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Then
+                XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
             End If
 
             'HEAD
             Dim bao_xml As New BAO_TABEAN_HERB.tb_xml
             dt_jj = bao_xml.SP_XML_TABEAN_JJ(IDA)
+
             dt_jj.Columns.Add("TYPE_SUB_NAME_CHANGE")
             dt_jj.Columns.Add("PP_JJ")
             dt_jj.Columns.Add("TREATMENT_AGE_FULL")
@@ -3828,11 +4414,11 @@ Namespace CLASS_GEN_XML
                 'End If
                 Try
                     If dao.fields.TREATMENT_AGE Is Nothing Or dao.fields.TREATMENT_AGE = 0 Then
-                        dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
                     ElseIf dao.fields.TREATMENT_AGE_MONTH Is Nothing Or dao.fields.TREATMENT_AGE_MONTH = 0 Then
-                        dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & "ปี"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE & " " & "ปี"
                     Else
-                        dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & "ปี" & " " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE & " " & "ปี" & " " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
                     End If
                     'dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & dao.fields.TREATMENT_AGE_NAME
 
@@ -3878,6 +4464,25 @@ Namespace CLASS_GEN_XML
                 XML.date_req_year = con_year(date_req_year.Year)
 
                 XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+                If dao.fields.PVNCD = 10 Then
+                    XML.SIGN_APP = "สำนักงานคณะกรรมการอาหารและยา"
+                Else
+                    Try
+                        Dim dao_pvn As New DAO_CPN.clsDBsyschngwt
+                        dao_pvn.GetData_by_chngwtcd(dao.fields.PVNCD)
+                        XML.SIGN_APP = "สำนักงานสาธารณสุขจังหวัด" & dao_pvn.fields.thachngwtnm
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+
+                'Dim url As String = "https://excercitium.fda.moph.go.th/FDA_TXC/TXC_SEARCH/FRM_TXC_SEARCH_QRCODE.aspx?lcnno=" & b64encode(dao.fields.LCNNO) & "&wotype=" & b64encode("3") & "&pvncd=" & b64encode(dao.fields.PVNCD) & "&lcntpcd=" & b64encode(dao.fields.lcntpcd)
+                Dim url As String = "www.google.com"
+                Dim cls_qr As New QR_CODE.GEN_QR_CODE
+                XML.QR_JJ = cls_qr.GenerateQR_TO_BASE64(20, 20, url)
+
+
             ElseIf dao.fields.STATUS_ID = 12 Or dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 11 Or dao.fields.STATUS_ID = 13 Or dao.fields.STATUS_ID = 16 Then
                 date_req_day = dao.fields.DATE_REQ
                 date_req_month = dao.fields.DATE_REQ
@@ -3888,6 +4493,25 @@ Namespace CLASS_GEN_XML
                 XML.date_req_year = con_year(date_req_year.Year)
 
                 XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+
+                If dao.fields.PVNCD = 10 Then
+                    XML.SIGN_APP = "สำนักงานคณะกรรมการอาหารและยา"
+                Else
+                    Try
+                        Dim dao_pvn As New DAO_CPN.clsDBsyschngwt
+                        dao_pvn.GetData_by_chngwtcd(dao.fields.PVNCD)
+                        XML.SIGN_APP = "สำนักงานสาธารณสุขจังหวัด" & dao_pvn.fields.thachngwtnm
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+
+                'Dim url As String = "https://excercitium.fda.moph.go.th/FDA_TXC/TXC_SEARCH/FRM_TXC_SEARCH_QRCODE.aspx?lcnno=" & b64encode(dao.fields.LCNNO) & "&wotype=" & b64encode("3") & "&pvncd=" & b64encode(dao.fields.PVNCD) & "&lcntpcd=" & b64encode(dao.fields.lcntpcd)
+                Dim url As String = "www.google.com"
+                Dim cls_qr As New QR_CODE.GEN_QR_CODE
+                XML.QR_JJ = cls_qr.GenerateQR_TO_BASE64(20, 20, url)
+
             End If
 
             Dim dao_detail As New DAO_TABEAN_HERB.TB_TABEAN_SUBPACKAGE
@@ -3928,12 +4552,12 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
-                        dr("THANM_HPI") = THANM_HPI
+                        dr("THANM_HPI") = THANM
                     Catch ex As Exception
 
                     End Try
                     Try
-                        dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME_HPI
+                        dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME
                     Catch ex As Exception
 
                     End Try
@@ -3965,12 +4589,12 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
-                        dr("THANM_HPM") = THANM_HPM
+                        dr("THANM_HPM") = THANM
                     Catch ex As Exception
 
                     End Try
                     Try
-                        dr("BSN_THAIFULLNAME_HPM") = BSN_THAIFULLNAME_HPM
+                        dr("BSN_THAIFULLNAME_HPM") = BSN_THAIFULLNAME
                     Catch ex As Exception
 
                     End Try
@@ -3981,6 +4605,17 @@ Namespace CLASS_GEN_XML
                 XML.DT_SHOW.DT2 = dt_lcn_location
             End If
 
+            Dim dt_formula As DataTable
+            Dim bao_master_2 As New BAO.ClsDBSqlcommand
+            dt_formula = bao_master_2.SP_drug_formula_JJ(IDA)
+            dt_formula.TableName = "XML_TABEAN_FORMULA_JJ"
+            XML.DT_SHOW.DT6 = dt_formula
+
+            If TYPE_PERSON = 1 Then
+                XML.THANM_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Then
+                XML.THANM_THAIFULLNAME = BSN_THAIFULLNAME
+            End If
             'dt_lcn_location = bao_lcn_location.SP_DALCN_FRGN_DATA(IDA_LCN)
             'dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_NATIONALITY"
             'XML.DT_SHOW.DT2 = dt_lcn_location
@@ -4007,9 +4642,65 @@ Namespace CLASS_GEN_XML
             Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
             dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
 
+            'Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            'dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+            'Try
+            '    dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+            '    Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+            '    Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+            '    Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+            '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            'Catch ex As Exception
+
+            'End Try
+
             Dim TYPE_PERSON As Integer = dao_cpn.fields.type
             Dim NATION As String = dao_lcn.fields.NATION
-            Dim THANM As String = dao_lcn.fields.thanm
+            ' Dim THANM As String = dao_lcn.fields.thanm
 
             Dim CITIZEN_ID As String = dao.fields.CITIZEN_ID
             Dim CITIZEN_ID_AUTHORIZE As String = dao.fields.CITIZEN_ID_AUTHORIZE
@@ -4030,9 +4721,35 @@ Namespace CLASS_GEN_XML
                     dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
                 End If
 
+                Try
+                    If dao.fields.FOREIGN_NAME = "" Then
+                        dr("FOREIGN_NAME") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao.fields.FOREIGN_NAME_PLACE = "" Then
+                        dr("FOREIGN_NAME_PLACE") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+
             Next
             dt_jj.TableName = "XML_TABEAN_JJ"
             XML.DT_SHOW.DT5 = dt_jj
+
+            Try
+                If dao.fields.FOREIGN_NAME_PLACE = "" Then
+                    dao.fields.FOREIGN_NAME_PLACE = "-"
+                End If
+                If dao.fields.FOREIGN_NAME = "" Then
+                    dao.fields.FOREIGN_NAME = "-"
+                End If
+            Catch ex As Exception
+
+            End Try
 
             XML.TABEAN_JJ = dao.fields
 
@@ -4075,6 +4792,24 @@ Namespace CLASS_GEN_XML
                 End Try
 
                 XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+                If dao.fields.PVNCD = 10 Then
+                    XML.SIGN_APP = "สำนักงานคณะกรรมการอาหารและยา"
+                Else
+                    Try
+                        Dim dao_pvn As New DAO_CPN.clsDBsyschngwt
+                        dao_pvn.GetData_by_chngwtcd(dao.fields.PVNCD)
+                        XML.SIGN_APP = "สำนักงานสาธารณสุขจังหวัด" & dao_pvn.fields.thachngwtnm
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+
+                'Dim url As String = "https://excercitium.fda.moph.go.th/FDA_TXC/TXC_SEARCH/FRM_TXC_SEARCH_QRCODE.aspx?lcnno=" & b64encode(dao.fields.LCNNO) & "&wotype=" & b64encode("3") & "&pvncd=" & b64encode(dao.fields.PVNCD) & "&lcntpcd=" & b64encode(dao.fields.lcntpcd)
+                Dim url As String = "www.google.com"
+                Dim cls_qr As New QR_CODE.GEN_QR_CODE
+                XML.QR_JJ = cls_qr.GenerateQR_TO_BASE64(20, 20, url)
+
             ElseIf dao.fields.STATUS_ID = 6 Or dao.fields.STATUS_ID = 11 Or dao.fields.STATUS_ID = 12 Then
                 date_req_day = dao.fields.DATE_REQ
                 date_req_month = dao.fields.DATE_REQ
@@ -4085,6 +4820,24 @@ Namespace CLASS_GEN_XML
                 XML.date_req_year = con_year(date_req_year.Year)
 
                 XML.date_req_full = date_req_day.Day.ToString() & " " & date_req_month.ToString("MMMM") & " " & con_year(date_req_year.Year)
+                If dao.fields.PVNCD = 10 Then
+                    XML.SIGN_APP = "สำนักงานคณะกรรมการอาหารและยา"
+                Else
+                    Try
+                        Dim dao_pvn As New DAO_CPN.clsDBsyschngwt
+                        dao_pvn.GetData_by_chngwtcd(dao.fields.PVNCD)
+                        XML.SIGN_APP = "สำนักงานสาธารณสุขจังหวัด" & dao_pvn.fields.thachngwtnm
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+
+                'Dim url As String = "https://excercitium.fda.moph.go.th/FDA_TXC/TXC_SEARCH/FRM_TXC_SEARCH_QRCODE.aspx?lcnno=" & b64encode(dao.fields.LCNNO) & "&wotype=" & b64encode("3") & "&pvncd=" & b64encode(dao.fields.PVNCD) & "&lcntpcd=" & b64encode(dao.fields.lcntpcd)
+                Dim url As String = "www.google.com"
+                Dim cls_qr As New QR_CODE.GEN_QR_CODE
+                XML.QR_JJ = cls_qr.GenerateQR_TO_BASE64(20, 20, url)
+
             End If
 
             'ข้อ 2 
@@ -4107,6 +4860,19 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
+                        If dr("tel") = Nothing Or dr("tel") = "-" Then
+                            If dr("Mobile") = Nothing Then
+                                dr("tel") = "-"
+                            Else
+                                dr("tel") = dr("Mobile")
+                            End If
+                        ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                            dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                    Try
                         dr("TYPE_PERSON_CPN") = TYPE_PERSON
                     Catch ex As Exception
 
@@ -4123,7 +4889,7 @@ Namespace CLASS_GEN_XML
                     End Try
 
                     Try
-                        dr("NAME_JJ") = NAME_JJ
+                        dr("NAME_JJ") = BSN_THAIFULLNAME
                     Catch ex As Exception
 
                     End Try
@@ -4173,7 +4939,7 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
-                        dr("NAME_JJ") = NAME_JJ
+                        dr("NAME_JJ") = BSN_THAIFULLNAME
                     Catch ex As Exception
 
                     End Try
@@ -4262,7 +5028,29 @@ Namespace CLASS_GEN_XML
         End Function
 
     End Class
+    Public Class TABEAN_HERB_JJ_EDIT_V2
+        Inherits Center
+        Public Function gen_xml_tb(ByVal _IDA As Integer, ByVal _IDA_DR As Integer)
+            Dim XML As New CLS_TABEAN_HERB_JJ
+            Dim dt_lcn As New DataTable
+            Dim bao_lcn As New BAO_SHOW
+            Dim dt_lcn_location As New DataTable
+            Dim dt_jj As New DataTable
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_REQUEST
+            dao.GetdatabyID_IDA(_IDA)
 
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(dao.fields.IDA_LCN)
+
+            Dim bao_xml As New BAO_TABEAN_HERB.tb_xml
+            dt_jj = bao_xml.SP_XML_TABEAN_JJ(_IDA)
+
+            dt_jj.TableName = "XML_TABEAN_JJ"
+            XML.DT_SHOW.DT5 = dt_jj
+
+            Return XML
+        End Function
+    End Class
     Public Class TABEAN_HERB_TB
         Inherits Center
         Public Function gen_xml_tb(ByVal _IDA As Integer, ByVal _IDA_DR As Integer)
@@ -4276,6 +5064,13 @@ Namespace CLASS_GEN_XML
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
             dao_lcn.GetDataby_IDA(dao_sub.fields.FK_LCN_IDA)
 
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(dao_sub.fields.FK_LCN_IDA)
+            Catch ex As Exception
+
+            End Try
+
             Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
             dao_cpn.GetDataby_identify(dao_lcn.fields.CITIZEN_ID_AUTHORIZE)
 
@@ -4283,6 +5078,7 @@ Namespace CLASS_GEN_XML
             Dim TYPE_PERSON As Integer = dao_cpn.fields.type
             Dim NATION As String = dao_lcn.fields.NATION
             Dim THANM As String = dao_lcn.fields.thanm
+            Dim BSN_THAIFULLNAME As String = tb_location.fields.BSN_THAIFULLNAME
 
             Dim rcvdate As Date
             Dim rcvdate2 As String = ""
@@ -4315,7 +5111,7 @@ Namespace CLASS_GEN_XML
 
             If TYPE_PERSON = 1 Then
                 'XML.TYPE_PERSON_1 = TYPE_PERSON
-                dt_lcn = BAO_LCN.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
 
                 dt_lcn.Columns.Add("NATION")
                 dt_lcn.Columns.Add("TYPE_PERSON_CPN")
@@ -4324,10 +5120,22 @@ Namespace CLASS_GEN_XML
                 dt_lcn.Columns.Add("NAME")
                 dt_lcn.Columns.Add("THANM")
                 dt_lcn.Columns.Add("THANAMEPLACE")
+                dt_lcn.Columns.Add("PERSON_AGE")
+                dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
                 For Each dr As DataRow In dt_lcn.Rows
                     Try
                         dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("PERSON_AGE") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NATIONALITY_PERSON") = NATION
                     Catch ex As Exception
 
                     End Try
@@ -4361,7 +5169,7 @@ Namespace CLASS_GEN_XML
                 XML.DT_SHOW.DT2 = dt_lcn
             ElseIf TYPE_PERSON = 99 Then
                 'XML.TYPE_PERSON_99 = TYPE_PERSON
-                dt_lcn = BAO_LCN.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
 
                 dt_lcn.Columns.Add("NATION")
                 dt_lcn.Columns.Add("TYPE_PERSON_CPN")
@@ -4370,10 +5178,22 @@ Namespace CLASS_GEN_XML
                 dt_lcn.Columns.Add("NAME")
                 dt_lcn.Columns.Add("THANM")
                 dt_lcn.Columns.Add("THANAMEPLACE")
+                dt_lcn.Columns.Add("PERSON_AGE")
+                dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
                 For Each dr As DataRow In dt_lcn.Rows
                     Try
                         dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("PERSON_AGE") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NATIONALITY_PERSON") = NATION
                     Catch ex As Exception
 
                     End Try
@@ -4444,17 +5264,118 @@ Namespace CLASS_GEN_XML
             Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
             dao_cpn.GetDataby_identify(dao_drrqt.fields.CITIZEN_ID_AUTHORIZE)
 
-            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
-            Dim NATION As String = DAO_LCN.fields.NATION
-            Dim THANM As String = DAO_LCN.fields.thanm
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
 
             Dim CITIZEN_ID As String = dao_drrqt.fields.IDENTIFY
+            Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+            Dim obj As New XML_DATA
+            'Dim cls As New CLS_COMMON.convert
+            Dim result As String = ""
+            'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+            result = ws_center.GET_DATA_IDENTIFY(CITIZEN_ID, CITIZEN_ID, "FUSION", "P@ssw0rdfusion440")
+            obj = ConvertFromXml(Of XML_DATA)(result)
+            Dim THANM_CENTER As String = ""
+            Dim TYPE_PERSON_CENTER As Integer = obj.SYSLCNSIDs.type
+            If TYPE_PERSON_CENTER = 1 Then
+                THANM_CENTER = obj.SYSLCNSNMs.prefixnm & " " & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+            ElseIf TYPE_PERSON_CENTER = 99 Or TYPE_PERSON_CENTER = 3 Then
+                THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+            Else
+                If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                    THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                Else
+                    THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                End If
+            End If
+
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm & " " & dao_customer.fields.thalnm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim citizen_bsn As String = tb_location.fields.BSN_IDENTIFY
+            Dim dao_cpn2 As New DAO_CPN.clsDBsyslcnsid
+            ' dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+            dao_cpn2.GetDataby_identify(dao_drrqt.fields.CITIZEN_ID_AUTHORIZE)
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                If dao_drrqt.fields.WHO_ID = True Then
+                    BSN_THAIFULLNAME = THANM_CENTER
+                    'BSN_THAIFULLNAME = WHO_NAME
+                Else
+                    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                End If
+                'BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+            'Try
+            '    dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+            '    Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+            '    Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+            '    Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+            '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            'Catch ex As Exception
+
+            'End Try
+
+
+
+
+            Dim bao As New BAO.ClsDBSqlcommand
+            Dim person_age As String = ""
+            Dim NATIONALITY_PERSON As String = ""
+            Try
+                person_age = dao_tabean_herb.fields.PERSON_AGE
+                If dao_tabean_herb.fields.NATIONALITY_PERSON_ID = 1 Then
+                    NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON
+                Else
+                    NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            'Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim TYPE_PERSON_WHO As Integer = dao_cpn2.fields.type
+            '  Dim NATION As String = dao_lcn.fields.NATION
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim NATION As String = DAO_LCN.fields.NATION
+
+
             Dim CITIZEN_ID_AUTHORIZE As String = dao_drrqt.fields.CITIZEN_ID_AUTHORIZE
             Dim NAME As String = dao_drrqt.fields.CREATE_BY
             Dim THANAMEPLACE As String = dao_lcn.fields.thanameplace
+            'Dim BSN_THAIFULLNAME As String = dao_lcn.fields.BSN_THAIFULLNAME
 
             Dim dt As New DataTable
-            Dim BAO As New BAO_TABEAN_HERB.tb_main
+            Dim BAO2 As New BAO_TABEAN_HERB.tb_main
 
             Dim date_rcv_day As Date
             Dim date_rcv_month As Date
@@ -4492,7 +5413,7 @@ Namespace CLASS_GEN_XML
                 XML.RCVNO_DATE = date_rcv_day.Day.ToString() & " " & date_rcv_month.ToString("MMMM") & " " & con_year(date_rcv_year.Year)
             End If
 
-            dt = BAO.SP_XML_DRUG_DRRQT(_IDA_DQ)
+            dt = BAO2.SP_XML_DRUG_DRRQT(_IDA_DQ)
             dt.Columns.Add("TYPE_SUB_NAME_CHANGE")
             dt.Columns.Add("TREATMENT_AGE_FULL")
             dt.Columns.Add("WARNIG_DETIAL")
@@ -4506,10 +5427,61 @@ Namespace CLASS_GEN_XML
                 '    dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
                 'End If  
                 Try
+                    dr("RECIPE_NAME") = dao_tabean_herb.fields.RECIPE_NAME & " " & dao_tabean_herb.fields.RECIPE_UNIT_NAME
+
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_drrqt.fields.RCVNO_OLD <> Nothing Then
+                        dr("RCVNO_NEW") = dao_drrqt.fields.RCVNO_OLD
+                        dr("RCVNO_DATE") = dao_drrqt.fields.DATE_CONFIRM
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
                     If dr("WARNING_TYPE_ID") = 1 And dr("WARNING_ID") = 2 Then
                         dr("WARNIG_DETIAL") = dao_tabean_herb.fields.WARNING_NAME
                     Else
                         dr("WARNIG_DETIAL") = dao_tabean_herb.fields.WARNING_SUB_NAME
+                    End If
+                Catch ex As Exception
+
+                End Try
+
+                Dim TEXT_UP As String = ""
+                Try
+                    TEXT_UP = dr("FOREIGN_NAME_PLACE")
+                    dr("FOREIGN_NAME_PLACE") = TEXT_UP.ToUpper()
+                Catch ex As Exception
+
+                End Try
+
+                Try
+                    If dr("TYPE_ID") = 20102 Then
+                        dr("TYPE_ID") = 20101
+                    ElseIf dr("TYPE_ID") = 20103 Then
+                        dr("TYPE_ID") = 20101
+                    ElseIf dr("TYPE_ID") = 20191 Then
+                        dr("TYPE_ID") = 20101
+                    ElseIf dr("TYPE_ID") = 20192 Then
+                        dr("TYPE_ID") = 20101
+                    ElseIf dr("TYPE_ID") = 20193 Then
+                        dr("TYPE_ID") = 20101
+                    ElseIf dr("TYPE_ID") = 20194 Then
+                        dr("TYPE_ID") = 20104
+                    End If
+
+                Catch ex As Exception
+
+                End Try
+
+                Try
+                    If dr("CATEGORY_ID") = 1220 Then
+                        dr("CATEGORY_ID") = 122
+                    ElseIf dr("CATEGORY_ID") = 1221 Then
+                        dr("CATEGORY_ID") = 121
                     End If
                 Catch ex As Exception
 
@@ -4522,11 +5494,11 @@ Namespace CLASS_GEN_XML
                 'End Try
                 Try
                     If dao_tabean_herb.fields.TREATMENT_AGE Is Nothing Or dao_tabean_herb.fields.TREATMENT_AGE = 0 Then
-                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao_tabean_herb.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
                     ElseIf dao_tabean_herb.fields.TREATMENT_AGE_MONTH Is Nothing Or dao_tabean_herb.fields.TREATMENT_AGE_MONTH = 0 Then
-                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao_tabean_herb.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี"
                     Else
-                        dr("TREATMENT_AGE_FULL") = dao_tabean_herb.fields.STORAGE_NAME & " " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี" & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao_tabean_herb.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao_tabean_herb.fields.TREATMENT_AGE & " " & "ปี" & " " & dao_tabean_herb.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
                     End If
                     'dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & dao.fields.TREATMENT_AGE_NAME
 
@@ -4540,109 +5512,682 @@ Namespace CLASS_GEN_XML
             dt.TableName = "XML_TABEAN_TBN_DRRQT_HERB"
             XML.DT_SHOW.DT1 = dt
 
+            'Dim bao As New BAO.ClsDBSqlcommand
+            Dim dt_lcn2 As New DataTable
+
+
+            Dim DT_WHO As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_WHO = BAO_SP.SP_XML_WHO_DALCN(_IDA)
+
             If TYPE_PERSON = 1 Then
                 'XML.TYPE_PERSON_1 = TYPE_PERSON
-                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                '    XML.BSN_THAINAME = THANM
+                'XML.TYPE_PERSON_1 = TYPE_PERSON
+                If dao_drrqt.fields.WHO_ID = True Then
+                    '        dt_lcn2 = BAO_SP.SP_XML_WHO_DALCN(dao_drrqt.fields.IDA)
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                    dt_lcn2 = bao.SP_Lisense_Name_and_Addr(dao_drrqt.fields.CITIZEN_ID_AUTHORIZE) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
 
-                dt_lcn.Columns.Add("NATION")
-                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
-                dt_lcn.Columns.Add("CITIZEN_ID")
-                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
-                dt_lcn.Columns.Add("NAME")
-                dt_lcn.Columns.Add("THANM")
-                dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
-                For Each dr As DataRow In dt_lcn.Rows
-                    Try
-                        dr("NATION") = NATION
-                    Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
-                    Catch ex As Exception
+                    For Each dr As DataRow In dt_lcn.Rows
+                        For Each dr2 As DataRow In dt_lcn2.Rows
+                            Try
+                                dr("thanm") = dr2("tha_fullname")
+                                XML.BSN_THAINAME = dr2("tha_fullname")
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID") = CITIZEN_ID
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("thaaddr") = dr2("thaaddr")
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = dr2("identify")
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("NAME") = NAME
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANM") = THANM
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("thamu") = dr2("mu")
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANAMEPLACE") = THANAMEPLACE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("tharoad") = dr2("tharoad")
+                            Catch ex As Exception
 
-                    End Try
-                Next
+                            End Try
+                            Try
+                                dr("thabuilding") = dr2("thabuilding")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thasoi") = dr2("thasoi")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thathmblnm") = dr2("thathmblnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thaamphrnm") = dr2("thaamphrnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thachngwtnm") = dr2("thachngwtnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("zipcode") = dr2("zipcode")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NAME") = NAME
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("tel") = dr2("tel")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("fax") = dr2("fax")
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    dr("CITIZEN_ID") = citizen_bsn
+                        'Catch ex As Exception
+
+                        'End Try
+                        'Try
+                        '    dr("NAME_JJ") = BSN_THAIFULLNAME
+                        'Catch ex As Exception
+
+                        'End Try
+                        'Try
+                        '    dr("THANM") = THANM
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    'XML.TYPE_PERSON_1 = TYPE_PERSON
+                    '    XML.BSN_THAINAME = THANM
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+
                 dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_PERSON_1"
                 XML.DT_SHOW.DT2 = dt_lcn
-            ElseIf TYPE_PERSON = 99 Then
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
                 'XML.TYPE_PERSON_99 = TYPE_PERSON
-                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                If dao_drrqt.fields.WHO_ID = True Then
+                    If TYPE_PERSON_WHO = 1 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        'XML.TYPE_PERSON_99 = TYPE_PERSON
+                        XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_who.fields.FK_LCT)
 
-                dt_lcn.Columns.Add("NATION")
-                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
-                dt_lcn.Columns.Add("CITIZEN_ID")
-                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
-                dt_lcn.Columns.Add("NAME")
-                dt_lcn.Columns.Add("THANM")
-                dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        'dt_lcn.Columns.Add("CITIZEN_ID")
+                        'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                        dt_lcn.Columns.Add("NAME")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
 
-                For Each dr As DataRow In dt_lcn.Rows
-                    Try
-                        dr("NATION") = NATION
-                    Catch ex As Exception
+                        For Each dr As DataRow In dt_lcn.Rows
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
-                    Catch ex As Exception
+                            End Try
+                            'Try
+                            '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                            '        If dr("Mobile") = Nothing Then
+                            '            dr("tel") = "-"
+                            '        Else
+                            '            dr("tel") = dr("Mobile")
+                            '        End If
+                            '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                            '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            '    End If
+                            'Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID") = CITIZEN_ID
-                    Catch ex As Exception
+                            'End Try
+                            Try
+                                dr("PERSON_AGE") = dao_tabean_herb.fields.PERSON_AGE
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = dao_tabean_herb.fields.NATIONALITY_PERSON
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("NAME") = NAME
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANM") = THANM
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = citizen_bsn
+                            Catch ex As Exception
 
-                    End Try
-                    Try
-                        dr("THANAMEPLACE") = THANAMEPLACE
-                    Catch ex As Exception
+                            End Try
+                            Try
+                                dr("NAME") = BSN_THAIFULLNAME
+                            Catch ex As Exception
 
-                    End Try
+                            End Try
+                            Try
+                                dr("THANM") = THANM
+                            Catch ex As Exception
 
-                Next
+                            End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        'XML.TYPE_PERSON_99 = TYPE_PERSON
+                        XML.BSN_THAIFULLNAME = dao_tabean_herb.fields.AGENT_99
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                        dt_lcn2 = BAO.SP_Lisense_Name_and_Addr(dao_drrqt.fields.CITIZEN_ID_AUTHORIZE)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        dt_lcn.Columns.Add("NAME")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+                        dt_lcn.Columns.Add("CITIZEN_ID")
+                        dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            For Each dr2 As DataRow In dt_lcn2.Rows
+                                Try
+                                    dr("thanm") = dr2("tha_fullname")
+                                    XML.BSN_THAINAME = dao_tabean_herb.fields.AGENT_99
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaaddr") = dr2("thaaddr")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID") = dao_tabean_herb.fields.IDEN_AGENT_99
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thamu") = dr2("mu")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tharoad") = dr2("tharoad")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thabuilding") = dr2("thabuilding")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thasoi") = dr2("thasoi")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thathmblnm") = dr2("thathmblnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaamphrnm") = dr2("thaamphrnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("zipcode") = dr2("zipcode")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("NAME") = NAME
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tel") = dr2("tel")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("fax") = dr2("fax")
+                                Catch ex As Exception
+
+                                End Try
+                            Next
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+
+                            'Try
+                            '    dr("THANM") = THANM
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    End If
+                Else
+                    'XML.TYPE_PERSON_99 = TYPE_PERSON
+                    XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                End If
+
                 dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_NITI_99"
                 XML.DT_SHOW.DT3 = dt_lcn
+            End If
+
+            'If TYPE_PERSON = 1 Then
+            '    'XML.TYPE_PERSON_1 = TYPE_PERSON
+            '    XML.BSN_THAINAME = THANM
+            '    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+            '    dt_lcn.Columns.Add("NATION")
+            '    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+            '    dt_lcn.Columns.Add("CITIZEN_ID")
+            '    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+            '    dt_lcn.Columns.Add("NAME")
+            '    dt_lcn.Columns.Add("THANM")
+            '    dt_lcn.Columns.Add("THANAMEPLACE")
+            '    dt_lcn.Columns.Add("PERSON_AGE")
+            '    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+            '    For Each dr As DataRow In dt_lcn.Rows
+            '        Try
+            '            dr("NATION") = NATION
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            If dr("tel") = Nothing Or dr("tel") = "-" Then
+            '                If dr("Mobile") = Nothing Then
+            '                    dr("tel") = "-"
+            '                Else
+            '                    dr("tel") = dr("Mobile")
+            '                End If
+            '            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+            '                dr("tel") = dr("tel") & ", " & dr("Mobile")
+            '            End If
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("PERSON_AGE") = NATION
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("NATIONALITY_PERSON") = NATION
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("CITIZEN_ID") = citizen_bsn
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("NAME") = NAME
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("THANM") = THANM
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("THANAMEPLACE") = dr("thanameplace")
+            '        Catch ex As Exception
+
+            '        End Try
+            '    Next
+            '    dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_PERSON_1"
+            '    XML.DT_SHOW.DT2 = dt_lcn
+            'ElseIf TYPE_PERSON = 99 Then
+            '    'XML.TYPE_PERSON_99 = TYPE_PERSON
+            '    XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+            '    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+            '    dt_lcn.Columns.Add("NATION")
+            '    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+            '    dt_lcn.Columns.Add("CITIZEN_ID")
+            '    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+            '    dt_lcn.Columns.Add("NAME")
+            '    dt_lcn.Columns.Add("THANM")
+            '    dt_lcn.Columns.Add("THANAMEPLACE")
+
+            '    For Each dr As DataRow In dt_lcn.Rows
+            '        Try
+            '            dr("NATION") = NATION
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            If dr("tel") = Nothing Or dr("tel") = "-" Then
+            '                If dr("Mobile") = Nothing Then
+            '                    dr("tel") = "-"
+            '                Else
+            '                    dr("tel") = dr("Mobile")
+            '                End If
+            '            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+            '                dr("tel") = dr("tel") & ", " & dr("Mobile")
+            '            End If
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("CITIZEN_ID") = citizen_bsn
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("NAME") = NAME
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("THANM") = THANM
+            '        Catch ex As Exception
+
+            '        End Try
+            '        Try
+            '            dr("THANAMEPLACE") = dr("thanameplace")
+            '        Catch ex As Exception
+
+            '        End Try
+
+            '    Next
+            '    dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_NITI_99"
+            '    XML.DT_SHOW.DT3 = dt_lcn
+            'End If
+            If dao_drrqt.fields.WHO_ID = False Then
+                If TYPE_PERSON = 1 Then
+                    XML.BSN_THAINAME = THANM
+                ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                    XML.BSN_THAINAME = BSN_THAIFULLNAME
+                End If
             End If
 
             If dao_lcn.fields.PROCESS_ID = 121 Then
@@ -4652,6 +6197,16 @@ Namespace CLASS_GEN_XML
                 Dim dao_lcn_bsn_HPI As New DAO_DRUG.TB_DALCN_LOCATION_BSN
                 dao_lcn_bsn_HPI.GetDataby_LCN_IDA(_IDA_LCN)
 
+                Dim dao_cpn_HPI As New DAO_CPN.clsDBsyslcnsid
+                Try
+
+                    dao_cpn_HPI.GetDataby_identify(dao_lcn_HPI.fields.CITIZEN_ID_AUTHORIZE)
+
+                Catch ex As Exception
+
+                End Try
+
+                Dim TYPE_PERSON_HPI As Integer = dao_cpn_HPI.fields.type
                 Dim LCNNO_DISPLAY_NEW_HPI As String = dao_lcn_HPI.fields.LCNNO_DISPLAY_NEW
                 Dim THANM_HPI As String = dao_lcn_HPI.fields.thanm
                 Dim BSN_THAIFULLNAME_HPI As String = dao_lcn_bsn_HPI.fields.BSN_THAIFULLNAME
@@ -4669,18 +6224,23 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
-                        dr("THANM_HPI") = THANM_HPI
+                        dr("THANM_HPI") = THANM
                     Catch ex As Exception
 
                     End Try
                     Try
-                        dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME_HPI
+                        If TYPE_PERSON_HPI = 1 Then
+                            dr("BSN_THAIFULLNAME_HPI") = "-"
+                        Else
+                            dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME_HPI
+
+                        End If
                     Catch ex As Exception
 
                     End Try
 
                 Next
-                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPI"
+                dt_lcn_location.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_HPI"
                 XML.DT_SHOW.DT4 = dt_lcn_location
             ElseIf dao_lcn.fields.PROCESS_ID = 122 Then
                 Dim dao_lcn_HPM As New DAO_DRUG.ClsDBdalcn
@@ -4689,6 +6249,15 @@ Namespace CLASS_GEN_XML
                 Dim dao_lcn_bsn_HPM As New DAO_DRUG.TB_DALCN_LOCATION_BSN
                 dao_lcn_bsn_HPM.GetDataby_LCN_IDA(_IDA_LCN)
 
+                Dim dao_cpn_HPM As New DAO_CPN.clsDBsyslcnsid
+                Try
+
+                    dao_cpn_HPM.GetDataby_identify(dao_lcn_HPM.fields.CITIZEN_ID_AUTHORIZE)
+
+                Catch ex As Exception
+
+                End Try
+                Dim TYPE_PERSON_HPM As Integer = dao_cpn_HPM.fields.type
                 Dim LCNNO_DISPLAY_NEW_HPM As String = dao_lcn_HPM.fields.LCNNO_DISPLAY_NEW
                 Dim THANM_HPM As String = dao_lcn_HPM.fields.thanm
                 Dim BSN_THAIFULLNAME_HPM As String = dao_lcn_bsn_HPM.fields.BSN_THAIFULLNAME
@@ -4707,24 +6276,40 @@ Namespace CLASS_GEN_XML
 
                     End Try
                     Try
-                        dr("THANM_HPM") = THANM_HPM
+                        dr("THANM_HPM") = THANM
                     Catch ex As Exception
 
                     End Try
-                    Try
+                    If TYPE_PERSON_HPM = 1 Then
+                        dr("BSN_THAIFULLNAME_HPM") = "-"
+                    Else
                         dr("BSN_THAIFULLNAME_HPM") = BSN_THAIFULLNAME_HPM
-                    Catch ex As Exception
 
-                    End Try
+                    End If
                 Next
 
-                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPM"
+                dt_lcn_location.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_HPM"
                 XML.DT_SHOW.DT5 = dt_lcn_location
             End If
 
-            Dim bao_sp As New BAO.ClsDBSqlcommand
-            XML.DT_SHOW.DT6 = bao_sp.SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(_IDA_DQ)
+            Dim bao_sp2 As New BAO.ClsDBSqlcommand
+            XML.DT_SHOW.DT6 = bao_sp2.SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(_IDA_DQ)
             XML.DT_SHOW.DT6.TableName = "SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2"
+            Try
+                If dao_tabean_herb.fields.NATIONALITY_PERSON_ID = 1 Then
+                    XML.NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON
+                Else
+                    XML.NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            If TYPE_PERSON = 1 Then
+                XML.THANM_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                XML.THANM_THAIFULLNAME = BSN_THAIFULLNAME
+            End If
 
             Return XML
         End Function
@@ -4739,24 +6324,83 @@ Namespace CLASS_GEN_XML
 
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
             dao_lcn.GetDataby_IDA(_IDA_LCN)
-
             Dim dao_drrqt As New DAO_DRUG.ClsDBdrrqt
             dao_drrqt.GetDataby_IDA(_IDA_DQ)
-
             Dim dao_tabean_herb As New DAO_TABEAN_HERB.TB_TABEAN_HERB
-            dao_tabean_herb.GetdatabyID_IDA(_IDA)
-
+            dao_tabean_herb.GetdatabyID_FK_IDA_DQ(_IDA_DQ)
+            dao_drrqt.GetDataby_IDA(_IDA_DQ)
+            XML.DRRQT = dao_drrqt.fields
+            Dim IDENTIFY As String = ""
+            If dao_drrqt.fields.CITIZEN_ID_AUTHORIZE = "" Then
+                IDENTIFY = dao_drrqt.fields.IDENTIFY
+            Else
+                IDENTIFY = dao_drrqt.fields.CITIZEN_ID_AUTHORIZE
+            End If
             Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
-            dao_cpn.GetDataby_identify(dao_drrqt.fields.CITIZEN_ID_AUTHORIZE)
+            dao_cpn.GetDataby_identify(IDENTIFY)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm & " " & dao_customer.fields.thalnm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
 
             Dim TYPE_PERSON As Integer = dao_cpn.fields.type
             Dim NATION As String = dao_lcn.fields.NATION
-            Dim THANM As String = dao_lcn.fields.thanm
+            ' Dim THANM As String = dao_lcn.fields.thanm
 
-            Dim CITIZEN_ID As String = dao_drrqt.fields.IDENTIFY
-            Dim CITIZEN_ID_AUTHORIZE As String = dao_drrqt.fields.CITIZEN_ID_AUTHORIZE
+            Dim CITIZEN_ID As String = IDENTIFY
+            Dim CITIZEN_ID_AUTHORIZE As String = IDENTIFY
             Dim NAME As String = dao_drrqt.fields.CREATE_BY
             Dim THANAMEPLACE As String = dao_lcn.fields.thanameplace
+
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao_drrqt.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+            'Try
+            '    dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+            '    Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+            '    Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+            '    Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+            '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            'Catch ex As Exception
+
+            'End Try
 
             Dim dt As New DataTable
             Dim BAO As New BAO_TABEAN_HERB.tb_main
@@ -4819,6 +6463,31 @@ Namespace CLASS_GEN_XML
                     dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
                 End If
 
+                If dr("LCN_NAME") = Nothing Then
+                    dr("LCN_NAME") = THANM
+                End If
+
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME = "" Then
+                        dr("FOREIGN_NAME") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME = "" Then
+                        dr("FOREIGN_NAME") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME_PLACE = "" Then
+                        dr("FOREIGN_NAME_PLACE") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
             Next
             dt.TableName = "XML_TABEAN_TBN_DRRQT_HERB"
             XML.DT_SHOW.DT1 = dt
@@ -4872,7 +6541,7 @@ Namespace CLASS_GEN_XML
 
                     End Try
                 Next
-            ElseIf TYPE_PERSON = 99 Then
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
                 'XML.TYPE_PERSON_99 = TYPE_PERSON
                 dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
 
@@ -4927,9 +6596,335 @@ Namespace CLASS_GEN_XML
             dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS"
             XML.DT_SHOW.DT2 = dt_lcn
 
+            'Dim dt_formula As DataTable
+            'Dim bao_master_2 As New BAO.ClsDBSqlcommand
+            'dt_formula = bao_master_2.SP_drug_formula_JJ(_IDA)
+            'dt_formula.TableName = "XML_TABEAN_FORMULA_JJ"
+            'XML.DT_SHOW.DT3 = dt_formula
+
+            If dao_drrqt.fields.WHO_ID = True Then
+                If TYPE_PERSON = 1 Then
+                    XML.THANM_THAIFULLNAME = THANM
+                ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                    XML.THANM_THAIFULLNAME = THANM
+                End If
+            Else
+                XML.THANM_THAIFULLNAME = THANM
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.BSN_THAINAME = THANM
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                XML.BSN_THAINAME = BSN_THAIFULLNAME
+            End If
             Return XML
         End Function
+        Public Function gen_xml_tbn_2_renew(ByVal _IDA As Integer, ByVal _IDA_DQ As Integer, ByVal _IDA_LCN As Integer)
+            Dim XML As New CLASS_DRRQT
 
+            Dim bao_lcn As New BAO_SHOW
+
+            Dim dt_lcn As New DataTable
+            Dim dt_lcn_location As New DataTable
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dao_drrgt As New DAO_DRUG.ClsDBdrrgt
+            dao_drrgt.GetDataby_IDA(_IDA_DQ)
+            Dim dao_drrqt As New DAO_DRUG.ClsDBdrrqt
+
+            Dim dao_tabean_herb As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+            Try
+                dao_drrqt.GetDataby_IDA(dao_drrgt.fields.FK_DRRQT)
+                dao_tabean_herb.GetdatabyID_FK_IDA_DQ(dao_drrgt.fields.FK_DRRQT)
+            Catch ex As Exception
+
+            End Try
+            dao_drrqt.GetDataby_IDA(_IDA_DQ)
+
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            dao_cpn.GetDataby_identify(dao_drrgt.fields.IDENTIFY)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm & " " & dao_customer.fields.thalnm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim NATION As String = dao_lcn.fields.NATION
+            ' Dim THANM As String = dao_lcn.fields.thanm
+
+            Dim CITIZEN_ID As String = dao_drrqt.fields.IDENTIFY
+            Dim CITIZEN_ID_AUTHORIZE As String = dao_drrqt.fields.CITIZEN_ID_AUTHORIZE
+            Dim NAME As String = dao_drrqt.fields.CREATE_BY
+            Dim THANAMEPLACE As String = dao_lcn.fields.thanameplace
+
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao_drrqt.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+            'Try
+            '    dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+            '    Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+            '    Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+            '    Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+            '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            'Catch ex As Exception
+
+            'End Try
+
+            Dim dt As New DataTable
+            Dim BAO As New BAO_TABEAN_HERB.tb_main
+
+            Dim date_rcv_day As Date
+            Dim date_rcv_month As Date
+            Dim date_rcv_year As Date
+
+            Dim date_rgt_day As Date
+            Dim date_rgt_month As Date
+            Dim date_rgt_year As Date
+
+            If dao_drrqt.fields.STATUS_ID = 6 Or dao_drrqt.fields.STATUS_ID = 11 Or dao_drrqt.fields.STATUS_ID = 12 Or dao_drrqt.fields.STATUS_ID = 13 Then
+                date_rcv_day = dao_drrqt.fields.rcvdate
+                date_rcv_month = dao_drrqt.fields.rcvdate
+                date_rcv_year = dao_drrqt.fields.rcvdate
+
+                XML.RCVNO_DATE = date_rcv_day.Day.ToString() & " " & date_rcv_month.ToString("MMMM") & " " & con_year(date_rcv_year.Year)
+            ElseIf dao_drrqt.fields.STATUS_ID = 8 Then
+
+                date_rcv_day = dao_drrqt.fields.rcvdate
+                date_rcv_month = dao_drrqt.fields.rcvdate
+                date_rcv_year = dao_drrqt.fields.rcvdate
+
+                date_rgt_day = dao_drrqt.fields.appdate
+                date_rgt_month = dao_drrqt.fields.appdate
+                date_rgt_year = dao_drrqt.fields.appdate
+
+                XML.date_rgt_day = date_rgt_day.Day.ToString()
+                XML.date_rgt_month = date_rgt_month.ToString("MMMM")
+                XML.date_rgt_year = con_year(date_rgt_year.Year)
+
+                Try
+                    Dim a As String = date_rgt_day.Day.ToString() - 1
+                    Dim b As String = date_rgt_month.ToString("MMMM")
+                    Dim c As String = con_year(date_rgt_year.Year) + 5
+
+                    XML.date_rgt_exdate_day = a
+                    XML.date_rgt_exdate_month = b
+                    XML.date_rgt_exdate_year = c
+
+                    XML.RGTNO_DATE_END = a & " " & b & " " & c
+                Catch ex As Exception
+
+                End Try
+
+                XML.RGTNO_DATE = date_rgt_day.Day.ToString() & " " & date_rgt_month.ToString("MMMM") & " " & con_year(date_rgt_year.Year)
+                XML.RCVNO_DATE = date_rcv_day.Day.ToString() & " " & date_rcv_month.ToString("MMMM") & " " & con_year(date_rcv_year.Year)
+            End If
+
+            dt = BAO.SP_XML_DRUG_DRRQT(_IDA_DQ)
+            dt.Columns.Add("TYPE_SUB_NAME_CHANGE")
+            For Each dr As DataRow In dt.Rows
+
+                If dr("TYPE_SUB_ID") = 1 Then
+                    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนไทย"
+                ElseIf dr("TYPE_SUB_ID") = 2 Then
+                    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนจีน"
+                ElseIf dr("TYPE_SUB_ID") = 3 Then
+                    dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
+                End If
+
+                If dr("LCN_NAME") = Nothing Then
+                    dr("LCN_NAME") = THANM
+                End If
+
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME = "" Then
+                        dr("FOREIGN_NAME") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME = "" Then
+                        dr("FOREIGN_NAME") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_tabean_herb.fields.FOREIGN_NAME_PLACE = "" Then
+                        dr("FOREIGN_NAME_PLACE") = "-"
+                    End If
+                Catch ex As Exception
+
+                End Try
+            Next
+            dt.TableName = "XML_TABEAN_TBN_DRRQT_HERB"
+            XML.DT_SHOW.DT1 = dt
+
+            If TYPE_PERSON = 1 Then
+                'XML.TYPE_PERSON_1 = TYPE_PERSON
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                dt_lcn.Columns.Add("NATION")
+                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                dt_lcn.Columns.Add("CITIZEN_ID")
+                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                dt_lcn.Columns.Add("NAME")
+                dt_lcn.Columns.Add("THANM")
+                dt_lcn.Columns.Add("THANAMEPLACE")
+
+                For Each dr As DataRow In dt_lcn.Rows
+                    Try
+                        dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID") = CITIZEN_ID
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NAME") = NAME
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANAMEPLACE") = THANAMEPLACE
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                'XML.TYPE_PERSON_99 = TYPE_PERSON
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                dt_lcn.Columns.Add("NATION")
+                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                dt_lcn.Columns.Add("CITIZEN_ID")
+                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                dt_lcn.Columns.Add("NAME")
+                dt_lcn.Columns.Add("THANM")
+                dt_lcn.Columns.Add("THANAMEPLACE")
+
+                For Each dr As DataRow In dt_lcn.Rows
+                    Try
+                        dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID") = CITIZEN_ID
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NAME") = NAME
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANAMEPLACE") = THANAMEPLACE
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+
+            End If
+            dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT2 = dt_lcn
+
+            'Dim dt_formula As DataTable
+            'Dim bao_master_2 As New BAO.ClsDBSqlcommand
+            'dt_formula = bao_master_2.SP_drug_formula_JJ(_IDA)
+            'dt_formula.TableName = "XML_TABEAN_FORMULA_JJ"
+            'XML.DT_SHOW.DT3 = dt_formula
+
+            If dao_drrqt.fields.WHO_ID = True Then
+                If TYPE_PERSON = 1 Then
+                    XML.THANM_THAIFULLNAME = THANM
+                ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                    XML.THANM_THAIFULLNAME = THANM
+                End If
+            Else
+                XML.THANM_THAIFULLNAME = THANM
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.BSN_THAINAME = THANM
+            ElseIf TYPE_PERSON = 99 Or TYPE_PERSON = 3 Then
+                XML.BSN_THAINAME = BSN_THAIFULLNAME
+            End If
+            Return XML
+        End Function
         Public Function gen_xml_approve(ByVal _IDA As Integer, ByVal _IDA_DQ As Integer, ByVal _IDA_LCN As Integer)
             Dim XML As New CLASS_DRRQT
 
@@ -5078,6 +7073,24 @@ Namespace CLASS_GEN_XML
                 _date_req_full = value
             End Set
         End Property
+        Private _date_estimate_full As String
+        Public Property date_estimate_full() As String
+            Get
+                Return _date_estimate_full
+            End Get
+            Set(ByVal value As String)
+                _date_estimate_full = value
+            End Set
+        End Property
+        Private _date_period_estimate_full As String
+        Public Property date_period_estimate_full() As String
+            Get
+                Return _date_period_estimate_full
+            End Get
+            Set(ByVal value As String)
+                _date_period_estimate_full = value
+            End Set
+        End Property
 
         Private _thanm As String
         Public Property thanm() As String
@@ -5109,6 +7122,24 @@ Namespace CLASS_GEN_XML
             End Set
         End Property
 
+        Private _IDA As String
+        Public Property IDA() As String
+            Get
+                Return _IDA
+            End Get
+            Set(ByVal value As String)
+                _IDA = value
+            End Set
+        End Property
+        Private _TR_ID As String
+        Public Property TR_ID() As String
+            Get
+                Return _TR_ID
+            End Get
+            Set(ByVal value As String)
+                _TR_ID = value
+            End Set
+        End Property
         Private _appointment_date As String
         Public Property appointment_date() As String
             Get
@@ -5129,6 +7160,16 @@ Namespace CLASS_GEN_XML
             End Set
         End Property
 
+        Private _E_MAIL As String
+        Public Property E_MAIL() As String
+            Get
+                Return _E_MAIL
+            End Get
+            Set(ByVal value As String)
+                _E_MAIL = value
+            End Set
+        End Property
+
         Private _group_assign As String
         Public Property group_assign() As String
             Get
@@ -5136,6 +7177,26 @@ Namespace CLASS_GEN_XML
             End Get
             Set(ByVal value As String)
                 _group_assign = value
+            End Set
+        End Property
+
+        Private _PROCESS_NAME As String
+        Public Property PROCESS_NAME() As String
+            Get
+                Return _PROCESS_NAME
+            End Get
+            Set(ByVal value As String)
+                _PROCESS_NAME = value
+            End Set
+        End Property
+
+        Private _DISCOUNT_DETAIL As String
+        Public Property DISCOUNT_DETAIL() As String
+            Get
+                Return _DISCOUNT_DETAIL
+            End Get
+            Set(ByVal value As String)
+                _DISCOUNT_DETAIL = value
             End Set
         End Property
 #End Region
@@ -5169,6 +7230,30 @@ Namespace CLASS_GEN_XML
                 PROCESS_NAME = "การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทยาพัฒนาจากสมุนไพร เพื่อส่งออก"
             ElseIf process_id = 20904 Then
                 PROCESS_NAME = "การขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ประเภทผลิตภัณฑ์สมุนไพรเพื่อสุขภาพ เพื่อส่งออก"
+            ElseIf process_id = 20410 Then
+                PROCESS_NAME = "การขออนุญาตแก้ไขเปลี่ยนแปลงใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร"
+            ElseIf process_id = 20430 Then
+                PROCESS_NAME = "การขออนุญาตแก้ไขเปลี่ยนแปลงใบรับจดแจ้งผลิตภัณฑ์สมุนไพร "
+            ElseIf process_id = 20411 Then
+                PROCESS_NAME = "การขออนุญาตแก้ไขเปลี่ยนแปลงใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ระดับหลัก "
+            ElseIf process_id = 20412 Then
+                PROCESS_NAME = "การขออนุญาตแก้ไขเปลี่ยนแปลงใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร ระดับรอง"
+            ElseIf process_id = 20810 Then
+                PROCESS_NAME = "การขออนุญาตผลิตภัณฑ์ เพื่อเป็นตัวอย่างสำหรับการขึ้นทะเบียน การแจ้งรายละเอียด หรือการจดแจ้ง"
+            ElseIf process_id = 120 Then
+                PROCESS_NAME = "การขออนุญาตสถานที่ขายผลิตภัณฑ์สมุนไพร"
+            ElseIf process_id = 121 Then
+                PROCESS_NAME = "การขออนุญาตสถานที่นำเข้าผลิตภัณฑ์สมุนไพร"
+            ElseIf process_id = 122 Then
+                PROCESS_NAME = "การขออนุญาตสถานที่ผลิตผลิตภัณฑ์สมุนไพร"
+            ElseIf process_id = 10201 Then
+                PROCESS_NAME = "การขอแก้ไขใบอนุญาตสถานที่เดิม"
+            ElseIf process_id = 10301 Then
+                PROCESS_NAME = "การขอโอนใบอนุญาตสถานที่"
+            ElseIf process_id = 10401 Then
+                PROCESS_NAME = "การขอใบแทนใบอนุญาตสถานที่"
+            ElseIf process_id = 20419 Then
+                PROCESS_NAME = "การขออนุญาตแก้ไขเปลี่ยนแปลงใบสำคัญการขึ้นทะเบียนผลิตภัณฑ์สมุนไพร เฉพาะกิจ"
             End If
 
             Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
@@ -5185,17 +7270,3821 @@ Namespace CLASS_GEN_XML
             cls.dalcnno = lcnno_display_new
             cls.rcvno = rcvno_full
             cls.rcvdate = date_req_full
-            cls.appointment_date = appointment_date
-
+            cls.appointment_date = appointment_date 'วันนัด
+            cls.estimate_date = _date_estimate_full  'วันที่เริ่มประเมินเอกสารวิชาการ
+            cls.estimate_date_max = _date_period_estimate_full ''ระยะเวลาในการดำเนินการจนแล้วเสร็จ
+            'cls.name_req = cls.thanm
             cls.name_req = thanm
-            cls.tel_req = obj.TEL
+            cls.tel_req = tel_callback
+            'cls.tel_req = obj.TEL
+            'cls.name_contact = NAME_CONTACT
             cls.name_contact = NAME_CONTACT
             cls.tel_callback = tel_callback
-            cls.email = obj.EMAIL
+            cls.email = E_MAIL
+            'cls.email = obj.EMAIL
             cls.group_assign = group_assign
+            cls.TR_ID = TR_ID
+            cls.DISCOUNT_DETAIL = DISCOUNT_DETAIL
 
             Return cls
         End Function
+
     End Class
 
+    Public Class TABEAN_HERB_EX
+        Inherits Center
+
+        Public Function gen_xml_TB_EX(ByVal _IDA_EX As Integer, ByVal _IDA_LCN As Integer)
+            Dim XML As New CLASS_TABEAN_EX
+            Dim bao_lcn As New BAO_SHOW
+
+            Dim dt_lcn As New DataTable
+            Dim dt_ex As New DataTable
+            Dim dt_lcn_location As New DataTable
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+
+            Dim dao_phr As New DAO_DRUG.ClsDBDALCN_PHR
+            dao_phr.GetDataby_FK_IDA(_IDA_LCN)
+
+            Dim dao_package As New DAO_TABEAN_HERB.TB_DRSAMP_PACKAGE_SIZE
+            dao_package.GetdatabyID_FK_IDA_EX2(_IDA_EX)
+
+            Dim dao_ex As New DAO_DRUG.ClsDBdrsamp
+            dao_ex.GetDataby_IDA(_IDA_EX)
+
+            Dim FRGN_NAME As String = dao_ex.fields.FOREIGN_NAME
+            Try
+                If dao_ex.fields.FOREIGN_NAME IsNot Nothing Then
+                    FRGN_NAME.Replace("&nbsp;", "")
+                    dao_ex.fields.FOREIGN_NAME = FRGN_NAME
+                End If
+            Catch ex As Exception
+
+            End Try
+            XML.TABEAN_EX = dao_ex.fields
+
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            dao_cpn.GetDataby_identify(dao_ex.fields.CUSTOMER_CITIZEN_AUTHORIZE)
+
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim NATION As String = dao_lcn.fields.NATION
+            'Dim THANM As String = dao_lcn.fields.thanm
+            Dim THANM As String = ""
+            THANM = FULLNAME_CPN(dao_ex.fields.CUSTOMER_CITIZEN_AUTHORIZE)
+            Dim THANM_FULLNAME As String = dao_lcn.fields.thanm
+
+            Dim CITIZEN_ID As String = dao_ex.fields.CITIZEN_SUBMIT
+            Dim CITIZEN_ID_AUTHORIZE As String = dao_ex.fields.CUSTOMER_CITIZEN_AUTHORIZE
+            Dim NAME As String = dao_ex.fields.EX_CREATE_BY
+            Dim THANAMEPLACE As String = dao_lcn.fields.thanameplace
+
+            Dim dt As New DataTable
+            Dim BAO As New BAO_TABEAN_HERB.tb_main
+
+            Dim date_confirm As Date
+            Dim date_cf_show As String = ""
+            Dim date_app As String = ""
+            Dim WRITE_DATE As Date
+            Dim RCV_DATE As Date
+
+
+            dt = BAO.SP_XML_DRUG_DRSMR(_IDA_EX)
+
+            dt.TableName = "XML_TABEAN_EX_HERB"
+            XML.DT_SHOW.DT1 = dt
+
+            XML.PHR_NAME_FULL = dao_phr.fields.PHR_PREFIX_NAME & " " & dao_phr.fields.PHR_NAME
+
+            Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            dao_bsn.GetDataby_LCN_IDA(dao_ex.fields.LCN_IDA)
+            XML.BSN_NAME_FULL = dao_bsn.fields.BSN_THAIFULLNAME
+            Try
+                WRITE_DATE = dao_ex.fields.WRITE_DATE
+                date_confirm = dao_ex.fields.EX_DATE_CONFIRM
+                RCV_DATE = dao_ex.fields.rcvdate
+                XML.date_confirm_full = date_confirm.Day.ToString() & " " & date_confirm.ToString("MMMM") & " " & con_year(date_confirm.Year)
+                XML.date_write_full = WRITE_DATE.Day.ToString() & " " & WRITE_DATE.ToString("MMMM") & " " & con_year(WRITE_DATE.Year)
+
+                XML.date_write_day = WRITE_DATE.Day.ToString()
+                XML.date_write_month = WRITE_DATE.ToString("MMMM")
+                XML.date_write_year = con_year(WRITE_DATE.Year)
+                XML.date_rcv_full = RCV_DATE.Day.ToString() & " " & RCV_DATE.ToString("MMMM") & " " & con_year(RCV_DATE.Year)
+            Catch ex As Exception
+
+            End Try
+
+            If TYPE_PERSON = 1 Then
+                'XML.TYPE_PERSON_1 = TYPE_PERSON
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                dt_lcn.Columns.Add("NATION")
+                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                dt_lcn.Columns.Add("CITIZEN_ID")
+                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                dt_lcn.Columns.Add("NAME")
+                dt_lcn.Columns.Add("THANM")
+                dt_lcn.Columns.Add("THANM_FULLNAME")
+                dt_lcn.Columns.Add("THANAMEPLACE")
+
+                For Each dr As DataRow In dt_lcn.Rows
+                    Try
+                        dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID") = CITIZEN_ID
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NAME") = NAME
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM_FULLNAME") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANAMEPLACE") = THANAMEPLACE
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            ElseIf TYPE_PERSON = 99 Then
+                'XML.TYPE_PERSON_99 = TYPE_PERSON
+                dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                dt_lcn.Columns.Add("NATION")
+                dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                dt_lcn.Columns.Add("CITIZEN_ID")
+                dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                dt_lcn.Columns.Add("NAME")
+                dt_lcn.Columns.Add("THANM")
+                dt_lcn.Columns.Add("THANM_FULLNAME")
+                dt_lcn.Columns.Add("THANAMEPLACE")
+
+                For Each dr As DataRow In dt_lcn.Rows
+                    Try
+                        dr("NATION") = NATION
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID") = CITIZEN_ID
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("NAME") = NAME
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM_FULLNAME") = dao_bsn.fields.BSN_THAIFULLNAME
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANAMEPLACE") = THANAMEPLACE
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+
+            End If
+            dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT2 = dt_lcn
+
+
+            dt = BAO.SP_XML_DRUG_DRSMR_PACKAGE_SIZE(_IDA_EX)
+
+            dt.TableName = "XML_TABEAN_EX_HERB_PACKAGE_SIZE"
+            XML.DT_SHOW.DT3 = dt
+
+            dt_ex = BAO.SP_XML_DRUG_DRSMR_PACKAGE_SIZE_BY_FK(_IDA_EX)
+
+            dt_ex.Columns.Add("PACKAGE_NAME_FULL")
+            dt_ex.Columns.Add("APPDATE_FULL")
+            Dim test As String = ""
+            For Each dr As DataRow In dt_ex.Rows
+                Try
+                    dr("APPDATE_FULL") = date_to_thai(dao_ex.fields.appdate)
+                Catch ex As Exception
+
+                End Try
+
+                If test = "" Then
+                    test = dr("PACKAGE_FULL")
+                Else
+                    test += dr("PACKAGE_FULL") & vbCrLf
+                End If
+
+                dr("PACKAGE_NAME_FULL") = test
+
+                Try
+                    'dr("PACKAGE_NAME_FULL") = dao_package.fields.NO_1 & vbCrLf & dao_package.fields.UNIT_F_NAME & "x" & dao_package.fields.NO_2 & vbCrLf & dao_package.fields.UNIT_S_NAME & "x " & dao_package.fields.NO_3 & vbCrLf & dao_package.fields.UNIT_T_NAME & "(" & dao_package.fields.SUM_PACKAGE_UNIT & vbCrLf & dao_package.fields.UNIT_F_NAME & ")"
+                Catch ex As Exception
+
+                End Try
+            Next
+            dt_ex.TableName = "SP_XML_DRUG_DRSMR_PACKAGE_SIZE"
+            XML.DT_SHOW.DT4 = dt_ex
+
+            Return XML
+        End Function
+    End Class
+
+    Public Class TABEAN_HERB_JJ_EDIT
+        Inherits Center
+
+        Public Function Gen_XML_JJ3_Edit(ByVal IDA As Integer, ByVal IDA_LCN As Integer)
+            Dim XML As New CLASS_TABEAN_JJ_EDIT
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+
+            'Dim dt As New DataTable
+            Dim dt_lcn As New DataTable
+            Dim dt_lcn_location As New DataTable
+            Dim dt_jj As New DataTable
+            Dim dt_jj_EDIT As New DataTable
+
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_REQUEST
+            dao.GetdatabyID_IDA(IDA)
+
+            Dim dao_jj As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+            dao_jj.GetdatabyID_IDA(dao.fields.FK_IDA)
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(IDA_LCN)
+
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+
+            Dim citizen_bsn As String = tb_location.fields.BSN_IDENTIFY
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+            Dim date_FULL As String = ""
+            Dim person_age As String = ""
+            Dim NATIONALITY_PERSON As String = ""
+            Try
+                person_age = dao.fields.PERSON_AGE
+                If dao.fields.NATIONALITY_PERSON_ID = 1 Then
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON
+                Else
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim NATION As String = dao_lcn.fields.NATION
+            'Dim THANM As String = dao_lcn.fields.thanm
+            Dim log As New DAO_TABEAN_HERB.TB_LOG_EDIT_JJ
+            Try
+                log.Getdataby_FK_IDA(IDA)
+            Catch ex As Exception
+
+            End Try
+
+
+            Dim addr_edit As String = ""
+            Dim bao As New BAO_MASTER
+            Dim dt As New DataTable
+            Try
+                dt = bao.SP_ADDR_BY_IDA(IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim addr As String = ""
+            If dt.Rows.Count > 0 Then
+                addr = dt(0)("fulladdr")
+            End If
+
+            XML.TABEAN_JJ_EDIT_REQUEST = dao.fields
+
+
+            ''''''''''''''''''''''DT1''''''''''''''''''''''''''''''''''''''''
+            Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+            dao_up.GetdatabyID_TR_ID(dao.fields.TR_ID_JJ)
+            Dim CITIZEN_ID As String = dao.fields.CITIZEN_ID
+            Dim CITIZEN_ID_AUTHORIZE As String = dao.fields.CITIZEN_ID_AUTHORIZE
+            Dim NAME_JJ As String = dao.fields.NAME_JJ
+            Dim THANAMEPLACE As String = dao.fields.LCN_THANAMEPLACE
+            Dim dao_cb As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_REQUEST_CHECK_EDIT
+            dao_cb.GetdatabyID_FK_IDA(IDA)
+            Dim bao_xml As New BAO_TABEAN_HERB.tb_xml
+            dt_jj_EDIT = bao_xml.SP_XML_TABEAN_JJ_EDIT_REQUES_V2(IDA)
+            dt_jj_EDIT.Columns.Add("NAME_PRODUCK_NEW")
+            dt_jj_EDIT.Columns.Add("NAME_PRODUCK_NEW2")
+            dt_jj_EDIT.Columns.Add("NAME_PRODUCK_OLD")
+            dt_jj_EDIT.Columns.Add("NAME_PRODUCK_OLD2")
+            dt_jj_EDIT.Columns.Add("ADDR_NEW")
+            dt_jj_EDIT.Columns.Add("PACKING_SIZE_NEW")
+            dt_jj_EDIT.Columns.Add("PACKING_SIZE_OLD")
+            dt_jj_EDIT.Columns.Add("RCVNO_DATE")
+            dt_jj_EDIT.Columns.Add("OTHER_REQUEST_FULL")
+            dt_jj_EDIT.Columns.Add("ANOTHER_OTHER_ID")
+            dt_jj_EDIT.Columns.Add("ANOTHER_LICENSE_ID")
+            dt_jj_EDIT.Columns.Add("DOCUMENT_NAME_OLD")
+            dt_jj_EDIT.Columns.Add("DOCUMENT_NAME_NEW")
+            dt_jj_EDIT.Columns.Add("THANM")
+            dt_jj_EDIT.Columns.Add("BSN_THAIFULLNAME")
+            'dt_jj_EDIT.Columns.Add("SUPPORT_EDIT_ID")
+            Dim NAME_ENG As String = ""
+            Dim NAME_OTHER As String = ""
+            For Each dr As DataRow In dt_jj_EDIT.Rows
+
+                Try
+                    If dao.fields.STATUS_ID = 10 Or dao.fields.STATUS_ID = 7 Then
+                        dr("APP_REQ") = dao.fields.CANCEL_STAFF_NM
+                    End If
+                    If dao_cb.fields.Label_And_Ducumant = 1 Then
+                        dr("DOCUMENT_NAME_OLD") = "เอกสารกำกับเดิม"
+                        dr("DOCUMENT_NAME_NEW") = "เอกสารกำกับใหม่"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                'Try
+                '    For Each dao_up.fields In dao_up.datas
+                '        If dao_up.fields.DUCUMENT_NAME.Contains("หนังสือให้การยินยอมตามที่") Then
+                '            dao_up.fields.
+                '        End If
+                '    Next
+
+                'Catch ex As Exception
+
+                'End Try
+                Try
+                    dr("BSN_THAIFULLNAME") = dao_jj.fields.AGENT_99
+                    dr("THANM") = THANM
+                    If dao.fields.STATUS_ID = 8 Then
+                        dr("ANOTHER_LICENSE_ID") = 1
+
+                    ElseIf dao.fields.STATUS_ID = 9 Or dao.fields.STATUS_ID = 7 Or dao.fields.STATUS_ID = 10 Then
+                        dr("ANOTHER_LICENSE_ID") = 2
+                    End If
+                    If IsNothing(dao.fields.OTHER_REQUEST_ID) = True Then
+                        dr("ANOTHER_OTHER_ID") = 0
+                    Else
+                        dr("ANOTHER_OTHER_ID") = 1
+                        dr("OTHER_REQUEST_FULL") = dao.fields.OTHER_REQUEST_NAME & " " & dao.fields.OTHER_REQUEST_DAY & " วัน"
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_jj.fields.NAME_OTHER = "" Then
+                        NAME_OTHER = "-"
+                    Else
+                        NAME_OTHER = dao_jj.fields.NAME_OTHER
+                    End If
+                    If dao_jj.fields.NAME_ENG = "" Then
+                        NAME_ENG = "-"
+                    Else
+                        NAME_ENG = dao_jj.fields.NAME_ENG
+                    End If
+                    'Dim NAME_PRODUCT As String = ""
+                    'Dim NAME_PRODUCT2 As String = ""
+                    If dao_cb.fields.NAME_PRODUCK_1 = 1 And dao_cb.fields.NAME_PRODUCK_2 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อภาษาอังกฤษ: " & dr("NAME_ENG")
+                        dr("NAME_PRODUCK_NEW2") = "ชื่อภาษาต่างประเทศอื่น: " & dr("NAME_OTHER")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อภาษาอังกฤษ:" & NAME_ENG
+                        dr("NAME_PRODUCK_OLD2") = "ชื่อภาษาต่างประเทศอื่น:" & NAME_OTHER
+                    ElseIf dao_cb.fields.NAME_PRODUCK_3 = 1 And dao_cb.fields.NAME_PRODUCK_4 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอังกฤษ: " & dr("EXPORTNAME_ENG")
+                        dr("NAME_PRODUCK_NEW2") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอื่น: " & dr("EXPORTNAME_OTHER")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอังกฤษ:" & NAME_ENG
+                        dr("NAME_PRODUCK_OLD2") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอื่น: " & NAME_OTHER
+                    ElseIf dao_cb.fields.NAME_PRODUCK_1 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อภาษาอังกฤษ: " & dr("NAME_ENG")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อภาษาอังกฤษ: " & NAME_ENG
+                    ElseIf dao_cb.fields.NAME_PRODUCK_2 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อภาษาต่างประเทศอื่น: " & dr("NAME_OTHER")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อภาษาต่างประเทศอื่น: " & NAME_OTHER
+                    ElseIf dao_cb.fields.NAME_PRODUCK_3 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอังกฤษ: " & dr("EXPORTNAME_ENG")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอังกฤษ: " & NAME_ENG
+                    ElseIf dao_cb.fields.NAME_PRODUCK_4 = 1 Then
+                        dr("NAME_PRODUCK_NEW") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอื่น: " & dr("EXPORTNAME_OTHER")
+                        dr("NAME_PRODUCK_OLD") = "ชื่อผลิตภัณฑ์เพื่อการส่งออกภาษาอื่น: " & NAME_OTHER
+                    End If
+                    'dr("NAME_PRODUCK_NEW") = NAME_PRODUCT
+                    'dr("NAME_PRODUCK_NEW2") = NAME_PRODUCT2
+
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_cb.fields.NAME_ADDR1 = 1 Or dao_cb.fields.NAME_ADDR1 = 2 Then
+                        addr_edit = log.fields.ADDR_NM_NEW & "/ " & log.fields.ADDR_FULL_NEW
+                    ElseIf dao_cb.fields.NAME_ADDR1 = 3 Then
+                        addr_edit = log.fields.FOREIGN_NAME_PLACE_NEW
+                    End If
+                    dr("ADDR_NEW") = addr_edit
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_cb.fields.Size_Packet = 1 Then
+                        dr("PACKING_SIZE_NEW") = "ขนาดบรรจุใหม่"
+                        dr("PACKING_SIZE_OLD") = "ขนาดบรรจุเดิม"
+                    End If
+                    'dr("PACKAGE_NAME_FULL") = dao_package.fields.NO_1 & vbCrLf & dao_package.fields.UNIT_F_NAME & "x" & dao_package.fields.NO_2 & vbCrLf & dao_package.fields.UNIT_S_NAME & "x " & dao_package.fields.NO_3 & vbCrLf & dao_package.fields.UNIT_T_NAME & "(" & dao_package.fields.SUM_PACKAGE_UNIT & vbCrLf & dao_package.fields.UNIT_F_NAME & ")"
+                Catch ex As Exception
+
+                End Try
+
+                Try
+                    date_FULL = date_to_thai(dao.fields.DATE_REQ)
+                    dr("RCVNO_DATE") = date_FULL
+
+                Catch ex As Exception
+
+                End Try
+            Next
+            dt_jj_EDIT.TableName = "XML_TABEAN_JJ_EDIT"
+            XML.DT_SHOW.DT1 = dt_jj_EDIT
+
+            ''''''''''''''''''''''DT2''''''''''''''''''''''''''''''''''''''''''''''''''''
+            dt_jj = bao_xml.SP_XML_TABEAN_JJ(dao.fields.FK_IDA)
+            dt_jj.Columns.Add("NAME_PRODUCK")
+            dt_jj.Columns.Add("ADDR")
+            dt_jj.Columns.Add("PACKING_SIZE")
+            For Each dr As DataRow In dt_jj.Rows
+                Dim NAME_PRODUCT As String = ""
+                Try
+                    If dao_cb.fields.NAME_PRODUCK_3 = 1 And dao_cb.fields.NAME_PRODUCK_4 = 1 Then
+                        NAME_PRODUCT = dr("NAME_ENG") & ", " & dr("NAME_OTHER")
+                    ElseIf dao_cb.fields.NAME_PRODUCK_3 = 1 Then
+                        NAME_PRODUCT = dr("NAME_ENG")
+                    ElseIf dao_cb.fields.NAME_PRODUCK_4 = 1 Then
+                        NAME_PRODUCT += dr("NAME_OTHER")
+                    End If
+                    dr("NAME_PRODUCK") = NAME_PRODUCT
+
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_cb.fields.NAME_ADDR1 = 1 Or dao_cb.fields.NAME_ADDR1 = 2 Then
+                        addr_edit = log.fields.ADDR_NM & "/ " & log.fields.ADDR_FULL
+                    ElseIf dao_cb.fields.NAME_ADDR1 = 3 Then
+                        addr_edit = log.fields.FOREIGN_NAME_PLACE
+                    End If
+                    dr("ADDR") = addr_edit
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_cb.fields.Size_Packet = 1 Then
+                        dr("PACKING_SIZE") = dao_jj.fields.SIZE_PACK
+                    End If
+                Catch ex As Exception
+
+                End Try
+            Next
+            dt_jj.TableName = "XML_TABEAN_JJ"
+            XML.DT_SHOW.DT2 = dt_jj
+
+
+
+            Dim DT_WHO As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_WHO = BAO_SP.SP_XML_WHO_DALCN(IDA)
+            'ข้อ 2 
+            If TYPE_PERSON = 1 Then
+                XML.TYPE_PERSON_1 = TYPE_PERSON
+                If dao.fields.WHO_ID = True Then
+                    dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    'dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_JJ_EDIT_LOCATION_ADDRESS_PERSON_1"
+                XML.DT_SHOW.DT3 = dt_lcn
+            ElseIf TYPE_PERSON = 99 Then
+                XML.TYPE_PERSON_99 = TYPE_PERSON
+                If dao.fields.WHO_ID = True Then
+                    dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    'dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_JJ_EDIT_LOCATION_ADDRESS_NITI_99"
+                XML.DT_SHOW.DT4 = dt_lcn
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.BSN_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Then
+                XML.BSN_THAIFULLNAME = dao_jj.fields.AGENT_99
+            End If
+
+            Dim DT_SUBPACKAGE As New DataTable
+            Dim dao_sp As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_SUBPACKAGE
+            dao_sp.GetData_ByFkIDA(IDA)
+            Dim ID_SUBPACK As Integer = 0
+
+            Try
+                DT_SUBPACKAGE.Columns.Add("IDA")
+                DT_SUBPACKAGE.Columns.Add("NAME_PACKAGE")
+
+
+                For Each dao_sp.fields In dao_sp.datas
+                    Dim RW_SUB As DataRow = DT_SUBPACKAGE.NewRow
+                    ID_SUBPACK += 1
+                    RW_SUB("IDA") = ID_SUBPACK
+                    RW_SUB("NAME_PACKAGE") = dao_sp.fields.PACK_FSIZE_NAME & " " & dao_sp.fields.PACK_FSIZE_VOLUME & " " & dao_sp.fields.PACK_FSIZE_NAME & " " &
+                            dao_sp.fields.PACK_SECSIZE_NAME & " " & dao_sp.fields.PACK_SECSIZE_VOLUME & " " & dao_sp.fields.PACK_SECSIZE_UNIT_NAME & " " &
+                            dao_sp.fields.PACK_THSIZE_NAME & " " & dao_sp.fields.PACK_THSSIZE_VOLUME & " " & dao_sp.fields.PACK_THSIZE_UNIT_NAME
+                    DT_SUBPACKAGE.Rows.Add(RW_SUB)
+                Next
+
+            Catch ex As Exception
+
+            End Try
+
+            DT_SUBPACKAGE.TableName = "XML_TABEAN_JJ_EDIT_SUBPACKAGE"
+            XML.DT_SHOW.DT6 = DT_SUBPACKAGE
+
+            XML.TABEAN_JJ_EDIT_REQUEST = dao.fields
+            'Dim dao_cb As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_REQUEST_CHECK_EDIT
+            dao_cb.GetdatabyID_FK_IDA(_IDA)
+            If dao_cb.fields.IDA <> 0 Then
+                'dao_cb.fields.FK_IDA = IDA
+                If dao_cb.fields.NAME_PRODUCK_1 = 1 Or dao_cb.fields.NAME_PRODUCK_2 = 1 Or dao_cb.fields.NAME_PRODUCK_3 = 1 Or dao_cb.fields.NAME_PRODUCK_4 = 1 Then
+                    XML.CHK_MENU_1 = 1
+                End If
+                If dao_cb.fields.NAME_ADDR1 = 1 Or dao_cb.fields.NAME_ADDR2 = 1 Or dao_cb.fields.NAME_ADDR3 = 1 Then
+                    XML.CHK_MENU_2 = 1
+                End If
+                If dao_cb.fields.Size_Packet = 1 Then
+                    XML.CHK_MENU_3 = 1
+                End If
+                If dao_cb.fields.Label_And_Ducumant = 1 Then
+                    XML.CHK_MENU_4 = 1
+                End If
+            End If
+
+            Try
+                XML.appdate_full_thai = date_to_thai(dao.fields.DATE_APP)
+
+            Catch ex As Exception
+                If dao.fields.STATUS_ID = 10 Or dao.fields.STATUS_ID = 7 Then
+                    XML.appdate_full_thai = date_to_thai(dao.fields.cncdate)
+                End If
+            End Try
+
+            Return XML
+        End Function
+    End Class
+    Public Class DALCN_PHR_NEW
+        Inherits Center
+        Public Function Gen_XML_PHR(ByVal IDA As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_PHR
+            Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
+
+            Dim cls_DALCN_PHR As New DALCN_PHR
+            dao.GetDataby_IDA(IDA)
+            class_xml.DALCN_PHR = dao.fields
+
+            Dim DT_PHR As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_PHR = BAO_SP.SP_DALCN_PHR_CUSTOMER_ADDR(IDA)
+            DT_PHR.TableName = "XML_DALCN_PHR_ADDR_BSN"
+            class_xml.DT_SHOW.DT1 = DT_PHR
+
+
+            Dim DT_TRAINING As New DataTable
+            Dim BAO As New BAO_MASTER
+            DT_TRAINING = BAO.SP_DALCN_PHR_TRAINING(IDA)
+            DT_TRAINING.Columns.Add("SIMINAR_DATE_FULL")
+            For Each dr As DataRow In DT_TRAINING.Rows
+                Try
+                    dr("SIMINAR_DATE_FULL") = date_to_thai(dr("SIMINAR_DATE"))
+                Catch ex As Exception
+
+                End Try
+            Next
+            DT_TRAINING.TableName = "XML_DALCN_PHR_TRAINING"
+            class_xml.DT_SHOW.DT2 = DT_TRAINING
+
+            Dim date_FULL As String = ""
+            Try
+                date_FULL = date_to_thai(dao.fields.WRITE_DATE)
+                class_xml.WRITEDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.rcvdate)
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+
+            Return class_xml
+        End Function
+    End Class
+
+    Public Class DALCN_PLAN
+        Inherits Center
+        Public Function Gen_XML_LCN_PLAN(ByVal IDA As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_PLAN
+            Dim dao As New DAO_LCN.TB_DALCN_CONSIDER_TRANSLATION
+
+            dao.GET_DATA_BY_IDA(IDA)
+            class_xml.DALCN_PLAN = dao.fields
+
+            Dim date_FULL As String = ""
+            Try
+                date_FULL = date_to_thai(dao.fields.WRITE_DATE)
+                class_xml.WRITEDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.rcvdate)
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.cnsdate)
+                class_xml.CNSDATE_FULL_TH = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+
+            Dim dao_A As New DAO_LCN.TB_DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+            dao_A.GET_DATA_BY_FK_IDA_AND_HEAD_ID(IDA, 1)
+            Dim DT As New DataTable
+            Dim R As DataRow = DT.NewRow
+            For Each dao_A.fields In dao_A.datas
+                DT.Columns.Add("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_1_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_2_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_3_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("HEAD_ID_" & dao_A.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.ID
+                R("CHK_1_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_1
+                R("CHK_2_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_2
+                R("CHK_3_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_3
+                R("HEAD_ID_" & dao_A.fields.ID.Replace(".", "_")) = 1
+
+            Next
+            DT.Rows.Add(R)
+            DT.TableName = "XML_DETAIL_GROUP_DRUG"
+            class_xml.DT1_1 = DT
+
+            Dim dao_A2 As New DAO_LCN.TB_DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+            dao_A2.GET_DATA_BY_FK_IDA_AND_HEAD_ID(IDA, 2)
+            Dim DT2 As New DataTable
+            Dim R2 As DataRow = DT2.NewRow
+            For Each dao_A2.fields In dao_A2.datas
+                DT2.Columns.Add("CHK_HEAD_NMAE_" & dao_A2.fields.ID.Replace(".", "_"))
+                DT2.Columns.Add("CHK_1_" & dao_A2.fields.ID.Replace(".", "_"))
+                DT2.Columns.Add("CHK_2_" & dao_A2.fields.ID.Replace(".", "_"))
+                DT2.Columns.Add("CHK_3_" & dao_A2.fields.ID.Replace(".", "_"))
+                DT2.Columns.Add("HEAD_ID_" & dao_A2.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R2("CHK_HEAD_NMAE_" & dao_A2.fields.ID.Replace(".", "_")) = dao_A2.fields.ID
+                R2("CHK_1_" & dao_A2.fields.ID.Replace(".", "_")) = dao_A2.fields.CHK_MENU_1
+                R2("CHK_2_" & dao_A2.fields.ID.Replace(".", "_")) = dao_A2.fields.CHK_MENU_2
+                R2("CHK_3_" & dao_A2.fields.ID.Replace(".", "_")) = dao_A2.fields.CHK_MENU_3
+                R2("HEAD_ID_" & dao_A2.fields.ID.Replace(".", "_")) = 2
+
+            Next
+            DT2.Rows.Add(R2)
+            DT2.TableName = "XML_DETAIL_GROUP_DRUG2"
+            class_xml.DT1_2 = DT2
+
+            Dim dao_A3 As New DAO_LCN.TB_DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+            dao_A3.GET_DATA_BY_FK_IDA_AND_HEAD_ID(IDA, 3)
+            Dim DT3 As New DataTable
+            Dim R3 As DataRow = DT3.NewRow
+            For Each dao_A3.fields In dao_A3.datas
+                DT3.Columns.Add("CHK_HEAD_NMAE_" & dao_A3.fields.ID.Replace(".", "_"))
+                DT3.Columns.Add("CHK_1_" & dao_A3.fields.ID.Replace(".", "_"))
+                DT3.Columns.Add("CHK_2_" & dao_A3.fields.ID.Replace(".", "_"))
+                DT3.Columns.Add("CHK_3_" & dao_A3.fields.ID.Replace(".", "_"))
+                DT3.Columns.Add("HEAD_ID_" & dao_A3.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R3("CHK_HEAD_NMAE_" & dao_A3.fields.ID.Replace(".", "_")) = dao_A3.fields.ID
+                R3("CHK_1_" & dao_A3.fields.ID.Replace(".", "_")) = dao_A3.fields.CHK_MENU_1
+                R3("CHK_2_" & dao_A3.fields.ID.Replace(".", "_")) = dao_A3.fields.CHK_MENU_2
+                R3("CHK_3_" & dao_A3.fields.ID.Replace(".", "_")) = dao_A3.fields.CHK_MENU_3
+                R3("HEAD_ID_" & dao_A3.fields.ID.Replace(".", "_")) = 3
+
+
+            Next
+            DT3.Rows.Add(R3)
+            DT3.TableName = "XML_DETAIL_GROUP_DRUG2"
+            class_xml.DT1_3 = DT3
+
+            Dim dao_A4 As New DAO_LCN.TB_DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+            dao_A4.GET_DATA_BY_FK_IDA_AND_HEAD_ID(IDA, 4)
+            Dim DT4 As New DataTable
+            Dim R4 As DataRow = DT4.NewRow
+            For Each dao_A4.fields In dao_A4.datas
+                DT4.Columns.Add("CHK_HEAD_NMAE_" & dao_A4.fields.ID.Replace(".", "_"))
+                DT4.Columns.Add("CHK_1_" & dao_A4.fields.ID.Replace(".", "_"))
+                DT4.Columns.Add("CHK_2_" & dao_A4.fields.ID.Replace(".", "_"))
+                DT4.Columns.Add("CHK_3_" & dao_A4.fields.ID.Replace(".", "_"))
+                DT4.Columns.Add("HEAD_ID_" & dao_A4.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R4("CHK_HEAD_NMAE_" & dao_A4.fields.ID.Replace(".", "_")) = dao_A4.fields.ID
+                R4("CHK_1_" & dao_A4.fields.ID.Replace(".", "_")) = dao_A4.fields.CHK_MENU_1
+                R4("CHK_2_" & dao_A4.fields.ID.Replace(".", "_")) = dao_A4.fields.CHK_MENU_2
+                R4("CHK_3_" & dao_A4.fields.ID.Replace(".", "_")) = dao_A4.fields.CHK_MENU_3
+                R4("HEAD_ID_" & dao_A4.fields.ID.Replace(".", "_")) = 4
+
+            Next
+            DT4.Rows.Add(R4)
+            DT4.TableName = "XML_DETAIL_GROUP_DRUG4"
+            class_xml.DT1_4 = DT4
+
+            Return class_xml
+        End Function
+    End Class
+
+    Public Class DALCN_RENEW
+        Inherits Center
+        Public Function Gen_XML_LCN_RENEW(ByVal IDA As Integer, ByVal LCN_IDA As String)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_RENEW
+            Dim dao As New DAO_LCN.TB_DALCN_RENEW
+            Dim _date As Date
+            Dim dateD_TH As String = ""
+            Dim dateM_TH As String = ""
+            Dim dateY_TH As String = ""
+            Dim dateD As Date
+            Dim dateM As Date
+            Dim dateY As Date
+            Dim date_FULL As String = ""
+
+            dao.GET_DATA_BY_IDA(IDA)
+            class_xml.DALCN_RENEW = dao.fields
+            Try
+                _date = dao.fields.WRITE_DATE
+                _date = CDate(_date).ToString("dd/MM/yyy")
+                dateD = dao.fields.WRITE_DATE
+                dateM = dao.fields.WRITE_DATE
+                dateY = dao.fields.WRITE_DATE
+
+                dateD_TH = dateD.Day.ToString()
+                dateM_TH = dateM.ToString("MMMM")
+                dateY_TH = con_year(dateY.Year)
+                date_FULL = dateD_TH & " " & dateM_TH & " " & dateY_TH
+                class_xml.WRITEDATE_FULL_THAI = date_FULL
+
+                _date = dao.fields.rcvdate
+                _date = CDate(_date).ToString("dd/MM/yyy")
+                dateD = dao.fields.rcvdate
+                dateM = dao.fields.rcvdate
+                dateY = dao.fields.rcvdate
+
+                dateD_TH = dateD.Day.ToString()
+                dateM_TH = dateM.ToString("MMMM")
+                dateY_TH = con_year(dateY.Year)
+                date_FULL = dateD_TH & " " & dateM_TH & " " & dateY_TH
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+
+            Return class_xml
+        End Function
+    End Class
+
+    Public Class DALCN_TRANSFER
+        Inherits Center
+        Public Function Gen_XML_LCN_TRANSFER(ByVal IDA As Integer, ByVal LCN_IDA As String)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_TRANSFER
+            Dim dao As New DAO_LCN.TB_DALCN_TRANSFER
+            'Dim _date As Date
+            Dim date_FULL As String = ""
+            dao.GET_DATA_BY_IDA(IDA)
+            class_xml.DALCN_TRANSFER = dao.fields
+            Try
+                date_FULL = date_to_thai(dao.fields.rcvdate)
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.cnsdate)
+                class_xml.CNSDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Try
+                date_FULL = date_to_thai(dao.fields.WRITE_DATE)
+                class_xml.WRITEDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Try
+                date_FULL = date_to_thai(dao.fields.WORK_PERMIT_EXPIRE)
+                class_xml.WORK_PERMIT_EXPIRE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Try
+                date_FULL = date_to_thai(dao.fields.TRANSFER_DATE)
+                class_xml.TRANSFER_DATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Try
+                date_FULL = date_to_thai(dao.fields.OPENTIME)
+                class_xml.OPENTIME_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Try
+                date_FULL = date_to_thai(dao.fields.PASSPORT_EXPIRE)
+                class_xml.PASSPORT_EXPIRE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+            Return class_xml
+        End Function
+    End Class
+    Public Class DALCN_AUDIT
+        Inherits Center
+        Public Function Gen_XML_LCN_AUDIT_IN(ByVal IDA As Integer, ByVal LCN_IDA As String)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_AUDIT
+            Dim dao As New DAO_LCN.TB_DALCN_AUDIT_IN
+            Dim dao_A As New DAO_LCN.TB_DALCN_AUDIT_DETAIL_GROUP_DRUG
+            'Dim _date As Date
+            Dim date_FULL As String = ""
+
+            dao.GET_DATA_BY_IDA(IDA)
+            dao_A.GET_DATA_BY_FK_IDA(IDA)
+            class_xml.DALCN_AUDIT_IN = dao.fields
+            Try
+                date_FULL = date_to_thai(dao.fields.rcvdate)
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                'date_FULL = date_to_thai(dao.fields.cnsdate)
+                'class_xml.CNSDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+
+            'Dim DT_AUDIT_GROUP As New DataTable
+            'Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            'DT_AUDIT_GROUP = BAO_SP.SP_DALCN_AUDIT_DETAIL_GROUP_DRUG(IDA, dao.fields.PROCESS_ID)
+            'DT_AUDIT_GROUP.TableName = "XML_DALCN_AUDIT_DETAIL_GROUP_DRUG"
+            'class_xml.DT_SHOW.DT1 = DT_AUDIT_GROUP
+
+            Dim DT As New DataTable
+            Dim R As DataRow = DT.NewRow
+            For Each dao_A.fields In dao_A.datas
+                DT.Columns.Add("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_1_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_2_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_3_" & dao_A.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.ID
+                R("CHK_1_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_1
+                R("CHK_2_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_2
+                R("CHK_3_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_3
+
+
+            Next
+            DT.Rows.Add(R)
+            DT.TableName = "XML_DETAIL_GROUP_DRUG"
+            class_xml.DT1_1 = DT
+
+            Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao_up.GetDataby_FK_IDA_AND_TR_ID_AND_TYPE(dao.fields.IDA, dao.fields.TR_ID, 1)
+            Dim DT_UP As New DataTable
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME")
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME_FAKE")
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME_REAL")
+            DT_UP.Columns.Add("STATUS_ID")
+            DT_UP.Columns.Add("PROCESS_ID")
+            DT_UP.Columns.Add("STATUS_FILE")
+
+            For Each dao_up.fields In dao_up.datas
+                Dim R2 As DataRow = DT_UP.NewRow
+                R2("FILE_UPLOAD_NAME") = dao_up.fields.DUCUMENT_NAME
+                R2("FILE_UPLOAD_NAME_FAKE") = dao_up.fields.NAME_FAKE
+                R2("FILE_UPLOAD_NAME_REAL") = dao_up.fields.NAME_REAL
+                R2("STATUS_ID") = dao_up.fields.TYPE
+                R2("PROCESS_ID") = dao_up.fields.PROCESS_ID
+                R2("STATUS_FILE") = dao_up.fields.Status_file
+                DT_UP.Rows.Add(R2)
+            Next
+            DT_UP.TableName = "XML_FILE_UPLOAD_STATUS"
+            class_xml.DT_SHOW.DT1 = DT_UP
+
+            Dim DT_CH As New DataTable
+            Dim R3 As DataRow = DT_CH.NewRow
+            Dim ID As Integer = 0
+            For Each dao_up.fields In dao_up.datas
+                ID = ID + 1
+                DT_CH.Columns.Add("CHK_FILE_NMAE_" & ID)
+
+                'Dim R As DataRow = DT.NewRow
+                R3("CHK_FILE_NMAE_" & ID) = dao_up.fields.Status_file
+            Next
+            DT_CH.Rows.Add(R3)
+            DT_CH.TableName = "XML_STATUS_FILE_UPLOAD_CHK"
+            class_xml.DT_SHOW.DT2 = DT_CH
+
+
+            Return class_xml
+        End Function
+
+        Public Function Gen_XML_LCN_AUDIT_OUT(ByVal IDA As Integer, ByVal LCN_IDA As String)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim class_xml As New CLASS_DALCN_AUDIT
+            Dim dao As New DAO_LCN.TB_DALCN_AUDIT_OUT
+            Dim dao_A As New DAO_LCN.TB_DALCN_AUDIT_DETAIL_GROUP_DRUG
+            'Dim _date As Date
+            Dim date_FULL As String = ""
+
+            dao.GET_DATA_BY_IDA(IDA)
+            dao_A.GET_DATA_BY_FK_IDA_AND_PROCESS(IDA, dao.fields.PROCESS_ID)
+            class_xml.DALCN_AUDIT_OUT = dao.fields
+            Try
+                date_FULL = date_to_thai(dao.fields.rcvdate)
+                class_xml.RCVDATE_FULL_THAI = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.cnsddate)
+                class_xml.CNSDATE_FULL_TH = date_FULL
+
+                date_FULL = date_to_thai(dao.fields.appdate)
+                class_xml.APPDATE_FULL_THAI = date_FULL
+            Catch ex As Exception
+
+            End Try
+
+
+
+            Dim DT As New DataTable
+            Dim R As DataRow = DT.NewRow
+            For Each dao_A.fields In dao_A.datas
+                DT.Columns.Add("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_1_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_2_" & dao_A.fields.ID.Replace(".", "_"))
+                DT.Columns.Add("CHK_3_" & dao_A.fields.ID.Replace(".", "_"))
+
+                'Dim R As DataRow = DT.NewRow
+                R("CHK_HEAD_NMAE_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.ID
+                R("CHK_1_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_1
+                R("CHK_2_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_2
+                R("CHK_3_" & dao_A.fields.ID.Replace(".", "_")) = dao_A.fields.CHK_MENU_3
+
+
+            Next
+            DT.Rows.Add(R)
+            DT.TableName = "XML_DETAIL_GROUP_DRUG"
+            class_xml.DT1_1 = DT
+
+            Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao_up.GetDataby_FK_IDA_AND_TR_ID_AND_TYPE(dao.fields.IDA, dao.fields.TR_ID, 1)
+            Dim DT_UP As New DataTable
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME")
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME_FAKE")
+            DT_UP.Columns.Add("FILE_UPLOAD_NAME_REAL")
+            DT_UP.Columns.Add("STATUS_ID")
+            DT_UP.Columns.Add("PROCESS_ID")
+            DT_UP.Columns.Add("STATUS_FILE")
+
+            For Each dao_up.fields In dao_up.datas
+                Dim R2 As DataRow = DT_UP.NewRow
+                R2("FILE_UPLOAD_NAME") = dao_up.fields.DUCUMENT_NAME
+                R2("FILE_UPLOAD_NAME_FAKE") = dao_up.fields.NAME_FAKE
+                R2("FILE_UPLOAD_NAME_REAL") = dao_up.fields.NAME_REAL
+                R2("STATUS_ID") = dao_up.fields.TYPE
+                R2("PROCESS_ID") = dao_up.fields.PROCESS_ID
+                R2("STATUS_FILE") = dao_up.fields.Status_file
+                DT_UP.Rows.Add(R2)
+            Next
+            DT_UP.TableName = "XML_FILE_UPLOAD_STATUS"
+            class_xml.DT_SHOW.DT1 = DT_UP
+
+            Dim DT_CH As New DataTable
+            Dim R3 As DataRow = DT_CH.NewRow
+            Dim ID As Integer = 0
+            For Each dao_up.fields In dao_up.datas
+                ID = ID + 1
+                DT_CH.Columns.Add("CHK_FILE_NMAE_" & ID)
+
+                'Dim R As DataRow = DT.NewRow
+                R3("CHK_FILE_NMAE_" & ID) = dao_up.fields.Status_file
+            Next
+            DT_CH.Rows.Add(R3)
+            DT_CH.TableName = "XML_STATUS_FILE_UPLOAD_CHK"
+            class_xml.DT_SHOW.DT2 = DT_CH
+
+
+
+            Return class_xml
+        End Function
+    End Class
+    Public Class TABEAN_SUBSTITUTE
+        Inherits Center
+        Public Function Gen_XML_SUBSTITUTE_TBN(ByVal IDA As Integer, ByVal FK_IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_SUB
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_SUBSTITUTE
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_SUB = dao.fields
+
+            Dim DT As New DataTable
+            Dim BAO_SP_RN As New BAO_TABEAN_HERB.tb_main
+            DT = BAO_SP_RN.SP_XML_TABEAN_HERB_SUBSTITUTE(IDA)
+            DT.TableName = "SP_XML_TABEAN_HERB_SUBSTITUTE"
+            If dao.fields.TYPE_PERSON = 2 Then
+                XML.DT_SHOW.DT1 = DT
+            Else
+                XML.DT_SHOW.DT2 = DT
+            End If
+
+
+            Return XML
+        End Function
+
+    End Class
+    Public Class TABEAN_NOTIFY_EDIT
+        Inherits Center
+        Public Function GEN_XML_NOTIFY_EDIT(ByVal IDA As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_NOTIFY
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_NOTIFY
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_NOTIFY_EDIT = dao.fields
+            Dim dao_list As New DAO_TABEAN_HERB.TB_TABEAN_NOTIFY_LIST
+            dao_list.GetdatabyID_FK_IDA(IDA)
+            Dim THANM_THAIFULLNAME As String = ""
+            Dim CITIZEN_ID As String = dao.fields.CITIZEN_ID_AUTHORIZE
+            Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+            Dim obj As New XML_DATA
+            Dim result As String = ""
+            Try
+                result = ws_center.GET_DATA_IDENTIFY(CITIZEN_ID, CITIZEN_ID, "FUSION", "P@ssw0rdfusion440")
+                obj = ConvertFromXml(Of XML_DATA)(result)
+                Dim TYPE_PERSON_CENTER As Integer = obj.SYSLCNSIDs.type
+                If TYPE_PERSON_CENTER = 1 Then
+                    THANM_THAIFULLNAME = obj.SYSLCNSNMs.prefixnm & " " & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                ElseIf TYPE_PERSON_CENTER = 99 Then
+                    THANM_THAIFULLNAME = obj.SYSLCNSNMs.prefixnm2 & obj.SYSLCNSNMs.thanm
+                Else
+                    If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                        THANM_THAIFULLNAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                    Else
+                        THANM_THAIFULLNAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Dim DT As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT = BAO_SP.SP_XML_TABEAN_HERB_NOTIFY_EDIT(IDA)
+            DT.TableName = "SP_XML_TABEAN_HERB_NOTIFY_EDIT"
+            XML.DT_SHOW.DT1 = DT
+
+            Dim dt_list As DataTable
+            dt_list = BAO_SP.SP_XML_TABEAN_NOTIFY_LIST(IDA)
+            dt_list.TableName = "SP_XML_TABEAN_NOTIFY_LIST"
+            XML.DT_SHOW.DT2 = dt_list
+            XML.THANM_THAIFULLNAME = THANM_THAIFULLNAME
+            Try
+                XML.DATE_CREATE_TH = date_to_thai(dao.fields.CREATE_DATE)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+
+    End Class
+    Public Class TABEAN_RENEW
+        Inherits Center
+        Public Function Gen_XML_RENREW_TBN(ByVal IDA As Integer, ByVal FK_IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_RENEW
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_RENEW
+            Dim Process_id As String = ""
+            Dim CLS_TABEAN_RENEW As New TABEAN_RENEW
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_RENEW = dao.fields
+            Process_id = dao.fields.PROCESS_ID
+
+            'Dim dao_drrgt As New DAO_DRUG.ClsDBdrrgt
+            'dao_drrgt.GetDataby_IDA(FK_IDA)
+            Dim dao_drrqt As New DAO_DRUG.ClsDBdrrqt
+            Try
+                ' dao_drrqt.GetDataby_IDA(dao_drrqt.fields.FK_DRRQT)
+                dao_drrqt.GetDataby_IDA(FK_IDA)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_tabean_herb As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+
+            Dim DT As New DataTable
+            Dim BAO_SP_RN As New BAO_TABEAN_HERB.tb_main
+            DT = BAO_SP_RN.SP_XML_TABEAN_RENEW_TBN(FK_IDA)
+            DT.TableName = "SP_XML_TABEAN_RENEW_TBN"
+            XML.DT_SHOW.DT1 = DT
+
+            If dao.fields.STATUS_ID = 0 Then
+                XML.WRITEDATE_FULL_THAI = date_to_thai(Date.Now)
+
+            ElseIf dao.fields.STATUS_ID > 1 Then
+                XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.CREATE_DATE)
+            Else
+                XML.WRITEDATE_FULL_THAI = date_to_thai(Date.Now)
+            End If
+
+            Dim dt_lcn As New DataTable
+            Dim dt_lcn_location As New DataTable
+
+            dao_tabean_herb.GetdatabyID_FK_IDA_DQ(FK_IDA)
+            Dim IDENTIFY As String = ""
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            If dao_drrqt.fields.CITIZEN_ID_AUTHORIZE = "" Then
+                IDENTIFY = dao_drrqt.fields.IDENTIFY
+            Else
+                IDENTIFY = dao_drrqt.fields.CITIZEN_ID_AUTHORIZE
+            End If
+
+            dao_cpn.GetDataby_identify(IDENTIFY)
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(dao_lcn.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+
+            Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+            Dim obj As New XML_DATA
+            'Dim cls As New CLS_COMMON.convert
+            Dim result As String = ""
+            'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+            result = ws_center.GET_DATA_IDENTIFY(IDENTIFY, IDENTIFY, "FUSION", "P@ssw0rdfusion440")
+            obj = ConvertFromXml(Of XML_DATA)(result)
+            Dim THANM_CENTER As String = ""
+            Dim TYPE_PERSON_CENTER As Integer = obj.SYSLCNSIDs.type
+            If TYPE_PERSON_CENTER = 1 Then
+                THANM_CENTER = obj.SYSLCNSNMs.prefixnm & " " & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+            ElseIf TYPE_PERSON_CENTER = 99 Then
+                THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+            Else
+                If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                    THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                Else
+                    THANM_CENTER = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                End If
+            End If
+
+            Dim THANM As String = dao_lcn.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm & " " & dao_customer.fields.thalnm
+            Else
+                THANM = dao_lcn.fields.syslcnsnm_prefixnm & " " & dao_lcn.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim citizen_bsn As String = tb_location.fields.BSN_IDENTIFY
+            Dim dao_cpn2 As New DAO_CPN.clsDBsyslcnsid
+            ' dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+            dao_cpn2.GetDataby_identify(IDENTIFY)
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                If dao_drrqt.fields.WHO_ID = True Then
+                    BSN_THAIFULLNAME = THANM_CENTER
+                Else
+                    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Dim bao As New BAO.ClsDBSqlcommand
+            Dim person_age As String = ""
+            Dim NATIONALITY_PERSON As String = ""
+            Try
+                person_age = dao_tabean_herb.fields.PERSON_AGE
+                If dao_tabean_herb.fields.NATIONALITY_PERSON_ID = 1 Then
+                    NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON
+                Else
+                    NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
+            Dim TYPE_PERSON_WHO As Integer = dao_cpn2.fields.type
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim NATION As String = dao_lcn.fields.NATION
+
+
+            Dim CITIZEN_ID_AUTHORIZE As String = IDENTIFY
+            Dim NAME As String = dao_drrqt.fields.CREATE_BY
+            Dim THANAMEPLACE As String = dao_lcn.fields.thanameplace
+            Dim dt_lcn2 As New DataTable
+
+
+            Dim DT_WHO As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_WHO = BAO_SP.SP_XML_WHO_DALCN(_IDA)
+
+            If TYPE_PERSON = 1 Then
+                If dao_drrqt.fields.WHO_ID = True Then
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                    dt_lcn2 = bao.SP_Lisense_Name_and_Addr(IDENTIFY) ' bao_show.SP_LOCATION_BSN_BY_LCN_IDA(_IDA) 'ผู้ดำเนิน
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        For Each dr2 As DataRow In dt_lcn2.Rows
+                            Try
+                                dr("thanm") = dr2("tha_fullname")
+                                XML.BSN_THAINAME = dr2("tha_fullname")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thaaddr") = dr2("thaaddr")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = dr2("identify")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thamu") = dr2("mu")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("tharoad") = dr2("tharoad")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thabuilding") = dr2("thabuilding")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thasoi") = dr2("thasoi")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thathmblnm") = dr2("thathmblnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thaamphrnm") = dr2("thaamphrnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("thachngwtnm") = dr2("thachngwtnm")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("zipcode") = dr2("zipcode")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NAME") = NAME
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("tel") = dr2("tel")
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("fax") = dr2("fax")
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    dr("CITIZEN_ID") = citizen_bsn
+                        'Catch ex As Exception
+
+                        'End Try
+                        'Try
+                        '    dr("NAME_JJ") = BSN_THAIFULLNAME
+                        'Catch ex As Exception
+
+                        'End Try
+                        'Try
+                        '    dr("THANM") = THANM
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    'XML.TYPE_PERSON_1 = TYPE_PERSON
+                    '    XML.BSN_THAINAME = THANM
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_PERSON_1"
+                XML.DT_SHOW.DT2 = dt_lcn
+            ElseIf TYPE_PERSON = 99 Then
+                'XML.TYPE_PERSON_99 = TYPE_PERSON
+                If dao_drrqt.fields.WHO_ID = True Then
+                    If TYPE_PERSON_WHO = 1 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        'XML.TYPE_PERSON_99 = TYPE_PERSON
+                        XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_who.fields.FK_LCT)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        'dt_lcn.Columns.Add("CITIZEN_ID")
+                        'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                        dt_lcn.Columns.Add("NAME")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            'Try
+                            '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                            '        If dr("Mobile") = Nothing Then
+                            '            dr("tel") = "-"
+                            '        Else
+                            '            dr("tel") = dr("Mobile")
+                            '        End If
+                            '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                            '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            '    End If
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("PERSON_AGE") = dao_tabean_herb.fields.PERSON_AGE
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = dao_tabean_herb.fields.NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = citizen_bsn
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NAME") = BSN_THAIFULLNAME
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("THANM") = THANM
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    ElseIf TYPE_PERSON = 99 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        'XML.TYPE_PERSON_99 = TYPE_PERSON
+                        XML.BSN_THAIFULLNAME = dao_tabean_herb.fields.AGENT_99
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+                        dt_lcn2 = bao.SP_Lisense_Name_and_Addr(IDENTIFY)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        dt_lcn.Columns.Add("NAME")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+                        dt_lcn.Columns.Add("CITIZEN_ID")
+                        dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            For Each dr2 As DataRow In dt_lcn2.Rows
+                                Try
+                                    dr("thanm") = dr2("tha_fullname")
+                                    XML.BSN_THAINAME = dao_tabean_herb.fields.AGENT_99
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaaddr") = dr2("thaaddr")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID") = dao_tabean_herb.fields.IDEN_AGENT_99
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thamu") = dr2("mu")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tharoad") = dr2("tharoad")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thabuilding") = dr2("thabuilding")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thasoi") = dr2("thasoi")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thathmblnm") = dr2("thathmblnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaamphrnm") = dr2("thaamphrnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("zipcode") = dr2("zipcode")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("NAME") = NAME
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tel") = dr2("tel")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("fax") = dr2("fax")
+                                Catch ex As Exception
+
+                                End Try
+                            Next
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+
+                            'Try
+                            '    dr("THANM") = THANM
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    End If
+                Else
+                    'XML.TYPE_PERSON_99 = TYPE_PERSON
+                    XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_NITI_99"
+                XML.DT_SHOW.DT3 = dt_lcn
+
+                If dao_drrqt.fields.WHO_ID = False Then
+                    If TYPE_PERSON = 1 Then
+                        XML.BSN_THAINAME = THANM
+                    ElseIf TYPE_PERSON = 99 Then
+                        XML.BSN_THAINAME = BSN_THAIFULLNAME
+                    End If
+                End If
+
+                If dao_lcn.fields.PROCESS_ID = 121 Then
+                    Dim dao_lcn_HPI As New DAO_DRUG.ClsDBdalcn
+                    dao_lcn_HPI.GetDataby_IDA_and_PROCESS_ID(_IDA_LCN, 121)
+
+                    Dim dao_lcn_bsn_HPI As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+                    dao_lcn_bsn_HPI.GetDataby_LCN_IDA(_IDA_LCN)
+
+                    Dim dao_cpn_HPI As New DAO_CPN.clsDBsyslcnsid
+                    Try
+
+                        dao_cpn_HPI.GetDataby_identify(dao_lcn_HPI.fields.CITIZEN_ID_AUTHORIZE)
+
+                    Catch ex As Exception
+
+                    End Try
+
+                    Dim TYPE_PERSON_HPI As Integer = dao_cpn_HPI.fields.type
+                    Dim LCNNO_DISPLAY_NEW_HPI As String = dao_lcn_HPI.fields.LCNNO_DISPLAY_NEW
+                    Dim THANM_HPI As String = dao_lcn_HPI.fields.thanm
+                    Dim BSN_THAIFULLNAME_HPI As String = dao_lcn_bsn_HPI.fields.BSN_THAIFULLNAME
+
+                    dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn_HPI.fields.FK_IDA)
+
+                    dt_lcn_location.Columns.Add("LCNNO_DISPLAY_NEW_HPI")
+                    dt_lcn_location.Columns.Add("THANM_HPI")
+                    dt_lcn_location.Columns.Add("BSN_THAIFULLNAME_HPI")
+
+                    For Each dr As DataRow In dt_lcn_location.Rows
+                        Try
+                            dr("LCNNO_DISPLAY_NEW_HPI") = LCNNO_DISPLAY_NEW_HPI
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM_HPI") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If TYPE_PERSON_HPI = 1 Then
+                                dr("BSN_THAIFULLNAME_HPI") = "-"
+                            Else
+                                dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME_HPI
+
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                    dt_lcn_location.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_HPI"
+                    XML.DT_SHOW.DT4 = dt_lcn_location
+                ElseIf dao_lcn.fields.PROCESS_ID = 122 Then
+                    Dim dao_lcn_HPM As New DAO_DRUG.ClsDBdalcn
+                    dao_lcn_HPM.GetDataby_IDA_and_PROCESS_ID(_IDA_LCN, 122)
+
+                    Dim dao_lcn_bsn_HPM As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+                    dao_lcn_bsn_HPM.GetDataby_LCN_IDA(_IDA_LCN)
+
+                    Dim dao_cpn_HPM As New DAO_CPN.clsDBsyslcnsid
+                    Try
+
+                        dao_cpn_HPM.GetDataby_identify(dao_lcn_HPM.fields.CITIZEN_ID_AUTHORIZE)
+
+                    Catch ex As Exception
+
+                    End Try
+                    Dim TYPE_PERSON_HPM As Integer = dao_cpn_HPM.fields.type
+                    Dim LCNNO_DISPLAY_NEW_HPM As String = dao_lcn_HPM.fields.LCNNO_DISPLAY_NEW
+                    Dim THANM_HPM As String = dao_lcn_HPM.fields.thanm
+                    Dim BSN_THAIFULLNAME_HPM As String = dao_lcn_bsn_HPM.fields.BSN_THAIFULLNAME
+
+                    dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn_HPM.fields.FK_IDA)
+
+                    dt_lcn_location.Columns.Add("LCNNO_DISPLAY_NEW_HPM")
+                    dt_lcn_location.Columns.Add("THANM_HPM")
+                    dt_lcn_location.Columns.Add("BSN_THAIFULLNAME_HPM")
+                    dt_lcn_location.Columns.Add("TREATMENT_AGE_FULL")
+
+                    For Each dr As DataRow In dt_lcn_location.Rows
+                        Try
+                            dr("LCNNO_DISPLAY_NEW_HPM") = LCNNO_DISPLAY_NEW_HPM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM_HPM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        If TYPE_PERSON_HPM = 1 Then
+                            dr("BSN_THAIFULLNAME_HPM") = "-"
+                        Else
+                            dr("BSN_THAIFULLNAME_HPM") = BSN_THAIFULLNAME_HPM
+
+                        End If
+                    Next
+
+                    dt_lcn_location.TableName = "XML_TABEAN_TBN_LOCATION_ADDRESS_HPM"
+                    XML.DT_SHOW.DT5 = dt_lcn_location
+                End If
+
+                Dim bao_sp2 As New BAO.ClsDBSqlcommand
+                XML.DT_SHOW.DT6 = bao_sp2.SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2(FK_IDA)
+                XML.DT_SHOW.DT6.TableName = "SP_DRRQT_PRODUCER_IN_BY_FK_IDA_V2"
+                Try
+                    If dao_tabean_herb.fields.NATIONALITY_PERSON_ID = 1 Then
+                        XML.NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON
+                    Else
+                        XML.NATIONALITY_PERSON = dao_tabean_herb.fields.NATIONALITY_PERSON_OTHER
+                    End If
+                Catch ex As Exception
+
+                End Try
+
+                If TYPE_PERSON = 1 Then
+                    XML.THANM_THAIFULLNAME = THANM
+                ElseIf TYPE_PERSON = 99 Then
+                    XML.THANM_THAIFULLNAME = BSN_THAIFULLNAME
+                End If
+            End If
+            Return XML
+        End Function
+
+        Public Function Gen_XML_RENREW_JJ(ByVal IDA As Integer, ByVal FK_IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_RENEW
+            Dim dao_RN As New DAO_TABEAN_HERB.TB_TABEAN_RENEW
+            Dim Process_id As String = ""
+            Dim CLS_TABEAN_RENEW As New TABEAN_RENEW
+            dao_RN.GetdatabyID_IDA(IDA)
+            XML.TABEAN_RENEW = dao_RN.fields
+            Process_id = dao_RN.fields.PROCESS_ID
+
+            Dim DT As New DataTable
+            Dim BAO_SP_RN As New BAO_TABEAN_HERB.tb_main
+            DT = BAO_SP_RN.SP_XML_TABEAN_RENEW_TBN(FK_IDA)
+            DT.TableName = "SP_XML_TABEAN_RENEW_TBN"
+            XML.DT_SHOW.DT1 = DT
+
+            If dao_RN.fields.STATUS_ID = 0 Then
+                XML.WRITEDATE_FULL_THAI = date_to_thai(Date.Now)
+
+            ElseIf dao_RN.fields.STATUS_ID > 1 Then
+                XML.WRITEDATE_FULL_THAI = date_to_thai(dao_RN.fields.CREATE_DATE)
+            Else
+                XML.WRITEDATE_FULL_THAI = date_to_thai(Date.Now)
+            End If
+
+            Dim dt_lcn As New DataTable
+            Dim dt_lcn_location As New DataTable
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+            dao.GetdatabyID_IDA(FK_IDA)
+
+            Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
+            Dim dao_cpn2 As New DAO_CPN.clsDBsyslcnsid
+            dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+            dao_cpn2.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+            Dim dao_customer As New DAO_CPN.clsDBsyslcnsnm
+            dao_customer.GetDataby_lcnsid(DAO_LCN.fields.lcnsid)
+
+            Dim dao_esub As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Try
+                dao_esub.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+            Dim THANM As String = DAO_LCN.fields.thanm
+            If THANM = "" Or THANM Is Nothing Then
+                THANM = dao_customer.fields.prefixnm & " " & dao_customer.fields.thanm
+            Else
+                THANM = DAO_LCN.fields.syslcnsnm_prefixnm & " " & DAO_LCN.fields.thanm
+            End If
+            Dim tb_location As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            Try
+                tb_location.GetDataby_LCN_IDA(_IDA_LCN)
+            Catch ex As Exception
+
+            End Try
+
+            Dim citizen_bsn As String = tb_location.fields.BSN_IDENTIFY
+            Dim dao_pfx As New DAO_CPN.TB_sysprefix
+            Dim BSN_THAIFULLNAME As String = ""
+            Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+            dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+            Dim WHO_NAME As String = ""
+            WHO_NAME = dao_who.fields.THANM_NAME
+            Try
+                dao_pfx.Getdata_byid(tb_location.fields.BSN_PREFIXTHAICD)
+                Dim BSN_PRIFRFIX As String = dao_pfx.fields.thanm
+                Dim BSN_THAINAME As String = tb_location.fields.BSN_THAINAME
+                Dim BSN_THAILASTNAME As String = tb_location.fields.BSN_THAILASTNAME
+                'If dao.fields.WHO_ID = True Then
+                '    BSN_THAIFULLNAME = WHO_NAME
+                'Else
+                '    BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+                'End If
+                BSN_THAIFULLNAME = BSN_PRIFRFIX & " " & BSN_THAINAME & " " & BSN_THAILASTNAME
+
+            Catch ex As Exception
+
+            End Try
+
+            Dim person_age As String = ""
+            Dim NATIONALITY_PERSON As String = ""
+            Try
+                person_age = dao.fields.PERSON_AGE
+                If dao.fields.NATIONALITY_PERSON_ID = 1 Then
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON
+                Else
+                    NATIONALITY_PERSON = dao.fields.NATIONALITY_PERSON_OTHER
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Dim TYPE_PERSON As Integer = dao_cpn.fields.type
+            Dim TYPE_PERSON_WHO As Integer = dao_cpn2.fields.type
+            Dim NATION As String = DAO_LCN.fields.NATION
+            'Dim THANM As String = dao_lcn.fields.thanm
+
+            Dim CITIZEN_ID As String = dao.fields.CITIZEN_ID
+            Dim CITIZEN_ID_AUTHORIZE As String = dao.fields.CITIZEN_ID_AUTHORIZE
+            Dim NAME_JJ As String = dao.fields.NAME_JJ
+            Dim THANAMEPLACE As String = dao.fields.LCN_THANAMEPLACE
+
+            Dim bao As New BAO.ClsDBSqlcommand
+            Dim dt_lcn2 As New DataTable
+
+
+            Dim DT_WHO As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT_WHO = BAO_SP.SP_XML_WHO_DALCN(FK_IDA)
+            'ข้อ 2 
+            If TYPE_PERSON = 1 Then
+                'XML.TYPE_PERSON_1 = TYPE_PERSON
+                If dao.fields.WHO_ID = True Then
+                    dt_lcn = BAO_SP.SP_XML_WHO_DALCN(FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    'dt_lcn.Columns.Add("CITIZEN_ID")
+                    'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        'Try
+                        '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                        '        If dr("Mobile") = Nothing Then
+                        '            dr("tel") = "-"
+                        '        Else
+                        '            dr("tel") = dr("Mobile")
+                        '        End If
+                        '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                        '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                        '    End If
+                        'Catch ex As Exception
+
+                        'End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(DAO_LCN.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_PERSON_1"
+                XML.DT_SHOW.DT3 = dt_lcn
+            ElseIf TYPE_PERSON = 99 Then
+                'XML.TYPE_PERSON_99 = TYPE_PERSON
+                If dao.fields.WHO_ID = True Then
+                    If TYPE_PERSON_WHO = 1 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_who.fields.FK_LCT)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        'dt_lcn.Columns.Add("CITIZEN_ID")
+                        'dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                        dt_lcn.Columns.Add("NAME_JJ")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            'Try
+                            '    If dr("tel") = Nothing Or dr("tel") = "-" Then
+                            '        If dr("Mobile") = Nothing Then
+                            '            dr("tel") = "-"
+                            '        Else
+                            '            dr("tel") = dr("Mobile")
+                            '        End If
+                            '    ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                            '        dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            '    End If
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("CITIZEN_ID") = citizen_bsn
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NAME_JJ") = BSN_THAIFULLNAME
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("THANM") = THANM
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    ElseIf TYPE_PERSON = 99 Then
+                        'dt_lcn = BAO_SP.SP_XML_WHO_DALCN(IDA)
+                        dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao.fields.IDA_LCT)
+                        dt_lcn2 = bao.SP_Lisense_Name_and_Addr(dao.fields.CITIZEN_ID_AUTHORIZE)
+
+                        dt_lcn.Columns.Add("NATION")
+                        dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                        dt_lcn.Columns.Add("NAME_JJ")
+                        dt_lcn.Columns.Add("THANM")
+                        dt_lcn.Columns.Add("THANAMEPLACE")
+                        dt_lcn.Columns.Add("PERSON_AGE")
+                        dt_lcn.Columns.Add("NATIONALITY_PERSON")
+                        dt_lcn.Columns.Add("CITIZEN_ID")
+                        dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+
+                        For Each dr As DataRow In dt_lcn.Rows
+                            For Each dr2 As DataRow In dt_lcn2.Rows
+                                Try
+                                    dr("thanm") = dr2("tha_fullname")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaaddr") = dr2("thaaddr")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID") = CITIZEN_ID
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("CITIZEN_ID_AUTHORIZE") = dr2("identify")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thamu") = dr2("mu")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tharoad") = dr2("tharoad")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thabuilding") = dr2("thabuilding")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thasoi") = dr2("thasoi")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thathmblnm") = dr2("thathmblnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thaamphrnm") = dr2("thaamphrnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("thachngwtnm_nozip") = dr2("thachngwtnm")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("zipcode") = dr2("zipcode")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("NAME_JJ") = NAME_JJ
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("tel") = dr2("tel")
+                                Catch ex As Exception
+
+                                End Try
+                                Try
+                                    dr("fax") = dr2("fax")
+                                Catch ex As Exception
+
+                                End Try
+                            Next
+                            Try
+                                dr("NATION") = NATION
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("PERSON_AGE") = person_age
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                            Catch ex As Exception
+
+                            End Try
+                            Try
+                                dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                            Catch ex As Exception
+
+                            End Try
+
+                            'Try
+                            '    dr("THANM") = THANM
+                            'Catch ex As Exception
+
+                            'End Try
+                            Try
+                                dr("THANAMEPLACE") = THANAMEPLACE
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    End If
+                Else
+                    dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(DAO_LCN.fields.FK_IDA)
+
+                    dt_lcn.Columns.Add("NATION")
+                    dt_lcn.Columns.Add("TYPE_PERSON_CPN")
+                    dt_lcn.Columns.Add("CITIZEN_ID")
+                    dt_lcn.Columns.Add("CITIZEN_ID_AUTHORIZE")
+                    dt_lcn.Columns.Add("NAME_JJ")
+                    dt_lcn.Columns.Add("THANM")
+                    dt_lcn.Columns.Add("THANAMEPLACE")
+                    dt_lcn.Columns.Add("PERSON_AGE")
+                    dt_lcn.Columns.Add("NATIONALITY_PERSON")
+
+                    For Each dr As DataRow In dt_lcn.Rows
+                        Try
+                            dr("NATION") = NATION
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            If dr("tel") = Nothing Or dr("tel") = "-" Then
+                                If dr("Mobile") = Nothing Then
+                                    dr("tel") = "-"
+                                Else
+                                    dr("tel") = dr("Mobile")
+                                End If
+                            ElseIf dr("Mobile") IsNot Nothing And dr("tel") IsNot Nothing Or dr("tel") = "-" Then
+                                dr("tel") = dr("tel") & ", " & dr("Mobile")
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("PERSON_AGE") = person_age
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NATIONALITY_PERSON") = NATIONALITY_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("TYPE_PERSON_CPN") = TYPE_PERSON
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID") = citizen_bsn
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("CITIZEN_ID_AUTHORIZE") = CITIZEN_ID_AUTHORIZE
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("NAME_JJ") = BSN_THAIFULLNAME
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANM") = THANM
+                        Catch ex As Exception
+
+                        End Try
+                        Try
+                            dr("THANAMEPLACE") = THANAMEPLACE
+                        Catch ex As Exception
+
+                        End Try
+
+                    Next
+                End If
+
+                dt_lcn.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_NITI_99"
+                XML.DT_SHOW.DT4 = dt_lcn
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.BSN_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Then
+                XML.BSN_THAIFULLNAME = BSN_THAIFULLNAME
+            End If
+            Dim dt_jj As New DataTable
+            'HEAD
+            Dim bao_xml As New BAO_TABEAN_HERB.tb_xml
+            dt_jj = bao_xml.SP_XML_TABEAN_JJ(FK_IDA)
+
+            dt_jj.Columns.Add("TYPE_SUB_NAME_CHANGE")
+            dt_jj.Columns.Add("PP_JJ")
+            dt_jj.Columns.Add("TREATMENT_AGE_FULL")
+            For Each dr As DataRow In dt_jj.Rows
+
+                'If dr("TYPE_SUB_ID") = 1 Then
+                '    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนไทย"
+                'ElseIf dr("TYPE_SUB_ID") = 2 Then
+                '    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนจีน"
+                'ElseIf dr("TYPE_SUB_ID") = 3 Then
+                '    dr("TYPE_SUB_NAME_CHANGE") = "ยาพัฒนาจากสมุนไพร"
+                'End If
+                Try
+                    If dao.fields.TREATMENT_AGE Is Nothing Or dao.fields.TREATMENT_AGE = 0 Then
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    ElseIf dao.fields.TREATMENT_AGE_MONTH Is Nothing Or dao.fields.TREATMENT_AGE_MONTH = 0 Then
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE & " " & "ปี"
+                    Else
+                        dr("TREATMENT_AGE_FULL") = "การเก็บรักษา " & dao.fields.STORAGE_NAME & " / อายุการเก็บรักษา " & dao.fields.TREATMENT_AGE & " " & "ปี" & " " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    End If
+                    'dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE & " " & dao.fields.TREATMENT_AGE_NAME
+
+                Catch ex As Exception
+                    dr("TREATMENT_AGE_FULL") = dao.fields.STORAGE_NAME & " " & dao.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                End Try
+
+                dr("PP_JJ") = "ตามเอกสารแนบ"
+
+                'If dr("TYPE_SUB_ID") = 2 Then
+                '    dr("TYPE_SUB_NAME_CHANGE") = "ยาแผนจีน"
+                'End If
+
+            Next
+            dt_jj.TableName = "XML_TABEAN_JJ"
+            XML.DT_SHOW.DT5 = dt_jj
+
+            'XML.TABEAN_JJ = dao.fields
+
+            Dim date_approve_day As Date
+            Dim date_approve_month As Date
+            Dim date_approve_year As Date
+            Dim date_req_day As Date
+            Dim date_req_month As Date
+            Dim date_req_year As Date
+
+
+            Dim dao_detail As New DAO_TABEAN_HERB.TB_TABEAN_SUBPACKAGE
+            dao_detail.GetData_ByFkIDA(FK_IDA)
+
+            For Each dao_detail.fields In dao_detail.Details
+                'XML.TABEAN_SUBPACKAGE.Add(dao_detail.fields)
+
+                Dim pk As String = ""
+                pk = " primary packaging " & dao_detail.fields.PACK_FSIZE_NAME & " " & dao_detail.fields.PACK_FSIZE_VOLUME & " " & dao_detail.fields.PACK_FSIZE_UNIT_NAME & " secondary packaging " &
+                    dao_detail.fields.PACK_SECSIZE_NAME & " " & dao_detail.fields.PACK_SECSIZE_VOLUME & " " & dao_detail.fields.PACK_SECSIZE_UNIT_NAME & " tertiary packaging " &
+                    dao_detail.fields.PACK_THSIZE_NAME & " " & dao_detail.fields.PACK_THSSIZE_VOLUME & " " & dao_detail.fields.PACK_THSIZE_UNIT_NAME
+
+                'XML.list_subpackage.Add(pk)
+            Next
+
+            If DAO_LCN.fields.PROCESS_ID = 121 Then
+                Dim dao_lcn_HPI As New DAO_DRUG.ClsDBdalcn
+                dao_lcn_HPI.GetDataby_IDA_and_PROCESS_ID(_IDA_LCN, 121)
+
+                Dim dao_lcn_bsn_HPI As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+                dao_lcn_bsn_HPI.GetDataby_LCN_IDA(_IDA_LCN)
+
+                Dim LCNNO_DISPLAY_NEW_HPI As String = dao_lcn_HPI.fields.LCNNO_DISPLAY_NEW
+                Dim THANM_HPI As String = dao_lcn_HPI.fields.thanm
+                Dim BSN_THAIFULLNAME_HPI As String = dao_lcn_bsn_HPI.fields.BSN_THAIFULLNAME
+
+                dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn_HPI.fields.FK_IDA)
+
+                dt_lcn_location.Columns.Add("LCNNO_DISPLAY_NEW_HPI")
+                dt_lcn_location.Columns.Add("THANM_HPI")
+                dt_lcn_location.Columns.Add("BSN_THAIFULLNAME_HPI")
+
+                For Each dr As DataRow In dt_lcn_location.Rows
+                    Try
+                        dr("LCNNO_DISPLAY_NEW_HPI") = LCNNO_DISPLAY_NEW_HPI
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM_HPI") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("BSN_THAIFULLNAME_HPI") = BSN_THAIFULLNAME
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPI"
+                XML.DT_SHOW.DT1 = dt_lcn_location
+            ElseIf DAO_LCN.fields.PROCESS_ID = 122 Then
+                Dim dao_lcn_HPM As New DAO_DRUG.ClsDBdalcn
+                dao_lcn_HPM.GetDataby_IDA_and_PROCESS_ID(_IDA_LCN, 122)
+
+                Dim dao_lcn_bsn_HPM As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+                dao_lcn_bsn_HPM.GetDataby_LCN_IDA(_IDA_LCN)
+
+                Dim LCNNO_DISPLAY_NEW_HPM As String = dao_lcn_HPM.fields.LCNNO_DISPLAY_NEW
+                Dim THANM_HPM As String = dao_lcn_HPM.fields.thanm
+                Dim BSN_THAIFULLNAME_HPM As String = dao_lcn_bsn_HPM.fields.BSN_THAIFULLNAME
+
+                dt_lcn_location = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn_HPM.fields.FK_IDA)
+
+                dt_lcn_location.Columns.Add("LCNNO_DISPLAY_NEW_HPM")
+                dt_lcn_location.Columns.Add("THANM_HPM")
+                dt_lcn_location.Columns.Add("BSN_THAIFULLNAME_HPM")
+
+                For Each dr As DataRow In dt_lcn_location.Rows
+                    Try
+                        dr("LCNNO_DISPLAY_NEW_HPM") = LCNNO_DISPLAY_NEW_HPM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("THANM_HPM") = THANM
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        dr("BSN_THAIFULLNAME_HPM") = BSN_THAIFULLNAME
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+
+                dt_lcn_location.TableName = "XML_TABEAN_JJ_LOCATION_ADDRESS_HPM"
+                XML.DT_SHOW.DT2 = dt_lcn_location
+            End If
+
+            If TYPE_PERSON = 1 Then
+                XML.THANM_THAIFULLNAME = THANM
+            ElseIf TYPE_PERSON = 99 Then
+                XML.THANM_THAIFULLNAME = BSN_THAIFULLNAME
+            End If
+
+
+            Return XML
+        End Function
+    End Class
+
+    Public Class TABEAN_NEW_EDIT
+        Inherits Center
+        Public Function GEN_XML_TABEAN_NEW_EDIT(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_EDIT
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
+            Dim CLS_TABEAN_EDIT As New TABEAN_HERB_EDIT_REQUEST
+            dao.GetdatabyID_IDA(IDA)
+            If dao.fields.Other_commands_ID IsNot Nothing Then
+                dao.fields.Other_commands_ID = 1
+                If dao.fields.Other_commands_Day IsNot Nothing Then
+                    dao.fields.Other_commands = dao.fields.Other_commands & " " & dao.fields.Other_commands_Day & " วัน"
+                Else
+                    dao.fields.Other_commands = dao.fields.Other_commands
+                End If
+            Else
+                dao.fields.Other_commands_ID = 0
+            End If
+            If dao.fields.STATUS_ID = 9 Or dao.fields.STATUS_ID = 7 Or dao.fields.STATUS_ID = 10 Or dao.fields.STATUS_ID = 5 Or dao.fields.STATUS_ID = 15 Then
+                dao.fields.STATUS_ID = 7
+            End If
+            'If dao.fields.Other_commands_ID IsNot Nothing Then dao.fields.Other_commands_ID = 1
+            XML.TABEAN_HERB_EDIT_REQUEST = dao.fields
+
+            Dim IDA_DQ As String = ""
+            Dim dao_Q As New DAO_DRUG.ClsDBdrrqt
+            Dim dao_tn As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+            Dim dao_g As New DAO_DRUG.ClsDBdrrgt
+            dao_g.GetDataby_IDA(dao.fields.FK_IDA)
+            Try
+                dao_g.GetDataby_IDA(dao.fields.FK_IDA)
+                IDA_DQ = dao_g.fields.FK_DRRQT
+
+                dao_Q.GetDataby_IDA(dao.fields.FK_DRRQT)
+                dao_tn.GetdatabyID_FK_IDA_DQ(IDA_DQ)
+            Catch ex As Exception
+
+            End Try
+            Dim NEWCODE As String = ""
+            Dim NEWCODE_U As String = ""
+            Dim dao_d As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST_DETAIL
+            dao_d.GetdatabyID_FK_IDA(IDA)
+            Dim dao_h As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
+            Try
+                If dao_g.fields.rgtno IsNot Nothing Then
+                    dao_h.GetDataby_4Key(dao_g.fields.rgtno, dao_g.fields.rgttpcd, dao_g.fields.drgtpcd, dao_g.fields.pvncd)
+                Else
+                    dao_h.GetDataby_IDA_drrgt(dao.fields.FK_IDA)
+                End If
+                NEWCODE = dao_h.fields.Newcode
+                NEWCODE_U = dao_h.fields.Newcode_U
+            Catch ex As Exception
+                dao_h.GetDataby_IDA_drrgt(dao.fields.FK_IDA)
+            End Try
+
+            Dim full_rgtno As String = ""
+            If dao_Q.fields.RGTNO_NEW = "" Then
+                Try
+                    full_rgtno = dao_g.fields.rgttpcd & " " & Integer.Parse(Right(dao_g.fields.rgtno, 5)).ToString() & "/" & Left(dao_g.fields.rgtno, 2)
+                Catch ex As Exception
+
+                End Try
+
+                Dim dao_ty As New DAO_DRUG.ClsDBdrdrgtype
+                Try
+                    dao_ty.GetDataby_drgtpcd(dao_g.fields.drgtpcd)
+                    full_rgtno &= " " & dao_ty.fields.engdrgtpnm
+                Catch ex As Exception
+
+                End Try
+            Else
+                full_rgtno = dao_Q.fields.RGTNO_NEW
+            End If
+
+            Dim citizen_id As String = ""
+            If dao.fields.IDENTIFY = "" Then
+                citizen_id = dao.fields.IDENTIFY
+            Else
+                citizen_id = dao.fields.IDENTIFY
+            End If
+            Dim NAME As String = ""
+            Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+            Dim obj As New XML_DATA
+            'Dim cls As New CLS_COMMON.convert
+            Dim result As String = ""
+            'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+            result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
+            obj = ConvertFromXml(Of XML_DATA)(result)
+            Try
+                Dim TYPE_PERSON As Integer = obj.SYSLCNSIDs.type
+                If TYPE_PERSON = 1 Then
+                    NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                Else
+                    If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                        NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                    Else
+                        NAME = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
+            Dim dao_c As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST_CHK_LIST
+            dao_c.GetdatabyID_FK_IDA(IDA)
+
+            Dim PRODUCT_NAME_NEW As String = ""
+            Dim PRODUCT_NAME_OLD As String = ""
+            If dao_c.fields.NAME_PRODUCT_ID = True Then
+                If dao_c.fields.SUB_NAME_ENG = True Then
+                    If dao_h.fields.engdrgnm = "" Then PRODUCT_NAME_OLD = dao_g.fields.engdrgnm Else PRODUCT_NAME_OLD = dao_h.fields.engdrgnm
+                    PRODUCT_NAME_OLD = "ชื่อภาษาอังกฤษ: " & PRODUCT_NAME_OLD
+                End If
+
+                If dao_c.fields.SUB_NAME_OTHER = True Then
+                    If dao_tn.fields.NAME_OTHER = "" Then
+                        PRODUCT_NAME_OLD = PRODUCT_NAME_OLD & vbCrLf & "ชื่อผลิตภัณฑ์ภาษาอื่น: -"
+                    Else
+                        PRODUCT_NAME_OLD = PRODUCT_NAME_OLD & vbCrLf & "ชื่อผลิตภัณฑ์ภาษาอื่น: " & dao_tn.fields.NAME_OTHER
+                    End If
+                End If
+                If dao_c.fields.SUB_NAME_EXPORT = True Then
+                    If dao_tn.fields.NAME_EXPORT = "" Then
+                        PRODUCT_NAME_OLD = PRODUCT_NAME_OLD & vbCrLf & "ชื่อผลิตภัณฑ์เพื่อการส่งออก: -"
+                    Else
+                        PRODUCT_NAME_OLD = PRODUCT_NAME_OLD & vbCrLf & "ชื่อผลิตภัณฑ์เพื่อการส่งออก: " & dao_tn.fields.NAME_EXPORT
+                    End If
+                End If
+
+                If dao_c.fields.SUB_NAME_ENG = True Then PRODUCT_NAME_NEW = "ชื่อภาษาอังกฤษ: " & dao_d.fields.NAME_ENG
+                If dao_c.fields.SUB_NAME_OTHER = True Then PRODUCT_NAME_NEW = PRODUCT_NAME_NEW & vbCrLf & "ชื่อผลิตภัณฑ์ภาษาอื่น: " & dao_d.fields.NAME_OTHER
+                If dao_c.fields.SUB_NAME_EXPORT = True Then PRODUCT_NAME_NEW = PRODUCT_NAME_NEW & vbCrLf & "ชื่อผลิตภัณฑ์เพื่อการส่งออก: " & dao_d.fields.NAME_EXPORT
+                'PRODUCT_NAME_OLD = dao_g.fields.engdrgnm & ", " & dao_tn.fields.NAME_OTHER
+                'PRODUCT_NAME_NEW = dao_d.fields.NAME_ENG & ", " & dao_d.fields.NAME_OTHER
+            End If
+
+            Dim NAME_LOCATION_OLD As String = ""
+            Dim NAME_LOCATION_NEW As String = ""
+            Dim bao_dal As New BAO_SHOW
+            Dim dt_lcn2 As New DataTable
+            dt_lcn2 = bao_dal.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao.fields.IDA)
+            If dao_c.fields.NAME_LOCATION_ID = True Then
+                For Each dr As DataRow In dt_lcn2.Rows
+                    Try
+                        NAME_LOCATION_NEW = dr("thanm")
+                        NAME_LOCATION_OLD = dao_h.fields.thanm_locaion
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            End If
+
+            Dim PRODUCT_RECIPE_OLD As String = ""
+            Dim PRODUCT_RECIPE_NEW As String = ""
+            Dim dao_recipe As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST_IOWA
+
+            If dao_c.fields.PRODUCT_RECIPE_ID = True Then
+                PRODUCT_RECIPE_NEW = "ตามเอกสารแนบท้าย"
+                PRODUCT_RECIPE_OLD = "ตามเอกสารแนบท้าย"
+            End If
+
+            Dim PRODUCTION_PROCESS_OLD As String = ""
+            Dim PRODUCTION_PROCESS_NEW As String = ""
+            If dao_c.fields.PRODUCTION_PROCESS_ID = True Then
+                If dao_tn.fields.PRODUCT_PROCESS = "" Then
+                    PRODUCTION_PROCESS_OLD = "ไม่มีข้อมูล"
+                Else
+                    PRODUCTION_PROCESS_OLD = dao_tn.fields.PRODUCT_PROCESS
+                End If
+
+                PRODUCTION_PROCESS_NEW = dao_d.fields.PRODUCT_PROCESS
+                Dim dt_process As New DataTable
+                Dim dao_process As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_MANUFACTRUE
+                dao_process.GetdatabyID_FK_IDA_BY_MENUFAC(IDA)
+                For Each dao_process.fields In dao_process.datas
+                    PRODUCTION_PROCESS_NEW = PRODUCTION_PROCESS_NEW & " " & dao_process.fields.NO_ID & ". " & dao_process.fields.MENUFAC_NAME
+                Next
+
+            End If
+
+            Dim PROPERTIES_OLD As String = ""
+            Dim PROPERTIES_NEW As String = ""
+            If dao_c.fields.PROPERTIES_ID = True Then
+                If dao_h.fields.indication = "" Then
+                    PROPERTIES_OLD = "ไม่มีข้อมูล"
+                Else
+                    PROPERTIES_OLD = dao_h.fields.indication
+                End If
+
+                PROPERTIES_NEW = dao_d.fields.PROPERTIES
+            End If
+
+            Dim SIZE_USE_OLD As String = ""
+            Dim SIZE_USE_NEW As String = ""
+            Dim dao_c124 As New DAO_XML_DRUG_HERB.TB_XML_DRUG_CONTAIN_HERB
+            Try
+                dao_c124.GetDataby_Newcode(dao_h.fields.Newcode)
+                NEWCODE = dao_h.fields.Newcode
+                NEWCODE_U = dao_h.fields.Newcode_U
+            Catch ex As Exception
+
+            End Try
+            If dao_c.fields.SIZE_USE_ID = True Then
+                'If dao_tn.fields.SIZE_USE = "" Then
+                '    SIZE_USE_NEW = "ไม่มีข้อมูล"
+                'Else
+                SIZE_USE_NEW = dao_d.fields.SIZE_USE
+                'End If
+                If dao_tn.fields.SIZE_USE = "" Then
+                    SIZE_USE_OLD = "ไม่มีข้อมูล"
+                Else
+                    SIZE_USE_OLD = dao_tn.fields.SIZE_USE
+                End If
+                'SIZE_USE_OLD = dao_tn.fields.SIZE_USE
+            End If
+
+            Dim PREPARE_EAT_OLD As String = ""
+            Dim PREPARE_EAT_NEW As String = ""
+            If dao_c.fields.PREPARE_EAT_ID = True Then
+                If dao_d.fields.EATTING_NAME = "" Then
+                    PREPARE_EAT_OLD = "ไม่มีข้อมูล"
+                Else
+                    PREPARE_EAT_OLD = dao_tn.fields.EATTING_NAME
+                End If
+                PREPARE_EAT_NEW = dao_d.fields.EATTING_NAME
+            End If
+
+            Dim EAT_CONDITION_OLD As String = ""
+            Dim EAT_CONDITION_NEW As String = ""
+            If dao_c.fields.EAT_CONDITION_ID = True Then
+                If dao_tn.fields.EATING_CONDITION_NAME = "" Then
+                    EAT_CONDITION_OLD = "ไม่มีข้อมูล"
+                Else
+                    EAT_CONDITION_OLD = dao_tn.fields.EATTING_NAME
+                End If
+                EAT_CONDITION_NEW = dao_d.fields.EATTING_NAME
+            End If
+
+            Dim STORAGE_OLD As String = ""
+            Dim STORAGE_NEW As String = ""
+            If dao_c.fields.STORAGE_ID = True Then
+                Try
+                    If (dao_tn.fields.TREATMENT_AGE Is Nothing Or dao_tn.fields.TREATMENT_AGE = 0) And dao_tn.fields.TREATMENT_AGE_MONTH IsNot Nothing Then
+                        STORAGE_OLD = dao_tn.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    ElseIf (dao_tn.fields.TREATMENT_AGE_MONTH Is Nothing Or dao_tn.fields.TREATMENT_AGE_MONTH = 0) And dao_tn.fields.TREATMENT_AGE IsNot Nothing Then
+                        STORAGE_OLD = dao_tn.fields.TREATMENT_AGE & " " & "ปี"
+                    ElseIf (dao_tn.fields.TREATMENT_AGE Is Nothing Or dao_tn.fields.TREATMENT_AGE = 0) And dao_tn.fields.TREATMENT_AGE_MONTH Is Nothing Then
+                        STORAGE_OLD = "ไม่มีข้อมูล"
+                    Else
+                        STORAGE_OLD = dao_tn.fields.TREATMENT_AGE & " " & "ปี" & " " & dao_tn.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    End If
+
+                    If (dao_d.fields.TREATMENT_AGE Is Nothing Or dao_d.fields.TREATMENT_AGE = 0) And dao_d.fields.TREATMENT_AGE_MONTH IsNot Nothing Then
+                        STORAGE_NEW = dao_d.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    ElseIf (dao_d.fields.TREATMENT_AGE_MONTH Is Nothing Or dao_d.fields.TREATMENT_AGE_MONTH = 0) And dao_d.fields.TREATMENT_AGE IsNot Nothing Then
+                        STORAGE_NEW = dao_d.fields.TREATMENT_AGE & " " & "ปี"
+                    ElseIf (dao_d.fields.TREATMENT_AGE Is Nothing Or dao_d.fields.TREATMENT_AGE = 0) And dao_d.fields.TREATMENT_AGE_MONTH Is Nothing Then
+                        STORAGE_NEW = "ไม่มีข้อมูล"
+                    Else
+                        STORAGE_NEW = dao_d.fields.TREATMENT_AGE & " " & "ปี" & " " & dao_d.fields.TREATMENT_AGE_MONTH & " " & "เดือน"
+                    End If
+                    If dao_tn.fields.STORAGE_NAME = "" Then
+                        STORAGE_OLD = "การเก็บรักษา: -" & vbCrLf & "อายุการเก็บรักษา: " & STORAGE_NEW
+                    Else
+                        STORAGE_OLD = "การเก็บรักษา: " & dao_tn.fields.STORAGE_NAME & vbCrLf & "อายุการเก็บรักษา: " & STORAGE_NEW
+                    End If
+                    STORAGE_NEW = "การเก็บรักษา: " & dao_d.fields.STORAGE_NAME & vbCrLf & "อายุการเก็บรักษา: " & STORAGE_NEW
+                Catch ex As Exception
+
+                End Try
+
+            End If
+
+            Dim CONTAINER_PACKING_OLD As String = ""
+            Dim CONTAINER_PACKING_NEW As String = ""
+            If dao_c.fields.CONTAINER_PACKING_ID = True Then
+                CONTAINER_PACKING_NEW = dao_d.fields.SIZE_PACK
+                If dao_c124.fields.SUBTITLE_SIZE_DRUG = "" Then
+                    If dao_g.fields.PACKAGE_DETAIL = "" Then
+                        CONTAINER_PACKING_OLD = "ไม่มีข้อมูล"
+                    Else
+                        CONTAINER_PACKING_OLD = dao_g.fields.PACKAGE_DETAIL
+                    End If
+                Else
+                    CONTAINER_PACKING_OLD = dao_c124.fields.SUBTITLE_SIZE_DRUG
+                End If
+            End If
+
+            Dim QUALITY_CONTROL_OLD As String = ""
+            Dim QUALITY_CONTROL_NEW As String = ""
+            If dao_c.fields.QUALITY_CONTROL_ID = True Then
+
+            End If
+
+            Dim CER_LCN_OLD As String = ""
+            Dim CER_LCN_NEW As String = ""
+            If dao_c.fields.CER_LCN_ID = True Then
+
+            End If
+
+            Dim ETIQUETQ_OLD As String = ""
+            Dim ETIQUETQ_NEW As String = ""
+            If dao_c.fields.ETIQUETQ_ID = True Then
+                ETIQUETQ_OLD = "ฉลาก และเอกสารกำกับเดิม"
+                ETIQUETQ_NEW = "ฉลาก และเอกสารกำกับกำกับใหม่"
+            End If
+
+            Dim PRODUCT_DOCUMENT_OLD As String = ""
+            Dim PRODUCT_DOCUMENT_NEW As String = ""
+            If dao_c.fields.PRODUCT_DOCUMENT_ID = True Then
+
+            End If
+
+            Dim CHANNEL_SALE_OLD As String = ""
+            Dim CHANNEL_SALE_NEW As String = ""
+            If dao_c.fields.CHANNEL_SALE_ID = True Then
+                If dao_tn.fields.SALE_CHANNEL_NAME = "" Then
+                    CHANNEL_SALE_OLD = "ไม่มีข้อมูล"
+                Else
+                    CHANNEL_SALE_OLD = dao_tn.fields.SALE_CHANNEL_NAME
+                End If
+                CHANNEL_SALE_NEW = dao_d.fields.SALE_CHANNEL_NAME
+            End If
+            Dim DT As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            DT = BAO_SP.SP_XML_TABEAN_EDIT_REQUEST_BY_IDA(IDA)
+
+            DT.Columns.Add("RGTNO_DISPLAY")
+            DT.Columns.Add("THANM")
+            DT.Columns.Add("THANM_THAIFULLNAME")
+            DT.Columns.Add("BSN_THAIFULLNAME")
+
+            DT.Columns.Add("DOCUMENT_NAME_OLD")  'เอกสารกำกับ
+            DT.Columns.Add("DOCUMENT_NAME_NEW")
+
+            DT.Columns.Add("PRODUCT_NAME_OLD")  'ชื่อของผลิตภัณฑ์สมุนไพร
+            DT.Columns.Add("PRODUCT_NAME_NEW")
+
+            DT.Columns.Add("NAME_LOCATION_OLD")   'ชื่อหรือที่อยู่ของสถานที่ผลิต/ นำเข้ำ
+            DT.Columns.Add("NAME_LOCATION_NEW")
+
+            DT.Columns.Add("PRODUCT_RECIPE_OLD")  'ตำรับผลิตภัณฑ์สมุนไพร 
+            DT.Columns.Add("PRODUCT_RECIPE_NEW")
+
+            DT.Columns.Add("PRODUCTION_PROCESS_OLD")  'กรรมวิธีการผลิต 
+            DT.Columns.Add("PRODUCTION_PROCESS_NEW")
+
+            DT.Columns.Add("PROPERTIES_OLD")   'ตำรับผลิตภัณฑ์สมุนไพร 
+            DT.Columns.Add("PROPERTIES_NEW")
+
+            DT.Columns.Add("SIZE_USE_OLD")   'ขนาดและวิธีการใช้
+            DT.Columns.Add("SIZE_USE_NEW")
+
+            DT.Columns.Add("PREPARE_EAT_OLD")   'วิธีเตรียมก่อนรับประทาน
+            DT.Columns.Add("PREPARE_EAT_NEW")
+
+            DT.Columns.Add("EAT_CONDITION_OLD")   'เงื่อนไขการรับประทาน
+            DT.Columns.Add("EAT_CONDITION_NEW")
+
+            DT.Columns.Add("STORAGE_OLD")  'การเก็บรักษา
+            DT.Columns.Add("STORAGE_NEW")
+
+            DT.Columns.Add("CONTAINER_PACKING_OLD")  'ภาชนะและขนาดบรรจุ 
+            DT.Columns.Add("CONTAINER_PACKING_NEW")
+
+            DT.Columns.Add("QUALITY_CONTROL_OLD")  'วิธีควบคุมคุณภาพ
+            DT.Columns.Add("QUALITY_CONTROL_NEW")
+
+            DT.Columns.Add("ETIQUETQ_OLD")  'ฉลาก
+            DT.Columns.Add("ETIQUETQ_NEW")
+
+            'DT.Columns.Add("PRODUCT_DOCUMENT_OLD")   'ฉลาก
+            'DT.Columns.Add("PRODUCT_DOCUMENT_NEW")
+
+            DT.Columns.Add("CHANNEL_SALE_OLD")  'ช่องทางการขาย
+            DT.Columns.Add("CHANNEL_SALE_NEW")
+
+            For Each dr As DataRow In DT.Rows
+                Try
+                    dr("RGTNO_DISPLAY") = full_rgtno
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dr("THANM_THAIFULLNAME") = FULLNAME_CPN(dao.fields.CITIZEN_ID_AUTHORIZE)
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dr("BSN_THAIFULLNAME") = FULLNAME_CPN(dao_g.fields.IDENTIFY)
+                Catch ex As Exception
+
+                End Try
+                Try
+                    dr("PRODUCT_NAME_OLD") = PRODUCT_NAME_OLD  'ชื่อของผลิตภัณฑ์สมุนไพร
+                    dr("PRODUCT_NAME_NEW") = PRODUCT_NAME_NEW
+
+                    dr("NAME_LOCATION_OLD") = NAME_LOCATION_OLD  'ชื่อหรือที่อยู่ของสถานที่ผลิต/ นำเข้ำ
+                    dr("NAME_LOCATION_NEW") = NAME_LOCATION_NEW
+
+                    dr("PRODUCT_RECIPE_OLD") = PRODUCT_RECIPE_OLD  'ตำรับผลิตภัณฑ์สมุนไพร 
+                    dr("PRODUCT_RECIPE_NEW") = PRODUCT_RECIPE_NEW
+
+                    dr("PRODUCTION_PROCESS_OLD") = PRODUCTION_PROCESS_OLD  'กรรมวิธีการผลิต 
+                    dr("PRODUCTION_PROCESS_NEW") = PRODUCTION_PROCESS_NEW
+
+                    dr("PROPERTIES_OLD") = PROPERTIES_OLD 'ตำรับผลิตภัณฑ์สมุนไพร 
+                    dr("PROPERTIES_NEW") = PROPERTIES_NEW
+
+                    dr("SIZE_USE_OLD") = SIZE_USE_OLD  'ขนาดและวิธีการใช้
+                    dr("SIZE_USE_NEW") = SIZE_USE_NEW
+
+                    dr("PREPARE_EAT_OLD") = PREPARE_EAT_OLD 'วิธีเตรียมก่อนรับประทาน
+                    dr("PREPARE_EAT_NEW") = PREPARE_EAT_NEW
+
+                    dr("EAT_CONDITION_OLD") = EAT_CONDITION_OLD 'เงื่อนไขการรับประทาน
+                    dr("EAT_CONDITION_NEW") = EAT_CONDITION_NEW
+
+                    dr("STORAGE_OLD") = STORAGE_OLD 'การเก็บรักษา
+                    dr("STORAGE_NEW") = STORAGE_NEW
+
+                    dr("CONTAINER_PACKING_OLD") = CONTAINER_PACKING_OLD 'ภาชนะและขนาดบรรจุ 
+                    dr("CONTAINER_PACKING_NEW") = CONTAINER_PACKING_NEW
+
+                    dr("QUALITY_CONTROL_OLD") = QUALITY_CONTROL_OLD 'วิธีควบคุมคุณภาพ
+                    dr("QUALITY_CONTROL_NEW") = QUALITY_CONTROL_NEW
+
+                    dr("ETIQUETQ_OLD") = ETIQUETQ_OLD 'ฉลาก
+                    dr("ETIQUETQ_NEW") = ETIQUETQ_NEW
+
+                    dr("CHANNEL_SALE_OLD") = CHANNEL_SALE_OLD 'ช่องทางการขาย
+                    dr("CHANNEL_SALE_NEW") = CHANNEL_SALE_NEW
+                Catch ex As Exception
+
+                End Try
+
+
+            Next
+
+            DT.TableName = "XML_TABEAN_EDIT_REQUEST"
+            XML.DT_SHOW.DT2 = DT
+            Dim space_1 As String = " "
+            Dim dt_formula As DataTable
+            Dim bao_master_2 As New BAO.ClsDBSqlcommand
+            dt_formula = bao_master_2.SP_XML_TABEAN_EDIT_FORMULA(dao.fields.IDA)
+            dt_formula.Columns.Add("qtytxt_all2")
+            For Each dr As DataRow In dt_formula.Rows
+                If IsDBNull(dr("qtytxt_all")) = True Then
+                    dr("qtytxt_all") = "-"
+                End If
+                'If dr("qtytxt_all2") = "" Then dr("qtytxt_all2") = " " Else dr("qtytxt_all2") = dr("qtytxt_all")
+                If IsDBNull(dr("aori")) = True Then
+                    dr("aori") = "-"
+                End If
+                If IsDBNull(dr("REMARK")) = True Then
+                    dr("REMARK") = "-"
+                End If
+            Next
+            dt_formula.TableName = "XML_TABEAN_EDIT_FORMULA"
+            If dao_c.fields.PRODUCT_RECIPE_ID = True Then
+                XML.DT_SHOW.DT6 = dt_formula
+            End If
+
+
+            Dim DT_CHK As New DataTable
+            DT_CHK = BAO_SP.SP_XML_TABEAN_EDIT_REQUEST_CHK_LIST(IDA)
+            DT_CHK.TableName = "XML_TABEAN_EDIT_CHK_LIST"
+            XML.DT_SHOW.DT3 = DT_CHK
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_EDIT_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+            Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+            dao_bsn.GetDataby_LCN_IDA(dao_lcn.fields.IDA)
+            Try
+                XML.BSN_THAINAME = dao_bsn.fields.BSN_THAIFULLNAME
+                'XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                'If dao.fields.DATE_PAY Is Nothing Then
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.DATE_CONFIRM)
+                'Else
+                '    XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.DATE_PAY)
+                'End If
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+        Public Function GEN_XML_TABEAN_NEW_EDIT2(ByVal IDA As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_EDIT
+            Dim rcvno_format As String = ""
+            Dim LCNNO_FORMAT As String = ""
+            Dim TABEAN_FORMAT As String = ""
+            Dim drug_name As String = ""
+            Dim rgtno_format As String = ""
+            Dim rcvno_auto As String = ""
+            Dim rgtno As String = ""
+            Dim rgtno_auto As String = ""
+            Dim rgttpcd As String = ""
+            Dim aa As String = ""
+            Dim dao As New DAO_DRUG.TB_DRRGT_EDIT_REQUEST
+            Dim CLS_TABEAN_EDIT As New DRRGT_EDIT_REQUEST
+            dao.GetDatabyIDA(IDA)
+            XML.DRRGT_EDIT_REQUESTs = dao.fields
+            Dim dao_gt As New DAO_DRUG.ClsDBdrrgt
+            dao_gt.GetDataby_IDA(dao.fields.FK_IDA)
+            Dim dao_sc As New DAO_XML_DRUG_HERB.TB_XML_DRUG_PRODUCT_HERB
+            dao_sc.GetDataby_4Key(dao_gt.fields.rgtno, dao_gt.fields.rgttpcd, dao_gt.fields.drgtpcd, dao_gt.fields.pvncd)
+            Dim dao_lcn_e As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
+            Dim daodrgtype As New DAO_DRUG.ClsDBdrdrgtype
+            daodrgtype.GetDataby_drgtpcd(dao_gt.fields.drgtpcd)
+            Try
+                aa = daodrgtype.fields.engdrgtpnm
+            Catch ex As Exception
+
+            End Try
+            Try
+                dao_lcn_e.GetDataby_u1(dao_sc.fields.Newcode_not)
+            Catch ex As Exception
+
+            End Try
+            Try
+                rcvno_auto = dao.fields.rcvno
+            Catch ex As Exception
+
+            End Try
+            Try
+                rgttpcd = dao_sc.fields.rgttpcd
+            Catch ex As Exception
+
+            End Try
+            Try
+                rgtno = dao_sc.fields.rgtno
+            Catch ex As Exception
+
+            End Try
+            Try
+                rgtno_auto = rgtno
+            Catch ex As Exception
+
+            End Try
+            Try
+                drug_name = dao_sc.fields.thadrgnm & " / " & dao_sc.fields.engdrgnm
+            Catch ex As Exception
+
+            End Try
+            Try
+                If Len(rcvno_auto) > 0 Then
+                    rcvno_format = CStr(CInt(Right(rcvno_auto, 5))) & "/" & Left(rcvno_auto, 2)
+                End If
+            Catch ex As Exception
+
+            End Try
+            Try
+                LCNNO_FORMAT = dao_lcn_e.fields.lcntpcd & " " & CStr(CInt(Right(dao_lcn_e.fields.lcnno, 5))) & "/" & Left(dao_lcn_e.fields.lcnno, 2)
+            Catch ex As Exception
+
+            End Try
+            Try
+                If Len(rgtno_auto) > 0 Then
+                    rgtno_format = rgttpcd & " " & CStr(CInt(Right(rgtno_auto, 5))) & "/" & Left(rgtno_auto, 2) & " " & aa
+                End If
+            Catch ex As Exception
+
+            End Try
+            XML.DRUG_NAME = drug_name
+            XML.RCVNO_FORMAT = rcvno_format
+            XML.RGTNO_FORMAT = rgtno_format
+
+            Return XML
+        End Function
+    End Class
+    Public Class TABEAN_ANALYZE
+        Inherits Center
+        Public Function Gen_XML_ANALYZE(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_ANALYZE
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_ANALYZE
+            Dim CLS_TABEAN_ANALYZE As New TABEAN_ANALYZE
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_ANALYZE = dao.fields
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(DAO_LCN.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_ANALYZE_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+            Try
+                XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.rcvdate)
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+    End Class
+    Public Class TABEAN_DONATE
+        Inherits Center
+        Public Function Gen_XML_DONATE(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_DONATE
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_DONATE
+            Dim CLS_TABEAN_DONATE As New TABEAN_DONATE
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_DONATE = dao.fields
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_DONATE_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+            Try
+                XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                XML.DONATEDATE_FULL_THAI = date_to_thai(dao.fields.DONATE_DATE_START) & " - " & date_to_thai(dao.fields.DONATE_DATE_END)
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.rcvdate)
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+    End Class
+    Public Class TABEAN_EXHIBITION
+        Inherits Center
+        Public Function Gen_XML_EXHIBITION(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_EXHIBITION
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
+            Dim CLS_TABEAN_EXHIBITION As New TABEAN_EXHIBITION
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_EXHIBITION = dao.fields
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_EXHIBITION_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+            If dao.fields.EXHIBITION_NOUN_ID = 4 Then
+                XML.Name_Association = dao.fields.EXHIBITION_NOUN_OTHER
+            ElseIf dao.fields.EXHIBITION_NOUN_ID = 5 Then
+                XML.Name_Foundation = dao.fields.EXHIBITION_NOUN_OTHER
+            ElseIf dao.fields.EXHIBITION_NOUN_ID = 6 Then
+                XML.Name_Country_Trade_Representative = dao.fields.EXHIBITION_NOUN_OTHER
+            End If
+            Try
+                XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.rcvdate)
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+    End Class
+    Public Class TABEAN_INFORM
+        Inherits Center
+        Public Function GEN_XML_INFORM(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_INFORM
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_INFORM
+            Dim CLS_TABEAN_INFORM As New TABEAN_INFORM
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_INFORM = dao.fields
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_EXHIBITION_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+            Try
+                'XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.rcvdate)
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+
+
+    End Class
+    Public Class TABEAN_INFORM_EDIT
+        Inherits Center
+        Public Function GEN_XML_INFORM_EDIT(ByVal IDA As Integer, ByVal _IDA_LCN As Integer)
+            Dim bao_lcn As New BAO_SHOW
+            Dim bao_lcn_location As New BAO_MASTER
+            Dim XML As New CLASS_DR_INFORM_EDIT
+            Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_INFORM_EDIT
+            dao.GetdatabyID_IDA(IDA)
+            XML.TABEAN_INFORM_EDIT = dao.fields
+
+            Dim dao_d As New DAO_TABEAN_HERB.TB_TABEAN_INFORM_EDIT_DETAIL
+            dao_d.Getdataby_FK_IDA(IDA)
+            Dim dao_c As New DAO_TABEAN_HERB.TB_TABEAN_INFORM_EDIT_CHECK_LIST
+            dao_c.Getdataby_FK_IDA(IDA)
+            XML.TABEAN_INFORM_EDIT_CHECK = dao_c.fields
+
+            Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+            Dim dt_lcn As New DataTable
+
+            dt_lcn = bao_lcn.SP_LOCATION_ADDRESS_by_LOCATION_ADDRESS_IDA(dao_lcn.fields.FK_IDA)
+            dt_lcn.TableName = "XML_TABEAN_EXHIBITION_LOCATION_ADDRESS"
+            XML.DT_SHOW.DT1 = dt_lcn
+
+
+            Dim dt_c As New DataTable
+            Dim BAO_SP As New BAO_TABEAN_HERB.tb_main
+            dt_c = BAO_SP.SP_XML_TABEAN_INFORM_EDIT(IDA)
+            dt_c.Columns.Add("NAME_THAI_OLD")
+            dt_c.Columns.Add("NAME_THAI_NEW")
+            dt_c.Columns.Add("NAME_ENG_OLD")
+            dt_c.Columns.Add("NAME_ENG_NEW")
+            dt_c.Columns.Add("LOCATION_OLD")
+            dt_c.Columns.Add("LOCATION_NEW")
+            dt_c.Columns.Add("PACKING_OLD")
+            dt_c.Columns.Add("PACKING_NEW")
+            dt_c.Columns.Add("LABEL_OLD")
+            dt_c.Columns.Add("LABEL_NEW")
+            dt_c.Columns.Add("DOCUMENT_OLD")
+            dt_c.Columns.Add("DOCUMENT_NEW")
+            dt_c.Columns.Add("SIZEUSE_OLD")
+            dt_c.Columns.Add("SIZEUSE_NEW")
+            dt_c.Columns.Add("EATTING_OLD")
+            dt_c.Columns.Add("EATTING_NEW")
+
+            dt_c.Columns.Add("UPLOAD_ID1")
+            dt_c.Columns.Add("UPLOAD_ID2")
+            dt_c.Columns.Add("UPLOAD_ID3")
+            dt_c.Columns.Add("UPLOAD_ID4")
+            dt_c.Columns.Add("UPLOAD_ID5")
+            dt_c.Columns.Add("UPLOAD_ID6")
+            dt_c.Columns.Add("UPLOAD_ID7")
+            dt_c.Columns.Add("UPLOAD7_NAME")
+
+            Dim dao_i As New DAO_TABEAN_HERB.TB_TABEAN_INFORM
+            Dim dao_id As New DAO_TABEAN_HERB.TB_TABEAN_INFORM_DETAIL
+            Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+            Try
+                dao_i.GetdatabyID_IDA(dao.fields.FK_IDA)
+                dao_id.GetdatabyID_FK_IDA(dao.fields.FK_IDA)
+                dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(dao.fields.TR_ID, dao.fields.PROCESS_ID, 1)
+            Catch ex As Exception
+
+            End Try
+            Try
+                For Each dr As DataRow In dt_c.Rows
+                    If dao_c.fields.NAME_ID = True Then
+                        dr("NAME_THAI_OLD") = dao.fields.NAME_THAI
+                        dr("NAME_THAI_NEW") = dao_d.fields.NAME_THAI
+                        dr("NAME_ENG_OLD") = dao.fields.NAME_ENG
+                        dr("NAME_ENG_NEW") = dao_d.fields.NAME_ENG
+                    End If
+                    If dao_c.fields.LOCATION_ID = True Then
+
+                    End If
+                    If dao_c.fields.PACKING_SIZE_ID = True Then
+                        dr("PACKING_OLD") = dao_id.fields.SIZE_PACK
+                        dr("PACKING_NEW") = dao_d.fields.SIZE_PACK
+                    End If
+                    If dao_c.fields.LABEL_ID = True Then
+                        dr("LABEL_OLD") = "ฉลากเดิม"
+                        dr("LABEL_NEW") = "ฉลากใหม่"
+                    End If
+                    If dao_c.fields.Document_ID = True Then
+                        dr("DOCUMENT_OLD") = "เอกสารแนบเดิม"
+                        dr("DOCUMENT_NEW") = "เอกสารแนบใหม่"
+                    End If
+                    If dao_c.fields.HOW_USE_ID = True Then
+                        dr("HOWUSE_OLD") = dao_id.fields.SIZE_USE
+                        dr("HOWUSE_NEW") = dao_d.fields.SIZE_USE
+                    End If
+                    If dao_c.fields.EATTING_ID = True Then
+                        dr("EATTING_OLD") = dao_id.fields.EATTING_NAME
+                        dr("EATTING_NEW") = dao_d.fields.EATTING_NAME
+                    End If
+                    Try
+                        For Each dao_up.fields In dao_up.datas
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("สาเนาใบรับแจ้งรายละเอียดผลิตภัณฑ์สมุนไพร หรือใบแทน") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID1") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("สาเนาหนังสือเดินทาง สาเนาใบอนุญาตทางาน สาเนาถิ่นที่อยู่ในราชอาณาจักร สาเนาใบอนุญาต
+ประกอบธุรกิจคนต่างด้าวของผู้ขอขึ้นทะเบียนตารับ สาหรับคนต่างด้าว (เฉพาะกรณีที่ไม่ได้แสดงตนด้วยตนเอง)") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID2") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("เอกสารแสดงว่าเป็นผู้มีอานาจทาการแทน (กรณีมอบอานาจ) หรือเป็นผู้แทนนิติบุคคลหรือผู้มี
+อานาจทาการแทนนิติบุคคล (กรณีนิติบุคคลเป็นผู้ขออนุญาต)") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID3") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("เอกสารสนับสนุนการขอแก้ไขเปลี่ยนแปลง แล้วแต่กรณี") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID4") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("รายละเอียดการแก้ไขเปลี่ยนแปลง") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID5") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("หนังสือให้ความยินยอมตามที่สานักงานคณะกรรมการอาหารและยากาหนด") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID6") = 1
+                                End If
+                            End If
+                            If dao_up.fields.DUCUMENT_NAME.ToString.Contains("อื่น ๆ") Then
+                                If dao_up.fields.NAME_FAKE <> "" Then
+                                    dr("UPLOAD_ID7") = 1
+                                    dr("UPLOAD7_NAME") = dao_up.fields.NAME_REAL
+                                End If
+                            End If
+                        Next
+                    Catch ex As Exception
+
+                    End Try
+                Next
+
+            Catch ex As Exception
+
+            End Try
+            dt_c.TableName = "XML_TABEAN_INFORM_EDIT_DETAIL"
+            XML.DT_SHOW.DT2 = dt_c
+            Try
+                'XML.WRITEDATE_FULL_THAI = date_to_thai(dao.fields.WRITE_DATE)
+                XML.RCVDATE_FULL_THAI = date_to_thai(dao.fields.RCVDATE)
+                XML.APPDATE_FULL_THAI = date_to_thai(dao.fields.appdate)
+            Catch ex As Exception
+
+            End Try
+            Return XML
+        End Function
+    End Class
 End Namespace

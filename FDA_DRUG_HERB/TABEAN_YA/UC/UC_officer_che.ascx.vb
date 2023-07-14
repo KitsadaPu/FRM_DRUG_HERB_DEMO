@@ -7,15 +7,24 @@ Public Class UC_officer_che
     Inherits System.Web.UI.UserControl
     Dim _IDA As String
     Dim STATUS_ID As String = "0"
+    Dim PROCESS_ID As String = ""
+    Dim PAGE_ID As String = ""
     Private _CLS As New CLS_SESSION
     Sub RunQuery()
-        _IDA = Request.QueryString("IDA")
+        '_IDA = Request.QueryString("IDA")
         Try
             If Request.QueryString("STATUS_ID") <> "" Then
                 STATUS_ID = Request.QueryString("STATUS_ID")
             Else
                 STATUS_ID = Get_drrqt_Status_by_trid(Request.QueryString("tr_id"))
             End If
+            If Request.QueryString("IDA") <> "" Then
+                _IDA = Request.QueryString("IDA")
+            Else
+                _IDA = Request.QueryString("IDA_DQ")
+            End If
+            PROCESS_ID = Request.QueryString("PROCESS_ID")
+            PAGE_ID = Request.QueryString("PAGE_ID")
         Catch ex As Exception
 
         End Try
@@ -195,11 +204,25 @@ Public Class UC_officer_che
                     rg_chem.Rebind()
                 End If
             ElseIf e.CommandName = "_eqto" Then
-                Dim url As String = "../TABEAN_YA/FRM_EQTO.aspx?IDA=" & IDA & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&idr=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&fk_set=" & item("FK_SET").Text
+                Dim url As String = "../TABEAN_YA/FRM_EQTO.aspx?IDA=" & IDA & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&idr=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&fk_set=" & item("FK_SET").Text & "&PROCESS_ID=" & Request.QueryString("PROCESS_ID_DQ") & "&PAGE_ID=" & Request.QueryString("PAGE_ID")
                 If Request.QueryString("e") <> "" Then
                     url &= "&e=1"
                 End If
-                Response.Redirect(url)
+                'If PAGE_ID = 1 Then
+                '    Dim MENU_GROUP As String = Request.QueryString("MENU_GROUP")
+                '    Dim IDA_LCT As String = Request.QueryString("IDA_LCT")
+                '    Dim TR_ID_LCN As String = Request.QueryString("TR_ID_LCN")
+                '    Dim IDA_LCN As String = Request.QueryString("IDA_LCN")
+                '    Dim LCNNO_DISPLAY As String = Request.QueryString("LCNNO_DISPLAY")
+                '    Dim PROCESS_ID_LCN As String = Request.QueryString("PROCESS_ID_LCN")
+                '    Dim TYPEPERSON As String = Request.QueryString("TYPEPERSON")
+                '    Dim SID As String = Request.QueryString("SID")
+                '    Dim R_ID As String = Request.QueryString("R_ID")
+                '    Dim IDA_DQ As String = Request.QueryString("IDA_DQ")
+                '    url &= "&MENU_GROUP=" = MENU_GROUP & "&IDA_LCT=" & IDA_LCT & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID_LCN & "&TYPEPERSON=" & TYPEPERSON & "&SID=" & SID & "&R_ID=" & R_ID & "&IDA_DQ=" & IDA_DQ
+                'End If
+                'Response.Redirect(url)
+                Response.Write("<script>window.open('" & url & "','_blank')</script>")
             End If
 
             End If

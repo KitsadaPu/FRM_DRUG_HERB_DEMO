@@ -158,7 +158,6 @@ Public Class FRM_TABEAN_SEARCH
             dt = bao.dt
         End If
 
-
         RadGrid1.DataSource = dt
     End Sub
 

@@ -34,6 +34,8 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <uc1:UC_LCN_EDIT runat="server" ID="UC_LCN_EDIT1" />
     <%--<uc1:uc_lcn_sub runat="server" ID="UC_LCN_SUB" />--%>
     

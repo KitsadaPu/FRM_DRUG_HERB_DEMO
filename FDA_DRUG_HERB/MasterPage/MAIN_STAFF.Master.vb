@@ -96,7 +96,7 @@
                             str_all &= "<li class='active'>"
                         End If
                         If dao_g.fields.BTN_URL.Contains("TOKEN") Or dao_g.fields.BTN_URL.Contains("AUTHEN") Then
-                            str_all &= "<a href='" & dao_g.fields.BTN_URL & "?Token=" & _CLS.TOKEN & "' target='_blank'>" & dao_g.fields.BTN_NAME & "</a>"
+                            str_all &= "<a href='" & dao_g.fields.BTN_URL & "?Token=" & _CLS.TOKEN & "&PROCESS_ID=" & dao_g.fields.process & "' target='_blank'>" & dao_g.fields.BTN_NAME & "</a>"
                         Else
                             str_all &= "<a href='" & dao_g.fields.BTN_URL & "' target='" & dao_g.fields.TARGET & "'>" & dao_g.fields.BTN_NAME & "</a>"
                         End If
@@ -152,7 +152,7 @@
                             str_all &= "<li class='active'>"
                         End If
                         If dao_g.fields.BTN_URL.Contains("TOKEN") Or dao_g.fields.BTN_URL.Contains("AUTHEN") Then
-                            str_all &= "<a href='" & dao_g.fields.BTN_URL & "?Token=" & _CLS.TOKEN & "' target='_blank'>" & dao_g.fields.BTN_NAME & "</a>"
+                            str_all &= "<a href='" & dao_g.fields.BTN_URL & "?Token=" & _CLS.TOKEN & "&PROCESS_ID=" & dao_g.fields.PROCESS & "' target='_blank'>" & dao_g.fields.BTN_NAME & "</a>"
                         Else
                             str_all &= "<a href='" & dao_g.fields.BTN_URL & "' target='" & dao_g.fields.TARGET & "'>" & dao_g.fields.BTN_NAME & "</a>"
                         End If

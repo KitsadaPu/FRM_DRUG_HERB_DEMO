@@ -5,6 +5,8 @@ Public Class FRM_HERB_TABEAN_NEW
 
     Private _CLS As New CLS_SESSION
     Private _MENU_GROUP As String = ""
+    Private _SID As String = ""
+    Private _PAGE_MENU As String = ""
 
     Sub RunSession()
         Try
@@ -18,32 +20,48 @@ Public Class FRM_HERB_TABEAN_NEW
         End Try
 
         _MENU_GROUP = Request.QueryString("MENU_GROUP")
+        _SID = _CLS.SID_ID
+        _PAGE_MENU = Request.QueryString("PAGE_MENU")
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
-
+            If _PAGE_MENU = "" Then
+                div_news.Visible = True
+            Else
+                div_news.Visible = False
+                T1.Visible = True
+            End If
         End If
     End Sub
 
-    Protected Sub btn_tabean_Click(sender As Object, e As EventArgs) Handles btn_tabean.Click
-        hdf_select.Value = 1
-        T1.Visible = True
-        RadGrid1.Rebind()
-    End Sub
+    'Protected Sub btn_tabean_Click(sender As Object, e As EventArgs) Handles btn_tabean.Click
+    '    hdf_select.Value = 1
+    '    T1.Visible = True
+    '    'T2.Visible = True
+    '    RadGrid1.Rebind()
+    'End Sub
 
-    Protected Sub btn_detail_Click(sender As Object, e As EventArgs) Handles btn_detail.Click
-        hdf_select.Value = 2
-        T1.Visible = True
-        RadGrid1.Rebind()
-    End Sub
+    'Protected Sub btn_detail_Click(sender As Object, e As EventArgs) Handles btn_detail.Click
+    '    hdf_select.Value = 2
+    '    T1.Visible = True
+    '    'T2.Visible = True
+    '    RadGrid1.Rebind()
+    'End Sub
 
-    Protected Sub btn_jj_Click(sender As Object, e As EventArgs) Handles btn_jj.Click
-        hdf_select.Value = 3
-        T1.Visible = True
-        RadGrid1.Rebind()
-    End Sub
+    'Protected Sub btn_jj_Click(sender As Object, e As EventArgs) Handles btn_jj.Click
+    '    hdf_select.Value = 3
+    '    T1.Visible = True
+    '    'T2.Visible = True
+    '    RadGrid1.Rebind()
+    'End Sub
+    'Protected Sub btn_EX_Click(sender As Object, e As EventArgs) Handles btn_EX.Click
+    '    hdf_select.Value = 4
+    '    T1.Visible = True
+    '    'T2.Visible = True
+    '    RadGrid1.Rebind()
+    'End Sub
 
     Function bind_data()
         Dim bao As New BAO.ClsDBSqlcommand
@@ -61,6 +79,15 @@ Public Class FRM_HERB_TABEAN_NEW
 
     End Sub
 
+    'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+
+    '    Dim bao As New BAO.ClsDBSqlcommand
+
+    '    RadGrid2.DataSource = bao.SP_WHO_CUSTOMER_LCN_BY_IDENTIFY(_CLS.CITIZEN_ID)
+    '    'RadGrid2.DataSource = bao.SP_CUSTOMER_LCN_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
+
+    'End Sub
+
     Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
@@ -77,15 +104,47 @@ Public Class FRM_HERB_TABEAN_NEW
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
 
-            If hdf_select.Value = 1 Then
-                H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
-            ElseIf hdf_select.Value = 2 Then
+            If _PAGE_MENU = 1 Then
+                H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID & "&SID=" & _SID 'URL หน้า ยืนยัน
+                'ElseIf _PAGE_MENU = 2 Then
 
-            ElseIf hdf_select.Value = 3 Then
-                H.NavigateUrl = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+            ElseIf _PAGE_MENU = 3 Then
+                H.NavigateUrl = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID & "&SID=" & _SID 'URL หน้า ยืนยัน
+            ElseIf _PAGE_MENU = 4 Then
+                H.NavigateUrl = "../HERB_TABEAN_EX/FRM_HERB_TABEAN_EX.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID & "&SID=" & _SID 'URL หน้า ยืนยัน
 
             End If
         End If
     End Sub
+
+    'Private Sub RadGrid2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid2.ItemDataBound
+    '    If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+    '        Dim item As GridDataItem
+    '        item = e.Item
+    '        Dim IDA_LCN As Integer = item("IDA").Text
+    '        Dim WHO_IDA As Integer = item("WHO_IDA").Text
+    '        Dim TR_ID_LCN As String = item("TR_ID").Text
+    '        Dim PROCESS_ID As String = item("PROCESS_ID").Text
+    '        Dim FK_IDA_LCT As String = ""
+    '        Try
+    '            FK_IDA_LCT = item("FK_IDA").Text
+    '        Catch ex As Exception
+
+    '        End Try
+
+    '        Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
+
+    '        If hdf_select.Value = 1 Then
+    '            H.NavigateUrl = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+    '        ElseIf hdf_select.Value = 2 Then
+
+    '        ElseIf hdf_select.Value = 3 Then
+    '            H.NavigateUrl = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+    '        ElseIf hdf_select.Value = 4 Then
+    '            H.NavigateUrl = "../HERB_TABEAN_EX/FRM_HERB_TABEAN_EX.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & WHO_IDA & "&PROCESS_ID_LCN=" & PROCESS_ID 'URL หน้า ยืนยัน
+
+    '        End If
+    '    End If
+    'End Sub
 
 End Class

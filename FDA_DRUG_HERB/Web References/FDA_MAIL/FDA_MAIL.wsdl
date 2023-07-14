@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="SendMail">
@@ -21,6 +21,16 @@
       <s:element name="SendMailResponse">
         <s:complexType />
       </s:element>
+      <s:element name="SendMail_NO_SMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mail" type="tns:Fields_Mail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMail_NO_SMSResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="SendMail_ASY_ATTACH">
         <s:complexType>
           <s:sequence>
@@ -31,6 +41,13 @@
         </s:complexType>
       </s:element>
       <s:element name="SendMail_ASY">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mail" type="tns:Fields_Mail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMail_ASY_NO_SMS">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Mail" type="tns:Fields_Mail" />
@@ -70,6 +87,18 @@
       <s:element name="SendMail_ATTACHResponse">
         <s:complexType />
       </s:element>
+      <s:element name="SendMail_ATTACH_OBJ">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mail" type="tns:Fields_Mail" />
+            <s:element minOccurs="0" maxOccurs="1" name="B64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMail_ATTACH_OBJResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="SendMail_CC_ATTACH">
         <s:complexType>
           <s:sequence>
@@ -91,11 +120,20 @@
   <wsdl:message name="SendMailSoapOut">
     <wsdl:part name="parameters" element="tns:SendMailResponse" />
   </wsdl:message>
+  <wsdl:message name="SendMail_NO_SMSSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail_NO_SMS" />
+  </wsdl:message>
+  <wsdl:message name="SendMail_NO_SMSSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMail_NO_SMSResponse" />
+  </wsdl:message>
   <wsdl:message name="SendMail_ASY_ATTACHSoapIn">
     <wsdl:part name="parameters" element="tns:SendMail_ASY_ATTACH" />
   </wsdl:message>
   <wsdl:message name="SendMail_ASYSoapIn">
     <wsdl:part name="parameters" element="tns:SendMail_ASY" />
+  </wsdl:message>
+  <wsdl:message name="SendMail_ASY_NO_SMSSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail_ASY_NO_SMS" />
   </wsdl:message>
   <wsdl:message name="SendMailHTMLSoapIn">
     <wsdl:part name="parameters" element="tns:SendMailHTML" />
@@ -115,6 +153,12 @@
   <wsdl:message name="SendMail_ATTACHSoapOut">
     <wsdl:part name="parameters" element="tns:SendMail_ATTACHResponse" />
   </wsdl:message>
+  <wsdl:message name="SendMail_ATTACH_OBJSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail_ATTACH_OBJ" />
+  </wsdl:message>
+  <wsdl:message name="SendMail_ATTACH_OBJSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMail_ATTACH_OBJResponse" />
+  </wsdl:message>
   <wsdl:message name="SendMail_CC_ATTACHSoapIn">
     <wsdl:part name="parameters" element="tns:SendMail_CC_ATTACH" />
   </wsdl:message>
@@ -126,11 +170,18 @@
       <wsdl:input message="tns:SendMailSoapIn" />
       <wsdl:output message="tns:SendMailSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SendMail_NO_SMS">
+      <wsdl:input message="tns:SendMail_NO_SMSSoapIn" />
+      <wsdl:output message="tns:SendMail_NO_SMSSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SendMail_ASY_ATTACH">
       <wsdl:input message="tns:SendMail_ASY_ATTACHSoapIn" />
     </wsdl:operation>
     <wsdl:operation name="SendMail_ASY">
       <wsdl:input message="tns:SendMail_ASYSoapIn" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail_ASY_NO_SMS">
+      <wsdl:input message="tns:SendMail_ASY_NO_SMSSoapIn" />
     </wsdl:operation>
     <wsdl:operation name="SendMailHTML">
       <wsdl:input message="tns:SendMailHTMLSoapIn" />
@@ -143,6 +194,10 @@
     <wsdl:operation name="SendMail_ATTACH">
       <wsdl:input message="tns:SendMail_ATTACHSoapIn" />
       <wsdl:output message="tns:SendMail_ATTACHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail_ATTACH_OBJ">
+      <wsdl:input message="tns:SendMail_ATTACH_OBJSoapIn" />
+      <wsdl:output message="tns:SendMail_ATTACH_OBJSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SendMail_CC_ATTACH">
       <wsdl:input message="tns:SendMail_CC_ATTACHSoapIn" />
@@ -160,6 +215,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMail_NO_SMS">
+      <soap:operation soapAction="http://tempuri.org/SendMail_NO_SMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMail_ASY_ATTACH">
       <soap:operation soapAction="http://tempuri.org/SendMail_ASY_ATTACH" style="document" />
       <wsdl:input>
@@ -168,6 +232,12 @@
     </wsdl:operation>
     <wsdl:operation name="SendMail_ASY">
       <soap:operation soapAction="http://tempuri.org/SendMail_ASY" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail_ASY_NO_SMS">
+      <soap:operation soapAction="http://tempuri.org/SendMail_ASY_NO_SMS" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -199,6 +269,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMail_ATTACH_OBJ">
+      <soap:operation soapAction="http://tempuri.org/SendMail_ATTACH_OBJ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMail_CC_ATTACH">
       <soap:operation soapAction="http://tempuri.org/SendMail_CC_ATTACH" style="document" />
       <wsdl:input>
@@ -220,6 +299,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMail_NO_SMS">
+      <soap12:operation soapAction="http://tempuri.org/SendMail_NO_SMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMail_ASY_ATTACH">
       <soap12:operation soapAction="http://tempuri.org/SendMail_ASY_ATTACH" style="document" />
       <wsdl:input>
@@ -228,6 +316,12 @@
     </wsdl:operation>
     <wsdl:operation name="SendMail_ASY">
       <soap12:operation soapAction="http://tempuri.org/SendMail_ASY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail_ASY_NO_SMS">
+      <soap12:operation soapAction="http://tempuri.org/SendMail_ASY_NO_SMS" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -259,6 +353,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMail_ATTACH_OBJ">
+      <soap12:operation soapAction="http://tempuri.org/SendMail_ATTACH_OBJ" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMail_CC_ATTACH">
       <soap12:operation soapAction="http://tempuri.org/SendMail_CC_ATTACH" style="document" />
       <wsdl:input>
@@ -271,10 +374,10 @@
   </wsdl:binding>
   <wsdl:service name="FDA_MAIL">
     <wsdl:port name="FDA_MAILSoap" binding="tns:FDA_MAILSoap">
-      <soap:address location="http://164.115.28.108/Mail/FDA_MAIL.asmx" />
+      <soap:address location="http://10.111.28.108/Mail/FDA_MAIL.asmx" />
     </wsdl:port>
     <wsdl:port name="FDA_MAILSoap12" binding="tns:FDA_MAILSoap12">
-      <soap12:address location="http://164.115.28.108/Mail/FDA_MAIL.asmx" />
+      <soap12:address location="http://10.111.28.108/Mail/FDA_MAIL.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

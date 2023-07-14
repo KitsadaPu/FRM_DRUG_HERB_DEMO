@@ -44,7 +44,7 @@
         Dim tel As String = dao_lcn.fields.tel
         Dim NAME_JJ As String = dao.fields.NAME_JJ
         Dim RCVNO_FULL As String = dao.fields.RCVNO_FULL
-        Dim NAME_THAI_NAME_PLACE As String = dao.fields.NAME_THAI & " / " & dao.fields.NAME_PLACE_JJ
+        Dim NAME_THAI_NAME_PLACE As String = dao.fields.NAME_THAI '& " / " & dao.fields.NAME_PLACE_JJ
 
         'Dim date_req_day As Date
         'Dim date_req_month As Date
@@ -66,7 +66,12 @@
         Dim date_result_start As Date
         Dim date_result_end As Date
         Dim days_start As Integer = 1
-        Dim days_end As Integer = 41
+        Dim days_end As Integer = 10
+        If _ProcessID = 20301 Or _ProcessID = 20302 Or _ProcessID = 20303 Then
+            days_end = 11
+        ElseIf _ProcessID = 20304 Or _ProcessID = 20305 Then
+            days_end = 16
+        End If
         Dim number_day_start As String = ""
         Dim number_day_end As String = ""
         ws.GETDATE_WORKING(CDate(dao.fields.DATE_CONFIRM), True, days_start, True, date_result_start, True)
@@ -78,7 +83,8 @@
 
             date_con_full = number_day_start
             date_con_full_END = number_day_end
-
+            dao.fields.EXPECTED_DATE = date_result_end
+            dao.Update()
             'date_con_day = number_day_start
             'date_con_month = number_day_start
             'date_con_year = number_day_start
@@ -104,11 +110,16 @@
         cls.name_thai_name_place = NAME_THAI_NAME_PLACE
         cls.date_req_full = date_con_full
         cls.thanm = thanm
-        cls.NAME_CONTACT = NAME_JJ
+        'cls.thanm = thanm
+        cls.NAME_CONTACT = dao.fields.Appoinment_Contact
+        cls.TR_ID = dao.fields.TR_ID_JJ
+        'cls.NAME_CONTACT = NAME_JJ
+        cls.E_MAIL = dao.fields.Appoinment_Email
+        cls.tel_callback = dao.fields.Appoinment_Phone
+        'cls.tel_callback = tel
         cls.citizen_id = _CLS.CITIZEN_ID
-        cls.tel_callback = tel
         cls.appointment_date = date_con_full_END
-        cls.group_assign = "กลุ่มทะเบียนผลิตภัณฑ์"
+        cls.group_assign = "กลุ่มทะเบียนผลิตภัณฑ์ กองผลิตภัณฑ์สมุนไพร"
 
         xml = cls.XML_APOINTMENT()
         TB_AP = xml

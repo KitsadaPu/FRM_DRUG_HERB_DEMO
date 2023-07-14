@@ -11,7 +11,7 @@
     Private _TOKEN As String
     Private Sub RunQuery()
         '_TOKEN = Request("Token").ToString()
-        _TOKEN = "xpYiAvh7FnZLIRefBTudggUU"
+        _TOKEN = "k8k1Je11ALhDQRNFOGSsgA11"
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -30,7 +30,7 @@
         Dim token As String = _TOKEN
         Dim urls As String = ""
         'Try
-        '    urls = Request.UrlReferrer.AbsoluteUri 'ตรวจสอบว่าเป็นการส่งมาจาก privus หรือไม่
+        '    urls = Request.UrlReferrer.AbsoluteUri 'ตรวจสอบว่าเป็นการส่งมาจาก privus หsรือไม่
         '    If urls.Contains("privus.fda.moph.go.th") Then
         '    Else 'กรณีต้นทางไม่ใช่มาจาก privus ให้ย้อนกลับไปที่ privus
         '        Response.Redirect("https://privus.fda.moph.go.th")

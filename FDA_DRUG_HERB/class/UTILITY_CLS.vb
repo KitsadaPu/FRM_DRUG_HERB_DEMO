@@ -132,13 +132,26 @@ Public Module UTILITY_CLS
         Return aa
     End Function
     '
-    <System.Runtime.CompilerServices.Extension()> _
+    <System.Runtime.CompilerServices.Extension()>
     Public Function Get_drrqt_Status(ByVal FK_IDA As Integer)
         Dim dao_rq As New DAO_DRUG.ClsDBdrrqt
         dao_rq.GetDataby_IDA(FK_IDA)
         Dim stattus_id As Integer = 0
         Try
             stattus_id = dao_rq.fields.STATUS_ID
+        Catch ex As Exception
+
+        End Try
+        Return stattus_id
+    End Function
+    '
+    <System.Runtime.CompilerServices.Extension()>
+    Public Function Get_tabean_edit_Status(ByVal FK_IDA As Integer)
+        Dim dao_et As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
+        dao_et.GetdatabyID_TR_ID(FK_IDA)
+        Dim stattus_id As Integer = 0
+        Try
+            stattus_id = dao_et.fields.STATUS_ID
         Catch ex As Exception
 
         End Try
@@ -151,10 +164,26 @@ Public Module UTILITY_CLS
     '    x.Serialize(objStreamWriter, dao.fields)
     '    objStreamWriter.Close()
     'End Sub
-    <System.Runtime.CompilerServices.Extension()> _
+    <System.Runtime.CompilerServices.Extension()>
     Public Function Get_drrqt_Status_by_trid(ByVal tr_id As Integer)
         Dim dao_rq As New DAO_DRUG.ClsDBdrrqt
         dao_rq.GetDataby_TR_ID(tr_id)
+        Dim stattus_id As Integer = 0
+        If tr_id = 0 Then
+            stattus_id = 1
+        Else
+            Try
+                stattus_id = dao_rq.fields.STATUS_ID
+            Catch ex As Exception
+
+            End Try
+        End If
+        Return stattus_id
+    End Function
+    <System.Runtime.CompilerServices.Extension()>
+    Public Function Get_TabeanJJ_Status_by_trid(ByVal tr_id As Integer)
+        Dim dao_rq As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao_rq.GetdatabyID_TR_ID(tr_id)
         Dim stattus_id As Integer = 0
         Try
             stattus_id = dao_rq.fields.STATUS_ID
@@ -173,6 +202,18 @@ Public Module UTILITY_CLS
         dao.fields.URL = url
         dao.insert()
 
+
+    End Sub
+    <System.Runtime.CompilerServices.Extension()>
+    Public Sub KEEP_LOGS_EDIT_LCN(ByVal FK_IDA As Integer, ByVal before_des As String, ByVal des As String, ByVal citizen As String, Optional url As String = "")
+        Dim dao As New DAO_LCN.TB_LOG_EDIT_MIGRATE_LCN
+        dao.fields.BEFORE_ACTION = before_des
+        dao.fields.ACTION_DESCRIPTION = des
+        dao.fields.FK_IDA = FK_IDA
+        dao.fields.CITIZEN_ID = citizen
+        dao.fields.CREATEDATE = Date.Now
+        dao.fields.URL = url
+        dao.insert()
 
     End Sub
     <System.Runtime.CompilerServices.Extension()>
@@ -289,7 +330,7 @@ Public Module UTILITY_CLS
 
         Return b64
     End Function
-    <System.Runtime.CompilerServices.Extension()> _
+    <System.Runtime.CompilerServices.Extension()>
     Public Function b64decode(ByVal StrDecode As String)
         Try
             Dim decodedString As String
@@ -304,6 +345,32 @@ Public Module UTILITY_CLS
 
     End Function
 
+    <System.Runtime.CompilerServices.Extension()>
+    Public Function date_to_thai(ByVal _date As Date)
+        Dim dateD_TH As String = ""
+        Dim dateM_TH As String = ""
+        Dim dateY_TH As String = ""
+        Dim dateD As Date
+        Dim dateM As Date
+        Dim dateY As Date
+        Dim date_FULL As String = ""
+        Try
+            _date = _date
+            _date = CDate(_date).ToString("dd/MM/yyy")
+            dateD = _date
+            dateM = _date
+            dateY = _date
+
+            dateD_TH = dateD.Day.ToString()
+            dateM_TH = dateM.ToString("MMMM")
+            dateY_TH = con_year(dateY.Year)
+            date_FULL = dateD_TH & " " & dateM_TH & " " & dateY_TH
+        Catch ex As Exception
+
+        End Try
+
+        Return date_FULL
+    End Function
     <System.Runtime.CompilerServices.Extension()> _
     Public Function Personal_Province(ByVal iden As String, ByVal IDgroup As Integer) As Integer
         Dim province_id As Integer = 0

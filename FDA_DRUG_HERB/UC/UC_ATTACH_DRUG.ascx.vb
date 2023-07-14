@@ -89,12 +89,32 @@
             dao.insert()
 
         End If
-
-
-
-
     End Sub
+    Sub ATTACH_SUB(ByVal IDA As String, ByVal transection As String, ByVal PROCESS_ID As String, ByVal year As String, ByVal type As String, ByVal label_name As String) 'ปรับ เพิ่มtype
+        If FileUpload1.HasFile Then 'เช็คว่ามีการเบราไฟล์แล้ว
+            Dim bao As New BAO.AppSettings
+            Dim NAME_FAKE As String 'ตัวแปรเก็บชื่อไฟล์ที่เบรา
+            Dim NAME_REAL As String 'ตัวแปรเก็บชื่อไฟล์ที่แปลงเพื่อให้สัมพันธ์กับระบบ
+            NAME_REAL = FileUpload1.FileName 'NAME_REALเก็บชื่อไฟล์ที่เบรา
+            Dim Array_NAME_REAL() As String = Split(NAME_REAL, ".")
+            Dim Last_Length As Integer = Array_NAME_REAL.Length - 1 'ดึงนามสกุลไฟล์ที่เบรามาใช้กับ NAME_FAKE 
+            NAME_FAKE = "SUB-" & PROCESS_ID & "-" & year & "-" & transection & "-" & type & System.IO.Path.GetExtension(FileUpload1.FileName) '"." & Array_NAME_REAL(Last_Length).ToString() 'สร้างชื่อไฟล์ใหม่โดยใช้นามสกุลไฟล์เดิม
+            FileUpload1.SaveAs(bao._PATH_XML_PDF_LCN_SUB & "FILE_UPLOAD\" & NAME_FAKE) 'บันทึกไฟล์ลงserverโดยใช้ชื่อที่สรางขึ้นใหม่
 
+            'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH
+            Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao.fields.DUCUMENT_NAME = label_name
+            dao.fields.NAME_FAKE = NAME_FAKE 'เก็บชื่อไฟล์ที่สร้างขึ้นใหม่เพื่อเรียกใช้
+            dao.fields.NAME_REAL = NAME_REAL 'เก็บชื่อไฟล์ที่เบราไว้เก็บเผื่อไว้เฉยๆ
+            dao.fields.TYPE = type 'ลำดับไฟล์เก็บไว้เรียกข้อมูล
+            dao.fields.TR_ID = transection 'เลขอ้างอิงPDFเก็บไว้เรียกข้อมูล
+            dao.fields.PROCESS_ID = PROCESS_ID
+            dao.fields.FK_IDA = IDA
+            dao.fields.CREATE_DATE = Date.Now
+            dao.insert()
+
+        End If
+    End Sub
 
     Public Function check() As String
         Dim _check As String

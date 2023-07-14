@@ -66,7 +66,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารยินยอมการใช้สูตร</h3>
+                    <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
             <div class="row">

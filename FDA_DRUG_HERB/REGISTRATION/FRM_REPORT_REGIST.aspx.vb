@@ -145,7 +145,7 @@ Public Class FRM_REPORT_REGIST
         dao.fields.STATUS_ID = 7
         dao.update()
 
-        alert("ยกเลิกข้อมุลเรียบร้อยแล้ว")
+        alert("ยกเลิกข้อมูลเรียบร้อยแล้ว")
     End Sub
     'Sub RunReport()
     '    Dim dt_drug_general As New DataTable

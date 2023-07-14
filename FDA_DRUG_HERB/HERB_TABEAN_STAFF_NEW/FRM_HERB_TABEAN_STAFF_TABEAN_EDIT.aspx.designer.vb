@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,16 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
+    '''<summary>
+    '''set_show control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents set_show As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
     '''<summary>
     '''tb_type_menu control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
-
+    
     '''<summary>
     '''btn_add_upload control.
     '''</summary>
@@ -39,7 +48,16 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
-
+    
+    '''<summary>
+    '''RadGrid2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
+    
     '''<summary>
     '''CHK_TB1_EDIT control.
     '''</summary>
@@ -48,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CHK_TB1_EDIT As Global.System.Web.UI.WebControls.CheckBox
-
+    
     '''<summary>
     '''lbl_tb1_edit control.
     '''</summary>
@@ -57,7 +75,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_tb1_edit As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''CHK_UPLOAD_EDIT control.
     '''</summary>
@@ -66,7 +84,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CHK_UPLOAD_EDIT As Global.System.Web.UI.WebControls.CheckBox
-
+    
     '''<summary>
     '''lbl_upload_edit control.
     '''</summary>
@@ -75,7 +93,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_upload_edit As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''DIV_SHOW_TXT_EDIT_TB1 control.
     '''</summary>
@@ -84,7 +102,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DIV_SHOW_TXT_EDIT_TB1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''TXT_EDIT_NOTE_TB1 control.
     '''</summary>
@@ -93,7 +111,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TXT_EDIT_NOTE_TB1 As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''DIV_EDIT_UPLOAD1 control.
     '''</summary>
@@ -102,7 +120,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DIV_EDIT_UPLOAD1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''NOTE_EDIT control.
     '''</summary>
@@ -111,7 +129,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE_EDIT As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''DIV_EDIT_UPLOAD2 control.
     '''</summary>
@@ -120,7 +138,16 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DIV_EDIT_UPLOAD2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
+    '''<summary>
+    '''RadGrid3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
+    
     '''<summary>
     '''RadGrid1 control.
     '''</summary>
@@ -129,7 +156,25 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
-
+    
+    '''<summary>
+    '''RadGrid4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
+    
+    '''<summary>
+    '''lr_preview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lr_preview As Global.System.Web.UI.WebControls.Literal
+    
     '''<summary>
     '''btn_sumit control.
     '''</summary>
@@ -138,7 +183,7 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_sumit As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btn_cancel control.
     '''</summary>

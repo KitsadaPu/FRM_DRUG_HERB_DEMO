@@ -105,8 +105,8 @@ Public Class POPUP_STAFF_LCN_SUBTITUTE_CONSIDER
             End Try
 
             dao.fields.REMARK = Txt_Remark.Text
-            dao.fields.STATUS_ID = 11  'ข้ามจ่ายเงิน
-            'dao.fields.STATUS_ID = 3
+            'dao.fields.STATUS_ID = 11  'ข้ามจ่ายเงิน
+            dao.fields.STATUS_ID = 5
             dao.fields.CONSIDER_DATE = CONSIDER_DATE
             dao.fields.POSITION_NAME1 = txt_position1.Text
             dao.fields.STAFF_SIGN_IDA = rcb_staff_offer.SelectedValue

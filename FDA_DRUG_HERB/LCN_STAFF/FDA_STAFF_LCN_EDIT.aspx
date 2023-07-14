@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/jquery-1.9.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $(window).load(function () {
                 $.ajax({
@@ -62,7 +62,7 @@
             alert('Download Success');
             Loaddata();
         }
-     </script>
+    </script>
     <style type="text/css">
         .fit-picture {
             width: 250px;
@@ -115,7 +115,7 @@
         </div>
         <div class="col-lg-3"></div>
     </div>
-     <div class="row">
+    <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <h3>หมายเหตุการแก้ไข</h3>
         </div>
@@ -142,19 +142,19 @@
                 <div class="col-lg-1" style="text-align: right">
                     <asp:Label ID="lbl_upload_file" runat="server" Text=""></asp:Label>
                 </div>
-                 <div class="col-lg-1" style="text-align: right">
-                    <div runat="server" id="img_not" >
-                    <img class="auto-style3"
-                        src="../Images/cancel.png"
-                        alt=""
-                        runat="server">
-                        </div>
-                     <div runat="server" id="img_cf" visible="False">
-                    <img class="auto-style3"
-                        src="../Images/correct.png"
-                        alt=""
-                        runat="server">
-                        </div>
+                <div class="col-lg-1" style="text-align: right">
+                    <div runat="server" id="img_not">
+                        <img class="auto-style3"
+                            src="../Images/cancel.png"
+                            alt=""
+                            runat="server" />
+                    </div>
+                    <div runat="server" id="img_cf" visible="False">
+                        <img class="auto-style3"
+                            src="../Images/correct.png"
+                            alt=""
+                            runat="server" />
+                    </div>
                 </div>
                 <div class="col-lg-2">
                     <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN" />

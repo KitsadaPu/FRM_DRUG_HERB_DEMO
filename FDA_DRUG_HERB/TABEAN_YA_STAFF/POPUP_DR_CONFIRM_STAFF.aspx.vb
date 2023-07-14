@@ -389,7 +389,7 @@ Public Class POPUP_DR_CONFIRM_STAFF
             'Catch ex As Exception
 
             'End Try
-            'Dim bao2 As New BAO.GenNumber
+            ' Dim bao2 As New BAO.GenNumber
             'Dim LCNNO As Integer
             'LCNNO = bao2.GEN_RGTNO(con_year(Date.Now.Year), _CLS.PVCODE, rgttpcd, _IDA)
             'dao.fields.rgtno = LCNNO 'bao.FORMAT_NUMBER_FULL(con_year(Date.Now.Year), LCNNO)

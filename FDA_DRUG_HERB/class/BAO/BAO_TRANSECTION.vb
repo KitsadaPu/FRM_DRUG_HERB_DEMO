@@ -19,6 +19,15 @@
             _CITIZEN_ID_AUTHORIZE = value
         End Set
     End Property
+    Private _THANM As String
+    Public Property THANM() As String
+        Get
+            Return _THANM
+        End Get
+        Set(ByVal value As String)
+            _THANM = value
+        End Set
+    End Property
 
 
 
@@ -40,6 +49,7 @@
 
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_TRANSACTION_JJ
         dao_up.fields.CITIEZEN_ID = _CITIZEN_ID
+        dao_up.fields.STAFF_NAME = _THANM
         dao_up.fields.CITIEZEN_ID_AUTHORIZE = _CITIZEN_ID_AUTHORIZE
         dao_up.fields.PROCESS_ID = processid
         dao_up.fields.FK_IDA_JJ = IDA

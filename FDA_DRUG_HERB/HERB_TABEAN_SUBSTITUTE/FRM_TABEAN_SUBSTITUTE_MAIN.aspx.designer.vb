@@ -12,7 +12,16 @@ Option Explicit On
 
 
 Partial Public Class FRM_TABEAN_SUBSTITUTE_MAIN
-    
+
+    '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
     '''<summary>
     '''DD_DRRGT_PROCESS_ID control.
     '''</summary>
@@ -21,7 +30,7 @@ Partial Public Class FRM_TABEAN_SUBSTITUTE_MAIN
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_DRRGT_PROCESS_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''TB1 control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class FRM_TABEAN_SUBSTITUTE_MAIN
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TB1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>

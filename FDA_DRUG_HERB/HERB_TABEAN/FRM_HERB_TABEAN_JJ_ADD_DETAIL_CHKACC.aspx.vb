@@ -11,6 +11,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
     Private _PROCESS_JJ As String = ""
     Private _IDA As String = ""
     Private _PROCESS_ID_LCN As String = ""
+    Private _SID As String = ""
 
     Sub RunSession()
         Try
@@ -31,6 +32,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
         _PROCESS_JJ = Request.QueryString("PROCESS_JJ")
         _IDA = Request.QueryString("IDA")
         _PROCESS_ID_LCN = Request.QueryString("PROCESS_ID_LCN")
+        _SID = Request.QueryString("SID")
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -118,20 +120,20 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_CHKACC
             alert_nosummit("เนื่องด้วยคำขอนี้ เป็นคำขอจดแจ้งผลิตภัณฑ์สมุนไพร ซึ่งต้องมีสูตรและกรรมวิธีการผลิต ตามที่กำหนดไว้ในประกาศกระทรวงสาธารณสุข เรื่อง ชื่อ ประเภท ชนิดหรือลักษณะของผลิตภัณฑ์สมุนไพร ซึ่งการผลิตหรือนำเข้าเพื่อขาย ต้องได้รับใบสำคัญการขึ้นทะเบียนตำรับ ใบรับแจ้งรายละเอียดหรือใบรับจดแจ้ง และชื่อ ปริมาณ และเงื่อนไขของวัตถุที่อาจใช้เป็นส่วนผสมในผลิตภัณฑ์สมุนไพร สำหรับผลิตภัณฑ์สมุนไพรที่ขอจดแจ้ง พ.ศ. ๒๕๖๔ ในกรณีที่ท่านไม่ยอมรับการใช้สูตรและกรรมวิธีการผลิตตามที่ระบุ ท่านจะไม่สามารถยื่นคำขอได้ หากท่านต้องการใช้สูตร และ/หรือ กรรมวิธีการผลิต ที่ต่างไปจากที่กำหนดไว้ ขอให้ท่านยื่นคำขอในรูปแบบ การขึ้นทะเบียน หรือการแจ้งรายละเอียด (แล้วแต่กรณี)", dao.fields.IDA)
         End If
 
-        Dim bao_tran As New BAO_TRANSECTION
-        bao_tran.insert_transection_jj(_PROCESS_JJ, dao.fields.IDA, 2)
+        'Dim bao_tran As New BAO_TRANSECTION
+        'bao_tran.insert_transection_jj(_PROCESS_JJ, dao.fields.IDA, 2)
 
     End Sub
 
     Sub alert_summit(ByVal text As String, ByVal ida_jj As Integer)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&SID=" & _SID & "&identify=" & Request.QueryString("identify") & "&OPF=" & Request.QueryString("OPF")
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 
     Sub alert_nosummit(ByVal text As String, ByVal ida_jj As Integer)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN
+        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&SID=" & _SID & "&identify=" & Request.QueryString("identify")
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
 

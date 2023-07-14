@@ -68,13 +68,13 @@ Partial Public Class FRM_LCN_DRUG_TRANSFER
     Protected WithEvents lbl_remark As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''GV_lcnno control.
+    '''RadGrid1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GV_lcnno As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''hl_pay control.
@@ -84,4 +84,22 @@ Partial Public Class FRM_LCN_DRUG_TRANSFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_pay As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''lbl_head1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_head1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Button2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
 End Class

@@ -1,16 +1,36 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="UC_HERB_KEEP.ascx.vb" Inherits="FDA_DRUG_HERB.UC_HERB_KEEP" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <div>
-
     <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10"><h3>โปรดเลือกสถานที่สถานที่เก็บรักษาผลิตภัณฑ์สมุนไพร</h3></div>
+    </div>
+    <div class="row">
+         <div class="col-lg-1"></div>
+         <div class="col-lg-10">- ใช้ที่สถานที่เก็บเดียวกันกับสถานที่ตั้ง &ensp;<asp:CheckBox ID="cb_location" runat="server" AutoPostBack="True" />&ensp;<label style="color:red">(กรุณาคลิก)</label></div>
+    </div>
+    <div class="row">
+         <div class="col-lg-1"></div>
+         <div class="col-lg-10">- กรณีมีสถานที่เก็บฯอื่นนอกเหนือจากสถานที่ผลิต/นำเข้า/ขายโปรดเลือก</div>
+    </div>
+    <div class="row">
+         <div class="col-lg-1"></div>
+         <div class="col-lg-1" style="padding-left:1em">สถานที่เก็บอื่นๆ :</div>
+         <div class="col-lg-6">
+             <asp:DropDownList ID="ddl_placename" runat="server" Width="100%" AutoPostBack="True"></asp:DropDownList>
+         </div>
+    </div>
+
+
+      <%--  <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
             สถานที่เก็บรักษาผลิตภัณฆ์สมุนไพร (ถ้ามี) ชื่อ
         </div>
         <div class="col-lg-3">
-            <asp:DropDownList ID="ddl_placename" runat="server" Width="300px" AutoPostBack="True"></asp:DropDownList>
+        <asp:DropDownList ID="ddl_placename" runat="server" Width="300px" AutoPostBack="True"></asp:DropDownList>
         </div>
-        <div class="col-lg-3" style="text-align:right">
+      <div class="col-lg-3" style="text-align: right">
             &ensp;
                 ใช้ที่สถานที่เก็บเดียวกันกับสถานที่ตั้ง
                 <asp:CheckBox ID="cb_location" runat="server" AutoPostBack="True" />
@@ -20,24 +40,28 @@
         </div>
         <div class="col-lg-2"></div>
 
-    </div>
+    </div>--%>
+
+
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-1">
-            ที่อยู่
+            ที่อยู่ :
         </div>
-
         <div class="col-lg-8">
             <asp:Label ID="lbl_location_new" runat="server" Text="-"></asp:Label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10">
+              <asp:Label ID="Label1" runat="server" Text="" Style="display: none"><p style="color:red">*กรุณากรอกที่อยู่</p>
+            </asp:Label>
         </div>
     </div>
 
 
     <%--<td></td>
             <td></td>--%>
-
-
-
     <%--เลขรหัสประจำบ้าน<asp:Label ID="Label61" runat="server" Text=".............."></asp:Label>
            อยู่เลขที่<asp:Label ID="Label62" runat="server" Text=".............."></asp:Label>
            หมู่บ้าน/อาคาร<asp:Label ID="Label63" runat="server" Text="............"></asp:Label><br />&ensp;

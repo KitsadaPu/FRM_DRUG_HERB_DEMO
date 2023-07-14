@@ -1,20 +1,29 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN.Master" CodeBehind="FRM_HERB_TABEAN_SUB_MENU.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_SUB_MENU" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_PPK.Master" CodeBehind="FRM_HERB_TABEAN_SUB_MENU.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_HERB_TABEAN_SUB_MENU" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row">
         <div class="col-lg-12" style="text-align: center">เลือกประเภทคำขอ</div>
     </div>
 
     <div class="row">
-        <div class="col-lg-12" style="text-align: center">
-            <asp:Button ID="btn_tabean_edit" runat="server" Text="คำขอแก้ไข" />
+        <div class="col-lg-12" style="text-align: center;border-color:red">
+            <asp:Button ID="btn_tabean_edit" runat="server" Text="คำขอแก้ไข"/>
             <asp:Button ID="btn_tabean_sub" runat="server" Text="คำขอใบแทนใบสำคัญ" />
             <asp:Button ID="btn_tabean_date" runat="server" Text="คำขอต่ออายุ" />
         </div>
     </div>
+   
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+                <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+        </div>
+    </div>
+
+
 
     <div class="row" id="T1" runat="server" visible="false">
         <p class="h3">เลือกใบอนุญาต</p>

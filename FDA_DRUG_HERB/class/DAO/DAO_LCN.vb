@@ -319,6 +319,111 @@
         End Sub
 
     End Class
+    Public Class TB_MAS_TYPE_MAJOR
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_TYPE_MAJOR
+
+
+        Public Sub insert()
+            db.MAS_TYPE_MAJORs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_TYPE_MAJORs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_TYPE_MAJORs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_ID(ByVal ID As Integer)
+
+            datas = (From p In db.MAS_TYPE_MAJORs Where p.IDA = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_MAS_TYPE_QUALIFICATION
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_TYPE_QUALIFICATION
+
+
+        Public Sub insert()
+            db.MAS_TYPE_QUALIFICATIONs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_TYPE_QUALIFICATIONs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_TYPE_QUALIFICATIONs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_ID(ByVal ID As Integer)
+
+            datas = (From p In db.MAS_TYPE_QUALIFICATIONs Where p.IDA = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_MAS_DALCN_PHR_TRAINING
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_DALCN_PHR_TRAINING
+
+
+        Public Sub insert()
+            db.MAS_DALCN_PHR_TRAININGs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_DALCN_PHR_TRAININGs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_DALCN_PHR_TRAININGs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_ID(ByVal ID As Integer)
+
+            datas = (From p In db.MAS_DALCN_PHR_TRAININGs Where p.ID = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TRAINING_ID(ByVal ID As Integer)
+
+            datas = (From p In db.MAS_DALCN_PHR_TRAININGs Where p.TRAINING_ID = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class TB_MAS_LCN_APPROVE_EDIT_REASON_SUB
         Inherits MAINCONTEXT
 
@@ -380,9 +485,21 @@
             Next
         End Sub
 
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.LCN_APPROVE_EDIT_DDL1_REASONs Where p.IDA = ida And p.ACTIVE = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GET_DATA_BY_FK_LCN_IDA(ByVal ida As Integer, ByVal active As Boolean)
 
             datas = (From p In db.LCN_APPROVE_EDIT_DDL1_REASONs Where p.FK_LCN_IDA = ida And p.ACTIVE = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN_IDA_AND_PHR_IDA(ByVal ida As Integer, ByVal phr_ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.LCN_APPROVE_EDIT_DDL1_REASONs Where p.FK_LCN_IDA = ida And p.PHR_IDA = phr_ida And p.ACTIVE = active Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1286,4 +1403,578 @@
 
     End Class
 
+    Public Class TB_DALCN_CONSIDER_TRANSLATION
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_CONSIDER_TRANSLATION
+
+
+        Public Sub insert()
+            db.DALCN_CONSIDER_TRANSLATIONs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_CONSIDER_TRANSLATIONs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATIONs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATIONs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATIONs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_RENEW
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_RENEW
+
+
+        Public Sub insert()
+            db.DALCN_RENEWs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_RENEWs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_RENEWs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_RENEWs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_RENEWs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_LOG_RENEW_HERB
+        Inherits MAINCONTEXT
+
+        Public fields As New LOG_RENEW_HERB
+
+
+        Public Sub insert()
+            db.LOG_RENEW_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.LOG_RENEW_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.LOG_RENEW_HERBs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.LOG_RENEW_HERBs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_TRANSFER
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_TRANSFER
+
+
+        Public Sub insert()
+            db.DALCN_TRANSFERs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_TRANSFERs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_TRANSFERs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_TRANSFERs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_TRANSFERs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_LOG_TRANSFER_LCN_HERB
+        Inherits MAINCONTEXT
+
+        Public fields As New LOG_TRANSFER_LCN_HERB
+
+        Public Sub insert()
+            db.LOG_TRANSFER_LCN_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.LOG_TRANSFER_LCN_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.LOG_TRANSFER_LCN_HERBs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.LOG_TRANSFER_LCN_HERBs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
+            datas = From p In db.LOG_TRANSFER_LCN_HERBs Where p.FK_IDA = FK_IDA Select p
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_LOG_LOCATION_BSN
+        Inherits MAINCONTEXT
+
+        Public fields As New LOG_LOCATION_BSN
+
+        Public Sub insert()
+            db.LOG_LOCATION_BSNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.LOG_LOCATION_BSNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.LOG_LOCATION_BSNs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.LOG_LOCATION_BSNs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
+            datas = From p In db.LOG_LOCATION_BSNs Where p.FK_IDA = FK_IDA Select p
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_AUDIT_IN
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_AUDIT_IN
+
+
+        Public Sub insert()
+            db.DALCN_AUDIT_INs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_AUDIT_INs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_AUDIT_INs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_AUDIT_INs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_AUDIT_INs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_AUDIT_OUT
+            Inherits MAINCONTEXT
+
+            Public fields As New DALCN_AUDIT_OUT
+
+
+            Public Sub insert()
+                db.DALCN_AUDIT_OUTs.InsertOnSubmit(fields)
+                db.SubmitChanges()
+            End Sub
+            Public Sub update()
+                db.SubmitChanges()
+            End Sub
+
+            Public Sub delete()
+                db.DALCN_AUDIT_OUTs.DeleteOnSubmit(fields)
+                db.SubmitChanges()
+            End Sub
+
+            Public Sub GetDataAll()
+
+                datas = (From p In db.DALCN_AUDIT_OUTs Select p)
+                For Each Me.fields In datas
+                Next
+            End Sub
+            Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+                datas = (From p In db.DALCN_AUDIT_OUTs Where p.IDA = ida Select p)
+                For Each Me.fields In datas
+                Next
+            End Sub
+            Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+                datas = (From p In db.DALCN_AUDIT_OUTs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+                For Each Me.fields In datas
+                Next
+            End Sub
+
+        End Class
+    Public Class TB_MAS_PRICE_DISCOUNT_DALCN_HERB
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_PRICE_DISCOUNT_DALCN_HERB
+
+        Public Sub insert()
+            db.MAS_PRICE_DISCOUNT_DALCN_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.MAS_PRICE_DISCOUNT_DALCN_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.MAS_PRICE_DISCOUNT_DALCN_HERBs Select p)
+
+        End Sub
+        Public Sub GetdatabyID_ID(ByVal ID As Integer)
+            datas = From p In db.MAS_PRICE_DISCOUNT_DALCN_HERBs Where p.ID = ID Select p
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.MAS_PRICE_DISCOUNT_DALCN_HERBs Where p.IDA = IDA Select p
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+    End Class
+    Public Class TB_MAS_LCN_AUDIT_DETAIL_GROUP_DRUG
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_LCN_AUDIT_DETAIL_GROUP_DRUG
+
+
+        Public Sub insert()
+            db.MAS_LCN_AUDIT_DETAIL_GROUP_DRUGs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_LCN_AUDIT_DETAIL_GROUP_DRUGs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub GetDataAll_DES()
+
+            datas = (From p In db.MAS_LCN_AUDIT_DETAIL_GROUP_DRUGs Where p.ACTIVE = 1 Select p Order By p.SEQ Ascending)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.MAS_LCN_AUDIT_DETAIL_GROUP_DRUGs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_LCN_AUDIT_DETAIL_GROUP_DRUGs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        'Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+        '    datas = (From p In db.DALCN_AUDIT_OUTs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+        '    For Each Me.fields In datas
+        '    Next
+        'End Sub
+
+    End Class
+    Public Class TB_MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+
+
+        Public Sub insert()
+            db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub GetDataAll_ASC()
+
+            datas = (From p In db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.ACTIVE = 1 Select p Order By p.SEQ Ascending)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_HEAD_ID(ByVal HEAD_ID As Integer)
+
+            datas = (From p In db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.HEAD_ID = HEAD_ID Select p Order By p.SEQ Ascending)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_LCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        'Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+        '    datas = (From p In db.DALCN_AUDIT_OUTs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+        '    For Each Me.fields In datas
+        '    Next
+        'End Sub
+
+    End Class
+    Public Class TB_DALCN_AUDIT_DETAIL_GROUP_DRUG
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_AUDIT_DETAIL_GROUP_DRUG
+
+
+        Public Sub insert()
+            db.DALCN_AUDIT_DETAIL_GROUP_DRUGs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_AUDIT_DETAIL_GROUP_DRUGs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_AUDIT_DETAIL_GROUP_DRUGs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_AUDIT_DETAIL_GROUP_DRUGs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal LCN_IDA As Integer)
+
+            datas = (From p In db.DALCN_AUDIT_DETAIL_GROUP_DRUGs Where p.LCN_IDA = LCN_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_IDA(ByVal FK_IDA As Integer)
+
+            datas = (From p In db.DALCN_AUDIT_DETAIL_GROUP_DRUGs Where p.FK_IDA = FK_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_IDA_AND_PROCESS(ByVal FK_IDA As Integer, ByVal Process_ID As String)
+
+            datas = (From p In db.DALCN_AUDIT_DETAIL_GROUP_DRUGs Where p.FK_IDA = FK_IDA And p.PROCESS_ID = Process_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+
+    Public Class TB_DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUG
+
+
+        Public Sub insert()
+            db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal LCN_IDA As Integer)
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.LCN_IDA = LCN_IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GET_DATA_BY_FK_IDA_AND_HEAD_ID(ByVal FK_IDA As Integer, ByVal HEAD_ID As Integer)
+
+            datas = (From p In db.DALCN_CONSIDER_TRANSLATION_DETAIL_GROUP_DRUGs Where p.FK_IDA = FK_IDA And p.HEAD_ID = HEAD_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_LOG_EDIT_MIGRATE_LCN
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New LOG_EDIT_MIGIGRATE_LCN
+
+        Public Sub insert()
+            db.LOG_EDIT_MIGIGRATE_LCNs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.LOG_EDIT_MIGIGRATE_LCNs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.LOG_EDIT_MIGIGRATE_LCNs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.LOG_EDIT_MIGIGRATE_LCNs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_LCN_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.LOG_EDIT_MIGIGRATE_LCNs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+    End Class
 End Namespace

@@ -5,11 +5,14 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
     Private _CLS As New CLS_SESSION
     Private _lctida As String = ""
     Private _MENU_GROUP As String = ""
+    Private _WHO_IDA As String = ""
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
             BindMenu(CDec(_MENU_GROUP))
+
         End If
+        'bind_btn_menu()
     End Sub
 
     Public Sub BindMenu(ByVal NodeGroup As Integer)
@@ -30,6 +33,11 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
         Catch ex As Exception
 
         End Try
+        Try
+            _WHO_IDA = Request.QueryString("WHO_IDA")
+        Catch ex As Exception
+
+        End Try
         For Each dao.fields In dao.datas
             Dim t_node As New RadTreeNode
             t_node.Value = dao.fields.IDA
@@ -47,7 +55,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                         t_node.NavigateUrl = dao.fields.URL & "&IDA_LCT=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
                             process_lcn = dao_dal.fields.PROCESS_ID
-                            t_node.NavigateUrl = t_node.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID_LCN=" & process_lcn
+                            t_node.NavigateUrl = t_node.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID_LCN=" & process_lcn & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node.NavigateUrl = dao.fields.URL
@@ -56,7 +64,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                     If Request.QueryString("lct_ida") <> "" Then
                         t_node.NavigateUrl = dao.fields.URL & "&lct_ida=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
-                            t_node.NavigateUrl = t_node.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida")
+                            t_node.NavigateUrl = t_node.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida") & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node.NavigateUrl = dao.fields.URL
@@ -65,7 +73,11 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
             End If
 
             Try
-                t_node.NavigateUrl &= "&staff=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE
+                If dao.fields.URL.Contains("TOKEN") Or dao.fields.URL.Contains("AUTHEN") Then
+                    t_node.NavigateUrl = dao.fields.URL & "?Token=" & _CLS.TOKEN & "&staff=1&citizen_authen=" & _CLS.CITIZEN_ID_AUTHORIZE & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID=" & dao.fields.PROCESS_ID & "&IDA_LCT=" & _lctida
+                Else
+                    t_node.NavigateUrl &= "&staff=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE
+                End If
             Catch ex As Exception
 
             End Try
@@ -130,7 +142,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                         t_node2.NavigateUrl = dao.fields.URL & "&IDA_LCT=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
                             process_lcn = dao_dal.fields.PROCESS_ID
-                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID_LCN=" & process_lcn
+                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID_LCN=" & process_lcn & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node2.NavigateUrl = dao.fields.URL
@@ -139,7 +151,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                     If Request.QueryString("lct_ida") <> "" Then
                         t_node2.NavigateUrl = dao.fields.URL & "&lct_ida=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
-                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida")
+                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida") & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node2.NavigateUrl = dao.fields.URL
@@ -150,7 +162,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                     If Request.QueryString("lct_ida") <> "" Then
                         t_node2.NavigateUrl = dao.fields.URL & "&IDA_LCT=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
-                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida")
+                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node2.NavigateUrl = dao.fields.URL
@@ -159,7 +171,7 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
                     If Request.QueryString("lct_ida") <> "" Then
                         t_node2.NavigateUrl = dao.fields.URL & "&lct_ida=" & _lctida
                         If Request.QueryString("lcn_ida") <> "" Then
-                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida")
+                            t_node2.NavigateUrl = t_node2.NavigateUrl & "&lcn_ida=" & Request.QueryString("lcn_ida") & "&SID=" & Request.QueryString("SID") & "&WHO_IDA=" & _WHO_IDA
                         End If
                     Else
                         t_node2.NavigateUrl = dao.fields.URL
@@ -168,7 +180,11 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
             End If
 
             Try
-                t_node2.NavigateUrl &= "&staff=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE
+                If dao.fields.URL.Contains("TOKEN") Or dao.fields.URL.Contains("AUTHEN") Then
+                    t_node2.NavigateUrl = dao.fields.URL & "?Token=" & _CLS.TOKEN & "&staff=1&citizen_authen=" & _CLS.CITIZEN_ID_AUTHORIZE & "&IDA_LCN=" & Request.QueryString("lcn_ida") & "&PROCESS_ID=" & dao.fields.PROCESS_ID & "&IDA_LCT=" & _lctida
+                Else
+                    t_node2.NavigateUrl &= "&staff=1&identify=" & _CLS.CITIZEN_ID_AUTHORIZE
+                End If
             Catch ex As Exception
 
             End Try
@@ -188,7 +204,43 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
             gen_child_node(t_node2.Nodes, dao.fields.IDA, NodeGroup, group_per)
         Next
     End Sub
+    'Sub bind_btn_menu()
+    '    Dim sel_type As Integer = 0
+    '    If Request.QueryString("ttt") = "2" Then
+    '        sel_type = 2
+    '    Else
+    '        sel_type = 1
+    '    End If
+    '    Dim TreeView1 As New RadTreeView
+    '    TreeView1 = DirectCast(rcb_Process.Items(0).FindControl("rtv_Process"), RadTreeView)
+    '    Dim dao As New DAO_DRUG.ClsDBMAS_MENU_AUTO2
+    '    dao.GetDataby_HEAD_ID2(0, _MENU_GROUP, sel_type)
+    '    Dim dao_dal As New DAO_DRUG.ClsDBdalcn
+    '    Dim process_lcn As String = ""
+    '    Try
+    '        dao_dal.GetDataby_IDA(Request.QueryString("lcn_ida"))
+    '    Catch ex As Exception
 
+    '    End Try
+
+    '    ' Panel1.Controls.Clear()
+    '    'For i As Integer = 0 To 10 Step 1
+    '    For Each dao.fields In dao.datas
+    '        Dim btn_click As New Button
+    '        'btn_click.Location = New Point(760, 150 + (sk * 25))
+    '        btn_click.ForeColor = System.Drawing.Color.Black
+    '        btn_click.Height = 40
+    '        btn_click.Width = 300
+    '        btn_click.BorderColor = System.Drawing.Color.Green
+    '        'btn_click.c = System.Drawing.Color.Green
+
+    '        'btn_click.
+    '        btn_click.Text = dao.fields.NAME
+    '        btn_click.ID = dao.fields.IDA
+    '        AddHandler btn_click.Click, AddressOf DynamicButton_Click
+    '        Panel1.Controls.Add(btn_click)
+    '    Next
+    'End Sub
 
     Sub RunSession()
         Try
@@ -206,5 +258,25 @@ Public Class FRM_REPLACEMENT_LICENSE_LOCATION_MENU2
             Response.Redirect("http://privus.fda.moph.go.th/")
         End Try
     End Sub
+
+    'Private Sub DynamicButton_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+    '    Dim sel_type As Integer = 0
+    '    If Request.QueryString("ttt") = "2" Then
+    '        sel_type = 2
+    '    Else
+    '        sel_type = 1
+    '    End If
+    '    Dim dao As New DAO_DRUG.ClsDBMAS_MENU_AUTO2
+    '    dao.GetDataby_HEAD_ID2(0, _MENU_GROUP, sel_type)
+    '    dao.GetDataby_IDA(sender)
+    '    Dim dao_dal As New DAO_DRUG.ClsDBdalcn
+    '    Dim process_lcn As String = ""
+    '    Try
+    '        dao_dal.GetDataby_IDA(Request.QueryString("lcn_ida"))
+    '    Catch ex As Exception
+
+    '    End Try
+    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "Codeblock", "alert('Dynamic Button is clicked.');", True)
+    'End Sub
 
 End Class

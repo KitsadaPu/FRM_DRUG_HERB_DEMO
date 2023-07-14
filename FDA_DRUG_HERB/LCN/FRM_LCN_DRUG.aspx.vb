@@ -47,10 +47,18 @@ Public Class FRM_LCN_DRUG
             load_GV_lcnno()         'ให้รันฟังก์ชั่นลำดับที่ 3
             load_lbl_name()         'ให้รันฟังก์ชั่นลำดับที่ 4
             load_HL()
-
+            If Request.QueryString("OPF") = "1" Then
+                Open_PopUP()
+            End If
 
         End If
         UC_INFMT.Shows(_lct_ida)
+    End Sub
+    Private Sub Open_PopUP()
+        Dim TR_ID As String = Request.QueryString("TR_ID").ToString()
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_TR_ID(TR_ID)
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "FRM_LCN_CONFIRM_DRUG.aspx?IDA=" & dao.fields.IDA & "&TR_ID=" & TR_ID & "&Process=" & dao.fields.PROCESS_ID & "&lct_ida=" & dao.fields.FK_IDA & "&identify=" & _iden & "');", True)
     End Sub
     Private Sub load_HL()
         Dim urls As String = "https://platba.fda.moph.go.th/FDA_FEE/MAIN/check_token.aspx?Token=" & _CLS.TOKEN
@@ -191,6 +199,7 @@ Public Class FRM_LCN_DRUG
             Dim btn_leaves As Button = DirectCast(e.Row.FindControl("btn_leaves"), Button)
             Dim btn_sell As Button = DirectCast(e.Row.FindControl("btn_sell"), Button)
             Dim btn_drug_edit As Button = DirectCast(e.Row.FindControl("btn_drug_edit"), Button)
+            Dim btn_apm As Button = DirectCast(e.Row.FindControl("btn_apm"), Button)
 
             'btn_Select.Style.Add("display", "none")
             btn_lcn.Style.Add("display", "none")
@@ -293,7 +302,12 @@ Public Class FRM_LCN_DRUG
             '    btn_leaves.Style.Add("display", "block")
             'End If
 
-
+            'If dao.fields.STATUS_ID = 11 Then
+            If dao.fields.STATUS_ID = 3 Then
+                btn_apm.Style.Add("display", "block")
+            Else
+                btn_apm.Style.Add("display", "none")
+            End If
             'ไม่ให้แสดงคำว่า เลือกข้อมูล ถ้าสถานะไม่ใช่อนุมัติ
             If dao.fields.STATUS_ID <> 8 Then
                 btn_lcn.Visible = False
@@ -366,6 +380,15 @@ Public Class FRM_LCN_DRUG
 
             End Try
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups4('" & "POPUP_LCN_SELL_TYPE.aspx?ida=" & str_ID & "&TR_ID=" & tr_id & "&process=" & _process & "');", True)
+        ElseIf e.CommandName = "drug_amp" Then
+            dao.GetDataby_IDA(str_ID)
+            Dim tr_id As String = 0
+            Try
+                tr_id = dao.fields.TR_ID
+            Catch ex As Exception
+
+            End Try
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups4('" & "FRM_LCN_DRUG_APPOIMENT.aspx?ida=" & str_ID & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _process & "');", True)
         End If
     End Sub
 

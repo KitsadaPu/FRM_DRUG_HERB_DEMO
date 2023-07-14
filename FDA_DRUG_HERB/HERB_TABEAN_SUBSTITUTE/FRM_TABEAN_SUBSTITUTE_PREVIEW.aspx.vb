@@ -19,10 +19,10 @@
         Dim FILENAME_XML As String = dao.fields.NAME_FAKE
         Dim bao As New BAO.AppSettings
 
-        Dim paths As String = bao._PATH_XML_PDF_TABEAN_TB
+        Dim paths As String = bao._PATH_XML_PDF_TABEAN_SUB
 
         Dim PATH_XML As String
-        PATH_XML = paths & "UPLOAD_PDF_TABEAN_TB\" & FILENAME_XML
+        PATH_XML = paths & "FILE_UPLOAD\" & FILENAME_XML
 
         Dim clsds As New ClassDataset
         Dim output As Byte()

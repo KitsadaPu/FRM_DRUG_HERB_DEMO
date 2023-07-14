@@ -12,7 +12,16 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_EX_ADD
-    
+
+    '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -21,7 +30,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox1 control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label2 control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox2 control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label3 control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox3 control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox3 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label4 control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''DD_CATEGORY_ID control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_CATEGORY_ID As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''Label5 control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox4 control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox4 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label6 control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''DD_CATEGORY_ID_SUB control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_CATEGORY_ID_SUB As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''Label7 control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox5 control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox5 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label8 control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox6 control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox6 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label9 control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox7 control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox7 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label10 control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label10 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox8 control.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox8 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label11 control.
     '''</summary>
@@ -201,7 +210,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label11 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox9 control.
     '''</summary>
@@ -210,7 +219,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox9 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label12 control.
     '''</summary>
@@ -219,7 +228,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label12 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox10 control.
     '''</summary>
@@ -228,7 +237,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox10 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label13 control.
     '''</summary>
@@ -237,7 +246,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label13 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox11 control.
     '''</summary>
@@ -246,7 +255,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox11 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label14 control.
     '''</summary>
@@ -255,7 +264,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label14 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox12 control.
     '''</summary>
@@ -264,7 +273,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox12 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label15 control.
     '''</summary>
@@ -273,7 +282,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label15 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TextBox13 control.
     '''</summary>
@@ -282,7 +291,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox13 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label16 control.
     '''</summary>
@@ -291,16 +300,25 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label16 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''TextBox14 control.
+    '''EX_NAME_PRODUCT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox14 As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents EX_NAME_PRODUCT As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''validate1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents validate1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
     '''<summary>
     '''Label17 control.
     '''</summary>
@@ -309,34 +327,16 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label17 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''TextBox15 control.
+    '''DD_TYPE_PRODUCK control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox15 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label18 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label18 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''TextBox16 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TextBox16 As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents DD_TYPE_PRODUCK As Global.System.Web.UI.WebControls.DropDownList
+
     '''<summary>
     '''Label19 control.
     '''</summary>
@@ -345,52 +345,277 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label19 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''TextBox17 control.
+    '''style_color control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox17 As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents style_color As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
-    '''TextBox18 control.
+    '''RequiredFieldValidator2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox18 As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
     '''<summary>
-    '''TextBox19 control.
+    '''Panel_cheng_Location3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox19 As Global.System.Web.UI.WebControls.TextBox
-    
+    Protected WithEvents Panel_cheng_Location3 As Global.System.Web.UI.WebControls.Panel
+
     '''<summary>
-    '''UC_ATTACH1 control.
+    '''txt_search control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH1 As Global.FDA_DRUG_HERB.UC_ATTACH
-    
+    Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
-    '''UC_ATTACH2 control.
+    '''txt_search_ida control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_ATTACH2 As Global.FDA_DRUG_HERB.UC_ATTACH
-    
+    Protected WithEvents txt_search_ida As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''HiddenField1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HiddenField1 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Panel_FRGN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_FRGN As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''RG_FRGN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RG_FRGN As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''Panel_FRGN_ADDR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_FRGN_ADDR As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''RG_FRGN_ADDR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RG_FRGN_ADDR As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_address control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_address As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_address_ida control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_address_ida As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DD_PCAK_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_PCAK_1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''NO_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NO_1 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DD_UNIT_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_UNIT_1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DD_PCAK_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_PCAK_2 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''NO_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NO_2 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DD_UNIT_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_UNIT_2 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DD_PCAK_3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_PCAK_3 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''NO_3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NO_3 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DD_UNIT_3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_UNIT_3 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txt_Production_Amount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_Production_Amount As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_Production_Amount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Production_Amount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_Production_Amount_Unit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Production_Amount_Unit As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btn_size_pack control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_size_pack As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''RadGrid4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''RadGrid1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_quantity_produced control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_quantity_produced As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
     '''<summary>
     '''btn_save control.
     '''</summary>
@@ -399,7 +624,7 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_cancel control.
     '''</summary>

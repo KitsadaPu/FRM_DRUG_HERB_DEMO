@@ -59,15 +59,6 @@ Partial Public Class Main_Product
     Protected WithEvents hl_organization As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''UC_NODE_AUTO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UC_NODE_AUTO As Global.FDA_DRUG_HERB.UC_NODE_AUTO
-
-    '''<summary>
     '''ContentPlaceHolder1 control.
     '''</summary>
     '''<remarks>
@@ -75,4 +66,13 @@ Partial Public Class Main_Product
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
+    '''ContentPlaceHolder2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ContentPlaceHolder2 As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

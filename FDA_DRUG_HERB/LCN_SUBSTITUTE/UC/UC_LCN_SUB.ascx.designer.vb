@@ -32,13 +32,13 @@ Partial Public Class UC_LCN_SUB
     Protected WithEvents txt_sub_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_sub_phr_name control.
+    '''txt_sub_bsn_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_sub_phr_name As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_sub_bsn_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txt_sub_iden control.
@@ -174,6 +174,15 @@ Partial Public Class UC_LCN_SUB
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_sub_purpose As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Panel2_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2_1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''Panel3 control.

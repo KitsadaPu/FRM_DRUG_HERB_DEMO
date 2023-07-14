@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN_STAFF.Master" CodeBehind="FRM_TABEAN_SUBSTITUTE_STAFF_MAIN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_SUBSTITUTE_STAFF_MAIN" %>
+
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../css/css_radgrid.css" rel="stylesheet" />
+   <%-- <link href="../css/css_radgrid.css" rel="stylesheet" />--%>
+        <link href="../css/css_rg_herb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -106,11 +108,23 @@
                        <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
                            SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
                        </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="RCVNO" FilterControlAltText="Filter RCVNO column"
-                           HeaderText="เลขรับที่" SortExpression="RCVNO" UniqueName="RCVNO">
+                       <telerik:GridBoundColumn DataField="PROCESS_ID" DataType="System.Int32" FilterControlAltText="Filter PROCESS_ID column" 
+                           HeaderText="PROCESS_ID" SortExpression="PROCESS_ID" UniqueName="PROCESS_ID" Display="false" >
                        </telerik:GridBoundColumn>
-                       <telerik:GridBoundColumn DataField="RGTNO_DISPLAY" FilterControlAltText="Filter RGTNO_DISPLAY column"
-                           HeaderText="เลขทะเบียน" SortExpression="RGTNO_DISPLAY" UniqueName="RGTNO_DISPLAY">
+                        <telerik:GridBoundColumn DataField="IDA_DR" DataType="System.Int32" FilterControlAltText="Filter IDA_DR column" 
+                           HeaderText="IDA_DR" SortExpression="IDA_DR" UniqueName="IDA_DR" Display="false" >
+                       </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="FK_LCN" DataType="System.Int32" FilterControlAltText="Filter FK_LCN column" 
+                           HeaderText="FK_LCN" SortExpression="FK_LCN" UniqueName="FK_LCN" Display="false" >
+                       </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="STATUS_ID" DataType="System.Int32" FilterControlAltText="Filter STATUS_ID column" 
+                           HeaderText="STATUS_ID" SortExpression="STATUS_ID" UniqueName="STATUS_ID" Display="false" >
+                       </telerik:GridBoundColumn>
+                       <telerik:GridBoundColumn DataField="RCVNO_NEW" FilterControlAltText="Filter RCVNO_NEW column"
+                           HeaderText="เลขรับที่" SortExpression="RCVNO_NEW" UniqueName="RCVNO_NEW">
+                       </telerik:GridBoundColumn>
+                       <telerik:GridBoundColumn DataField="RGTNO_FULL" FilterControlAltText="Filter RGTNO_FULL column"
+                           HeaderText="เลขทะเบียน" SortExpression="RGTNO_FULL" UniqueName="RGTNO_FULL">
                        </telerik:GridBoundColumn>
                        <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
                            HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID" AllowFiltering="true">
@@ -128,10 +142,10 @@
                            CommandName="sel" Text="ดูข้อมูล">
                            <HeaderStyle Width="70px" />
                        </telerik:GridButtonColumn>
-                       <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_print" 
+                 <%--      <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_print" 
                            CommandName="print" Text="ใบสำคัญ">
                            <HeaderStyle Width="70px" />
-                       </telerik:GridButtonColumn>
+                       </telerik:GridButtonColumn>--%>
                    </Columns>
                </MasterTableView>
            </telerik:RadGrid>
@@ -143,7 +157,7 @@
         <div class="panel panel-info" style="width: 100%">
             <div class="panel-heading">
                 <div class="modal-title text-center h1 ">
-                    รายละเอียด ใบอนุญาต<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                    รายละเอียดคำขอ<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
 

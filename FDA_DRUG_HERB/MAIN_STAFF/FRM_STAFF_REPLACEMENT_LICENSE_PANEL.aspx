@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/MAIN_STAFF.Master" CodeBehind="FRM_STAFF_REPLACEMENT_LICENSE_PANEL.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_STAFF_REPLACEMENT_LICENSE_PANEL" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -10,23 +11,18 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
     <center>
-
         <div class="panel panel-default">
-                        <div class="panel-heading"> รับเรื่องแทนผู้ประกอบการ </div>
-         <asp:Panel ID="pn_1" runat="server">
-               <div class="panel-body">
-                            
-                   <asp:Button ID="btn_LCN" runat="server" Text="ระบบสถานที่ด้านยา" />
-                   <asp:Button ID="btn_dh" runat="server" Text="ระบบเภสัชเคมีภัณฑ์" />
-                   <asp:Button ID="btn_dr" runat="server" Text="ระบบทะเบียนยา" />
-                        <%--<asp:Button ID="btn_dr0" runat="server" Text="เทสระบบสิททำแทน" />--%>
-                        </asp:Panel>
-                      
+            <div class="panel-heading">รับเรื่องแทนผู้ประกอบการ </div>
+            <asp:Panel ID="pn_1" runat="server">
+                <div class="panel-body">
+                    <asp:Button ID="btn_LCN" runat="server" Text="ระบบการขออนุญาตสถานที่ด้านยา" />
+                    <asp:Button ID="btn_dh" runat="server" Text="ระบบการขออนุญาตเภสัชเคมีภัณฑ์" Enabled="true" />
+                    <asp:Button ID="btn_dr" runat="server" Text="ระบบการขออนุญาตผลิตภัณฑ์สมุนไพร" />
+                    <%--<asp:Button ID="btn_dr0" runat="server" Text="เทสระบบสิททำแทน"
+                            <asp:Button ID="btn_dr" runat="server" Text="ระบบการขออนุญาตทะเบียนยา" />/>--%>
                     </div>
-
-   </center>
-
+            </asp:Panel>
+        </div>
+    </center>
 </asp:Content>

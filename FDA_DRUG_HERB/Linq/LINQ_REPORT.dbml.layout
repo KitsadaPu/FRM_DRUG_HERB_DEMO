@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 9.25" name="LINQ_REPORT">
+  <DataContextMoniker Name="/LINQ_REPORTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6bd5b8d5-b805-4222-8149-c7efaec2d279" absoluteBounds="3.125, 1.5, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/LINQ_REPORTDataContext/HERB_PRODUCT_REPORT_DETAIL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1e08c478-5f49-46bc-9449-443280c0c3f4" absoluteBounds="3.1399999999999997, 1.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="78c04d81-27a2-40e8-af34-c506970c9ff3" absoluteBounds="6.125, 1.5, 2, 7.5399397786458326">
+      <DataClassMoniker Name="/LINQ_REPORTDataContext/HERB_PRODUCT_REPORT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d04097fc-6d95-4e68-a503-237946dbdc04" absoluteBounds="6.14, 1.96, 1.9700000000000002, 6.979939778645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="28d152a2-abd1-43ea-87c5-5784ee8b1007" absoluteBounds="0.5, 1.5, 2, 7.5399397786458318">
+      <DataClassMoniker Name="/LINQ_REPORTDataContext/HERB_PRODUCT_NOTIFIED" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2340dbff-1494-4090-a41d-0c03f46c0cde" absoluteBounds="0.515, 1.96, 1.9700000000000002, 6.979939778645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="010f1dbe-9dba-4f89-8a53-3bcf06bcb3c5" absoluteBounds="9, 1.5, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/LINQ_REPORTDataContext/HERB_PRODUCT_NOTIFIED_DETAIL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3690114b-6bb4-40ff-b7ac-62c07081106e" absoluteBounds="9.015, 1.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

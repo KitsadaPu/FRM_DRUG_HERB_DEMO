@@ -5,6 +5,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
     Inherits System.Web.UI.Page
     Private _CLS As New CLS_SESSION
     Private _LCN_IDA As Integer
+    Private _IDA As Integer
     Private _TR_ID As String
     Private _ProcessID As String
     Private _REASON_TYPE As String
@@ -15,6 +16,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
     Sub RunSession()
 
+        _IDA = Request.QueryString("IDA")
         _LCN_IDA = Request.QueryString("LCN_IDA")
         _REASON_TYPE = Request.QueryString("LCN_EDIT_REASON_TYPE")
         _STATUS_GROUP = Request.QueryString("STATUS_GROUP")
@@ -66,7 +68,8 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        'dao.GetDataby_LCN_IDA_AND_YEAR_AND_ACTIVE(_LCN_IDA, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
         Dim tr_id As String = ""
         Dim lcn_edit_process As Integer = 0
         tr_id = dao.fields.TR_ID
@@ -199,7 +202,8 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+        'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
         Dim tr_id As String = ""
         Dim lcn_edit_process As Integer = 0
         tr_id = dao.fields.TR_ID
@@ -297,7 +301,8 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
         Dim dao As New DAO_LCN.TB_LCN_APPROVE_EDIT
         Dim _YEAR As String = con_year(Date.Now().Year())
-        dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+        'dao.GetDataBY_LCN_IDA_LCN_EDIT_REASON_TYPE_YEAR(_LCN_IDA, _dd1_file, _YEAR, True)
+        dao.GetDataby_IDA(_IDA)
         Dim tr_id As String = ""
         Dim lcn_edit_process As Integer = 0
         tr_id = dao.fields.TR_ID

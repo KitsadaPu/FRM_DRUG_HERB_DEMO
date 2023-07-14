@@ -134,8 +134,10 @@
         year_xml = dao.fields.DATE_YEAR
         tr_id_xml = dao.fields.TR_ID
 
-        dao.fields.STATUS_ID = 2
+        dao.fields.STATUS_ID = 0
         dao.update()
+
+        AddLogStatus(dao.fields.STATUS_ID, dao.fields.LCN_PROCESS_ID, _CLS.CITIZEN_ID, dao.fields.IDA)
 
         bind_pdf_xml_2(ida_xml, _lcn_ida, process_xml, dao.fields.STATUS_ID, year_xml, tr_id_xml)
 

@@ -24,7 +24,15 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
         RunSession()
         If Not IsPostBack Then
             Run_Pdf_Tabean_Herb()
+            set_txt()
         End If
+    End Sub
+    Sub set_txt()
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+        lbl_create_by.Text = dao.fields.CREATE_BY
+        lbl_create_date.Text = dao.fields.CREATE_DATE
+
     End Sub
     Public Sub Run_Pdf_Tabean_Herb()
         Dim bao_app As New BAO.AppSettings
@@ -150,6 +158,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
 
         Run_Pdf_Tabean_Herb_13()
         Run_Pdf_Tabean_Herb_13_2()
+        Run_Pdf_Tabean_Herb_13_2_LONG()
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
     End Sub
     Public Sub Run_Pdf_Tabean_Herb_13()
@@ -201,5 +210,37 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INOFFER_PLAY
         _CLS.PDFNAME = PATH_PDF_OUTPUT
         _CLS.FILENAME_XML = Path_XML
 
+    End Sub
+    Public Sub Run_Pdf_Tabean_Herb_13_2_LONG()
+        Dim bao_app As New BAO.AppSettings
+        bao_app.RunAppSettings()
+
+        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
+        dao.GetdatabyID_IDA(_IDA)
+
+        Dim XML As New CLASS_GEN_XML.TABEAN_HERB_JJ
+        TB_JJ = XML.gen_xml_2(_IDA, _IDA_LCN)
+
+        Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
+        dao_pdftemplate.GETDATA_TABEAN_HERB_JJ_TEMPLAETE1(_ProcessID, dao.fields.STATUS_ID, "จจ2", 1)
+
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ") 'path
+        Dim PATH_PDF_TEMPLATE As String = _PATH_FILE & "PDF_JJ2\" & dao_pdftemplate.fields.PDF_TEMPLATE
+        Dim PATH_PDF_OUTPUT As String = _PATH_FILE & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF_JJ("HB_PDF", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+        Dim Path_XML As String = _PATH_FILE & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML_JJ("HB_XML", _ProcessID, dao.fields.DATE_YEAR, dao.fields.TR_ID_JJ, _IDA, dao.fields.STATUS_ID)
+
+        LOAD_XML_PDF(Path_XML, PATH_PDF_TEMPLATE, _ProcessID, PATH_PDF_OUTPUT)
+
+        _CLS.FILENAME_PDF = PATH_PDF_OUTPUT
+        _CLS.PDFNAME = PATH_PDF_OUTPUT
+        _CLS.FILENAME_XML = Path_XML
+
+    End Sub
+
+    Protected Sub btn_download_jj2_Click(sender As Object, e As EventArgs) Handles btn_download_jj2.Click
+        Run_Pdf_Tabean_Herb_13_2_LONG()
+        Run_Pdf_Tabean_Herb_13_2()
+        Dim Url As String = "FRM_HERB_TABEAN_STAFF_JJ_PREVIEW_JJ2.aspx?IDA=" & _IDA & "&SLDDL=" & DDL_JJ2_SELECT.SelectedValue
+        Response.Write("<script>window.open('" & Url & "','_blank')</script>")
     End Sub
 End Class

@@ -24,7 +24,7 @@ Imports System.Xml.Serialization
 Namespace FDA_MAIL
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
      System.Web.Services.WebServiceBindingAttribute(Name:="FDA_MAILSoap", [Namespace]:="http://tempuri.org/")>  _
@@ -33,15 +33,21 @@ Namespace FDA_MAIL
         
         Private SendMailOperationCompleted As System.Threading.SendOrPostCallback
         
+        Private SendMail_NO_SMSOperationCompleted As System.Threading.SendOrPostCallback
+        
         Private SendMail_ASY_ATTACHOperationCompleted As System.Threading.SendOrPostCallback
         
         Private SendMail_ASYOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private SendMail_ASY_NO_SMSOperationCompleted As System.Threading.SendOrPostCallback
         
         Private SendMailHTMLOperationCompleted As System.Threading.SendOrPostCallback
         
         Private SendMail_CCOperationCompleted As System.Threading.SendOrPostCallback
         
         Private SendMail_ATTACHOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private SendMail_ATTACH_OBJOperationCompleted As System.Threading.SendOrPostCallback
         
         Private SendMail_CC_ATTACHOperationCompleted As System.Threading.SendOrPostCallback
         
@@ -87,10 +93,16 @@ Namespace FDA_MAIL
         Public Event SendMailCompleted As SendMailCompletedEventHandler
         
         '''<remarks/>
+        Public Event SendMail_NO_SMSCompleted As SendMail_NO_SMSCompletedEventHandler
+        
+        '''<remarks/>
         Public Event SendMail_ASY_ATTACHCompleted As SendMail_ASY_ATTACHCompletedEventHandler
         
         '''<remarks/>
         Public Event SendMail_ASYCompleted As SendMail_ASYCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event SendMail_ASY_NO_SMSCompleted As SendMail_ASY_NO_SMSCompletedEventHandler
         
         '''<remarks/>
         Public Event SendMailHTMLCompleted As SendMailHTMLCompletedEventHandler
@@ -100,6 +112,9 @@ Namespace FDA_MAIL
         
         '''<remarks/>
         Public Event SendMail_ATTACHCompleted As SendMail_ATTACHCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event SendMail_ATTACH_OBJCompleted As SendMail_ATTACH_OBJCompletedEventHandler
         
         '''<remarks/>
         Public Event SendMail_CC_ATTACHCompleted As SendMail_CC_ATTACHCompletedEventHandler
@@ -127,6 +142,32 @@ Namespace FDA_MAIL
             If (Not (Me.SendMailCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendMailCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendMail_NO_SMS", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Sub SendMail_NO_SMS(ByVal Mail As Fields_Mail)
+            Me.Invoke("SendMail_NO_SMS", New Object() {Mail})
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_NO_SMSAsync(ByVal Mail As Fields_Mail)
+            Me.SendMail_NO_SMSAsync(Mail, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_NO_SMSAsync(ByVal Mail As Fields_Mail, ByVal userState As Object)
+            If (Me.SendMail_NO_SMSOperationCompleted Is Nothing) Then
+                Me.SendMail_NO_SMSOperationCompleted = AddressOf Me.OnSendMail_NO_SMSOperationCompleted
+            End If
+            Me.InvokeAsync("SendMail_NO_SMS", New Object() {Mail}, Me.SendMail_NO_SMSOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnSendMail_NO_SMSOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendMail_NO_SMSCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendMail_NO_SMSCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
         
@@ -179,6 +220,32 @@ Namespace FDA_MAIL
             If (Not (Me.SendMail_ASYCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendMail_ASYCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendMail_ASY_NO_SMS", RequestNamespace:="http://tempuri.org/", OneWay:=true, Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Sub SendMail_ASY_NO_SMS(ByVal Mail As Fields_Mail)
+            Me.Invoke("SendMail_ASY_NO_SMS", New Object() {Mail})
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_ASY_NO_SMSAsync(ByVal Mail As Fields_Mail)
+            Me.SendMail_ASY_NO_SMSAsync(Mail, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_ASY_NO_SMSAsync(ByVal Mail As Fields_Mail, ByVal userState As Object)
+            If (Me.SendMail_ASY_NO_SMSOperationCompleted Is Nothing) Then
+                Me.SendMail_ASY_NO_SMSOperationCompleted = AddressOf Me.OnSendMail_ASY_NO_SMSOperationCompleted
+            End If
+            Me.InvokeAsync("SendMail_ASY_NO_SMS", New Object() {Mail}, Me.SendMail_ASY_NO_SMSOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnSendMail_ASY_NO_SMSOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendMail_ASY_NO_SMSCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendMail_ASY_NO_SMSCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
         
@@ -261,6 +328,32 @@ Namespace FDA_MAIL
         End Sub
         
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendMail_ATTACH_OBJ", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Sub SendMail_ATTACH_OBJ(ByVal Mail As Fields_Mail, ByVal B64 As String, ByVal filename As String)
+            Me.Invoke("SendMail_ATTACH_OBJ", New Object() {Mail, B64, filename})
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_ATTACH_OBJAsync(ByVal Mail As Fields_Mail, ByVal B64 As String, ByVal filename As String)
+            Me.SendMail_ATTACH_OBJAsync(Mail, B64, filename, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub SendMail_ATTACH_OBJAsync(ByVal Mail As Fields_Mail, ByVal B64 As String, ByVal filename As String, ByVal userState As Object)
+            If (Me.SendMail_ATTACH_OBJOperationCompleted Is Nothing) Then
+                Me.SendMail_ATTACH_OBJOperationCompleted = AddressOf Me.OnSendMail_ATTACH_OBJOperationCompleted
+            End If
+            Me.InvokeAsync("SendMail_ATTACH_OBJ", New Object() {Mail, B64, filename}, Me.SendMail_ATTACH_OBJOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnSendMail_ATTACH_OBJOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendMail_ATTACH_OBJCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendMail_ATTACH_OBJCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendMail_CC_ATTACH", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Sub SendMail_CC_ATTACH(ByVal Mail As Fields_Mail, ByVal CC As String, ByVal XMLs As String, ByVal FILENAME As String)
             Me.Invoke("SendMail_CC_ATTACH", New Object() {Mail, CC, XMLs, FILENAME})
@@ -306,7 +399,7 @@ Namespace FDA_MAIL
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -375,30 +468,42 @@ Namespace FDA_MAIL
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMailCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub SendMail_NO_SMSCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMail_ASY_ATTACHCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMail_ASYCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub SendMail_ASY_NO_SMSCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMailHTMLCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMail_CCCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMail_ATTACHCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub SendMail_ATTACH_OBJCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub SendMail_CC_ATTACHCompletedEventHandler(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
 End Namespace

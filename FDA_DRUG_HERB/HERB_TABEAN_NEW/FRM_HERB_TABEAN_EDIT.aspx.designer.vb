@@ -23,15 +23,6 @@ Partial Public Class FRM_HERB_TABEAN_EDIT
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''RadGrid2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
     '''EDIT_UPLOAD_SHOW control.
     '''</summary>
     '''<remarks>
@@ -39,6 +30,15 @@ Partial Public Class FRM_HERB_TABEAN_EDIT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents EDIT_UPLOAD_SHOW As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''RadGrid1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''NOTE_EDIT control.
@@ -50,13 +50,13 @@ Partial Public Class FRM_HERB_TABEAN_EDIT
     Protected WithEvents NOTE_EDIT As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RadGrid1 control.
+    '''UPLOAD_EDIT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents UPLOAD_EDIT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''tb_type_menu control.

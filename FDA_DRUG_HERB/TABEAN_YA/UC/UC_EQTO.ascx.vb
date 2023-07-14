@@ -6,9 +6,23 @@ Public Class UC_EQTO
     Inherits System.Web.UI.UserControl
     Dim _IDA As String
     Dim STATUS_ID As Integer = 0
+    Dim PROCESS_ID As String
+    Dim PAGE_ID As String
+
+    Private _MENU_GROUP As String = ""
+    Private _TR_ID_LCN As String = ""
+    Private _IDA_LCN As String = ""
+    Private _PROCESS_ID_LCN As String = ""
+    Private _IDA_DQ As String = ""
+    Private _PROCESS_ID As String = ""
+    Private TR_ID_DQ As String = ""
+    Private _SID As String = ""
+    Private _R_ID As String = ""
     Private _CLS As New CLS_SESSION
     Sub RunQuery()
         _IDA = Request.QueryString("IDA")
+        PROCESS_ID = Request.QueryString("PROCESS_ID")
+        PAGE_ID = Request.QueryString("PAGE_ID")
         Try
             If Request.QueryString("STATUS_ID") <> "" Then
                 STATUS_ID = Request.QueryString("STATUS_ID")
@@ -395,15 +409,33 @@ Public Class UC_EQTO
         rg_search_iowa.Rebind()
     End Sub
 
-    Private Sub btn_back_Click(sender As Object, e As EventArgs) Handles btn_back.Click
-        Dim url As String = ""
-        If Request.QueryString("e") <> "" Then
-            url = "../TABEAN_YA/FRM_RQT_EDIT.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&e=1&STATUS_ID=" & Request.QueryString("STATUS_ID") & "&ida_e=" & Request.QueryString("ida_e")
-        Else
-            url = "../TABEAN_YA/FRM_RQT_REGIST_INFORMATION.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&STATUS_ID=" & Request.QueryString("STATUS_ID")
-        End If
-        Response.Redirect(url)
-    End Sub
+    'Private Sub btn_back_Click(sender As Object, e As EventArgs) Handles btn_back.Click
+    '    Dim url As String = ""
+    '    If Request.QueryString("e") <> "" Then
+    '        url = "../TABEAN_YA/FRM_RQT_EDIT.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&e=1&STATUS_ID=" & Request.QueryString("STATUS_ID") & "&ida_e=" & Request.QueryString("ida_e")
+    '    ElseIf Process_ID.Contains("2010") Then
+    '        Dim MENU_GROUP As String = Request.QueryString("MENU_GROUP")
+    '        Dim IDA_LCT As String = Request.QueryString("IDA_LCT")
+    '        Dim TR_ID_LCN As String = Request.QueryString("TR_ID_LCN")
+    '        Dim IDA_LCN As String = Request.QueryString("IDA_LCN")
+    '        Dim LCNNO_DISPLAY As String = Request.QueryString("LCNNO_DISPLAY")
+    '        Dim PROCESS_ID_LCN As String = Request.QueryString("PROCESS_ID_LCN")
+    '        Dim TYPEPERSON As String = Request.QueryString("TYPEPERSON")
+    '        Dim SID As String = Request.QueryString("SID")
+    '        Dim R_ID As String = Request.QueryString("R_ID")
+    '        Dim IDA_DQ As String = Request.QueryString("IDA_DQ")
+    '        If PAGE_ID = 1 Then
+    '            url = "../HERB_TABEAN_NEW/FRM_HERB_TABEAN_ADD_DETAIL.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&STATUS_ID=" & Request.QueryString("STATUS_ID") & "PROCESS_ID=" & Request.QueryString("PROCESS_ID")
+    '            url &= "&MENU_GROUP=" = MENU_GROUP & "&IDA_LCT=" & IDA_LCT & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID_LCN & "&TYPEPERSON=" & TYPEPERSON & "&SID=" & SID & "&R_ID=" & R_ID & "&IDA_DQ=" & IDA_DQ
+    '        Else
+    '            url = "../HERB_TABEAN_STAFF_NEW/FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&STATUS_ID=" & Request.QueryString("STATUS_ID") & "PROCESS_ID=" & Request.QueryString("PROCESS_ID")
+    '            url &= "&MENU_GROUP=" = MENU_GROUP & "&IDA_LCT=" & IDA_LCT & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & PROCESS_ID_LCN & "&TYPEPERSON=" & TYPEPERSON & "&SID=" & SID & "&R_ID=" & R_ID & "&IDA_DQ=" & IDA_DQ
+    '        End If
+    '    Else
+    '        url = "../TABEAN_YA/FRM_RQT_REGIST_INFORMATION.aspx?IDA=" & Request.QueryString("idr") & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&tab=5&STATUS_ID=" & Request.QueryString("STATUS_ID")
+    '    End If
+    '    Response.Redirect(url)
+    'End Sub
 
     Private Sub btn_rows_save_Click(sender As Object, e As EventArgs) Handles btn_rows_save.Click
         If STATUS_ID = 8 Then

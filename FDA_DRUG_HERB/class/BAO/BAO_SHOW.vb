@@ -614,6 +614,13 @@ Public Class BAO_SHOW
         dta.TableName = "SP_DRRQT_EQTO_BY_FK_IDA"
         Return dta
     End Function
+    Public Function SP_TABEAN_EDIT_EQTO_BY_FK_IDA(ByVal fk_ida As Integer) As DataTable
+        Dim sql As String = "exec SP_TABEAN_EDIT_EQTO_BY_FK_IDA @FK_IDA=" & fk_ida
+        Dim dta As New DataTable
+        dta = Queryds(sql)
+        dta.TableName = "SP_TABEAN_EDIT_EQTO_BY_FK_IDA"
+        Return dta
+    End Function
     '
     Public Function SP_DRRGT_NAME_DRUG_EXPORT_BY_FK_IDA(ByVal fk_ida As Integer) As DataTable
         Dim sql As String = "exec SP_DRRGT_NAME_DRUG_EXPORT_BY_FK_IDA @FK_IDA=" & fk_ida
@@ -636,7 +643,6 @@ Public Class BAO_SHOW
         dta.TableName = "SP_DRRQT_DETAIL_CAS_BY_FK_IDA_NEW"
         Return dta
     End Function
-    '
     Public Function SP_DRRQT_DETAIL_CAS_BY_FK_IDAV2(ByVal fk_ida As Integer) As DataTable
         Dim sql As String = "exec SP_DRRQT_DETAIL_CAS_BY_FK_IDAV2 @FK_IDA=" & fk_ida
         Dim dta As New DataTable
@@ -644,12 +650,25 @@ Public Class BAO_SHOW
         dta.TableName = "SP_DRRQT_DETAIL_CAS_BY_FK_IDAV2"
         Return dta
     End Function
-    '
+    Public Function SP_TABEAN_EDIT_DETAIL_CAS_BY_FK_IDA(ByVal fk_ida As Integer, ByVal _set As Integer) As DataTable
+        Dim sql As String = "exec SP_TABEAN_EDIT_DETAIL_CAS_BY_FK_IDA @FK_IDA=" & fk_ida & " ,@set= " & _set
+        Dim dta As New DataTable
+        dta = Queryds(sql)
+        dta.TableName = "SP_TABEAN_EDIT_DETAIL_CAS_BY_FK_IDA"
+        Return dta
+    End Function
     Public Function SP_DRRQT_DETAIL_CAS_BY_FK_IDAV3(ByVal fk_ida As Integer, ByVal _set As Integer) As DataTable
         Dim sql As String = "exec SP_DRRQT_DETAIL_CAS_BY_FK_IDAV3 @FK_IDA=" & fk_ida & " ,@set= " & _set
         Dim dta As New DataTable
         dta = Queryds(sql)
         dta.TableName = "SP_DRRQT_DETAIL_CAS_BY_FK_IDAV3"
+        Return dta
+    End Function
+    Public Function SP_TABEAN_JJ_DETAIL_CAS_BY_FK_IDA(ByVal fk_ida As Integer, ByVal _set As Integer) As DataTable
+        Dim sql As String = "exec SP_TABEAN_JJ_DETAIL_CAS_BY_FK_IDA @FK_IDA=" & fk_ida & " ,@set= " & _set
+        Dim dta As New DataTable
+        dta = Queryds(sql)
+        dta.TableName = "SP_TABEAN_JJ_DETAIL_CAS_BY_FK_IDA"
         Return dta
     End Function
     Public Function SP_DRRGT_PROPERTIES_AND_DETAIL_BY_FK_IDA(ByVal fk_ida As Integer) As DataTable
@@ -1196,6 +1215,14 @@ Public Class BAO_SHOW
         Dim sql As String = "exec SP_SYSTHMBL_BY_CHNGWTCD_AND_AMPHRCD @chngwtcd=" & chngwt & " ,@amphrcd=" & amp
         Dim dt As New DataTable
         dt = clsds.dsQueryselect(sql, conn).Tables(0)
+
+        Return dt
+    End Function
+    Public Function SP_MAS_DALCN_PHR_TRAINING() As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_MAS_DALCN_PHR_TRAINING"
+        Dim dt As New DataTable
+        dt = clsds.dsQueryselect(sql, conn_DRUG).Tables(0)
 
         Return dt
     End Function

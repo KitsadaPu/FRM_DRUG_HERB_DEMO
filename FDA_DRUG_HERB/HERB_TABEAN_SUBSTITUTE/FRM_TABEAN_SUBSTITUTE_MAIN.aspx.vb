@@ -40,8 +40,13 @@ Public Class FRM_TABEAN_SUBSTITUTE_MAIN
     Function bind_data()
         Dim bao As New BAO.ClsDBSqlcommand
         Dim dt As DataTable
-
-        dt = bao.SP_HERB_TABEAN_BY_IDEN_AND_FK_IDA(_CLS.CITIZEN_ID_AUTHORIZE, _IDA_LCN, DD_DRRGT_PROCESS_ID.SelectedValue)
+        If DD_DRRGT_PROCESS_ID.SelectedValue = 20610 Then
+            dt = bao.SP_XML_TABEAN_HERB_BY_IDEN_DRRQT(_CLS.CITIZEN_ID_AUTHORIZE, _IDA_LCN)
+        ElseIf DD_DRRGT_PROCESS_ID.SelectedValue = 20620 Then
+            'dt = bao.SP_HERB_TABEAN_BY_IDEN_AND_FK_IDA(_CLS.CITIZEN_ID_AUTHORIZE, _IDA_LCN, DD_DRRGT_PROCESS_ID.SelectedValue)
+        ElseIf DD_DRRGT_PROCESS_ID.SelectedValue = 20630 Then
+            dt = bao.SP_XML_TABEAN_JJ_BY_IDEN(_CLS.CITIZEN_ID_AUTHORIZE, _IDA_LCN)
+        End If
 
         Return dt
     End Function
@@ -63,14 +68,14 @@ Public Class FRM_TABEAN_SUBSTITUTE_MAIN
             Dim TR_ID_DR As String = item("TR_ID").Text
 
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
-            H.NavigateUrl = "FRM_TABEAN_SUBSTITUTE_SUB_DR.aspx?FK_LCN_IDA=" & FK_LCN_IDA & "&IDA_DR=" & IDA_DR & "&MENU_GROUP=" & _MENU_GROUP & "&PROCESS_ID_DR=" & PROCESS_ID & "&TR_ID_DR=" & TR_ID_DR & "&PROCESS_ID=" & _PROCESS_ID & "&PROCESS_TYPE_ID=" & DD_DRRGT_PROCESS_ID.SelectedValue 'URL หน้า ยืนยัน
+            H.NavigateUrl = "FRM_TABEAN_SUBSTITUTE_SUB_DR.aspx?IDA_LCN=" & _IDA_LCN & "&IDA_DR=" & IDA_DR & "&MENU_GROUP=" & _MENU_GROUP & "&PROCESS_ID_DR=" & PROCESS_ID & "&TR_ID_DR=" & TR_ID_DR & "&PROCESS_ID=" & DD_DRRGT_PROCESS_ID.SelectedValue 'URL หน้า ยืนยัน
 
         End If
     End Sub
 
     Private Sub DD_DRRGT_PROCESS_ID_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_DRRGT_PROCESS_ID.SelectedIndexChanged
 
-        If DD_DRRGT_PROCESS_ID.SelectedValue = 20810 Then
+        If DD_DRRGT_PROCESS_ID.SelectedValue = 20610 Or DD_DRRGT_PROCESS_ID.SelectedValue = 20620 Or DD_DRRGT_PROCESS_ID.SelectedValue = 20630 Then
             TB1.Visible = True
             RadGrid1.Rebind()
         Else

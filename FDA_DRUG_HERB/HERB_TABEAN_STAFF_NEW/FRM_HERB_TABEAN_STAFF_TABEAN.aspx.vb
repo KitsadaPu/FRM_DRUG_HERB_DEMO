@@ -68,7 +68,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN
             Dim dao_dal As New DAO_DRUG.ClsDBdalcn
             dao_dal.GetDataby_IDA(LCN_ID)
             Dim dao As New DAO_DRUG.ClsDBdrrqt
-            dao.GetDataby_FK_LCN_IDA(LCN_ID)
+            dao.GetDataby_IDA(_IDA)
 
             If e.CommandName = "JJ_SELECT" Then
                 If STATUS_ID = 3 Or STATUS_ID = 5 Then
@@ -100,10 +100,36 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN
                 ElseIf STATUS_ID = 24 Then
                     lbl_head1.Text = "ทบทวน ประเมิน"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
+                Else
+                    lbl_head1.Text = "รายละเอียดคำขอ"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_TABEAN_STAFF_DETAIL.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&process=" & _DDHERB & "&IDA_LCN=" & LCN_ID & "');", True)
                 End If
             ElseIf e.CommandName = "JJ_ADD_SELECT" Then
                 lbl_head1.Text = "แก้ไขข้อมูล"
-                Response.Redirect("../HERB_TABEAN_NEW/FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & dao_dal.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_dal.fields.IDA & "&PROCESS_ID_LCN=" & dao.fields.PROCESS_ID & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & _DDHERB & "&staff=" & "2")
+                Dim dao_tbn As New DAO_TABEAN_HERB.TB_TABEAN_HERB
+                Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+                dao_lcn.GetDataby_IDA(dao.fields.FK_LCN_IDA)
+                dao_tbn.GetdatabyID_FK_IDA_DQ(_IDA)
+                Dim SID As String = ""
+                Dim R_ID As String = ""
+                If dao.fields.WHO_ID <> 0 Then
+                    SID = 2
+                Else
+                    SID = 1
+                End If
+                Try
+                    If _DDHERB.Contains(2019) Then
+                        R_ID = 2
+                    Else
+                        R_ID = 1
+                    End If
+
+                Catch ex As Exception
+
+                End Try
+                Response.Redirect("../HERB_TABEAN_NEW/FRM_HERB_TABEAN_ADD_DETAIL.aspx?TR_ID_LCN=" & dao_dal.fields.TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & dao_dal.fields.IDA _
+                                  & "&PROCESS_ID_LCN=" & dao.fields.PROCESS_ID & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & _DDHERB & "&staff=2" & "&R_ID=" & R_ID & "&SID=" & SID _
+                                  & "&PROCESS_ID_LCN=" & dao_lcn.fields.PROCESS_ID)
             End If
         End If
     End Sub
@@ -116,7 +142,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN
             Dim JJ_ADD_SELECT As LinkButton = DirectCast(item("JJ_ADD_SELECT").Controls(0), LinkButton)
             JJ_ADD_SELECT.Style.Add("display", "none")
 
-            If STATUS_ID = 13 Or STATUS_ID = 15 Then
+            If STATUS_ID = 9 Or STATUS_ID = 24 Or STATUS_ID = 13 Or STATUS_ID = 15 Or STATUS_ID = 11 Or STATUS_ID = 3 Then
                 JJ_ADD_SELECT.Style.Add("display", "block")
             End If
 

@@ -55,10 +55,10 @@
   </wsdl:binding>
   <wsdl:service name="SW_LCN_EDIT_PAYMENT">
     <wsdl:port name="SW_LCN_EDIT_PAYMENTSoap" binding="tns:SW_LCN_EDIT_PAYMENTSoap">
-      <soap:address location="http://10.111.28.167/FDA_HERB_SW/SW_HERB_PAYMENT.asmx" />
+      <soap:address location="https://meshlog.fda.moph.go.th/FDA_HERB_SW/SW_HERB_PAYMENT.asmx" />
     </wsdl:port>
     <wsdl:port name="SW_LCN_EDIT_PAYMENTSoap12" binding="tns:SW_LCN_EDIT_PAYMENTSoap12">
-      <soap12:address location="http://10.111.28.167/FDA_HERB_SW/SW_HERB_PAYMENT.asmx" />
+      <soap12:address location="https://meshlog.fda.moph.go.th/FDA_HERB_SW/SW_HERB_PAYMENT.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -68,7 +68,8 @@
                     </td>
                     <td style="width: 70%; text-align: left" colspan="2">
 
-                        <asp:TextBox ID="txt_thanameplace_lo" runat="server" Width="70%"> </asp:TextBox>
+                        <asp:TextBox ID="txt_thanameplace_lo" runat="server" Width="70%" AutoPostBack="true"> </asp:TextBox>
+                        <asp:Label ID="lbl_word_thai" runat="server" Text="*กรุณากรอกข้อมูล" ForeColor="Red" Font-Size="Small" Visible="false"></asp:Label>
 
                     </td>
                 </tr>
@@ -80,7 +81,8 @@
                     </td>
                     <td style="width: 70%; text-align: left" colspan="2">
 
-                        <asp:TextBox ID="txt_engnameplace_lo" runat="server" Width="70%"></asp:TextBox>
+                        <asp:TextBox ID="txt_engnameplace_lo" runat="server" Width="70%"  AutoPostBack="true"></asp:TextBox>
+                        <asp:Label ID="lbl_word_eng" runat="server" Text="*กรุณากรอกข้อมูล" ForeColor="Red" Font-Size="Small" Visible="false"></asp:Label>
 
                     </td>
                 </tr>
