@@ -432,12 +432,6 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                 cb2.ID = "cb2_" & dao.fields.IDA
                 cb3.ID = "cb3_" & dao.fields.IDA
 
-
-
-
-
-
-
                 Dim txt1 As New HtmlTextArea
                 Dim dao_det As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
                 Try
@@ -486,6 +480,111 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                     '    dc4.Controls.Add(cb2)
                     'ElseIf rdl_drug_type.SelectedValue = "1" Then
                     '    dc5.Controls.Add(cb3)
+                End If
+                dc9.Text = dao.fields.IDA
+                dc10.Text = dao.fields.TYPE_SHOW
+
+                dr.Cells.Add(dc1)
+                dr.Cells.Add(dc2)
+                dr.Cells.Add(dc3)
+
+                dr.Cells.Add(dc4)
+                dr.Cells.Add(dc5)
+                'dr.Cells.Add(dc7)
+                dr.Cells.Add(dc9)
+                dr.Cells.Add(dc10)
+                Table1.Rows.Add(dr)
+            ElseIf dao.fields.TYPE_SHOW = 5 Then
+                Dim dc1 As New TableCell
+                Dim dc2 As New TableCell
+                Dim dc3 As New TableCell
+                Dim dc4 As New TableCell
+                Dim dc5 As New TableCell
+                Dim dc7 As New TableCell
+                'Dim dc8 As New TableCell
+                Dim dr As New TableRow
+                Dim ddl As New DropDownList
+                Dim dc9 As New TableCell
+                Dim dc10 As New TableCell
+                dc9.Style.Add("display", "none")
+                dc10.Style.Add("display", "none")
+
+                dc1.BorderStyle = BorderStyle.Solid
+                dc1.BorderWidth = 1
+                dc1.Width = 20
+                dc2.BorderStyle = BorderStyle.Solid
+                dc2.BorderWidth = 1
+                dc2.Width = 200
+                dc3.BorderStyle = BorderStyle.Solid
+                dc3.BorderWidth = 1
+                dc4.BorderStyle = BorderStyle.Solid
+                dc4.BorderWidth = 1
+                dc5.BorderStyle = BorderStyle.Solid
+                dc5.BorderWidth = 1
+                'dc3.ColumnSpan = 6
+                dc1.Text = dao.fields.COL1
+                dc2.Text = dao.fields.COL2
+                dc4.BorderStyle = BorderStyle.Solid
+                dc4.BorderWidth = 1
+                dc5.BorderStyle = BorderStyle.Solid
+                dc5.BorderWidth = 1
+                'dc8.BorderStyle = BorderStyle.Solid
+                'dc8.BorderWidth = 1
+                dc3.HorizontalAlign = HorizontalAlign.Center
+                dc4.HorizontalAlign = HorizontalAlign.Center
+                dc5.HorizontalAlign = HorizontalAlign.Center
+
+                Dim dao_dgh As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_NO5
+                dao_dgh.GetDataAll()
+                ddl.DataSource = dao_dgh.datas
+                ddl.DataTextField = "GROUP_NAME"
+                ddl.DataValueField = "GROUP_ID"
+                ddl.DataBind()
+                ddl.ID = "ddl1_" & dao.fields.IDA
+                DropDownInsertDataFirstRow2(ddl, "-----กรุณาเลือก-----", "0")
+                Dim cb1 As New CheckBox
+                Dim cb2 As New CheckBox
+                Dim cb3 As New CheckBox
+                'Dim cb6 As New CheckBox
+                Dim txt_6 As New HtmlTextArea
+                cb1.ID = "cb1_" & dao.fields.IDA
+                cb2.ID = "cb2_" & dao.fields.IDA
+                cb3.ID = "cb3_" & dao.fields.IDA
+
+                Dim txt1 As New HtmlTextArea
+                Dim dao_det As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
+                Try
+                    dao_det.GetDataby_FKLCN_AND_FK_IDA(IDA, dao.fields.IDA)
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_det.fields.COL5 IsNot Nothing Then
+                        ddl.SelectedValue = dao_det.fields.COL5
+                    End If
+
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_det.fields.COL5 <> 0 Then
+                        cb1.Checked = True
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Try
+                    txt1.Value = dao_det.fields.COL1
+                Catch ex As Exception
+
+                End Try
+                txt1.ID = "txt_" & dao.fields.IDA
+                txt1.Style.Add("width", "99%")
+                dc2.Controls.Add(ddl)
+                dc2.Controls.Add(txt1)
+
+                If rdl_drug_type.SelectedValue = "3" Then
+                    dc3.Controls.Add(cb1)
                 End If
                 dc9.Text = dao.fields.IDA
                 dc10.Text = dao.fields.TYPE_SHOW

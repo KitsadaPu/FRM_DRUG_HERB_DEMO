@@ -15168,6 +15168,43 @@ Namespace DAO_DRUG
         End Sub
     End Class
 
+    Public Class TB_MAS_DRUG_GROUP_HERB_NO5
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_DRUG_GROUP_HERB_NO5
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_NO5s Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub insert()
+            db.MAS_DRUG_GROUP_HERB_NO5s.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_DRUG_GROUP_HERB_NO5s.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_NO5s Select p Order By p.SEQ)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_By_IDA(ByVal IDA As Integer)
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_NO5s Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    '
     Public Class TB_MAS_DRUG_GROUP_HERB_NO3
         Inherits MAINCONTEXT
 
