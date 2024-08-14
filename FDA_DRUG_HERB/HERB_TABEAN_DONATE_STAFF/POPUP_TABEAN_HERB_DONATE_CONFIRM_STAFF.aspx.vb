@@ -243,7 +243,7 @@ Public Class POPUP_TABEAN_HERB_DONATE_CONFIRM_STAFF
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_DONATE
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function
@@ -264,7 +264,7 @@ Public Class POPUP_TABEAN_HERB_DONATE_CONFIRM_STAFF
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID, _IDA)
 
         Return dt
     End Function

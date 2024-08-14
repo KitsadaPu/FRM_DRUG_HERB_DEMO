@@ -131,6 +131,15 @@ Partial Public Class POPUP_TABEAN_NEW_EDIT_CONSIDER
     Protected WithEvents DD_OFF_REQ As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''txt_remark_edit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_remark_edit As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''uc_upload1 control.
     '''</summary>
     '''<remarks>

@@ -180,7 +180,7 @@
                 dao_up_mas.GetdatabyID_TYPE(102)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = dao.fields.TR_ID_JJ
                     dao_up.fields.FK_IDA = dao.fields.IDA
                     dao_up.fields.PROCESS_ID = dao.fields.DDHERB
@@ -202,7 +202,7 @@
                 dao_up_mas.GetdatabyID_TYPE(104)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = dao.fields.TR_ID_JJ
                     dao_up.fields.FK_IDA = dao.fields.IDA
                     dao_up.fields.PROCESS_ID = dao.fields.DDHERB
@@ -228,7 +228,7 @@
                 dao_up_mas.GetdatabyID_TYPE(102)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = dao.fields.TR_ID_JJ
                     dao_up.fields.FK_IDA = dao.fields.IDA
                     dao_up.fields.PROCESS_ID = dao.fields.DDHERB
@@ -250,7 +250,7 @@
                 dao_up_mas.GetdatabyID_TYPE(104)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = dao.fields.TR_ID_JJ
                     dao_up.fields.FK_IDA = dao.fields.IDA
                     'dao_up.fields.PROCESS_ID = _PROCESS_JJ

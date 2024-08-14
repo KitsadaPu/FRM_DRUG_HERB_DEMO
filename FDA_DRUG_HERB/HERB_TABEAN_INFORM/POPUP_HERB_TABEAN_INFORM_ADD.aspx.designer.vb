@@ -149,6 +149,60 @@ Partial Public Class POPUP_HERB_TABEAN_INFORM_ADD
     Protected WithEvents DD_CATEGORY_ID As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''cb_Head_Menu_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_1 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cb_Head_Menu_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_2 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cb_Head_Menu_3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_3 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cb_Head_Menu_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_4 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cb_Head_Menu_5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_5 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cb_Head_Menu_6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb_Head_Menu_6 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''foreign control.
     '''</summary>
     '''<remarks>
@@ -264,15 +318,6 @@ Partial Public Class POPUP_HERB_TABEAN_INFORM_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DD_STYPE_ID As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''SIZE_PACK control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SIZE_PACK As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''DD_PCAK_1 control.
@@ -867,6 +912,114 @@ Partial Public Class POPUP_HERB_TABEAN_INFORM_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UC_ATTACH2 As Global.FDA_DRUG_HERB.UC_ATTACH
+
+    '''<summary>
+    '''Detail_Cass_New control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Detail_Cass_New As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''txt_search_name_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search_name_cas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search_name_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search_name_cas As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''rg_search_iowa control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rg_search_iowa As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_thai_name_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_thai_name_cas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_eng_name_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_eng_name_cas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_number_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_number_cas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''ddl_duty_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_duty_cas As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txt_amount_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_amount_cas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''ddl_unit_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_unit_cas As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''btn_add_cas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_add_cas As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''RG_CAS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RG_CAS As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''btn_save control.

@@ -103,7 +103,7 @@
 
             'Dim dao As New DAO_DRUG.ClsDBFILE_ATTACH
             Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao.fields.DUCUMENT_NAME = label_name
+            dao.fields.DOCUMENT_NAME = label_name
             dao.fields.NAME_FAKE = NAME_FAKE 'เก็บชื่อไฟล์ที่สร้างขึ้นใหม่เพื่อเรียกใช้
             dao.fields.NAME_REAL = NAME_REAL 'เก็บชื่อไฟล์ที่เบราไว้เก็บเผื่อไว้เฉยๆ
             dao.fields.TYPE = type 'ลำดับไฟล์เก็บไว้เรียกข้อมูล

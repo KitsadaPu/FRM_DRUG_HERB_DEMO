@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_Product.Master" CodeBehind="FRM_TABEAN_HERB_EXHIBITION.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_HERB_EXHIBITION" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_ppk.Master" CodeBehind="FRM_TABEAN_HERB_EXHIBITION.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_HERB_EXHIBITION" %>
 
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
@@ -41,22 +41,27 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="row">
+     <div class="panel panel-body" style="width: 100%;height: 780px; padding-left: 2%;">
+         <div class="panel-heading panel-title" style="height: 70px">
+            <p class="h3" style="text-align: left; border-bottom: 3px solid gray;"><span style="color: rgb(102, 102, 102); font-family: SUKHUMVIT; font-size: 30px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">แบบแจ้งการผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อการแสดงนิทรรศการ</span></p>
+         </div>
+         <div style="padding-top: 30px"></div>
+<%--    <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <h3>แบบแจ้งการผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อการแสดงนิทรรศการ</h3>
         </div>
-    </div>
+    </div>--%>
 
     <div class="row">
         <div class="col-lg-12" style="text-align: right;padding-left:2em;padding-right:2em"">
-            <asp:Button ID="btn_add_tabean" runat="server" Text="เพิ่มคำขอผลิตภัณฑ์สมุนไพรเพื่อการแสดงนิทรรศการ" Height="40px" Width="324px" />
+            <asp:Button ID="btn_add_tabean" runat="server" Text="เพิ่มคำขอผลิตภัณฑ์เพื่อแสดงนิทรรศการ"  Height="40px" />
             <asp:Button ID="Button1" runat="server" Text="reload" Style="display: none" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12" style="padding-left:2em;padding-right:2em">
-            <telerik:RadGrid ID="RadGrid1" runat="server">
+            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="true" PageSize="12">
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -99,6 +104,9 @@
                         <telerik:GridButtonColumn ButtonType="LinkButton" Text="ตรวจสอบ/แก้ไขรายละเอียด และกดยื่นคำขอ"
                             CommandName="HL_SELECT" UniqueName="HL_SELECT">
                         </telerik:GridButtonColumn>
+                        <telerik:GridButtonColumn ButtonType="LinkButton" Text="ใบนัดหมาย"
+                            CommandName="HL2_SELECT" UniqueName="HL2_SELECT">
+                        </telerik:GridButtonColumn>
 
                     </Columns>
 
@@ -115,7 +123,7 @@
             </telerik:RadGrid>
         </div>
     </div>
-
+   </div>
     <div class="modal fade " id="myModal">
         <div class="panel panel-info" style="width: 100%">
             <div class="panel-heading">
@@ -145,6 +153,5 @@
             <div class="panel-footer"></div>
         </div>
     </div>
-    <asp:Button ID="btn_reload" runat="server" Text="reload" Style="display: none" />
-
+    <asp:Button ID="btn_reload" runat="server" Text="reload" Style="display: none" />    
 </asp:Content>

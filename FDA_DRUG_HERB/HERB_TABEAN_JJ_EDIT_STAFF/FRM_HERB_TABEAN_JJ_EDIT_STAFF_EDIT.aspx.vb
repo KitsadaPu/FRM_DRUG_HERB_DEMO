@@ -39,7 +39,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
                 dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
                 If dao_chk.fields.IDA = 0 Then
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = _TR_ID
                     dao_up.fields.PROCESS_ID = _ProcessID
                     dao_up.fields.FK_IDA_LCN = _IDA_LCN
@@ -103,7 +103,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
         End Try
 
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, STATUS_UPLOAD_ID, dao.fields.DDHERB)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, STATUS_UPLOAD_ID, dao.fields.DDHERB, _IDA)
 
         Dim index As Integer = 0
         dt.Columns.Add("ID")
@@ -142,10 +142,10 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
 
             For Each item As GridDataItem In RadGrid1.SelectedItems
                 IDA_UPLOAD = item("ID").Text
-                NAME_FILE = item("DUCUMENT_NAME").Text
+                NAME_FILE = item("DOCUMENT_NAME").Text
 
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = NAME_FILE
+                dao_up.fields.DOCUMENT_NAME = NAME_FILE
                 dao_up.fields.TR_ID = _TR_ID
                 dao_up.fields.PROCESS_ID = _ProcessID
                 dao_up.fields.FK_IDA = _IDA
@@ -210,9 +210,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
 
                     tc = New TableCell
                     Try
-                        tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                        tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                     Catch ex As Exception
-                        tc.Text = dao_up.fields.DUCUMENT_NAME
+                        tc.Text = dao_up.fields.DOCUMENT_NAME
                     End Try
                     tc.Width = 900
                     tr.Cells.Add(tc)
@@ -282,8 +282,8 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
                         dao_up.fields.ACTIVE = 1
 
                         Try
-                            dao_up.fields.TR_ID = ""
-                        Catch ex As Exception
+                        dao_up.fields.TR_ID = TR_ID_JJ
+                    Catch ex As Exception
 
                         End Try
 
@@ -301,10 +301,11 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
 
             Next
 
-            If check_file() = False Then
-                alert_normal("กรุณาแนบไฟล์ให้ครบทุกข้อ")
-            Else
-                alert_normal("แนบไฟล์เรียบร้อยแล้ว กดบันทึก")
+        If check_file() = False Then
+            alert_normal("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+        Else
+            RadGrid2.Rebind()
+            alert_normal("แนบไฟล์เรียบร้อยแล้ว กดบันทึก")
             End If
 
             'alert_normal("แนบไฟล์เรียบร้อยแล้ว")
@@ -340,9 +341,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
         Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
             RadGrid2.DataSource = bind_data_uploadfile_edit()
@@ -365,9 +366,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
         Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource

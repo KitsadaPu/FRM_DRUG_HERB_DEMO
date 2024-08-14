@@ -115,7 +115,7 @@ Public Class POPUP_HERB_NOTIFY_CORRECTION_EDIT
         dao.GetdatabyID_IDA(_IDA)
 
         Dim bao As New BAO_TABEAN_HERB.tb_main
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -174,9 +174,9 @@ Public Class POPUP_HERB_NOTIFY_CORRECTION_EDIT
 
             tc = New TableCell
             Try
-                tc.Text = Replace(dao_f.fields.DUCUMENT_NAME, "\n", "<br/>")
+                tc.Text = Replace(dao_f.fields.DOCUMENT_NAME, "\n", "<br/>")
             Catch ex As Exception
-                tc.Text = dao_f.fields.DUCUMENT_NAME
+                tc.Text = dao_f.fields.DOCUMENT_NAME
             End Try
             tc.Width = 700
             tr.Cells.Add(tc)

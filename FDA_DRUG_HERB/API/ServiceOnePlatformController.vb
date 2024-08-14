@@ -1,5 +1,7 @@
 ﻿Imports System.Net
 Imports System.Web.Http
+Imports System.Web.Http.Results
+Imports System.Web.Script.Serialization
 
 Public Class ServiceOnePlatformController
     Inherits ApiController
@@ -46,6 +48,32 @@ Public Class ServiceOnePlatformController
 
         End If
         Return Nothing
+    End Function
+    Class url_json
+        Public Property CTZNO_PERSON_CALL As String
+        Public Property ENTREPRENEUR_IDENTIFY As String
+        Public Property TOKEN As String
+        Public Property REF_CODE As String 'รอพี่บิ๊กกำหนดชื่อตัวแปรอีกที    
+        Public Property ORG As String
+    End Class
+    Public Function DBD_LINK(ByVal IDENTIFY As String, ByVal COMPANY_INDENTIFY As String, ByVal TR_ID As String, ByVal TOKEN As String)
+        Dim DBD As New url_json
+        DBD.REF_CODE = TR_ID
+        DBD.CTZNO_PERSON_CALL = IDENTIFY
+        DBD.ENTREPRENEUR_IDENTIFY = COMPANY_INDENTIFY
+        DBD.TOKEN = TOKEN
+        DBD.ORG = "HERB"
+
+        Dim jss As New JavaScriptSerializer
+        Dim js_str As String = jss.Serialize(DBD)
+        Dim byt As Byte() = System.Text.Encoding.UTF8.GetBytes(js_str)
+        Dim b64 = Convert.ToBase64String(byt)
+        Dim URL = "https://help.fda.moph.go.th/FDA_DBD/HOME/DBD_DATA?B64=" & b64
+
+        Return URL
+        'Dim result As JsonResult = Json(URL, JsonRequestBehavior.AllowGet)
+        'result.MaxJsonLength = 70000000
+        'Return result
     End Function
 
 End Class

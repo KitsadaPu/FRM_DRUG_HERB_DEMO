@@ -62,7 +62,7 @@
                     If expyear < 2500 Then
                         expyear += 543
                     End If
-                    dao.fields.expyear = expyear
+                    'dao.fields.expyear = expyear
                 End If
             Catch ex As Exception
 
@@ -71,6 +71,8 @@
             Try
                 If dao.fields.PROCESS_ID = "120" Or dao.fields.PROCESS_ID = "121" Or dao.fields.PROCESS_ID = "122" Then
                     dao.fields.expdate = DateAdd(DateInterval.Day, -1, DateAdd(DateInterval.Year, 5, appdate))
+                    expyear = DateAdd(DateInterval.Year, 5, appdate).ToString
+                    dao.fields.expyear = expyear
                 End If
 
             Catch ex As Exception

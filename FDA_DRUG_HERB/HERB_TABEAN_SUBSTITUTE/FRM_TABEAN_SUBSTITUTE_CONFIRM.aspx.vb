@@ -65,9 +65,9 @@ Public Class FRM_TABEAN_SUBSTITUTE_CONFIRM
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
         If _DRRGT_REASON_ID = 4 Then
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 4, _PROCESS_ID)
+            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 4, _PROCESS_ID, _IDA_DR)
         ElseIf _DRRGT_REASON_ID = 5 Then
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 5, _PROCESS_ID)
+            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 5, _PROCESS_ID, _IDA_DR)
         End If
 
         Return dt

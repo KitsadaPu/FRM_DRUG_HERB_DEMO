@@ -70,7 +70,7 @@ Public Class FRM_HERB_TABEAN_EX
                 If Request.QueryString("staff") = 1 Then
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & PROCESS_ID & "&IDA_LCN=" & IDA_LCN & "&staff=" & Request.QueryString("staff") & "');", True)
                 Else
-                    If STATUS_ID = 4 Then
+                    If STATUS_ID = 4 Or STATUS_ID = 20 Or STATUS_ID = 24 Or STATUS_ID = 23 Then
                         'lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร"
                         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_CONFIRM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & PROCESS_ID & "&IDA_LCN=" & IDA_LCN & "&staff=" & Request.QueryString("staff") & "');", True)
                     ElseIf STATUS_ID = 1 Then
@@ -101,7 +101,7 @@ Public Class FRM_HERB_TABEAN_EX
             Dim HL3_SELECT As LinkButton = DirectCast(item("HL3_SELECT").Controls(0), LinkButton)
             HL_EDIT.Style.Add("display", "none")
             HL3_SELECT.Style.Add("display", "none")
-            If STATUS_ID = 4 Then
+            If STATUS_ID = 4 Or STATUS_ID = 20 Or STATUS_ID = 24 Then
                 HL_EDIT.Style.Add("display", "block")
             ElseIf STATUS_ID = 3 Then
                 HL3_SELECT.Style.Add("display", "block")

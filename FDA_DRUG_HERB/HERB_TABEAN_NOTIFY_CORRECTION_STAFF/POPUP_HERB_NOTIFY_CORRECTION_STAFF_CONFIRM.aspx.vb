@@ -230,7 +230,7 @@ Public Class POPUP_HERB_NOTIFY_CORRECTION_STAFF_CONFIRM
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_NOTIFY
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function

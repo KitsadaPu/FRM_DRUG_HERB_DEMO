@@ -22,6 +22,15 @@
         HiddenField2.Value = lcntpcd
         H_TYPE.Value = type
     End Sub
+    Public Sub Bind_data(ByVal name As String, ByVal type As String)
+        Label1.Text = name
+        H_TYPE.Value = type
+    End Sub
+    Public Function insert_renew(ByVal TR_ID As Integer, ByVal PROCESS_ID As Integer, ByVal IDA_DR As Integer, ByVal TYPE_ID As Integer) As Boolean
+        Dim result As Boolean = True
+        insert_file_lcn_renew(TR_ID, PROCESS_ID, IDA_DR, TYPE_ID)
+        Return result
+    End Function
 
     Public Function insert(ByVal TR_ID As Integer) As Boolean
         Dim result As Boolean = True
@@ -278,7 +287,28 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
+        dao_file.fields.TYPE = H_TYPE.Value
+        dao_file.fields.TR_ID = TR_ID
+        dao_file.fields.FK_IDA = IDA_DR
+        dao_file.fields.PROCESS_ID = PROCESS_ID
+        dao_file.fields.ACTIVE = 1
+        dao_file.fields.CREATE_DATE = Date.Now
+
+        dao_file.insert()
+
+    End Sub
+    Private Sub insert_file_lcn_renew(ByVal TR_ID As Integer, ByVal PROCESS_ID As Integer, ByVal IDA_DR As Integer, ByVal TYPE_ID As Integer)
+        Dim extensionname As String = GetExtension(FileUpload1.FileName)
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_LCN_RENREW")
+        FileUpload1.SaveAs(_PATH_FILE & "/FILE_UPLOAD/" & "RNW-" & PROCESS_ID & "-" & Date.Now.Year & "-" & TR_ID & "_" & TYPE_ID & "." & extensionname)
+
+        Dim dao_file As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+
+        'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
+        dao_file.fields.NAME_FAKE = "RNW-" & PROCESS_ID & "-" & Date.Now.Year & "-" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
+        dao_file.fields.NAME_REAL = FileUpload1.FileName
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -318,7 +348,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -339,7 +369,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -359,7 +389,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -379,7 +409,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -399,7 +429,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -419,7 +449,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -440,7 +470,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -466,7 +496,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -486,7 +516,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -516,7 +546,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
 
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -537,7 +567,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -558,7 +588,7 @@
         'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_FAKE = "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
         dao_file.fields.NAME_REAL = FileUpload1.FileName
-        dao_file.fields.DUCUMENT_NAME = Label1.Text
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
         dao_file.fields.TYPE = H_TYPE.Value
         dao_file.fields.TR_ID = TR_ID
         dao_file.fields.FK_IDA = IDA_DR
@@ -614,15 +644,21 @@
         Dim extensionname As String = GetExtension(FileUpload1.FileName)
         Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_TABEAN_JJ_MASTER")
         'FileUpload1.SaveAs(_PATH_FILE & "/FILE_UPLOAD/" & "HB_PDF-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "." & extensionname)
-        FileUpload1.SaveAs(_PATH_FILE & "/" & HERB_ID & ". " & NAME & "." & extensionname)
+        'FileUpload1.SaveAs(_PATH_FILE & "/" & HERB_ID & ". " & NAME & "." & extensionname)
         '& "HB_PDF_MASTER_JJ_" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & HERB_ID & ". " & Label1.Text & "." & extensionname)
+        Dim path As String = _PATH_FILE & HERB_ID & ". " & NAME & "." & extensionname
+        If NAME = "" Then
+            FileUpload1.SaveAs(_PATH_FILE & HERB_ID & ". " & FileUpload1.FileName & "." & extensionname)
+        Else
+            FileUpload1.SaveAs(_PATH_FILE & HERB_ID & ". " & NAME & "." & extensionname)
+        End If
 
         Dim dao_file As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ
         dao_file.GetdatabyID_DD_HERB_NAME_PRODUCT_ID_AND_PROCESS_AND_TYPE(HERB_ID, PROCESS_ID, TYPE_ID)
         If dao_file.fields.IDA = 0 Then
             dao_file.fields.NAME_FAKE = HERB_ID & ". " & NAME & "." & extensionname
             dao_file.fields.NAME_REAL = FileUpload1.FileName
-            dao_file.fields.DUCUMENT_NAME = HERB_ID & ". " & NAME
+            dao_file.fields.DOCUMENT_NAME = HERB_ID & ". " & NAME
             dao_file.fields.TYPE = TYPE_ID
             dao_file.fields.PROCESS_ID = PROCESS_ID
             dao_file.fields.ACTIVE = 1
@@ -632,7 +668,7 @@
         Else
             dao_file.fields.NAME_FAKE = HERB_ID & ". " & NAME & "." & extensionname
             dao_file.fields.NAME_REAL = FileUpload1.FileName
-            dao_file.fields.DUCUMENT_NAME = HERB_ID & ". " & NAME
+            dao_file.fields.DOCUMENT_NAME = HERB_ID & ". " & NAME
             dao_file.fields.TYPE = TYPE_ID
             dao_file.fields.PROCESS_ID = PROCESS_ID
             dao_file.fields.ACTIVE = 1

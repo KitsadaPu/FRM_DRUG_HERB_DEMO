@@ -1055,7 +1055,7 @@ Public Class UC_TABEAN_EDIT_TB1
         dao_up_mas.GetdatabyID_TYPE(7)
         For Each dao_up_mas.fields In dao_up_mas.datas
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+            dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
             dao_up.fields.TR_ID = TR_ID
             dao_up.fields.PROCESS_ID = _PROCESS_ID_DQ
             dao_up.fields.FK_IDA_LCN = _IDA_LCN

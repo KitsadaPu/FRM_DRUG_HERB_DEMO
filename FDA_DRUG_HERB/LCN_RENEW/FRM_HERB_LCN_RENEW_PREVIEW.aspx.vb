@@ -24,14 +24,15 @@
         Dim FILENAME_XML As String = dao.fields.NAME_FAKE
         Dim bao As New BAO.AppSettings
 
-        Dim paths As String = bao._PATH_XML_PDF_LCN_RENREW
+        'Dim paths As String = bao._PATH_XML_PDF_LCN_RENREW
+        Dim paths As String = dao.fields.FilePath
 
-        Dim PATH_XML As String
-        PATH_XML = paths & "FILE_UPLOAD\" & FILENAME_XML
+        'Dim PATH_XML As String
+        'PATH_XML = paths & "FILE_UPLOAD\" & FILENAME_XML
 
         Dim clsds As New ClassDataset
         Dim output As Byte()
-        output = clsds.UpLoadImageByte(PATH_XML)
+        output = clsds.UpLoadImageByte(paths)
 
         Response.Clear()
         Response.ContentType = "application/pdf"

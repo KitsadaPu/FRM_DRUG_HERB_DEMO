@@ -54,7 +54,7 @@ Public Class FRM_HERB_TABEAN_EDIT_2
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _PROCESS_ID_DQ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _PROCESS_ID_DQ, _IDA_DQ)
 
         Return dt
     End Function
@@ -81,7 +81,7 @@ Public Class FRM_HERB_TABEAN_EDIT_2
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _PROCESS_ID_DQ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _PROCESS_ID_DQ, _IDA_DQ)
 
         Return dt
     End Function
@@ -118,9 +118,9 @@ Public Class FRM_HERB_TABEAN_EDIT_2
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dr("DUCUMENT_NAME"), "\n", "<br/>")
+                    tc.Text = Replace(dr("DOCUMENT_NAME"), "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dr("DUCUMENT_NAME")
+                    tc.Text = dr("DOCUMENT_NAME")
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)

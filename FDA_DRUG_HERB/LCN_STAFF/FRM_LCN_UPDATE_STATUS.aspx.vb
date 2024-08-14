@@ -2,6 +2,7 @@
 Public Class FRM_LCN_UPDATE_STATUS
     Inherits System.Web.UI.Page
     Private _CLS As New CLS_SESSION
+    Private _PHR_IDA As String
     Sub RunSession()
         Try
             If Session("CLS") Is Nothing Then
@@ -114,7 +115,7 @@ Public Class FRM_LCN_UPDATE_STATUS
 
             'End Try
             bind_ddl_stat()
-
+            bind_ddl_stat_phr()
             Try
                 ddl_stat.DropDownSelectData(dao.fields.cnccscd)
             Catch ex As Exception
@@ -122,7 +123,11 @@ Public Class FRM_LCN_UPDATE_STATUS
             End Try
 
             'rgphr.DataBind()
+            Try
+                rdk_date_phr.SelectedDate = Date.Now
+            Catch ex As Exception
 
+            End Try
         End If
     End Sub
     Sub bind_ddl_stat()
@@ -144,6 +149,23 @@ Public Class FRM_LCN_UPDATE_STATUS
             item.Text = "คงอยู่"
             item.Value = "0"
             ddl_stat.Items.Insert(0, item)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Sub bind_ddl_stat_phr()
+        Try
+            Dim dao_stat As New DAO_LCN.TB_mas_phr_status_update
+            dao_stat.GetDataAll()
+            ddl_phr_status.DataSource = dao_stat.datas
+            ddl_phr_status.DataTextField = "status_name"
+            ddl_phr_status.DataValueField = "id"
+            ddl_phr_status.DataBind()
+
+            Dim item As New ListItem
+            item.Text = "ปฏิบัติการ"
+            item.Value = "0"
+            ddl_phr_status.Items.Insert(0, item)
         Catch ex As Exception
 
         End Try
@@ -230,5 +252,87 @@ Public Class FRM_LCN_UPDATE_STATUS
 
         End Try
 
+    End Sub
+    Private Sub rgphr_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgphr.ItemCommand
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = e.Item
+            Dim IDA As Integer = 0
+            Dim PHR_NAME As String = ""
+            Try
+                IDA = item("PHR_IDA").Text
+                PHR_NAME = item("PHR_FULLNAME").Text
+            Catch ex As Exception
+
+            End Try
+            Dim dao_his As New DAO_DRUG.TB_DALCN_PHR_HISTORY
+            If e.CommandName = "sel" Then
+                lbl_title.Text = "ดูข้อมูล"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('POPUP_LCN_PHR_DETAIL.aspx?phr=" & item("PHR_IDA").Text & "&ida= " & Request.QueryString("IDA") & "');", True)
+            ElseIf e.CommandName = "selp" Then
+                Dim dao As New DAO_DRUG.ClsDBDALCN_PHR
+                dao.GetDataby_FK_LCN_ACTIVE(IDA, 1)
+                txt_phr_name.Text = PHR_NAME
+                txt_phr_ida.Text = IDA
+            End If
+            'rgphr.Rebind()
+        End If
+    End Sub
+
+    Private Sub rgphr_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgphr.NeedDataSource
+        Dim bao As New BAO_MASTER
+        Dim dt As New DataTable
+        Try
+            dt = bao.SP_DALCN_PHR_BY_FK_IDA_2(Request.QueryString("IDA"))
+        Catch ex As Exception
+            'FRM_STAFF_LCN_PHR_EDIT.aspx
+        End Try
+        If dt.Rows.Count > 0 Then
+            rgphr.DataSource = dt
+        End If
+
+    End Sub
+
+    Private Sub btn_reset_Click(sender As Object, e As EventArgs) Handles btn_reset.Click
+        'rg_bsn.Rebind()
+        'rgkeep.Rebind()
+        'rglcnname.Rebind()
+        'rglocation.Rebind()
+        rgphr.Rebind()
+    End Sub
+
+    Protected Sub btn_update_s_phr_Click(sender As Object, e As EventArgs) Handles btn_update_s_phr.Click
+        Try
+            If txt_phr_name.Text = "" Then
+                alert("กรุณาเลือกผู้มีหน้าที่ปฏิบัติการ")
+            Else
+                Dim dao_phr As New DAO_DRUG.ClsDBDALCN_PHR
+                dao_phr.GetDataby_IDA(txt_phr_ida.Text)
+                If ddl_phr_status.SelectedValue = 2 Then
+                    dao_phr.fields.ACTIVE = 0
+                    dao_phr.fields.phr_cnccd = ddl_phr_status.SelectedValue
+                    dao_phr.fields.phr_cncnm = ddl_phr_status.SelectedItem.Text
+                ElseIf ddl_phr_status.SelectedValue = 0 Then
+                    dao_phr.fields.phr_cnccd = Nothing
+                    dao_phr.fields.phr_cncnm = ddl_phr_status.SelectedItem.Text
+                Else
+                    dao_phr.fields.phr_cnccd = ddl_phr_status.SelectedValue
+                    dao_phr.fields.phr_cncnm = ddl_phr_status.SelectedItem.Text
+                End If
+                dao_phr.fields.Update_date = rdk_date_phr.SelectedDate
+                dao_phr.update()
+                txt_phr_name.Text = ""
+                ddl_phr_status.SelectedValue = 0
+                rgphr.Rebind()
+                alert("อัพเดทเรียบร้อยแล้ว")
+            End If
+
+        Catch ex As Exception
+            Dim error_Message As String
+            error_Message = "เกิดข้อผิดผลาด " & ex.Message
+            alert(error_Message)
+        End Try
+    End Sub
+    Private Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
     End Sub
 End Class

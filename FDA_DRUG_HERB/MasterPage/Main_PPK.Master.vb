@@ -59,7 +59,8 @@
 
                 Else
                     str_all = "<h4 class='text-center'><strong>" & "คำขออื่นๆ" & "</strong></h4>"
-
+                    str_all &= "<input type='text' id='mySearch' onkeyup='myFunction()' placeholder='Search..' title='Type in a category'>"
+                    str_all &= "<div style='padding-top:20px'></div>"
                 End If
                 Dim p_name As String = ""
                 Try
@@ -77,14 +78,18 @@
                 Dim _group As Integer = 0
                 If aa = 21020 Then
                     _group = 1
+                ElseIf _CLS.SYSTEM_ID = "11234" Or _CLS.SYSTEM_ID = "11286" Then
+                    _group = 3
+                    _CLS.BTN_GROUPS = _group
                 Else
                     _group = 2
                 End If
                 '_group = 2
                 Dim dao_g As New DAO_TABEAN_HERB.TB_MAS_CUSTOMER_BUTTON
                 dao_g.GetDataby_Btn_Group_and_IdGroup(_CLS.BTN_GROUPS, _CLS.SYSTEM_ID)
+                'dao_g.GetDataby_Btn_Group_and_IdGroup(_group, _CLS.SYSTEM_ID)
 
-                str_all &= "<ul class='nav nav-pills nav-stacked'>"
+                str_all &= "<ul id='myMenu'>"
                 For Each dao_g.fields In dao_g.datas
                     Dim dao_u As New DAO_TABEAN_HERB.TB_MAS_CUSTOMER_BUTTON
                     Dim i As Integer = 0
@@ -138,7 +143,8 @@
                 End If
                 '_group = 2
                 Dim dao_g As New DAO_TABEAN_HERB.TB_MAS_CUSTOMER_BUTTON
-                dao_g.GetDataby_Btn_Group_and_IdGroup(_CLS.BTN_GROUPS, _CLS.SYSTEM_ID)
+                'dao_g.GetDataby_Btn_Group_and_IdGroup(_CLS.BTN_GROUPS, _CLS.SYSTEM_ID)
+                dao_g.GetDataby_Btn_Group_and_IdGroup(_group, _CLS.SYSTEM_ID)
 
                 str_all &= "<ul class='nav nav-pills nav-stacked'>"
                 For Each dao_g.fields In dao_g.datas

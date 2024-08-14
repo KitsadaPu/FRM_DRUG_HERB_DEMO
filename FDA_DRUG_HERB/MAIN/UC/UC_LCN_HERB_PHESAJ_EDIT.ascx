@@ -140,7 +140,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
-            เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม 
+            เป็นผู้ที่มีหน้าที่ปฏิบัติการตาม 
         </div>
         <div class="col-lg-3">
             <asp:RadioButtonList ID="rdl_mastra" runat="server" RepeatDirection="Horizontal">
@@ -156,7 +156,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            <asp:Button ID="btn_save_phr" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" />
+            <asp:Button ID="btn_save_phr" runat="server" Text="เพิ่มผู้มีหน้าที่ปฎิบัติการ" />
             <%--<asp:Button ID="btn_edit" runat="server" Text="ยืนยันการแก้ไข"/>--%>
         </div>
         <div class="col-lg-8"></div>

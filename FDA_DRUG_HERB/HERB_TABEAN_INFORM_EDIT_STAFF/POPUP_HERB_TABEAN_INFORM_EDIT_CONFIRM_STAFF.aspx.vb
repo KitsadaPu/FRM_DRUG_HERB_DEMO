@@ -239,7 +239,7 @@ Public Class POPUP_HERB_TABEAN_INFORM_EDIT_CONFIRM_STAFF
         Else
             STATUS_UPLOAD_ID = dao.fields.STATUS_UPLOAD_ID
         End If
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function

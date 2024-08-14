@@ -193,6 +193,18 @@ Public Module UTILITY_CLS
         Return stattus_id
     End Function
     <System.Runtime.CompilerServices.Extension()>
+    Public Function Get_TabeanEXH_Status_by_trid(ByVal tr_id As Integer)
+        Dim dao_rq As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
+        dao_rq.GetdatabyID_TR_ID(tr_id)
+        Dim stattus_id As Integer = 0
+        Try
+            stattus_id = dao_rq.fields.STATUS_ID
+        Catch ex As Exception
+
+        End Try
+        Return stattus_id
+    End Function
+    <System.Runtime.CompilerServices.Extension()>
     Public Sub KEEP_LOGS_EDIT(ByVal FK_IDA As Integer, ByVal des As String, ByVal citizen As String, Optional url As String = "")
         Dim dao As New DAO_DRUG.TB_LOG_EDIT_MIGRATE
         dao.fields.ACTION_DESCRIPTION = des

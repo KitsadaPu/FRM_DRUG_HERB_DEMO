@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <label>
-                    ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร                     
+                    ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร                     
                 </label>
             </div>
 
@@ -59,9 +59,9 @@
             <div class="col-md-12" style="text-align: left">
                 <center>
                     <asp:RadioButtonList ID="rdl_lcn_type" runat="server">
-                        <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                        <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                        <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                        <asp:ListItem Value="1">ผลิตผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                        <asp:ListItem Value="2">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                        <asp:ListItem Value="3">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
                     </asp:RadioButtonList></center>
             </div>
 
@@ -299,7 +299,7 @@
                 <tr>
                     <td class="auto-style3"></td>
                     <td colspan="8">
-                        <h4>กรณีผู้ขออนนุญาตเป็นบุคคลต่างด้าว ระบุ</h4>
+                        <h4>กรณีผู้ขออนุญาตเป็นบุคคลต่างด้าว ระบุ</h4>
                     </td>
                     <td>&ensp;&ensp;
                        สัญชาติ&ensp;<asp:TextBox ID="txt_nationality" runat="server"></asp:TextBox>
@@ -360,7 +360,7 @@
                     </tr>
                     <tr>
                         <td class="auto-style3"></td>
-                        <td colspan="4">หรือใบอนุญาาตประกอบธุรกิจตามบัญชีสาม(๑๖)หรือ(๑๕)ตามกฎหมายว่าด้วยการประกอบธุรกิจของคนต่างด้าว</td>
+                        <td colspan="4">หรือใบอนุญาตประกอบธุรกิจตามบัญชีสาม(๑๖)หรือ(๑๕)ตามกฎหมายว่าด้วยการประกอบธุรกิจของคนต่างด้าว</td>
                     </tr>
                     <tr>
                         <td class="auto-style3"></td>
@@ -444,7 +444,7 @@
         </div>
         <div>
             <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการหรือดำเนนินกิจการเกี่ยวกับใบอนุญาต</h4>
+               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเกี่ยวกับใบอนุญาต</h4>
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10" style="color: red">*ท่านสามารถกรอกข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการในส่วนที่2</div>
@@ -730,7 +730,7 @@
             </div>
             --%>
         </div>
-   <%--     <div>
+        <%--     <div>
             <h4>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
                กรณีผู้ได้รับมอบหมายหรือแต่งตั้งให้กำหนดกิจการเป็นบุคคลต่างด้าว ระบุ</h4>
             &ensp;
@@ -772,7 +772,7 @@
             &ensp;              
         </div>--%>
         <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-               ๓. &ensp;ข้อมูลสถานที่ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร</h4>
+               ๓. &ensp;ข้อมูลสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร</h4>
         &ensp;
            <div>
                <div class="row">

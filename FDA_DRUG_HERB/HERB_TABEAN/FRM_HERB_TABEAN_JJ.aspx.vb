@@ -274,6 +274,7 @@ Public Class FRM_HERB_TABEAN_JJ
                         dao.fields.INOFFICE_STAFF_ID = 1
                         dao.fields.INOFFICE_STAFF_CITIZEN_ID = _CLS.CITIZEN_ID
                     End If
+
                     dao.insert()
                     IDA = dao.fields.IDA
                     'Dim IDA As Integer = dao.fields.IDA
@@ -290,7 +291,7 @@ Public Class FRM_HERB_TABEAN_JJ
 
                     'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกคำขอแล้ว');", True)
                     'RadGrid1.Rebind()
-                    Response.Redirect("FRM_HERB_TABEAN_JJ_ADD2_DETAIL.aspx?IDA=" & IDA & "&IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_1 & "&PROCESS_JJ=20303" & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID & "&identify=" & Request.QueryString("identify"))
+                    Response.Redirect("FRM_HERB_TABEAN_JJ_ADD2_DETAIL.aspx?IDA=" & IDA & "&IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_1 & "&PROCESS_JJ=" & PROCESS_JJ & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID & "&identify=" & Request.QueryString("identify"))
 
                     'Response.Redirect("FRM_HERB_TABEAN_JJ_ADD_DETAIL_FOR_HEALTH.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_1 & "&PROCESS_JJ=" & PROCESS_JJ & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID & "&identify=" & Request.QueryString("identify"))
                     'ElseIf DD_HERB_NAME_PRODUCT_HEALTH.SelectedValue <> 0 Then
@@ -430,6 +431,9 @@ Public Class FRM_HERB_TABEAN_JJ
                     'Response.Redirect("FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN)
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_CONFIRM.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&TR_ID=" & TR_ID_JJ & "');", True)
                     'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../FRM_HERB_TABEAN_JJ_CONFIRM.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&TR_ID=" & TR_ID_JJ & "');", True)
+                ElseIf STATUS_ID = 9 Or STATUS_ID = 14 Then
+                    lbl_head1.Text = "รายละเอียดคำขอ"
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_STAFF/FRM_HERB_TABEAN_STAFF_JJ_DETAIL.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "&process=" & _PROCESS_JJ & "&IDA_LCN=" & _IDA_LCN & "');", True)
                 Else
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_CONFIRM.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & IDA & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&TR_ID=" & TR_ID_JJ & "');", True)
                     ' Response.Redirect("FRM_HERB_TABEAN_JJ_DETAIL.aspx?IDA_LCT=" & FK_IDA_LCT & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & IDA & "&TR_ID_JJ=" & TR_ID_JJ & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN)

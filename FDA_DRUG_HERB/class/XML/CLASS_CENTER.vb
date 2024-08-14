@@ -159,6 +159,15 @@
             _TRANSFER_NAME = value
         End Set
     End Property
+    Private _TRANSFER_NAME_NEW As String
+    Public Property TRANSFER_NAME_NEW() As String
+        Get
+            Return _TRANSFER_NAME_NEW
+        End Get
+        Set(ByVal value As String)
+            _TRANSFER_NAME_NEW = value
+        End Set
+    End Property
     Private _TRANSFER_DATE As String
     Public Property TRANSFER_DATE() As String
         Get
@@ -166,6 +175,15 @@
         End Get
         Set(ByVal value As String)
             _TRANSFER_DATE = value
+        End Set
+    End Property
+    Private _LCNNO_OLD As String
+    Public Property LCNNO_DISPAY_OLD() As String
+        Get
+            Return _LCNNO_OLD
+        End Get
+        Set(ByVal value As String)
+            _LCNNO_OLD = value
         End Set
     End Property
     Private _SHOW_LCNNO_NUMTHAI As String
@@ -203,6 +221,15 @@
         End Get
         Set(ByVal value As String)
             _HEAD_LCNNO = value
+        End Set
+    End Property
+    Private _LCNNO_TYPE As String
+    Public Property LCNNO_TYPE() As String
+        Get
+            Return _LCNNO_TYPE
+        End Get
+        Set(ByVal value As String)
+            _LCNNO_TYPE = value
         End Set
     End Property
     Private _SHOW_LCNDATE_DAY As String

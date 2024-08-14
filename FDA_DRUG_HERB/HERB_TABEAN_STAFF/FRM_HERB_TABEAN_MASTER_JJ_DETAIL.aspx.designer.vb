@@ -221,6 +221,24 @@ Partial Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''DD_SYNDROME_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_SYNDROME_ID As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''BTN_ADD_SYNDROME control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_ADD_SYNDROME As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''TXT_SYNDROME_DETAIL control.
     '''</summary>
     '''<remarks>
@@ -426,6 +444,15 @@ Partial Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents NOTE As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''UC_TABEAN_JJ_DETAIL_CAS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_TABEAN_JJ_DETAIL_CAS As Global.FDA_DRUG_HERB.UC_TABEAN_JJ_DETAIL_CAS
 
     '''<summary>
     '''STAFF_HIDE_SET control.

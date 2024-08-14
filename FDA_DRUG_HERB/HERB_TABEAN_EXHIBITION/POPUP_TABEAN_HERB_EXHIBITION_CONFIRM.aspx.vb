@@ -23,7 +23,11 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_CONFIRM
         _MENU_GROUP = Request.QueryString("MENU_GROUP")
         _IDA = Request.QueryString("IDA")
         _IDA_DR = Request.QueryString("IDA_DR")
-        _IDA_LCN = Request.QueryString("IDA_LCN")
+        If Request.QueryString("IDA_LCN") <> "" Then
+            _IDA_LCN = Request.QueryString("IDA_LCN")
+        Else
+            _IDA_LCN = 0
+        End If
         _Process_ID = Request.QueryString("PROCESS_ID")
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -105,7 +109,8 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_CONFIRM
         dao.fields.STATUS_ID = 2
         dao.Update()
 
-        alert("ยืนคำขอเรียบร้อย")
+        Response.Redirect("POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx?IDA=" & _IDA & "&PROCESS_ID=" & _Process_ID)
+        'alert("ยืนคำขอเรียบร้อย")
 
     End Sub
     Function bind_data_uploadfile()
@@ -120,7 +125,7 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_CONFIRM
             STATUS_UPLOAD_ID = 0
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function

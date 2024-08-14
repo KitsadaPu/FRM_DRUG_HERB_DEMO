@@ -221,6 +221,24 @@ Partial Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
     Protected WithEvents NAME_THAI As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''NAME_THAI_R control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NAME_THAI_R As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''NAME_ENG control.
     '''</summary>
     '''<remarks>

@@ -4,8 +4,9 @@
 
 <div visible="false" id="ID1" runat="server">
     <div class="row">
-        <div class="col-lg-3" style="text-align: center">
-            <h4>ชื่อของผลิตภัณฑ์สมุนไพร</h4>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2" style="text-align: left">
+            <h3>ชื่อของผลิตภัณฑ์สมุนไพร</h3>
             <hr />
         </div>
     </div>

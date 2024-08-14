@@ -20,7 +20,7 @@
     <div class="row" id="T1" runat="server" visible="false">
         <div class="panel" style="text-align: left; width: 100%">
             <div class="panel-heading panel-title" style="height: 70px">
-                <p class="h3" style="text-align: left;">ระบบขอขึ้นทะเบียน</p>
+                <p class="h3" style="text-align: left;border-bottom: 3px solid gray;">ระบบขอขึ้นทะเบียนผลิตภัณฑ์สมุนไพร</p>
             </div>
         </div>
 

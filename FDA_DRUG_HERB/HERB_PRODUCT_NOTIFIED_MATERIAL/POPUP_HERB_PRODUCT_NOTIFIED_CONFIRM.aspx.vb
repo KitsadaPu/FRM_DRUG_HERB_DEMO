@@ -53,7 +53,7 @@ Public Class POPUP_HERB_PRODUCT_NOTIFIED_CONFIRM
             STATUS_UPLOAD_ID = 0
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, Request.QueryString("PROCESS_ID"))
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, Request.QueryString("PROCESS_ID"), Request.QueryString("IDA"))
 
         Return dt
     End Function

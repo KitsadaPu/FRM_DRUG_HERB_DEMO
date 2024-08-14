@@ -5,19 +5,19 @@
 <div class="row" style="height: 1px"></div>
 <div visible="false" id="ID3" runat="server">
     <div class="row">
-        <div class="col-lg-3" style="text-align: center">
-            <h4>ขนาดบรรจุ</h4>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2" style="text-align: left">
+            <h3>รายละเอียดขนาดบรรจุ</h3>
             <hr />
         </div>
     </div>
     <div class="row" style="height: 5px"></div>
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-9">
+        <div class="col-lg-10">
             <asp:CheckBox ID="CB_Size_Packet" Text=" &nbsp; 1. แก้ไขขนาดบรรจุ" runat="server" AutoPostBack="True" />
             <br />
         </div>
-        <div class="col-lg-1"></div>
     </div>
     <div visible="false" id="CB1" runat="server">
         <div class="row">
@@ -111,7 +111,14 @@
         </div>
 
         <div class="row" style="height: 5px"></div>
-        <hr />
+        
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <hr />
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-4">
@@ -149,7 +156,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2">Seceondary Packaging:</div>
+                    <div class="col-lg-2">Secondary Packaging:</div>
                     <div class="col-lg-2">
                         <asp:DropDownList ID="DD_PCAK_2" runat="server" DataValueField="PACK_SEC_ID" DataTextField="PACK_SEC_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
                     </div>
@@ -159,7 +166,7 @@
                     </div>
                     <div class="col-lg-2" style="text-align: right">หน่วย:</div>
                     <div class="col-lg-2">
-                        <asp:DropDownList ID="DD_UNIT_2" runat="server" DataValueField="UNIT_SECONDARY_ID" DataTextField="UNIT_SECONDARY_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
+                        <asp:DropDownList ID="DD_UNIT_2" runat="server" DataValueField="UNIT_SECONDARY_ID" DataTextField="UNIT_SECONDARY_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row">

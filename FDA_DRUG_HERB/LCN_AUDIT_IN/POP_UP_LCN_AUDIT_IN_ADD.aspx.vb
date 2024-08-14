@@ -70,8 +70,8 @@
         dao_attgroup.GetDataby_HEAD_ID_AND_PROCESS(0, _ProcessID)
         For Each dao_attgroup.fields In dao_attgroup.datas
             Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            Dim dao_mas As New DAO_DRUG.TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
-            dao_att.fields.DUCUMENT_NAME = dao_attgroup.fields.DUCUMENT_NAME
+            Dim dao_mas As New DAO_DRUG.TB_MAS_DOCUMENT_NAME_UPLOAD_DALCN
+            dao_att.fields.DOCUMENT_NAME = dao_attgroup.fields.DOCUMENT_NAME
             dao_att.fields.TYPE_PERSON = 0
             dao_att.fields.TYPE_LOCAL = 0
             dao_att.fields.TYPE_BSN = 0

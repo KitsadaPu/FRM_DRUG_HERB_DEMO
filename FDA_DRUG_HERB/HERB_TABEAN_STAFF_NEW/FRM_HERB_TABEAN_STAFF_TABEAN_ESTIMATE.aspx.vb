@@ -152,7 +152,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -179,7 +179,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -191,7 +191,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -301,7 +301,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
                 dao_up_mas.GetdatabyID_TYPE(11)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = _TR_ID
                     dao_up.fields.PROCESS_ID = _ProcessID
                     dao_up.fields.FK_IDA = _IDA
@@ -479,7 +479,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -505,7 +505,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -535,7 +535,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID, _IDA)
         Return dt
     End Function
 
@@ -564,7 +564,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_ESTIMATE1
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID, _IDA)
         Return dt
     End Function
 

@@ -57,7 +57,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
             dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
             If dao_chk.fields.IDA = 0 Then
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.TR_ID = _TR_ID
                 dao_up.fields.PROCESS_ID = _ProcessID
                 dao_up.fields.FK_IDA_LCN = _IDA_LCN
@@ -143,10 +143,10 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
 
         For Each item As GridDataItem In RadGrid1.SelectedItems
             IDA_UPLOAD = item("ID").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
 
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _ProcessID
             dao_up.fields.FK_IDA = _IDA
@@ -216,9 +216,9 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
                 tc = New TableCell
                 tc.Width = 50
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -370,7 +370,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -397,7 +397,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_EDIT
         Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
         dao_deeqt.GetDataby_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID, _IDA)
 
         Return dt
     End Function

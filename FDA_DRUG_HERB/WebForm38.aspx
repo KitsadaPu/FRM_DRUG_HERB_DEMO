@@ -175,7 +175,7 @@
             </span></span>
             </p>
         <p>
-            <asp:Button ID="btn_gen_xml_pro" runat="server" Text="ยืนยันการสร้าง"/>
+            <asp:Button ID="btn_gen_xml_pro" runat="server" Text="ยืนยันการสร้าง" Enabled="false"/>
             </p>
     </form>
 </body>

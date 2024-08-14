@@ -16,7 +16,7 @@
              <asp:Button ID="btn_tabean" runat="server" Text="ระบบขอขึ้นทะเบียน" />
             <asp:Button ID="btn_detail" runat="server" Text="ระบบขอแจ้งรายละเอียด" Enabled="true"/>
             <asp:Button ID="btn_jj" runat="server" Text="ระบบขอจดแจ้ง" />
-            <asp:Button ID="btn_EX" runat="server" Text="ระบบขอยาตัวอย่าง"/>
+            <asp:Button ID="btn_EX" runat="server" Text="ระบบขอผลิตภัณฑ์ตัวอย่าง"/>
             <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>

@@ -26,11 +26,13 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         RunSession()
         BindTable()
         If Not IsPostBack Then
+            Get_data()
             Bind_Data()
         End If
     End Sub
     Sub Get_data()
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA)
         Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
         dao_lcn.GetDataby_IDA(_IDA_LCN)
         Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
@@ -39,23 +41,24 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         dao_addr.GetDataby_IDA(dao_lcn.fields.FK_IDA)
         Dim dao_phr As New DAO_DRUG.ClsDBDALCN_PHR
         dao_phr.GetDataby_FK_IDA(dao_lcn.fields.IDA)
-        txt_Rename_Name.Text = dao_lcn.fields.syslcnsnm_prefixnm & "" & dao_lcn.fields.thanm
-        'txt_phr_name.Text = dao_phr.fields.PHR_NAME
-        txt_phr_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
-        TxT_LCN_NUM.Text = dao_lcn.fields.LCNNO_DISPLAY_NEW
-        TxT_Business_Name.Text = dao_addr.fields.thanameplace
-        txt_addr.Text = dao_addr.fields.thaaddr
-        txt_Building.Text = dao_addr.fields.thabuilding
-        txt_mu.Text = dao_addr.fields.thamu
-        txt_Soi.Text = dao_addr.fields.thasoi
-        txt_road.Text = dao_addr.fields.tharoad
-        txt_tambol.Text = dao_addr.fields.thathmblnm
-        txt_ampher.Text = dao_addr.fields.thaamphrnm
-        txt_changwat.Text = dao_addr.fields.thachngwtnm
-        txt_zipcode.Text = dao_addr.fields.zipcode
-        txt_tel.Text = dao_addr.fields.tel
-        txt_Opentime.Text = dao_lcn.fields.opentime
-        txt_Write_Date.Text = Date.Now.ToString("dd/MM/yyyy")
+        NOTE_EDIT.Text = dao.fields.Note_Edit
+        'txt_Rename_Name.Text = dao_lcn.fields.syslcnsnm_prefixnm & "" & dao_lcn.fields.thanm
+        ''txt_phr_name.Text = dao_phr.fields.PHR_NAME
+        'txt_phr_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
+        'TxT_LCN_NUM.Text = dao_lcn.fields.LCNNO_DISPLAY_NEW
+        'TxT_Business_Name.Text = dao_addr.fields.thanameplace
+        'txt_addr.Text = dao_addr.fields.thaaddr
+        'txt_Building.Text = dao_addr.fields.thabuilding
+        'txt_mu.Text = dao_addr.fields.thamu
+        'txt_Soi.Text = dao_addr.fields.thasoi
+        'txt_road.Text = dao_addr.fields.tharoad
+        'txt_tambol.Text = dao_addr.fields.thathmblnm
+        'txt_ampher.Text = dao_addr.fields.thaamphrnm
+        'txt_changwat.Text = dao_addr.fields.thachngwtnm
+        'txt_zipcode.Text = dao_addr.fields.zipcode
+        'txt_tel.Text = dao_addr.fields.tel
+        'txt_Opentime.Text = dao_lcn.fields.opentime
+        'txt_Write_Date.Text = Date.Now.ToString("dd/MM/yyyy")
     End Sub
     Public Sub load_gv()
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
@@ -87,9 +90,9 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(Request.QueryString("IDA"))
         If dao.fields.Check_Edit_ID = True Then
-            Check_Edit.Visible = True
+            'Check_Edit.Visible = True
             Get_data()
-            TXT_EDIT_NOTE.Text = dao.fields.Note_Edit
+            'TXT_EDIT_NOTE.Text = dao.fields.Note_Edit
         End If
         If dao.fields.Check_Edit_FileUpload_ID = True Then
             Check_Edit_Uplaod.Visible = True
@@ -111,22 +114,22 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
                 End If
             End If
         End If
-        If dao.fields.Check_Edit_ID = True Then
-            Try
-                dao.fields.latitude = txt_latitude.Text
-            Catch ex As Exception
-                dao.fields.latitude = 0
-            End Try
-            Try
-                dao.fields.longitude = txt_longitude.Text
-            Catch ex As Exception
-                dao.fields.longitude = 0
-            End Try
-            dao.fields.STATUS_ID = 10
-            dao.update()
-            AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, Request.QueryString("IDA"))
-            alert("บันทึกข้อมูลแล้ว รอเจ้าหน้าที่ตรวจสอบความถูกต้อง")
-        End If
+        'If dao.fields.Check_Edit_ID = True Then
+        '    Try
+        'dao.fields.latitude = txt_latitude.Text
+        'Catch ex As Exception
+        '        dao.fields.latitude = 0
+        '    End Try
+        'Try
+        '    'dao.fields.longitude = txt_longitude.Text
+        'Catch ex As Exception
+        '    dao.fields.longitude = 0
+        'End Try
+        dao.fields.STATUS_ID = 32
+        dao.update()
+        AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, Request.QueryString("IDA"))
+        alert("บันทึกข้อมูลแล้ว รอเจ้าหน้าที่ตรวจสอบความถูกต้อง")
+        'End If
     End Sub
 
     Function bind_data_RG_Edit()
@@ -192,9 +195,9 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
 
             tc = New TableCell
             Try
-                tc.Text = Replace(dao_f.fields.DUCUMENT_NAME, "\n", "<br/>")
+                tc.Text = Replace(dao_f.fields.DOCUMENT_NAME, "\n", "<br/>")
             Catch ex As Exception
-                tc.Text = dao_f.fields.DUCUMENT_NAME
+                tc.Text = dao_f.fields.DOCUMENT_NAME
             End Try
             tc.Width = 700
             tr.Cells.Add(tc)
@@ -279,7 +282,7 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         tr_id = dao.fields.TR_ID
         For Each tr As TableRow In tb_upload_file.Rows
             Dim IDA As Integer = tr.Cells(1).Text
-
+            Dim bao As New BAO.AppSettings
             Dim f As New FileUpload
             f = tr.FindControl("F" & IDA)
             If f.HasFile Then
@@ -287,17 +290,19 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
                 Dim Array_NAME_REAL() As String = Split(name_real, ".")
                 Dim Last_Length As Integer = Array_NAME_REAL.Length - 1
                 Dim exten As String = Array_NAME_REAL(Last_Length).ToString()
+                Dim paths As String = BAO._PATH_XML_PDF_LCN_RENREW
                 If exten.ToUpper = "PDF" Then
-                    Dim bao As New BAO.AppSettings
+
                     Dim dao_f As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
                     dao_f.GetDataby_IDA(IDA)
                     Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & ".pdf"
+                    paths = paths & "FILE_UPLOAD\" & Name_fake
                     dao_f.fields.NAME_FAKE = Name_fake
                     dao_f.fields.NAME_REAL = f.FileName
                     dao_f.fields.CREATE_DATE = Date.Now
+                    dao_f.fields.FilePath = paths
                     dao_f.update()
-                    Dim paths As String = bao._PATH_XML_PDF_LCN_RENREW
-                    f.SaveAs(paths & "FILE_UPLOAD\" & Name_fake)
+                    f.SaveAs(paths)
                 Else
                     alert_normal(name_real & " กรุณาแนบเป็นไฟล์ PDF")
                 End If

@@ -222,9 +222,9 @@ Imports Telerik.Web.UI.Scheduler.Views
 
             tc = New TableCell
             Try
-                tc.Text = Replace(dao_f.fields.DUCUMENT_NAME, "\n", "<br/>")
+                tc.Text = Replace(dao_f.fields.DOCUMENT_NAME, "\n", "<br/>")
             Catch ex As Exception
-                tc.Text = dao_f.fields.DUCUMENT_NAME
+                tc.Text = dao_f.fields.DOCUMENT_NAME
             End Try
             tc.Width = 700
             tr.Cells.Add(tc)

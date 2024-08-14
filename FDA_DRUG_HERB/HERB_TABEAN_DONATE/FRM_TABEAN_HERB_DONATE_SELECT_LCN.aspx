@@ -1,41 +1,31 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_PPK.Master" CodeBehind="FRM_TABEAN_HERB_DONATE_SELECT_LCN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_HERB_DONATE_SELECT_LCN" %>
 
-
-
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Src="~/UC/UC_NEWS.ascx" TagPrefix="uc1" TagName="UC_NEWS" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+      <link href="../css/css_rg_herb.css" rel="stylesheet" />
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <div class="row">
-        <div class="col-lg-12" style="text-align:center" runat="server" id="div_news">
+        <div class="col-lg-12" style="text-align: center" runat="server" id="div_news">
             <uc1:UC_NEWS runat="server" ID="UC_NEWS" />
             <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>
-
-    
     <div class="row" id="T1" runat="server" visible="false">
-        <div class="panel" style="text-align: left; width: 100%">
+        <div class="panel panel-body" style="width: 100%; height: 780px; padding-left: 1em">
             <div class="panel-heading panel-title" style="height: 70px">
-                <p class="h3" style="text-align: left;">แบบแจ้งขออนุญาตผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อบริจาค</p>
+                <p class="h3" style="text-align: left; border-bottom: 3px solid gray;">แบบแจ้งขออนุญาตผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อบริจาค</p>
             </div>
-        </div>
-
-
-         <div class="panel panel-body" style="width: 100%; padding-left: 1em">
+            <div style="padding-top:30px"></div>
             <div class="col-lg-12" style="text-align: center; padding-left: 2em; padding-right: 2em">
-                <p class="h3" style="text-align: center;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
+                <p class="h4" style="text-align: left;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
                 <hr />
-
                 <telerik:RadGrid ID="RadGrid1" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                         <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
-
                         <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
                             <HeaderStyle Width="20px"></HeaderStyle>
                         </RowIndicatorColumn>
@@ -43,7 +33,6 @@
                         <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
                             <HeaderStyle Width="20px"></HeaderStyle>
                         </ExpandCollapseColumn>
-
                         <Columns>
                             <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column"
                                 HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">

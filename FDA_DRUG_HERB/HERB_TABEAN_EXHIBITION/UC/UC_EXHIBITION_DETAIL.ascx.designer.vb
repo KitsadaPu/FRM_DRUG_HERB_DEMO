@@ -23,13 +23,13 @@ Partial Public Class UC_EXHIBITION_DETAIL
     Protected WithEvents Txt_Write_At As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_Write_Date control.
+    '''RDP_Write_Date control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_Write_Date As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RDP_Write_Date As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''txt_NAME control.
@@ -104,6 +104,69 @@ Partial Public Class UC_EXHIBITION_DETAIL
     Protected WithEvents txt_lcnno_new As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Panel_lcnno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_lcnno As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''txt_lcnno_SEACH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_lcnno_SEACH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BTN_SEARCH_LCNNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_SEARCH_LCNNO As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Panel_lcnno_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_lcnno_search As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''RadGrid1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_house_no control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_house_no As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''txt_addr control.
     '''</summary>
     '''<remarks>
@@ -167,6 +230,15 @@ Partial Public Class UC_EXHIBITION_DETAIL
     Protected WithEvents txt_changwhat As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_zipcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_zipcode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txt_tel control.
     '''</summary>
     '''<remarks>
@@ -174,6 +246,24 @@ Partial Public Class UC_EXHIBITION_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_tel As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_longtitute control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_longtitute As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_latituie control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_latituie As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''rdl_process_exh control.
@@ -212,13 +302,22 @@ Partial Public Class UC_EXHIBITION_DETAIL
     Protected WithEvents txt_exhibition As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_date_exh control.
+    '''RDP_date_Start control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_date_exh As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RDP_date_Start As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''RDP_date_End control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RDP_date_End As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''txt_lo_exh control.
@@ -228,6 +327,15 @@ Partial Public Class UC_EXHIBITION_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_lo_exh As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''UC_EXH_DETAIL_CAS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UC_EXH_DETAIL_CAS As Global.FDA_DRUG_HERB.UC_EXH_DETAIL_CAS
 
     '''<summary>
     '''DD_PCAK_1 control.

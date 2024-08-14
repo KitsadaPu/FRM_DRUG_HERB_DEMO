@@ -77,6 +77,15 @@ Partial Public Class POP_UP_LCN_RENEW_CONFIRM
     Protected WithEvents btn_confirm As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btn_KeepPay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_KeepPay As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btn_cancel control.
     '''</summary>
     '''<remarks>
@@ -104,11 +113,11 @@ Partial Public Class POP_UP_LCN_RENEW_CONFIRM
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''RadGrid1 control.
+    '''rgat control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgat As Global.Telerik.Web.UI.RadGrid
 End Class

@@ -59,6 +59,8 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_APPROVE
             bind_mas_cancel()
             BIND_PDF_TABEAN()
             BIND_MAS_POSITION_STAFF()
+            Bind_DDL_Kindnm()
+            Bind_DDL_SLCHN()
             BIND_MAS_OTHER_REQUEST()
             UC_ATTACH1.NAME = "เอกสารแนบยกเลิกคำขอ"
             UC_ATTACH1.BindData("เอกสารแนบยกเลิกคำขอ", 1, "pdf", "0", "77")
@@ -81,11 +83,42 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_APPROVE
         End If
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
         lbl_create_by.Text = dao.fields.CREATE_BY
+        txt_remark_edit.Text = dao.fields.REMARK
         Try
             lbl_create_date.Text = dao.fields.CREATE_DATE
         Catch ex As Exception
 
         End Try
+    End Sub
+    Public Sub Bind_DDL_Kindnm()
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        Dim dao As New DAO_DRUG.TB_drkdofdrg
+        dao.GETDATA_ACTIVE()
+
+        DDL_Kindnm.DataSource = dao.Details
+        DDL_Kindnm.DataValueField = "kindcd"
+        DDL_Kindnm.DataTextField = "thakindnm"
+        DDL_Kindnm.DataBind()
+
+        Dim item As New RadComboBoxItem
+        item.Text = "-- กรุณาเลือก --"
+        item.Value = "0"
+        DDL_Kindnm.Items.Insert(0, item)
+    End Sub
+    Public Sub Bind_DDL_SLCHN()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_TABEAN_HERB_SALE()
+
+        DDL_SLCHN.DataSource = dt
+        DDL_SLCHN.DataValueField = "SALE_CHANNEL_ID"
+        DDL_SLCHN.DataTextField = "SALE_CHANNEL_NAME"
+        DDL_SLCHN.DataBind()
+
+        Dim item As New RadComboBoxItem
+        item.Text = "-- กรุณาเลือก --"
+        item.Value = "0"
+        DDL_SLCHN.Items.Insert(0, item)
     End Sub
     Public Sub BIND_MAS_OTHER_REQUEST()
         Dim dt As DataTable
@@ -1402,7 +1435,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_APPROVE
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function

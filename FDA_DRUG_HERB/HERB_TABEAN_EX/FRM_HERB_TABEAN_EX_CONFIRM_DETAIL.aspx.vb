@@ -166,7 +166,8 @@ Public Class FRM_HERB_TABEAN_EX_CONFIRM_DETAIL
         _CLS.FILENAME_XML = Path_XML
     End Sub
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Response.Redirect("FRM_HERB_TABEAN_EX_CONFIRM.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+        'Response.Redirect("FRM_HERB_TABEAN_EX_CONFIRM.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+        Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
     End Sub
     Private Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")

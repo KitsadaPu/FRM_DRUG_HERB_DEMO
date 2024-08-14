@@ -3,9 +3,16 @@ Imports System.IO
 Imports System.Xml.Serialization
 Imports FDA_DRUG_HERB.XML_CENTER
 Imports Telerik.Web.UI
-
+Imports System.Web.Script.Serialization
+Imports System.Web.Mvc
+Imports System.Web
+Imports Newtonsoft.Json
+Imports System.Xml
+Imports Newtonsoft.Json.Linq
+Imports System.Web.Http
 Public Class WebForm35
     Inherits System.Web.UI.Page
+    'Inherits System.Web.Mvc.JsonResult
     Private _CLS As New CLS_SESSION
     Private _IDA As String
     ' Private _ProcessID As String
@@ -20,7 +27,7 @@ Public Class WebForm35
         Try
             _CLS = Session("CLS")
         Catch ex As Exception
-            Response.Redirect("http://privus.fda.moph.go.th")
+            response.Redirect("http://privus.fda.moph.go.th")
         End Try
 
         ''_la_IDA = Request.QueryString("la_IDA")
@@ -32,7 +39,7 @@ Public Class WebForm35
         _TR_ID = Request.QueryString("TR_ID")
         '_YEARS = con_year(Date.Now.Year)
     End Sub
- 
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunQuery()
         'If Session("b64") IsNot Nothing Then
@@ -61,7 +68,7 @@ Public Class WebForm35
                     Panel1.Style.Add("display", "block")
                 End If
             Catch ex As Exception
-                Response.Redirect("https://privus.fda.moph.go.th/")
+                response.Redirect("https://privus.fda.moph.go.th/")
             End Try
             Bind_ddl_Status_staff()
             Bind_lbl_type_date()
@@ -810,8 +817,18 @@ Public Class WebForm35
             'btn_preview.CssClass = "btn-danger btn-lg"
 
         End If
+    End Sub
+    Private Sub rg_bsn_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rg_bsn.NeedDataSource
+        Dim bao As New BAO_SHOW
+        Dim dt As New DataTable
+        If Request.QueryString("IDA") <> "" Then
+            'dt = bao.SP_DALCN_PHR_BY_FK_IDA_2(Request.QueryString("ida"))
+            dt = bao.SP_LOCATION_BSN_BY_LCN_IDA(Request.QueryString("IDA"))
+        End If
 
-
+        If dt.Rows.Count > 0 Then
+            rg_bsn.DataSource = dt
+        End If
     End Sub
     Public Sub set_hide(ByVal IDA As String)
         Dim dao As New DAO_DRUG.ClsDBdalcn
@@ -913,7 +930,45 @@ Public Class WebForm35
         fdpdtno = pvncd & lcntypecd & lcnno_num & tpye
         Return fdpdtno
     End Function
+    Protected Sub btn_DBD_Click(sender As Object, e As EventArgs) Handles btn_DBD.Click
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(_IDA)
+        Dim IDENTIFY As String = _CLS.CITIZEN_ID
+        Dim COMPANY_INDENTIFY As String = dao.fields.CITIZEN_ID_AUTHORIZE
+        Dim TOKEN As String = _CLS.TOKEN
+        Dim TR_ID As String = dao.fields.TR_ID 'รอพี่บิ๊กกำหนดชื่อตัวแปรอีกที
+        Dim ORG As String = "HERB"
+        Dim c As New ServiceOnePlatformController
+        Dim URL As String = c.DBD_LINK(IDENTIFY, COMPANY_INDENTIFY, TR_ID, TOKEN)
+        Response.Redirect(URL)
+    End Sub
 
+    '  this.DBD_LINK_SV = function (IDENTIFY, COMPANY_INDENTIFY, TR_ID, TOKEN) { //เรียก Full model
+    '    var response = $http({
+    '        method: "post",
+    '        url: "../MDC_EDIT_LCN_STAFF/DBD_LINK",
+    '        dataType: "json",
+    '        data: {
+    '            IDENTIFY: IDENTIFY,
+    '            COMPANY_INDENTIFY: COMPANY_INDENTIFY,
+    '            TR_ID: TR_ID,
+    '            TOKEN: TOKEN
+    '        },
+
+    '    });
+    '    Return response;
+    '};
+
+
+    ' $scope.DBD_LINK = function (IDENTIFY) {
+
+    '    var getdata2 = CENTER_SERVICE.DBD_LINK_SV($scope.CITIZEN_ID, IDENTIFY, $scope.TR_EDIT, $scope.token)
+    '    getdata2.then(function (datas) {
+    '        window.open(datas.data);
+
+
+    '    })
+    '}
     Protected Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
 
         Dim dao As New DAO_DRUG.ClsDBdalcn
@@ -997,12 +1052,12 @@ Public Class WebForm35
                 'cls_sop.BLOCK_STAFF(_CLS.CITIZEN_ID, "STAFF", PROCESS_ID, _CLS.PVCODE, 2, "รับคำขอ", "SOP-DRUG-10-" & PROCESS_ID & "-2", "เสนอลงนาม", "รอเจ้าหน้าที่เสนอลงนาม", "STAFF", _TR_ID, SOP_STATUS:="รับคำขอ")
 
                 '-----------------ลิ้งไปหน้าคีย์มือ----------
-                Response.Redirect("FRM_STAFF_LCN_RCV_MANUAL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
+                response.Redirect("FRM_STAFF_LCN_RCV_MANUAL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
                 '--------------------------------
                 alert("ดำเนินการรับคำขอเรียบร้อยแล้ว เลขรับ คือ " & dao.fields.rcvno)
             ElseIf STATUS_ID = 11 Then
                 AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
-                Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
+                response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
             ElseIf STATUS_ID = 12 Then
                 Content = "คำขอระบบการขออนุญาตสถานที่ผลิตภัณฑ์สมุนไพร รหัสดำเนินการ : " & _TR_ID & " , ได้รับการ" & ddl_cnsdcd.SelectedItem.Text & "แล้ว"
                 title = "คำขอระบบการขออนุญาตสถานที่ผลิตภัณฑ์สมุนไพร"
@@ -1012,13 +1067,13 @@ Public Class WebForm35
                 SendMail(Content, EMAIL, title) 'ลีม
 
                 AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
-                Response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
+                response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
                 'ElseIf STATUS_ID = 13 Then
                 '    Response.Redirect("FRM_STAFF_LCN_REMARK.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & "13")
             ElseIf STATUS_ID = 13 Then
                 AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
                 AddLogStatus(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
-                Response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
+                response.Redirect("FDA_STAFF_LCN_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&STATUS_ID=" & STATUS_ID)
 
                 'Response.Redirect("FRM_STAFF_LCN_PAY_NOTE.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
                 alert("อัพเดทเรียบร้อยแล้ว")
@@ -1116,26 +1171,28 @@ Public Class WebForm35
                     AddLogStatus(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
                     AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
                 Catch ex As Exception
-                    Response.Write("<script type='text/javascript'>alert('ตรวจสอบการใส่วันที่');</script> ")
+                    response.Write("<script type='text/javascript'>alert('ตรวจสอบการใส่วันที่');</script> ")
                 End Try
                 ' Response.Redirect("FRM_STAFF_LCN_CONSIDER.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID)
             ElseIf STATUS_ID = 8 Then
                 dao.fields.STATUS_ID = STATUS_ID
                 Try
                     dao.fields.appdate = CDate(TXT_APP_DATE.Text)
+                    dao.fields.frtappdate = CDate(TXT_APP_DATE.Text)
                 Catch ex As Exception
 
                 End Try
                 If IsNothing(dao.fields.appdate) = False Then
                     Dim appdate As Date = CDate(dao.fields.appdate)
                     Dim expyear As Integer = 0
+                    Dim date_exp As Date
                     Try
                         expyear = Year(appdate)
                         If expyear <> 0 Then
                             If expyear < 2500 Then
                                 expyear += 543
                             End If
-                            dao.fields.expyear = expyear
+                            'dao.fields.expyear = expyear
                         End If
                     Catch ex As Exception
 
@@ -1143,6 +1200,10 @@ Public Class WebForm35
                     Try
                         If dao.fields.PROCESS_ID = "120" Or dao.fields.PROCESS_ID = "121" Or dao.fields.PROCESS_ID = "122" Then
                             dao.fields.expdate = DateAdd(DateInterval.Day, -1, DateAdd(DateInterval.Year, 5, appdate))
+
+                            date_exp = dao.fields.expdate
+                            expyear = con_year(date_exp.Year())
+                            dao.fields.expyear = expyear
                         End If
                     Catch ex As Exception
 
@@ -1171,7 +1232,7 @@ Public Class WebForm35
                 alert("ดำเนินการอนุมัติเรียบร้อยแล้ว")
                 'alert_reload("ดำเนินการอนุมัติเรียบร้อยแล้ว")
             ElseIf STATUS_ID = 78 Or STATUS_ID = 75 Or STATUS_ID = 7 Or STATUS_ID = 9 Then
-                Response.Redirect("FRM_LCN_STAFF_HERB_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID & "&STATUS_ID=" & STATUS_ID)
+                response.Redirect("FRM_LCN_STAFF_HERB_CANCEL.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&PROCESS_ID=" & _ProcessID & "&STATUS_ID=" & STATUS_ID)
                 'ElseIf STATUS_ID = 7 Then
                 '        AddLogStatus(STATUS_ID, Request.QueryString("process"), _CLS.CITIZEN_ID, _IDA)
                 '    AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, ddl_id, ddl_name)
@@ -1220,7 +1281,7 @@ Public Class WebForm35
         Return email
     End Function
     Sub alert_reload(ByVal text As String)
-        Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');</script> ")
+        response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');</script> ")
 
         Dim dao_n As New DAO_DRUG.ClsDBdalcn
         dao_n.GetDataby_IDA(_IDA)
@@ -1321,7 +1382,7 @@ Public Class WebForm35
     End Sub
 
     Private Sub alert(ByVal text As String)
-        Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
+        response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
@@ -2119,13 +2180,13 @@ Public Class WebForm35
                     'End Try
 
                     If dao.fields.STATUS_ID = 8 And dao.fields.lcnno < 1000000 Then
-                            lcnno_format = dao.fields.LCNNO_DISPLAY_NEW
-                        Else
-                            lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
-                        End If
-                        'lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                        lcnno_format = dao.fields.LCNNO_DISPLAY_NEW
                     Else
                         lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                    End If
+                    'lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
+                Else
+                    lcnno_format = dao.fields.pvncd & "-" & _type_da & "-" & Left(lcnno_auto, 2) & "-" & Right(lcnno_auto, Len(lcnno_auto) - 2)
                 End If
 
             End If
@@ -2266,22 +2327,22 @@ Public Class WebForm35
                 class_xml.RCVMONTH = appdate.ToString("MMMM")
                 class_xml.RCVYEAR = con_year(appdate.Year)
                 Dim expyear As Integer = 0
-                    Try
-                        expyear = dao.fields.expyear
-                        If expyear <> 0 Then
-                            If expyear < 2500 Then
-                                expyear += 543
-                            End If
+                Try
+                    expyear = dao.fields.expyear
+                    If expyear <> 0 Then
+                        If expyear < 2500 Then
+                            expyear += 543
                         End If
-                    Catch ex As Exception
-
-                    End Try
-                    If expyear = 0 Then
-                        expyear = con_year(appdate.Year)
                     End If
-                    class_xml.EXP_YEAR = NumEng2Thai(expyear)
+                Catch ex As Exception
+
+                End Try
+                If expyear = 0 Then
+                    expyear = con_year(appdate.Year)
                 End If
-            Else
+                class_xml.EXP_YEAR = NumEng2Thai(expyear)
+            End If
+        Else
             If IsNothing(dao.fields.expyear) = False Then
                 Dim expyear As Integer = 0
                 Try
@@ -2608,7 +2669,12 @@ Public Class WebForm35
             'End If
 
         End If
-
+        Dim dao_c As New DAO_CPN.clsDBsyschngwt
+        dao_c.GetData_by_chngwtcd(dao.fields.pvncd)
+        If dao.fields.pvncd = 19 Then
+            dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, "สมพ2", statusId, HiddenField2.Value, _group:=2)
+            class_xml.CHANGWATH_NM = dao_c.fields.thachngwtnm
+        End If
         Dim paths As String = bao._PATH_DEFAULT
         Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
         Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
@@ -2617,8 +2683,8 @@ Public Class WebForm35
 
         'Try
         Dim url As String = ""
-            ' If Request.QueryString("status") = 8 Or Request.QueryString("status") = 14 Then
-            url = Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath & "/PDF/FRM_PDF.aspx?filename=" & filename
+        ' If Request.QueryString("status") = 8 Or Request.QueryString("status") = 14 Then
+        url = Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath & "/PDF/FRM_PDF.aspx?filename=" & filename
         'Else
         '    url = Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath & "/PDF/FRM_PDF_VIEW.aspx?filename=" & filename
         'End If
@@ -2648,7 +2714,7 @@ Public Class WebForm35
     End Sub
 
     Protected Sub btn_load0_Click(sender As Object, e As EventArgs) Handles btn_load0.Click
-        Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
+        response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
     End Sub
 
     Protected Sub btn_preview_Click(sender As Object, e As EventArgs) Handles btn_preview.Click
@@ -2730,14 +2796,14 @@ Public Class WebForm35
         Dim bao As New BAO.AppSettings
         Dim clsds As New ClassDataset
 
-        Response.Clear()
-        Response.ContentType = "Application/pdf"
-        Response.AddHeader("Content-Disposition", "attachment; filename=" & _CLS.FILENAME_PDF)
-        Response.BinaryWrite(clsds.UpLoadImageByte(FilePath)) '"C:\path\PDF_XML_CLASS\"
+        response.Clear()
+        response.ContentType = "Application/pdf"
+        response.AddHeader("Content-Disposition", "attachment; filename=" & _CLS.FILENAME_PDF)
+        response.BinaryWrite(clsds.UpLoadImageByte(FilePath)) '"C:\path\PDF_XML_CLASS\"
 
-        Response.Flush()
-        Response.Close()
-        Response.End()
+        response.Flush()
+        response.Close()
+        response.End()
 
 
     End Sub
@@ -3942,7 +4008,7 @@ Public Class WebForm35
     End Sub
 
     Protected Sub btn_up_Click(sender As Object, e As EventArgs) Handles btn_up.Click
-        Response.Redirect("FRM_LCN_UPLOAD_STAFF.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden)
+        response.Redirect("FRM_LCN_UPLOAD_STAFF.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&Process=" & _ProcessID & "&lct_ida=" & _lct_ida & "&identify=" & _iden)
     End Sub
 
     Protected Sub ddl_cnsdcd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_cnsdcd.SelectedIndexChanged

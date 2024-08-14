@@ -37,8 +37,8 @@ Public Class POPUP_LCN_ADD
             UC_HERB_BSN.load_ddl_thambol()
             UC_HERB_PHESAJ.bind_ddl_prefix()
             UC_HERB_PHESAJ.bind_ddl_phr_type()
-            UC_HERB_PHESAJ.bind_DDL_STUDY_LEVEL()
-            UC_HERB_PHESAJ.bind_DDL_VETERINARY_FIELD()
+            'UC_HERB_PHESAJ.bind_DDL_STUDY_LEVEL()
+            'UC_HERB_PHESAJ.bind_DDL_VETERINARY_FIELD()
 
 
             If Request.QueryString("ida") <> "" Then

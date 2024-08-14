@@ -8,6 +8,8 @@ Public Class FRM_HERB_TABEAN_INFORM
     Private _IDA_LCN As String = ""
     Private _LCNNO_DISPLAY As String = ""
     Private _PROCESS_ID_LCN As String = ""
+    Private _PROCESS_JJ As String = ""
+    Private _PROCESS_ID As String = ""
     Private _TYPEPERSON As String = ""
     Private _SID As String = ""
 
@@ -52,23 +54,31 @@ Public Class FRM_HERB_TABEAN_INFORM
         DD_HERB.Items.Insert(0, "-- กรุณาเลือก --")
 
     End Sub
-    Protected Sub DD_HERB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB.SelectedIndexChanged
-        If DD_HERB.SelectedValue Is Nothing = False Then
-            btn_tb_herb.Visible = True
-        Else
-            btn_tb_herb.Visible = False
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
-        End If
-    End Sub
+    'Protected Sub bind_dd_HERB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB.SelectedIndexChanged
+    '    If DD_HERB.SelectedValue Is Nothing = False Then
+    '        btn_tb_herb.Visible = True
+    '    Else
+    '        btn_tb_herb.Visible = False
+    '        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
+    '    End If
+    'End Sub
     Protected Sub btn_tb_herb_Click(sender As Object, e As EventArgs) Handles btn_tb_herb.Click
+        Dim DD_HERB_NAME_PRODUCT_1 As Integer = 0
+        Dim DD_HERB_NAME As Integer = 0
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_INFORM
         dao.fields.CREATE_DATE = Date.Now
         dao.insert()
-        If Request.QueryString("staff") = 1 Then
+        DD_HERB_NAME_PRODUCT_1 = DD_HERB_NAME_PRODUCT.SelectedValue
+        DD_HERB_NAME = DD_HERB.SelectedValue
+        If DD_HERB_NAME = 20201 Then _PROCESS_JJ = 20301
+        If DD_HERB_NAME = 20202 Then _PROCESS_JJ = 20302
+        If DD_HERB_NAME = 20203 Then _PROCESS_JJ = 20303
+        If DD_HERB_NAME = 20204 Then _PROCESS_JJ = 20304
+        If Request.QueryString("staff") = "1" Then
             _MENU_GROUP = 1
-            Response.Redirect("POPUP_HERB_TABEAN_INFORM_ADD.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_HERB.SelectedValue & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID)
+            Response.Redirect("POPUP_HERB_TABEAN_INFORM_ADD.aspx?&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_JJ=" & _PROCESS_JJ & "&PROCESS_ID=" & DD_HERB_NAME & "&staff=" & Request.QueryString("staff") & "&SID=" & _SID & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_1)
         Else
-            Response.Redirect("POPUP_HERB_TABEAN_INFORM_ADD.aspx?TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_ID_DQ=" & DD_HERB.SelectedValue & "&SID=" & _SID)
+            Response.Redirect("POPUP_HERB_TABEAN_INFORM_ADD.aspx?&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA_DQ=" & dao.fields.IDA & "&PROCESS_JJ=" & _PROCESS_JJ & "&PROCESS_ID=" & DD_HERB_NAME & "&SID=" & _SID & "&DD_HERB_NAME_ID=" & DD_HERB_NAME_PRODUCT_1)
 
         End If
     End Sub
@@ -94,7 +104,66 @@ Public Class FRM_HERB_TABEAN_INFORM
 
         Return dt
     End Function
+    Public Sub bind_dd(ByVal dd_herb As Integer)
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        If dd_herb = 20201 Then _PROCESS_ID = 20301
+        If dd_herb = 20202 Then _PROCESS_ID = 20302
+        If dd_herb = 20203 Then _PROCESS_ID = 20303
+        If dd_herb = 20204 Then _PROCESS_ID = 20304
+        dt = bao.SP_DD_MAS_TABEAN_HERB_NAME_JJ(_PROCESS_ID)
 
+        DD_HERB_NAME_PRODUCT.DataSource = dt
+        DD_HERB_NAME_PRODUCT.DataBind()
+        DD_HERB_NAME_PRODUCT.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
+    Public Sub bind_dd_health(ByVal dd_herb As Integer)
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+
+        dt = bao.SP_DD_MAS_TABEAN_HERB_HEALTH_NAME_JJ()
+
+        DD_HERB_NAME_PRODUCT_HEALTH.DataSource = dt
+        DD_HERB_NAME_PRODUCT_HEALTH.DataBind()
+        DD_HERB_NAME_PRODUCT_HEALTH.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
+    Protected Sub DD_HERB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_HERB.SelectedIndexChanged
+        bind_dd(DD_HERB.SelectedValue)
+        If DD_HERB.SelectedValue = 20201 Then
+            DD_HERB_NAME_PRODUCT.Visible = True
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = False
+            btn_tb_herb.Visible = True
+            herb_ya.Visible = True
+        ElseIf DD_HERB.SelectedValue = 20202 Then
+            DD_HERB_NAME_PRODUCT.Visible = False
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = False
+            btn_tb_herb.Visible = False
+            herb_ya.Visible = False
+        ElseIf DD_HERB.SelectedValue = 20203 Then
+            DD_HERB_NAME_PRODUCT.Visible = True
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = False
+            btn_tb_herb.Visible = True
+            herb_ya.Visible = True
+        ElseIf DD_HERB.SelectedValue = 20204 Then
+            bind_dd_health(DD_HERB.SelectedValue)
+            DD_HERB_NAME_PRODUCT.Visible = False
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = True
+            btn_tb_herb.Visible = True
+            herb_ya.Visible = True
+        ElseIf DD_HERB.SelectedValue = 20206 Then
+            DD_HERB_NAME_PRODUCT.Visible = True
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = False
+            btn_tb_herb.Visible = True
+            herb_ya.Visible = True
+        Else
+            DD_HERB_NAME_PRODUCT.Visible = False
+            DD_HERB_NAME_PRODUCT_HEALTH.Visible = False
+            btn_tb_herb.Visible = False
+            herb_ya.Visible = False
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือกข้อมูล');", True)
+        End If
+        _PROCESS_JJ = DD_HERB.SelectedValue
+    End Sub
     Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
         RadGrid1.DataSource = bind_data()
 
@@ -118,7 +187,7 @@ Public Class FRM_HERB_TABEAN_INFORM
             Dim IDA As Integer = item("IDA").Text
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
             Dim TR_ID As Integer = item("TR_ID").Text
-            Dim PROCESS_ID_DQ As Integer = item("PROCESS_ID").Text
+            Dim PROCESS_ID As Integer = item("PROCESS_ID").Text
 
             Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
             dao_lcn.GetDataby_IDA(IDA_LCN)
@@ -127,12 +196,18 @@ Public Class FRM_HERB_TABEAN_INFORM
             If e.CommandName = "HL_SELECT" Then
                 If STATUS_ID = 11 Then
                     lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_INFORM/POPUP_HERB_TABEAN_INFORM_EDIT_REQUEST.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA=" & IDA & "&PROCESS_ID=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID & "&staff=" & Request.QueryString("staff") & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_INFORM/POPUP_HERB_TABEAN_INFORM_EDIT_REQUEST.aspx?IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA=" & IDA & "&PROCESS_ID=" & PROCESS_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&TR_ID=" & TR_ID & "&staff=" & Request.QueryString("staff") & "');", True)
                 Else
                     lbl_head1.Text = "รายละเอียดคำขอ"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_INFORM/POPUP_HERB_TABEAN_INFORM_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA=" & IDA & "&PROCESS_ID=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID & "&staff=" & Request.QueryString("staff") & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_INFORM/POPUP_HERB_TABEAN_INFORM_CONFIRM.aspx?IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA=" & IDA & "&PROCESS_ID=" & PROCESS_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&TR_ID=" & TR_ID & "&staff=" & Request.QueryString("staff") & "');", True)
                 End If
                 'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_INFORM/POPUP_HERB_TABEAN_INFORM_CONFIRM.aspx?TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&IDA=" & IDA & "&PROCESS_ID=" & PROCESS_ID_DQ & "&TR_ID=" & TR_ID & "&staff=" & Request.QueryString("staff") & "');", True)
+            ElseIf e.CommandName = "HL3_SELECT" Then
+                lbl_head1.Text = "ใบนัดหมาย 1"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('../HERB_TABEAN_INFORM/FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & PROCESS_ID & "&IDA_LCN=" & IDA_LCN & "&APP_TYPE=1" & "');", True)
+            ElseIf e.CommandName = "HL4_SELECT" Then
+                lbl_head1.Text = "ใบนัดหมาย 2"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('../HERB_TABEAN_INFORM/FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & PROCESS_ID & "&IDA_LCN=" & IDA_LCN & "&APP_TYPE=2" & "');", True)
 
             End If
 
@@ -180,12 +255,12 @@ Public Class FRM_HERB_TABEAN_INFORM
                 HL1_SELECT.Style.Add("display", "block")
 
             End If
-            If STATUS_ID = 3 Then
-                HL3_SELECT.Style.Add("display", "block")
+            If STATUS_ID = 4 Or STATUS_ID = 15 Or STATUS_ID = 6 Or STATUS_ID = 8 Then
+                'HL3_SELECT.Style.Add("display", "block")
             ElseIf STATUS_ID = 6 Then
                 H.Style.Add("display", "block")
                 'HL4_SELECT.Style.Add("display", "block")
-            ElseIf STATUS_ID = 13 Then
+            ElseIf STATUS_ID = 15 Or STATUS_ID = 6 Or STATUS_ID = 8 Then
                 HL4_SELECT.Style.Add("display", "block")
             End If
         End If

@@ -54,7 +54,7 @@
             End Try
 
             lbl_thanameplace.Text = Tb.fields.thanameplace                          ' เอาข้อมูลมาโชว์ที่  label
-            lbl_nameOperator.Text = TbNO.fields.BSN_THAIFULLNAME             ' เอาข้อมูลมาโชว์ที่  label
+            lbl_nameOperator.Text = tb_location.fields.BSN_THAIFULLNAME             ' เอาข้อมูลมาโชว์ที่  label
 
             If lbl_nameOperator.Text = "" Then
                 Try

@@ -233,7 +233,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -260,7 +260,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -359,7 +359,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
                 dao_up_mas.GetdatabyID_TYPE(2)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = _TR_ID
                     dao_up.fields.PROCESS_ID = _ProcessID
                     dao_up.fields.FK_IDA = _IDA
@@ -521,7 +521,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
             P12.Visible = True
             p2.Visible = False
         ElseIf DD_STATUS.SelectedValue = 77 Or DD_STATUS.SelectedValue = 78 Or DD_STATUS.SelectedValue = 79 Or DD_STATUS.SelectedValue = 7 _
-            Or DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 10 Or DD_STATUS.SelectedValue = 17 Then
+            Or DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 10 Or DD_STATUS.SelectedValue = 17 Or DD_STATUS.SelectedValue = 14 Then
             p2.Visible = True
             P12.Visible = False
         Else
@@ -579,7 +579,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INTAKE
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID, _IDA)
         Return dt
     End Function
 

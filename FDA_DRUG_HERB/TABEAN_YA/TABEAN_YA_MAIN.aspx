@@ -4,11 +4,6 @@
 <%@ Register Src="~/DS/UC/UC_DS_MAIN.ascx" TagPrefix="uc1" TagName="UC_DS_MAIN" %>
 <%@ Register Src="~/TABEAN_YA/UC/UC_TRANFER.ascx" TagPrefix="uc1" TagName="UC_TRANFER" %>
 
-
-
-
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/css_radgrid.css" rel="stylesheet" />
 </asp:Content>
@@ -162,16 +157,16 @@
         
     </div>--%>
 
-    <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="1" MultiPageID="RadMultiPage1" Width="100%">
+    <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="0" MultiPageID="RadMultiPage1" Width="100%">
         <Tabs>
-            <telerik:RadTab runat="server" Text="ยาตัวอย่าง" Value="1">
+            <telerik:RadTab runat="server" Text="ยาตัวอย่าง" Value="1" Selected="True">
             </telerik:RadTab>
-            <telerik:RadTab runat="server" Text="ย.1" Value="2" Selected="True">
+            <telerik:RadTab runat="server" Text="ย.1" Value="2">
             </telerik:RadTab>
         </Tabs>
     </telerik:RadTabStrip>
 
-    <telerik:RadMultiPage ID="RadMultiPage1" runat="server" SelectedIndex="1" CssClass="fa left" Width="100%">
+    <telerik:RadMultiPage ID="RadMultiPage1" runat="server" SelectedIndex="0" CssClass="fa left" Width="100%">
         <telerik:RadPageView ID="RadPageView1" runat="server" TabIndex="1">
             <fieldset>
                 <legend style="color: red;">ยาตัวอย่าง</legend>
@@ -463,7 +458,6 @@
                 </table>
             </fieldset>
         </telerik:RadPageView>
-
     </telerik:RadMultiPage>
 
     <div>

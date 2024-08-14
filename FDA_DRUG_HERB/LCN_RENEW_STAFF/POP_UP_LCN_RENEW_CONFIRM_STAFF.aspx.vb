@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 Imports System.Xml.Serialization
 Imports FDA_DRUG_HERB.XML_CENTER
 Imports Telerik.Web.UI
@@ -27,13 +28,37 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         RunSession()
         If Not IsPostBack Then
             HiddenField2.Value = 0
-
             bind_dd()
             bind_mas_staff()
+            GetData()
             Bind_PDF()
         End If
     End Sub
-
+    Sub GetData()
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA_RN)
+        Dim STID As Integer = dao.fields.STATUS_ID
+        DATE_REQ.Text = Date.Now
+        If STID = 7 Or STID = 77 Or STID = 78 Or STID = 777 Then
+            DD_STATUS.SelectedValue = STID
+            DD_STATUS.Enabled = False
+            'DATE_REQ.Text = dao.fields.CancelDate
+            DATE_REQ.ReadOnly = True
+            DATE_REQ.Enabled = True
+            'DD_OFF_REQ.SelectedValue = dao.fields.Cancel_DDLID
+            DD_OFF_REQ.Visible = False
+            btn_sumit.Enabled = False
+        ElseIf STID = 76 Then
+            DD_STATUS.SelectedValue = STID
+            DD_STATUS.Enabled = False
+            'DATE_REQ.Text = dao.fields.CancelDate
+            DATE_REQ.ReadOnly = False
+            DATE_REQ.Enabled = False
+            'DD_OFF_REQ.SelectedValue = dao.fields.Cancel_DDLID
+            DD_OFF_REQ.Enabled = False
+            btn_sumit.Enabled = False
+        End If
+    End Sub
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         Dim bao As New BAO.GenNumber
@@ -55,7 +80,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             dao.fields.cnsdate = DATE_REQ.Text
             dao.fields.cnsstaff_name = DD_OFF_REQ.SelectedItem.Text
             Bind_PDF()
-        ElseIf dao.fields.STATUS_ID = 3 Or dao.fields.STATUS_ID = 10 Then
+        ElseIf dao.fields.STATUS_ID = 4 Then
             RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), dao.fields.pvncd, _ProcessID, _IDA_RN)
             Dim TR_ID As String = dao.fields.TR_ID
             Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
@@ -66,7 +91,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             dao.fields.rcvdate = DATE_REQ.Text
             dao.fields.rcv_staff_name = DD_OFF_REQ.SelectedItem.Text
             Bind_PDF()
-        ElseIf dao.fields.STATUS_ID = 11 Then
+        ElseIf dao.fields.STATUS_ID = 31 Or dao.fields.STATUS_ID = 3 Then
             dao.fields.staff_edit_name = DD_OFF_REQ.SelectedItem.Text
             dao.fields.staff_edit_date = DATE_REQ.Text
             dao.fields.staff_edit_id = DD_OFF_REQ.SelectedValue
@@ -144,36 +169,38 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         Dim dt As DataTable
         Dim bao As New BAO.ClsDBSqlcommand
         Dim ss_id As Integer = 0
+        Dim ss_id2 As Integer = 0
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA_RN)
-        If dao.fields.STATUS_ID = 2 Or dao.fields.STATUS_ID = 12 Then
-            ss_id = 2
-        ElseIf dao.fields.STATUS_ID = 3 Then
-            ss_id = 3
-        ElseIf dao.fields.STATUS_ID = 6 Then
-            ss_id = 4
-            btn_preview.Visible = True
-        ElseIf dao.fields.STATUS_ID = 8 Then
+        Dim STID As Integer = dao.fields.STATUS_ID
+        Dim STGroup As Integer = 501
+        Dim dao_s As New DAO_DRUG.ClsDBMAS_STATUS
+        dao_s.GetDataBy_StatusGroupAndStatusID(501, STID)
+        If STID = 32 Or STID = 22 Then
+            ss_id = 0
+            ss_id2 = 1
+        ElseIf STID = 4 Or STID = 61 Or STID = 62 Or STID = 63 Or STID = 64 Or STID = 65 Then
+            ss_id = 0
+            ss_id2 = 2
+        Else
+            ss_id = dao_s.fields.GROUP_DDL_SHOW
+        End If
+        If STID = 8 Then
             P12.Visible = False
             btn_sumit.Visible = False
             KEEP_PAY.Visible = False
             btn_preview.Visible = True
         End If
-        bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL(501, ss_id)
+        If STID = 8 OrElse STID = 4 Or STID = 61 Or STID = 62 Or STID = 63 Or STID = 64 Or STID = 65 Then
+            btn_preview.Visible = True
+        End If
+        bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL_V2(STGroup, ss_id, ss_id2, 0)
         dt = bao.dt
-
         DD_STATUS.DataSource = dt
         DD_STATUS.DataValueField = "STATUS_ID"
         DD_STATUS.DataTextField = "STATUS_NAME_STAFF"
         DD_STATUS.DataBind()
         DD_STATUS.Items.Insert(0, "-- กรุณาเลือก --")
-        'dt = bao.SP_DD_STATUS_JJ_EDIT(ss_id)
-
-        'DD_STATUS.DataSource = dt
-        'DD_STATUS.DataBind()
-        'DD_STATUS.Items.Insert(0, "-- กรุณาเลือก --")
-        DATE_REQ.Text = Date.Now
-
     End Sub
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
         Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
@@ -186,6 +213,8 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         DD_OFF_REQ.DataSource = dt
         DD_OFF_REQ.DataBind()
         DD_OFF_REQ.Items.Insert(0, "-- กรุณาเลือก --")
+        Dim CitizenID As String = _CLS.CITIZEN_ID
+        DD_OFF_REQ.SelectedValue = CitizenID
     End Sub
     Sub Bind_PDF()
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
@@ -237,17 +266,52 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         Return dt
     End Function
 
-    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
-        RadGrid1.DataSource = bind_data_uploadfile()
+    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat.NeedDataSource
+        rgat.DataSource = bind_data_uploadfile()
     End Sub
 
-    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgat.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
             item = e.Item
             Dim IDA As Integer = item("IDA").Text
 
             Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?ida=" & IDA
+
+        End If
+
+    End Sub
+    Function bind_data_uploadfile2()
+        Dim dt As DataTable
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA_RN)
+        Dim STATUS_UPLOAD_ID As Integer = 0
+        'Try
+        '    STATUS_UPLOAD_ID = dao.fields.STATUS_UPLOAD_ID
+        '    'STATUS_UPLOAD_ID = 1
+        'Catch ex As Exception
+        '    STATUS_UPLOAD_ID = 1
+        'End Try
+
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_TR_ID_PROCESS_AND_TYPE(dao.fields.TR_ID, _ProcessID, 2)
+
+        Return dt
+    End Function
+
+    Private Sub rgat_edit_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat_edit.NeedDataSource
+        rgat_edit.DataSource = bind_data_uploadfile2()
+    End Sub
+
+    Private Sub rgat_edit_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgat_edit.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_ST")
             H.Target = "_blank"
             H.NavigateUrl = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?ida=" & IDA
 
@@ -273,7 +337,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         'bao.RunAppSettings()
         Dim dao_rn As New DAO_LCN.TB_DALCN_RENEW
         dao_rn.GET_DATA_BY_IDA(_IDA_RN)
-        Dim _IDA As Integer  = dao_rn.fields.FK_LCN
+        Dim _IDA As Integer = dao_rn.fields.FK_LCN
         Dim dao As New DAO_DRUG.ClsDBdalcn
         dao.GetDataby_IDA(_IDA)
         Dim dao_up As New DAO_DRUG.ClsDBTRANSACTION_UPLOAD
@@ -1365,112 +1429,140 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
 
         'Dim url2 As String = "https://medicina.fda.moph.go.th/FDA_DRUG"
         'Dim Cls_qr As New QR_CODE.GEN_QR_CODE
-        'Dim img_byte As String = Cls_qr.QR_CODE_IMG(url2)
+        'Dim img_byte As String = Cls_qr.QR_CODE_IMG(url2)try
+        Dim ExpiteDate As Date
+        Dim ExpiteDateNew As Date
+        Dim thaiCulture As New CultureInfo("th-TH")
+        Dim month As Integer = 0
+        Try
+            ExpiteDate = dao_rn.fields.ORIGINAL_EXPIRE_DATE
+        Catch ex As Exception
+            ExpiteDate = dao.fields.expdate
+        End Try
+        Try
+            ExpiteDateNew = dao_rn.fields.NEW_EXPIRE_DATE
+        Catch ex As Exception
+            ExpiteDateNew = dao.fields.expdate
+        End Try
 
-
+        month = ExpiteDate.Month
+        class_xml.EXPDAY = ExpiteDate.Day
+        class_xml.EXPMONTH = thaiCulture.DateTimeFormat.GetMonthName(month)
+        class_xml.EXPYEAR = ExpiteDate.Year
+        class_xml.EXPDATE_FULL = ExpiteDate.Day & " " & thaiCulture.DateTimeFormat.GetMonthName(month) & " " & ExpiteDate.Year
+        Try
+            month = ExpiteDateNew.Month
+            class_xml.EXPDAY_NEW = ExpiteDateNew.Day
+            class_xml.EXPMONTH_NEW = thaiCulture.DateTimeFormat.GetMonthName(month)
+            class_xml.EXPYEAR_NEW = ExpiteDateNew.Year
+            class_xml.EXPDATE_FULL_NEW = ExpiteDateNew.Day & " " & thaiCulture.DateTimeFormat.GetMonthName(month) & " " & ExpiteDateNew.Year
+        Catch ex As Exception
+            class_xml.EXPDAY_NEW = ExpiteDate.Date.ToString() - 1
+            class_xml.EXPMONTH_NEW = thaiCulture.DateTimeFormat.GetMonthName(month)
+            class_xml.EXPYEAR_NEW = ExpiteDate.Year.ToString() + 5
+            class_xml.EXPDATE_FULL_NEW = class_xml.EXPDAY_NEW & " " & class_xml.EXPMONTH_NEW & " " & class_xml.EXPYEAR_NEW
+        End Try
         lcntype = Chn_lcntpcd(lcntype)
         Dim YEAR As String = dao_up.fields.YEAR
         Dim dao_pdftemplate As New DAO_DRUG.ClsDB_MAS_TEMPLATE_PROCESS
         Dim template_id As Integer = 0
-        If statusId = 8 Then
-            Dim Group As Integer
-            If Integer.TryParse(dao_PHR.fields.PHR_MEDICAL_TYPE, Group) = True Then
-                Try
-                    template_id = dao.fields.TEMPLATE_ID
-                Catch ex As Exception
-                    template_id = 0
-                End Try
-                If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
-                ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
-                Else
-                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 0, _group:=9)
-                End If
-            ElseIf _group = 2 Or _group = 3 Then
-                If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
-                Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
-                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-                End If
-            Else
 
-                Try
-                    template_id = dao.fields.TEMPLATE_ID
-                Catch ex As Exception
-                    template_id = 0
-                End Try
-                If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
-                ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
-                Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
-                End If
-
-            End If
+        If _ProcessID = 10501 Then
+            dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(_ProcessID, "สมพ2", dao_rn.fields.STATUS_ID, HiddenField2.Value, 0)
         Else
+            If statusId = 8 Then
+                Dim Group As Integer
+                If Integer.TryParse(dao_PHR.fields.PHR_MEDICAL_TYPE, Group) = True Then
+                    Try
+                        template_id = dao.fields.TEMPLATE_ID
+                    Catch ex As Exception
+                        template_id = 0
+                    End Try
+                    If template_id = 2 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    ElseIf template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
+                    Else
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                        dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, 0, _group:=9)
+                    End If
+                ElseIf _group = 2 Or _group = 3 Then
+                    If template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                    End If
+                Else
+                    Try
+                        template_id = dao.fields.TEMPLATE_ID
+                    Catch ex As Exception
+                        template_id = 0
+                    End Try
+                    If template_id = 2 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    ElseIf template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 99)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_and_P_ID_and_STATUS_and_PREVIEW_AND_GROUP(PROCESS_ID, statusId, HiddenField2.Value, 0)
+                    End If
 
-            Try
-                template_id = dao.fields.TEMPLATE_ID
-            Catch ex As Exception
-                template_id = 0
-            End Try
-            'If template_id = 2 Then
-            '    If statusId > 6 Then
-            '        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
-            '    Else
-            '        dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-            '    End If
-            'Else
-            If _group = 1 Then
-                If template_id = 2 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
-                ElseIf template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
-                Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
-                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-                End If
-            ElseIf _group = 2 Then
-                If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
-                Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
-                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
-                End If
-            ElseIf _group = 3 Then
-                If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
-                Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
-                    'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
             Else
-
-                If template_id = 1 Then
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                Try
+                    template_id = dao.fields.TEMPLATE_ID
+                Catch ex As Exception
+                    template_id = 0
+                End Try
+                'If template_id = 2 Then
+                '    If statusId > 6 Then
+                '        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                '    Else
+                '        dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                '    End If
+                'Else
+                If _group = 1 Then
+                    If template_id = 2 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=9)
+                    ElseIf template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                    End If
+                ElseIf _group = 2 Then
+                    If template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                    End If
+                ElseIf _group = 3 Then
+                    If template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=1)
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                    End If
                 Else
-                    dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=0)
+                    If template_id = 1 Then
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=99)
+                    Else
+                        dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, 1, _group:=0)
+                        'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                    End If
                     'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
                 End If
-
-
-
-                'dao_pdftemplate.GetDataby_TEMPLAETE(PROCESS_ID, lcntype, statusId, HiddenField2.Value)
+                'dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
+                'End If
             End If
-
-            'dao_pdftemplate.GetDataby_TEMPLAETE_BY_GROUP(PROCESS_ID, lcntype, statusId, HiddenField2.Value, _group:=0)
-            'End If
-
         End If
 
-        Dim paths As String = bao._PATH_DEFAULT
-        Dim PDF_TEMPLATE As String = paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
-        Dim filename As String = paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
-        Dim Path_XML As String = paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML("DA", PROCESS_ID, YEAR, _TR_ID)
+        'Dim paths As String = bao._PATH_DEFAULT
+        Dim Paths As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_LCN_RENREW") 'path
+        Dim PDF_TEMPLATE As String = Paths & "PDF_TEMPLATE\" & dao_pdftemplate.fields.PDF_TEMPLATE
+        Dim filename As String = Paths & dao_pdftemplate.fields.PDF_OUTPUT & "\" & NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
+        Dim Path_XML As String = Paths & dao_pdftemplate.fields.XML_PATH & "\" & NAME_XML("DA", PROCESS_ID, YEAR, _TR_ID)
 
 
         Dim url As String = ""
@@ -1495,4 +1587,9 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         '    show_btn() 'ตรวจสอบปุ่ม
         _CLS.FILENAME_PDF = NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
     End Sub
+
+    'Protected Sub btn_priview_Click(sender As Object, e As EventArgs) Handles btn_priview.Click
+    '    Dim Url As String = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?IDA=" & _IDA_RN '& "&SLDDL=" & DDL_TB2_SELECT.SelectedValue
+    '    Response.Write("<script>window.open('" & Url & "','_blank')</script>")
+    'End Sub
 End Class

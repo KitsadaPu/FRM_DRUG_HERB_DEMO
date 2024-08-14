@@ -2940,9 +2940,16 @@ Public Class POP_UP_LCN_STAFF_TRANSFER_COMFIRM
             If dao_tf.fields.STATUS_ID = 8 Then
                 class_xml.TRANSFER_DATE = date_to_thai(dao_tf.fields.appdate)
                 class_xml.TRANSFER_NAME = dao_tf.fields.TRANSFER_NM
+                class_xml.TRANSFER_NAME_NEW = dao_tf.fields.TRANSFER_TO
             Else
                 class_xml.TRANSFER_DATE = date_to_thai(Date.Now)
                 class_xml.TRANSFER_NAME = dao_tf.fields.TRANSFER_NM
+                class_xml.TRANSFER_NAME_NEW = dao_tf.fields.TRANSFER_TO
+            End If
+            If lcnno_format.Contains("HB") Then
+                'class_xml.TRANSFER_NAME_NEW = lcnno_format
+            Else
+                class_xml.LCNNO_DISPAY_OLD = lcnno_format
             End If
         Catch ex As Exception
 

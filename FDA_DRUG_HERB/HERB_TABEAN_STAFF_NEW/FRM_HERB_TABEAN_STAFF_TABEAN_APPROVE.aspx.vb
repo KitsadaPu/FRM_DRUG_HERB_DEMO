@@ -130,7 +130,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -157,7 +157,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -205,7 +205,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -231,7 +231,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -283,7 +283,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 14, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 14, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -323,7 +323,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_APPROVE
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID, _IDA)
         Return dt
     End Function
 

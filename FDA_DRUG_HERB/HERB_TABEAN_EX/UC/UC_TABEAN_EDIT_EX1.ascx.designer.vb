@@ -41,13 +41,13 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''TextBox2 control.
+    '''txt_bsn_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_bsn_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Label3 control.
@@ -302,6 +302,15 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents EX_NAME_PRODUCT As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''validate1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents validate1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Label17 control.
     '''</summary>
     '''<remarks>
@@ -320,6 +329,15 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents DD_TYPE_PRODUCK As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''label_TYPE_PRODUCK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents label_TYPE_PRODUCK As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Label19 control.
     '''</summary>
     '''<remarks>
@@ -336,6 +354,114 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents style_color As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''Panel_cheng_Location3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_cheng_Location3 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txt_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_search_ida control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search_ida As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''HiddenField1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HiddenField1 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Panel_FRGN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_FRGN As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''RG_FRGN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RG_FRGN As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''Panel_FRGN_ADDR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_FRGN_ADDR As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''RG_FRGN_ADDR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RG_FRGN_ADDR As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_address control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_address As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_address_ida control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_address_ida As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''DD_PCAK_1 control.
@@ -419,6 +545,33 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents DD_UNIT_3 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''txt_Production_Amount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_Production_Amount As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_Production_Amount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Production_Amount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_Production_Amount_Unit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Production_Amount_Unit As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btn_size_pack control.
     '''</summary>
     '''<remarks>
@@ -437,6 +590,15 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''RadGrid1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''txt_quantity_produced control.
     '''</summary>
     '''<remarks>
@@ -446,11 +608,38 @@ Partial Public Class UC_TABEAN_EDIT_EX1
     Protected WithEvents txt_quantity_produced As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RadGrid1 control.
+    '''RequiredFieldValidator3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''btn_save control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_cancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 End Class

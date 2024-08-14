@@ -21,7 +21,7 @@
             <asp:Label ID="Label2" runat="server" Text="ซึ่งมีผู้ดำเนินกิจการชื่อ"></asp:Label>
         </div>
         <div class="col-lg-3">
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txt_bsn_name" runat="server"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -73,7 +73,7 @@
             <asp:Label ID="Label7" runat="server" Text="ชื่อสถานที่ผลิต/นำเข้า"></asp:Label>
         </div>
         <div class="col-lg-3">
-            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox5" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -83,19 +83,19 @@
             <asp:Label ID="Label8" runat="server" Text="อยู่เลขที่"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox6" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <asp:Label ID="Label9" runat="server" Text="หมู่ที่"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox7" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <asp:Label ID="Label10" runat="server" Text="ตรอก/ซอย"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox8" runat="server" readonly="true"></asp:TextBox>
         </div>
     </div>
     <div class="row">
@@ -103,19 +103,19 @@
             <asp:Label ID="Label11" runat="server" Text="ถนน"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox9" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <asp:Label ID="Label12" runat="server" Text="ตำบล/แขวง"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox10" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <asp:Label ID="Label13" runat="server" Text="อำเภอ/เขต"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox11" runat="server" readonly="true"></asp:TextBox>
         </div>
     </div>
     <div class="row">
@@ -123,10 +123,10 @@
             <asp:Label ID="Label14" runat="server" Text="จังหวัด"></asp:Label>
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="TextBox12" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox12" runat="server" readonly="true"></asp:TextBox>
         </div>
         <div class="col-lg-2">
-            <asp:Label ID="Label15" runat="server" Text="โทรศัพท์"></asp:Label>
+            <asp:Label ID="Label15" runat="server" Text="โทรศัพท์" readonly="true"></asp:Label>
         </div>
         <div class="col-lg-2">
             <asp:TextBox ID="TextBox13" runat="server"></asp:TextBox>
@@ -151,7 +151,8 @@
         </div>
         <div class="col-lg-9">
             <asp:DropDownList ID="DD_TYPE_PRODUCK" runat="server" DataValueField="STYPE_ID" DataTextField="STYPE_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
-            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="DD_TYPE_PRODUCK" ValidationGroup="valGroup1" ErrorMessage="*กรุณากรอกรูปแบบผลิตภัณฑ์" runat="server" ForeColor="Red" />--%>
+            <asp:Label ID="label_TYPE_PRODUCK" runat="server" Text="*กรุณากรอกรูปแบบผลิตภัณฑ์" ForeColor="Red" Visible="false"></asp:Label>
+<%--            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="DD_TYPE_PRODUCK" ValidationGroup="valGroup1" ErrorMessage="*กรุณากรอกรูปแบบผลิตภัณฑ์" runat="server" ForeColor="Red" />--%>
         </div>
     </div>
     <div class="row">
@@ -159,7 +160,7 @@
             <asp:Label ID="Label19" runat="server" Text="ลักษณะและสี"></asp:Label>
         </div>
         <div class="col-lg-9">
-            <asp:TextBox ID="style_color" TextMode="MultiLine" Width="80%" Height="150px" runat="server"></asp:TextBox>
+            <asp:TextBox ID="style_color" TextMode="MultiLine" Width="80%" Height="60px" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="style_color" ValidationGroup="valGroup1" ErrorMessage="*กรุณากรอกลักษณะและสี" runat="server" ForeColor="Red" />
         </div>
     </div>
@@ -322,7 +323,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-2">Seceondary Packaging:</div>
+        <div class="col-lg-2">Secondary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_2" runat="server" DataValueField="PACK_SEC_ID" DataTextField="PACK_SEC_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap" AutoPostBack="true"></asp:DropDownList>
         </div>
@@ -396,7 +397,7 @@
                             SortExpression="UNIT_F_NAME">
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="PACK_S_NAME " UniqueName="PACK_S_NAME" HeaderText="Seceondary Packaging:" FilterControlAltText="Filter PACK_S_NAME column"
+                        <telerik:GridBoundColumn DataField="PACK_S_NAME " UniqueName="PACK_S_NAME" HeaderText="Secondary Packaging:" FilterControlAltText="Filter PACK_S_NAME column"
                             SortExpression="PACK_S_NAME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="NO_2" UniqueName="NO_2" HeaderText="ขนาด" FilterControlAltText="Filter NO_2 column"
@@ -491,6 +492,7 @@
         <div class="col-lg-3" style="text-align: left"></div>
         <div class="col-lg-9" style="border-bottom: #999999 1px dotted">
             <asp:TextBox ID="txt_quantity_produced" runat="server" Width="100%" ReadOnly="true" BorderStyle="None"></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txt_quantity_produced" ValidationGroup="valGroup1" ErrorMessage="*กรุณากรอกขนาดบรรจุ" runat="server" ForeColor="Red" />
         </div>
     </div>
     <%-- <hr />

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_MAIN
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,16 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_MAIN
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
+    '''<summary>
+    '''div_news control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents div_news As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''T1 control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_MAIN
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents T1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''RadGrid1 control.
     '''</summary>

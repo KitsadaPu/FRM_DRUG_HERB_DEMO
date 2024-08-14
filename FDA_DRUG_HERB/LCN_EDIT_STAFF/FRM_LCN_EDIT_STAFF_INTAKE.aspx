@@ -82,8 +82,8 @@
                                 <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                     SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="FILE_NUMBER_NAME" FilterControlAltText="Filter FILE_NUMBER_NAME column"
                                     HeaderText="file_id" SortExpression="FILE_NUMBER_NAME" UniqueName="FILE_NUMBER_NAME" Display="false">

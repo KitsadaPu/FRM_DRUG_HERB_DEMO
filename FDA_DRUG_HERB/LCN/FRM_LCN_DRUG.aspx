@@ -143,11 +143,8 @@
                 <asp:Button ID="btn_add" runat="server" Text="เพิ่มคำขอใบอนุญาต" CssClass="auto-style1" Height="45px" Width="200px" />
                 <asp:Button ID="btn_reload" runat="server" Text="" Style="display: none;" />
                 <asp:Button ID="Button1" runat="server" Text="" Style="display: none;" />
-
             </div>
-
         </div>
-
     </div>
 
     <div class="panel panel-body" style="width: 100%; padding-left: 1%;">
@@ -290,18 +287,16 @@
         <div class="h5" style="padding-left: 87%;">
             <asp:HyperLink ID="hl_pay" runat="server" Target="_blank"> ชำระเงินคลิกที่นี้</asp:HyperLink>
         </div>
-
     </div>
     <div class="modal fade " id="myModal">
         <div class="panel panel-info" style="width: 100%">
             <div class="panel-heading">
                 <div class="modal-title text-center h1 ">
-                    รายละเอียด ใบอนุญาต<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                    รายละเอียด ใบอนุญาต
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">
-
                     <iframe id="f1" style="width: 100%; height: 800px;"></iframe>
-
                 </div>
             </div>
         </div>
@@ -326,7 +321,8 @@
         <div class="panel panel-info" style="width: 100%">
             <div class="panel-heading">
                 <div class="modal-title text-center h1 ">
-                    ประเภทขายส่ง
+                        <h1><asp:Label ID="lbl_head1" runat="server" Text="ใบนัดหมาย"></asp:Label></h1>
+<%--                    ประเภทขายส่ง--%>
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
                 </div>
                 <div class="panel-body panel-info" style="width: 100%">

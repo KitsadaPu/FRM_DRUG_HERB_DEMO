@@ -72,9 +72,9 @@ Imports System.IO
 
                     tc = New TableCell
                     Try
-                        tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                        tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                     Catch ex As Exception
-                        tc.Text = dao_up.fields.DUCUMENT_NAME
+                        tc.Text = dao_up.fields.DOCUMENT_NAME
                     End Try
                     tc.Width = 900
                     tr.Cells.Add(tc)

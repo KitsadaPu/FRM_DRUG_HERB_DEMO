@@ -113,6 +113,24 @@ Partial Public Class POPUP_HERB_TABEAN_INFORM_CONFIRM_STAFF
     Protected WithEvents ROVNO_FULL As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''REGISTER_DV control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents REGISTER_DV As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''REGISTER_NO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents REGISTER_NO As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''DATE_REQ control.
     '''</summary>
     '''<remarks>
@@ -183,6 +201,15 @@ Partial Public Class POPUP_HERB_TABEAN_INFORM_CONFIRM_STAFF
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_keep_pay As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_preview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_preview As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''ADDR_FOREIGN_CHK control.

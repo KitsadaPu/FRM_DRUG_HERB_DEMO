@@ -36,7 +36,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
         dao.GetDataby_IDA(_IDA)
         'DD_OFF_APP.Text = dao.fields.EX_OFF_APP
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
-        If dao.fields.STATUS_ID = 5 Then
+        If dao.fields.STATUS_ID = 5 Or dao.fields.STATUS_ID = 21 Then
             Div1.Visible = True
         End If
     End Sub
@@ -45,8 +45,11 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
         Dim bao As New BAO_TABEAN_HERB.tb_dd
         Dim dao As New DAO_DRUG.ClsDBdrsamp
         dao.GetDataby_IDA(_IDA)
-        If dao.fields.STATUS_ID = 5 Then
-            dt = bao.SP_DD_STATUS_TABEAN_EX(4)
+        Dim SSID As String = ""
+        If dao.fields.STATUS_ID = 21 Then
+            SSID = "12,9"
+            dt = bao.SP_GetMas_SSID_Ex(SSID)
+            'dt = bao.SP_DD_STATUS_TABEAN_EX(6)
         Else
             dt = bao.SP_DD_STATUS_TABEAN_EX(1)
 
@@ -126,7 +129,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
                     dao.fields.EX_OFF_REQ = DD_OFF_REQ.SelectedItem.Text
                     dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                     dao.update()
-
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
                     Run_Pdf_Tabean_Herb_Intake()
                 End If
 
@@ -136,22 +139,27 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
                 dao_up_mas.GetdatabyID_TYPE(18)
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = _TR_ID
                     dao_up.fields.PROCESS_ID = dao.fields.process_id
                     dao_up.fields.FK_IDA = _IDA
                     dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                    dao_up.fields.TYPE = 18
+                    dao_up.fields.TYPE = 5
                     dao_up.insert()
                 Next
 
                 Dim bao_tran As New BAO_TRANSECTION
                 bao_tran.insert_transection_jj(dao.fields.process_id, dao.fields.IDA, DD_STATUS.SelectedValue)
-
+                dao.fields.staff_edit_rq_date = DateTime.Now
+                dao.fields.staff_edit_time = "แก้ไขครั้งที่ 1"
+                dao.fields.STATUS_ID = DD_STATUS.SelectedValue
                 dao.update()
+                AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+                Response.Redirect("FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & _TR_ID & "&process=" & _ProcessID & "&IDA_LCN=" & _IDA_LCN)
             ElseIf DD_STATUS.SelectedValue = 9 Then
                 dao.fields.STATUS_ID = DD_STATUS.SelectedValue
-                dao.Update()
+                dao.update()
+                AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
             End If
 
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
@@ -189,7 +197,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
         dao.GetDataby_IDA(_IDA)
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 17, dao.fields.process_id)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 1, dao.fields.process_id)
 
         Return dt
     End Function
@@ -217,7 +225,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_INTAKE
         dao.GetDataby_IDA(_IDA)
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 20, dao.fields.process_id)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 3, dao.fields.process_id)
 
         Return dt
     End Function

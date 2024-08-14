@@ -81,8 +81,8 @@
                             <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column"
                                 HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">
                             </telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column"
-                                HeaderText="FK_IDA" ReadOnly="True" SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false">
+                            <telerik:GridBoundColumn DataField="FK_LCN" DataType="System.Int32" FilterControlAltText="Filter FK_LCN column"
+                                HeaderText="FK_LCN" ReadOnly="True" SortExpression="FK_LCN" UniqueName="FK_LCN" Display="false">
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="STATUS_ID" FilterControlAltText="Filter STATUS_ID column"
                                 HeaderText="STATUS_ID" ReadOnly="True" SortExpression="STATUS_ID" UniqueName="STATUS_ID" Display="false">
@@ -99,11 +99,14 @@
                             <telerik:GridBoundColumn DataField="BUSINESS_PLACE_NAME" FilterControlAltText="Filter BUSINESS_PLACE_NAME column"
                                 HeaderText="ชื่อสถานที่ประกอบธุรกิจ" ReadOnly="True" SortExpression="BUSINESS_PLACE_NAME" UniqueName="BUSINESS_PLACE_NAME">
                             </telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn DataField="OPENTIME" FilterControlAltText="Filter OPENTIME column"
-                                HeaderText="เวลาทำการ" ReadOnly="True" SortExpression="OPENTIME" UniqueName="OPENTIME">
+                            <telerik:GridBoundColumn DataField="ORIGINAL_EXPIRE_DATE" FilterControlAltText="Filter ORIGINAL_EXPIRE_DATE column"
+                                HeaderText="วันที่สิ้นอายุ" ReadOnly="True" SortExpression="ORIGINAL_EXPIRE_DATE" UniqueName="ORIGINAL_EXPIRE_DATE">
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="STATUS_NAME" FilterControlAltText="Filter STATUS_NAME column"
-                                HeaderText="สถานะ" ReadOnly="True" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
+                                HeaderText="สถานะคำขอ" ReadOnly="True" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="STATUS_DATE" FilterControlAltText="Filter STATUS_DATE column"
+                                HeaderText="วันที่ปรับปรุงสถานะ" ReadOnly="True" SortExpression="STATUS_DATE" UniqueName="STATUS_DATE">
                             </telerik:GridBoundColumn>
                             <telerik:GridButtonColumn ButtonType="LinkButton" Text="ตรวจสอบ/แก้ไขรายละเอียด และกดยื่นคำขอ"
                                 CommandName="HL_SELECT" UniqueName="HL_SELECT">
@@ -121,6 +124,9 @@
 
                     <FilterMenu EnableImageSprites="False"></FilterMenu>
                 </telerik:RadGrid>
+                <div class="h5" style="padding-left: 87%;">
+                    <asp:HyperLink ID="hl_pay" runat="server" Target="_blank"> ชำระเงินคลิกที่นี้</asp:HyperLink>
+                </div>
             </div>
         </div>
 

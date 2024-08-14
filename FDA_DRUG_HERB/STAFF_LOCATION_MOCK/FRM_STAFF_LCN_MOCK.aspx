@@ -115,8 +115,8 @@
             <div class="col-lg-1">ประใบอนุญาต</div>
                     <div class="col-lg-8" style="text-align: right" >
                             <asp:RadioButtonList ID="rdl_lcn_type" runat="server" RepeatDirection="Horizontal" AutoPostBack="true">
-                                <asp:ListItem Value="1">ใบอนุญาตผลิตผลิตภัณฆ์สมุนไพร&ensp;&ensp;</asp:ListItem>
-                                <asp:ListItem Value="2">ใบอนุญาตนำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                                <asp:ListItem Value="1">ใบอนุญาตผลิตผลิตภัณฑ์สมุนไพร&ensp;&ensp;</asp:ListItem>
+                                <asp:ListItem Value="2">ใบอนุญาตนำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
                             </asp:RadioButtonList>
                     </div>
                 </div>

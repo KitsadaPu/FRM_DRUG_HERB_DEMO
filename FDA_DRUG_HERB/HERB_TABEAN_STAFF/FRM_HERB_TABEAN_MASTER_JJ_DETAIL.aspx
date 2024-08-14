@@ -2,6 +2,8 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Src="../UC/UC_ATTACH.ascx" TagName="UC_ATTACH" TagPrefix="uc1" %>
+<%@ Register Src="~/HERB_TABEAN/UC/UC_TABEAN_JJ_DETAIL_CAS.ascx" TagPrefix="uc1" TagName="UC_TABEAN_JJ_DETAIL_CAS" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -48,13 +50,13 @@
         <div class="col-lg-2">
             <label>ชื่อภาษาไทย:</label>
         </div>
-        <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-3" >
             <asp:TextBox ID="NAME_THAI" runat="server" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>ชื่อภาษาอังกฤษ(ถ้ามี):</label>
         </div>
-        <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-3" >
             <asp:TextBox ID="NAME_ENG" runat="server" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -64,14 +66,14 @@
         <div class="col-lg-2">
             <label>ชื่อภาษาต่างประเทศอื่น(ถ้ามี):</label>
         </div>
-        <div class="col-lg-3" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-3" >
             <asp:TextBox ID="NAME_OTHER" runat="server" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-2">
             <label>รูปแบบ:</label>
         </div>
-        <div class="col-lg-2">
-            <asp:DropDownList ID="DD_STYPE_ID" runat="server" DataValueField="STYPE_ID" DataTextField="STYPE_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
+        <div class="col-lg-3">
+            <asp:DropDownList ID="DD_STYPE_ID" runat="server" DataValueField="STYPE_ID" DataTextField="STYPE_NAME" BackColor="White" Height="25px" Width="100%" SkinID="bootstrap"></asp:DropDownList>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -80,8 +82,8 @@
         <div class="col-lg-2">
             <label>ขื่อตำรับ:</label>
         </div>
-        <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="RECIPE_NAME" runat="server" Width="600px"></asp:TextBox>
+        <div class="col-lg-8" >
+            <asp:TextBox ID="RECIPE_NAME" runat="server" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -90,14 +92,14 @@
         <div class="col-lg-2">
             <label>ตามบัญชี:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="ACCOUNT_NO" runat="server"></asp:TextBox>
+        <div class="col-lg-3">
+            <asp:TextBox ID="ACCOUNT_NO" runat="server" Width="100%"></asp:TextBox>
         </div>
-        <div class="col-lg-1" style="text-align: right;">
+        <div class="col-lg-2" style="text-align: left;">
             <label>ข้อ:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
-            <asp:TextBox ID="ARTICLE_NO" runat="server"></asp:TextBox>
+        <div class="col-lg-3" >
+            <asp:TextBox ID="ARTICLE_NO" runat="server" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -106,7 +108,7 @@
         <div class="col-lg-2">
             <label>สำหรับผลิตภัณฑ์สมุนไพรที่ขอจดแจ้ง:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-8" >
             <asp:TextBox ID="PRODUCT_JJ" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -116,7 +118,7 @@
         <div class="col-lg-2">
             <label>รายละเอียดขนาด:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-8" >
             <asp:TextBox ID="SIZE_PACK" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -144,7 +146,7 @@
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-1">Seceondary Packaging:</div>
+        <div class="col-lg-1">Secondary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_2" runat="server" DataValueField="PACK_SEC_ID" DataTextField="PACK_SEC_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
         </div>
@@ -154,7 +156,7 @@
         </div>
         <div class="col-lg-2" style="text-align: right">หน่วย:</div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="DD_UNIT_2" runat="server" DataValueField="UNIT_SECONDARY_ID" DataTextField="UNIT_SECONDARY_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
+            <asp:DropDownList ID="DD_UNIT_2" runat="server" DataValueField="UNIT_SECONDARY_ID" DataTextField="UNIT_SECONDARY_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
         </div>
     </div>
     <div class="row">
@@ -243,8 +245,10 @@
         <div class="col-lg-2">
             <label>กลุ่มอาการ:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
-            <%--<asp:DropDownList ID="DD_SYNDROME_ID" runat="server"  DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap" Enabled="false"></asp:DropDownList>--%>
+        <div class="col-lg-8" >
+            <asp:DropDownList ID="DD_SYNDROME_ID" runat="server" DataValueField="SYNDROME_ID" DataTextField="SYNDROME_NAME" BackColor="White" Height="25px" Width="200px" SkinID="bootstrap"></asp:DropDownList>
+            <asp:Button ID="BTN_ADD_SYNDROME" runat="server" Text="เพิ่มกลุ่มอาการ" />
+            <br />
             <asp:TextBox ID="TXT_SYNDROME_DETAIL" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -254,7 +258,7 @@
         <div class="col-lg-2">
             <label>สรรพคุณ:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-8" >
             <asp:TextBox ID="PROPERTIES" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -264,7 +268,7 @@
         <div class="col-lg-2">
             <label>ขนาดและวิธีการใช้:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-8" >
             <asp:TextBox ID="SIZE_USE" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -274,7 +278,7 @@
         <div class="col-lg-2">
             <label>วิธีการใช้:</label>
         </div>
-        <div class="col-lg-8" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-8" >
             <asp:TextBox ID="HOW_USE" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
@@ -295,10 +299,10 @@
         <div class="col-lg-2">
             <label>เงื่อนไขการรับประทาน:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-2" >
             <asp:RadioButtonList ID="R_EATING_CONDITION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">มี</asp:ListItem>
-                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+                <asp:ListItem Value="1"> &ensp; มี</asp:ListItem>
+                <asp:ListItem Value="2"> &ensp; ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_EATING_CONDITION_TEXT" runat="server" visible="false">
@@ -320,10 +324,10 @@
         <div class="col-lg-2">
             <label>ข้อห้ามใช้:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-2" >
             <asp:RadioButtonList ID="R_CONTRAINDICATION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">มี</asp:ListItem>
-                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+                <asp:ListItem Value="1"> &ensp; มี</asp:ListItem>
+                <asp:ListItem Value="2"> &ensp; ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_CONTRAINDICATION_TEXT" runat="server" visible="false">
@@ -336,10 +340,10 @@
         <div class="col-lg-2">
             <label>คำเตือน:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-2" >
             <asp:RadioButtonList ID="R_WARNING" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">มี</asp:ListItem>
-                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+                <asp:ListItem Value="1"> &ensp; มี</asp:ListItem>
+                <asp:ListItem Value="2"> &ensp; ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_WARNING_TEXT" runat="server" visible="false">
@@ -352,10 +356,10 @@
         <div class="col-lg-2">
             <label>ข้อควรระวัง:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-2" >
             <asp:RadioButtonList ID="R_CAUTION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">มี</asp:ListItem>
-                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+                <asp:ListItem Value="1"> &ensp; มี</asp:ListItem>
+                <asp:ListItem Value="2"> &ensp; ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" id="R_CAUTION_TEXT" runat="server" visible="false">
@@ -368,10 +372,10 @@
         <div class="col-lg-2">
             <label>อาการไม่พึงประสงค์:</label>
         </div>
-        <div class="col-lg-2" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-2" >
             <asp:RadioButtonList ID="R_ADV_REACTIVETION" runat="server" RepeatDirection="horizontal" Width="200px" AutoPostBack="true">
-                <asp:ListItem Value="1">มี</asp:ListItem>
-                <asp:ListItem Value="2">ไม่มี</asp:ListItem>
+                <asp:ListItem Value="1"> &ensp; มี</asp:ListItem>
+                <asp:ListItem Value="2"> &ensp; ไม่มี</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-6" runat="server" id="R_ADV_REACTIVETION_TEXT" visible="false">
@@ -399,12 +403,20 @@
         <div class="col-lg-4">
             <label>บทสรุป ด้านคุณภาพ ความปลอดภัย และประสิทธิภาพ:</label>
         </div>
-        <div class="col-lg-6" style="border-bottom: #999999 1px dotted">
+        <div class="col-lg-6" >
             <asp:TextBox ID="NOTE" runat="server" TextMode="MultiLine" Height="60px" Width="100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <hr />
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <uc1:UC_TABEAN_JJ_DETAIL_CAS runat="server" ID="UC_TABEAN_JJ_DETAIL_CAS" />
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
     <div id="STAFF_HIDE_SET" runat="server" visible="true">
         <div class="row">
             <div class="col-lg-12" style="text-align: center">
@@ -416,7 +428,7 @@
             <div class="col-lg-3">
                 <label>สูตรตำรับ:</label>
             </div>
-            <div class="col-lg-7" style="border-bottom: #999999 1px dotted">
+            <div class="col-lg-7" >
                 <asp:TextBox ID="name_recipe" runat="server" Width="100%"></asp:TextBox>
             </div>
             <div class="col-lg-1"></div>
@@ -451,8 +463,8 @@
                             <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                 SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                             </telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                            <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                 HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -481,10 +493,10 @@
             <div class="col-lg-3">
                 <label>กรรมวิธีการผลิต:</label>
             </div>
-            <div class="col-lg-7" style="border-bottom: #999999 1px dotted">
+            <div class="col-lg-7" >
                 <asp:TextBox ID="name_production_process" runat="server" Width="100%"></asp:TextBox>
                 <br />
-                
+
             </div>
             <div class="col-lg-1"></div>
         </div>
@@ -498,7 +510,7 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-3">
             </div>
-            <div class="col-lg-7" style="border-bottom: #999999 1px dotted">
+            <div class="col-lg-7" >
                 <telerik:RadGrid ID="RG_ATTACH2" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                         <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -517,8 +529,8 @@
                             <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                 SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                             </telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                            <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                 HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">

@@ -144,7 +144,7 @@ Public Class UC_NOTIFY_CORRECTION_DETAIL
     Sub SAVE_NAME_UP(ByVal TR_ID As Integer)
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID(TR_ID)
-        dao_up.fields.DUCUMENT_NAME = txt_upload_name.Text
+        dao_up.fields.DOCUMENT_NAME = txt_upload_name.Text
         dao_up.Update()
     End Sub
     Sub ADD_DATA_ListEdit()

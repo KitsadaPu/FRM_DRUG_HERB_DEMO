@@ -66,7 +66,7 @@
                         <asp:DropDownList ID="DD_STATUS" runat="server" DataValueField="STATUS_ID" DataTextField="STATUS_NAME" AutoPostBack="true" Width="100%"></asp:DropDownList>
                     </div>
                     <div class="col-lg-1"></div>
-                </div>             
+                </div>
                 <div class="row" runat="server" id="P12" visible="true">
                     <div class="row" runat="server" id="P14" visible="false">
                         <div class="col-lg-1"></div>
@@ -92,6 +92,15 @@
                             <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
                             <%--<asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>--%>
                             <telerik:RadComboBox ID="DD_OFF_REQ" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <hr />
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">หมายเหตุ</div>
+                        <div class="col-lg-6">
+                            <asp:TextBox ID="txt_remark_edit" TextMode="MultiLine" ReadOnly="true" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -140,10 +149,10 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-             <div class="row" runat="server" style="text-align: center">
+            <div class="row" runat="server" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                     <asp:Button ID="btn_upload_file" runat="server" Text="แนบเอกสารเพิ่ม" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_upload_file" runat="server" Text="แนบเอกสารเพิ่ม" CssClass="btn-lg" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -190,8 +199,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -245,8 +254,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -294,7 +303,7 @@
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn AllowFiltering="true" DataField="FK_IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column" HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
                                     </telerik:GridBoundColumn>

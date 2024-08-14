@@ -1,6 +1,6 @@
 ﻿Public Class CLASS_DR_INFORM
     Inherits CLASS_CENTER
-    Public TABEAN_INFORM As New TABEAN_INFORM
+    Public TABEAN_INFORM As New TABEAN_JR
 
 #Region "SHOW"
     Private _DT_SHOW As New CLS_SHOW
@@ -70,6 +70,60 @@
         End Get
         Set(ByVal value As String)
             _THANM_THAIFULLNAME = value
+        End Set
+    End Property
+    Private _DATE_APP_DAY As String
+    Public Property DATE_APP_DAY() As String
+        Get
+            Return _DATE_APP_DAY
+        End Get
+        Set(ByVal value As String)
+            _DATE_APP_DAY = value
+        End Set
+    End Property
+    Private _DATE_APP_MONTH As String
+    Public Property DATE_APP_MONTH() As String
+        Get
+            Return _DATE_APP_MONTH
+        End Get
+        Set(ByVal value As String)
+            _DATE_APP_MONTH = value
+        End Set
+    End Property
+    Private _DATE_APP_YEAR As String
+    Public Property DATE_APP_YEAR() As String
+        Get
+            Return _DATE_APP_YEAR
+        End Get
+        Set(ByVal value As String)
+            _DATE_APP_YEAR = value
+        End Set
+    End Property
+    Private _date_exdate_day As String
+    Public Property date_exdate_day() As String
+        Get
+            Return _date_exdate_day
+        End Get
+        Set(ByVal value As String)
+            _date_exdate_day = value
+        End Set
+    End Property
+    Private _date_exdate_month As String
+    Public Property date_exdate_month() As String
+        Get
+            Return _date_exdate_month
+        End Get
+        Set(ByVal value As String)
+            _date_exdate_month = value
+        End Set
+    End Property
+    Private _date_exdate_year As String
+    Public Property date_exdate_year() As String
+        Get
+            Return _date_exdate_year
+        End Get
+        Set(ByVal value As String)
+            _date_exdate_year = value
         End Set
     End Property
 End Class

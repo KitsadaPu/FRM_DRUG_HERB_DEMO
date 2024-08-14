@@ -131,8 +131,8 @@ Public Class UC_TABEAN_EDIT_EX1
     Public Sub bind_dd_TYPE_PRODUCK()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
-        dt = bao.SP_DD_MAS_TABEAN_HERB_TYPE_PRODUCK()
-
+        'dt = bao.SP_DD_MAS_TABEAN_HERB_TYPE_PRODUCK()
+        dt = bao.SP_DD_MAS_TABEAN_HERB_STYPE_JJ()
         DD_TYPE_PRODUCK.DataSource = dt
         DD_TYPE_PRODUCK.DataBind()
         DD_TYPE_PRODUCK.Items.Insert(0, "-- กรุณาเลือก --")
@@ -164,7 +164,10 @@ Public Class UC_TABEAN_EDIT_EX1
         Dim cpnaddr_th As String = dao_cpnaddr.fields.thmblnm
         Dim cpnaddr_am As String = dao_cpnaddr.fields.amphrnm
         Dim cpnaddr_ch As String = dao_cpnaddr.fields.chngwtnm
-        Dim cpnaddr_zi As String = dao_cpnaddr.fields.zipcode
+        Dim cpnaddr_zi As String = ""
+        If IsNothing(dao_cpnaddr.fields.zipcode) = False Then
+            cpnaddr_zi = dao_cpnaddr.fields.zipcode
+        End If
 
 
         For Each dr As DataRow In dt_lcn.Rows
@@ -176,7 +179,7 @@ Public Class UC_TABEAN_EDIT_EX1
             End Try
         Next
         'TextBox1.Text = _CLS.THANM
-        TextBox2.Text = dao_lcn.fields.BSN_THAIFULLNAME
+        txt_bsn_name.Text = dao_lcn.fields.BSN_THAIFULLNAME
         'TextBox3.Text = _CLS.THANM
         DD_CATEGORY_ID.SelectedValue = PROCESS_ID_LCN
         DD_CATEGORY_ID_SUB.SelectedValue = PROCESS_ID_LCN
@@ -191,6 +194,19 @@ Public Class UC_TABEAN_EDIT_EX1
         TextBox11.Text = cpnaddr_am
         TextBox12.Text = cpnaddr_ch + " " + cpnaddr_zi
         TextBox13.Text = dao_lcn.fields.tel
+        Try
+            Dim dao As New DAO_DRUG.ClsDBdrsamp
+            dao.GetDataby_IDA(_IDA_EX)
+            Dim status_id As String = dao.fields.STATUS_ID
+            If status_id = 20 Or status_id = 24 Then
+                btn_save.Text = "บันข้อมูลแก้ไข"
+                btn_save.Visible = False
+                btn_cancel.Visible = False
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
     Public Sub set_data()
@@ -222,24 +238,29 @@ Public Class UC_TABEAN_EDIT_EX1
     End Sub
     'Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
-    '    Dim PROCESS_ID As String = 200001
+    '    'Dim PROCESS_ID As String = 200001
     '    Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
     '    dao_lcn.GetDataby_IDA(_IDA_LCN)
     '    Dim dao_ex As New DAO_DRUG.ClsDBdrsamp
-    '    dao_ex.fields.CUSTOMER_CITIZEN_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
-    '    dao_ex.fields.CUSTOMER_CITIZEN_SUBMIT = _CLS.CITIZEN_ID
+    '    dao_ex.GetDataby_IDA(_IDA_EX)
+    '    If dao_ex.fields.IDA <> 0 Then
+    '        'dao_ex.fields.EX_DATE_YEAR = Date.Now.Year
+    '        dao_ex.fields.EX_NAME_PRODUCT = EX_NAME_PRODUCT.Text
+    '        'dao_ex.fields.EX_PACKING_SIZE = txt_packing_size.Text
+    '        'dao_ex.fields.EX_PRODUCK_TYPE = PRODUCK_TYPE.Text
+    '        Try
+    '            dao_ex.fields.EX_PRODUCK_TYPE_ID = DD_TYPE_PRODUCK.SelectedValue
+    '            dao_ex.fields.EX_PRODUCK_TYPE = DD_TYPE_PRODUCK.SelectedItem.Text
+    '        Catch ex As Exception
 
-    '    dao_ex.fields.EX_DATE_YEAR = Date.Now.Year
-    '    dao_ex.fields.EX_NAME_PRODUCT = EX_NAME_PRODUCT.Text
-    '    dao_ex.fields.EX_PACKING_SIZE = txt_packing_size.Text
-    '    dao_ex.fields.EX_PRODUCK_TYPE = PRODUCK_TYPE.Text
-    '    dao_ex.fields.EX_QUANTITY_PRODUCESD = txt_quantity_produced.Text
-    '    dao_ex.fields.EX_STYLE_COLOR = style_color.Text
-    '    dao_ex.fields.process_id = PROCESS_ID
-    '    dao_ex.update()
+    '        End Try
+    '        dao_ex.fields.EX_QUANTITY_PRODUCESD = txt_quantity_produced.Text
+    '        dao_ex.fields.EX_STYLE_COLOR = style_color.Text
+    '        'dao_ex.fields.process_id = PROCESS_ID
+    '        dao_ex.update()
+    '    End If
 
-
-    '    Run_Pdf_Tabean_Ex_Herb_1(PROCESS_ID, dao_ex.fields.IDA)
+    '    Run_Pdf_Tabean_Ex_Herb_1(dao_ex.fields.process_id, dao_ex.fields.IDA)
 
     '    alert_nature("บันทึกข้อมูล และ อัพโหลดเอกสารเรียบร้อย")
     '    If dao_ex.fields.EX_EDIT = 1 Then
@@ -247,6 +268,16 @@ Public Class UC_TABEAN_EDIT_EX1
     '    End If
 
     'End Sub
+
+    Sub SET_DATA(ByVal dao As DAO_DRUG.ClsDBdrsamp)
+        With dao.fields
+            .EX_QUANTITY_PRODUCESD = txt_quantity_produced.Text
+            .EX_NAME_PRODUCT = EX_NAME_PRODUCT.Text
+            .EX_PRODUCK_TYPE = DD_TYPE_PRODUCK.SelectedItem.Text
+            .EX_PRODUCK_TYPE_ID = DD_TYPE_PRODUCK.SelectedValue
+            .EX_STYLE_COLOR = style_color.Text
+        End With
+    End Sub
     Public Sub Run_Pdf_Tabean_Ex_Herb_1(ByVal PROCESS_ID As String, ByVal IDA_EX As String)
         Dim bao_app As New BAO.AppSettings
         bao_app.RunAppSettings()
@@ -290,63 +321,69 @@ Public Class UC_TABEAN_EDIT_EX1
         Dim dao_PZ As New DAO_TABEAN_HERB.TB_DRSAMP_PACKAGE_SIZE
 
         dao.fields.FK_IDA_EX = _IDA_EX
-
-        If DD_PCAK_1.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_1.SelectedValue = "-- กรุณาเลือก --" _
-           Or DD_PCAK_2.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_2.SelectedValue = "-- กรุณาเลือก --" Then ' _
-            'Or DD_PCAK_3.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_3.SelectedValue = "-- กรุณาเลือก --" Then
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล Primary Seceondary Tertiary Packaging');", True)
+        If txt_Production_Amount.Text = "" Then
+            lbl_Production_Amount.Visible = True
+            ' System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล Primary Seceondary Tertiary Packaging');", True)
         Else
-            dao.fields.PACK_F_ID = DD_PCAK_1.SelectedValue
-            dao.fields.PACK_F_NAME = DD_PCAK_1.SelectedItem.Text
-            dao.fields.NO_1 = NO_1.Text
-            dao.fields.UNIT_F_ID = DD_UNIT_1.SelectedValue
-            dao.fields.UNIT_F_NAME = DD_UNIT_1.SelectedItem.Text
 
-            dao.fields.PACK_S_ID = DD_PCAK_2.SelectedValue
-            dao.fields.PACK_S_NAME = DD_PCAK_2.SelectedItem.Text
-            dao.fields.NO_2 = NO_2.Text
-            dao.fields.UNIT_S_ID = DD_UNIT_2.SelectedValue
-            dao.fields.UNIT_S_NAME = DD_UNIT_2.SelectedItem.Text
+            If DD_PCAK_1.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_1.SelectedValue = "-- กรุณาเลือก --" _
+               Or DD_PCAK_2.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_2.SelectedValue = "-- กรุณาเลือก --" Then ' _
+                'Or DD_PCAK_3.SelectedValue = "-- กรุณาเลือก --" Or DD_UNIT_3.SelectedValue = "-- กรุณาเลือก --" Then
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูล Primary Seceondary Tertiary Packaging');", True)
+            Else
+                dao.fields.PACK_F_ID = DD_PCAK_1.SelectedValue
+                dao.fields.PACK_F_NAME = DD_PCAK_1.SelectedItem.Text
+                dao.fields.NO_1 = NO_1.Text
+                dao.fields.UNIT_F_ID = DD_UNIT_1.SelectedValue
+                dao.fields.UNIT_F_NAME = DD_UNIT_1.SelectedItem.Text
 
-            Try
-                dao.fields.PACK_T_ID = DD_PCAK_3.SelectedValue
-                dao.fields.PACK_T_NAME = DD_PCAK_3.SelectedItem.Text
-                dao.fields.NO_3 = NO_3.Text
-                dao.fields.UNIT_T_ID = DD_UNIT_3.SelectedValue
-                dao.fields.UNIT_T_NAME = DD_UNIT_3.SelectedItem.Text
-            Catch ex As Exception
-                dao.fields.PACK_T_ID = 0
-                dao.fields.PACK_T_NAME = ""
-                dao.fields.NO_3 = ""
-                dao.fields.UNIT_T_ID = 0
-                dao.fields.UNIT_T_NAME = ""
-            End Try
+                dao.fields.PACK_S_ID = DD_PCAK_2.SelectedValue
+                dao.fields.PACK_S_NAME = DD_PCAK_2.SelectedItem.Text
+                dao.fields.NO_2 = NO_2.Text
+                dao.fields.UNIT_S_ID = DD_UNIT_2.SelectedValue
+                dao.fields.UNIT_S_NAME = DD_UNIT_2.SelectedItem.Text
+
+                Try
+                    dao.fields.PACK_T_ID = DD_PCAK_3.SelectedValue
+                    dao.fields.PACK_T_NAME = DD_PCAK_3.SelectedItem.Text
+                    dao.fields.NO_3 = NO_3.Text
+                    dao.fields.UNIT_T_ID = DD_UNIT_3.SelectedValue
+                    dao.fields.UNIT_T_NAME = DD_UNIT_3.SelectedItem.Text
+                Catch ex As Exception
+                    dao.fields.PACK_T_ID = 0
+                    dao.fields.PACK_T_NAME = ""
+                    dao.fields.NO_3 = ""
+                    dao.fields.UNIT_T_ID = 0
+                    dao.fields.UNIT_T_NAME = ""
+                End Try
 
 
-            dao.fields.ACTIVEFACT = 1
-            dao.fields.CREATE_DATE = Date.Now
-            dao.fields.CREATE_USER = _CLS.THANM
+                dao.fields.ACTIVEFACT = 1
+                dao.fields.CREATE_DATE = Date.Now
+                dao.fields.CREATE_USER = _CLS.THANM
 
-            dao.insert()
-            insert_package_full(dao.fields.IDA)
-            sum(dao.fields.IDA)
+                dao.insert()
+                insert_package_full(dao.fields.IDA)
+                sum(dao.fields.IDA)
+
+                DD_PCAK_1.ClearSelection()
+                DD_UNIT_1.ClearSelection()
+                DD_PCAK_2.ClearSelection()
+                DD_UNIT_2.ClearSelection()
+                DD_PCAK_3.ClearSelection()
+                DD_UNIT_3.ClearSelection()
+                NO_1.Text = ""
+                NO_2.Text = ""
+                NO_3.Text = ""
+
+                'package(_IDA_EX)
+
+                RadGrid4.Rebind()
+                RadGrid1.Rebind()
+                txt_Production_Amount.Text = ""
+                lbl_Production_Amount.Visible = False
+            End If
         End If
-
-        DD_PCAK_1.ClearSelection()
-        DD_UNIT_1.ClearSelection()
-        DD_PCAK_2.ClearSelection()
-        DD_UNIT_2.ClearSelection()
-        DD_PCAK_3.ClearSelection()
-        DD_UNIT_3.ClearSelection()
-        NO_1.Text = ""
-        NO_2.Text = ""
-        NO_3.Text = ""
-
-        'package(_IDA_EX)
-
-
-        RadGrid4.Rebind()
-        RadGrid1.Rebind()
     End Sub
     Private Sub RadGrid4_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles RadGrid4.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
@@ -428,11 +465,16 @@ Public Class UC_TABEAN_EDIT_EX1
         Dim NO_sum1 As String = ""
         Dim NO_sum2 As String = ""
         Try
-            sum = CInt(dao_package.fields.NO_1) * CInt(dao_package.fields.NO_2) * CInt(dao_package.fields.NO_3)
-            NO_sum = Convert.ToString(dao_package.fields.NO_1) & " " & dao_package.fields.UNIT_F_NAME & " x " & Convert.ToString(dao_package.fields.NO_2) & " " & dao_package.fields.UNIT_S_NAME & " x " & Convert.ToString(dao_package.fields.NO_3) & " " & dao_package.fields.UNIT_T_NAME & "(" & sum & " " & dao_package.fields.UNIT_F_NAME & ")"
+            sum = CInt(dao_package.fields.NO_1) * CInt(dao_package.fields.NO_2) * CInt(dao_package.fields.NO_3) * CInt(txt_Production_Amount.Text)
+            NO_sum = Convert.ToString(dao_package.fields.NO_1) & " " & dao_package.fields.UNIT_F_NAME & " x " & Convert.ToString(dao_package.fields.NO_2) & " " & dao_package.fields.UNIT_S_NAME & " x " & Convert.ToString(dao_package.fields.NO_3) & " " & dao_package.fields.UNIT_T_NAME & " x " & Convert.ToString(txt_Production_Amount.Text) & lbl_Production_Amount_Unit.Text & "(" & sum & " " & dao_package.fields.UNIT_F_NAME & ")"
         Catch ex As Exception
-            sum = CInt(dao_package.fields.NO_1) * CInt(dao_package.fields.NO_2)
-            NO_sum = dao_package.fields.NO_1 & " " & dao_package.fields.UNIT_F_NAME & " x " & dao_package.fields.NO_2 & " " & dao_package.fields.UNIT_S_NAME & "(" & sum & " " & dao_package.fields.UNIT_F_NAME & ")"
+            Try
+                sum = CInt(dao_package.fields.NO_1) * CInt(dao_package.fields.NO_2) * CInt(txt_Production_Amount.Text)
+                NO_sum = dao_package.fields.NO_1 & " " & dao_package.fields.UNIT_F_NAME & " x " & dao_package.fields.NO_2 & " " & dao_package.fields.UNIT_S_NAME & " x " & Convert.ToString(txt_Production_Amount.Text) & lbl_Production_Amount_Unit.Text & "(" & sum & " " & dao_package.fields.UNIT_F_NAME & ")"
+            Catch ex2 As Exception
+                sum = CInt(dao_package.fields.NO_1) * CInt(txt_Production_Amount.Text)
+                NO_sum = dao_package.fields.NO_1 & " " & dao_package.fields.UNIT_F_NAME & " x " & Convert.ToString(txt_Production_Amount.Text) & lbl_Production_Amount_Unit.Text & "(" & sum & " " & dao_package.fields.UNIT_F_NAME & ")"
+            End Try
         End Try
         'sum = sum * CInt(txt_quantity_produced.Text) vbcrlf
         'NO_sum = dao_package.fields.NO_1 & " " & dao_package.fields.UNIT_F_NAME & " x " & dao_package.fields.NO_2 & " " & dao_package.fields.UNIT_S_NAME & " = " & sum & " " & dao_package.fields.UNIT_F_NAME
@@ -446,6 +488,8 @@ Public Class UC_TABEAN_EDIT_EX1
         dao.fields.ACTIVEFACT = 1
         dao.fields.CREATE_DATE = Date.Now
         dao.fields.CREATE_USER = _CLS.THANM
+        dao.fields.Production_Amount = txt_Production_Amount.Text
+        dao.fields.Production_Amount_Unit = lbl_Production_Amount_Unit.Text
 
         dao.fields.PACK_F_ID = DD_PCAK_1.SelectedValue
         dao.fields.PACK_F_NAME = DD_PCAK_1.SelectedItem.Text
@@ -492,4 +536,19 @@ Public Class UC_TABEAN_EDIT_EX1
     '    dao_package.GetdatabyID_FK_IDA_EX_AND_UNIT(_IDA_EX, ddl_package_unit.SelectedValue)
     '    txt_packing_size.Text = dao_package.fields.PACK_F_NAME & " " & dao_package.fields.NO_1 & " " & dao_package.fields.UNIT_F_NAME & " x " & dao_package.fields.PACK_S_NAME & " " & dao_package.fields.NO_2 & " " & dao_package.fields.UNIT_S_NAME & " จำนวน " & txt_quantity_produced.Text & " " & dao_package.fields.UNIT_S_NAME & " " & txt_sum_unit.Text
     'End Sub
+    Protected Sub DD_PCAK_1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_PCAK_1.SelectedIndexChanged
+        If DD_PCAK_1.SelectedValue <> "-- กรุณาเลือก --" Then
+            lbl_Production_Amount_Unit.Text = DD_PCAK_1.SelectedItem.Text
+        End If
+    End Sub
+    Protected Sub DD_PCAK_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_PCAK_2.SelectedIndexChanged
+        If DD_PCAK_2.SelectedValue <> "-- กรุณาเลือก --" Then
+            lbl_Production_Amount_Unit.Text = DD_PCAK_2.SelectedItem.Text
+        End If
+    End Sub
+    Protected Sub DD_PCAK_3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_PCAK_3.SelectedIndexChanged
+        If DD_PCAK_3.SelectedValue <> "-- กรุณาเลือก --" Then
+            lbl_Production_Amount_Unit.Text = DD_PCAK_3.SelectedItem.Text
+        End If
+    End Sub
 End Class

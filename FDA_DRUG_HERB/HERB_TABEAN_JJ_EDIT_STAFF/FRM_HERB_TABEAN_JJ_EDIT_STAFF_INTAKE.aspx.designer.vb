@@ -230,15 +230,6 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE
     Protected WithEvents RadGrid5 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''PV_SELECT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents PV_SELECT As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''btn_sumit control.
     '''</summary>
     '''<remarks>
@@ -284,15 +275,6 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''PV_SELECT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    'Protected WithEvents PV_SELECT As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''AT_OLDDocument control.
     '''</summary>
     '''<remarks>
@@ -309,15 +291,6 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid6 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''PV_SELECT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    'Protected WithEvents PV_SELECT As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''AT_FILE control.
@@ -338,15 +311,6 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE
     Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''PV_SELECT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    'Protected WithEvents PV_SELECT As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''RadGrid4 control.
     '''</summary>
     '''<remarks>
@@ -354,15 +318,6 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''PV_SELECT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    'Protected WithEvents PV_SELECT As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''Label1 control.

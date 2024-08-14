@@ -379,6 +379,7 @@ Public Class FRM_LCN_DRUG
             Catch ex As Exception
 
             End Try
+            lbl_head1.Text = "ประเภทขายส่ง"
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups4('" & "POPUP_LCN_SELL_TYPE.aspx?ida=" & str_ID & "&TR_ID=" & tr_id & "&process=" & _process & "');", True)
         ElseIf e.CommandName = "drug_amp" Then
             dao.GetDataby_IDA(str_ID)

@@ -90,8 +90,9 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_INTAKE
                 btn_keep_pay.Visible = False
             End If
             DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
-            lbl_create_by.Text = dao.fields.CREATE_BY
-            Try
+        lbl_create_by.Text = dao.fields.CREATE_BY
+        txt_remark_edit.Text = dao.fields.REMARK
+        Try
                 lbl_create_date.Text = dao.fields.CREATE_DATE
             Catch ex As Exception
 
@@ -251,7 +252,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_INTAKE
             dao_up_mas.GetdatabyID_TYPE(22)
             For Each dao_up_mas.fields In dao_up_mas.datas
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.TR_ID = Request.QueryString("TR_ID")
                 dao_up.fields.PROCESS_ID = _Process_ID
                 dao_up.fields.FK_IDA = _IDA
@@ -326,7 +327,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_INTAKE
             Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
             dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
         End Function

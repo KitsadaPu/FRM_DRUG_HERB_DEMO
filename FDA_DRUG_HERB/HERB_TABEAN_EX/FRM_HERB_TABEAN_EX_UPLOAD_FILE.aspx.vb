@@ -54,7 +54,7 @@ Public Class FRM_HERB_TABEAN_EX_UPLOAD_FILE
         If dao_ex.fields.TR_ID <> 0 Then
             TR_ID_EX = dao_ex.fields.TR_ID
             'dao_up.GetdatabyID_TR_ID(TR_ID_JJ)
-            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(TR_ID_EX, dao_ex.fields.process_id, 17)
+            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(TR_ID_EX, dao_ex.fields.process_id, 1)
 
             Dim rows As Integer = 1
             For Each dao_up.fields In dao_up.datas
@@ -73,9 +73,9 @@ Public Class FRM_HERB_TABEAN_EX_UPLOAD_FILE
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -156,7 +156,6 @@ Public Class FRM_HERB_TABEAN_EX_UPLOAD_FILE
                     dao_up.fields.FK_IDA_LCN = _IDA_LCN
                     dao_up.fields.CREATE_DATE = Date.Now
                     dao_up.fields.ACTIVE = 1
-
                     Try
                         dao_up.fields.TR_ID = dao_ex.fields.TR_ID
                     Catch ex As Exception
@@ -177,7 +176,8 @@ Public Class FRM_HERB_TABEAN_EX_UPLOAD_FILE
 
         Next
 
-        If Request.QueryString("staff") = "1" And check_file() = False Then
+        'If Request.QueryString("staff") = "1" And check_file() = False Then
+        If check_file() = False Then
             alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
             Response.Redirect(Request.Url.AbsoluteUri)
         Else

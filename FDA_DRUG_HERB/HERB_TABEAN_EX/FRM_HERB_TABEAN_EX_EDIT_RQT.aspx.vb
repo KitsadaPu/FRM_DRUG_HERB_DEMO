@@ -10,7 +10,8 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
     Private _TR_ID_LCN As String
     Private _PROCESS_ID_LCN As String
     Private _MENU_GROUP As String
-
+    Private _TYPE_ID As String
+    Private _STATUS_ID As String
 
     Sub RunSession()
         Try
@@ -84,19 +85,35 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 19, _Process_ID)
+        Dim dao As New DAO_DRUG.ClsDBdrsamp
+        dao.GetDataby_IDA(_IDA_EX)
+        _STATUS_ID = dao.fields.STATUS_ID
+        If _STATUS_ID = 20 Then
+            _TYPE_ID = 3
+        Else
+            _TYPE_ID = 4
+        End If
+
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, _TYPE_ID, _Process_ID, _IDA_EX)
 
         Return dt
     End Function
 
-    Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
-        RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
-    End Sub
+    'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
+    '    RadGrid2.DataSource = bind_data_uploadfile_edit_file_head()
+    'End Sub
     Function bind_data_uploadfile_edit()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim dao As New DAO_DRUG.ClsDBdrsamp
+        dao.GetDataby_IDA(_IDA_EX)
+        If _STATUS_ID = 20 Then
+            _TYPE_ID = 5
+        Else
+            _TYPE_ID = 6
+        End If
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 18, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, _TYPE_ID, _Process_ID, _IDA_EX)
 
         Return dt
     End Function
@@ -144,9 +161,9 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dr("DUCUMENT_NAME"), "\n", "<br/>")
+                    tc.Text = Replace(dr("DOCUMENT_NAME"), "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dr("DUCUMENT_NAME")
+                    tc.Text = dr("DOCUMENT_NAME")
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -219,7 +236,8 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
                     dao_up.fields.CREATE_DATE = Date.Now
                     dao_up.fields.FK_IDA = _IDA_EX
                     dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                    dao_up.fields.TYPE = 20
+                    If _STATUS_ID = 20 Then dao_up.fields.TYPE = 3 Else dao_up.fields.TYPE = 4
+                    'dao_up.fields.TYPE = 3
                     dao_up.fields.ACTIVE = 1
 
                     Try
@@ -232,8 +250,8 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
 
                     dao_up.Update()
 
-                    Dim paths As String = bao._PATH_XML_PDF_TABEAN_TBN
-                    f.SaveAs(paths & "UPLOAD_PDF_TABEAN_TBN\" & Name_fake)
+                    Dim paths As String = bao._PATH_XML_PDF_TABEAN_EX
+                    f.SaveAs(paths & "UPLOAD_PDF_TABEAN_EX\" & Name_fake)
                 Else
                     alert_normal(name_real & " กรุณาแนบเป็นไฟล์ PDF")
                 End If
@@ -289,12 +307,22 @@ Public Class FRM_HERB_TABEAN_EX_EDIT_RQT
         Dim dao_ex As New DAO_DRUG.ClsDBdrsamp
         dao_ex.GetDataby_IDA(_IDA_EX)
         If dao_ex.fields.EX_EDIT = 1 Then
-            UC_TABEAN_EDIT_EX2.set_data()
+            'UC_TABEAN_EDIT_EX2.set_data()
+            UC_TABEAN_EDIT_EX2.SET_DATA(dao_ex)
         ElseIf dao_ex.fields.EX_EDIT = 3 Then
-            UC_TABEAN_EDIT_EX2.set_data()
+            UC_TABEAN_EDIT_EX2.SET_DATA(dao_ex)
         End If
-        dao_ex.fields.STATUS_ID = 5
+        If dao_ex.fields.STATUS_ID = 20 Then
+            dao_ex.fields.STATUS_ID = 21
+        ElseIf dao_ex.fields.STATUS_ID = 24 Then
+            dao_ex.fields.STATUS_ID = 25
+        End If
+        'dao_ex.fields.STATUS_ID = 5
         dao_ex.update()
+        AddLogStatus(dao_ex.fields.STATUS_ID, dao_ex.fields.process_id, _CLS.CITIZEN_ID, _IDA_EX)
+        Response.Redirect("FRM_HERB_TABEAN_EX.aspx?&IDA_LCN=" & _IDA_LCN)
+    End Sub
+    Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
         Response.Redirect("FRM_HERB_TABEAN_EX.aspx?&IDA_LCN=" & _IDA_LCN)
     End Sub
 

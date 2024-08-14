@@ -24,6 +24,7 @@ Public Class FRM_HERB_LCN_RENEW
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
         If Not IsPostBack Then
+            load_HL()
             'bind_dd()
             ' RadGrid1.Rebind()
         End If
@@ -58,12 +59,13 @@ Public Class FRM_HERB_LCN_RENEW
             Dim item As GridDataItem = e.Item
 
             Dim IDA As Integer = item("IDA").Text
+            Dim FK_LCN As Integer = item("FK_LCN").Text
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
 
             If e.CommandName = "HL_SELECT" Then
-                If STATUS_ID = 11 Then
+                If STATUS_ID = 31 Then
                     lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร"
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & " POP_UP_LCN_RENEW_EDIT_REQUEST.aspx?IDA=" & IDA & "&PROCESS_ID=" & _PROCESS_ID & "');", True)
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & " POP_UP_LCN_RENEW_EDIT_REQUEST.aspx?IDA=" & IDA & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & FK_LCN & "');", True)
                 Else
                     lbl_head1.Text = "รายละเอียดคำขอ"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & " POP_UP_LCN_RENEW_CONFIRM.aspx?IDA=" & IDA & "&PROCESS_ID=" & _PROCESS_ID & "');", True)
@@ -90,7 +92,16 @@ Public Class FRM_HERB_LCN_RENEW
 
         End If
     End Sub
+    Private Sub load_HL()
+        Dim urls As String = "https://platba.fda.moph.go.th/FDA_FEE/MAIN/check_token.aspx?Token=" & _CLS.TOKEN
+        If Request.QueryString("staff") <> "" Then
+            urls &= "&staff=1&identify=" & Request.QueryString("identify") & "&system=staffherb"
+        Else
+            urls &= "&staff=1&identify=" & Request.QueryString("identify") & "&system=herb"
+        End If
 
+        hl_pay.NavigateUrl = urls
+    End Sub
     Protected Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         Try
 

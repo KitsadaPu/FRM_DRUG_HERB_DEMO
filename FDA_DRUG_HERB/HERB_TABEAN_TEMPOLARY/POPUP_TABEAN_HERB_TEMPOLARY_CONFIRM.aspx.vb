@@ -168,7 +168,7 @@ Public Class POPUP_TABEAN_HERB_TEMPOLARY_CONFIRM
         Dim bao As New BAO_TABEAN_HERB.tb_main
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST_TEMPOLARY
         dao.GetdatabyID_IDA(_IDA)
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 8, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 8, _ProcessID, _IDA)
 
         Return dt
     End Function

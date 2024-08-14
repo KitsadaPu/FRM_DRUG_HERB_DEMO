@@ -833,42 +833,6 @@ Partial Public Class UC_LCN_EDIT
     Protected WithEvents UC_LCN_EDIT_TABLE_DRUG_GROUP_CHANGE_HERB_DDL11 As Global.FDA_DRUG_HERB.UC_LCN_EDIT_TABLE_DRUG_GROUP_CHANGE_HERB
 
     '''<summary>
-    '''p1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents p1 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''cm1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cm1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btn_upload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_upload As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''tb_type_menu control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_type_menu As Global.System.Web.UI.WebControls.Table
-
-    '''<summary>
     '''edit2 control.
     '''</summary>
     '''<remarks>

@@ -263,7 +263,7 @@ Public Class FRM_HERB_TABEAN_CONFIRM
         Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
         dao_deeqt.GetDataby_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _ProcessID, _IDA)
 
         Return dt
     End Function

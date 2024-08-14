@@ -1005,6 +1005,46 @@
         End If
         Return dt
     End Function
+    Public Function SP_SMP_BY_FK_LCN_IDA(ByVal LCN_IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_SMP_BY_FK_LCN_IDA @LCN_IDA =  " & LCN_IDA
+        Dim dt As New DataTable
+        dt.TableName = "SP_SMP4_BY_FK_IDA"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+                'dt.Clear()
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+            'dt.Clear()
+        End If
+        Return dt
+    End Function
+    Public Function SP_SMP4_BY_FK_IDA(ByVal IDA As Integer) As DataTable
+        Dim clsds As New ClassDataset
+        Dim sql As String = "exec SP_SMP4_BY_FK_IDA @IDA =  " & IDA
+        Dim dt As New DataTable
+        dt.TableName = "SP_SMP4_BY_FK_IDA"
+        Try
+            dt = clsds.dsQueryselect(sql, conn).Tables(0)
+            If dt.Rows.Count() = 0 Then
+                dt = AddDatatable(dt)
+                'dt.Clear()
+            End If
+        Catch ex As Exception
+
+        End Try
+        If dt.Rows.Count() = 0 Then
+            dt = AddDatatable(dt)
+            'dt.Clear()
+        End If
+        Return dt
+    End Function
     ''' <summary>
     ''' ข้อมูลใบอนุญาตหลักเอาไปใส่ย่อย
     ''' </summary>

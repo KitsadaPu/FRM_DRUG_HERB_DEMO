@@ -39,7 +39,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_EDIT
             dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _Process_ID)
             If dao_chk.fields.IDA = 0 Then
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.TR_ID = _TR_ID
                 dao_up.fields.PROCESS_ID = _Process_ID
                 dao_up.fields.FK_IDA_LCN = _IDA_LCN
@@ -135,10 +135,10 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_EDIT
 
         For Each item As GridDataItem In RadGrid1.SelectedItems
             IDA_UPLOAD = item("ID").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
 
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _Process_ID
             dao_up.fields.FK_IDA = _IDA
@@ -208,9 +208,9 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_EDIT
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -345,7 +345,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_EDIT
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 22, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 22, _Process_ID, _IDA)
 
         Return dt
     End Function
@@ -372,7 +372,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_EDIT
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function

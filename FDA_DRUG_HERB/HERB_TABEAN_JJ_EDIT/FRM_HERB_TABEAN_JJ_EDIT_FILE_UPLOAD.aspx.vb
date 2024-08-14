@@ -45,9 +45,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 2, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
         Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
@@ -72,9 +72,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
         'Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource
@@ -111,9 +111,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD
                     tc = New TableCell
                     tc.Width = 50
                     Try
-                        tc.Text = Replace(dr("DUCUMENT_NAME"), "\n", "<br/>")
+                        tc.Text = Replace(dr("DOCUMENT_NAME"), "\n", "<br/>")
                     Catch ex As Exception
-                        tc.Text = dr("DUCUMENT_NAME")
+                        tc.Text = dr("DOCUMENT_NAME")
                     End Try
                     tc.Width = 900
                     tr.Cells.Add(tc)
@@ -338,9 +338,9 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
         Private Sub RadGrid2_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid2.NeedDataSource

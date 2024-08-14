@@ -19,19 +19,17 @@
         </div>
     </div>
 
-    <div class="row" id="T1" runat="server" visible="false" style="padding-left: 1em;">
-        <div class="panel" style="text-align: left; width: 100%">
+    <div class="row" id="T1" runat="server" visible="false">
+        <div class="panel panel-body" style="width: 100%; height: 780px; padding-left: 1em">
             <div class="panel-heading panel-title" style="height: 70px">
-                <p class="h3" style="text-align: left;">ระบบขอยาตัวอย่าง</p>
+                <p class="h3" style="text-align: left; border-bottom: 3px solid gray;">
+                    <span style="color: rgb(102, 102, 102); font-family: SUKHUMVIT; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">แบบแจ้งผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อเป็นตัวอย่างสำหรับการขึ้นทะเบียน การแจ้งรายละเอียด หรือการจดแจ้ง</span>
+                </p>
             </div>
-        </div>
-
-
-         <div class="panel panel-body" style="width: 100%; padding-left: 1%;">
+            <div style="padding-top: 30px"></div>
             <div class="col-lg-12" style="text-align: center; padding-left: 2em; padding-right: 2em">
-                <p class="h3" style="text-align: center;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
-                <hr />
-
+                <p class="h4" style="text-align: left;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
+                <%--  <hr />--%>
                 <telerik:RadGrid ID="RadGrid1" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                         <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -86,9 +84,6 @@
             </div>
             <div class="col-lg-1"></div>
         </div>
-
-
-
     </div>
 
 </asp:Content>

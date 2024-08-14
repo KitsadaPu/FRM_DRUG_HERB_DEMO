@@ -27,30 +27,36 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
     Sub set_btn()
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
-        If dao.fields.STATUS_ID = 1 Then
+        Dim SSID As Integer = dao.fields.STATUS_ID
+        If SSID = 1 Then
             btn_cancel.Visible = False
         Else
             btn_cancel.Visible = True
         End If
 
-        If dao.fields.STATUS_ID = 77 Or dao.fields.STATUS_ID = 78 Or dao.fields.STATUS_ID = 79 Or dao.fields.STATUS_ID = 7 _
-            Or dao.fields.STATUS_ID = 9 Or dao.fields.STATUS_ID = 10 Or dao.fields.STATUS_ID = 14 Or dao.fields.STATUS_ID = 17 _
-            Or dao.fields.STATUS_ID = 75 Then
+        If SSID = 77 Or SSID = 78 Or SSID = 79 Or SSID = 7 _
+            Or SSID = 9 Or SSID = 10 Or SSID = 14 Or SSID = 17 _
+            Or SSID = 75 Then
             btn_cancel.Enabled = False
             btn_cancel.CssClass = "btn-danger btn-lg"
         End If
-
-        If dao.fields.STATUS_ID <> 1 Then
+        If SSID = 2 Then
+            btn_KeepPay.Visible = True
+        Else
+            btn_KeepPay.Visible = False
+        End If
+        If SSID <> 1 Then
             btn_confirm.Enabled = False
             btn_confirm.CssClass = "btn-danger btn-lg"
             'btn_edit.Enabled = False
             'btn_edit.CssClass = "btn-danger btn-lg"
             'btn_editUpload.CssClass = "btn-danger btn-lg"
-        ElseIf dao.fields.STATUS_ID = 8 Then
+        ElseIf SSID = 8 Then
             'btn_editUpload.Enabled = False
             btn_cancel.Enabled = False
             btn_cancel.CssClass = "btn-danger btn-lg"
         End If
+
     End Sub
     Protected Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
@@ -59,6 +65,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
         dao.fields.STATUS_ID = 2
         dao.fields.DATE_CONFIRM = Date.Now
         dao.update()
+        AddLogStatus(dao.fields.STATUS_ID, dao.fields.PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
         alert("ยื่นคำขอแล้ว")
     End Sub
 
@@ -66,7 +73,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
 
-        dao.fields.STATUS_ID = 78
+        dao.fields.STATUS_ID = 77
         dao.update()
         alert("ยกเลิกคำขอแล้ว")
     End Sub
@@ -129,11 +136,11 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
         Return dt
     End Function
 
-    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
-        RadGrid1.DataSource = bind_data_uploadfile()
+    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat.NeedDataSource
+        rgat.DataSource = bind_data_uploadfile()
     End Sub
 
-    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
+    Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgat.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
             item = e.Item
@@ -147,4 +154,13 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
 
     End Sub
 
+    Private Sub btn_KeepPay_Click(sender As Object, e As EventArgs) Handles btn_KeepPay.Click
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA)
+        dao.fields.STATUS_ID = 22
+        dao.fields.DATE_PAY1 = Date.Now
+        dao.fields.DATE_PAY2 = Date.Now
+        dao.update()
+        alert("ข้ามการชำระเงินแล้ว")
+    End Sub
 End Class

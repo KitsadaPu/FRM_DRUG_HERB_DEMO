@@ -5,27 +5,24 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Src="~/UC/UC_NEWS.ascx" TagPrefix="uc1" TagName="UC_NEWS" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="row">
-        <div class="col-lg-12" style="text-align:center" runat="server" id="div_news">
+        <div class="col-lg-12" style="text-align: center" runat="server" id="div_news">
             <uc1:UC_NEWS runat="server" ID="UC_NEWS" />
             <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>
     <div class="row" id="T1" runat="server" visible="false">
-        <div class="panel" style="text-align: left; width: 100%">
+        <div class="panel panel-body" style="width: 100%;height:780px; padding-left: 1em">
             <div class="panel-heading panel-title" style="height: 70px">
-                <p class="h3" style="text-align: left;">แก้ไขเปลี่ยนแปลง จดแจ้งผลิตภัณฑ์สมุนไพร</p>
+                <p class="h3" style="text-align: left; border-bottom: 3px solid gray;">แก้ไขเปลี่ยนแปลง จดแจ้งผลิตภัณฑ์สมุนไพร</p>
             </div>
-        </div>
-
-         <div class="panel panel-body" style="width: 100%; padding-left: 1em">
+            <div style="padding-top: 30px"></div>
             <div class="col-lg-12" style="text-align: center; padding-left: 2em; padding-right: 2em">
-                <p class="h3" style="text-align: center;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
+                <p class="h4" style="text-align: left;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
                 <hr />
-
                 <telerik:RadGrid ID="RadGrid1" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                         <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -78,9 +75,5 @@
             </div>
             <div class="col-lg-1"></div>
         </div>
-
-
-
     </div>
-
 </asp:Content>

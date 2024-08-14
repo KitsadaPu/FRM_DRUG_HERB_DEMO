@@ -14,17 +14,17 @@
     <div class="row" id="set_show" runat="server">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <div style="text-align: center">
+            <div style="text-align: left">
                 <asp:Table ID="tb_type_menu" runat="server" CssClass="table" Width="100%"></asp:Table>
-                <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" Height="44px" Width="212px" />
+                <asp:Button ID="btn_add_upload" runat="server" Text="อัพโหลดเอกสาร" Height="40px" Width="212px" />
             </div>
         </div>
         <div class="col-lg-1"></div>
 
     </div>
     <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
             <telerik:RadGrid ID="RadGrid2" runat="server">
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -43,8 +43,8 @@
                         <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                             SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                            HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                            HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                             HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -67,14 +67,13 @@
                 <FilterMenu EnableImageSprites="False"></FilterMenu>
             </telerik:RadGrid>
         </div>
-        <div class="col-lg-2"></div>
     </div>
 
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-6" style="width: 50%">
             <div class="row">
-                <div class="col-lg-12" style="text-align: center">
+                <div class="col-lg-12" style="text-align: left">
                     <h3>เอกสารแนบคำขอ</h3>
                 </div>
             </div>
@@ -99,8 +98,8 @@
                                 <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                     SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                     HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -127,12 +126,16 @@
             </div>
         </div>
         <div class="col-lg-5" style="width: 40%">
-            <div class="row" style="text-align: center">
-                <h3>รายการเอกสารที่แก้ไข</h3>
+            <div class="row" style="text-align: left">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <h3>รายการเอกสารที่แก้ไข</h3>
+                </div>
+                
             </div>
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8" style="width: 80%">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-8" style="width: 90%">
                     <telerik:RadGrid ID="RadGrid1" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
                         PagerStyle-Mode="NextPrevNumericAndAdvanced" AllowMultiRowSelection="true">
                         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ID">
@@ -148,8 +151,8 @@
                                 <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                     SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                             </Columns>
                             <EditFormSettings>
@@ -163,7 +166,7 @@
                         <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
                         <FilterMenu EnableImageSprites="False"></FilterMenu>
                     </telerik:RadGrid>
-      <%-----------------------------------------------------------TYPE3-----------------------------------------------------------------------------------------%>
+                    <%-----------------------------------------------------------TYPE3-----------------------------------------------------------------------------------------%>
                     <telerik:RadGrid ID="RadGrid4" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
                         PagerStyle-Mode="NextPrevNumericAndAdvanced" AllowMultiRowSelection="true">
                         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ID">
@@ -175,12 +178,12 @@
                                 <HeaderStyle Width="20px"></HeaderStyle>
                             </ExpandCollapseColumn>
                             <Columns>
-                          <%--      <telerik:GridClientSelectColumn UniqueName="SelectColumn" />--%>
+                                <%--      <telerik:GridClientSelectColumn UniqueName="SelectColumn" />--%>
                                 <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                     SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                             </Columns>
                             <EditFormSettings>
@@ -199,18 +202,23 @@
             </div>
         </div>
     </div>
-
     <div class="row" runat="server">
         <div class="col-lg-1"></div>
-        <div class="col-lg-3" style="text-align: center">รายละเอียดการแก้ไข</div>
-        <div class="col-lg-6" style="text-align: left">
-            <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%"></asp:TextBox>
+        <div class="col-lg-3" style="text-align: left">
+            <h3>รายละเอียดการแก้ไข</h3>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row" runat="server">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10" style="text-align: left;padding-left:2em">
+            <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 100px; width: 100%"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-10" style="width: 70%">
+        <div class="col-lg-10" style="width: 83%">
             <asp:Literal ID="lr_preview" runat="server"></asp:Literal>
             <div class="row">
                 <div class="col-lg-1"></div>

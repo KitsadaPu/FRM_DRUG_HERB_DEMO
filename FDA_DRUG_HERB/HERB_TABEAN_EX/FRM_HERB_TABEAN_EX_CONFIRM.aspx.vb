@@ -157,6 +157,7 @@ Public Class FRM_HERB_TABEAN_EX_CONFIRM
         dao.GetDataby_IDA(_IDA)
         dao.fields.STATUS_ID = 78
         dao.update()
+        AddLogStatus(dao.fields.STATUS_ID, _PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
         alert("ยกเลิกคำขอแล้ว")
     End Sub
 
@@ -176,7 +177,7 @@ Public Class FRM_HERB_TABEAN_EX_CONFIRM
         dao.GetDataby_IDA(_IDA)
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(dao.fields.TR_ID, 17, dao.fields.process_id)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(dao.fields.TR_ID, 1, dao.fields.process_id)
 
         Return dt
     End Function

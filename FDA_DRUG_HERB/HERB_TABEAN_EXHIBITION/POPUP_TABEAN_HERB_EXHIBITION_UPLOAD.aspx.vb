@@ -20,9 +20,16 @@
         Catch ex As Exception
             Response.Redirect("http://privus.fda.moph.go.th/")
         End Try
-
-        _IDA_LCT = Request.QueryString("IDA_LCT")
-        _IDA_LCN = Request.QueryString("IDA_LCN")
+        If Request.QueryString("IDA_LCT") <> "" Then
+            _IDA_LCT = Request.QueryString("IDA_LCT")
+        Else
+            _IDA_LCT = 0
+        End If
+        If Request.QueryString("IDA_LCN") <> "" Then
+            _IDA_LCN = Request.QueryString("IDA_LCN")
+        Else
+            _IDA_LCN = 0
+        End If
         _PROCESS_ID = Request.QueryString("PROCESS_ID")
         _IDA = Request.QueryString("IDA")
         _IDA_DR = Request.QueryString("IDA_DR")
@@ -66,9 +73,9 @@
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -204,13 +211,13 @@
                     dao_up.fields.NAME_FAKE = Name_fake
                     dao_up.fields.NAME_REAL = f.FileName
                     dao_up.fields.CREATE_DATE = Date.Now
-                    dao_up.fields.FK_IDA = dao.fields.IDA
-                    '   dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                    'dao_up.fields.FK_IDA = dao.fields.IDA
+                    dao_up.fields.FK_IDA_LCN = _IDA_LCN
                     dao_up.fields.CREATE_DATE = Date.Now
                     dao_up.fields.ACTIVE = 1
 
                     Try
-                        dao_up.fields.TR_ID = _TR_ID_LCN
+                        dao_up.fields.TR_ID = TR_ID
                     Catch ex As Exception
 
                     End Try

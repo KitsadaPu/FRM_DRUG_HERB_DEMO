@@ -111,7 +111,7 @@
                     <td colspan="4" align="left">กรุณาเลือกสารจากตารางด้านบนก่อนคลิกปุ่มเพิ่มสาร</td>
                 </tr>
                 <tr>
-                    <td>ปริมาณยา/ปริมาณชีววัตถุ</td>
+                    <td>ปริมาณยา</td>
                     <td>
                         <asp:DropDownList ID="ddl_CAS_TYPE" runat="server" AutoPostBack="True">
                             <asp:ListItem Value="1">ปริมาณยา</asp:ListItem>
@@ -165,7 +165,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
+               <%-- <tr>
                     <td>ปริมาณชีววัตถุ</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -218,7 +218,7 @@
                     <td align="left" colspan="3">
                         <asp:TextBox ID="txt_remark" runat="server" Width="100%"></asp:TextBox>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -324,8 +324,8 @@
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="sunitthanm" FilterControlAltText="Filter sunitthanm column" HeaderText="หน่วย" SortExpression="sunitthanm" UniqueName="sunitthanm">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="REF" FilterControlAltText="Filter REF column" HeaderText="เอกสารอ้างอิง" SortExpression="REF" UniqueName="REF">
-                        </telerik:GridBoundColumn>
+                    <%--    <telerik:GridBoundColumn DataField="REF" FilterControlAltText="Filter REF column" HeaderText="เอกสารอ้างอิง" SortExpression="REF" UniqueName="REF">
+                        </telerik:GridBoundColumn>--%>
                         <telerik:GridBoundColumn DataField="AORI" FilterControlAltText="Filter AORI column" HeaderText="A/I" SortExpression="AORI" UniqueName="AORI">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="REMARK" FilterControlAltText="Filter REMARK column" HeaderText="หมายเหตุ" SortExpression="REMARK" UniqueName="REMARK">

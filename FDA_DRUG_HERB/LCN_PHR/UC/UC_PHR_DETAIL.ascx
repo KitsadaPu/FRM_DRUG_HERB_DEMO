@@ -223,7 +223,7 @@
             <asp:DropDownList ID="ddl_phr_type_other" runat="server" Width="100%"></asp:DropDownList>
             <%--<asp:TextBox ID="txt_PHR_VETERINARY_FIELD" TextMode="MultiLine" runat="server" Width="100%"></asp:TextBox>--%>
         </div>
-         <div class="col-lg-1">
+        <div class="col-lg-1">
             พ.ศ            
         </div>
         <div class="col-lg-2">
@@ -404,8 +404,6 @@
             </telerik:RadGrid>
         </div>
     </div>
-
-
     <%--  <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
@@ -426,6 +424,82 @@
             &ensp; แห่ง &ensp; ได้แก่
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">เลขนิติบุคคล/เลขบัตรประชาชน</div>
+                <div class="col-lg-7">
+                    <asp:TextBox ID="txt_CITIZEN_AUTHORIZE" runat="server" CssClass="input-lg" Width="70%"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">เลขที่ใบอนุญาตสถานที่</div>
+                <div class="col-lg-7">
+                    <asp:TextBox ID="txt_lcnno_no" runat="server" CssClass="input-lg" Width="70%"></asp:TextBox>
+                    &nbsp;(ตัวอย่าง นย1 กท 1/2555)
+                    <asp:TextBox ID="txt_search_lcn_ida" runat="server" Width="100%" Visible="false"></asp:TextBox>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <asp:Button ID="btn_search_lcn" runat="server" Text="ค้นหาข้อมูล" CssClass="btn-lg" />
+            </div>
+            <div class="row" style="text-align: center">
+                <%--<telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>--%>
+                <telerik:RadGrid ID="RadGrid_lcn" runat="server" AllowPaging="True" CellSpacing="0" GridLines="None" PageSize="15">
+                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA" NoMasterRecordsText="ไม่พบข้อมูล">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="IDA" FilterControlAltText="Filter IDA column"
+                                HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="lcnno" FilterControlAltText="Filter lcnno column"
+                                HeaderText="lcnno" ReadOnly="True" SortExpression="lcnno" UniqueName="lcnno" Display="false">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="CITIZEN_ID_AUTHORIZE" FilterControlAltText="Filter CITIZEN_ID_AUTHORIZE column"
+                                HeaderText="CITIZEN_ID_AUTHORIZE" ReadOnly="True" SortExpression="CITIZEN_ID_AUTHORIZE" UniqueName="CITIZEN_ID_AUTHORIZE" Display="false">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="lcntpcd" FilterControlAltText="Filter lcntpcd column"
+                                HeaderText="ประเภทคำขอ" SortExpression="lcntpcd" UniqueName="lcntpcd">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="LCNNO_DISPLAY_NEW" FilterControlAltText="Filter LCNNO_DISPLAY_NEW column"
+                                HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO_DISPLAY_NEW" UniqueName="LCNNO_DISPLAY_NEW">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="thanm" FilterControlAltText="Filter thanm column"
+                                HeaderText="ชื่อสถานที่" SortExpression="thanm" UniqueName="thanm">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="thanm_addr" FilterControlAltText="Filter thanm_addr column"
+                                HeaderText="ที่อยู่" SortExpression="thanm_addr" UniqueName="thanm_addr" ItemStyle-Width="30%">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="grannm_lo" FilterControlAltText="Filter grannm_lo column"
+                                HeaderText="ชื่อผู้ดำเนินกิจการ" SortExpression="grannm_lo" UniqueName="grannm_lo">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="thachngwtnm" FilterControlAltText="Filter thachngwtnm column"
+                                HeaderText="จังหวัด" SortExpression="thachngwtnm" UniqueName="thachngwtnm">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="TR_ID" FilterControlAltText="Filter TR_ID column"
+                                HeaderText="เลขดำเนินการ" SortExpression="TR_ID" UniqueName="TR_ID">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="STAT_DA" FilterControlAltText="Filter STAT_DA column"
+                                HeaderText="สถานะใบอนุญาต" SortExpression="STAT_DA" UniqueName="STAT_DA">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_Select"
+                                CommandName="sel" Text="เลือกข้อมูล">
+                                <HeaderStyle Width="70px" />
+                            </telerik:GridButtonColumn>
+                            <%--   <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="btn_trid"
+                            CommandName="_trid" Text="ขอเลขดำเนินการ" ConfirmText="คุณต้องการทำต่อหรือไม่?">
+                            <HeaderStyle Width="70px" />
+                        </telerik:GridButtonColumn>--%>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </div>
+        </div>
+    </div>
+    <br />
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
@@ -752,5 +826,18 @@
             <asp:Label ID="lbl_BN_Opentime" runat="server" Text="*กรุณากรอกเวลาทำการ" ForeColor="Red" Font-Size="Small" Visible="false"></asp:Label>
         </div>
     </div>
+
+    <%--    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-1">เลขที่ใบอนุญาตสถานที่</div>
+        <div class="col-lg-2">
+            <asp:TextBox ID="txt_lcnno_no" runat="server" CssClass="input-lg" Width="70%"></asp:TextBox>
+            &nbsp;(ตัวอย่าง นย1 กท 1/2555)
+        </div>
+        <div class="col-lg-2">
+            <asp:Button ID="btn_search_lcn" runat="server" Text="ค้นหาข้อมูล" CssClass="btn-lg" />
+        </div>
+        <div class="col-lg-1"></div>
+    </div>--%>
     <%--    </form>--%>
 </div>

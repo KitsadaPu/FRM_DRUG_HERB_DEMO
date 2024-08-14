@@ -271,6 +271,20 @@ Namespace BAO
             dta = Queryds(sql)
             Return dta
         End Function
+        Public Function SP_CUSTOMER_LCN_RNP_BY_IDENTIFY(ByVal IDENTITY As String) As DataTable
+
+            Dim sql As String = "exec SP_CUSTOMER_LCN_RNP_BY_IDENTIFY @iden= '" & IDENTITY & "'"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_STAFF_LCN_RNP() As DataTable
+
+            Dim sql As String = "exec SP_STAFF_LCN_RNP"
+            Dim dta As New DataTable
+            dta = Queryds(sql)
+            Return dta
+        End Function
         Public Function SP_DALCN_UPLOAD_FILE_BY_TR_ID_PROCESS_AND_TYPE(ByVal TR_ID As String, ByVal PROCESS As String, ByVal TYPE As String) As DataTable
 
             Dim sql As String = "exec SP_DALCN_UPLOAD_FILE_BY_TR_ID_PROCESS_AND_TYPE @TR_ID= '" & TR_ID & "' ,@PROCESS= '" & PROCESS & "',@TYPE=" & TYPE
@@ -1444,6 +1458,12 @@ Namespace BAO
             Dim sql As String = "exec SP_XML_DRUG_COLOR_BY_IDA @IDA=" & IDA
             Dim dta As New DataTable
             dta = Queryds(sql)
+            Return dta
+        End Function
+        Public Function SP_GET_DATA_DRUG_HERB_BY_NEWCODE_NOT(ByVal Newcode_Not As String) As DataTable
+            Dim sql As String = "exec SP_GET_DATA_DRUG_HERB_BY_NEWCODE_NOT @Newcode_Not=" & Newcode_Not
+            Dim dta As New DataTable
+            dta = Queryd_124(sql)
             Return dta
         End Function
         '
@@ -4837,6 +4857,24 @@ Namespace BAO
         '    conn.Close()
 
         'End Sub
+        Public Sub SP_MAS_STATUS_STAFF_BY_GROUP_DDL_V2(ByVal _stat_group As Integer, ByVal _group As Integer, ByVal _status_id As Integer, ByVal _status_id2 As Integer)
+
+            strSQL = "SP_MAS_STATUS_STAFF_BY_GROUP_DDL_V2"
+            SqlCmd = New SqlCommand(strSQL, conn)
+            If (conn.State = ConnectionState.Open) Then
+                conn.Close()
+            End If
+            conn.Open()
+            SqlCmd.CommandType = CommandType.StoredProcedure
+            SqlCmd.Parameters.Add("@stat_group", SqlDbType.Int).Value = _stat_group
+            SqlCmd.Parameters.Add("@group1", SqlDbType.Int).Value = _group
+            SqlCmd.Parameters.Add("@group2", SqlDbType.Int).Value = _status_id
+            'SqlCmd.Parameters.Add("@group3", SqlDbType.Int).Value = _status_id2
+            dtAdapter = New SqlDataAdapter(SqlCmd)
+            dtAdapter.Fill(dt)
+            conn.Close()
+
+        End Sub
         Public Sub SP_MAS_STATUS_STAFF_BY_GROUP_DDL1(ByVal _stat_group As Integer, ByVal _group As Integer, ByVal _status_id As Integer)
 
             strSQL = "SP_MAS_STATUS_STAFF_BY_GROUP_DDL1"
@@ -7206,6 +7244,39 @@ Namespace BAO
             dao2.insert()
 
             Return str_no
+        End Function
+
+        Public Function GEN_NO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal TYPE As String, ByVal FK_IDA As Integer, ByVal Process_ID As String) As String
+            Dim int_no As Integer
+            Dim full_rgtno As String = ""
+            'TYPE = "EXH"
+            Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_NEW
+            dao.GetDataby_TYPE_MAX(YEAR, TYPE, FK_IDA)
+
+            If IsNothing(dao.fields.GENNO) = True Then
+                int_no = 0
+            Else
+                int_no = dao.fields.GENNO
+            End If
+            int_no = int_no + 1
+
+            Dim str_no As String = int_no.ToString()
+            'str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+            'str_no = YEAR.Substring(2, 2) & str_no
+            full_rgtno = "HB" & " " & int_no.ToString() & "/" & con_year(YEAR).Substring(2, 2) & " " & TYPE
+            dao = New DAO_TABEAN_HERB.TB_GEN_NO_NEW
+            dao.fields.YEAR = YEAR
+            dao.fields.PVCODE = PVNCD
+            dao.fields.GENNO = int_no
+            dao.fields.TYPE = TYPE
+            dao.fields.FORMAT = full_rgtno
+            dao.fields.IDA = FK_IDA
+            dao.fields.LCNNO = str_no
+            dao.fields.DESCRIPTION = str_no
+            dao.fields.REF_IDA = FK_IDA
+            dao.fields.GROUP_NO = Process_ID
+            dao.insert()
+            Return full_rgtno
         End Function
 
         Function GEN_LCNNO_NEW(ByVal YEAR As String, ByVal PVCODE As String, ByVal TYPE As String, ByVal LCNNO As String,

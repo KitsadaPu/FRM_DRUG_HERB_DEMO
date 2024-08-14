@@ -136,7 +136,7 @@ Public Class UC_PHR_DETAIL
                 txt_phr_ampher.Text = .PHR_AMPHER
                 txt_phr_changwat.Text = .PHR_CHANGWAT
                 txt_phr_zipcode.Text = .PHR_ZIPCODE
-                 txt_phr_fax.Text = .PHR_FAX
+                txt_phr_fax.Text = .PHR_FAX
                 txt_phr_phone.Text = .PHR_TEL
                 txt_phr_email.Text = .PHR_EMAIL
                 'Try
@@ -537,7 +537,7 @@ Public Class UC_PHR_DETAIL
     End Sub
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim FK_IDA As String = Request.QueryString("PHR_IDA")
-        Dim dao As New DAO_DRUG.ClsDBDALCN_PHR_ADDR_BSN
+        Dim dao As New DAO_DRUG.ClsDBDALCN_PHR_LCN_ADDR
         Dim message As String = "กรุณากรอกข้อมูลให้ครบ"
         If txt_BSN_Opentime.Text = "" Then
             If txt_BSN_Opentime.Text Is Nothing Or txt_BSN_Opentime.Text = "" Then
@@ -558,6 +558,11 @@ Public Class UC_PHR_DETAIL
         Else
             With dao.fields
                 .FK_IDA = FK_IDA
+                Try
+                    .LCN_IDA = txt_search_lcn_ida.Text
+                Catch ex As Exception
+
+                End Try
                 .MATRA = DDL_Matra.SelectedValue
                 .PHR_NAME_BSN = txt_Name_Bsn.Text
                 .PHR_ADDR_BSN = txt_BSN_addr.Text
@@ -610,7 +615,8 @@ Public Class UC_PHR_DETAIL
     Function bind_data_rg()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
-        dt = bao.SP_DALCN_PHR_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
+        'dt = bao.SP_DALCN_PHR_BY_IDENTIFY(_CLS.CITIZEN_ID_AUTHORIZE)
+        dt = bao.SP_PHR_LOCATION_BY_PHR_IDA(Request.QueryString("PHR_IDA"))
         txt_addr_num.Text = dt.Rows.Count()
         Return dt
     End Function
@@ -814,4 +820,136 @@ Public Class UC_PHR_DETAIL
         End If
 
     End Sub
+    Sub Search_FN()
+        Dim pvncd As Integer = 0
+        Try
+            pvncd = _CLS.PVCODE
+        Catch ex As Exception
+            Response.Redirect("http://privus.fda.moph.go.th/")
+        End Try
+        Dim dt As New DataTable
+        Dim command As String = " "
+        Dim bao_aa As New BAO.ClsDBSqlcommand
+        command = "select * from dbo.Vw_SP_DALCN_SEARCH_EDIT "
+        Dim str_where As String = ""
+        Dim dt2 As New DataTable
+        If txt_CITIZEN_AUTHORIZE.Text = "" And txt_lcnno_no.Text = "" Then
+            command &= str_where
+        Else
+            If txt_CITIZEN_AUTHORIZE.Text <> "" Then
+                str_where = "where CITIZEN_ID_AUTHORIZE='" & txt_CITIZEN_AUTHORIZE.Text & "'"
+                If txt_lcnno_no.Text <> "" Then
+                    If str_where <> "" Then
+                        str_where &= " and LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%'"
+                    Else
+                        str_where &= "LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%'"
+                    End If
+
+                End If
+                command &= str_where
+            Else
+                If str_where = "" Then
+                    If str_where <> "" Then
+                        If txt_lcnno_no.Text <> "" Then
+                            str_where &= " and LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+                        End If
+                    Else
+                        If txt_lcnno_no.Text <> "" Then
+                            str_where = "where LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+
+                        End If
+                    End If
+                    command &= str_where
+                Else
+                    If txt_lcnno_no.Text <> "" Then
+                        str_where = "where lcnno_no like '%" & txt_lcnno_no.Text & "%' or lcnno_no like '%" & txt_lcnno_no.Text & "%'"
+
+                    End If
+                    command &= str_where
+                End If
+            End If
+
+        End If
+        'If pvncd = 10 Then
+        '    If command.Contains("where") Then
+        '        command &= " and lcn_stat=0"
+        '    Else
+        '        If command.Contains("pvncd") Then
+        '            command &= " and lcn_stat=0 and lcntpcd <> 'ผย1' "
+        '        Else
+        '            command &= "where lcn_stat=0 and lcntpcd <> 'ผย1' "
+        '        End If
+        '    End If
+
+        'Else
+        '    'RadGrid1.DataSource = dt2.Select("lcn_stat=0 and pvncd = '" & pvncd & "'")
+        '    If command.Contains("where") Then
+        '        command &= " and lcn_stat=0 and pvncd = '" & pvncd & "'"
+        '    Else
+        '        command &= "where lcn_stat=0 and pvncd = '" & pvncd & "'"
+        '    End If
+        'End If
+        dt = bao_aa.Queryds(command)
+        RadGrid_lcn.DataSource = dt
+    End Sub
+
+    Protected Sub btn_search_lcn_Click(sender As Object, e As EventArgs) Handles btn_search_lcn.Click
+        Search_FN()
+        RadGrid_lcn.Rebind()
+    End Sub
+
+    Private Sub RadGrid_lcn_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles RadGrid_lcn.ItemCommand
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = e.Item
+            If e.CommandName = "sel" Then
+                Dim Name_thanm = item("thanm").Text
+                Dim Addr = item("thanm_addr").Text
+                Dim IDA = item("IDA").Text
+                Dim dao As New DAO_DRUG.ClsDBdalcn
+                dao.GetDataby_IDA(IDA)
+                Dim dao_lo As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+                dao_lo.GetDataby_IDA(dao.fields.FK_IDA)
+                With dao_lo.fields
+                    '.MATRA = DDL_Matra.SelectedValue
+                    txt_Name_Bsn.Text = .thanameplace
+                    txt_BSN_addr.Text = .thaaddr
+                    txt_BSN_Building.Text = .thabuilding
+                    txt_BSN_mu.Text = .thamu
+                    txt_BSN_Soi.Text = .thasoi
+                    txt_BSN_road.Text = .tharoad
+                    Try
+                        ddl_Province.SelectedItem.Text = .thachngwtnm
+                        ddl_Province.SelectedValue = .chngwtcd
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        'ddl_amphor.SelectedItem.Text = .thathmblnm
+                        ddl_amphor.SelectedValue = .amphrcd
+                        load_ddl_amp()
+                    Catch ex As Exception
+                        '.PHR_AMPHER_BSN = "-"
+                    End Try
+
+                    Try
+                        'ddl_tambol.SelectedItem.Text = .thathmblnm
+                        ddl_tambol.SelectedValue = .thmblcd
+                        load_ddl_thambol()
+                    Catch ex As Exception
+
+                    End Try
+
+                    txt_BSN_zipcode.Text = .zipcode
+                    txt_BSN_tel.Text = .tel
+                    'txt_BSN_Opentime.Text =
+                End With
+                txt_search_lcn_ida.Text = IDA
+            End If
+        End If
+
+    End Sub
+
+    'Protected Sub btn_search_lcn_Click(sender As Object, e As EventArgs) Handles btn_search_lcn.Click
+
+    'End Sub
 End Class

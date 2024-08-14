@@ -62,7 +62,7 @@
            <div class ="row" style="display:none;>
                <div class = "col-md-12" style="text-align:center;">
                    <label>
-                       ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร                     
+                       ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร                     
                    </label>
                </div>
 
@@ -80,9 +80,9 @@
            <div class ="row" style="display:none;">                            
                <div class = "col-md-12" style="text-align:left"> <center>
                    <asp:RadioButtonList ID="rdl_lcn_type" runat="server">
-                    <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                    <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                    <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                    <asp:ListItem Value="1">ผลิตผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                    <asp:ListItem Value="2">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                    <asp:ListItem Value="3">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
                 </asp:RadioButtonList></center>
                </div>
                
@@ -788,7 +788,7 @@
        </div>
        <div>
            <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-               ๓. &ensp;ข้อมูลสถานที่ผลิต นำเข้า หรือขายผลิตภัณฆ์สมุนไพร</h4>&ensp;
+               ๓. &ensp;ข้อมูลสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร</h4>&ensp;
 
            <table>
                <tr>

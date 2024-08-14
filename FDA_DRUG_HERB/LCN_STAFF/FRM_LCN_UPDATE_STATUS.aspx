@@ -111,4 +111,112 @@
                 <asp:Button ID="btn_c_stat" runat="server" Text="เปลี่ยนสถานะ" CssClass="btn-lg" /></td>
         </tr>
     </table>
+
+    <br />
+    <h2>การขอเปลี่ยนแปลงสถานะผู้มีหน้าที่ปกิบัติการ&nbsp;</h2>
+    <table class="table">
+        <tr>
+            <td align="right">
+                <%--<asp:Button ID="btn_phr_add" runat="server" Text="เพิ่มผู้มีหน้าที่ปฏิบัติการ" CssClass="btn-lg"/>--%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <telerik:RadGrid ID="rgphr" runat="server">
+                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="PHR_IDA" NoMasterRecordsText="ไม่พบข้อมูล">
+                        <Columns>
+
+                            <telerik:GridBoundColumn DataField="PHR_IDA" FilterControlAltText="Filter PHR_IDA column"
+                                HeaderText="PHR_IDA" SortExpression="PHR_IDA" UniqueName="PHR_IDA" Display="false">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="PHR_CTZNO" FilterControlAltText="Filter PHR_CTZNO column"
+                                HeaderText="เลขบัตรปชช." SortExpression="PHR_CTZNO" UniqueName="PHR_CTZNO">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="PHR_FULLNAME" FilterControlAltText="Filter PHR_FULLNAME column"
+                                HeaderText="ชื่อผู้มีหน้าที่ปฏิบัติการ" SortExpression="PHR_FULLNAME" UniqueName="PHR_FULLNAME">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="PHR_TEXT_WORK_TIME" FilterControlAltText="Filter PHR_TEXT_WORK_TIME column"
+                                HeaderText="เวลาทำการ" SortExpression="PHR_TEXT_WORK_TIME" UniqueName="PHR_TEXT_WORK_TIME">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="functnm" FilterControlAltText="Filter functnm column"
+                                HeaderText="หน้าที่" SortExpression="functnm" UniqueName="functnm">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="PHR_STATUS_NAME" FilterControlAltText="Filter PHR_STATUS_NAME column"
+                                HeaderText="สถานะผู้มีหน้าที่ปกิบัติการ" SortExpression="PHR_STATUS_NAME" UniqueName="PHR_STATUS_NAME">
+                            </telerik:GridBoundColumn>
+                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="sel"
+                                CommandName="sel" Text="ดูข้อมูล">
+                                <HeaderStyle Width="70px" />
+                            </telerik:GridButtonColumn>
+                            <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="selp"
+                                CommandName="selp" Text="เลือก">
+                                <HeaderStyle Width="70px" />
+                            </telerik:GridButtonColumn>
+                            <%-- <telerik:GridButtonColumn ButtonType="LinkButton" UniqueName="r_del" ItemStyle-Width="15%"
+                                   CommandName="r_del" Text="ลบข้อมูลถาวร" ConfirmText="คุณต้องการลบผู้ปฏิบัติการหรือไม่">
+                                   <HeaderStyle Width="70px" />
+                               </telerik:GridButtonColumn>--%>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <%-- <tr>
+            <td>สถานะปัจจุบัน :</td>
+            <td>
+                <asp:Label ID="Label1" runat="server" Text=""></asp:Label></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>--%>
+        <%--  <tr>
+            <td colspan="2">
+                <h2>การขอเปลี่ยนแปลงสถานะผู้มีหน้าที่ปกิบัติการ&nbsp;</h2>
+            </td>
+        </tr>--%>
+        <tr>
+            <td>ชื่อผู้มีหน้าที่ปฏิบัติการ :</td>
+            <td>
+                <asp:Label ID="txt_phr_name" runat="server" Text=""></asp:Label>
+                <asp:Label ID="txt_phr_ida" runat="server" Text="" Visible="false"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>เลือกสถานะ :</td>
+            <td>
+                <asp:DropDownList ID="ddl_phr_status" runat="server">
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>วันที่ :</td>
+            <td>
+                <telerik:RadDatePicker ID="rdk_date_phr" runat="server">
+                </telerik:RadDatePicker>
+            </td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:Button ID="btn_update_s_phr" runat="server" Text="เปลี่ยนสถานะ" CssClass="btn-lg" /></td>
+        </tr>
+    </table>
+    <div class=" modal fade" id="myModal">
+        <div class="panel panel-info" style="width: 100%;">
+            <div class="panel-heading  text-center">
+                <h1>
+                    <asp:Label ID="lbl_title" runat="server" Text=""></asp:Label>
+                </h1>
+            </div>
+            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">ปิดหน้านี้</button>
+            <div class="panel-body">
+                <iframe id="f1" style="width: 100%; height: 550px;"></iframe>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
 </asp:Content>

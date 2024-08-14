@@ -39,7 +39,13 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
             bind_dd_unit_1()
             bind_dd_unit_2()
             bind_dd_unit_3()
-            bind_data()
+            bind_dd_syndrome()
+            Bind_Data()
+
+            UC_TABEAN_JJ_DETAIL_CAS.bind_unit()
+            UC_TABEAN_JJ_DETAIL_CAS.bind_unit4()
+            UC_TABEAN_JJ_DETAIL_CAS.bind_unit_each()
+
             UC_ATTACH1.NAME = name_recipe.Text
             UC_ATTACH1.BindData("", 1, "pdf", "0", "1")
             UC_ATTACH2.NAME = name_production_process.Text
@@ -192,7 +198,15 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
         DD_STORAGE_ID.Items.Insert(0, "-- กรุณาเลือก --")
 
     End Sub
+    Public Sub bind_dd_syndrome()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_TABEAN_HERB_SYNDROME_JJ()
 
+        DD_SYNDROME_ID.DataSource = dt
+        DD_SYNDROME_ID.DataBind()
+        DD_SYNDROME_ID.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
     Public Sub bind_dd_syndrome_detail()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
@@ -206,6 +220,19 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
             End If
         Next
         TXT_SYNDROME_DETAIL.Text = temp
+    End Sub
+    Protected Sub BTN_ADD_SYNDROME_Click(sender As Object, e As EventArgs) Handles BTN_ADD_SYNDROME.Click
+        Dim dao As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_SYNDROME_DETAIL_JJ
+        Dim dao2 As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_SYNDROME_DETAIL_JJ
+        dao2.GetdatabyID_PROCESS(_PROCESS_ID)
+        dao.fields.PROCESS_ID = _PROCESS_ID
+        dao.fields.DD_HERB_NAME_ID = _HERB_ID
+        dao.fields.SYNDROME_ID = DD_SYNDROME_ID.SelectedValue
+        dao.fields.SYNDROME_NAME = DD_SYNDROME_ID.SelectedItem.Text
+        If dao2.fields.SEQ Is Nothing Then dao.fields.SEQ = +1 Else dao.fields.SEQ = dao2.fields.SEQ + 1
+        dao.fields.IS_EXPAND = 1
+        dao.insert()
+        bind_dd_syndrome_detail()
     End Sub
 
     Public Sub bind_data_ddl()
@@ -668,21 +695,31 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
             dao.Update()
 
             Try
-
-                If UC_ATTACH1.CHK_MASTER_FILE_JJ = False Or UC_ATTACH2.CHK_MASTER_FILE_JJ = False Then
-                    alert_nature("กรุณาแนบ เอกสารแนบไฟล์ สูตรและกรรมวิธีการผลิต")
-                ElseIf UC_ATTACH1.CHK_MASTER_FILE_JJ = False And UC_ATTACH2.CHK_MASTER_FILE_JJ = False Then
-                    alert_nature("กรุณาแนบ เอกสารแนบไฟล์ สูตรและกรรมวิธีการผลิต")
+                If chk_file_attach() = True Then
+                    If UC_ATTACH1.CHK_MASTER_FILE_JJ = False Or UC_ATTACH2.CHK_MASTER_FILE_JJ = False Then
+                        alert_nature("กรุณาแนบ เอกสารแนบไฟล์ สูตรและกรรมวิธีการผลิต")
+                    ElseIf UC_ATTACH1.CHK_MASTER_FILE_JJ = False And UC_ATTACH2.CHK_MASTER_FILE_JJ = False Then
+                        alert_nature("กรุณาแนบ เอกสารแนบไฟล์ สูตรและกรรมวิธีการผลิต")
+                    Else
+                        UC_ATTACH1.NAME = name_recipe.Text
+                        UC_ATTACH2.NAME = name_production_process.Text
+                        UC_ATTACH1.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 1)
+                        UC_ATTACH2.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 2)
+                        'chk_file1.Text = UC_ATTACH1.NAME
+                        'chk_file2.Text = UC_ATTACH2.NAME
+                        alert_summit("บันทึกข้อมูลเรีบยร้อย")
+                    End If
                 Else
-                    UC_ATTACH1.NAME = name_recipe.Text
-                    UC_ATTACH2.NAME = name_production_process.Text
-                    UC_ATTACH1.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 1)
-                    UC_ATTACH2.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 2)
-                    'chk_file1.Text = UC_ATTACH1.NAME
-                    'chk_file2.Text = UC_ATTACH2.NAME
+                    If UC_ATTACH1.CHK_MASTER_FILE_JJ = True Or UC_ATTACH2.CHK_MASTER_FILE_JJ = True Then
+                        UC_ATTACH1.NAME = name_recipe.Text
+                        UC_ATTACH2.NAME = name_production_process.Text
+                        UC_ATTACH1.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 1)
+                        UC_ATTACH2.insert_master_flie_jj(_PROCESS_ID, _HERB_ID, 2)
+                    Else
+
+                    End If
                     alert_summit("บันทึกข้อมูลเรีบยร้อย")
                 End If
-
             Catch ex As Exception
 
             End Try
@@ -690,6 +727,17 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
         End If
 
     End Sub
+    Function chk_file_attach()
+        Dim id As Boolean
+        Dim dao As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ
+        dao.GetdatabyID_DD_HERB_NAME_PRODUCT_ID_AND_PROCESS_AND_TYPE(_HERB_ID, _PROCESS_ID, 1)
+        If dao.fields.IDA <> 0 Then
+            id = False
+        Else
+            id = True
+        End If
+        Return id
+    End Function
     Private Sub RG_ATTACH1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RG_ATTACH1.NeedDataSource
         Dim dao As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_RECIPE_PRODUCT_JJ
         'dao.GetdatabyID_DD_HERB_NAME_PRODUCT_ID_AND_PROCESS(_HERB_ID, _PROCESS_ID)
@@ -714,7 +762,7 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
         dao.GetdatabyID_DD_HERB_NAME_PRODUCT_ID_AND_PROCESS_AND_TYPE(_HERB_ID, _PROCESS_ID, 2)
         RG_ATTACH2.DataSource = dao.datas
     End Sub
-    Private Sub RG_ATTACH2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RG_ATTACH1.ItemDataBound
+    Private Sub RG_ATTACH2_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RG_ATTACH2.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
             item = e.Item
@@ -739,7 +787,6 @@ Public Class FRM_HERB_TABEAN_MASTER_JJ_DETAIL
         Dim url As String = ""
         'url = "FRM_HERB_TABEAN_MASTER_JJ.aspx?HERB_ID=" & _HERB_ID & "&PROCESS_ID=" & _PROCESS_ID
         url = "FRM_HERB_TABEAN_MASTER_JJ.aspx"
-        Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+        Response.Write("<script type='text/javascript'>window.parent.alert('" + text + "');parent.close_modal();</script> ")
     End Sub
-
 End Class

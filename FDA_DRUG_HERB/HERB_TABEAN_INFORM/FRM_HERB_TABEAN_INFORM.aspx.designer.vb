@@ -41,13 +41,31 @@ Partial Public Class FRM_HERB_TABEAN_INFORM
     Protected WithEvents DD_HERB As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''TH1 control.
+    '''herb_ya control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TH1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents herb_ya As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''DD_HERB_NAME_PRODUCT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_HERB_NAME_PRODUCT As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DD_HERB_NAME_PRODUCT_HEALTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_HERB_NAME_PRODUCT_HEALTH As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''btn_tb_herb control.

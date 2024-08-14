@@ -96,15 +96,15 @@ Public Class POPUP_HERB_TABEAN_INFORM_CONFIRM
 
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
-        Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_INFORM
-        dao.GetdatabyID_IDA(_IDA)
+        'Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_INFORM
+        'dao.GetdatabyID_IDA(_IDA)
 
-        dao.fields.DATE_CONFIRM = Date.Now
-        dao.fields.STATUS_ID = 2
-        dao.Update()
+        'dao.fields.DATE_CONFIRM = Date.Now
+        'dao.fields.STATUS_ID = 2
+        'dao.Update()
 
-        alert("ยืนคำขอเรียบร้อย")
-
+        'alert("ยืนคำขอเรียบร้อย")
+        Response.Redirect("POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx?IDA=" & _IDA & "&PROCESS_ID=" & _Process_ID & "&IDA_LCN=" & _IDA_LCN)
     End Sub
     Function bind_data_uploadfile()
         Dim dt As DataTable
@@ -118,7 +118,7 @@ Public Class POPUP_HERB_TABEAN_INFORM_CONFIRM
             STATUS_UPLOAD_ID = 0
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function

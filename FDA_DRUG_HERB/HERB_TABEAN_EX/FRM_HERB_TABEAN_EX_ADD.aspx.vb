@@ -141,6 +141,8 @@ Public Class FRM_HERB_TABEAN_EX_ADD
     Public Sub bind_data()
         Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
         dao_lcn.GetDataby_IDA(_IDA_LCN)
+        Dim dao_bsn As New DAO_DRUG.TB_DALCN_LOCATION_BSN
+        dao_bsn.GetDataby_LCN_IDA(_IDA_LCN)
         If dao_lcn.fields.PROCESS_ID = 121 Then
             Panel_cheng_Location3.Style.Add("display", "block")
         End If
@@ -181,7 +183,7 @@ Public Class FRM_HERB_TABEAN_EX_ADD
             End Try
         Next
         'TextBox1.Text = _CLS.THANM
-        TextBox2.Text = dao_lcn.fields.BSN_THAIFULLNAME
+        txt_bsn_name.Text = dao_bsn.fields.BSN_THAIFULLNAME
         'TextBox3.Text = _CLS.THANM
         'TextBox3.Text = sys_p + " " + sys_l + " " + sys_l
         DD_CATEGORY_ID.SelectedValue = PROCESS_ID_LCN
@@ -203,8 +205,11 @@ Public Class FRM_HERB_TABEAN_EX_ADD
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         RunSession()
         If EX_NAME_PRODUCT.Text = "" Or DD_TYPE_PRODUCK.SelectedItem.Text = "" _
-           Or style_color.Text = "" Then ' Or txt_packing_size.Text = ""
+           Or style_color.Text = "" Or txt_quantity_produced.Text = "" Then ' Or txt_packing_size.Text = ""
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากรอกข้อมูลให้ครบ');", True)
+        ElseIf DD_TYPE_PRODUCK.SelectedItem.Text = "-- กรุณาเลือก --" Then
+            label_TYPE_PRODUCK.Visible = True
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณากเลือกรูปแบบผลิตภัณฑ์');", True)
         Else
             'Dim PROCESS_ID As String = 200001
 
@@ -284,12 +289,12 @@ Public Class FRM_HERB_TABEAN_EX_ADD
             dao_up_mas.GetdatabyID_TYPE(17)
             For Each dao_up_mas.fields In dao_up_mas.datas
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.TR_ID = TR_ID
                 dao_up.fields.PROCESS_ID = _PROCESS_ID
                 dao_up.fields.FK_IDA_LCN = _IDA_LCN
                 dao_up.fields.FK_IDA = _IDA_EX
-                dao_up.fields.TYPE = 17
+                dao_up.fields.TYPE = 1
                 dao_up.insert()
             Next
             alert_summit("บันทึกข้อมูล และ อัพโหลดเอกสารเรียบร้อย")

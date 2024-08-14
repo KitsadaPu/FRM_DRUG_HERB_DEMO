@@ -53,7 +53,15 @@ Namespace BAO_TABEAN_HERB
 
             Return dt
         End Function
+        Public Function SP_TABEAN_EXHIBITION_PACKING_SIZE_BY_FK_IDA(ByVal FK_IDA As String) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
 
+            qstr = "exec SP_TABEAN_EXHIBITION_PACKING_SIZE_BY_FK_IDA @FK_IDA=" & FK_IDA
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
         Public Function SP_MAS_STAFF_NAME_HERB() As DataTable
             Dim dt As New DataTable
             Dim qstr As String = ""
@@ -193,6 +201,16 @@ Namespace BAO_TABEAN_HERB
 
             Return dt
         End Function
+        Public Function SP_GetMas_SSID_Ex(ByVal SSID As String)
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+            Dim clsds As New ClassDataset
+
+            qstr = "select * from dbo.View_Mas_Status_Ex WHERE STATUS_ID in(" & SSID & ") Order by SEQ ASC"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
         Public Function SP_DD_DISCOUNT_TABEAN() As DataTable
             Dim dt As New DataTable
             Dim qstr As String = ""
@@ -323,6 +341,15 @@ Namespace BAO_TABEAN_HERB
             Dim qstr As String = ""
 
             qstr = "exec SP_MAS_TABEAN_HERB_SYNDROME_DETAIL_JJ @DD_HERB_NAME_ID=" & DD_HERB_NAME_ID & ",@PROCESS_ID=" & P_ID
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+        Public Function SP_MAS_TABEAN_HERB_SYNDROME_JJ() As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_MAS_TABEAN_HERB_SYNDROME_JJ"
             dt = Queryds(qstr)
 
             Return dt
@@ -661,6 +688,24 @@ Namespace BAO_TABEAN_HERB
 
             Return dt
         End Function
+        Public Function SP_TABEAN_JR_CAS(ByVal FK_IDA As String) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_TABEAN_JR_CAS @FK_IDA='" & FK_IDA & "'"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+        Public Function SP_XML_TABEAN_JR_DETAIL(ByVal FK_IDA As String) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_XML_TABEAN_JR_DETAIL @FK_IDA='" & FK_IDA & "'"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
         Public Function SP_DALCN_PHR_CUSTOMER_ADDR(ByVal FK_IDA As String) As DataTable
             Dim dt As New DataTable
             Dim qstr As String = ""
@@ -675,6 +720,15 @@ Namespace BAO_TABEAN_HERB
             Dim qstr As String = ""
 
             qstr = "exec SP_DALCN_PHR_BY_IDENTIFY @PHR_CTZNO='" & Identify & "'"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+        Public Function SP_PHR_LOCATION_BY_PHR_IDA(ByVal IDA As String) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_PHR_LOCATION_BY_PHR_IDA @PHR_IDA='" & IDA & "'"
             dt = Queryds(qstr)
 
             Return dt
@@ -1101,11 +1155,11 @@ Namespace BAO_TABEAN_HERB
         '    Return dt
         'End Function
 
-        Public Function SP_TABEAN_HERB_UPLOAD_FILE_JJ(ByVal TR_ID_JJ As Integer, ByVal TYPE_ID As Integer, ByVal P_ID As Integer) As DataTable
+        Public Function SP_TABEAN_HERB_UPLOAD_FILE_JJ(ByVal TR_ID_JJ As Integer, ByVal TYPE_ID As Integer, ByVal P_ID As Integer, ByVal FK_IDA As Integer) As DataTable
             Dim dt As New DataTable
             Dim qstr As String = ""
 
-            qstr = "exec SP_TABEAN_HERB_UPLOAD_FILE_JJ @TR_ID_JJ=" & TR_ID_JJ & ",@TYPE_ID= '" & TYPE_ID & "',@PROCESS_ID= '" & P_ID & "'"
+            qstr = "exec SP_TABEAN_HERB_UPLOAD_FILE_JJ @TR_ID_JJ=" & TR_ID_JJ & ",@TYPE_ID= '" & TYPE_ID & "',@PROCESS_ID= '" & P_ID & "'" & ",@FK_IDA=" & FK_IDA
             dt = Queryds(qstr)
 
             Return dt

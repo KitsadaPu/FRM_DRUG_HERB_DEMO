@@ -244,7 +244,7 @@ Public Class FRM_HERB_PRODUCT_NOTIFIED_STAFF_CONFIRM
             STATUS_FILE_UPLOAD = dao.fields.STATUS_FILE_UPLOAD
         End If
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_FILE_UPLOAD, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, STATUS_FILE_UPLOAD, _Process_ID, _IDA)
 
         Return dt
     End Function
@@ -265,7 +265,7 @@ Public Class FRM_HERB_PRODUCT_NOTIFIED_STAFF_CONFIRM
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID, _IDA)
 
         Return dt
     End Function

@@ -146,7 +146,7 @@
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                     dao_up.fields.FK_IDA = _IDA
                     dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.Condition = dao_up_mas.fields.Condition
                     dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                     dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -164,7 +164,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -181,7 +181,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -199,7 +199,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -217,7 +217,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -235,7 +235,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -253,7 +253,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -271,7 +271,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -289,7 +289,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -307,7 +307,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -325,7 +325,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -343,7 +343,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -361,7 +361,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -379,7 +379,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -397,7 +397,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -415,7 +415,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -433,7 +433,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -450,7 +450,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -468,7 +468,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -486,7 +486,7 @@
                 Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_FILE
                 dao_up.fields.FK_IDA = _IDA
                 dao_up.fields.TYPE_ID = dao_up_mas.fields.TYPE_ID
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                 dao_up.fields.Condition = dao_up_mas.fields.Condition
                 dao_up.fields.IDcondition = dao_up_mas.fields.IDcondition
                 dao_up.fields.REMARK = dao_up_mas.fields.REMARK
@@ -502,7 +502,7 @@
         DT_MASUP = bao.SP_MAS_TABEAN_HERB_EDIT_UPLOADFILE(_IDA)
         For Each DR As DataRow In DT_MASUP.Rows
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = DR("DUCUMENT_NAME")
+            dao_up.fields.DOCUMENT_NAME = DR("DOCUMENT_NAME")
             dao_up.fields.TR_ID = TR_ID
             dao_up.fields.FK_IDA = _IDA
             dao_up.fields.PROCESS_ID = _Process_ID

@@ -337,8 +337,15 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_APPROVE
         Dim dao As New DAO_DRUG.ClsDBdrsamp
         dao.GetDataby_IDA(_IDA)
         Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim Chk_edit As String = dao.fields.staff_edit_time
+        Dim Type_ID As Integer = 0
+        If Chk_edit = "แก้ไขครั้งที่ 1" Then
+            Type_ID = 3
+        ElseIf Chk_edit = "แก้ไขครั้งที่ 2" Then
+            Type_ID = 4
+        End If
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 17, dao.fields.process_id)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, Type_ID, dao.fields.process_id)
 
         Return dt
     End Function

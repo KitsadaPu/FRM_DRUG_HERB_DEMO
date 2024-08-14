@@ -58,6 +58,7 @@
             </div>
         </div>
         <div class="col-lg-4" style="width: 30%">
+            <hr />
             <div class="row" runat="server" id="KEEP_PAY" visible="true">
                 <div class="row">
                     <div class="col-lg-1"></div>
@@ -68,8 +69,8 @@
                     <div class="col-lg-1"></div>
                 </div>
                 <div runat="server" id="Div_Process" visible="false">
+                    <hr />
                     <div class="row">
-
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
                             ประเภทการขออนุญาตแก้ไขเปลี่ยนแปลงทะเบียน:
@@ -84,7 +85,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
@@ -97,7 +98,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
@@ -110,6 +111,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">จำนวนเงิน</div>
@@ -130,7 +132,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">วันที่ตรวจรับคำขอ</div>
@@ -139,13 +141,23 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">จนท. ที่รับผิดชอบ</div>
                         <div class="col-lg-6">
                             <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
-                               <telerik:RadComboBox ID="DD_OFF_REQ" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                            <telerik:RadComboBox ID="DD_OFF_REQ" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
                             <%--<asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>--%>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <hr />
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">หมายเหตุ</div>
+                        <div class="col-lg-6">
+                            <asp:TextBox ID="txt_remark_edit" TextMode="MultiLine" ReadOnly="true" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -158,6 +170,26 @@
                     </div>--%>
                     <div class="col-lg-8" style="text-align: left">
                         <uc1:UC_ATTACH ID="UC_ATTACH2" runat="server" />
+                    </div>
+                </div>
+
+                <div class="row" runat="server" id="D_SLCN" visible="false">
+                    <h3 style="color:red">*เฉพาะกรณีที่ต้องปรับชนิดผลิตภัณฑ์และช่องทางการจำหน่าย</h3>
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">ชนิดยา (Category by legislation class)</div>
+                        <div class="col-lg-6">
+                            <telerik:RadComboBox ID="DDL_Kindnm" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">ช่องทางการจำหน่าย</div>
+                        <div class="col-lg-6">
+                            <telerik:RadComboBox ID="DDL_SLCHN" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                        </div>
+                        <div class="col-lg-1"></div>
                     </div>
                 </div>
             </div>
@@ -186,6 +218,7 @@
                     </div>
                 </div>
             </div>
+            <hr />
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
@@ -194,7 +227,7 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-              <div class="row" runat="server" id="div_btn_cancel" style="text-align: center">
+            <div class="row" runat="server" id="div_btn_cancel" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
                     <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิกคำขอ" CssClass="btn-lg" Width="80%" />
@@ -244,8 +277,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -299,8 +332,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -348,7 +381,7 @@
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn AllowFiltering="true" DataField="FK_IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column" HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
                                     </telerik:GridBoundColumn>

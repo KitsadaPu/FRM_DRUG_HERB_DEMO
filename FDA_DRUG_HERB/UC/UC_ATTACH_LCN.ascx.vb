@@ -188,10 +188,11 @@
             dao.fields.NAME_REAL = NAME_REAL 'เก็บชื่อไฟล์ที่เบราไว้เก็บเผื่อไว้เฉยๆ
             dao.fields.TYPE = type 'ลำดับไฟล์เก็บไว้เรียกข้อมูล
             dao.fields.TR_ID = transection 'เลขอ้างอิงPDFเก็บไว้เรียกข้อมูล
-            dao.fields.DUCUMENT_NAME = "เอกสารแนบประกอบการแก้ไข"
+            dao.fields.DOCUMENT_NAME = "เอกสารแนบประกอบการแก้ไข"
             dao.fields.PROCESS_ID = PROCESS_ID
             dao.fields.FK_IDA = IDA
             dao.fields.CREATE_DATE = Date.Now
+            dao.fields.FilePath = path & "FILE_UPLOAD\" & NAME_FAKE
             dao.insert()
         End If
 
@@ -213,7 +214,7 @@
             dao.fields.NAME_REAL = NAME_REAL 'เก็บชื่อไฟล์ที่เบราไว้เก็บเผื่อไว้เฉยๆ
             dao.fields.TYPE = type 'ลำดับไฟล์เก็บไว้เรียกข้อมูล
             dao.fields.TR_ID = transection 'เลขอ้างอิงPDFเก็บไว้เรียกข้อมูล
-            dao.fields.DUCUMENT_NAME = "เอกสารแนบประกอบการแก้ไข"
+            dao.fields.DOCUMENT_NAME = "เอกสารแนบประกอบการแก้ไข"
             dao.fields.PROCESS_ID = PROCESS_ID
             dao.fields.FK_IDA_LCN = LCN_IDA
             dao.fields.CREATE_DATE = Date.Now

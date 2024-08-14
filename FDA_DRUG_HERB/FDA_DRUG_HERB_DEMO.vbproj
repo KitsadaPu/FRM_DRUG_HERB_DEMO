@@ -78,6 +78,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="QRCoder, Version=1.2.8.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\QRCoder.dll</HintPath>
@@ -95,6 +98,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http">
       <HintPath>D:\BackupFile\System.Web.Http.dll</HintPath>
     </Reference>
@@ -102,6 +108,22 @@
       <HintPath>D:\BackupFile\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PDF\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -109,10 +131,6 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
@@ -678,17 +696,26 @@
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_ADD2_DETAIL.aspx" />
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_CENCEL.aspx" />
     <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_CONFIRM_DETAIL.aspx" />
+    <Content Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_EQTO.aspx" />
     <Content Include="HERB_TABEAN\UC\UC_TABEAN_JJ_DETAIL_CAS.ascx" />
+    <Content Include="HERB_TABEAN\UC\UC_TABEAN_JJ_EQTO.ascx" />
     <Content Include="HERB_TABEAN_ANALYZE\POPUP_TABEAN_HERB_ANALYZE_EDIT_REQUEST.aspx" />
     <Content Include="HERB_TABEAN_ANALYZE_STAFF\POPUP_TABEAN_HERB_ANALYZE_STAFF_EDIT.aspx" />
     <Content Include="HERB_TABEAN_DONATE\POPUP_TABEAN_HERB_DONATE_EDIT_REQUEST.aspx" />
     <Content Include="HERB_TABEAN_DONATE_STAFF\POPUP_TABEAN_HERB_DONATE_STAFF_EDIT.aspx" />
+    <Content Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_EXH_EQTO.aspx" />
+    <Content Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_HERB_EXHIBITION_APM.aspx" />
+    <Content Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx" />
     <Content Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_EDIT_REQUEST.aspx" />
+    <Content Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_DETAIL_CAS.ascx" />
+    <Content Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_EQTO.ascx" />
     <Content Include="HERB_TABEAN_EXHIBITION_STAFF\POPUP_TABEAN_HERB_EXHIBITION_STAFF_EDIT.aspx" />
     <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_APPOINMENT.aspx" />
     <Content Include="HERB_TABEAN_EX\FRM_HERB_TABEAN_EX_CONFIRM_DETAIL.aspx" />
+    <Content Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx" />
     <Content Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_PREVIEW.aspx" />
     <Content Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_SELECT_LCN.aspx" />
+    <Content Include="HERB_TABEAN_INFORM\POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx" />
     <Content Include="HERB_TABEAN_INFORM\POPUP_HERB_TABEAN_INFORM_EDIT_REQUEST.aspx" />
     <Content Include="HERB_TABEAN_INFORM_EDIT\FRM_HERB_TABEAN_INFORM_EDIT_MAIN.aspx" />
     <Content Include="HERB_TABEAN_INFORM_EDIT\FRM_HERB_TABEAN_INFORM_EDIT_PREVIEW.aspx" />
@@ -698,10 +725,13 @@
     <Content Include="HERB_TABEAN_INFORM_EDIT\UC\UC_INFORM_DEDAIL.ascx" />
     <Content Include="HERB_TABEAN_INFORM_EDIT\UC\UC_INFORM_DEDAIL2.ascx" />
     <Content Include="HERB_TABEAN_INFORM_EDIT_STAFF\POPUP_HERB_TABEAN_INFORM_EDIT_STAFF_EDIT.aspx" />
+    <Content Include="HERB_TABEAN_INFORM_STAFF\FRM_HERB_TABEAN_INFORM_PREVIEW_STAFF.aspx" />
     <Content Include="HERB_TABEAN_INFORM_STAFF\POPUP_HERB_TABEAN_INFORM_STAFF_EDIT.aspx" />
     <Content Include="HERB_TABEAN_JJ_EDIT\FRM_HERB_TABEAN_JJ_EDIT_APPOINMENT.aspx" />
     <Content Include="HERB_TABEAN_JJ_EDIT\FRM_HERB_TABEAN_JJ_EDIT_COMFIRM_DETAIL.aspx" />
     <Content Include="HERB_TABEAN_JJ_EDIT\FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD.aspx" />
+    <Content Include="HERB_TABEAN_JJ_EDIT\POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx" />
+    <Content Include="HERB_TABEAN_JJ_EDIT\UC\UC_EDIT_FILE_UPLOAD_JJ.ascx" />
     <Content Include="HERB_TABEAN_JJ_EDIT_STAFF\FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT.aspx" />
     <Content Include="HERB_TABEAN_JJ_EDIT_STAFF\FRM_HERB_TABEAN_JJ_EDIT_STAFF_INTAKE.aspx" />
     <Content Include="HERB_TABEAN_NEW\FRM_HERB_TABEAN_CANCEL.aspx" />
@@ -978,14 +1008,38 @@
     <Content Include="HERB_WHOEVER\FRM_HERB_WHO_STAFF_ADD_DETAIL.aspx" />
     <Content Include="Images\cancel.png" />
     <Content Include="Images\correct.png" />
+    <Content Include="Images\gmail_new_logo_icon%281%29.png" />
+    <Content Include="Images\gmail_new_logo_icon.png" />
+    <Content Include="Images\microsoft_office_outlook_logo_icon %281%29.png" />
+    <Content Include="Images\microsoft_office_outlook_logo_icon.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\yahoo.png" />
+    <Content Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx" />
+    <Content Include="LCN\FRM_LCN_CONFIRM_DRUG.aspx" />
+    <Content Include="LCN\FRM_LCN_CONFIRM_NCT.aspx" />
+    <Content Include="LCN\FRM_LCN_DRUG.aspx" />
     <Content Include="LCN\FRM_LCN_DRUG_APPOIMENT.aspx" />
     <Content Include="LCN\FRM_LCN_DRUG_HERB_CANCEL.aspx" />
+    <Content Include="LCN\FRM_LCN_NCT.aspx" />
+    <Content Include="LCN\FRM_LCN_NCT_SEARCH.aspx" />
+    <Content Include="LCN\FRM_LCN_NCT_TEMP_MAIN.aspx" />
     <Content Include="LCN\Images\cancel.png" />
     <Content Include="LCN\Images\correct.png" />
     <Content Include="LCN\POPUP_LCN_ADD.aspx" />
+    <Content Include="LCN\POPUP_LCN_DOWNLOAD_DRUG.aspx" />
     <Content Include="LCN\POPUP_LCN_DRUG_GROUP_HERB.aspx" />
     <Content Include="LCN\POPUP_LCN_EDIT.aspx" />
     <Content Include="LCN\POPUP_LCN_EDIT_UPLOAD.aspx" />
+    <Content Include="LCN\POPUP_LCN_NCT_TEMP_CONFIRM.aspx" />
+    <Content Include="LCN\POPUP_LCN_NCT_TEMP_INSERT.aspx" />
+    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP.aspx" />
+    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP2.aspx" />
+    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP_HEAD.aspx" />
+    <Content Include="LCN\POPUP_LCN_SELL_TYPE.aspx" />
+    <Content Include="LCN\POPUP_LCN_UPLOAD_ATTACH.aspx" />
+    <Content Include="LCN\POPUP_LCN_UPLOAD_ATTACH_SELECT.aspx" />
+    <Content Include="LCN\POPUP_LCN_UPLOAD_DRUG.aspx" />
+    <Content Include="LCN\POPUP_LCN_UPLOAD_NCT.aspx" />
     <Content Include="LCN\POPUP_PREVIEW_UPLOAD.aspx" />
     <Content Include="LCN\UC\UC_CONFIRM_REPRESENT.ascx" />
     <Content Include="LCN\UC\UC_CONFIRM_REQUEST.ascx" />
@@ -1036,11 +1090,13 @@
     <Content Include="LCN_EDIT\POPUP_LCN_EDIT.aspx" />
     <Content Include="LCN_EDIT\POPUP_LCN_EDIT_CONFIRM.aspx" />
     <Content Include="LCN_EDIT\POPUP_LCN_EDIT_CONFIRM_DETAIL.aspx" />
+    <Content Include="LCN_EDIT\POPUP_LCN_EDIT_UPLOAD.aspx" />
     <Content Include="LCN_EDIT\UC\UC_LCN_EDIT.ascx" />
     <Content Include="LCN_EDIT\UC\UC_LCN_EDIT_TABLE_DRUG_GROUP_CHANGE_HERB.ascx" />
     <Content Include="LCN_EDIT\UC\UC_LCN_EDIT_TOPIC_1.ascx" />
     <Content Include="LCN_EDIT\UC\UC_LCN_EDIT_TOPIC_2.ascx" />
     <Content Include="LCN_EDIT\UC\UC_LCN_EDIT_TOPIC_3.ascx" />
+    <Content Include="LCN_EDIT\UC\UC_LCN_EDIT_UPLOAD.ascx" />
     <Content Include="LCN_EDIT_STAFF\FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL.aspx" />
     <Content Include="LCN_EDIT_STAFF\FRM_LCN_EDIT_STAFF_APPROVE.aspx" />
     <Content Include="LCN_EDIT_STAFF\FRM_LCN_EDIT_STAFF_CHEAK_PAPER.aspx" />
@@ -1063,22 +1119,83 @@
     <Content Include="LCN_PHR\UC\UC_PHR_UPLOAD_FILE.ascx" />
     <Content Include="LCN_PHR_STAFF\POPUP_PHR_HERB_STAFF_EDIT.aspx" />
     <Content Include="LCN_RENEW\FRM_HERB_LCN_RENEW.aspx" />
+    <Content Include="LCN_RENEW\FRM_HERB_LCN_RENEW_CHECK.aspx" />
+    <Content Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PHR_PREVIEW.aspx" />
     <Content Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PREVIEW.aspx" />
+    <Content Include="LCN_RENEW\POP_UP_LCN_PREVIEW_SMP4.aspx" />
+    <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK.aspx" />
+    <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT.aspx" />
+    <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT_FILE.aspx" />
+    <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_UPLOAD.aspx" />
     <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_EDIT_REQUEST.aspx" />
     <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_UPLOAD_FILE.aspx" />
+    <Content Include="LCN_RENEW\UC_RENEW\UC_LCN_DRUG_GROUP.ascx" />
+    <Content Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_CHECK_STAFF.aspx" />
+    <Content Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_PREVIEW_STAFF.aspx" />
     <Content Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_STAFF.aspx" />
     <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_ADD.aspx" />
     <Content Include="LCN_RENEW\POP_UP_LCN_RENEW_CONFIRM.aspx" />
+    <Content Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF.aspx" />
+    <Content Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx" />
+    <Content Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx" />
     <Content Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CONFIRM_STAFF.aspx" />
     <Content Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_STAFF_EDIT.aspx" />
+    <Content Include="LCN_RENEW_STAFF\UC\UC_HERB_PRE.ascx" />
+    <Content Include="LCN_RENEW_STAFF\UC\UC_HERB_BSN_PRE.ascx" />
+    <Content Include="LCN_RENEW_STAFF\UC\UC_HERB_KEEP_PRE.ascx" />
+    <Content Include="LCN_RENEW_STAFF\UC\UC_HERB_PHESAJ_PRE.ascx" />
+    <Content Include="LCN_RENEW_STAFF\UC\uc_rnp_general_data.ascx" />
     <Content Include="LCN_STAFF\FDA_STAFF_LCN_EDIT.aspx" />
-    <Content Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx" />
+    <Content Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_DRUG.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx" />
     <Content Include="LCN_STAFF\FRM_LCN_STAFF_HERB_CANCEL.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx" />
+    <Content Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx" />
     <Content Include="LCN_STAFF\FRM_LCN_UPDATE_STATUS.aspx" />
     <Content Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx" />
+    <Content Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_EDIT.aspx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_REVIEW.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx" />
     <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_2.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_OFFER.aspx" />
+    <Content Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx" />
+    <Content Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx" />
+    <Content Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx" />
+    <Content Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx" />
+    <Content Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx" />
+    <Content Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx" />
+    <Content Include="LCN_STAFF\POPUP_LCN_UPLOAD_STAFF.ascx" />
+    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx" />
+    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx" />
+    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx" />
+    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx" />
+    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx" />
+    <Content Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx" />
+    <Content Include="LCN_STAFF\UC\UC_LCN_HERB.ascx" />
+    <Content Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx" />
     <Content Include="LCN_STAFF\UC\UC_LCN_UPLOAD_FILE_STAFF.ascx" />
     <Content Include="LCN_SUBSTITUTE\FRM_LCN_SUBSTITUTE_PREVIEW.aspx" />
     <Content Include="LCN_SUBSTITUTE\POPUP_SUBSTITUTE_CONFIRM_DETAIL.aspx" />
@@ -1108,22 +1225,6 @@
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery.searchabledropdown-1.0.7.min.js" />
     <Content Include="SOMORPO4_STAFF\FRM_SOMORPO4_MAIN.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx" />
-    <Content Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx" />
-    <Content Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx" />
-    <Content Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx" />
-    <Content Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx" />
-    <Content Include="LCN_STAFF\UC\UC_LCN_HERB.ascx" />
-    <Content Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx" />
-    <Content Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx" />
     <Content Include="LCN_SUBSTITUTE\FRM_LCN_SEACH_SUBTITUTE.aspx" />
     <Content Include="LCN_SUBSTITUTE\FRM_LCN_SUBSTITUTE_MAIN.aspx" />
     <Content Include="LCN_SUBSTITUTE\FRM_LCN_SUBTITUTE_UPLOAD.aspx" />
@@ -1139,9 +1240,6 @@
     <Content Include="LCN_TRANSFER\POPUP_LCN_TRANSFER.aspx" />
     <Content Include="MAIN\LIST_LCN_REPRESENT.aspx" />
     <Content Include="MAIN\LIST_LCN_REQUEST.aspx" />
-    <Content Include="MAIN\POPUP_CONFIRM_LCN_REPRESENT.aspx" />
-    <Content Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx" />
-    <Content Include="MAIN\POPUP_LCN_REPRESENT.aspx" />
     <Content Include="MAIN\POPUP_LCN_REQUEST_EDIT.aspx" />
     <Content Include="MAIN\SELECT_LICENSE.aspx" />
     <Content Include="MAIN\UC\UC_HERB_EDIT.ascx" />
@@ -1312,9 +1410,13 @@
     <Content Include="MasterPage\MAIN_STAFF_REPORT.Master" />
     <Content Include="MasterPage\MAIN_REPORT_SUB.Master" />
     <Content Include="MasterPage\MAIN_NOTIFIED_STAFF.Master" />
+    <Content Include="MasterPage\MAIN_HERB_CUSTOMER.Master" />
     <None Include="Web References\AUTHENTICATION_104\Authentication.disco" />
     <None Include="Web References\Authentication_66\Authentication.disco" />
     <None Include="Web References\FDA_MAIL1\FDA_MAIL.wsdl" />
+    <Content Include="Video\SEARCH_EX.mp4" />
+    <Content Include="Video\SEARCH_EX720.mp4" />
+    <Content Include="Video\SEARCH_EX1080.mp4" />
     <Content Include="Web References\FDA_MAIL1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
@@ -2217,56 +2319,12 @@
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\owl.carousel.min.js" />
     <Content Include="js\waypoints.min.js" />
-    <Content Include="LCN\FRM_LCN_CONFIRM_DRUG.aspx" />
-    <Content Include="LCN\FRM_LCN_CONFIRM_NCT.aspx" />
-    <Content Include="LCN\FRM_LCN_DRUG.aspx" />
-    <Content Include="LCN\FRM_LCN_NCT.aspx" />
-    <Content Include="LCN\FRM_LCN_NCT_SEARCH.aspx" />
-    <Content Include="LCN\FRM_LCN_NCT_TEMP_MAIN.aspx" />
-    <Content Include="LCN\POPUP_LCN_DOWNLOAD_DRUG.aspx" />
-    <Content Include="LCN\POPUP_LCN_NCT_TEMP_CONFIRM.aspx" />
-    <Content Include="LCN\POPUP_LCN_NCT_TEMP_INSERT.aspx" />
-    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP.aspx" />
-    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP2.aspx" />
-    <Content Include="LCN\POPUP_LCN_PRODUCTION_DRUG_GROUP_HEAD.aspx" />
-    <Content Include="LCN\POPUP_LCN_SELL_TYPE.aspx" />
-    <Content Include="LCN\POPUP_LCN_UPLOAD_ATTACH.aspx" />
-    <Content Include="LCN\POPUP_LCN_UPLOAD_ATTACH_SELECT.aspx" />
-    <Content Include="LCN\POPUP_LCN_UPLOAD_DRUG.aspx" />
-    <Content Include="LCN\POPUP_LCN_UPLOAD_NCT.aspx" />
     <Content Include="LCN_IMPORT\FRM_LCN_IMPORT_CONFIRM_DRUG.aspx" />
     <Content Include="LCN_IMPORT\FRM_LCN_IMPORT_DRUG.aspx" />
     <Content Include="LCN_IMPORT\POPUP_LCN_IMPORT_UPLOAD_ATTACH.aspx" />
     <Content Include="LCN_IMPORT_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW_STAFF.aspx" />
     <Content Include="LCN_IMPORT_STAFF\FRM_LCN_STAFF_DRUG.aspx" />
     <Content Include="LCN_IMPORT_STAFF\FRM_LCN_STAFF_IMPORT_CONFIRM.aspx" />
-    <Content Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_DRUG.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx" />
-    <Content Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx" />
-    <Content Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_OFFER.aspx" />
-    <Content Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx" />
-    <Content Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx" />
-    <Content Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx" />
     <Content Include="LOCATION\FRM_LCN_LCT.aspx" />
     <Content Include="LOCATION\POPUP_LCN_LCT_CONFIRM.aspx" />
     <Content Include="LOCATION\POPUP_LCN_LCT_HOSPITAL.aspx" />
@@ -5574,11 +5632,25 @@
       <DependentUpon>FRM_HERB_TABEAN_JJ_CONFIRM_DETAIL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_EQTO.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_JJ_EQTO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN\FRM_HERB_TABEAN_JJ_EQTO.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_JJ_EQTO.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="HERB_TABEAN\UC\UC_TABEAN_JJ_DETAIL_CAS.ascx.designer.vb">
       <DependentUpon>UC_TABEAN_JJ_DETAIL_CAS.ascx</DependentUpon>
     </Compile>
     <Compile Include="HERB_TABEAN\UC\UC_TABEAN_JJ_DETAIL_CAS.ascx.vb">
       <DependentUpon>UC_TABEAN_JJ_DETAIL_CAS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN\UC\UC_TABEAN_JJ_EQTO.ascx.designer.vb">
+      <DependentUpon>UC_TABEAN_JJ_EQTO.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN\UC\UC_TABEAN_JJ_EQTO.ascx.vb">
+      <DependentUpon>UC_TABEAN_JJ_EQTO.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HERB_TABEAN_ANALYZE\POPUP_TABEAN_HERB_ANALYZE_EDIT_REQUEST.aspx.designer.vb">
@@ -5609,11 +5681,46 @@
       <DependentUpon>POPUP_TABEAN_HERB_DONATE_STAFF_EDIT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_EXH_EQTO.aspx.designer.vb">
+      <DependentUpon>FRM_TABEAN_EXH_EQTO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_EXH_EQTO.aspx.vb">
+      <DependentUpon>FRM_TABEAN_EXH_EQTO.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_HERB_EXHIBITION_APM.aspx.designer.vb">
+      <DependentUpon>FRM_TABEAN_HERB_EXHIBITION_APM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\FRM_TABEAN_HERB_EXHIBITION_APM.aspx.vb">
+      <DependentUpon>FRM_TABEAN_HERB_EXHIBITION_APM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx.designer.vb">
+      <DependentUpon>POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx.vb">
+      <DependentUpon>POPUP_TABEAN_HERB_EXHIBITION_CONFIRM_DETAIL.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_EDIT_REQUEST.aspx.designer.vb">
       <DependentUpon>POPUP_TABEAN_HERB_EXHIBITION_EDIT_REQUEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="HERB_TABEAN_EXHIBITION\POPUP_TABEAN_HERB_EXHIBITION_EDIT_REQUEST.aspx.vb">
       <DependentUpon>POPUP_TABEAN_HERB_EXHIBITION_EDIT_REQUEST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_DETAIL_CAS.ascx.designer.vb">
+      <DependentUpon>UC_EXH_DETAIL_CAS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_DETAIL_CAS.ascx.vb">
+      <DependentUpon>UC_EXH_DETAIL_CAS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_EQTO.ascx.designer.vb">
+      <DependentUpon>UC_EXH_EQTO.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_EXHIBITION\UC\UC_EXH_EQTO.ascx.vb">
+      <DependentUpon>UC_EXH_EQTO.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HERB_TABEAN_EXHIBITION_STAFF\POPUP_TABEAN_HERB_EXHIBITION_STAFF_EDIT.aspx.designer.vb">
@@ -5637,6 +5744,13 @@
       <DependentUpon>FRM_HERB_TABEAN_EX_CONFIRM_DETAIL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_INFORM_APPOINMENT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_PREVIEW.aspx.designer.vb">
       <DependentUpon>FRM_HERB_TABEAN_INFORM_PREVIEW.aspx</DependentUpon>
     </Compile>
@@ -5650,6 +5764,13 @@
     <Compile Include="HERB_TABEAN_INFORM\FRM_HERB_TABEAN_INFORM_SELECT_LCN.aspx.vb">
       <DependentUpon>FRM_HERB_TABEAN_INFORM_SELECT_LCN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_INFORM\POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx.designer.vb">
+      <DependentUpon>POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_INFORM\POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx.vb">
+      <DependentUpon>POPUP_HERB_TABEAN_INFORM_CONFIRM_DETAIL.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="HERB_TABEAN_INFORM\POPUP_HERB_TABEAN_INFORM_EDIT_REQUEST.aspx.designer.vb">
       <DependentUpon>POPUP_HERB_TABEAN_INFORM_EDIT_REQUEST.aspx</DependentUpon>
@@ -5714,6 +5835,13 @@
       <DependentUpon>POPUP_HERB_TABEAN_INFORM_EDIT_STAFF_EDIT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="HERB_TABEAN_INFORM_STAFF\FRM_HERB_TABEAN_INFORM_PREVIEW_STAFF.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_TABEAN_INFORM_PREVIEW_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_INFORM_STAFF\FRM_HERB_TABEAN_INFORM_PREVIEW_STAFF.aspx.vb">
+      <DependentUpon>FRM_HERB_TABEAN_INFORM_PREVIEW_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="HERB_TABEAN_INFORM_STAFF\POPUP_HERB_TABEAN_INFORM_STAFF_EDIT.aspx.designer.vb">
       <DependentUpon>POPUP_HERB_TABEAN_INFORM_STAFF_EDIT.aspx</DependentUpon>
     </Compile>
@@ -5740,6 +5868,20 @@
     </Compile>
     <Compile Include="HERB_TABEAN_JJ_EDIT\FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD.aspx.vb">
       <DependentUpon>FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_JJ_EDIT\POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx.designer.vb">
+      <DependentUpon>POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_JJ_EDIT\POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx.vb">
+      <DependentUpon>POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="HERB_TABEAN_JJ_EDIT\UC\UC_EDIT_FILE_UPLOAD_JJ.ascx.designer.vb">
+      <DependentUpon>UC_EDIT_FILE_UPLOAD_JJ.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HERB_TABEAN_JJ_EDIT\UC\UC_EDIT_FILE_UPLOAD_JJ.ascx.vb">
+      <DependentUpon>UC_EDIT_FILE_UPLOAD_JJ.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HERB_TABEAN_JJ_EDIT_STAFF\FRM_HERB_TABEAN_JJ_EDIT_STAFF_EDIT.aspx.designer.vb">
@@ -7660,6 +7802,13 @@
       <DependentUpon>FRM_HERB_WHO_STAFF_ADD_DETAIL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_CONFIRM_DETAIL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx.vb">
+      <DependentUpon>FRM_LCN_CONFIRM_DETAIL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="LCN\FRM_LCN_CONFIRM_DRUG.aspx.designer.vb">
       <DependentUpon>FRM_LCN_CONFIRM_DRUG.aspx</DependentUpon>
     </Compile>
@@ -8171,6 +8320,13 @@
       <DependentUpon>POPUP_LCN_EDIT_CONFIRM_DETAIL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_EDIT\POPUP_LCN_EDIT_UPLOAD.aspx.designer.vb">
+      <DependentUpon>POPUP_LCN_EDIT_UPLOAD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_EDIT\POPUP_LCN_EDIT_UPLOAD.aspx.vb">
+      <DependentUpon>POPUP_LCN_EDIT_UPLOAD.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="LCN_EDIT\UC\UC_LCN_EDIT.ascx.designer.vb">
       <DependentUpon>UC_LCN_EDIT.ascx</DependentUpon>
     </Compile>
@@ -8204,6 +8360,13 @@
     </Compile>
     <Compile Include="LCN_EDIT\UC\UC_LCN_EDIT_TOPIC_3.ascx.vb">
       <DependentUpon>UC_LCN_EDIT_TOPIC_3.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_EDIT\UC\UC_LCN_EDIT_UPLOAD.ascx.designer.vb">
+      <DependentUpon>UC_LCN_EDIT_UPLOAD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_EDIT\UC\UC_LCN_EDIT_UPLOAD.ascx.vb">
+      <DependentUpon>UC_LCN_EDIT_UPLOAD.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_EDIT_STAFF\FRM_LCN_EDIT_STAFF_SEE_EDIT_DETAIL.aspx.designer.vb">
@@ -8402,12 +8565,61 @@
       <DependentUpon>FRM_HERB_LCN_RENEW.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_CHECK.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_CHECK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_CHECK.aspx.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_CHECK.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PHR_PREVIEW.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_PHR_PREVIEW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PHR_PREVIEW.aspx.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_PHR_PREVIEW.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PREVIEW.aspx.designer.vb">
       <DependentUpon>FRM_HERB_LCN_RENEW_PREVIEW.aspx</DependentUpon>
     </Compile>
     <Compile Include="LCN_RENEW\FRM_HERB_LCN_RENEW_PREVIEW.aspx.vb">
       <DependentUpon>FRM_HERB_LCN_RENEW_PREVIEW.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_PREVIEW_SMP4.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_PREVIEW_SMP4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_PREVIEW_SMP4.aspx.vb">
+      <DependentUpon>POP_UP_LCN_PREVIEW_SMP4.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT_FILE.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_EDIT_FILE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_EDIT_FILE.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_EDIT_FILE.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_UPLOAD.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_UPLOAD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_CHECK_UPLOAD.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_UPLOAD.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_EDIT_REQUEST.aspx.designer.vb">
       <DependentUpon>POP_UP_LCN_RENEW_EDIT_REQUEST.aspx</DependentUpon>
@@ -8421,6 +8633,27 @@
     </Compile>
     <Compile Include="LCN_RENEW\POP_UP_LCN_RENEW_UPLOAD_FILE.aspx.vb">
       <DependentUpon>POP_UP_LCN_RENEW_UPLOAD_FILE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW\UC_RENEW\UC_LCN_DRUG_GROUP.ascx.designer.vb">
+      <DependentUpon>UC_LCN_DRUG_GROUP.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW\UC_RENEW\UC_LCN_DRUG_GROUP.ascx.vb">
+      <DependentUpon>UC_LCN_DRUG_GROUP.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_CHECK_STAFF.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_CHECK_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_CHECK_STAFF.aspx.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_CHECK_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_PREVIEW_STAFF.aspx.designer.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_PREVIEW_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_PREVIEW_STAFF.aspx.vb">
+      <DependentUpon>FRM_HERB_LCN_RENEW_PREVIEW_STAFF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_RENEW_STAFF\FRM_HERB_LCN_RENEW_STAFF.aspx.designer.vb">
@@ -8444,6 +8677,27 @@
       <DependentUpon>POP_UP_LCN_RENEW_CONFIRM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx.designer.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx.vb">
+      <DependentUpon>POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="LCN_RENEW_STAFF\POP_UP_LCN_RENEW_CONFIRM_STAFF.aspx.designer.vb">
       <DependentUpon>POP_UP_LCN_RENEW_CONFIRM_STAFF.aspx</DependentUpon>
     </Compile>
@@ -8458,6 +8712,41 @@
       <DependentUpon>POP_UP_LCN_RENEW_STAFF_EDIT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_PRE.ascx.designer.vb">
+      <DependentUpon>UC_HERB_PRE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_PRE.ascx.vb">
+      <DependentUpon>UC_HERB_PRE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_BSN_PRE.ascx.designer.vb">
+      <DependentUpon>UC_HERB_BSN_PRE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_BSN_PRE.ascx.vb">
+      <DependentUpon>UC_HERB_BSN_PRE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_KEEP_PRE.ascx.designer.vb">
+      <DependentUpon>UC_HERB_KEEP_PRE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_KEEP_PRE.ascx.vb">
+      <DependentUpon>UC_HERB_KEEP_PRE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_PHESAJ_PRE.ascx.designer.vb">
+      <DependentUpon>UC_HERB_PHESAJ_PRE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\UC_HERB_PHESAJ_PRE.ascx.vb">
+      <DependentUpon>UC_HERB_PHESAJ_PRE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\uc_rnp_general_data.ascx.designer.vb">
+      <DependentUpon>uc_rnp_general_data.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_RENEW_STAFF\UC\uc_rnp_general_data.ascx.vb">
+      <DependentUpon>uc_rnp_general_data.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="LCN_STAFF\FDA_STAFF_LCN_EDIT.aspx.designer.vb">
       <DependentUpon>FDA_STAFF_LCN_EDIT.aspx</DependentUpon>
     </Compile>
@@ -8465,11 +8754,46 @@
       <DependentUpon>FDA_STAFF_LCN_EDIT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_CONFIRM_DETAIL.aspx</DependentUpon>
+    <Compile Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx.designer.vb">
+      <DependentUpon>FRM_ATTACH_PAGE.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LCN\FRM_LCN_CONFIRM_DETAIL.aspx.vb">
-      <DependentUpon>FRM_LCN_CONFIRM_DETAIL.aspx</DependentUpon>
+    <Compile Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx.vb">
+      <DependentUpon>FRM_ATTACH_PAGE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_CONFIRM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx.vb">
+      <DependentUpon>FRM_LCN_CONFIRM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_DRUG.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_DRUG.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_DRUG_SEARCH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx.vb">
+      <DependentUpon>FRM_LCN_DRUG_SEARCH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_FILE_ATTACH_PREVIEW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx.vb">
+      <DependentUpon>FRM_LCN_FILE_ATTACH_PREVIEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_PREVIEW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx.vb">
+      <DependentUpon>FRM_LCN_PREVIEW.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_LCN_STAFF_HERB_CANCEL.aspx.designer.vb">
@@ -8479,18 +8803,144 @@
       <DependentUpon>FRM_LCN_STAFF_HERB_CANCEL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx.vb">
+      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx.vb">
+      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="LCN_STAFF\FRM_LCN_UPDATE_STATUS.aspx.designer.vb">
       <DependentUpon>FRM_LCN_UPDATE_STATUS.aspx</DependentUpon>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_LCN_UPDATE_STATUS.aspx.vb">
       <DependentUpon>FRM_LCN_UPDATE_STATUS.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx.designer.vb">
       <DependentUpon>FRM_LCN_UPLOAD_STAFF.aspx</DependentUpon>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_LCN_UPLOAD_STAFF.aspx.vb">
       <DependentUpon>FRM_LCN_UPLOAD_STAFF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx.designer.vb">
+      <DependentUpon>FRM_SEARCH_ATTACH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx.vb">
+      <DependentUpon>FRM_SEARCH_ATTACH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_CHANGE_BSN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_CHANGE_BSN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_CHANGE_LCNSNM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_CHANGE_LCNSNM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_CONSIDER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_CONSIDER.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_CONSIDER_UPDATE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_CONSIDER_UPDATE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_LCNNO_MANUAL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_LCNNO_MANUAL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_PAY_NOTE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_PAY_NOTE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_PHR_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_PHR_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_PHR_INSERT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_PHR_INSERT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_RCV_MANUAL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_RCV_MANUAL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_REMARK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_REMARK.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK_EDIT.aspx.designer.vb">
@@ -8507,12 +8957,152 @@
       <DependentUpon>FRM_STAFF_LCN_REMARK_REVIEW.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_2.aspx.designer.vb">
       <DependentUpon>FRM_STAFF_LCN_SEARCH_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_2.aspx.vb">
       <DependentUpon>FRM_STAFF_LCN_SEARCH_2.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx.vb">
+      <DependentUpon>FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_OFFER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER.aspx.vb">
+      <DependentUpon>FRM_STAFF_OFFER.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx.designer.vb">
+      <DependentUpon>FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx.vb">
+      <DependentUpon>FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx.designer.vb">
+      <DependentUpon>FRM_UPLOAD_ATTACH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx.vb">
+      <DependentUpon>FRM_UPLOAD_ATTACH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx.designer.vb">
+      <DependentUpon>FRM_UPLOAD_ATTACH2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx.vb">
+      <DependentUpon>FRM_UPLOAD_ATTACH2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx.designer.vb">
+      <DependentUpon>LIST_STAFF_LCN_REPRESENT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx.vb">
+      <DependentUpon>LIST_STAFF_LCN_REPRESENT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.designer.vb">
+      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.vb">
+      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx.designer.vb">
+      <DependentUpon>POPUP_LCN_PHR_DETAIL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx.vb">
+      <DependentUpon>POPUP_LCN_PHR_DETAIL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_LCN_UPLOAD_STAFF.ascx.designer.vb">
+      <DependentUpon>POPUP_LCN_UPLOAD_STAFF.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_LCN_UPLOAD_STAFF.ascx.vb">
+      <DependentUpon>POPUP_LCN_UPLOAD_STAFF.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx.designer.vb">
+      <DependentUpon>POPUP_STAFF_LCN_APPDATE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx.vb">
+      <DependentUpon>POPUP_STAFF_LCN_APPDATE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx.designer.vb">
+      <DependentUpon>POPUP_STAFF_LCN_EDIT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx.vb">
+      <DependentUpon>POPUP_STAFF_LCN_EDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx.designer.vb">
+      <DependentUpon>POPUP_STAFF_LCN_INSERT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx.vb">
+      <DependentUpon>POPUP_STAFF_LCN_INSERT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx.designer.vb">
+      <DependentUpon>POPUP_STAFF_LCN_REPRESENT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx.vb">
+      <DependentUpon>POPUP_STAFF_LCN_REPRESENT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.designer.vb">
+      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.vb">
+      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx.designer.vb">
+      <DependentUpon>UC_LCN _HERBB_PHESAJ_EDIT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx.vb">
+      <DependentUpon>UC_LCN _HERBB_PHESAJ_EDIT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB.ascx.designer.vb">
+      <DependentUpon>UC_LCN_HERB.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB.ascx.vb">
+      <DependentUpon>UC_LCN_HERB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.designer.vb">
+      <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.vb">
+      <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_STAFF\UC\UC_LCN_UPLOAD_FILE_STAFF.ascx.designer.vb">
       <DependentUpon>UC_LCN_UPLOAD_FILE_STAFF.ascx</DependentUpon>
@@ -8707,6 +9297,13 @@
       <DependentUpon>FRM_STAFF_REPLACEMENT_PANEL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="MasterPage\MAIN_HERB_CUSTOMER.Master.designer.vb">
+      <DependentUpon>MAIN_HERB_CUSTOMER.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MAIN_HERB_CUSTOMER.Master.vb">
+      <DependentUpon>MAIN_HERB_CUSTOMER.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="MasterPage\MAIN_NOTIFIED.Master.designer.vb">
       <DependentUpon>MAIN_NOTIFIED.Master</DependentUpon>
     </Compile>
@@ -8775,307 +9372,6 @@
     </Compile>
     <Compile Include="SOMORPO4_STAFF\FRM_SOMORPO4_MAIN.aspx.vb">
       <DependentUpon>FRM_SOMORPO4_MAIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx.designer.vb">
-      <DependentUpon>FRM_ATTACH_PAGE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_ATTACH_PAGE.aspx.vb">
-      <DependentUpon>FRM_ATTACH_PAGE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_CONFIRM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_CONFIRM.aspx.vb">
-      <DependentUpon>FRM_LCN_CONFIRM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_DRUG.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_DRUG.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_DRUG.aspx.vb">
-      <DependentUpon>FRM_LCN_DRUG.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_DRUG_SEARCH.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_DRUG_SEARCH.aspx.vb">
-      <DependentUpon>FRM_LCN_DRUG_SEARCH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_FILE_ATTACH_PREVIEW.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_FILE_ATTACH_PREVIEW.aspx.vb">
-      <DependentUpon>FRM_LCN_FILE_ATTACH_PREVIEW.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_PREVIEW.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_PREVIEW.aspx.vb">
-      <DependentUpon>FRM_LCN_PREVIEW.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx.vb">
-      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION_EDIT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx.designer.vb">
-      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_LCN_STAFF_LCN_INFORMATION.aspx.vb">
-      <DependentUpon>FRM_LCN_STAFF_LCN_INFORMATION.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx.designer.vb">
-      <DependentUpon>FRM_SEARCH_ATTACH.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_SEARCH_ATTACH.aspx.vb">
-      <DependentUpon>FRM_SEARCH_ATTACH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_ADD_LOCATION_KEEP.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_BSN_EDIT_ADDR.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_CHANGE_BSN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_BSN.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_CHANGE_BSN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_CHANGE_LCNSNM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CHANGE_LCNSNM.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_CHANGE_LCNSNM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_CONSIDER.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_CONSIDER.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_CONSIDER_UPDATE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_CONSIDER_UPDATE.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_CONSIDER_UPDATE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT_v3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH_EDIT.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH_EDIT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>LIST_STAFF_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>LIST_STAFF_LCN_REPRESENT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\LIST_STAFF_LCN_REQUEST.aspx.vb">
-      <DependentUpon>LIST_STAFF_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx.designer.vb">
-      <DependentUpon>POPUP_LCN_PHR_DETAIL.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_LCN_PHR_DETAIL.aspx.vb">
-      <DependentUpon>POPUP_LCN_PHR_DETAIL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_EDIT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_EDIT.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_EDIT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_INSERT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_INSERT.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_INSERT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_LCNNO_MANUAL.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LCNNO_MANUAL.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_LCNNO_MANUAL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_LOCATION_INSERT_AND_UPDATE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_PAY_NOTE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PAY_NOTE.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_PAY_NOTE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_PHR_EDIT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_EDIT.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_PHR_EDIT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_PHR_INSERT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_PHR_INSERT.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_PHR_INSERT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_RCV_MANUAL.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_RCV_MANUAL.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_RCV_MANUAL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_REMARK.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_REMARK.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_REMARK.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SEARCH.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_SEARCH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx.vb">
-      <DependentUpon>FRM_STAFF_LCN_SELECT_LOCATION_KEEP.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_OFFER.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER.aspx.vb">
-      <DependentUpon>FRM_STAFF_OFFER.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx.designer.vb">
-      <DependentUpon>FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx.vb">
-      <DependentUpon>FRM_STAFF_OFFER_INSERT_AND_UPDATE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx.designer.vb">
-      <DependentUpon>FRM_UPLOAD_ATTACH.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH.aspx.vb">
-      <DependentUpon>FRM_UPLOAD_ATTACH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx.designer.vb">
-      <DependentUpon>FRM_UPLOAD_ATTACH2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\FRM_UPLOAD_ATTACH2.aspx.vb">
-      <DependentUpon>FRM_UPLOAD_ATTACH2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REPRESENT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_REQUEST.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx.designer.vb">
-      <DependentUpon>UC_LCN _HERBB_PHESAJ_EDIT.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN _HERBB_PHESAJ_EDIT.ascx.vb">
-      <DependentUpon>UC_LCN _HERBB_PHESAJ_EDIT.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB.ascx.designer.vb">
-      <DependentUpon>UC_LCN_HERB.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB.ascx.vb">
-      <DependentUpon>UC_LCN_HERB.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.designer.vb">
-      <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\UC\UC_LCN_HERB_PHESAJ.ascx.vb">
-      <DependentUpon>UC_LCN_HERB_PHESAJ.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx.designer.vb">
-      <DependentUpon>POPUP_STAFF_LCN_APPDATE.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LCN_STAFF\POPUP_STAFF_LCN_APPDATE.aspx.vb">
-      <DependentUpon>POPUP_STAFF_LCN_APPDATE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LCN_SUBSTITUTE\FRM_LCN_SEACH_SUBTITUTE.aspx.designer.vb">
@@ -9437,27 +9733,6 @@
     </Compile>
     <Compile Include="MAIN\MAIN_PRODUCTS.aspx.vb">
       <DependentUpon>MAIN_PRODUCTS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REPRESENT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx.designer.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REQUEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_CONFIRM_LCN_REQUEST.aspx.vb">
-      <DependentUpon>POPUP_CONFIRM_LCN_REQUEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REPRESENT.aspx.designer.vb">
-      <DependentUpon>POPUP_LCN_REPRESENT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN\POPUP_LCN_REPRESENT.aspx.vb">
-      <DependentUpon>POPUP_LCN_REPRESENT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MAIN\POPUP_LCN_REQUEST_EDIT.aspx.designer.vb">

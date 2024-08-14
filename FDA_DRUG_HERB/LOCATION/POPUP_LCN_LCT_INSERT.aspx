@@ -12,14 +12,17 @@
             margin: 10px 0 2px 5px;
             box-sizing: border-box;
         }
+
         .auto-style1 {
             width: 30%;
             height: 30px;
         }
+
         .auto-style2 {
             width: 70%;
             height: 45px;
         }
+
         .auto-style3 {
             width: 20%;
             height: 20px;
@@ -81,7 +84,7 @@
                     </td>
                     <td style="width: 70%; text-align: left" colspan="2">
 
-                        <asp:TextBox ID="txt_engnameplace_lo" runat="server" Width="70%"  AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox ID="txt_engnameplace_lo" runat="server" Width="70%" AutoPostBack="true"></asp:TextBox>
                         <asp:Label ID="lbl_word_eng" runat="server" Text="*กรุณากรอกข้อมูล" ForeColor="Red" Font-Size="Small" Visible="false"></asp:Label>
 
                     </td>
@@ -313,53 +316,51 @@
     </asp:Panel>
     <br />
     <div class="row" runat="server" id="div_set_show1">
-        <div class="col-lg-12" style="text-align:center">
-             <h3>เอกสารแนบ</h3>
+        <div class="col-lg-12" style="text-align: center">
+            <h3>เอกสารแนบ</h3>
         </div>
     </div>
-     <div class="row" runat="server" id="div_set_show2">
+    <div class="row" runat="server" id="div_set_show2">
         <div style="text-align: center">
             <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-1">
-                   
-                </div>
-                           
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2">
+                    สำเนาทะเบียนบ้าน/สัญญาเช่าสถานที่   
+                </div>              
                 <div class="col-lg-2">
                     <uc1:UC_ATTACH_LCN runat="server" ID="UC_ATTACH_LCN" />
                 </div>
                 <div class="col-lg-1" style="text-align: right">
-                    <div runat="server" id="img_not" >
-                    <img class="auto-style3"
-                        src="../Images/cancel.png"
-                        alt=""
-                        runat="server">
-                        </div>
-                     <div runat="server" id="img_cf" visible="False">
-                    <img class="auto-style3"
-                        src="../Images/correct.png"
-     
-                        runat="server">
-                        </div>
+                    <div runat="server" id="img_not">
+                        <img class="auto-style3"
+                            src="../Images/cancel.png"
+                            alt=""
+                            runat="server">
+                    </div>
+                    <div runat="server" id="img_cf" visible="False">
+                        <img class="auto-style3"
+                            src="../Images/correct.png"
+                            runat="server">
+                    </div>
                 </div>
-                 <div class="col-lg-3" style="text-align: left">
+                <div class="col-lg-3" style="text-align: left">
                     <asp:Label ID="lbl_upload_file" runat="server" Text="ไม่มีไฟล์อัพโหลด"></asp:Label>
                 </div>
-                
+
                 <div class="col-lg-1" style="text-align: right">
-                     <asp:Button CssClass="btn btn-primary" Height="34px" ID="btn_upload" runat="server" Text="อัพโหลดเอกสารแนบ" />
+                    <asp:Button CssClass="btn btn-primary" Height="34px" ID="btn_upload" runat="server" Text="อัพโหลดเอกสารแนบ" />
                 </div>
-            </div>          
-                 
+            </div>
+
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-lg-5"></div>
-        <div class="col-lg-1" style="text-align:right">
-             <asp:Button CssClass="btn btn-primary" Height="34px" ID="bnt_submit" runat="server" Text="บันทึกข้อมูล" />
+        <div class="col-lg-1" style="text-align: right">
+            <asp:Button CssClass="btn btn-primary" Height="34px" ID="bnt_submit" runat="server" Text="บันทึกข้อมูล" />
         </div>
-        <div class="col-lg-5">           
+        <div class="col-lg-5">
             <asp:Button CssClass="btn btn-primary" Height="34px" ID="btn_send" runat="server" Text="ส่งเรื่อง" OnClientClick="return confirm('ต้องการส่งเรื่องหรือไม่');" />
         </div>
     </div>

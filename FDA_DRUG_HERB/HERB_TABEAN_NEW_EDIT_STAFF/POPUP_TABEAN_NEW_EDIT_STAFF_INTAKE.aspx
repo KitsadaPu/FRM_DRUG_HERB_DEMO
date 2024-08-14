@@ -58,6 +58,7 @@
             </div>
         </div>
         <div class="col-lg-4" style="width: 30%">
+            <hr />
             <div class="row" runat="server" id="KEEP_PAY" visible="true">
                 <div class="row">
                     <div class="col-lg-1"></div>
@@ -67,6 +68,7 @@
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
+                <hr />
                 <div runat="server" id="Div_Process" visible="false">
                     <div class="row">
 
@@ -84,11 +86,11 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
-                            ค่าประเมินเอกสารทางวิชาการ :
+                            ค่าประเมินเอกสารทางวิชาการ
                         <%--<p>วันที่อนุมัติ</p>--%>
                         </div>
                         <div class="col-lg-6">
@@ -97,7 +99,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
@@ -110,6 +112,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">จำนวนเงิน</div>
@@ -118,10 +121,10 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
                 </div>
 
                 <div class="row" runat="server" id="P12" visible="true">
+                  <%--  <hr />--%>
                     <div class="row" runat="server" id="P14" visible="false">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">เลขรับ</div>
@@ -130,7 +133,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
-
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">วันที่ตรวจรับคำขอ</div>
@@ -139,21 +142,30 @@
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+                    <hr />
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">จนท. ที่รับผิดชอบ</div>
                         <div class="col-lg-6">
                             <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
                             <%--<asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>--%>
-                              <telerik:RadComboBox ID="DD_OFF_REQ" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                            <telerik:RadComboBox ID="DD_OFF_REQ" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
                 </div>
-
+                <hr />
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">หมายเหตุ</div>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="txt_remark_edit" TextMode="MultiLine" ReadOnly="true" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
                 <div class="row" runat="server" id="uc_upload1" visible="false">
-                     <div class="col-lg-1"></div>
-                     <%--<div class="col-lg-2">
+                    <div class="col-lg-1"></div>
+                    <%--<div class="col-lg-2">
                        <h3>อัพโหลดเอกสาร ทบ.3 ที่อนุมัติแล้ว</h3>
                     </div>--%>
                     <div class="col-lg-8" style="text-align: left">
@@ -174,6 +186,7 @@
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
+                <hr />
                 <div class="row" runat="server">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-4">รายละเอียดการยกเลิก</div>
@@ -189,6 +202,7 @@
                     </div>
                 </div>
             </div>
+            <hr />
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
@@ -199,14 +213,14 @@
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                         <asp:Button ID="btn_upload_file" runat="server" Text="แนบเอกสารเพิ่ม" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_upload_file" runat="server" Text="แนบเอกสารเพิ่ม" CssClass="btn-lg" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                     <asp:Button ID="btn_keep_pay" runat="server" Text="ข้ามสถานะ" CssClass="btn-lg" Width="80%" Visible="false" />
+                    <asp:Button ID="btn_keep_pay" runat="server" Text="ข้ามสถานะ" CssClass="btn-lg" Width="80%" Visible="false" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -260,8 +274,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">

@@ -85,7 +85,13 @@ color: #fff; min-height: 80px; padding: 15px 0; font-family: "thaisans_neueregul
 .content .row h2 { margin-top: 0; }
 .content h3 { margin-top: 0; }
 
-.footer { background: #8cb340; color: #fff; padding: 10px; margin-top: 30px; font-size: 0.9em; }
+.footer {
+    background: #63320e;
+    color: #fff;
+    padding: 10px;
+    margin-top: 30px;
+    font-size: 0.9em;
+}
 
 #back-to-top { bottom: 50px; right: 10px; color: #000; cursor: pointer; display: block; font-size: 16px; height: 40px; line-height: 40px; position: fixed; text-align: center; width: 40px; z-index: 1001; border: 1px solid #000; transition: all 0.2s ease-out 0s; -webkit-transition: all 0.2s ease-out 0s; }
 #back-to-top:hover { line-height: 30px; border: none; }
@@ -132,4 +138,37 @@ h4 { font-size: 1em; }
 @media (max-width: 480px) {
 
 .col-xs-6 { width: 100%; }
+}
+#fade {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+
+#light {
+    display: none;
+    position:inherit;
+    top: 20%;
+    bottom:50%;
+    left: 40%;
+    max-width: 600px;
+    max-height: 300px;
+    margin-left: -300px;
+    margin-top: -180px;
+    border: 2px solid #FFF;
+    background: #FFF;
+    z-index: 1002;
+    overflow: visible;
+}
+
+.test:hover ~ .test2 {
+    display: none;
 }

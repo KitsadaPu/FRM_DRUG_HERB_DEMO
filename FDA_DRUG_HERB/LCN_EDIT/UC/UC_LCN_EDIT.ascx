@@ -17,9 +17,9 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-3">
             <asp:RadioButtonList ID="rdl_lcn_type" runat="server" BorderStyle="None" Enabled="False">
-                <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="1">ผลิตผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="2">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="3">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-5"></div>
@@ -260,7 +260,7 @@
                 <div class="col-lg-2" style="text-align: left">
                     <asp:TextBox ID="text_edit_ddl1_TIME_WORK" runat="server">GET_DATA</asp:TextBox>
                 </div>
-                <div class="col-lg-2" style="text-align: right">เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม :</div>
+                <div class="col-lg-2" style="text-align: right">เป็นผู้ที่มีหน้าที่ปฏิบัติการตาม :</div>
                 <div class="col-lg-4">
                      <div class="col-lg-5" style="text-align: center">
                              <asp:RadioButtonList ID="rdl_mastra" runat="server" RepeatDirection="Horizontal">
@@ -270,7 +270,7 @@
                     </asp:RadioButtonList>
                      </div>
                      <div class="col-lg-5" style="text-align: left">                               
-                   แห่ง พ.ร.บ.ผลิตภัณฆ์สมุนไพร พ.ศ.๒๕๖๒
+                   แห่ง พ.ร.บ.ผลิตภัณฑ์สมุนไพร พ.ศ.๒๕๖๒
                      </div>
       
                 </div>
@@ -278,7 +278,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <asp:Button ID="btn_save" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" Height="45px" Width="320px" />
+                    <asp:Button ID="btn_save" runat="server" Text="เพิ่มผู้มีหน้าที่ปฎิบัติการ" Height="45px" Width="320px" />
                 </div>
             </div>
             <div class="row" style="height: 15px"></div>
@@ -674,7 +674,7 @@
         </div>
     </div>
     <div>
-        <asp:Panel ID="p1" runat="server" Visible="false">
+        <%--<asp:Panel ID="p1" runat="server" Visible="false">
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-8">
@@ -708,7 +708,7 @@
                 </div>
 
             </div>
-        </asp:Panel>
+        </asp:Panel>--%>
     </div>
     <div id="edit2" runat="server">
         <div class="row">

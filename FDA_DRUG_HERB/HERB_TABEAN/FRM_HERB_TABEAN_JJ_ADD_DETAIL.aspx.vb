@@ -599,6 +599,8 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
                         dao.fields.CATEGORY_ID = DD_CATEGORY_ID.SelectedValue
                         dao.fields.CATEGORY_NAME = DD_CATEGORY_ID.SelectedItem.Text
                         dao.fields.NAME_THAI = NAME_THAI.Text
+                        dao.fields.NAME_THAI_R = NAME_THAI_R.Text
+                        dao.fields.NAME_THAIFULL = NAME_THAI.Text & " " & NAME_THAI_R.Text
                         dao.fields.NAME_ENG = NAME_ENG.Text
                         dao.fields.NAME_OTHER = NAME_OTHER.Text
                         dao.fields.STYPE_ID = DD_STYPE_ID.SelectedValue
@@ -928,7 +930,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
                     dao_up_mas.GetdatabyID_TYPE(1)
                     For Each dao_up_mas.fields In dao_up_mas.datas
                         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                        dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                        dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                         dao_up.fields.TR_ID = TR_ID
                         dao_up.fields.FK_IDA = dao.fields.IDA
                         dao_up.fields.PROCESS_ID = _PROCESS_JJ

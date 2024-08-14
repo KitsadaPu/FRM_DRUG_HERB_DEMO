@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
-            <h3>เอกสารแนบแก้ไขคำขอยาตัวอย่าง</h3>
+            <h3>เอกสารแนบแก้ไขคำขอผลิตภัณฑ์ตัวอย่าง</h3>
         </div>
     </div>
     <div class="row">
@@ -53,7 +53,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-3" style="text-align: center">หมายเหตุการแก้ไขคำขอ</div>
         <div class="col-lg-6" style="text-align: left">
-            <asp:TextBox ID="TXT_EDIT_NOTE_EX1" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%"></asp:TextBox>
+            <asp:TextBox ID="TXT_EDIT_NOTE_EX1" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%;border-radius:5px"></asp:TextBox>
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -63,7 +63,7 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-3" style="text-align: center">หมายเหตุการแก้ไขเอกสาร</div>
             <div class="col-lg-6" style="text-align: left">
-                <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%"></asp:TextBox>
+                <asp:TextBox ID="NOTE_EDIT" TextMode="MultiLine" runat="server" Style="height: 50%; width: 100%;border-radius:5px"></asp:TextBox>
             </div>
             <div class="col-lg-1"></div>
         </div>
@@ -99,8 +99,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -148,8 +148,8 @@
                                     <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                         SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                 </Columns>
                                 <EditFormSettings>
@@ -179,8 +179,8 @@
                                     <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                         SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                 </Columns>
                                 <EditFormSettings>
@@ -224,8 +224,8 @@
                             <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                 SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                             </telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                            <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                             </telerik:GridBoundColumn>
                         </Columns>
                         <EditFormSettings>
@@ -248,7 +248,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10" style="text-align: center">
             <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="10%" />
-            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="10%" />
+            <asp:Button ID="btn_cancel" runat="server" Text="ปิด" CssClass="btn-lg" Width="10%" />
         </div>
         <div class="col-lg-1"></div>
     </div>

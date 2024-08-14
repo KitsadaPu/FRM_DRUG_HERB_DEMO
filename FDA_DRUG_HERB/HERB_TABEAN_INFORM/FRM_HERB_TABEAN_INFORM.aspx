@@ -47,15 +47,35 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="row" runat="server" id="TH1">
-        <div class="col-lg-6" style="width: 40%">
+     <div class="row" runat="server" style="text-align: center">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2" style="width: 20%; text-align: right">
+            <label id="herb_ya" runat="server" visible="false">เลือกชื่อยา</label>
         </div>
-        <div class="col-lg-5" style="width: 20%; text-align: left" >
-            <asp:Button ID="btn_tb_herb" runat="server" Text="เพิ่มคำขอทะเบียนรับแจ้ง" Visible="false" />
+        <div class="col-lg-6" style="width: 40%; text-align: center">
+            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT" runat="server" DataValueField="HERB_ID" DataTextField="HERB_NAME_DD" Visible="false"></asp:DropDownList>
+            <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" DataValueField="ID" DataTextField="PRODUCT_NAME" Visible="false"></asp:DropDownList>
+          <%--        <asp:DropDownList ID="DD_HERB_NAME_PRODUCT_HEALTH" runat="server" AutoPostBack="true"  Visible="false">
+                <asp:ListItem Value="0">-- กรุณาเลือก --</asp:ListItem>
+                <asp:ListItem Value="1">ชื่อยา1</asp:ListItem>
+                <asp:ListItem Value="2">ชื่อยา2</asp:ListItem>
+            </asp:DropDownList>--%>
+        </div>
+        <div class="col-lg-2" style="width: 20%; text-align: left">
+            <%--<asp:Button ID="btn_jj_herb" runat="server" Text="เพิ่มคำขอจดแจ้ง" Visible="false" />--%>
+             <asp:Button ID="btn_tb_herb" runat="server" Text="เพิ่มคำขอทะเบียนรับแจ้ง" Visible="false" />
         </div>
         <div class="col-lg-1"></div>
     </div>
     <hr />
+  <%--  <div class="row" runat="server" id="TH1">
+        <div class="col-lg-6" style="width: 40%">
+        </div>
+        <div class="col-lg-5" style="width: 20%; text-align: left" >        
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <hr />--%>
     <div class="row" id="T1" runat="server">
 
         <p class="h3">ข้อมูลทะเบียนแจ้งรายละเอียด</p>

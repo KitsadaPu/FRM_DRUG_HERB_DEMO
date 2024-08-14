@@ -476,7 +476,7 @@ Public Class FRM_HERB_TABEAN_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID_JJ, 1, _PROCESS_JJ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID_JJ, 1, _PROCESS_JJ, _IDA)
 
         Return dt
     End Function

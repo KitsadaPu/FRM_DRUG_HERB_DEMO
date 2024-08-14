@@ -280,13 +280,13 @@
         End Sub
         Public Sub GetdatabyID_TR_ID_FK_IDA_PROCESS_ID_AND_TYPE_DC(ByVal FK_IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE_ID As Integer)
             Dim DC As String = "ฉลาก และเอกสารกำกับผลิตภัณฑ์ :"
-            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS_ID And p.TYPE = TYPE_ID And p.DUCUMENT_NAME = DC Select p
+            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS_ID And p.TYPE = TYPE_ID And p.DOCUMENT_NAME = DC Select p
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub GetdatabyID_TR_ID_FK_IDA_PROCESS_ID_AND_TYPE_DC2(ByVal FK_IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE_ID As Integer, ByVal DC As String)
-            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS_ID And p.TYPE = TYPE_ID And p.DUCUMENT_NAME = DC Select p
+            datas = From p In db.TABEAN_HERB_UPLOAD_FILE_JJs Where p.TR_ID = TR_ID And p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS_ID And p.TYPE = TYPE_ID And p.DOCUMENT_NAME = DC Select p
             For Each Me.fields In datas
 
             Next
@@ -452,6 +452,54 @@
         End Sub
 
     End Class
+    Public Class TB_MAS_TABEAN_HERB_SYNDROME_DETAIL_JJ
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_TABEAN_HERB_SYNDROME_DETAIL_JJ
+
+        Public Sub insert()
+            db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
+            datas = From p In db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs Where p.IDA = IDA Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetdatabyID_PROCESS(ByVal Process_ID As Integer)
+            datas = From p In db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs Where p.PROCESS_ID = Process_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_DD_HERB_NAME_ID(ByVal DD_HERB_NAME_ID As Integer, ByVal P_ID As Integer)
+            datas = From p In db.MAS_TABEAN_HERB_SYNDROME_DETAIL_JJs Where p.DD_HERB_NAME_ID = DD_HERB_NAME_ID And p.PROCESS_ID = P_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+    End Class
     Public Class TB_MAS_PRODUCT_NAME_JJ_HERB_FOR_HEALTH
         Inherits MAINCONTEXT
 
@@ -527,9 +575,12 @@
 
         Public Sub GetdatabyID_TYPE(ByVal TYPE_ID As Integer)
             datas = From p In db.MAS_TABEAN_HERB_UPLOADFILE_JJs Where p.TYPE_ID = TYPE_ID And p.ACTIVEFACT = True Select p
-
             For Each Me.fields In datas
-
+            Next
+        End Sub
+        Public Sub GetdatabyID_TYPE_AND_PROCESS(ByVal TYPE_ID As Integer, ByVal PROCESS_ID As String)
+            datas = From p In db.MAS_TABEAN_HERB_UPLOADFILE_JJs Where p.TYPE_ID = TYPE_ID And p.PROCESS_ID = PROCESS_ID And p.ACTIVEFACT = True Select p
+            For Each Me.fields In datas
             Next
         End Sub
         Public Sub GetdatabyID_PROCESS_ID(ByVal P_ID As Integer)
@@ -539,7 +590,13 @@
 
             Next
         End Sub
+        Public Sub GetdatabyID_TYPE_AND_HEAD_ID(ByVal TYPE_ID As Integer, ByVal HEAD_ID As String)
+            datas = From p In db.MAS_TABEAN_HERB_UPLOADFILE_JJs Where p.TYPE_ID = TYPE_ID And p.HEAD_ID = HEAD_ID And p.ACTIVEFACT = True Select p
 
+            For Each Me.fields In datas
+
+            Next
+        End Sub
         '    Public Sub Getdataby_TR_ID(ByVal TR_ID As Integer)
         '        datas = From p In db.MAS_TABEAN_HERB_UPLOADFILE_JJs Where p.ID = TR_ID Select p
 
@@ -592,8 +649,8 @@
 
             Next
         End Sub
-        Public Sub Getdataby_DUCUMENT_NAME(ByVal DUCUMENT_NAME As String)
-            datas = From p In db.MAS_TABEAN_HERB_EDIT_FILEUPLOADs Where p.DUCUMENT_NAME = DUCUMENT_NAME And p.ACTIVEFACT = True Select p
+        Public Sub Getdataby_DOCUMENT_NAME(ByVal DOCUMENT_NAME As String)
+            datas = From p In db.MAS_TABEAN_HERB_EDIT_FILEUPLOADs Where p.DOCUMENT_NAME = DOCUMENT_NAME And p.ACTIVEFACT = True Select p
             For Each Me.fields In datas
 
             Next
@@ -648,7 +705,7 @@
             Next
         End Sub
         Public Sub GetdatabyID_TR_ID_FK_IDA_PROCESS_ID_AND_TYPE_DC(ByVal FK_IDA As Integer, ByVal TYPE_ID As Integer, ByVal DC As String)
-            datas = From p In db.TABEAN_HERB_EDIT_FILEs Where p.FK_IDA = FK_IDA And p.TYPE_ID = TYPE_ID And p.DUCUMENT_NAME = DC And p.ACTIVEFACT = 1 Select p
+            datas = From p In db.TABEAN_HERB_EDIT_FILEs Where p.FK_IDA = FK_IDA And p.TYPE_ID = TYPE_ID And p.DOCUMENT_NAME = DC And p.ACTIVEFACT = 1 Select p
             For Each Me.fields In datas
 
             Next
@@ -1344,6 +1401,13 @@
 
             Next
         End Sub
+        Public Sub GetdatabyID_TR_ID(ByVal TR_ID As Integer)
+            datas = From p In db.TABEAN_EXHIBITIONs Where p.TR_ID = TR_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
 
         Public Sub GetdatabyID_FK_IDA_DQ(ByVal FK_IDA As Integer)
             datas = From p In db.TABEAN_EXHIBITIONs Where p.FK_IDA = FK_IDA Select p
@@ -1462,10 +1526,10 @@
     Public Class TB_TABEAN_INFORM_MANUFACTRUE
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_MANUFACTRUE
+        Public fields As New TABEAN_JR_MANUFACTRUE
 
         Public Sub insert()
-            db.TABEAN_INFORM_MANUFACTRUEs.InsertOnSubmit(fields)
+            db.TABEAN_JR_MANUFACTRUEs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -1474,7 +1538,7 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_MANUFACTRUEs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_MANUFACTRUEs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -1484,7 +1548,7 @@
         End Sub
 
         Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_MANUFACTRUEs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_MANUFACTRUEs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
@@ -1492,7 +1556,7 @@
         End Sub
 
         Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_MANUFACTRUEs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
+            datas = From p In db.TABEAN_JR_MANUFACTRUEs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
 
             For Each Me.fields In datas
 
@@ -1500,7 +1564,7 @@
         End Sub
 
         Public Sub GetdatabyID_FK_IDA2(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_MANUFACTRUEs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
+            datas = From p In db.TABEAN_JR_MANUFACTRUEs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
 
         End Sub
     End Class
@@ -1553,10 +1617,10 @@
     Public Class TB_TABEAN_INFORM_SIZE_PACK_FST
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_SIZE_PACK_FST
+        Public fields As New TABEAN_JR_SIZE_PACK_FST
 
         Public Sub insert()
-            db.TABEAN_INFORM_SIZE_PACK_FSTs.InsertOnSubmit(fields)
+            db.TABEAN_JR_SIZE_PACK_FSTs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -1565,17 +1629,17 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_SIZE_PACK_FSTs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_SIZE_PACK_FSTs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORM_SIZE_PACK_FSTs Select p)
+            datas = (From p In db.TABEAN_JR_SIZE_PACK_FSTs Select p)
 
         End Sub
 
         Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_SIZE_PACK_FSTs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_SIZE_PACK_FSTs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
@@ -1583,7 +1647,7 @@
         End Sub
 
         Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_SIZE_PACK_FSTs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JR_SIZE_PACK_FSTs Where p.FK_IDA = FK_IDA Select p
 
             For Each Me.fields In datas
 
@@ -1591,7 +1655,7 @@
         End Sub
 
         Public Sub GetdatabyID_FK_IDA2(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_SIZE_PACK_FSTs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
+            datas = From p In db.TABEAN_JR_SIZE_PACK_FSTs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
 
         End Sub
     End Class
@@ -1731,7 +1795,20 @@
 
             Next
         End Sub
+        Public Sub GetdatabyID_FK_IDA_AND_UNIT(ByVal FK_IDA As Integer, ByVal ID_UNIT As Integer)
+            datas = From p In db.TABEAN_EXHIBITION_PACKING_SIZEs Where p.FK_IDA = FK_IDA And p.UNIT_F_ID = ID_UNIT Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_FK_IDA2(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_EXHIBITION_PACKING_SIZEs Where p.FK_IDA = FK_IDA And p.ACTIVEFACT = 1 Select p
+
+        End Sub
     End Class
+
     Public Class TB_TABEAN_HERB_EX_SIZE_PACK
         Inherits MAINCONTEXT
 
@@ -1784,6 +1861,7 @@
 
         End Sub
     End Class
+
     Public Class TB_TABEAN_ANALYZE_PACKING_SIZE
         Inherits MAINCONTEXT
 
@@ -2239,6 +2317,11 @@
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_GROUPNO_MAX(ByVal YEAR As String, ByVal GROUP_NO As String, ByVal IDA As Integer)
+            datas = (From p In db.GEN_NO_NEWs Where p.YEAR = YEAR And p.GROUP_NO = GROUP_NO Order By CInt(p.GENNO) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_RGTNO_MAX(ByVal YEAR As String, ByVal PVNCD As String, ByVal RGTTPCD As String, ByVal IDA As Integer, ByVal process_id As Integer, ByVal drgtpcd As String)
             datas = (From p In db.GEN_NO_NEWs Where p.YEAR = YEAR And p.TYPE = RGTTPCD And p.GROUP_NO = drgtpcd Order By CInt(p.GENNO) Descending Select p).Take(1)
             For Each Me.fields In datas
@@ -2514,10 +2597,10 @@
     Public Class TB_TABEAN_INFORM
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM
+        Public fields As New TABEAN_JR
 
         Public Sub insert()
-            db.TABEAN_INFORMs.InsertOnSubmit(fields)
+            db.TABEAN_JRs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -2526,24 +2609,24 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORMs.DeleteOnSubmit(fields)
+            db.TABEAN_JRs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORMs Select p)
+            datas = (From p In db.TABEAN_JRs Select p)
 
         End Sub
 
         Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORMs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JRs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORMs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JRs Where p.FK_IDA = FK_IDA Select p
             For Each Me.fields In datas
             Next
         End Sub
@@ -2552,10 +2635,10 @@
     Public Class TB_TABEAN_INFORM_EDIT
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_EDIT
+        Public fields As New TABEAN_JR_EDIT
 
         Public Sub insert()
-            db.TABEAN_INFORM_EDITs.InsertOnSubmit(fields)
+            db.TABEAN_JR_EDITs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -2564,24 +2647,24 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_EDITs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_EDITs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORMs Select p)
+            datas = (From p In db.TABEAN_JR_EDITs Select p)
 
         End Sub
 
         Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDITs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_EDITs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDITs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JR_EDITs Where p.FK_IDA = FK_IDA Select p
             For Each Me.fields In datas
             Next
         End Sub
@@ -2590,10 +2673,10 @@
     Public Class TB_TABEAN_INFORM_EDIT_DETAIL
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_EDIT_DETAIL
+        Public fields As New TABEAN_JR_EDIT_DETAIL
 
         Public Sub insert()
-            db.TABEAN_INFORM_EDIT_DETAILs.InsertOnSubmit(fields)
+            db.TABEAN_JR_EDIT_DETAILs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -2602,24 +2685,24 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_EDIT_DETAILs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_EDIT_DETAILs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORM_EDIT_DETAILs Select p)
+            datas = (From p In db.TABEAN_JR_EDIT_DETAILs Select p)
 
         End Sub
 
         Public Sub Getdataby_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDIT_DETAILs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_EDIT_DETAILs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub Getdataby_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDIT_DETAILs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JR_EDIT_DETAILs Where p.FK_IDA = FK_IDA Select p
             For Each Me.fields In datas
             Next
         End Sub
@@ -2628,10 +2711,9 @@
     Public Class TB_TABEAN_INFORM_DETAIL
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_DETAIL
-
+        Public fields As New TABEAN_JR_DETAIL
         Public Sub insert()
-            db.TABEAN_INFORM_DETAILs.InsertOnSubmit(fields)
+            db.TABEAN_JR_DETAILs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -2640,36 +2722,48 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_DETAILs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_DETAILs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORM_DETAILs Select p)
+            datas = (From p In db.TABEAN_JR_DETAILs Select p)
 
         End Sub
 
         Public Sub GetdatabyID_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_DETAILs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_DETAILs Where p.IDA = IDA And p.ACTIVEFACT = 1 Select p
 
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub GetdatabyID_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_DETAILs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JR_DETAILs Where p.FK_IDA = FK_IDA Select p
             For Each Me.fields In datas
             Next
         End Sub
 
     End Class
-    Public Class TB_TABEAN_INFORM_EDIT_CHECK_LIST
+    Public Class TB_TABEAN_INFROM_DETIAL_CAS
         Inherits MAINCONTEXT
 
-        Public fields As New TABEAN_INFORM_EDIT_CHECK_LIST
-
+        Public fields As New TABEAN_JR_DETIAL_CA
+        Private _Details As New List(Of TABEAN_JR_DETIAL_CA)
+        Public Property Details() As List(Of TABEAN_JR_DETIAL_CA)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of TABEAN_JR_DETIAL_CA))
+                _Details = value
+            End Set
+        End Property
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New TABEAN_JR_DETIAL_CA
+        End Sub
         Public Sub insert()
-            db.TABEAN_INFORM_EDIT_CHECK_LISTs.InsertOnSubmit(fields)
+            db.TABEAN_JR_DETIAL_CAs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -2678,24 +2772,63 @@
         End Sub
 
         Public Sub Delete()
-            db.TABEAN_INFORM_EDIT_CHECK_LISTs.DeleteOnSubmit(fields)
+            db.TABEAN_JR_DETIAL_CAs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
         Public Sub GetAll()
-            datas = (From p In db.TABEAN_INFORM_EDIT_CHECK_LISTs Select p)
+            datas = (From p In db.TABEAN_JR_DETIAL_CAs Select p)
 
         End Sub
 
         Public Sub Getdataby_IDA(ByVal IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDIT_CHECK_LISTs Where p.IDA = IDA Select p
+            datas = From p In db.TABEAN_JR_DETIAL_CAs Where p.IDA = IDA And p.ACTIVE = 1 Select p
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub Getdataby_FK_IDA(ByVal FK_IDA As Integer)
+            datas = From p In db.TABEAN_JR_DETIAL_CAs Where p.FK_IDA = FK_IDA And p.ACTIVE = 1 Select p
+            For Each Me.fields In datas
+                AddDetails()
+            Next
+        End Sub
+
+    End Class
+
+    Public Class TB_TABEAN_INFORM_EDIT_CHECK_LIST
+        Inherits MAINCONTEXT
+
+        Public fields As New TABEAN_JR_EDIT_CHECK_LIST
+
+        Public Sub insert()
+            db.TABEAN_JR_EDIT_CHECK_LISTs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.TABEAN_JR_EDIT_CHECK_LISTs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.TABEAN_JR_EDIT_CHECK_LISTs Select p)
+
+        End Sub
+
+        Public Sub Getdataby_IDA(ByVal IDA As Integer)
+            datas = From p In db.TABEAN_JR_EDIT_CHECK_LISTs Where p.IDA = IDA Select p
 
             For Each Me.fields In datas
 
             Next
         End Sub
         Public Sub Getdataby_FK_IDA(ByVal FK_IDA As Integer)
-            datas = From p In db.TABEAN_INFORM_EDIT_CHECK_LISTs Where p.FK_IDA = FK_IDA Select p
+            datas = From p In db.TABEAN_JR_EDIT_CHECK_LISTs Where p.FK_IDA = FK_IDA Select p
             For Each Me.fields In datas
             Next
         End Sub
@@ -3232,23 +3365,23 @@
     Public Class TB_TABEAN_JJ_DETAIL_CAS
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
 
-        Public fields As New TABEAN_JJ_DETAIL_CAS
-        Private _Details As New List(Of TABEAN_JJ_DETAIL_CAS)
-        Public Property Details() As List(Of TABEAN_JJ_DETAIL_CAS)
+        Public fields As New TABEAN_JJ_DETAIL_CA
+        Private _Details As New List(Of TABEAN_JJ_DETAIL_CA)
+        Public Property Details() As List(Of TABEAN_JJ_DETAIL_CA)
             Get
                 Return _Details
             End Get
-            Set(ByVal value As List(Of TABEAN_JJ_DETAIL_CAS))
+            Set(ByVal value As List(Of TABEAN_JJ_DETAIL_CA))
                 _Details = value
             End Set
         End Property
 
         Private Sub AddDetails()
             Details.Add(fields)
-            fields = New TABEAN_JJ_DETAIL_CAS
+            fields = New TABEAN_JJ_DETAIL_CA
         End Sub
         Public Sub insert()
-            db.TABEAN_JJ_DETAIL_CAS.InsertOnSubmit(fields)
+            db.TABEAN_JJ_DETAIL_CAs.InsertOnSubmit(fields)
             db.SubmitChanges()
         End Sub
         Public Sub update()
@@ -3256,7 +3389,7 @@
         End Sub
 
         Public Sub delete()
-            db.TABEAN_JJ_DETAIL_CAS.DeleteOnSubmit(fields)
+            db.TABEAN_JJ_DETAIL_CAs.DeleteOnSubmit(fields)
             db.SubmitChanges()
         End Sub
 
@@ -3333,6 +3466,110 @@
             Next
         End Sub
     End Class
+    Public Class TB_TABEAN_EXH_DETAIL_CAS
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New TABEAN_EXHIBITION_DETAIL_CA
+        Private _Details As New List(Of TABEAN_EXHIBITION_DETAIL_CA)
+        Public Property Details() As List(Of TABEAN_EXHIBITION_DETAIL_CA)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of TABEAN_EXHIBITION_DETAIL_CA))
+                _Details = value
+            End Set
+        End Property
+
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New TABEAN_EXHIBITION_DETAIL_CA
+        End Sub
+        Public Sub insert()
+            db.TABEAN_EXHIBITION_DETAIL_CAs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.TABEAN_EXHIBITION_DETAIL_CAs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_IDA_ORDER(ByVal IDA As Integer, ByVal FK_SET As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.IDA = IDA And p.FK_SET = FK_SET Select p Order By p.ROWS Ascending)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA_ORDER(ByVal FK_IDA As Integer, ByVal FK_SET As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = FK_IDA And p.FK_SET = FK_SET Select p Order By CInt(p.ROWS) Ascending)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_ROWs_AND_FK_SET(ByVal ROWs As Integer, ByVal FK_SET As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_SET = FK_SET And p.ROWS = ROWs Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_IDA_AND_ROWs(ByVal IDA As Integer, ByVal ROWs As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.IDA = IDA And p.ROWS = ROWs Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FKIDA(ByVal IDA As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Function COUNTDataby_FKIDA(ByVal IDA As Integer) As Integer
+            Dim i As Integer = 0
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+            Return i
+        End Function
+        Public Sub GET_MAX_ROWS_ID(ByVal FK_IDA As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = FK_IDA Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_MAX_ROWS_ID_SET(ByVal FK_IDA As Integer, ByVal _set As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = FK_IDA And p.FK_SET = _set Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_MIN_ROWS_ID_SET(ByVal FK_IDA As Integer, ByVal _set As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_DETAIL_CAs Where p.FK_IDA = FK_IDA And p.FK_SET = _set Order By CInt(p.ROWS) Ascending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class TB_TABEAN_JJ_EACH
         Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
         Public fields As New TABEAN_JJ_EACH
@@ -3374,6 +3611,53 @@
         Public Function CountDataby_FK_IDA(ByVal IDA As Integer) As Integer
             Dim i As Integer = 0
             datas = (From p In db.TABEAN_JJ_EACHes Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+                i += 1
+            Next
+            Return i
+        End Function
+    End Class
+    Public Class TB_TABEAN_EXH_EACH
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+        Public fields As New TABEAN_EXH_EACH
+        Public Sub insert()
+            db.TABEAN_EXH_EACHes.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+        Public Sub delete()
+            db.TABEAN_EXH_EACHes.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+            datas = (From p In db.TABEAN_EXH_EACHes Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+            datas = (From p In db.TABEAN_EXH_EACHes Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA(ByVal IDA As Integer)
+            datas = (From p In db.TABEAN_EXH_EACHes Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA_AND_SET(ByVal IDA As Integer, ByVal SET_ As Integer)
+            datas = (From p In db.TABEAN_EXH_EACHes Where p.FK_IDA = IDA And p.FK_SET = SET_ Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Function CountDataby_FK_IDA(ByVal IDA As Integer) As Integer
+            Dim i As Integer = 0
+            datas = (From p In db.TABEAN_EXH_EACHes Where p.FK_IDA = IDA Select p)
             For Each Me.fields In datas
                 i += 1
             Next
@@ -3832,6 +4116,37 @@
             Next
         End Sub
     End Class
+    Public Class TB_MAS_NAME_HEAD_TABEAN_JR
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_NAME_HEAD_TABEAN_JR
+
+        Public Sub insert()
+            db.MAS_NAME_HEAD_TABEAN_JRs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.MAS_NAME_HEAD_TABEAN_JRs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.MAS_NAME_HEAD_TABEAN_JRs Where p.ACTIVE = True Order By CInt(p.SEQ_ID) Descending Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID_IDA(ByVal ID As Integer)
+            datas = From p In db.MAS_NAME_HEAD_TABEAN_JRs Where p.ID = ID And p.ACTIVE = True Select p
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+    End Class
     Public Class TB_MAS_TABEAN_HERB_NAME_JJ
         Inherits MAINCONTEXT
 
@@ -3878,4 +4193,186 @@
             Next
         End Sub
     End Class
+    Public Class TB_TABEAN_JJ_EQTO
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New TABEAN_JJ_EQTO
+        Private _Details As New List(Of TABEAN_JJ_EQTO)
+        Public Property Details() As List(Of TABEAN_JJ_EQTO)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of TABEAN_JJ_EQTO))
+                _Details = value
+            End Set
+        End Property
+
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New TABEAN_JJ_EQTO
+        End Sub
+        Public Sub insert()
+            db.TABEAN_JJ_EQTOs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.TABEAN_JJ_EQTOs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.TABEAN_JJ_EQTOs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_JJ_EQTOs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_JJ_EQTOs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_HERB_NAME_PRODUCT_ID(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_JJ_EQTOs Where p.FK_HERB_NAME_PRODUCT_ID = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GET_MAX_ROWS_ID(ByVal FK_IDA As Integer)
+            datas = (From p In db.TABEAN_JJ_EQTOs Where p.FK_IDA = FK_IDA Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_MAX_ROWS_ID_SET(ByVal FK_IDA As Integer, ByVal _set As Integer)
+            datas = (From p In db.TABEAN_JJ_EQTOs Where p.FK_IDA = FK_IDA And p.FK_SET = _set Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    Public Class TB_TABEAN_EXH_EQTO
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New TABEAN_EXHIBITION_EQTO
+        Private _Details As New List(Of TABEAN_EXHIBITION_EQTO)
+        Public Property Details() As List(Of TABEAN_EXHIBITION_EQTO)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of TABEAN_EXHIBITION_EQTO))
+                _Details = value
+            End Set
+        End Property
+
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New TABEAN_EXHIBITION_EQTO
+        End Sub
+        Public Sub insert()
+            db.TABEAN_EXHIBITION_EQTOs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.TABEAN_EXHIBITION_EQTOs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.TABEAN_EXHIBITION_EQTOs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_EQTOs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GetDataby_FK_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.TABEAN_EXHIBITION_EQTOs Where p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+        Public Sub GET_MAX_ROWS_ID(ByVal FK_IDA As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_EQTOs Where p.FK_IDA = FK_IDA Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_MAX_ROWS_ID_SET(ByVal FK_IDA As Integer, ByVal _set As Integer)
+            datas = (From p In db.TABEAN_EXHIBITION_EQTOs Where p.FK_IDA = FK_IDA And p.FK_SET = _set Order By CInt(p.ROWS) Descending Select p).Take(1)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    'Public Class TB_dactg
+    '    Inherits MAINCONTEXT
+
+    '    Public fields As New dactg
+
+    '    Public Sub insert()
+    '        db.dactgs.InsertOnSubmit(fields)
+    '        db.SubmitChanges()
+    '    End Sub
+
+    '    Private _Details As New List(Of dactg)
+    '    Public Property Details() As List(Of dactg)
+    '        Get
+    '            Return _Details
+    '        End Get
+    '        Set(ByVal value As List(Of dactg))
+    '            _Details = value
+    '        End Set
+    '    End Property
+
+    '    Private Sub AddDetails()
+    '        Details.Add(fields)
+    '        fields = New dactg
+    '    End Sub
+
+    '    Public Sub GETDATA_ALL()
+    '        datas = (From p In db.dactgs Select p)
+    '        For Each Me.fields In datas
+    '            AddDetails()
+    '        Next
+    '    End Sub
+    '    Public Sub GETDATA_ACTIVE()
+    '        datas = (From p In db.dactgs Where p.status <> "no" Select p)
+    '        For Each Me.fields In datas
+    '            AddDetails()
+    '        Next
+    '    End Sub
+    '    Public Sub GETDATA_BYctgengnm(ByVal ctgengnm As String)
+    '        datas = (From p In db.dactgs Where p.ctgengnm = ctgengnm And p.status <> "no" Select p)
+    '        For Each Me.fields In datas
+    '        Next
+    '    End Sub
+
+    '    Public Sub GETDATA_BYctgcd(ByVal ctgcd As String)
+    '        datas = (From p In db.dactgs Where p.ctgcd = ctgcd And p.status <> "no" Select p)
+    '        For Each Me.fields In datas
+    '        Next
+    '    End Sub
+    'End Class
 End Namespace

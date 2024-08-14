@@ -52,9 +52,9 @@
                 </div>
                 <div class="row" runat="server">
                     <div class="col-lg-1"></div>
-                    <div class="col-lg-4">วันที่ลงนาม</div>
+                    <div class="col-lg-4">วันที่รับแจ้ง</div>
                     <div class="col-lg-6">
-                        <asp:TextBox ID="DATE_OFFER" runat="server" Style="width: 90%"></asp:TextBox>
+                        <asp:TextBox ID="DATE_APP" runat="server" Style="width: 90%"></asp:TextBox>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -66,12 +66,29 @@
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
-                <div class="row" runat="server">
+               <%-- <div class="row" runat="server">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-4">เจ้าหน้าที่เสนอลงนาม</div>
                     <div class="col-lg-6">
-                        <%--<asp:TextBox ID="OFF_OFFER" runat="server" Style="width: 100%"></asp:TextBox>--%>
+                        <asp:TextBox ID="OFF_OFFER" runat="server" Style="width: 100%"></asp:TextBox>
                         <asp:DropDownList ID="DD_OFF_OFFER" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>--%>
+                 <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ผู้รับแจ้ง</div>
+                    <div class="col-lg-6">
+                        <%--<asp:TextBox ID="OFF_APP" runat="server" Style="width: 100%"></asp:TextBox>--%>
+                        <asp:DropDownList ID="DD_OFF_APP" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="row" runat="server">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">ตำแหน่ง ผู้รับแจ้ง</div>
+                    <div class="col-lg-6">
+                        <asp:DropDownList ID="DD_POSITION_STAFF" runat="server" DataValueField="POSITION_ID" DataTextField="POSITION_NAME" Width="100%"></asp:DropDownList>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -89,7 +106,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอยาตัวอย่าง</h3>
+                    <h3>เอกสารแนบคำขอผลิตภัณฑ์ตัวอย่าง</h3>
                 </div>
             </div>
             <div class="row">
@@ -113,61 +130,8 @@
                                 <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                     SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
-                                </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
-                                    HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
-                                </telerik:GridBoundColumn>
-                                <telerik:GridTemplateColumn>
-                                    <ItemTemplate>
-                                        <asp:HyperLink ID="PV_SELECT" runat="server">ดูเอกสาร</asp:HyperLink>
-                                    </ItemTemplate>
-                                </telerik:GridTemplateColumn>
-                            </Columns>
-                            <EditFormSettings>
-                                <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
-                            </EditFormSettings>
-
-                            <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
-                        </MasterTableView>
-
-                        <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
-
-                        <FilterMenu EnableImageSprites="False"></FilterMenu>
-                    </telerik:RadGrid>
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
-            <%--<hr />
-            <div class="row">
-                <div class="col-lg-12" style="text-align: center">
-                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10" style="width: 100%">
-                    <telerik:RadGrid ID="RadGrid2" runat="server">
-                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
-                            <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
-
-                            <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
-                                <HeaderStyle Width="20px"></HeaderStyle>
-                            </RowIndicatorColumn>
-
-                            <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
-                                <HeaderStyle Width="20px"></HeaderStyle>
-                            </ExpandCollapseColumn>
-                            <Columns>
-                                <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
-                                    SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
-                                </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
-                                    SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
-                                </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                     HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -195,6 +159,59 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12" style="text-align: center">
+                    <h3>เอกสารแนบคำขอจดแจ้ง (แก้ไขตามบันทึกข้อบกพร่อง)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10" style="width: 100%">
+                    <telerik:RadGrid ID="RadGrid2" runat="server">
+                        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                            <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
+
+                            <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
+                                <HeaderStyle Width="20px"></HeaderStyle>
+                            </RowIndicatorColumn>
+
+                            <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
+                                <HeaderStyle Width="20px"></HeaderStyle>
+                            </ExpandCollapseColumn>
+                            <Columns>
+                                <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                                    SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
+                                    SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
+                                    HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
+                                </telerik:GridBoundColumn>
+                                <telerik:GridTemplateColumn>
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="PV_SELECT" runat="server">ดูเอกสาร</asp:HyperLink>
+                                    </ItemTemplate>
+                                </telerik:GridTemplateColumn>
+                            </Columns>
+                            <EditFormSettings>
+                                <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
+                            </EditFormSettings>
+
+                            <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                        </MasterTableView>
+
+                        <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+
+                        <FilterMenu EnableImageSprites="False"></FilterMenu>
+                    </telerik:RadGrid>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <hr />
+           <%-- <div class="row">
+                <div class="col-lg-12" style="text-align: center">
                     <h3>เอกสารสูตรตำรับและกรรมวิธีการผลิต</h3>
                 </div>
             </div>
@@ -219,8 +236,8 @@
                                 <telerik:GridBoundColumn DataField="DD_HERB_NAME_PRODUCT_ID" DataType="System.Int32" FilterControlAltText="Filter DD_HERB_NAME_PRODUCT_ID column" HeaderText="DD_HERB_NAME_PRODUCT_ID"
                                     SortExpression="DD_HERB_NAME_PRODUCT_ID" UniqueName="DD_HERB_NAME_PRODUCT_ID" Display="false" AllowFiltering="true">
                                 </telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                 </telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="NAME_FAKE" FilterControlAltText="Filter NAME_FAKE column"
                                     HeaderText="ชื่อเอกสาร" SortExpression="NAME_FAKE" UniqueName="NAME_FAKE">

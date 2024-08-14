@@ -78,7 +78,7 @@ Public Class POP_UP_LCN_STAFF_TRANSFER_EDIT
         Dim bao As New BAO.ClsDBSqlcommand
         Dim Type_ID As Integer = 0
         Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        'Dim dao_up As New DAO_DRUG.TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+        'Dim dao_up As New DAO_DRUG.TB_MAS_DOCUMENT_NAME_UPLOAD_DALCN
         dao_up.GetDataby_FK_IDA_AND_TR_ID_AND_PROCESS(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
         If Type_ID = 1 Then
@@ -110,9 +110,9 @@ Public Class POP_UP_LCN_STAFF_TRANSFER_EDIT
         Dim NAME_FILE As String = ""
         For Each item As GridDataItem In RadGrid1.SelectedItems
             IDA_UPLOAD = item("ID").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
             Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _ProcessID
             dao_up.fields.FK_IDA = _IDA

@@ -93,4 +93,67 @@ Partial Public Class FRM_LCN_UPDATE_STATUS
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_c_stat As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''rgphr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rgphr As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''txt_phr_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_phr_name As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txt_phr_ida control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_phr_ida As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddl_phr_status control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_phr_status As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''rdk_date_phr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdk_date_phr As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''btn_update_s_phr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_update_s_phr As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lbl_title control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_title As Global.System.Web.UI.WebControls.Label
 End Class

@@ -30,13 +30,22 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
             bind_dd()
             bind_mas_staff()
             bind_mas_cancel()
-            Blind_PDF()
+            Bind_PDF()
+            BIND_MAS_POSITION_STAFF()
 
             UC_ATTACH1.NAME = "เอกสารแนบยกเลิกคำขอ"
             UC_ATTACH1.BindData("เอกสารแนบยกเลิกคำขอ", 1, "pdf", "0", "77")
         End If
     End Sub
+    Public Sub BIND_MAS_POSITION_STAFF()
+        Dim dt As DataTable
+        Dim bao As New BAO_TABEAN_HERB.tb_dd
+        dt = bao.SP_MAS_STAFF_POSITION_NAME()
 
+        DDL_POSITION.DataSource = dt
+        DDL_POSITION.DataBind()
+        DDL_POSITION.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
     Public Sub bind_data()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
         dao.GetdatabyID_IDA(_IDA)
@@ -44,8 +53,10 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
             'KEEP_PAY.Visible = False
             'btn_sumit.Visible = False
             'btn_keep_pay.Visible = True
+            Div_Position.Visible = True
         ElseIf dao.fields.STATUS_ID = 77 Or dao.fields.STATUS_ID = 78 Or dao.fields.STATUS_ID = 8 Then
             div_center.Visible = False
+            Div_Position.Visible = False
         ElseIf dao.fields.STATUS_ID = 9 Then
             p2.Visible = True
             p3.Visible = False
@@ -55,10 +66,16 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
             NOTE_CANCLE.Text = dao.fields.NOTE_CANCEL
             btn_sumit.Visible = False
             uc_upload1_radgrid.Visible = True
+            Div_Position.Visible = False
+        ElseIf dao.fields.STATUS_ID = 3 Then
+            div_EXH_NO.Visible = True
+            TXT_EXH_NO.Text = BIND_NO_EXH(dao.fields.YEAR, dao.fields.pvncd, dao.fields.IDA, dao.fields.PROCESS_ID)
+            Div_Position.Visible = False
         Else
             KEEP_PAY.Visible = True
             btn_sumit.Visible = True
             btn_keep_pay.Visible = False
+            Div_Position.Visible = False
         End If
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
         lbl_create_by.Text = dao.fields.CREATE_BY
@@ -88,7 +105,7 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         DDL_CANCLE_REMARK.DataBind()
         DDL_CANCLE_REMARK.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
-    Sub Blind_PDF()
+    Sub Bind_PDF()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
         dao.GetdatabyID_IDA(_IDA)
 
@@ -133,10 +150,10 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         dao_sub.GetdatabyID_IDA(Request.QueryString("IDA"))
 
         status_id1 = dao_sub.fields.STATUS_ID
-        If status_id1 = 2 Then
+        If status_id1 = 3 Then
             int_group_ddl1 = 2
             int_group_ddl2 = 0
-        ElseIf status_id1 = 3 Then
+        ElseIf status_id1 = 4 Then
             int_group_ddl1 = 3
             int_group_ddl2 = 0
         ElseIf status_id1 = 6 Then
@@ -167,29 +184,31 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
         dao.GetdatabyID_IDA(_IDA)
         dao.fields.STATUS_ID = DD_STATUS.SelectedValue
-
-        If dao.fields.STATUS_ID = 3 Then
+        Dim bao_gen As New BAO.GenNumber
+        If dao.fields.STATUS_ID = 4 Then
             dao.fields.rcv_StaffID = DD_OFF_REQ.SelectedValue
             dao.fields.rcv_StaffName = DD_OFF_REQ.SelectedItem.Text
             dao.fields.rcvdate = Date.Now
-            Dim bao As New BAO.GenNumber
-            Dim RCVNO As String = ""
-            Dim RCVNO_HERB_NEW As String = ""
-            'Dim pvncd As String = dao.fields.pvncd
-            Dim pvncd As String = 10
+            'Dim bao As New BAO.GenNumber
+            'Dim RCVNO As String = ""
+            'Dim RCVNO_HERB_NEW As String = ""
+            ''Dim pvncd As String = dao.fields.pvncd
+            'Dim pvncd As String = 10
 
-            RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), pvncd, _Process_ID, _IDA)
-            Dim TR_ID As String = dao.fields.TR_ID
-            Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
-            RCVNO_HERB_NEW = bao.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, _Process_ID, _IDA)
-            Dim RCVNO_FULL As String = "HB" & " " & pvncd & "-" & _Process_ID & "-" & DATE_YEAR & "-" & RCVNO_HERB_NEW
-            dao.fields.RCVNO_NEW = RCVNO_FULL
-            dao.fields.RCVNO = RCVNO
+            'RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), pvncd, _Process_ID, _IDA)
+            'Dim TR_ID As String = dao.fields.TR_ID
+            'Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+            'RCVNO_HERB_NEW = bao.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, _Process_ID, _IDA)
+            'Dim RCVNO_FULL As String = "HB" & " " & pvncd & "-" & _Process_ID & "-" & DATE_YEAR & "-" & RCVNO_HERB_NEW
+            'dao.fields.RCVNO_NEW = RCVNO_FULL
+            'dao.fields.RCVNO = RCVNO
 
-        ElseIf dao.fields.STATUS_ID = 5 Then
+        ElseIf dao.fields.STATUS_ID = 6 Then
             dao.fields.CONSIDER_StaffID = DD_OFF_REQ.SelectedValue
             dao.fields.CONSIDER_StaffName = DD_OFF_REQ.SelectedItem.Text
             dao.fields.CONSIDER_DATE = Date.Now
+
+            dao.fields.EXH_NO = bao_gen.GEN_NO_NEW(dao.fields.YEAR, dao.fields.pvncd, "EXH", dao.fields.IDA, dao.fields.PROCESS_ID)
         ElseIf dao.fields.STATUS_ID = 11 Then
             dao.fields.staff_edit_id = DD_OFF_REQ.SelectedValue
             dao.fields.staff_edit_name = DD_OFF_REQ.SelectedItem.Text
@@ -201,6 +220,8 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         ElseIf dao.fields.STATUS_ID = 8 Then
             dao.fields.appdate_StaffID = DD_OFF_REQ.SelectedValue
             dao.fields.appdate_StaffName = DD_OFF_REQ.SelectedItem.Text
+            dao.fields.Position_Name_App = DDL_POSITION.SelectedItem.Text
+            dao.fields.Position_Name_AppID = DDL_POSITION.SelectedValue
             dao.fields.appdate = Date.Now
         ElseIf dao.fields.STATUS_ID = 9 Or dao.fields.STATUS_ID = 7 Or dao.fields.STATUS_ID = 10 Then
             dao.fields.NOTE_CANCEL = NOTE_CANCLE.Text
@@ -225,7 +246,61 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
 
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
     End Sub
+    Public Function BIND_NO_EXH(ByVal YEAR As String, ByVal PVNCD As String, ByVal FK_IDA As Integer, ByVal PROCESS_ID As Integer) As String
+        Dim int_no As Integer
+        Dim full_rgtno As String = ""
+        Dim str_no As String = int_no.ToString()
+        Dim str_no2 As String = int_no.ToString()
+        Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_NEW
+        Dim dao2 As New DAO_TABEAN_HERB.TB_GEN_NO_NEW
 
+        dao.GetDataby_TYPE_MAX(YEAR, "EXH", FK_IDA)
+        dao2.GetDataby_FK_IDA(FK_IDA)
+        If IsNothing(dao.fields.GENNO) = True Then
+            int_no = 0
+        Else
+            int_no = dao.fields.GENNO
+        End If
+        int_no = int_no + 1
+        'str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+        str_no2 = YEAR.Substring(2, 2) & str_no
+
+        str_no2 = "HB" & " " & int_no.ToString() & "/" & con_year(YEAR).Substring(2, 2) & " EXH"
+
+        Return str_no2
+    End Function
+    'Public Function GEN_NO_NEW(ByVal YEAR As String, ByVal PVNCD As String, ByVal TYPE As String, ByVal FK_IDA As Integer, ByVal Process_ID As String) As String
+    '    Dim int_no As Integer
+    '    Dim full_rgtno As String = ""
+    '    'TYPE = "EXH"
+    '    Dim dao As New DAO_TABEAN_HERB.TB_GEN_NO_NEW
+    '    dao.GetDataby_TYPE_MAX(YEAR, TYPE, FK_IDA)
+
+    '    If IsNothing(dao.fields.GENNO) = True Then
+    '        int_no = 0
+    '    Else
+    '        int_no = dao.fields.GENNO
+    '    End If
+    '    int_no = int_no + 1
+
+    '    Dim str_no As String = int_no.ToString()
+    '    'str_no = String.Format("{0:00000}", int_no.ToString("00000"))
+    '    'str_no = YEAR.Substring(2, 2) & str_no
+    '    full_rgtno = "HB" & " " & int_no.ToString() & "/" & con_year(YEAR).Substring(2, 2) & " EXH"
+    '    dao = New DAO_TABEAN_HERB.TB_GEN_NO_NEW
+    '    dao.fields.YEAR = YEAR
+    '    dao.fields.PVCODE = PVNCD
+    '    dao.fields.GENNO = int_no
+    '    dao.fields.TYPE = TYPE
+    '    dao.fields.FORMAT = full_rgtno
+    '    dao.fields.IDA = FK_IDA
+    '    dao.fields.LCNNO = str_no
+    '    dao.fields.DESCRIPTION = str_no
+    '    dao.fields.REF_IDA = FK_IDA
+    '    dao.fields.GROUP_NO = Process_ID
+    '    dao.insert()
+    '    Return full_rgtno
+    'End Function
     Protected Sub DD_STATUS_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_STATUS.SelectedIndexChanged
         If DD_STATUS.SelectedValue = 9 Or DD_STATUS.SelectedValue = 7 Or DD_STATUS.SelectedValue = 10 Or DD_STATUS.SelectedValue = 5 Or DD_STATUS.SelectedValue = 78 Then
             p2.Visible = True
@@ -244,7 +319,7 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function
@@ -265,7 +340,7 @@ Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _Process_ID, _IDA)
 
         Return dt
     End Function

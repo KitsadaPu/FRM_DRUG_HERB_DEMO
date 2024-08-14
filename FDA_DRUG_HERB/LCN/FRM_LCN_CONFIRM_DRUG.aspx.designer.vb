@@ -608,6 +608,15 @@ Partial Public Class FRM_LCN_CONFIRM_DRUG
     Protected WithEvents lbl_GIVE_WORK_LICENSE_EXPDATE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''rg_bsn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rg_bsn As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''lbl_lct_thanameplace control.
     '''</summary>
     '''<remarks>

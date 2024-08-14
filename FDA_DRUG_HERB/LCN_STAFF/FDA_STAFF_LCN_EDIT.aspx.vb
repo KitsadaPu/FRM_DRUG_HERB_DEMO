@@ -36,7 +36,7 @@ Public Class FDA_STAFF_LCN_EDIT
             If dao_chk.fields.IDA = 0 Then
                 For Each dao_up_mas.fields In dao_up_mas.datas
                     Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-                    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
                     dao_up.fields.TR_ID = _TR_ID
                     dao_up.fields.PROCESS_ID = _ProcessID
                     dao_up.fields.FK_IDA = _IDA
@@ -73,10 +73,10 @@ Public Class FDA_STAFF_LCN_EDIT
         End If
         For Each item As GridDataItem In RadGrid1.SelectedItems
             IDA_UPLOAD = item("IDA").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
 
             Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _ProcessID
             dao_up.fields.FK_IDA = _IDA

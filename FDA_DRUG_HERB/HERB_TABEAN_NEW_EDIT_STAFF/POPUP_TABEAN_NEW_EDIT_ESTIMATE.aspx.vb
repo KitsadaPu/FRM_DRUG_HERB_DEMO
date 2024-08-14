@@ -45,6 +45,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_ESTIMATE
         dao.GetdatabyID_IDA(_IDA)
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
         lbl_create_by.Text = dao.fields.CREATE_BY
+        txt_remark_edit.Text = dao.fields.REMARK
         Try
             lbl_create_date.Text = dao.fields.CREATE_DATE
         Catch ex As Exception
@@ -201,7 +202,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_ESTIMATE
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function

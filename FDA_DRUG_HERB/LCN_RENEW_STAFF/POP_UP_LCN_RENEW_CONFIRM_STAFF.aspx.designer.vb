@@ -221,13 +221,22 @@ Partial Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
     Protected WithEvents AT_FILE As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''RadGrid1 control.
+    '''rgat control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgat As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''rgat_edit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rgat_edit As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''lbl_head1 control.

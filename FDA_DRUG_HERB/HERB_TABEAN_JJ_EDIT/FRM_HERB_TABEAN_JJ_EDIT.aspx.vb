@@ -78,9 +78,12 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT1
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_JJ_EDIT/FRM_HERB_TABEAN_JJ_EDIT_COMFIRM.aspx?IDA_LCT=" &
                                                                       IDA_LCN & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "');", True)
                 ElseIf STATUS_ID = 4 Then
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_JJ_EDIT/FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD.aspx?IDA_LCT=" &
-                                                                      IDA_LCN & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "');", True)
-                Else
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_JJ_EDIT/POPUP_TABEAN_JJ_EDIT_REQUEST2.aspx?IDA_LCT=" & IDA_LCN & "&IDA_JJ=" & FK_IDA &
+                                                                      "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "');", True)
+
+                    '    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_JJ_EDIT/FRM_HERB_TABEAN_JJ_EDIT_FILE_UPLOAD.aspx?IDA_LCT=" &
+                    '                                                      IDA_LCN & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "');", True)
+                    'Else
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('" & "../HERB_TABEAN_JJ_EDIT/FRM_HERB_TABEAN_JJ_EDIT_COMFIRM.aspx?IDA_LCT=" &
                                                                      IDA_LCN & "&TR_ID_LCN=" & TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & DD & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&TR_ID=" & TR_ID_JJ & "');", True)
                 End If

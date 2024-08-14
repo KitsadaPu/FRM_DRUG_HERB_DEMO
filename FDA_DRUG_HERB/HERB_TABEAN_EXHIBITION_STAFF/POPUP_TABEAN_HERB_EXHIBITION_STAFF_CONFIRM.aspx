@@ -61,15 +61,18 @@
         <div class="col-lg-4" style="width: 30%">
             <div runat="server" id="div_center">
                 <div class="row" runat="server" id="KEEP_PAY" visible="true">
+                    <hr />
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">เลือกสถานะ</div>
                         <div class="col-lg-6">
-                            <asp:DropDownList ID="DD_STATUS" runat="server" DataValueField="STATUS_ID" DataTextField="STATUS_NAME" AutoPostBack="true"  Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="DD_STATUS" runat="server" DataValueField="STATUS_ID" DataTextField="STATUS_NAME" AutoPostBack="true" Width="100%"></asp:DropDownList>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+
                     <div class="row" runat="server" id="P12" visible="true">
+                        <%--       <hr />--%>
                         <div class="row" runat="server" id="P14" visible="false">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-4">เลขรับ</div>
@@ -78,6 +81,18 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
+                        <div  runat="server" id="div_EXH_NO" visible="false">
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-4">เลขที่รับแจ้ง</div>
+                                <div class="col-lg-6">
+                                    <asp:TextBox ID="TXT_EXH_NO" runat="server" Style="width: 100%"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>
+                        <hr />
                         <div class="row" runat="server">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-4">วันที่ตรวจรับคำขอ</div>
@@ -86,19 +101,32 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
+                        <hr />
+                        <div class="row" runat="server" id="Div_Position" visible="false">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-4">ตำแหน่ง ผู้อนุญาต</div>
+                            <div class="col-lg-6">
+                                <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
+                                <asp:DropDownList ID="DDL_POSITION" runat="server" DataValueField="POSITION_ID" DataTextField="POSITION_NAME" Width="100%"></asp:DropDownList>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                        <hr />
                         <div class="row" runat="server">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-4">จนท. ที่รับผิดชอบ</div>
                             <div class="col-lg-6">
                                 <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
-                                <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME"  Width="100%"></asp:DropDownList>
+                                <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Width="100%"></asp:DropDownList>
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
+                        <hr />
                     </div>
                 </div>
 
                 <div runat="server" id="p2" visible="false">
+                    <hr />
                     <div class="row" runat="server">
                         <div class="row" runat="server">
                             <div class="col-lg-1"></div>
@@ -108,6 +136,7 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
+                        <hr />
                         <div class="row" runat="server">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-4">รายละเอียดการยกเลิก</div>
@@ -116,6 +145,7 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
+                        <hr />
                         <div class="row" id="p3" runat="server">
                             <div class="col-lg-12" style="text-align: center">
                                 <uc1:UC_ATTACH ID="UC_ATTACH1" runat="server" />
@@ -144,8 +174,8 @@
                                                 <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                                     SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                                    HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                                <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                                    HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                                 </telerik:GridBoundColumn>
                                                 <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                                     HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -221,8 +251,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">

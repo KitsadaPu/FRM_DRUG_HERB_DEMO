@@ -1,49 +1,36 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/Main_PPK.Master" CodeBehind="FRM_TABEAN_HERB_EXHIBITION_SELECT_LCN.aspx.vb" Inherits="FDA_DRUG_HERB.FRM_TABEAN_HERB_EXHIBITION_SELECT_LCN" %>
 
-
-
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Src="~/UC/UC_NEWS.ascx" TagPrefix="uc1" TagName="UC_NEWS" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <div class="row">
-        <div class="col-lg-12" style="text-align:center" runat="server" id="div_news">
+        <div class="col-lg-12" style="text-align: center" runat="server" id="div_news">
             <uc1:UC_NEWS runat="server" ID="UC_NEWS" />
             <asp:HiddenField ID="hdf_select" runat="server" />
         </div>
     </div>
-
-    
     <div class="row" id="T1" runat="server" visible="false">
-        <div class="panel" style="text-align: left; width: 100%">
+        <div class="panel panel-body" style="width: 100%; height: 780px; padding-left: 1em">
             <div class="panel-heading panel-title" style="height: 70px">
-                <p class="h3" style="text-align: left;"><span style="color: rgb(102, 102, 102); font-family: SUKHUMVIT; font-size: 24px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">แบบแจ้งขออนุญาตผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อการแสดงนิทรรศการ</span></p>
+                <p class="h3" style="text-align: left; border-bottom: 3px solid gray;"><span style="color: rgb(102, 102, 102); font-family: SUKHUMVIT; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">แบบแจ้งขออนุญาตผลิตหรือนำเข้าผลิตภัณฑ์สมุนไพรเพื่อการแสดงนิทรรศการ</span></p>
             </div>
-        </div>
-
-
-         <div class="panel panel-body" style="width: 100%; padding-left: 1em">
+            <div style="padding-top: 30px"></div>
             <div class="col-lg-12" style="text-align: center; padding-left: 2em; padding-right: 2em">
-                <p class="h3" style="text-align: center;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
+                <p class="h4" style="text-align: left;">กรุณาเลือกใบอนุญาตเพื่อดำเนินรายการ</p>
                 <hr />
-
                 <telerik:RadGrid ID="RadGrid1" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                         <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
-
                         <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
                             <HeaderStyle Width="20px"></HeaderStyle>
                         </RowIndicatorColumn>
-
                         <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
                             <HeaderStyle Width="20px"></HeaderStyle>
                         </ExpandCollapseColumn>
-
                         <Columns>
                             <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column"
                                 HeaderText="IDA" ReadOnly="True" SortExpression="IDA" UniqueName="IDA" Display="false">
@@ -69,25 +56,17 @@
                                     <asp:HyperLink ID="HL_SELECT" runat="server">เลือกข้อมูล</asp:HyperLink>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-
                         </Columns>
-
                         <EditFormSettings>
                             <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
                         </EditFormSettings>
-
                         <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
                     </MasterTableView>
-
                     <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
-
                     <FilterMenu EnableImageSprites="False"></FilterMenu>
                 </telerik:RadGrid>
             </div>
             <div class="col-lg-1"></div>
         </div>
-
-
-
     </div>
 </asp:Content>

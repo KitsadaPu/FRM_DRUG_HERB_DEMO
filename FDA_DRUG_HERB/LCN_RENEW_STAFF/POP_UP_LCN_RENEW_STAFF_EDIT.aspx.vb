@@ -54,28 +54,28 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
         Try
-            If dao.fields.Check_Edit_ID = True Then
-                DIV_SHOW_TXT_EDIT_TB1.Visible = True
-                TXT_EDIT_NOTE_TB1.Text = dao.fields.Note_Edit
-                TXT_EDIT_NOTE_TB1.ReadOnly = True
-                CHK_TB1_EDIT.Checked = dao.fields.Check_Edit_ID
-                CHK_TB1_EDIT.Enabled = True
-            Else
-                DIV_SHOW_TXT_EDIT_TB1.Visible = False
-            End If
-            If dao.fields.Check_Edit_FileUpload_ID = True Then
-                DIV_EDIT_UPLOAD1.Visible = True
-                DIV_EDIT_UPLOAD2.Visible = True
-                RadGrid1.Rebind()
-                RadGrid3.Rebind()
-                NOTE_EDIT.Text = dao.fields.Note_Edit_FileUpload
-                NOTE_EDIT.ReadOnly = True
-                CHK_UPLOAD_EDIT.Checked = dao.fields.Check_Edit_FileUpload_ID
-                CHK_UPLOAD_EDIT.Enabled = True
-            Else
-                DIV_EDIT_UPLOAD1.Visible = False
-                DIV_EDIT_UPLOAD2.Visible = False
-            End If
+            'If dao.fields.Check_Edit_ID = True Then
+            '    'DIV_SHOW_TXT_EDIT_TB1.Visible = True
+            '    'TXT_EDIT_NOTE_TB1.Text = dao.fields.Note_Edit
+            '    'TXT_EDIT_NOTE_TB1.ReadOnly = True
+            '    'CHK_TB1_EDIT.Checked = dao.fields.Check_Edit_ID
+            '    'CHK_TB1_EDIT.Enabled = True
+            'Else
+            '    'DIV_SHOW_TXT_EDIT_TB1.Visible = False
+            'End If
+            'If dao.fields.Check_Edit_FileUpload_ID = True Then
+            '    DIV_EDIT_UPLOAD1.Visible = True
+            '    DIV_EDIT_UPLOAD2.Visible = True
+            rgat_edit.Rebind()
+            rgat.Rebind()
+            NOTE_EDIT.Text = dao.fields.Note_Edit_FileUpload
+            'NOTE_EDIT.ReadOnly = True
+            'CHK_UPLOAD_EDIT.Checked = dao.fields.Check_Edit_FileUpload_ID
+            'CHK_UPLOAD_EDIT.Enabled = True
+            'Else
+            '    DIV_EDIT_UPLOAD1.Visible = False
+            '    DIV_EDIT_UPLOAD2.Visible = False
+            'End If
         Catch ex As Exception
 
         End Try
@@ -98,16 +98,22 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Dim dt As DataTable
         Dim bao As New BAO.ClsDBSqlcommand
         Dim Type_ID As Integer = 0
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA)
+        Dim dao_p As New DAO_LCN.TB_DALCN_RENEW_PRE
+        dao_p.GET_DATA_BY_FK_LCN(_IDA_LCN, True)
+        Dim Condition_ID As String = dao_p.fields.Check_Confirm
+        Dim bao_show As New BAO_SHOW
         Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        'Dim dao_up As New DAO_DRUG.TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+        'Dim dao_up As New DAO_DRUG.TB_MAS_DOCUMENT_NAME_UPLOAD_DALCN
         dao_up.GetDataby_FK_IDA_AND_TR_ID_AND_PROCESS(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
         If Type_ID = 1 Then
             'RadGrid1.Visible = False
-            RadGrid4.Visible = False
+            rgat_edit2.Visible = False
             ' dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ_NO() 
         Else
-            RadGrid1.Visible = False
+            rgat_edit.Visible = False
             'RadGrid4.Visible = True
 
             btn_sumit.Enabled = False
@@ -117,23 +123,28 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
             'set_show.Visible = False
         End If
 
-        dt = bao.SP_DALCN_UPLOAD_FILE_TYPE_BY_PROCESS(_ProcessID)
+        If Condition_ID = "N" Then
+            dt = bao_show.SP_DALCN_UPLOAD_FILE_BY_TR_ID_AND_DOCID(_TR_ID)
+        Else
+            dt = bao_show.SP_DALCN_UPLOAD_FILE_BY_TR_ID_V3(_TR_ID, 1)
+        End If
+        'dt = bao.SP_DALCN_UPLOAD_FILE_TYPE_BY_PROCESS(_ProcessID)
 
         Return dt
     End Function
 
-    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
-        RadGrid1.DataSource = bind_data_uploadfile()
+    Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat_edit.NeedDataSource
+        rgat_edit.DataSource = bind_data_uploadfile()
     End Sub
 
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
         Dim IDA_UPLOAD As Integer = 0
         Dim NAME_FILE As String = ""
-        For Each item As GridDataItem In RadGrid1.SelectedItems
+        For Each item As GridDataItem In rgat_edit.SelectedItems
             IDA_UPLOAD = item("ID").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
             Dim dao_up As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _ProcessID
             dao_up.fields.FK_IDA = _IDA
@@ -145,18 +156,19 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
         dao.fields.Note_Edit = NOTE_EDIT.Text
-        If CHK_TB1_EDIT.Checked = True Then
-            dao.fields.Check_Edit_ID = CHK_TB1_EDIT.Checked
-            dao.fields.Note_Edit = TXT_EDIT_NOTE_TB1.Text
-        Else
-            dao.fields.Check_Edit_ID = CHK_TB1_EDIT.Checked
-        End If
-        If CHK_UPLOAD_EDIT.Checked = True Then
-            dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
-            dao.fields.Note_Edit_FileUpload = NOTE_EDIT.Text
-        Else
-            dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
-        End If
+        'If CHK_TB1_EDIT.Checked = True Then
+        'dao.fields.Check_Edit_ID = CHK_TB1_EDIT.Checked
+        '    dao.fields.Note_Edit = TXT_EDIT_NOTE_TB1.Text
+        'Else
+        'dao.fields.Check_Edit_ID = CHK_TB1_EDIT.Checked
+        'End If
+        'If CHK_UPLOAD_EDIT.Checked = True Then
+        '    dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
+        dao.fields.Note_Edit_FileUpload = NOTE_EDIT.Text
+        dao.fields.STATUS_ID = 31
+        'Else
+        '    dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
+        'End If
         Try
             dao.fields.staff_edit_id = _CLS.CITIZEN_ID
             dao.fields.staff_edit_name = _CLS.NAME
@@ -171,6 +183,10 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+        'Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        'dao.GET_DATA_BY_IDA(_IDA)
+        'dao.fields.STATUS_ID = 31
+        'dao.update()
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "parent.close_modal();", True)
     End Sub
     Protected Sub btn_add_upload_Click(sender As Object, e As EventArgs) Handles btn_add_upload.Click
@@ -201,25 +217,25 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Dim url As String = ""
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
     End Sub
-    Protected Sub CHK_TB1_EDIT_CheckedChanged(sender As Object, e As EventArgs) Handles CHK_TB1_EDIT.CheckedChanged
-        If CHK_TB1_EDIT.Checked = True Then
-            DIV_SHOW_TXT_EDIT_TB1.Visible = True
-        Else
-            DIV_SHOW_TXT_EDIT_TB1.Visible = False
-        End If
-    End Sub
+    'Protected Sub CHK_TB1_EDIT_CheckedChanged(sender As Object, e As EventArgs) Handles CHK_TB1_EDIT.CheckedChanged
+    '    If CHK_TB1_EDIT.Checked = True Then
+    '        DIV_SHOW_TXT_EDIT_TB1.Visible = True
+    '    Else
+    '        DIV_SHOW_TXT_EDIT_TB1.Visible = False
+    '    End If
+    'End Sub
 
-    Protected Sub CHK_UPLOAD_EDIT_CheckedChanged(sender As Object, e As EventArgs) Handles CHK_UPLOAD_EDIT.CheckedChanged
-        If CHK_UPLOAD_EDIT.Checked = True Then
-            DIV_EDIT_UPLOAD1.Visible = True
-            DIV_EDIT_UPLOAD2.Visible = True
-            RadGrid1.Rebind()
-            RadGrid3.Rebind()
-        Else
-            DIV_EDIT_UPLOAD1.Visible = False
-            DIV_EDIT_UPLOAD2.Visible = False
-        End If
-    End Sub
+    'Protected Sub CHK_UPLOAD_EDIT_CheckedChanged(sender As Object, e As EventArgs) Handles CHK_UPLOAD_EDIT.CheckedChanged
+    '    If CHK_UPLOAD_EDIT.Checked = True Then
+    '        DIV_EDIT_UPLOAD1.Visible = True
+    '        DIV_EDIT_UPLOAD2.Visible = True
+    '        rgat_edit.Rebind()
+    '        rgat.Rebind()
+    '    Else
+    '        DIV_EDIT_UPLOAD1.Visible = False
+    '        DIV_EDIT_UPLOAD2.Visible = False
+    '    End If
+    'End Sub
     Function bind_data_uploadfile_1()
         Dim dt As DataTable
         Dim bao As New BAO.ClsDBSqlcommand
@@ -231,11 +247,11 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Return dt
     End Function
 
-    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
-        RadGrid3.DataSource = bind_data_uploadfile_1()
+    Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat.NeedDataSource
+        rgat.DataSource = bind_data_uploadfile_1()
     End Sub
 
-    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid3.ItemDataBound
+    Private Sub RadGrid3_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgat.ItemDataBound
         If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
             Dim item As GridDataItem
             item = e.Item
@@ -259,8 +275,8 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Return dt
     End Function
 
-    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
-        RadGrid4.DataSource = bind_data_uploadfile_4()
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rgat_edit2.NeedDataSource
+        rgat_edit2.DataSource = bind_data_uploadfile_4()
     End Sub
 
 End Class

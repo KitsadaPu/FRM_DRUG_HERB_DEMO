@@ -7,6 +7,8 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
     Inherits System.Web.UI.UserControl
 
     Dim _IDA As String
+    Dim _HERB_ID As String
+    Dim _PROCESS_ID As String
     Dim STATUS_ID As String = "0"
     Private _CLS As New CLS_SESSION
     Sub RunQuery()
@@ -19,8 +21,16 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
             End If
             If Request.QueryString("IDA") <> "" Then
                 _IDA = Request.QueryString("IDA")
+                'ElseIf Request.QueryString("HERB_ID") <> "" Then
+                '    _HERB_ID = Request.QueryString("HERB_ID")
             Else
                 _IDA = Request.QueryString("IDA_JJ")
+            End If
+            If Request.QueryString("PROCESS_ID") <> "" Then
+                _PROCESS_ID = Request.QueryString("PROCESS_ID")
+            End If
+            If Request.QueryString("HERB_ID") <> "" Then
+                _HERB_ID = Request.QueryString("HERB_ID")
             End If
         Catch ex As Exception
 
@@ -105,11 +115,12 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
                     rg_chem.Rebind()
                 End If
             ElseIf e.CommandName = "_eqto" Then
-                Dim url As String = "../TABEAN_YA/FRM_EQTO.aspx?IDA=" & IDA & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&idr=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&fk_set=" & item("FK_SET").Text
+                Dim url As String = "../HERB_TABEAN/FRM_HERB_TABEAN_JJ_EQTO.aspx?IDA=" & IDA & "&type=" & Request.QueryString("type") & "&tr_id=" & Request.QueryString("tr_id") & "&idr=" & _IDA & "&STATUS_ID=" & STATUS_ID & "&fk_set=" & item("FK_SET").Text & "&HERB_ID=" & _HERB_ID
                 If Request.QueryString("e") <> "" Then
                     url &= "&e=1"
                 End If
-                Response.Redirect(url)
+                Response.Write("<script>window.open('" & url & "','_blank')</script>")
+                'Response.Redirect(url)
             End If
 
         End If
@@ -177,36 +188,36 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
         'item.Value = "0"
         'ddl_unit.Items.Insert(0, item)
     End Sub
-    Public Sub bind_unit2()
-        Dim dt As New DataTable
-        Dim bao As New BAO_MASTER
-        dt = bao.SP_MASTER_drsunit()
+    'Public Sub bind_unit2()
+    '    Dim dt As New DataTable
+    '    Dim bao As New BAO_MASTER
+    '    dt = bao.SP_MASTER_drsunit()
 
-        ddl_unit2.DataSource = dt
-        ddl_unit2.DataTextField = "sunitnmsht"
-        ddl_unit2.DataValueField = "sunitcd"
-        ddl_unit2.DataBind()
+    '    ddl_unit2.DataSource = dt
+    '    ddl_unit2.DataTextField = "sunitnmsht"
+    '    ddl_unit2.DataValueField = "sunitcd"
+    '    ddl_unit2.DataBind()
 
-        Dim item As New ListItem
-        item.Text = "--กรุณาเลือก--"
-        item.Value = "0"
-        ddl_unit2.Items.Insert(0, item)
-    End Sub
-    Public Sub bind_unit3()
-        Dim dt As New DataTable
-        Dim bao As New BAO_MASTER
-        dt = bao.SP_MASTER_drsunit()
+    '    Dim item As New ListItem
+    '    item.Text = "--กรุณาเลือก--"
+    '    item.Value = "0"
+    '    ddl_unit2.Items.Insert(0, item)
+    'End Sub
+    'Public Sub bind_unit3()
+    '    Dim dt As New DataTable
+    '    Dim bao As New BAO_MASTER
+    '    dt = bao.SP_MASTER_drsunit()
 
-        ddl_unit3.DataSource = dt
-        ddl_unit3.DataTextField = "sunitnmsht"
-        ddl_unit3.DataValueField = "sunitcd"
-        ddl_unit3.DataBind()
+    '    ddl_unit3.DataSource = dt
+    '    ddl_unit3.DataTextField = "sunitnmsht"
+    '    ddl_unit3.DataValueField = "sunitcd"
+    '    ddl_unit3.DataBind()
 
-        Dim item As New ListItem
-        item.Text = "--กรุณาเลือก--"
-        item.Value = "0"
-        ddl_unit3.Items.Insert(0, item)
-    End Sub
+    '    Dim item As New ListItem
+    '    item.Text = "--กรุณาเลือก--"
+    '    item.Value = "0"
+    '    ddl_unit3.Items.Insert(0, item)
+    'End Sub
     Public Sub bind_unit4()
         Dim dt As New DataTable
         Dim bao As New BAO_MASTER
@@ -297,27 +308,40 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
 
             End If
             dao.fields.AORI = ddl_aori.SelectedItem.Text
-            dao.fields.FK_IDA = _IDA
+
             Try
                 dao.fields.FK_SET = ddl_set.SelectedValue
             Catch ex As Exception
 
             End Try
             Try
-                dao.fields.ebioqty = txt_ebioqty.Text
+                dao.fields.process_id = _PROCESS_ID
             Catch ex As Exception
 
             End Try
+            'If _HERB_ID = "" Then
+            dao.fields.FK_IDA = _IDA
+            'End If
             Try
-                dao.fields.ebiosqno = txt_ebiosqno.Text
+                dao.fields.FK_HERB_NAME_PRODUCT_ID = _HERB_ID
             Catch ex As Exception
 
             End Try
-            Try
-                dao.fields.ebiounitcd = ddl_unit3.SelectedValue
-            Catch ex As Exception
+            'Try
+            '    dao.fields.ebioqty = txt_ebioqty.Text
+            'Catch ex As Exception
 
-            End Try
+            'End Try
+            'Try
+            '    dao.fields.ebiosqno = txt_ebiosqno.Text
+            'Catch ex As Exception
+
+            'End Try
+            'Try
+            '    dao.fields.ebiounitcd = ddl_unit3.SelectedValue
+            'Catch ex As Exception
+
+            'End Try
             Try
                 dao.fields.CAS_TYPE = ddl_CAS_TYPE.SelectedValue
             Catch ex As Exception
@@ -338,21 +362,21 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
             Catch ex As Exception
 
             End Try
-            Try
-                dao.fields.sbioqty = txt_sbioqty.Text
-            Catch ex As Exception
+            'Try
+            '    dao.fields.sbioqty = txt_sbioqty.Text
+            'Catch ex As Exception
 
-            End Try
-            Try
-                dao.fields.sbiosqno = txt_sbiosqno.Text
-            Catch ex As Exception
+            'End Try
+            'Try
+            '    dao.fields.sbiosqno = txt_sbiosqno.Text
+            'Catch ex As Exception
 
-            End Try
-            Try
-                dao.fields.sbiounitcd = ddl_unit2.SelectedValue
-            Catch ex As Exception
+            'End Try
+            'Try
+            '    dao.fields.sbiounitcd = ddl_unit2.SelectedValue
+            'Catch ex As Exception
 
-            End Try
+            'End Try
             Dim dao_max As New DAO_TABEAN_HERB.TB_TABEAN_JJ_DETAIL_CAS
             dao_max.GET_MAX_ROWS_ID_SET(_IDA, ddl_set.SelectedValue)
             Dim id_max As Integer = 0
@@ -361,16 +385,16 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
             Catch ex As Exception
 
             End Try
-            Try
-                dao.fields.REF = txt_ref.Text
-            Catch ex As Exception
+            'Try
+            '    dao.fields.REF = txt_ref.Text
+            'Catch ex As Exception
 
-            End Try
-            Try
-                dao.fields.REMARK = txt_remark.Text
-            Catch ex As Exception
+            'End Try
+            'Try
+            '    dao.fields.REMARK = txt_remark.Text
+            'Catch ex As Exception
 
-            End Try
+            'End Try
             dao.fields.ROWS = txt_ROWS.Text 'id_max + 1
             dao.insert()
         Next
@@ -392,23 +416,23 @@ Public Class UC_TABEAN_JJ_DETAIL_CAS
             ddl_unit.Enabled = True
             ddl_remark1.Enabled = True
 
-            txt_sbioqty.Enabled = False
-            ddl_unit2.Enabled = False
-            txt_sbiosqno.Enabled = False
-            txt_ebioqty.Enabled = False
-            ddl_unit3.Enabled = False
-            txt_ebiosqno.Enabled = False
+            'txt_sbioqty.Enabled = False
+            'ddl_unit2.Enabled = False
+            'txt_sbiosqno.Enabled = False
+            'txt_ebioqty.Enabled = False
+            'ddl_unit3.Enabled = False
+            'txt_ebiosqno.Enabled = False
         Else
             txt_QTY.Enabled = False
             ddl_unit.Enabled = False
             ddl_remark1.Enabled = False
 
-            txt_sbioqty.Enabled = True
-            ddl_unit2.Enabled = True
-            txt_sbiosqno.Enabled = True
-            txt_ebioqty.Enabled = True
-            ddl_unit3.Enabled = True
-            txt_ebiosqno.Enabled = True
+            'txt_sbioqty.Enabled = True
+            'ddl_unit2.Enabled = True
+            'txt_sbiosqno.Enabled = True
+            'txt_ebioqty.Enabled = True
+            'ddl_unit3.Enabled = True
+            'txt_ebiosqno.Enabled = True
         End If
     End Sub
 

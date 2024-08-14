@@ -3,7 +3,7 @@
 <from>
     <div>
         <h4>&ensp;&ensp;&ensp;&ensp;&ensp;
-               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการหรือดำเนนินกิจการเกี่ยวกับใบอนุญาต</h4>
+               ๒. &ensp;ข้อมูลผู้ได้รับมอบหมายหรือแต่งตั้งให้ดำเนินการหรือดำเนินกิจการเกี่ยวกับใบอนุญาต</h4>
         <div style="height: 30px;"></div>
         <div id="main_menu2">
             <div class="row">
@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-2">ชื่อผู้ดำเนินการ</div>
+                <div class="col-lg-2">ชื่อผู้ดำเนินกิจการ</div>
                 <div class="col-lg-3">
                     <asp:TextBox ID="txt_BSN_THAIFULLNAME" runat="server" Width="100%"></asp:TextBox>
                 </div>

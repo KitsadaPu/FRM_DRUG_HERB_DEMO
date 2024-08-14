@@ -23,60 +23,6 @@ Partial Public Class POP_UP_LCN_RENEW_STAFF_EDIT
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''CHK_TB1_EDIT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CHK_TB1_EDIT As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lbl_tb1_edit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_tb1_edit As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''DIV_SHOW_TXT_EDIT_TB1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DIV_SHOW_TXT_EDIT_TB1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''TXT_EDIT_NOTE_TB1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TXT_EDIT_NOTE_TB1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CHK_UPLOAD_EDIT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CHK_UPLOAD_EDIT As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lbl_upload_edit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_upload_edit As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''DIV_EDIT_UPLOAD1 control.
     '''</summary>
     '''<remarks>
@@ -158,31 +104,31 @@ Partial Public Class POP_UP_LCN_RENEW_STAFF_EDIT
     Protected WithEvents DIV_EDIT_UPLOAD2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''RadGrid3 control.
+    '''rgat control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid3 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgat As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''RadGrid1 control.
+    '''rgat_edit control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgat_edit As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''RadGrid4 control.
+    '''rgat_edit2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadGrid4 As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgat_edit2 As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''lr_preview control.

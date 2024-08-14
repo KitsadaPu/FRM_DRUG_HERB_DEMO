@@ -23,24 +23,6 @@ Partial Public Class FRM_HERB_NOTIFY_CORRECTION
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''lbl_name_2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_name_2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''btn_add control.
     '''</summary>
     '''<remarks>

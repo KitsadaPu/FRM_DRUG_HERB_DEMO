@@ -409,7 +409,7 @@ Public Class FRM_HERB_TABEAN_DETAIL
         Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
         dao_deeqt.GetDataby_IDA(_IDA_DQ)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _PROCESS_ID_DQ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao_deeqt.fields.TR_ID, 7, _PROCESS_ID_DQ, _IDA_DQ)
 
         Return dt
     End Function
@@ -436,7 +436,7 @@ Public Class FRM_HERB_TABEAN_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _PROCESS_ID_DQ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _PROCESS_ID_DQ, _IDA_DQ)
 
         Return dt
     End Function
@@ -462,7 +462,7 @@ Public Class FRM_HERB_TABEAN_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _PROCESS_ID_DQ)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _PROCESS_ID_DQ, _IDA_DQ)
 
         Return dt
     End Function

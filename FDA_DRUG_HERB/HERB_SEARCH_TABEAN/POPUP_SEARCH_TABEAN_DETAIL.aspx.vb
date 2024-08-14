@@ -162,13 +162,13 @@ Public Class POPUP_SEARCH_TABEAN_DETAIL
                 RG_EDIT.DataSource = dao.datas 'ใส่ข้อมูลลงตาราง
                 RG_EDIT.DataBind() 'รันข้อมูลทุกrowของตาราง
             Else
-                dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID)
+                dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID, _IDA)
             End If
         Else
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID)
+            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID, _IDA)
         End If
         Return dt
-        End Function
+    End Function
 
     Private Sub RadGrid1_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid1.NeedDataSource
         RadGrid1.DataSource = bind_data_uploadfile()
@@ -274,9 +274,9 @@ Public Class POPUP_SEARCH_TABEAN_DETAIL
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
     'Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
@@ -300,9 +300,9 @@ Public Class POPUP_SEARCH_TABEAN_DETAIL
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
     '    Private Sub RadGrid5_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid5.NeedDataSource
@@ -336,9 +336,9 @@ Public Class POPUP_SEARCH_TABEAN_DETAIL
             Dim dt As DataTable
             Dim bao As New BAO_TABEAN_HERB.tb_main
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 14, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 14, _ProcessID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
     'Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
@@ -376,8 +376,8 @@ Public Class POPUP_SEARCH_TABEAN_DETAIL
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
             dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
             Type_ID = dao_up.fields.TYPE
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
-            Return dt
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID, _IDA)
+        Return dt
         End Function
 
     '    Private Sub RadGrid6_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid6.NeedDataSource

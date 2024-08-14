@@ -42,7 +42,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row" style="text-align: center">
-        <h3>รายการข้อมูลยื่นยาตัวอย่าง</h3>
+        <h3>รายการข้อมูลยื่นผลิตภัณฑ์ตัวอย่าง</h3>
     </div>
     <div class="panel panel-body" style="width: 100%; padding-left: 2%;">
         <div class="row">

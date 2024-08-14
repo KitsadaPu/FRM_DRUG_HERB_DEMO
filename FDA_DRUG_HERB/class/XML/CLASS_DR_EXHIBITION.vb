@@ -1,6 +1,7 @@
 ﻿Public Class CLASS_DR_EXHIBITION
     Inherits CLASS_CENTER
     Public TABEAN_EXHIBITION As New TABEAN_EXHIBITION
+    Public TABEAN_EXHIBITION_SIZEPACK As New TABEAN_EXHIBITION_PACKING_SIZE
 
 #Region "SHOW"
     Private _DT_SHOW As New CLS_SHOW
@@ -35,7 +36,15 @@
             _RCVDATE_FULL_TH = value
         End Set
     End Property
-
+    Private _EXH_DATE As String
+    Public Property EXH_DATE() As String
+        Get
+            Return _EXH_DATE
+        End Get
+        Set(ByVal value As String)
+            _EXH_DATE = value
+        End Set
+    End Property
     Private _WRITEDATE_FULL_TH As String
     Public Property WRITEDATE_FULL_THAI() As String
         Get

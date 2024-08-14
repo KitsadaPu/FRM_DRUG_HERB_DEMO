@@ -22,9 +22,9 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-3">
             <asp:RadioButtonList ID="rdl_lcn_type" runat="server" BorderStyle="None" Enabled="False">
-                <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
-                <asp:ListItem Value="3">ขายผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="1">ผลิตผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="2">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
+                <asp:ListItem Value="3">ขายผลิตภัณฑ์สมุนไพร</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-lg-5"></div>

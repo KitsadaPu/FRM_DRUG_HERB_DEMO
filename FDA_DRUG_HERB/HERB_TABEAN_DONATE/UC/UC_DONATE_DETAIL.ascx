@@ -251,7 +251,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-2">Seceondary Packaging:</div>
+        <div class="col-lg-2">Secondary Packaging:</div>
         <div class="col-lg-2">
             <asp:DropDownList ID="DD_PCAK_2" runat="server" DataValueField="PACK_SEC_ID" DataTextField="PACK_SEC_NAME" BackColor="White" Height="25px" Width="180px" SkinID="bootstrap"></asp:DropDownList>
         </div>
@@ -310,7 +310,7 @@
                             SortExpression="UNIT_F_NAME">
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="PACK_S_NAME " UniqueName="PACK_S_NAME" HeaderText="Seceondary Packaging:" FilterControlAltText="Filter PACK_S_NAME column"
+                        <telerik:GridBoundColumn DataField="PACK_S_NAME " UniqueName="PACK_S_NAME" HeaderText="Secondary Packaging:" FilterControlAltText="Filter PACK_S_NAME column"
                             SortExpression="PACK_S_NAME">
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn DataField="NO_2" UniqueName="NO_2" HeaderText="ขนาด" FilterControlAltText="Filter NO_2 column"

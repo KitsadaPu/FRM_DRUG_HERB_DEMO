@@ -50,13 +50,13 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''TextBox2 control.
+    '''txt_bsn_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_bsn_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Label3 control.
@@ -338,6 +338,15 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     Protected WithEvents DD_TYPE_PRODUCK As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''label_TYPE_PRODUCK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents label_TYPE_PRODUCK As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Label19 control.
     '''</summary>
     '''<remarks>
@@ -606,6 +615,15 @@ Partial Public Class FRM_HERB_TABEAN_EX_ADD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_quantity_produced As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''RequiredFieldValidator1 control.

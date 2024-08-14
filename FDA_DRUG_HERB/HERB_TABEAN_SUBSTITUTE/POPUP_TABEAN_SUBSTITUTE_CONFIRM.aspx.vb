@@ -113,7 +113,7 @@ Public Class POPUP_TABEAN_SUBSTITUTE_CONFIRM
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_SUBSTITUTE
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _PROCESS_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _PROCESS_ID, _IDA)
 
         'If _DRRGT_REASON_ID = 4 Then
         '    dt = BAO.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 4, _PROCESS_ID)

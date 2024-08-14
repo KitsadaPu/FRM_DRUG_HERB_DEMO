@@ -41,6 +41,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_COMFIRM
             UC_ATTACH2.BindData("เอกสาร ทบ.3", 1, "pdf", "0", "14")
         End If
     End Sub
+
     Public Sub Bind_PRICE_ESTIMATE_REQUEST()
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_dd
@@ -108,6 +109,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_COMFIRM
         End If
         DATE_REQ.Text = Date.Now.ToString("dd/MM/yyyy")
         lbl_create_by.Text = dao.fields.CREATE_BY
+        txt_remark_edit.Text = dao.fields.REMARK
         Try
             lbl_create_date.Text = dao.fields.CREATE_DATE
         Catch ex As Exception
@@ -352,7 +354,7 @@ Public Class POPUP_TABEAN_NEW_EDIT_STAFF_COMFIRM
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function

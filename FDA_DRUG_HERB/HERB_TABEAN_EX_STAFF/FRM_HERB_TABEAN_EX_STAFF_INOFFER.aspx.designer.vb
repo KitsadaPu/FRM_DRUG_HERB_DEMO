@@ -59,13 +59,13 @@ Partial Public Class FRM_HERB_TABEAN_EX_STAFF_INOFFER
     Protected WithEvents RGTNO_FULL As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''DATE_OFFER control.
+    '''DATE_APP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DATE_OFFER As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents DATE_APP As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''NOTE_OFFER control.
@@ -77,13 +77,22 @@ Partial Public Class FRM_HERB_TABEAN_EX_STAFF_INOFFER
     Protected WithEvents NOTE_OFFER As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''DD_OFF_OFFER control.
+    '''DD_OFF_APP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DD_OFF_OFFER As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents DD_OFF_APP As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DD_POSITION_STAFF control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DD_POSITION_STAFF As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''btn_sumit control.
@@ -102,4 +111,13 @@ Partial Public Class FRM_HERB_TABEAN_EX_STAFF_INOFFER
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadGrid1 As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''RadGrid2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid2 As Global.Telerik.Web.UI.RadGrid
 End Class

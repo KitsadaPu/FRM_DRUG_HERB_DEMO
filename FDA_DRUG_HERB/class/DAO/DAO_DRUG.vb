@@ -1763,9 +1763,21 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_TR_ID_TYPE(ByVal TR_ID As Integer, ByVal TYPE As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_TR_ID_AND_PROCESS(ByVal TR_ID As Integer, ByVal PROCESS As Integer)
 
             datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_TR_ID_AND_PROCESS_AND_DOC(ByVal TR_ID As Integer, ByVal PROCESS As Integer, ByVal DOCUMENT_NAME As String)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS And p.DOCUMENT_NAME = DOCUMENT_NAME Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1793,6 +1805,18 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_FK_IDA_AND_TR_ID(ByVal FK_IDA As Integer, ByVal TR_ID As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_Fk_ida_ProcessID_TR_ID(ByVal FK_IDA As Integer, ByVal PROCESS As Integer, ByVal TR_ID As Integer)
+
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.PROCESS_ID = PROCESS And p.TR_ID = TR_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
 
         Public Sub GetMAXby_TR_ID_And_Process(ByVal TR_ID As Integer, ByVal process As String)
             datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.PROCESS_ID = process Order By CInt(p.TYPE) Descending Select p).Take(1)
@@ -1800,12 +1824,32 @@ Namespace DAO_DRUG
             Next
         End Sub
         Public Sub GetDaTaby_TR_ID_And_TYPE_AND_FK_IDA(ByVal TR_ID As Integer, ByVal TYPE As String, ByVal IDA As Integer)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDaTaby_TR_ID_And_TYPE_AND_FK_IDA2(ByVal TR_ID As Integer, ByVal TYPE As String, ByVal IDA As Integer)
             datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA Select p).Take(1)
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDaTaby_FK_TR_PROCECSS_And_TYPE_ID(ByVal IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE As String)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA And p.PROCESS_ID = PROCESS_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDaTaby_TR_ID_PROCECSS_TYPE_And_HEAD_ID(ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE As String, ByVal Head_ID As Integer)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.PROCESS_ID = PROCESS_ID And p.Head_ID = Head_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDaTaby_FK_TR_PROCECSS_And_TYPE_ID_AND_DOC_ID2(ByVal IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal TYPE As String, ByVal DocID As String, ByVal DocID2 As String)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA And p.PROCESS_ID = PROCESS_ID And (p.DocID = DocID Or p.DocID = DocID2) Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
     End Class
-    Public Class TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+    Public Class TB_MAS_DOCUMENT_NAME_UPLOAD_DALCN
         Inherits MAINCONTEXT
 
         Public fields As New MAS_DOCUMENT_NAME_UPLOAD_DALCN
@@ -1979,6 +2023,11 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GetDataby_HEAD_ID_AND_PROCESS_ID(ByVal ID As Integer, ByVal PROCESS_ID As Integer)
+            datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.PROCESS_ID = PROCESS_ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
         Public Sub GetDataby_HEAD_ID_AND_TITLE_ID_AND_PROCESS(ByVal ID As Integer, ByVal title_id As Integer, ByVal title_id2 As Integer, ByVal process_id As String)
 
             datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.HEAD_ID = ID And p.TITEL_ID = title_id And p.TITLE_ID2 = title_id2 And p.TYPE_ID = process_id Select p)
@@ -1986,7 +2035,6 @@ Namespace DAO_DRUG
             Next
         End Sub
         Public Sub GetDataby_TYPE_ID_AND_PROCESS(ByVal TYPE_ID As Integer, ByVal process_id As String)
-
             datas = (From p In db.MAS_DALCN_UPLOAD_PROCESS_NAMEs Where p.TYPE_ID = TYPE_ID And p.PROCESS_ID = process_id Select p)
             For Each Me.fields In datas
             Next
@@ -2231,7 +2279,19 @@ Namespace DAO_DRUG
         Inherits MAINCONTEXT
 
         Public fields As New dactg
-
+        Private _Details As New List(Of dactg)
+        Public Property Details() As List(Of dactg)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of dactg))
+                _Details = value
+            End Set
+        End Property
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New dactg
+        End Sub
         Public Sub insert()
             db.dactgs.InsertOnSubmit(fields)
             db.SubmitChanges()
@@ -2257,12 +2317,42 @@ Namespace DAO_DRUG
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GETDATA_ACTIVE()
+            datas = (From p In db.dactgs Where p.status <> "no" Select p)
+            For Each Me.fields In datas
+                AddDetails()
+            Next
+        End Sub
+        Public Sub GETDATA_BYctgengnm(ByVal ctgengnm As String)
+            datas = (From p In db.dactgs Where p.ctgengnm = ctgengnm And p.status <> "no" Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GETDATA_BYctgcd(ByVal ctgcd As String)
+            datas = (From p In db.dactgs Where p.ctgcd = ctgcd And p.status <> "no" Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
     End Class
     Public Class TB_drkdofdrg
         Inherits MAINCONTEXT
 
         Public fields As New drkdofdrg
+        Private _Details As New List(Of drkdofdrg)
+        Public Property Details() As List(Of drkdofdrg)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of drkdofdrg))
+                _Details = value
+            End Set
+        End Property
 
+        Private Sub AddDetails()
+            Details.Add(fields)
+            fields = New drkdofdrg
+        End Sub
         Public Sub insert()
             db.drkdofdrgs.InsertOnSubmit(fields)
             db.SubmitChanges()
@@ -2292,6 +2382,12 @@ Namespace DAO_DRUG
 
             datas = (From p In db.drkdofdrgs Where p.thakindnm = thakindnm Select p)
             For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GETDATA_ACTIVE()
+            datas = (From p In db.drkdofdrgs Where p.status <> "no" Select p)
+            For Each Me.fields In datas
+                AddDetails()
             Next
         End Sub
     End Class
@@ -3087,6 +3183,60 @@ Namespace DAO_DRUG
                 AddDetails()
             Next
         End Sub
+    End Class
+
+    Public Class ClsDBDALCN_PHR_LCN_ADDR
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_PHR_LCN_ADDR
+
+        Private _Details As New List(Of DALCN_PHR_LCN_ADDR)
+        Public Property Details() As List(Of DALCN_PHR_LCN_ADDR)
+            Get
+                Return _Details
+            End Get
+            Set(ByVal value As List(Of DALCN_PHR_LCN_ADDR))
+                _Details = value
+            End Set
+        End Property
+        Public Sub AddDetails()
+            Details.Add(fields)
+            fields = New DALCN_PHR_LCN_ADDR
+        End Sub
+        Public Sub insert()
+            db.DALCN_PHR_LCN_ADDRs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_PHR_LCN_ADDRs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_PHR_LCN_ADDRs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.DALCN_PHR_LCN_ADDRs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub GetDataby_FK_IDA(ByVal FK_IDA As String)
+
+            datas = (From p In db.DALCN_PHR_LCN_ADDRs Where p.FK_IDA = CInt(FK_IDA) Select p)
+            For Each Me.fields In datas
+                'AddDetails()
+            Next
+        End Sub
+
     End Class
 
     Public Class ClsDBDALCN_PHR_ADDR_BSN
@@ -4119,6 +4269,12 @@ Namespace DAO_DRUG
         Public Sub GetDataAll_BYGROUP()
 
             datas = (From p In db.MAS_STATUS Where p.STATUS_GROUP = 1 Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataBy_StatusGroupAndStatusID(ByVal STGroup As Integer, ByVal STID As Integer)
+
+            datas = (From p In db.MAS_STATUS Where p.STATUS_GROUP = STGroup And p.STATUS_ID = STID Select p)
             For Each Me.fields In datas
             Next
         End Sub

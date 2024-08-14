@@ -52,8 +52,8 @@
                         <telerik:GridBoundColumn DataField="HEAD_ID" DataType="System.Int32" FilterControlAltText="Filter HEAD_ID column" 
                             HeaderText="เลข ReasonSub" SortExpression="HEAD_ID" UniqueName="HEAD_ID" Display="false" AllowFiltering="true">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                            HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                            HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                         </telerik:GridBoundColumn>
                     </Columns>
                     <EditFormSettings>

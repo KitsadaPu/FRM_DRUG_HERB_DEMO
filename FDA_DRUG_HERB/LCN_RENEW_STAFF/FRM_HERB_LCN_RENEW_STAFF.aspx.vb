@@ -59,7 +59,7 @@ Public Class FRM_HERB_LCN_RENEW_STAFF
             Dim TR_ID As Integer = item("TR_ID").Text
 
             If e.CommandName = "HL_SELECT" Then
-                If STATUS_ID = 11 Then
+                If STATUS_ID = 31 Or STATUS_ID = 3 Then
                     lbl_head1.Text = "แก้ไขข้อมูลและอัพโหลเอกสาร"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & " POP_UP_LCN_RENEW_STAFF_EDIT.aspx?IDA=" & IDA & "&PROCESS_ID=" & _PROCESS_ID & "&TR_ID=" & TR_ID & "');", True)
                 Else

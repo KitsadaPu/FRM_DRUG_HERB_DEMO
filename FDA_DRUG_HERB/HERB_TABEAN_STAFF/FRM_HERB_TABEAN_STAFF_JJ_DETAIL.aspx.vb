@@ -106,7 +106,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 1, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -133,7 +133,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 3, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -244,7 +244,7 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_DETAIL
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 77, _ProcessID, _IDA)
 
         Return dt
     End Function

@@ -894,7 +894,7 @@ Public Class FRM_TABEAN_SUBSTITUTE_STAFF_CONFIRM
         dao.GetDatabyIDA(_IDA)
         Dim type_id As String = 0
         type_id = dao.fields.DRRGT_REASON_ID
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, type_id, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, type_id, _ProcessID, _IDA)
 
         Return dt
     End Function

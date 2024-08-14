@@ -186,7 +186,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 7, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -194,7 +194,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 12, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -237,7 +237,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 10, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -557,7 +557,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 6, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -583,7 +583,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dt As DataTable
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 8, _ProcessID, _IDA)
 
         Return dt
     End Function
@@ -689,6 +689,21 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
     Private Sub RadGrid6_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid6.NeedDataSource
         bind_manu()
     End Sub
+    Private Sub RadGrid6_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles RadGrid6.ItemCommand
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = e.Item
+            Dim IDA As Integer = 0
+            If e.CommandName = "result_delete" Then
+                IDA = item("IDA").Text
+
+                Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_MANUFACTRUE
+                dao.GetdatabyID_IDA(IDA)
+                dao.fields.ACTIVEFACT = 0
+                dao.Update()
+                RadGrid6.Rebind()
+            End If
+        End If
+    End Sub
     'Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
     '    Dim dao_deeqt As New DAO_DRUG.ClsDBdrrqt
     '    dao_deeqt.GetDataby_IDA(_IDA)
@@ -768,9 +783,9 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ
         dao.GetdatabyID_IDA(_IDA)
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
+        dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID )
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 11, _ProcessID, _IDA)
         Return dt
     End Function
 
@@ -799,7 +814,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INOFFER
         Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
         dao_up.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID(_IDA, _TR_ID, _ProcessID)
         Type_ID = dao_up.fields.TYPE
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(_TR_ID, 9, _ProcessID, _IDA)
         Return dt
     End Function
 

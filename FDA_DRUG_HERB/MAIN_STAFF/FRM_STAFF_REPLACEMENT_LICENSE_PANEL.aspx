@@ -16,7 +16,7 @@
             <div class="panel-heading">รับเรื่องแทนผู้ประกอบการ </div>
             <asp:Panel ID="pn_1" runat="server">
                 <div class="panel-body">
-                    <asp:Button ID="btn_LCN" runat="server" Text="ระบบการขออนุญาตสถานที่ด้านยา" />
+                    <asp:Button ID="btn_LCN" runat="server" Text="ระบบการขออนุญาตสถานที่ด้านผลิตภัณฑ์สมุนไพร" />
                     <asp:Button ID="btn_dh" runat="server" Text="ระบบการขออนุญาตเภสัชเคมีภัณฑ์" Enabled="true" />
                     <asp:Button ID="btn_dr" runat="server" Text="ระบบการขออนุญาตผลิตภัณฑ์สมุนไพร" />
                     <%--<asp:Button ID="btn_dr0" runat="server" Text="เทสระบบสิททำแทน"

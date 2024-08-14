@@ -271,8 +271,8 @@
                     <div class="col-lg-2">ประเภทใบอนุญาต</div>
                     <div class="col-lg-8" style="text-align: right">
                             <asp:RadioButtonList ID="rdl_lcn_type" runat="server" RepeatDirection="Horizontal" AutoPostBack="true">
-                                <asp:ListItem Value="1">ผลิตผลิตภัณฆ์สมุนไพร&ensp;&ensp;</asp:ListItem>
-                                <asp:ListItem Value="2">นำเข้าผลิตภัณฆ์สมุนไพร</asp:ListItem>
+                                <asp:ListItem Value="1">ผลิตผลิตภัณฑ์สมุนไพร&ensp;&ensp;</asp:ListItem>
+                                <asp:ListItem Value="2">นำเข้าผลิตภัณฑ์สมุนไพร</asp:ListItem>
                             </asp:RadioButtonList>
                         <asp:Label ID="lbl_lcn_type" runat="server" Text="*กรุณาเลือกประการขออนุญาต" ForeColor="Red" Font-Size="Small" Visible="false"></asp:Label>
                     </div>

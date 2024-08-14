@@ -72,9 +72,9 @@ Public Class POPUP_HERB_TABEAN_INFORM_UPLOAD
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -246,8 +246,8 @@ Public Class POPUP_HERB_TABEAN_INFORM_UPLOAD
                     dao_up.fields.PROCESS_ID = PROCESS_ID
                     dao_up.Update()
 
-                    Dim paths As String = bao._PATH_XML_PDF_TABEAN_TBN
-                    f.SaveAs(paths & "UPLOAD_PDF_TABEAN_TBN\" & Name_fake)
+                    Dim paths As String = bao._PATH_XML_PDF_TABEAN_INFORM
+                    f.SaveAs(paths & "FILE_UPLOAD\" & Name_fake)
                 Else
                     alert_file_error(name_real & "กรุณาแนบเป็นไฟล์ PDF")
                 End If

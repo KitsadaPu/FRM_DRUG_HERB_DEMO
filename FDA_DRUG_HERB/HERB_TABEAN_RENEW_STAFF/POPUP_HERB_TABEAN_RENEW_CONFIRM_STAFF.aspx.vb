@@ -152,8 +152,6 @@ Public Class POPUP_HERB_TABEAN_RENEW_CONFIRM_STAFF
             int_group_ddl1 = 5
             int_group_ddl2 = 0
         End If
-
-
         dt = Get_DDL_DATA(207, int_group_ddl1, int_group_ddl2)
 
         DD_STATUS.DataSource = dt
@@ -327,7 +325,7 @@ Public Class POPUP_HERB_TABEAN_RENEW_CONFIRM_STAFF
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_RENEW
         dao.GetdatabyID_IDA(_IDA)
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
         Return dt
     End Function

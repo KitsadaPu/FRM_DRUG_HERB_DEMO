@@ -31,27 +31,94 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
     End Sub
     Public Sub bind_data()
         Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
-        dao_up_mas.GetdatabyID_TYPE(18)
-        For Each dao_up_mas.fields In dao_up_mas.datas
-            Dim dao_chk As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
-            If dao_chk.fields.IDA = 0 Then
-                Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
-                dao_up.fields.TR_ID = _TR_ID
-                dao_up.fields.PROCESS_ID = _ProcessID
-                dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                dao_up.fields.FK_IDA = _IDA
-                dao_up.fields.TYPE = 19
-                dao_up.fields.ACTIVE = 1
-                dao_up.fields.CREATE_DATE = Date.Now
-                dao_up.insert()
-            End If
-        Next
-
         Dim dao As New DAO_DRUG.ClsDBdrsamp
         dao.GetDataby_IDA(_IDA)
-        NOTE_EDIT.Text = dao.fields.EX_NOTE_EDIT
+        If dao.fields.STATUS_ID = 4 Then
+            dao_up_mas.GetdatabyID_TYPE(18)
+            For Each dao_up_mas.fields In dao_up_mas.datas
+                Dim dao_chk As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                dao_chk.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
+                If dao_chk.fields.IDA = 0 Then
+                    Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
+                    dao_up.fields.TR_ID = _TR_ID
+                    dao_up.fields.PROCESS_ID = _ProcessID
+                    dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                    dao_up.fields.FK_IDA = _IDA
+                    dao_up.fields.TYPE = 5
+                    dao_up.fields.ACTIVE = 1
+                    dao_up.fields.CREATE_DATE = Date.Now
+                    dao_up.insert()
+                End If
+            Next
+        ElseIf dao.fields.STATUS_ID = 23 Then
+            dao_up_mas.GetdatabyID_TYPE_AND_PROCESS(21, _ProcessID)
+            For Each dao_up_mas.fields In dao_up_mas.datas
+                Dim dao_chk As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                dao_chk.GetdatabyID_TR_ID_FK_IDA_PROCESS_ID_AND_TYPE(_IDA, _TR_ID, _ProcessID, 6)
+                If dao_chk.fields.IDA = 0 Then
+                    Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                    dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
+                    dao_up.fields.TR_ID = _TR_ID
+                    dao_up.fields.PROCESS_ID = _ProcessID
+                    dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                    dao_up.fields.FK_IDA = _IDA
+                    dao_up.fields.TYPE = 6
+                    dao_up.fields.ACTIVE = 1
+                    dao_up.fields.CREATE_DATE = Date.Now
+                    dao_up.insert()
+                End If
+            Next
+        End If
+
+        If dao.fields.STATUS_ID = 20 Then
+            btn_add_upload.Enabled = False
+            btn_sumit.Enabled = False
+            'RadGrid4.Visible = False
+            'RadGrid4.Visible = False
+            If dao.fields.EX_EDIT = "3" Then
+                CHK_EX1_EDIT.Checked = True
+                CHK_UPLOAD_EDIT.Checked = True
+                TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD1.Visible = True
+                DIV_EDIT_UPLOAD2.Visible = True
+                DIV_SHOW_TXT_EDIT_EX1.Visible = True
+            ElseIf dao.fields.EX_EDIT = "2" Then
+                CHK_UPLOAD_EDIT.Checked = True
+                TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD1.Visible = True
+            ElseIf dao.fields.EX_EDIT = "1" Then
+                CHK_EX1_EDIT.Checked = True
+                dao.fields.EX_NOTE_EDIT = TXT_EDIT_NOTE_EX1.Text
+                TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD2.Visible = True
+                DIV_SHOW_TXT_EDIT_EX1.Visible = True
+            End If
+            RadGrid3.Rebind()
+        ElseIf dao.fields.STATUS_ID = 24 Then
+            btn_add_upload.Enabled = False
+            btn_sumit.Enabled = False
+            If dao.fields.EX_EDIT = "3" Then
+                'CHK_EX1_EDIT.Checked = True
+                'CHK_UPLOAD_EDIT.Checked = True
+                'TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD1.Visible = True
+                DIV_EDIT_UPLOAD2.Visible = True
+                DIV_SHOW_TXT_EDIT_EX1.Visible = True
+            ElseIf dao.fields.EX_EDIT = "2" Then
+                CHK_UPLOAD_EDIT.Checked = True
+                TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD1.Visible = True
+            ElseIf dao.fields.EX_EDIT = "1" Then
+                CHK_EX1_EDIT.Checked = True
+                dao.fields.EX_NOTE_EDIT = TXT_EDIT_NOTE_EX1.Text
+                TXT_EDIT_NOTE_EX1.Text = dao.fields.EX_NOTE_EDIT
+                DIV_EDIT_UPLOAD2.Visible = True
+                DIV_SHOW_TXT_EDIT_EX1.Visible = True
+            End If
+            RadGrid3.Rebind()
+        End If
+            NOTE_EDIT.Text = dao.fields.EX_NOTE_EDIT
         'If R_NATURE.SelectedValue <> "" Then
         '    R_NATURE.SelectedValue = dao.fields.NATURE_ID_EDIT
         'End If
@@ -60,35 +127,47 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
         Dim IDA_UPLOAD As Integer = 0
         Dim NAME_FILE As String = ""
 
+        Dim dao As New DAO_DRUG.ClsDBdrsamp
+        dao.GetDataby_IDA(_IDA)
+        Dim status_id As String = dao.fields.STATUS_ID
         For Each item As GridDataItem In RadGrid1.SelectedItems
             IDA_UPLOAD = item("ID").Text
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
 
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = NAME_FILE
+            dao_up.fields.DOCUMENT_NAME = NAME_FILE
             dao_up.fields.TR_ID = _TR_ID
             dao_up.fields.PROCESS_ID = _ProcessID
             dao_up.fields.FK_IDA = _IDA
             dao_up.fields.FK_IDA_LCN = _IDA_LCN
-            dao_up.fields.TYPE = 19
+            If status_id = 4 Or status_id = 20 Then dao_up.fields.TYPE = 3 Else dao_up.fields.TYPE = 4
+            'dao_up.fields.TYPE = 3
             dao_up.fields.ACTIVE = 1
             dao_up.fields.CREATE_DATE = Date.Now
             dao_up.insert()
 
         Next
 
-        Dim dao As New DAO_DRUG.ClsDBdrsamp
-        dao.GetDataby_IDA(_IDA)
         'dao.fields.EX_NOTE_EDIT = NOTE_EDIT.Text
         If CHK_EX1_EDIT.Checked = True And CHK_UPLOAD_EDIT.Checked = True Then
             dao.fields.EX_EDIT = "3"
             dao.fields.EX_NOTE_EDIT = TXT_EDIT_NOTE_EX1.Text
+            dao.fields.EX_NOTE_EDIT_UPLOAD = NOTE_EDIT.Text
         ElseIf CHK_EX1_EDIT.Checked = True Then
             dao.fields.EX_EDIT = "1"
             dao.fields.EX_NOTE_EDIT_UPLOAD = NOTE_EDIT.Text
         ElseIf CHK_UPLOAD_EDIT.Checked = True Then
             dao.fields.EX_EDIT = "2"
             dao.fields.EX_NOTE_EDIT_UPLOAD = NOTE_EDIT.Text
+        End If
+        If status_id = 23 Then
+            dao.fields.STATUS_ID = 24
+            dao.fields.staff_edit_time = 2
+            dao.fields.staff_edit_rq_date = DateTime.Now
+        Else
+            dao.fields.STATUS_ID = 20
+            dao.fields.staff_edit_time = 1
+            dao.fields.staff_edit_rq_date = DateTime.Now
         End If
         dao.update()
 
@@ -98,7 +177,9 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
     End Sub
     Protected Sub btn_add_upload_Click(sender As Object, e As EventArgs) Handles btn_add_upload.Click
-
+        Dim dao As New DAO_DRUG.ClsDBdrsamp
+        dao.GetDataby_IDA(_IDA)
+        Dim status_id As String = dao.fields.STATUS_ID
         Dim TR_ID As Integer = _TR_ID
         Dim DD_HERB_PROCESS As String = _ProcessID
 
@@ -116,37 +197,29 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
                     Dim bao As New BAO.AppSettings
                     Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
                     Dim Name_fake As String = "HB-" & DD_HERB_PROCESS & "-" & Date.Now.Year & "-" & TR_ID & "-" & IDA & ".pdf"
-
                     dao_up.GetdatabyID_IDA(IDA)
-
                     dao_up.fields.NAME_FAKE = Name_fake
                     dao_up.fields.NAME_REAL = f.FileName
                     dao_up.fields.CREATE_DATE = Date.Now
                     dao_up.fields.FK_IDA = _IDA
                     dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                    dao_up.fields.TYPE = 18
+                    'If status_id = 20 Then dao_up.fields.TYPE = 18 Else dao_up.fields.TYPE = 2
+                    'dao_up.fields.TYPE = 2
                     dao_up.fields.ACTIVE = 1
+                    'Try
+                    '    dao_up.fields.TR_ID = ""
+                    'Catch ex As Exception
 
-                    Try
-                        dao_up.fields.TR_ID = ""
-                    Catch ex As Exception
-
-                    End Try
-
+                    'End Try
                     dao_up.fields.PROCESS_ID = DD_HERB_PROCESS
-
                     dao_up.Update()
-
                     Dim paths As String = bao._PATH_XML_PDF_TABEAN_EX
                     f.SaveAs(paths & "UPLOAD_PDF_TABEAN_EX\" & Name_fake)
                 Else
                     'alert_normal(name_real & " กรุณาแนบเป็นไฟล์ PDF")
                 End If
-
             End If
-
         Next
-
         If check_file() = False Then
             alert_normal("กรุณาแนบไฟล์ให้ครบทุกข้อ")
         Else
@@ -162,7 +235,17 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
         If _TR_ID <> 0 Then
 
             'dao_up.GetdatabyID_IDA_TYPE(_IDA, 2)
-            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(_TR_ID, _ProcessID, 18)
+            Dim dao As New DAO_DRUG.ClsDBdrsamp
+            dao.GetDataby_IDA(_IDA)
+            Dim status_id As String = dao.fields.STATUS_ID
+            Dim TYPE_ID As Integer = 0
+            If status_id = 4 Or status_id = 20 Then
+                TYPE_ID = 5
+            ElseIf status_id = 23 Then
+                TYPE_ID = 6
+            End If
+
+            dao_up.GetdatabyID_TR_ID_PROCESS_TYPE(_TR_ID, _ProcessID, TYPE_ID)
 
             Dim rows As Integer = 1
             For Each dao_up.fields In dao_up.datas
@@ -181,9 +264,9 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
 
                 tc = New TableCell
                 Try
-                    tc.Text = Replace(dao_up.fields.DUCUMENT_NAME, "\n", "<br/>")
+                    tc.Text = Replace(dao_up.fields.DOCUMENT_NAME, "\n", "<br/>")
                 Catch ex As Exception
-                    tc.Text = dao_up.fields.DUCUMENT_NAME
+                    tc.Text = dao_up.fields.DOCUMENT_NAME
                 End Try
                 tc.Width = 900
                 tr.Cells.Add(tc)
@@ -229,7 +312,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
         Dim TR_ID As Integer = dao.fields.TR_ID
 
         Dim dao_check As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-        dao_check.GetdatabyID_TR_ID_PROCESS_ID_ALL(TR_ID, _ProcessID, 18)
+        dao_check.GetdatabyID_TR_ID_PROCESS_ID_ALL(TR_ID, _ProcessID, 2)
 
         Dim ck_file As Boolean = True
 
@@ -279,6 +362,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
             DIV_EDIT_UPLOAD1.Visible = False
             DIV_EDIT_UPLOAD2.Visible = False
         End If
+        RadGrid3.Rebind()
     End Sub
     Function bind_data_uploadfile2()
         Dim dt As DataTable
@@ -286,10 +370,11 @@ Public Class FRM_HERB_TABEAN_EX_STAFF_EDIT
         dao.GetDataby_IDA(_IDA)
         Dim bao As New BAO_TABEAN_HERB.tb_main
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 17, dao.fields.process_id)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_EX(_TR_ID, 1, dao.fields.process_id)
 
         Return dt
     End Function
+
     Private Sub RadGrid3_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid3.NeedDataSource
         RadGrid3.DataSource = bind_data_uploadfile2()
     End Sub

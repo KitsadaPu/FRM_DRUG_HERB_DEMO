@@ -126,12 +126,18 @@
                             <telerik:GridBoundColumn DataField="TYPEPERSON" FilterControlAltText="Filter TYPEPERSON column"
                                 HeaderText="TYPEPERSON" SortExpression="TYPEPERSON" UniqueName="TYPEPERSON" Display="false">
                             </telerik:GridBoundColumn>
+                              <telerik:GridBoundColumn DataField="LCNNO_DISPLAY_NEW" FilterControlAltText="Filter LCNNO_DISPLAY_NEW column"
+                                HeaderText="เลขที่ใบอนุญาตใหม่" SortExpression="LCNNO_DISPLAY_NEW" UniqueName="LCNNO_DISPLAY_NEW">
+                            </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="LCNNO_DISPLAY" FilterControlAltText="Filter LCNNO_DISPLAY column"
                                 HeaderText="เลขที่ใบอนุญาต" SortExpression="LCNNO_DISPLAY" UniqueName="LCNNO_DISPLAY">
-                            </telerik:GridBoundColumn>
+                            </telerik:GridBoundColumn>                        
                             <telerik:GridBoundColumn DataField="thanameplace" FilterControlAltText="Filter thanameplace column" HeaderText="ชื่อสถานที่" ReadOnly="True" SortExpression="thanameplace" UniqueName="thanameplace">
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn DataField="fulladdr" FilterControlAltText="Filter fulladdr column" HeaderText="ที่อยู่" SortExpression="fulladdr" UniqueName="fulladdr">
+                            </telerik:GridBoundColumn>                           
+                              <telerik:GridBoundColumn DataField="expdate_th" FilterControlAltText="Filter expdate_th column"
+                                HeaderText="วันที่สิ้นอายุ" SortExpression="expdate_th" UniqueName="expdate_th">
                             </telerik:GridBoundColumn>
                             <telerik:GridTemplateColumn>
                                 <ItemTemplate>

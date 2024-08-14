@@ -58,7 +58,6 @@
             Catch ex As Exception
 
             End Try
-
         End If
     End Sub
     Public Sub loadData_by_Identify()

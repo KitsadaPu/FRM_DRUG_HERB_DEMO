@@ -23,22 +23,13 @@ Partial Public Class FRM_HERB_TABEAN_JJ_EDIT1
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''lbl_name_2 control.
+    '''div_news control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_name_2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_name As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents div_news As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''btn_add control.

@@ -152,7 +152,7 @@
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
 
-                    <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
+                    <asp:BoundField DataField="DOCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
                         <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">
@@ -207,7 +207,7 @@
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
 
-                    <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
+                    <asp:BoundField DataField="DOCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
                         <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">
@@ -259,7 +259,7 @@
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
 
-                    <asp:BoundField DataField="DUCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
+                    <asp:BoundField DataField="DOCUMENT_NAME" HeaderText="เอการที่แนบ" ItemStyle-Width="80%" ItemStyle-HorizontalAlign="Left">
                         <ItemStyle HorizontalAlign="Left" Width="60%"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="NAME_REAL" HeaderText="ชื่อไฟล์" ItemStyle-Width="20%">

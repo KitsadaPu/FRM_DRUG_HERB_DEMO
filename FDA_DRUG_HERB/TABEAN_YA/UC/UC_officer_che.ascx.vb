@@ -313,34 +313,34 @@ Public Class UC_officer_che
         'ddl_unit.Items.Insert(0, item)
     End Sub
     Public Sub bind_unit2()
-        Dim dt As New DataTable
-        Dim bao As New BAO_MASTER
-        dt = bao.SP_MASTER_drsunit()
+        'Dim dt As New DataTable
+        'Dim bao As New BAO_MASTER
+        'dt = bao.SP_MASTER_drsunit()
 
-        ddl_unit2.DataSource = dt
-        ddl_unit2.DataTextField = "sunitnmsht"
-        ddl_unit2.DataValueField = "sunitcd"
-        ddl_unit2.DataBind()
+        'ddl_unit2.DataSource = dt
+        'ddl_unit2.DataTextField = "sunitnmsht"
+        'ddl_unit2.DataValueField = "sunitcd"
+        'ddl_unit2.DataBind()
 
-        Dim item As New ListItem
-        item.Text = "--กรุณาเลือก--"
-        item.Value = "0"
-        ddl_unit2.Items.Insert(0, item)
+        'Dim item As New ListItem
+        'item.Text = "--กรุณาเลือก--"
+        'item.Value = "0"
+        'ddl_unit2.Items.Insert(0, item)
     End Sub
     Public Sub bind_unit3()
         Dim dt As New DataTable
         Dim bao As New BAO_MASTER
-        dt = bao.SP_MASTER_drsunit()
+        'dt = bao.SP_MASTER_drsunit()
 
-        ddl_unit3.DataSource = dt
-        ddl_unit3.DataTextField = "sunitnmsht"
-        ddl_unit3.DataValueField = "sunitcd"
-        ddl_unit3.DataBind()
+        'ddl_unit3.DataSource = dt
+        'ddl_unit3.DataTextField = "sunitnmsht"
+        'ddl_unit3.DataValueField = "sunitcd"
+        'ddl_unit3.DataBind()
 
-        Dim item As New ListItem
-        item.Text = "--กรุณาเลือก--"
-        item.Value = "0"
-        ddl_unit3.Items.Insert(0, item)
+        'Dim item As New ListItem
+        'item.Text = "--กรุณาเลือก--"
+        'item.Value = "0"
+        'ddl_unit3.Items.Insert(0, item)
     End Sub
     Public Sub bind_unit4()
         Dim dt As New DataTable
@@ -423,7 +423,7 @@ Public Class UC_officer_che
                 dao.fields.AORI = ddl_aori.SelectedItem.Text
                 dao.fields.FK_IDA = _IDA
                 Try
-                    dao.fields.ebioqty = txt_ebioqty.Text
+                    'dao.fields.ebioqty = txt_ebioqty.Text
                 Catch ex As Exception
 
                 End Try
@@ -438,16 +438,16 @@ Public Class UC_officer_che
 
                 End Try
 
-                Try
-                    dao.fields.ebiosqno = txt_ebiosqno.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.ebiosqno = txt_ebiosqno.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.ebiounitcd = ddl_unit3.SelectedValue
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.ebiounitcd = ddl_unit3.SelectedValue
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 Try
                     dao.fields.CAS_TYPE = ddl_CAS_TYPE.SelectedValue
                 Catch ex As Exception
@@ -459,21 +459,21 @@ Public Class UC_officer_che
 
                 End Try
 
-                Try
-                    dao.fields.sbioqty = txt_sbioqty.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.sbioqty = txt_sbioqty.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.sbiosqno = txt_sbiosqno.Text
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.sbiosqno = txt_sbiosqno.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.sbiounitcd = ddl_unit2.SelectedValue
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.sbiounitcd = ddl_unit2.SelectedValue
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 Dim dao_max As New DAO_DRUG.TB_DRRGT_DETAIL_CAS
                 dao_max.GET_MAX_ROWS_ID_SET(_IDA, ddl_set.SelectedValue)
                 Dim id_max As Integer = 0
@@ -482,16 +482,16 @@ Public Class UC_officer_che
                 Catch ex As Exception
 
                 End Try
-                Try
-                    dao.fields.REF = txt_ref.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.REF = txt_ref.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.REMARK = txt_remark.Text
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.REMARK = txt_remark.Text
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 dao.fields.ROWS = txt_ROWS.Text 'id_max + 1
                 new_data = "เพิ่มสาร : " & item("iowacd").Text
 
@@ -594,21 +594,21 @@ Public Class UC_officer_che
                 Catch ex As Exception
 
                 End Try
-                Try
-                    dao.fields.ebioqty = txt_ebioqty.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.ebioqty = txt_ebioqty.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.ebiosqno = txt_ebiosqno.Text
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.ebiosqno = txt_ebiosqno.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.ebiounitcd = ddl_unit3.SelectedValue
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.ebiounitcd = ddl_unit3.SelectedValue
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 Try
                     dao.fields.CAS_TYPE = ddl_CAS_TYPE.SelectedValue
                 Catch ex As Exception
@@ -629,21 +629,21 @@ Public Class UC_officer_che
                 Catch ex As Exception
 
                 End Try
-                Try
-                    dao.fields.sbioqty = txt_sbioqty.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.sbioqty = txt_sbioqty.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.sbiosqno = txt_sbiosqno.Text
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.sbiosqno = txt_sbiosqno.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.sbiounitcd = ddl_unit2.SelectedValue
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.sbiounitcd = ddl_unit2.SelectedValue
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 Dim dao_max As New DAO_DRUG.TB_DRRQT_DETAIL_CAS
                 dao_max.GET_MAX_ROWS_ID_SET(_IDA, ddl_set.SelectedValue)
                 Dim id_max As Integer = 0
@@ -652,16 +652,16 @@ Public Class UC_officer_che
                 Catch ex As Exception
 
                 End Try
-                Try
-                    dao.fields.REF = txt_ref.Text
-                Catch ex As Exception
+                'Try
+                '    dao.fields.REF = txt_ref.Text
+                'Catch ex As Exception
 
-                End Try
-                Try
-                    dao.fields.REMARK = txt_remark.Text
-                Catch ex As Exception
+                'End Try
+                'Try
+                '    dao.fields.REMARK = txt_remark.Text
+                'Catch ex As Exception
 
-                End Try
+                'End Try
                 dao.fields.ROWS = txt_ROWS.Text 'id_max + 1
                 dao.insert()
             Next
@@ -761,23 +761,23 @@ Public Class UC_officer_che
             ddl_unit.Enabled = True
             ddl_remark1.Enabled = True
 
-            txt_sbioqty.Enabled = False
-            ddl_unit2.Enabled = False
-            txt_sbiosqno.Enabled = False
-            txt_ebioqty.Enabled = False
-            ddl_unit3.Enabled = False
-            txt_ebiosqno.Enabled = False
+            'txt_sbioqty.Enabled = False
+            'ddl_unit2.Enabled = False
+            'txt_sbiosqno.Enabled = False
+            'txt_ebioqty.Enabled = False
+            'ddl_unit3.Enabled = False
+            'txt_ebiosqno.Enabled = False
         Else
             txt_QTY.Enabled = False
             ddl_unit.Enabled = False
             ddl_remark1.Enabled = False
 
-            txt_sbioqty.Enabled = True
-            ddl_unit2.Enabled = True
-            txt_sbiosqno.Enabled = True
-            txt_ebioqty.Enabled = True
-            ddl_unit3.Enabled = True
-            txt_ebiosqno.Enabled = True
+            'txt_sbioqty.Enabled = True
+            'ddl_unit2.Enabled = True
+            'txt_sbiosqno.Enabled = True
+            'txt_ebioqty.Enabled = True
+            'ddl_unit3.Enabled = True
+            'txt_ebiosqno.Enabled = True
         End If
     End Sub
 

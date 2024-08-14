@@ -212,7 +212,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
 
 
         For Each item As GridDataItem In RadGrid1.SelectedItems
-            NAME_FILE = item("DUCUMENT_NAME").Text
+            NAME_FILE = item("DOCUMENT_NAME").Text
             HEAD_ID = item("HEAD_ID").Text
             ID = item("ID").Text
 
@@ -248,7 +248,7 @@ Public Class FRM_LCN_EDIT_STAFF_EDIT
                 dd2_name = dao_dd2.fields.SUB_REASON_NAME
 
                 dao_up.fields.TYPE_LOCAL_NAME = dd1_name
-                dao_up.fields.DUCUMENT_NAME = dd2_name
+                dao_up.fields.DOCUMENT_NAME = dd2_name
                 dao_up.fields.SUB_DOCUMENT_NAME = NAME_FILE
 
                 dao_up.fields.HEAD_ID = HEAD_ID

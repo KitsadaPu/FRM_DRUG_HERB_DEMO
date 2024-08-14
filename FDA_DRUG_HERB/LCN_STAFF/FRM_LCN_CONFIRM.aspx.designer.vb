@@ -617,6 +617,15 @@ Partial Public Class WebForm35
     Protected WithEvents lbl_GIVE_WORK_LICENSE_EXPDATE As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''rg_bsn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rg_bsn As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''lbl_lct_thanameplace control.
     '''</summary>
     '''<remarks>
@@ -1083,6 +1092,15 @@ Partial Public Class WebForm35
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_confirm As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_DBD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_DBD As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btn_cancel control.

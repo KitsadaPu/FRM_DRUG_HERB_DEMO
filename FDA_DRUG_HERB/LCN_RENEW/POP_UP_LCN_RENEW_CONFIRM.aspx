@@ -66,9 +66,11 @@
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <asp:Button ID="btn_confirm" runat="server" Text="ยื่นคำขอ" CausesValidation="true" ValidationGroup="valGroup1" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการยื่นคำขอหรือไม่');" />
+                    <asp:Button ID="btn_confirm" runat="server" Text="ยื่นคำขอ" CausesValidation="true" ValidationGroup="valGroup1" CssClass="btn-lg btn-success" Width="80%" OnClientClick="return confirm('คุณต้องการยื่นคำขอหรือไม่');" />
                     <div style="height: 5px"></div>
-                    <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิกคำขอ" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการยกเลิกคำขอหรือไม่');" Visible="false" />
+                    <asp:Button ID="btn_KeepPay" runat="server" Text="ข้ามการจ่ายเงิน" CausesValidation="true"  CssClass="btn-lg btn-primary" Width="80%" OnClientClick="return confirm('คุณต้องการการจ่ายเงินหรือไม่');" />
+                    <div style="height: 5px"></div>
+                    <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิกคำขอ" CssClass="btn-lg btn-danger" Width="80%" OnClientClick="return confirm('คุณต้องการยกเลิกคำขอหรือไม่');" Visible="false" />
                     <div style="height: 5px"></div>
                     <%--             <asp:Button ID="btn_cancle_request" runat="server" Text="ยกเลิกการสร้างคำขอ" CssClass="btn-lg" Width="80%" OnClientClick="return confirm('คุณต้องการยกเลิกคำขอหรือไม่');" Visible="false" />
                           <div style="height:5px"></div>
@@ -76,7 +78,7 @@
                           <div style="height:5px"></div>
                     <asp:Button ID="btn_editUpload" runat="server" Text="แก้ไขเอกสารแนบ" CssClass="btn-lg" Width="80%" />
                           <div style="height:5px"></div>--%>
-                    <asp:Button ID="btn_close" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_close" runat="server" Text="กลับหน้ารายการ" CssClass="btn-lg btn-info" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -95,7 +97,7 @@
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-9" style="width: 100%;padding-right:2em">
-                        <telerik:RadGrid ID="RadGrid1" runat="server">
+                        <telerik:RadGrid ID="rgat" runat="server">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                                 <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -113,8 +115,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">

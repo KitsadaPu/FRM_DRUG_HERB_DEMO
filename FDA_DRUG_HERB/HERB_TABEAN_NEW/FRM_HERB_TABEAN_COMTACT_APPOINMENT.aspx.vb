@@ -103,6 +103,7 @@ Public Class FRM_HERB_TABEAN_COMTACT_APPOINMENT
             Dim bao As New BAO_TABEAN_HERB.tb_dd
             bao.SP_INSERT_DRUG_PAYMENT_CENTER_L44(_CLS.CITIZEN_ID_AUTHORIZE, _IDA, dao_deeqt.fields.PROCESS_ID)
 
+            AddLogStatus(dao_deeqt.fields.STATUS_ID, dao_deeqt.fields.PROCESS_ID, _CLS.CITIZEN_ID, _IDA_Q)
             alert("ยื่นคำขอแล้ว กรุณาชำระค่าคำขอ")
         End If
 

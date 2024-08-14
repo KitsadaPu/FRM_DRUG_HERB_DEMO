@@ -631,6 +631,15 @@
                 _EXPDAY = value
             End Set
         End Property
+        Private _EXPDAY_NEW As String
+        Public Property EXPDAY_NEW() As String
+            Get
+                Return _EXPDAY_NEW
+            End Get
+            Set(ByVal value As String)
+                _EXPDAY_NEW = value
+            End Set
+        End Property
 
         Private _EXPMONTH As String
         Public Property EXPMONTH() As String
@@ -641,7 +650,24 @@
                 _EXPMONTH = value
             End Set
         End Property
-
+        Private _EXPMONTH_NEW As String
+        Public Property EXPMONTH_NEW() As String
+            Get
+                Return _EXPMONTH_NEW
+            End Get
+            Set(ByVal value As String)
+                _EXPMONTH_NEW = value
+            End Set
+        End Property
+        Private _EXPYEAR_NEW As String
+        Public Property EXPYEAR_NEW() As String
+            Get
+                Return _EXPYEAR_NEW
+            End Get
+            Set(ByVal value As String)
+                _EXPYEAR_NEW = value
+            End Set
+        End Property
         Private _EXPYEAR As String
         Public Property EXPYEAR() As String
             Get
@@ -649,6 +675,24 @@
             End Get
             Set(ByVal value As String)
                 _EXPYEAR = value
+            End Set
+        End Property
+        Private _EXPDATE_FULLTH As String
+        Public Property EXPDATE_FULL() As String
+            Get
+                Return _EXPDATE_FULLTH
+            End Get
+            Set(ByVal value As String)
+                _EXPDATE_FULLTH = value
+            End Set
+        End Property
+        Private _EXPDATE_FULL_NEW As String
+        Public Property EXPDATE_FULL_NEW() As String
+            Get
+                Return _EXPDATE_FULL_NEW
+            End Get
+            Set(ByVal value As String)
+                _EXPDATE_FULL_NEW = value
             End Set
         End Property
         Private _PROCESS_ID As String
@@ -660,7 +704,15 @@
                 _PROCESS_ID = value
             End Set
         End Property
-
+        Private _CHNGWTH As String
+        Public Property CHANGWATH_NM() As String
+            Get
+                Return _CHNGWTH
+            End Get
+            Set(ByVal value As String)
+                _CHNGWTH = value
+            End Set
+        End Property
 
 #End Region
 

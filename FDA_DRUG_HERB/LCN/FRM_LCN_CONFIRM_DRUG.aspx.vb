@@ -2236,7 +2236,18 @@ Public Class FRM_LCN_CONFIRM_DRUG
         Response.End()
     End Sub
 
+    Private Sub rg_bsn_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles rg_bsn.NeedDataSource
+        Dim bao As New BAO_SHOW
+        Dim dt As New DataTable
+        If Request.QueryString("IDA") <> "" Then
+            'dt = bao.SP_DALCN_PHR_BY_FK_IDA_2(Request.QueryString("ida"))
+            dt = bao.SP_LOCATION_BSN_BY_LCN_IDA(Request.QueryString("IDA"))
+        End If
 
+        If dt.Rows.Count > 0 Then
+            rg_bsn.DataSource = dt
+        End If
+    End Sub
     Public Function UpLoadImageByte(ByVal info As String) As Byte()
         Dim stream As New FileStream(info.Replace("/", "\"), FileMode.Open)
         Dim reader As New BinaryReader(stream)

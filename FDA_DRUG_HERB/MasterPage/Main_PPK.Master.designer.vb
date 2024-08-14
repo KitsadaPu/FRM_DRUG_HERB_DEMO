@@ -68,13 +68,13 @@ Partial Public Class Main_PPK
     Protected WithEvents Literal1 As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''UC_NODE_AUTO control.
+    '''UC_NODE_AUTO1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UC_NODE_AUTO As Global.FDA_DRUG_HERB.UC_NODE_AUTO
+    Protected WithEvents UC_NODE_AUTO1 As Global.FDA_DRUG_HERB.UC_NODE_AUTO
 
     '''<summary>
     '''ContentPlaceHolder1 control.

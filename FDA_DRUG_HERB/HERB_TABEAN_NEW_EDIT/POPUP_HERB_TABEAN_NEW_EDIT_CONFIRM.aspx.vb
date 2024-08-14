@@ -121,7 +121,7 @@ Public Class POPUP_HERB_TABEAN_NEW_EDIT_CONFIRM
             STATUS_UPLOAD_ID = 0
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 1, _Process_ID, _IDA)
 
         Return dt
     End Function

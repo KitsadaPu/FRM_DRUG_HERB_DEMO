@@ -122,6 +122,24 @@ Partial Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
     Protected WithEvents ROVNO_FULL As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''div_EXH_NO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents div_EXH_NO As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''TXT_EXH_NO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_EXH_NO As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''DATE_REQ control.
     '''</summary>
     '''<remarks>
@@ -129,6 +147,24 @@ Partial Public Class POPUP_TABEAN_HERB_EXHIBITION_STAFF_CONFIRM
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DATE_REQ As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Div_Position control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Div_Position As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''DDL_POSITION control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_POSITION As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''DD_OFF_REQ control.

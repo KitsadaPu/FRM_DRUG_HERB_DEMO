@@ -41,7 +41,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-     <div>
+    <div>
         <asp:HyperLink ID="hl_reader" runat="server" Target="_blank" CssClass="btn-control">
                  <input type="button" value="เปิดจาก acrobat reader"   class="btn-lg"   style="  Width:70%;" />
         </asp:HyperLink>
@@ -64,13 +64,12 @@
                 <div class="col-lg-1"></div>
             </div>
         </div>
-        <div class="col-lg-4" style="width: 30%">
+        <div6 class="col-lg-4" style="width: 30%">
             <div class="row" runat="server" id="status_update" visible="true">
                 <div class="row" runat="server" id="KEEP_PAY" visible="true">
-                   
                 </div>
                 <div class="row" runat="server" id="P12" visible="true">
-                     <div class="row">
+                    <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">เลือกสถานะ</div>
                         <div class="col-lg-6">
@@ -92,7 +91,7 @@
                         <div class="col-lg-4">จนท. ที่รับผิดชอบ</div>
                         <div class="col-lg-6">
                             <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
-                            <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" ></asp:DropDownList>
+                            <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME"></asp:DropDownList>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -129,13 +128,14 @@
                     <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="80%" />
                     <br />
                     <%--<asp:Button ID="btn_keep_pay" runat="server" Text="ข้ามสถานะ" CssClass="btn-lg" Width="80%" Visible="false" />--%>
+                    <%--<asp:Button ID="btn_priview" runat="server" Text="Priview ใบสำคัญ" CssClass="btn-lg" Width="80%" />--%>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-              <div class="row" style="text-align: center">
+            <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                     <asp:Button ID="btn_cancel" runat="server" Text="ปิด" CssClass="btn-lg" Width="80%" />
+                    <asp:Button ID="btn_cancel" runat="server" Text="ปิด" CssClass="btn-lg" Width="80%" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -143,7 +143,7 @@
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <asp:Button ID="btn_preview" runat="server" Text="Preview ใบอนุญาต(สมพ2)" CssClass="btn-lg" Width="80%"  Visible="false"/>
+                    <asp:Button ID="btn_preview" runat="server" Text="Preview ใบอนุญาต(สมพ2)" CssClass="btn-lg" Width="80%" Visible="false" />
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -158,7 +158,7 @@
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10" style="width: 100%">
-                        <telerik:RadGrid ID="RadGrid1" runat="server">
+                        <telerik:RadGrid ID="rgat" runat="server">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                                 <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -176,8 +176,8 @@
                                     <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                         SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                        HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                     </telerik:GridBoundColumn>
                                     <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                         HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -200,11 +200,54 @@
                             <FilterMenu EnableImageSprites="False"></FilterMenu>
                         </telerik:RadGrid>
                     </div>
-                    <div class="col-lg-1"></div>
+                    <div class="row">
+                        <div class="col-lg-12" style="text-align: center">
+                            <h3>เอกสารแนบเจ้าหน้าที่สั่งแก้ไข</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10" style="width: 100%">
+                            <telerik:RadGrid ID="rgat_edit" runat="server">
+                                <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                                    <CommandItemSettings ExportToPdfText="Export to PDF" />
+                                    <RowIndicatorColumn FilterControlAltText="Filter RowIndicator column" Visible="True">
+                                        <HeaderStyle Width="20px" />
+                                    </RowIndicatorColumn>
+                                    <ExpandCollapseColumn FilterControlAltText="Filter ExpandColumn column" Visible="True">
+                                        <HeaderStyle Width="20px" />
+                                    </ExpandCollapseColumn>
+                                    <Columns>
+                                        <telerik:GridBoundColumn AllowFiltering="true" DataField="IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter IDA column" HeaderText="IDA" SortExpression="IDA" UniqueName="IDA">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn AllowFiltering="true" DataField="FK_IDA" DataType="System.Int32" Display="false" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA" SortExpression="FK_IDA" UniqueName="FK_IDA">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column" HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column" HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridTemplateColumn>
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="PV_ST" runat="server">ดูเอกสาร</asp:HyperLink>
+                                            </ItemTemplate>
+                                        </telerik:GridTemplateColumn>
+                                    </Columns>
+                                    <EditFormSettings>
+                                        <EditColumn FilterControlAltText="Filter EditCommandColumn column">
+                                        </EditColumn>
+                                    </EditFormSettings>
+                                    <PagerStyle PageSizeControlType="RadComboBox" />
+                                </MasterTableView>
+                                <PagerStyle PageSizeControlType="RadComboBox" />
+                                <FilterMenu EnableImageSprites="False">
+                                </FilterMenu>
+                            </telerik:RadGrid>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <hr />
                 </div>
-                <hr />
-            </div>
-        </div>
+        </div6>
     </div>
     <div class=" modal fade" id="myModal">
         <div class="panel panel-info" style="width: 100%;">

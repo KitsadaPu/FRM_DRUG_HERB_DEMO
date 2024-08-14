@@ -19,7 +19,11 @@
         End Try
 
         _MENU_GROUP = Request.QueryString("MENU_GROUP")
-        _IDA_LCN = Request.QueryString("IDA_LCN")
+        If Request.QueryString("IDA_LCN") <> "" Then
+            _IDA_LCN = Request.QueryString("IDA_LCN")
+        Else
+            _IDA_LCN = 0
+        End If
         _IDA = Request.QueryString("IDA")
         _PROCESS_ID = Request.QueryString("PROCESS_ID")
 
@@ -37,12 +41,16 @@
         Dim bao_tran As New BAO_TRANSECTION
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_EXHIBITION
         Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
-        dao_lcn.GetDataby_IDA(_IDA_LCN)
+        Try
+            dao_lcn.GetDataby_IDA(_IDA_LCN)
+        Catch ex As Exception
+
+        End Try
         dao.GetdatabyID_IDA(_IDA)
         UC_EXHIBITION_DETAIL.save_data(dao)
-        dao.fields.FK_LCN = dao_lcn.fields.IDA
-        dao.fields.FK_LCT = dao_lcn.fields.FK_IDA
-        dao.fields.pvncd = dao_lcn.fields.pvncd
+
+        'dao.fields.pvncd = dao_lcn.fields.pvncd
+        dao.fields.pvncd = _CLS.PVCODE
         'dao.fields.PROCESS_ID = 20910
         dao.fields.PROCESS_ID = _PROCESS_ID
         dao.fields.CITIZEN_ID = _CLS.CITIZEN_ID
@@ -60,10 +68,20 @@
         Catch ex As Exception
 
         End Try
-        dao.fields.FK_LCN = dao_lcn.fields.IDA
-        dao.fields.pvncd = dao_lcn.fields.pvncd
-        dao.fields.lcntpcd = dao_lcn.fields.lcntpcd
-        dao.fields.LCNNO = dao_lcn.fields.lcnno
+        If dao_lcn.fields.IDA <> 0 Then
+            dao.fields.FK_LCN = dao_lcn.fields.IDA
+            dao.fields.LCNNO = dao_lcn.fields.lcnno
+            dao.fields.lcntpcd = dao_lcn.fields.lcntpcd
+            dao.fields.FK_LCN = dao_lcn.fields.IDA
+            dao.fields.FK_LCT = dao_lcn.fields.FK_IDA
+        Else
+            dao.fields.FK_LCN = 0
+            dao.fields.LCNNO = 0
+            dao.fields.lcntpcd = 0
+            dao.fields.FK_LCN = 0
+            dao.fields.FK_LCT = 0
+            dao.fields.FK_IDA = 0
+        End If
         dao.fields.TR_ID = TR_ID
         dao.Update()
 
@@ -72,7 +90,7 @@
 
         For Each dao_up_mas.fields In dao_up_mas.datas
             Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-            dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
+            dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
             dao_up.fields.TR_ID = TR_ID
             dao_up.fields.FK_IDA = dao.fields.IDA
             dao_up.fields.PROCESS_ID = _PROCESS_ID

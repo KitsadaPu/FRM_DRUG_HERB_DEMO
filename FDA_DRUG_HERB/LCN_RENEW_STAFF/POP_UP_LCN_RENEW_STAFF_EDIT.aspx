@@ -19,14 +19,14 @@
             <hr />
         </div>
     </div>
-    <div class="row">
+       <%--<div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-5" style="padding-left: 4em">
             <asp:CheckBox ID="CHK_TB1_EDIT" runat="server" AutoPostBack="True" />
             <asp:Label ID="lbl_tb1_edit" runat="server" Text="แก้ไขข้อมูล"></asp:Label>
         </div>
     </div>
-    <div class="row" runat="server" id="DIV_SHOW_TXT_EDIT_TB1" visible="false">
+ <div class="row" runat="server" id="DIV_SHOW_TXT_EDIT_TB1" visible="false">
         <div class="row" runat="server">
             <div class="col-lg-2"></div>
             <div class="col-lg-2" style="text-align: left; padding-left: 5em">หมายเหตุการแก้ไขข้อมูล</div>
@@ -47,8 +47,8 @@
             <asp:CheckBox ID="CHK_UPLOAD_EDIT" runat="server" AutoPostBack="True" />
             <asp:Label ID="lbl_upload_edit" runat="server" Text="แก้ไขเอกสารแนบ"></asp:Label>
         </div>
-    </div>
-    <div class="row" runat="server" id="DIV_EDIT_UPLOAD1" visible="false">
+    </div>--%>
+    <div class="row" runat="server" id="DIV_EDIT_UPLOAD1">
         <div class="row" runat="server">
             <div class="col-lg-2"></div>
             <div class="col-lg-2" style="text-align: left; padding-left: 5em">หมายเหตุการแก้ไขเอกสาร</div>
@@ -114,7 +114,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
     </div>
-    <div class="row" runat="server" id="DIV_EDIT_UPLOAD2" visible="false">
+    <div class="row" runat="server" id="DIV_EDIT_UPLOAD2">
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-4">
@@ -128,7 +128,7 @@
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10" style="width: 100%">
-                            <telerik:RadGrid ID="RadGrid3" runat="server">
+                            <telerik:RadGrid ID="rgat" runat="server">
                                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
 
@@ -146,8 +146,8 @@
                                         <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
                                             SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                            HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                            HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                         </telerik:GridBoundColumn>
                                         <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
                                             HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12" style="width: 100%">
-                            <telerik:RadGrid ID="RadGrid1" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
+                            <telerik:RadGrid ID="rgat_edit" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
                                 PagerStyle-Mode="NextPrevNumericAndAdvanced" AllowMultiRowSelection="true">
                                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="ID">
                                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -194,8 +194,8 @@
                                         <telerik:GridBoundColumn DataField="ID" DataType="System.Int32" FilterControlAltText="Filter ID column" HeaderText="ID"
                                             SortExpression="ID" UniqueName="ID" Display="false" AllowFiltering="true">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                            HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                            HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                     <EditFormSettings>
@@ -210,7 +210,7 @@
                                 <FilterMenu EnableImageSprites="False"></FilterMenu>
                             </telerik:RadGrid>
                             <%-----------------------------------------------------------TYPE3-----------------------------------------------------------------------------------------%>
-                            <telerik:RadGrid ID="RadGrid4" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
+                            <telerik:RadGrid ID="rgat_edit2" runat="server" GridLines="None" AutoGenerateColumns="False" AllowPaging="true" PageSize="40"
                                 PagerStyle-Mode="NextPrevNumericAndAdvanced" AllowMultiRowSelection="true">
                                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
                                     <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
@@ -225,8 +225,8 @@
                                         <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
                                             SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="DUCUMENT_NAME" FilterControlAltText="Filter DUCUMENT_NAME column"
-                                            HeaderText="รายการเอกสาร" SortExpression="DUCUMENT_NAME" UniqueName="DUCUMENT_NAME">
+                                        <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                            HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                     <EditFormSettings>

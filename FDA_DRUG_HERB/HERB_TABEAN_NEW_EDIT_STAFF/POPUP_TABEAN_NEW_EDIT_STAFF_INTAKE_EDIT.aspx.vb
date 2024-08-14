@@ -239,9 +239,9 @@ Imports iTextSharp.text.pdf
             Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_EDIT_REQUEST
             dao.GetdatabyID_IDA(_IDA)
 
-            dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, dao.fields.STATUS_UPLOAD_ID, _Process_ID, _IDA)
 
-            Return dt
+        Return dt
         End Function
 
     Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
@@ -297,7 +297,7 @@ Imports iTextSharp.text.pdf
             STATUS_UPLOAD_ID = 1
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 22, dao.fields.PROCESS_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 22, dao.fields.PROCESS_ID, _IDA)
 
         Return dt
     End Function
@@ -329,7 +329,7 @@ Imports iTextSharp.text.pdf
             STATUS_UPLOAD_ID = 1
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 3, dao.fields.PROCESS_ID)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID, 3, dao.fields.PROCESS_ID, _IDA)
 
         Return dt
     End Function

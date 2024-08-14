@@ -10,6 +10,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD2_DETAIL
     Private _MENU_GROUP As String = ""
     Private _IDA_LCT As String = ""
     Private _TR_ID_LCN As String = ""
+    Private _TR_ID As String = ""
     Private _IDA_LCN As String = ""
     Private _DD_HERB_NAME_ID As String = ""
     Private _PROCESS_JJ As String = ""
@@ -71,8 +72,8 @@ Public Class FRM_HERB_TABEAN_JJ_ADD2_DETAIL
             bind_rg()
 
             UC_TABEAN_JJ_DETAIL_CAS.bind_unit1()
-            UC_TABEAN_JJ_DETAIL_CAS.bind_unit2()
-            UC_TABEAN_JJ_DETAIL_CAS.bind_unit3()
+            'UC_TABEAN_JJ_DETAIL_CAS.bind_unit2()
+            'UC_TABEAN_JJ_DETAIL_CAS.bind_unit3()
             UC_TABEAN_JJ_DETAIL_CAS.bind_unit4()
             UC_TABEAN_JJ_DETAIL_CAS.get_data_drgperunit()
             UC_TABEAN_JJ_DETAIL_CAS.bind_unit_each()
@@ -898,19 +899,30 @@ Public Class FRM_HERB_TABEAN_JJ_ADD2_DETAIL
                     dao.fields.TR_ID_JJ = TR_ID
                     dao.fields.STATUS_ID = 1
                     dao.Update()
-
-                    'Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
-                    'dao_up_mas.GetdatabyID_TYPE(1)
-                    'For Each dao_up_mas.fields In dao_up_mas.datas
-                    '    Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
-                    '    dao_up.fields.DUCUMENT_NAME = dao_up_mas.fields.DUCUMENT_NAME
-                    '    dao_up.fields.TR_ID = TR_ID
-                    '    dao_up.fields.FK_IDA = dao.fields.IDA
-                    '    dao_up.fields.PROCESS_ID = _PROCESS_JJ
-                    '    dao_up.fields.FK_IDA_LCN = _IDA_LCN
-                    '    dao_up.fields.TYPE = 1
-                    '    dao_up.insert()
-                    'Next
+                    _TR_ID = TR_ID
+                    Dim dao_up_mas As New DAO_TABEAN_HERB.TB_MAS_TABEAN_HERB_UPLOADFILE_JJ
+                    dao_up_mas.GetdatabyID_TYPE(1)
+                    For Each dao_up_mas.fields In dao_up_mas.datas
+                        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                        dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
+                        dao_up.fields.TR_ID = TR_ID
+                        dao_up.fields.FK_IDA = dao.fields.IDA
+                        dao_up.fields.PROCESS_ID = _PROCESS_JJ
+                        dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                        dao_up.fields.TYPE = 1
+                        dao_up.insert()
+                    Next
+                    dao_up_mas.GetdatabyID_TYPE_AND_HEAD_ID(11, 0)
+                    For Each dao_up_mas.fields In dao_up_mas.datas
+                        Dim dao_up As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+                        dao_up.fields.DOCUMENT_NAME = dao_up_mas.fields.DOCUMENT_NAME
+                        dao_up.fields.TR_ID = TR_ID
+                        dao_up.fields.FK_IDA = dao.fields.IDA
+                        dao_up.fields.PROCESS_ID = _PROCESS_JJ
+                        dao_up.fields.FK_IDA_LCN = _IDA_LCN
+                        dao_up.fields.TYPE = 1
+                        dao_up.insert()
+                    Next
                     'alert_summit("โปรดตรวจสอบสูตรและกรรมวิธีการผลิต", dao.fields.IDA)
                     Gen_PDF_JJ()
                     alert_normal("บันทึกข้อมูลแล้ว กรุณาออกใบสั่งชำระค่าคำขอ")
@@ -947,7 +959,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD2_DETAIL
     End Sub
     Sub alert_normal(ByVal text As String)
         Dim url As String = ""
-        url = "FRM_HERB_TABEAN_JJ.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID_LCN & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&SID=" & _SID & "&identify=" & Request.QueryString("identify")
+        url = "FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID=" & _TR_ID & "&MENU_GROUP=" & _MENU_GROUP & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_JJ=" & _PROCESS_JJ & "&SID=" & _SID & "&identify=" & Request.QueryString("identify") & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID
         Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';parent.close_modal();</script> ")
     End Sub
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click

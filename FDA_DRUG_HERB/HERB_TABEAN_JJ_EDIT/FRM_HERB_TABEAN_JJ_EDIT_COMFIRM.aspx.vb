@@ -192,7 +192,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_COMFIRM
             STATUS_UPLOAD_ID = 1
         End Try
 
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, STATUS_UPLOAD_ID, dao.fields.DDHERB)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, STATUS_UPLOAD_ID, dao.fields.DDHERB, _IDA)
 
         Return dt
     End Function
@@ -219,7 +219,7 @@ Public Class FRM_HERB_TABEAN_JJ_EDIT_COMFIRM
         Dim bao As New BAO_TABEAN_HERB.tb_main
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ_EDIT_REQUEST
         dao.GetdatabyID_IDA(_IDA)
-        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, 77, dao.fields.DDHERB)
+        dt = bao.SP_TABEAN_HERB_UPLOAD_FILE_JJ(dao.fields.TR_ID_JJ, 77, dao.fields.DDHERB, _IDA)
 
         Return dt
     End Function

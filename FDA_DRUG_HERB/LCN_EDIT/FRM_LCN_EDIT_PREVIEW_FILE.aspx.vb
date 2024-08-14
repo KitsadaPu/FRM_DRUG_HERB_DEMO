@@ -32,11 +32,12 @@
         Dim FILENAME_XML As String = dao1.fields.NAME_FAKE
         Dim bao As New BAO.AppSettings
 
-        Dim paths As String = bao._PATH_DEFAULT
+        'Dim paths As String = bao._PATH_DEFAULT
+        Dim paths As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_SMP3")
 
 
         Dim PATH_XML As String
-        PATH_XML = paths & "upload\" & "LCN_EDIT\" & FILENAME_XML
+        PATH_XML = paths & "FILE_UPLOAD\" & FILENAME_XML
         'PATH_XML = paths & "\upload\" & "DA-120-2021-220969-36.pdf"
 
         Dim clsds As New ClassDataset

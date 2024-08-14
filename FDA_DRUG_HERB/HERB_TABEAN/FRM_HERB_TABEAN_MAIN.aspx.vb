@@ -9,7 +9,7 @@
 
     Private Sub RunQuery()
         _TOKEN = Request("Token").ToString()
-        '_TOKEN = "MWjGuBjonQddneORL6oiF QUU"
+        '_TOKEN = "hNQpGwOhTTbpoFSvvyiLmgUU"
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -111,6 +111,9 @@
             If _CLS.SYSTEM_ID = "8738" Or _CLS.SYSTEM_ID = "8734" Or _CLS.SYSTEM_ID = "9816" Then
                 'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "Codeblock", "alert('" & _CLS.SYSTEM_ID & "');", True)
                 Response.Redirect("../HERB_TABEAN/FRM_HERB_TABEAN_MAIN_MEMU.aspx")
+
+            ElseIf _CLS.SYSTEM_ID = "11234" Or _CLS.SYSTEM_ID = "11286" Then
+                Response.Redirect("../HERB_TABEAN/FRM_TABEAN_HERB_SELECT_LCN_OTHER.aspx")
             Else
                 _CLS.ID_MENU = 1200
                 Session("CLS") = _CLS

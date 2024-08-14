@@ -72,14 +72,19 @@ Public Class FRM_TABEAN_HERB_EXHIBITION
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
             Dim TR_ID As Integer = item("TR_ID").Text
             Dim H As HyperLink = e.Item.FindControl("HL_SELECT")
+            Dim H2 As HyperLink = e.Item.FindControl("HL2_SELECT")
             Dim IDA As String = item("IDA").Text
             Dim HL_SELECT As LinkButton = DirectCast(item("HL_SELECT").Controls(0), LinkButton)
+            Dim HL2_SELECT As LinkButton = DirectCast(item("HL2_SELECT").Controls(0), LinkButton)
             If STATUS_ID = 1 Then
                 HL_SELECT.Text = "ตรวจสอบ/แก้ไขรายละเอียด และกดยื่นคำขอ"
             ElseIf STATUS_ID > 1 Then
                 HL_SELECT.Text = "ดูข้อมูล"
             Else
                 HL_SELECT.Text = "ดูข้อมูล"
+            End If
+            If STATUS_ID = 2 Or STATUS_ID = 1 Then
+                HL2_SELECT.Style.Add("display", "none")
             End If
         End If
     End Sub
@@ -93,6 +98,7 @@ Public Class FRM_TABEAN_HERB_EXHIBITION
             'Dim IDA_LCN As Integer = item("IDA_LCN").Text
             Dim IDA As Integer = item("IDA").Text
             Dim STATUS_ID As Integer = item("STATUS_ID").Text
+            Dim TR_ID As Integer = item("TR_ID").Text
 
             If e.CommandName = "HL_SELECT" Then
                 If STATUS_ID = 11 Then
@@ -102,6 +108,10 @@ Public Class FRM_TABEAN_HERB_EXHIBITION
                     lbl_head1.Text = "รายละเอียดคำขอ"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & " POPUP_TABEAN_HERB_EXHIBITION_CONFIRM.aspx?IDA_DR=" & _IDA_DR & "&PROCESS_ID=" & _PROCESS_ID & "&IDA=" & IDA & "&IDA_LCN=" & _IDA_LCN & "');", True)
                 End If
+            ElseIf e.CommandName = "HL2_SELECT" Then
+                'lbl_head1.Text = "ใบนัดหมาย 1"
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_TABEAN_HERB_EXHIBITION_APM.aspx?IDA=" & IDA & "&TR_ID=" & TR_ID & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & _IDA_LCN & "');", True)
+
             End If
 
         End If

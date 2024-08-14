@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <h3>เพิ่มข้อมูลผุ้มีหน้าที่ปฎิบัติการในสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร
+            <h3>เพิ่มข้อมูลผู้มีหน้าที่ปฎิบัติการในสถานที่ผลิต นำเข้า หรือขายผลิตภัณฑ์สมุนไพร
             </h3>
         </div>
         <div class="col-lg-1"></div>
@@ -225,7 +225,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
-            เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม 
+            เป็นผู้ที่มีหน้าที่ปฏิบัติการตาม 
         </div>
         <div class="col-lg-3">
             <asp:RadioButtonList ID="rdl_mastra" runat="server" RepeatDirection="Horizontal">
@@ -234,13 +234,13 @@
                 <asp:ListItem Value="3">&nbsp;มาตรา ๓๓ &nbsp;</asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div class="col-lg-3">แห่ง พ.ร.บ.ผลิตภัณฆ์สมุนไพร พ.ศ.๒๕๖๒</div>
+        <div class="col-lg-3">แห่ง พ.ร.บ.ผลิตภัณฑ์สมุนไพร พ.ศ.๒๕๖๒</div>
         <div class="col-lg-3"></div>
     </div>
     <%-- <table>
         <tr>
             <td class="auto-style2"></td>
-            <td>เป็นผู้ที่มีหน้าที่ปฎิยบัติการตาม
+            <td>เป็นผู้ที่มีหน้าที่ปฏิบัติการตาม
             </td>
             <td>
                  <asp:RadioButtonList ID="rdl_mastra" runat="server" RepeatDirection="Horizontal">
@@ -249,14 +249,14 @@
                     <asp:ListItem Value="3">มาตรา ๓๓</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-            <td>แห่ง พ.ร.บ.ผลิตภัณฆ์สมุนไพร พ.ศ.๒๕๖๒
+            <td>แห่ง พ.ร.บ.ผลิตภัณฑ์สมุนไพร พ.ศ.๒๕๖๒
             </td>
         </tr>
     </table>--%>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            <%--<asp:Button ID="btn_save" runat="server" Text="เพิ่มผุ้มีหน้าที่ปฎิบัติการ" />--%>
+            <%--<asp:Button ID="btn_save" runat="server" Text="เพิ่มผู้มีหน้าที่ปฎิบัติการ" />--%>
             <asp:Button ID="btn_edit" runat="server" Text="ยืนยันการแก้ไข" />
         </div>
         <div class="col-lg-8"></div>

@@ -95,16 +95,16 @@
         Dim bao As New BAO_LCN.TABLE_VIEW
         Dim YEAR_S As String = ""
         YEAR_S = con_year(Date.Now().Year())
-        dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA_FILE_UPLOAD_FOR_UPDATE(_lcn_ida, ddl1, ddl2, 1, YEAR_S)
+        'dt = bao.SP_LCN_APPROVE_EDIT_GET_DATA_FILE_UPLOAD_FOR_UPDATE(_lcn_ida, ddl1, ddl2, 1, YEAR_S)
 
-        For Each dr As DataRow In dt.Rows
-            Dim dao_up As New DAO_LCN.TB_LCN_APPROVE_EDIT_UPLOAD_FILE
-            Dim IDA As String = ""
-            IDA = dr("IDA")
-            dao_up.GetDataby_IDA(IDA)
-            dao_up.fields.TR_ID = tr_id
-            dao_up.update()
-        Next
+        'For Each dr As DataRow In dt.Rows
+        '    Dim dao_up As New DAO_LCN.TB_LCN_APPROVE_EDIT_UPLOAD_FILE
+        '    Dim IDA As String = ""
+        '    IDA = dr("IDA")
+        '    dao_up.GetDataby_IDA(IDA)
+        '    dao_up.fields.TR_ID = tr_id
+        '    dao_up.update()
+        'Next
 
 
 
@@ -142,11 +142,24 @@
         bind_pdf_xml_2(ida_xml, _lcn_ida, process_xml, dao.fields.STATUS_ID, year_xml, tr_id_xml)
 
         'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');", True)
-
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
+        Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+        dao_lcn.GetDataby_IDA(_lcn_ida)
+        Dim IDA_LCT As Integer = 0
+        If dao_lcn.fields.FK_IDA <> 0 Then
+            IDA_LCT = dao_lcn.fields.FK_IDA
+        End If
+        Dim url As String = ""
+        url = "POPUP_LCN_EDIT_UPLOAD.aspx?IDA_LCT=" & IDA_LCT & "&TR_ID=" & dao.fields.TR_ID & "&IDA_LCN=" & dao.fields.FK_LCN_IDA & "&PROCESS_ID=" & dao.fields.LCN_PROCESS_ID & "&IDA=" & dao.fields.IDA _
+            & "&detial_type=" & _detial_type & "&STATUS_ID=" & dao.fields.STATUS_ID
+        Response.Write("<script type='text/javascript'>alert('บันทึกเรียบร้อย');window.location='" & url & "';</script> ")
+        'System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
 
     End Sub
-
+    'Sub alert_summit(ByVal text As String, ByVal IDA As Integer, ByVal IDA_LCN As Integer, ByVal STATUS_ID As Integer)
+    '    Dim url As String = ""
+    '    url = "POPUP_LCN_EDIT_UPLOAD.aspx?IDA_LCT=" & _IDA_LCT & "&TR_ID_LCN=" & _TR_ID & "&IDA_LCN=" & _IDA_LCN & "&DD_HERB_NAME_ID=" & _DD_HERB_NAME_ID & "&PROCESS_JJ=" & _PROCESS_JJ & "&IDA=" & ida_jj & "&PROCESS_ID_LCN=" & _PROCESS_ID_LCN & "&SID=" & _SID & "&identify=" & Request.QueryString("identify") & "&OPF=" & Request.QueryString("OPF")
+    '    Response.Write("<script type='text/javascript'>alert('" + text + "');window.location='" & url & "';</script> ")
+    'End Sub
     Public Sub bind_pdf_xml_2(ByVal _IDA As Integer, ByVal LCN_IDA As Integer, ByVal _ProcessID As Integer, ByVal _StatusID As Integer, ByVal _YEAR As String, ByVal _tr_id_xml As String)
         Dim XML As New CLASS_GEN_XML.LCN_EDIT_SMP3
         TB_SMP3 = XML.gen_xml(_IDA, LCN_IDA, _YEAR)

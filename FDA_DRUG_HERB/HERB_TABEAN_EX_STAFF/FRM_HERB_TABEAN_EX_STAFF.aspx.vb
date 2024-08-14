@@ -63,7 +63,7 @@ Public Class FRM_HERB_TABEAN_EX_STAFF
             Dim LCN_ID As String = item("LCN_IDA").Text
 
             If e.CommandName = "EX_SELECT" Then
-                If STATUS_ID = 3 Or STATUS_ID = 5 Then
+                If STATUS_ID = 3 Or STATUS_ID = 5 Or STATUS_ID = 21 Then
                     'lbl_head1.Text = "ข้อมูลจดแจ้งของผู้ประกอบการยื่นคำขอ"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & LCN_ID & "');", True)
                 ElseIf STATUS_ID = 16 Then
@@ -75,13 +75,13 @@ Public Class FRM_HERB_TABEAN_EX_STAFF
                 ElseIf STATUS_ID = 19 Then
                     'lbl_head1.Text = "ทบทวน"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_STAFF_INTAKE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & LCN_ID & "');", True)
-                ElseIf STATUS_ID = 4 Then
+                ElseIf STATUS_ID = 4 Or STATUS_ID = 20 Or STATUS_ID = 23 Or STATUS_ID = 24 Then
                     ' lbl_head1.Text = "แก้ไขข้อมูล"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_STAFF_EDIT.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & LCN_ID & "');", True)
                 ElseIf STATUS_ID = 6 Then
                     'lbl_head1.Text = "แก้ไขข้อมูล"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_STAFF_INAPPROVE.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & LCN_ID & "');", True)
-                ElseIf STATUS_ID = 12 Or STATUS_ID = 11 Then
+                ElseIf STATUS_ID = 12 Or STATUS_ID = 11 Or STATUS_ID = 25 Then
                     'lbl_head1.Text = "ตรวจสอบก่อนลงนาม"
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups('FRM_HERB_TABEAN_EX_STAFF_INOFFER.aspx?IDA=" & _IDA & "&TR_ID=" & tr_id & "&PROCESS_ID=" & _PROCESS_ID & "&IDA_LCN=" & LCN_ID & "');", True)
                 ElseIf STATUS_ID = 8 Then

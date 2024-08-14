@@ -121,9 +121,9 @@ Public Class UC_LCN_UPLOAD_FILE
 
             tc = New TableCell
             Try
-                tc.Text = Replace(dao_f.fields.DUCUMENT_NAME, "\n", "<br/>")
+                tc.Text = Replace(dao_f.fields.DOCUMENT_NAME, "\n", "<br/>")
             Catch ex As Exception
-                tc.Text = dao_f.fields.DUCUMENT_NAME
+                tc.Text = dao_f.fields.DOCUMENT_NAME
             End Try
             tc.Width = 900
             tr.Cells.Add(tc)
@@ -238,10 +238,10 @@ Public Class UC_LCN_UPLOAD_FILE
 
         For Each dao_attgroup.fields In dao_attgroup.datas
             Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-            Dim dao_mas As New DAO_DRUG.TB_MAS_DUCUMENT_NAME_UPLOAD_DALCN
+            Dim dao_mas As New DAO_DRUG.TB_MAS_DOCUMENT_NAME_UPLOAD_DALCN
             dao_mas.GetDataby_ID(dao_attgroup.fields.MAIN_MENU)
-            dao_att.fields.DUCUMENT_NAME = dao_mas.fields.DUCUMENT_NAME
-            'dao_att.fields.DUCUMENT_NAME = dao_attgroup.fields.DUCUMENT_NAME
+            dao_att.fields.DOCUMENT_NAME = dao_mas.fields.DOCUMENT_NAME
+            'dao_att.fields.DOCUMENT_NAME = dao_attgroup.fields.DOCUMENT_NAME
             dao_att.fields.TYPE_PERSON = head_id
             dao_att.fields.TYPE_LOCAL = id
             dao_att.fields.TYPE_BSN = id2
@@ -258,7 +258,7 @@ Public Class UC_LCN_UPLOAD_FILE
         'Try
         '    For Each dao_attgroup2.fields In dao_attgroup2.datas
         '        Dim dao_att As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        '        dao_att.fields.DUCUMENT_NAME = dao_attgroup2.fields.DUCUMENT_NAME
+        '        dao_att.fields.DOCUMENT_NAME = dao_attgroup2.fields.DOCUMENT_NAME
         '        dao_att.fields.TYPE_PERSON = head_id
         '        dao_att.fields.TYPE_LOCAL = id
         '        dao_att.fields.TYPE_BSN = id2

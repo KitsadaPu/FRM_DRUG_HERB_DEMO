@@ -365,6 +365,51 @@ Partial Public Class UC_PHR_DETAIL
     Protected WithEvents txt_addr_num As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_CITIZEN_AUTHORIZE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_CITIZEN_AUTHORIZE As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_lcnno_no control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_lcnno_no As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_search_lcn_ida control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search_lcn_ida As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_search_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search_lcn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''RadGrid_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadGrid_lcn As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''DDL_Matra control.
     '''</summary>
     '''<remarks>

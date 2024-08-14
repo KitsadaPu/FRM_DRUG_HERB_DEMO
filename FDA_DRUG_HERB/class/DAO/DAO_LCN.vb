@@ -79,7 +79,9 @@
             For Each Me.fields In datas
             Next
         End Sub
-
+        Public Sub GetdatabyID_TR_ID_PROCESS_ID_ALL(ByVal TR_ID As Integer, ByVal PROCESS_ID As String, ByVal type_id As Integer)
+            datas = From p In db.LCN_APPROVE_EDIT_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS_ID And p.TYPE = type_id Select p
+        End Sub
     End Class
 
 
@@ -1223,6 +1225,37 @@
 
 
     End Class
+    Public Class TB_MAS_REASON_UPDATE_STATUS
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_REASON_UPDATE_STATUS
+
+        Public Sub insert()
+            db.MAS_REASON_UPDATE_STATUS.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_REASON_UPDATE_STATUS.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_REASON_UPDATE_STATUS Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_by_ID(ByVal ID As String)
+
+            datas = (From p In db.MAS_REASON_UPDATE_STATUS Where p.ID = ID Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
     Public Class TB_OLD_LCN_APPROVE_EDIT_DDL8_REASON
         Inherits MAINCONTEXT
 
@@ -1476,6 +1509,45 @@
         Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
 
             datas = (From p In db.DALCN_RENEWs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_DALCN_RENEW_PRE
+        Inherits MAINCONTEXT
+
+        Public fields As New DALCN_RENEW_PRE
+
+
+        Public Sub insert()
+            db.DALCN_RENEW_PREs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.DALCN_RENEW_PREs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.DALCN_RENEW_PREs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.DALCN_RENEW_PREs Where p.IDA = ida And p.ACTIVEFACT = True Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_FK_LCN(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_RENEW_PREs Where p.FK_LCN = ida And p.ACTIVEFACT = active Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1973,6 +2045,38 @@
             datas = (From p In db.LOG_EDIT_MIGIGRATE_LCNs Where p.IDA = IDA Select p)
             For Each Me.fields In datas
 
+            Next
+        End Sub
+
+    End Class
+    Public Class TB_mas_phr_status_update
+        Inherits MAINCONTEXT 'เรียก Class แม่มาใช้เพื่อให้รู้จักว่าเป็น Table ไหน
+
+        Public fields As New mas_phr_status_update
+
+        Public Sub insert()
+            db.mas_phr_status_updates.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.mas_phr_status_updates.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.mas_phr_status_updates Where p.ACTIVE = True Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.mas_phr_status_updates Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
             Next
         End Sub
 

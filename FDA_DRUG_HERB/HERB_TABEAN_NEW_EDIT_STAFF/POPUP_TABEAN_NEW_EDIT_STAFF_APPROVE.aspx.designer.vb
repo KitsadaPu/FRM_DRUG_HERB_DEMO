@@ -176,6 +176,42 @@ Partial Public Class POPUP_TABEAN_NEW_EDIT_STAFF_APPROVE
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txt_remark_edit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_remark_edit As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''D_SLCN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents D_SLCN As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''DDL_Kindnm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_Kindnm As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''DDL_SLCHN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_SLCHN As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''uc_upload1 control.
     '''</summary>
     '''<remarks>
