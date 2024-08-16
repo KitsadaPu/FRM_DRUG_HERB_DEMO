@@ -302,10 +302,10 @@
         <elementListCompartment Id="96e42bc1-0768-4213-940d-ed64ec47255c" absoluteBounds="3.1399999999999997, 4.96, 1.9700000000000002, 20.248738606770832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="86a80a01-6d21-4ed9-84e2-e2a7c8cc0813" isExpanded="false" absoluteBounds="3.125, 5, 2, 0.45">
+    <classShape Id="7baa3619-6177-4324-8173-b2af29a42a4c" isExpanded="false" absoluteBounds="3.125, 5, 2, 0.45">
       <DataClassMoniker Name="/LINQ_LCNDataContext/DALCN_RENEW_PRE" />
       <nestedChildShapes>
-        <elementListCompartment Id="1dce24eb-2ada-4a2d-929b-f152cd21a6b2" absoluteBounds="3.1399999999999997, 5.46, 1.9700000000000002, 12.172078450520832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="069f2051-6da0-4081-b79c-d2b9456d2b1e" absoluteBounds="3.1399999999999997, 5.46, 1.9700000000000002, 12.3643798828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

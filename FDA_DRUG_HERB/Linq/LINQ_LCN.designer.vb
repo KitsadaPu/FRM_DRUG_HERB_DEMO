@@ -32012,6 +32012,8 @@ Partial Public Class DALCN_RENEW_PRE
 	
 	Private _staff_edit_date As System.Nullable(Of Date)
 	
+	Private _SUB_CerSD_TYPE As System.Nullable(Of Integer)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -32266,6 +32268,10 @@ Partial Public Class DALCN_RENEW_PRE
     Partial Private Sub Onstaff_edit_dateChanging(value As System.Nullable(Of Date))
     End Sub
     Partial Private Sub Onstaff_edit_dateChanged()
+    End Sub
+    Partial Private Sub OnSUB_CerSD_TYPEChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSUB_CerSD_TYPEChanged()
     End Sub
     #End Region
 	
@@ -33263,6 +33269,22 @@ Partial Public Class DALCN_RENEW_PRE
 				Me._staff_edit_date = value
 				Me.SendPropertyChanged("staff_edit_date")
 				Me.Onstaff_edit_dateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SUB_CerSD_TYPE", DbType:="Int")>  _
+	Public Property SUB_CerSD_TYPE() As System.Nullable(Of Integer)
+		Get
+			Return Me._SUB_CerSD_TYPE
+		End Get
+		Set
+			If (Me._SUB_CerSD_TYPE.Equals(value) = false) Then
+				Me.OnSUB_CerSD_TYPEChanging(value)
+				Me.SendPropertyChanging
+				Me._SUB_CerSD_TYPE = value
+				Me.SendPropertyChanged("SUB_CerSD_TYPE")
+				Me.OnSUB_CerSD_TYPEChanged
 			End If
 		End Set
 	End Property
