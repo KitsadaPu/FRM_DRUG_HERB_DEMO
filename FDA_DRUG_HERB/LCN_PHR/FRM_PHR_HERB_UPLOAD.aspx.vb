@@ -194,6 +194,7 @@ Public Class FRM_PHR_HERB_UPLOAD
                     dao_f.fields.NAME_FAKE = Name_fake
                     dao_f.fields.NAME_REAL = f.FileName
                     dao_f.fields.CREATE_DATE = Date.Now
+                    dao_f.fields.Active = True
                     dao_f.update()
 
                     Dim paths As String = bao._PATH_XML_PDF_PHR

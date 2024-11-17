@@ -221,6 +221,15 @@ Partial Public Class UC_PHR_DETAIL
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''P_Traning_Detail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents P_Traning_Detail As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''Div_Txt_num control.
     '''</summary>
     '''<remarks>
@@ -293,6 +302,15 @@ Partial Public Class UC_PHR_DETAIL
     Protected WithEvents txt_Study_Year As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''time_open control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents time_open As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txt_PHR_TEXT_WORK_TIME control.
     '''</summary>
     '''<remarks>
@@ -354,6 +372,24 @@ Partial Public Class UC_PHR_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgns As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''rdl_phr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_phr As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''chk_rad control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_rad As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''txt_addr_num control.
@@ -624,6 +660,24 @@ Partial Public Class UC_PHR_DETAIL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Service_Time_Close As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TXT_LCNNO_DIS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TXT_LCNNO_DIS As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BTN_SEARCH_LCNNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_SEARCH_LCNNO As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''txt_Business_Name control.

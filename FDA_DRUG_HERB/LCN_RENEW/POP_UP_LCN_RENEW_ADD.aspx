@@ -57,23 +57,23 @@
             lightBoxVideo.pause();
         }
 
-        function validateLatitude(txtBox) {
-            var value = parseFloat(txtBox.value);
-            if (isNaN(value) || value < 5.0 || value > 21.0) {
-                alert("กรุณากรอกค่าระหว่าง 5.0 ถึง 21.0");
-                txtBox.value = "";
-                txtBox.focus();
-            }
-        }
+        //function validateLatitude(txtBox) {
+        //    var value = parseFloat(txtBox.value);
+        //    if (isNaN(value) || value < 5.0 || value > 21.0) {
+        //        alert("กรุณากรอกค่าระหว่าง 5.0 ถึง 21.0");
+        //        txtBox.value = "";
+        //        txtBox.focus();
+        //    }
+        //}
 
-        function validateLongitude(txtBox) {
-            var value = parseFloat(txtBox.value);
-            if (isNaN(value) || value < 97.0 || value > 106.0) {
-                alert("กรุณากรอกค่าระหว่าง 97.0 ถึง 106.0");
-                txtBox.value = "";
-                txtBox.focus();
-            }
-        }
+        //function validateLongitude(txtBox) {
+        //    var value = parseFloat(txtBox.value);
+        //    if (isNaN(value) || value < 97.0 || value > 106.0) {
+        //        alert("กรุณากรอกค่าระหว่าง 97.0 ถึง 106.0");
+        //        txtBox.value = "";
+        //        txtBox.focus();
+        //    }
+        //}
         //var modal = document.getElementById("myModal");
         //var btn = document.getElementById("btn_save");
         //var span = document.getElementsByClassName("close")[0];
@@ -160,7 +160,10 @@
         <div class="col-lg-1">ข้าพเจ้า</div>
         <div class="col-lg-4" style="border-bottom: #999999 1px dotted;">
             <asp:TextBox ID="txt_Rename_Name" runat="server" Width="100%" ReadOnly="true" BorderStyle="None"></asp:TextBox>
-            &ensp;  (ชื่อผู้รับอนุญาต)
+            &ensp;  
+        </div>
+        <div class="col-lg-2">
+            <p>(ชื่อผู้รับอนุญาต)</p>
         </div>
     </div>
     <div class="row">
@@ -168,7 +171,9 @@
         <div class="col-lg-1">ซึ่งมีผู้ดำเนินกิจการชื่อ</div>
         <div class="col-lg-4" style="border-bottom: #999999 1px dotted;">
             <asp:TextBox ID="txt_phr_name" runat="server" Width="100%" ReadOnly="true" BorderStyle="None"></asp:TextBox>
-            &ensp;  (เฉพาะกรณีนิติบุคคล)
+        </div>
+        <div class="col-lg-2">
+            <p>(เฉพาะกรณีนิติบุคคล)</p>
         </div>
     </div>
     <div class="row">
@@ -273,14 +278,14 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-1">พิกัด ละติจูด(latitude)</div>
         <div class="col-lg-2">
-            <asp:TextBox ID="txt_latitude" runat="server" Width="100%" onblur="validateLatitude(this);"></asp:TextBox>
+            <asp:TextBox ID="txt_latitude" runat="server" Width="100%" AutoPostBack="true"></asp:TextBox>
             <small style="color: red">ตั้งแต่ 5.0-21.0</small>
         </div>
         <div class="col-lg-1">
             ลองจิจูด(longitude)
         </div>
         <div class="col-lg-2">
-            <asp:TextBox ID="txt_longitude" runat="server" Width="100%" onblur="validateLongitude(this);"></asp:TextBox>
+            <asp:TextBox ID="txt_longitude" runat="server" Width="100%"  AutoPostBack="true"></asp:TextBox>
             <small style="color: red">ตั้งแต่ 97.0-106.0</small>
         </div>
         <%--    <div class="col-lg-2">
@@ -311,7 +316,7 @@
         <div class="col-lg-10">
             <p>ต้องการยื่นเอกสารผู้มีหน้าที่ปฏิบัติการแบบ</p>
             <asp:RadioButton ID="RDO_PHR_YES" runat="server" GroupName="OptionsModal" Text="ยื่นแบบออนไลน์" AutoPostBack="true" />
-            <asp:RadioButton ID="RDO_PHR_NO" runat="server" GroupName="OptionsModal" Text="ยืนแบบเอกสาร" />
+            <asp:RadioButton ID="RDO_PHR_NO" runat="server" GroupName="OptionsModal" Text="ยืนแบบเอกสาร" AutoPostBack="true" />
         </div>
     </div>
     <panel id="panel_phr" runat="server" style="display: none;">
@@ -327,7 +332,6 @@
                 <telerik:RadGrid ID="rgphr" runat="server">
                     <MasterTableView AutoGenerateColumns="False" DataKeyNames="PHR_IDA" NoMasterRecordsText="ไม่พบข้อมูล">
                         <Columns>
-
                             <telerik:GridBoundColumn DataField="PHR_IDA" FilterControlAltText="Filter PHR_IDA column"
                                 HeaderText="PHR_IDA" SortExpression="PHR_IDA" UniqueName="PHR_IDA" Display="false">
                             </telerik:GridBoundColumn>
@@ -362,7 +366,7 @@
             </div>
         </div>
     </panel>
-    <div class="row">
+    <%--<div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
             <h4 style="color: red">เงื่อนไขเพิ่มเติม</h4>
@@ -380,12 +384,62 @@
                     <p>ได้รับกาารรับรองมาตรฐานสถานที่ผลิตภัณฑ์สมุนไพรจากอย. หรือหน่วยงานที่อย.เห็นชอบ</p>
                 </strong>
             </div>
+             <div class="row">
+                <div class="col-lg-3">
+                    <asp:RadioButtonList ID="rdl_CerSD" runat="server" AutoPostBack="true">
+                        <asp:ListItem Value="1">&ensp;1.ได้รับการรับรอง</asp:ListItem>
+                        <asp:ListItem Value="2">&ensp;2.ยังไม่ได้รับการรับรอง</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+                <div class="col-lg-9">
+                     <div id="chk_rad1" runat="server" style="display:none">
+                        <asp:RadioButtonList ID="rdl_cer" runat="server" Visible="true">
+                            <asp:ListItem Value="1">&ensp;PIC/S GMP</asp:ListItem>
+                            <asp:ListItem Value="2">&ensp;ASEAN GMP</asp:ListItem>
+                            <asp:ListItem Value="3">&ensp;เกียรติบัตรระดับเหรียญทอง</asp:ListItem>
+                            <asp:ListItem Value="4">&ensp;เกียรติบัตรระดับเหรียญเงิน</asp:ListItem>
+                            <asp:ListItem Value="5">&ensp;เกียรติบัตรระดับเหรียญทองแดง</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>--%>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h4 style="color: red">เงื่อนไขเพิ่มเติม</h4>
             <div>
-                <asp:RadioButtonList ID="rdl_CerSD" runat="server">
-                    <asp:ListItem Value="1">&ensp;1.ได้รับการรับรอง</asp:ListItem>
-                    <asp:ListItem Value="2">&ensp;2.ยังไม่ได้รับการรับรอง</asp:ListItem>
+                <asp:RadioButtonList ID="rdl_enterprise" runat="server">
+                    <asp:ListItem Value="1">&ensp;1.จดทะเบียนวิสาหกิจชุมชน</asp:ListItem>
+                    <asp:ListItem Value="2">&ensp;2.จดทะเบียนวิสาหกิจขนาดย่อม (รายย่อย) [small (micro) enterprise]</asp:ListItem>
+                    <asp:ListItem Value="3">&ensp;3.จดทะเบียนวิสาหกิจขนาดย่อม [small enterprise]</asp:ListItem>
+                    <asp:ListItem Value="4">&ensp;4.จดทะเบียนวิสาหกิจขนาดกลาง  [medium enterprise]</asp:ListItem>
+                    <asp:ListItem Value="5">&ensp;5.ไม่ได้จดทะเบียนเป็นวิสาหกิจ</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
+            <asp:Panel runat="server" ID="panel_cer_lcn" Visible="false">
+                <div>
+                    <strong>
+                        <p>ได้รับกาารรับรองมาตรฐานสถานที่ผลิตภัณฑ์สมุนไพรจากอย. หรือหน่วยงานที่อย.เห็นชอบ</p>
+                    </strong>
+                </div>
+                <div>
+                    <asp:RadioButtonList ID="rdl_CerSD" runat="server" AutoPostBack="True">
+                        <asp:ListItem Value="1">&ensp;1.ได้รับการรับรอง</asp:ListItem>
+                        <asp:ListItem Value="2">&ensp;2.ยังไม่ได้รับการรับรอง</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+                <div id="chk_rad" runat="server">
+                    <asp:RadioButtonList ID="rdl_cer" runat="server">
+                        <asp:ListItem Value="1">&ensp;PIC/S GMP</asp:ListItem>
+                        <asp:ListItem Value="2">&ensp;ASEAN GMP</asp:ListItem>
+                        <asp:ListItem Value="3">&ensp;เกียรติบัตรระดับเหรียญทอง</asp:ListItem>
+                        <asp:ListItem Value="4">&ensp;เกียรติบัตรระดับเหรียญเงิน</asp:ListItem>
+                        <asp:ListItem Value="5">&ensp;เกียรติบัตรระดับเหรียญทองแดง</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+            </asp:Panel>
         </div>
     </div>
     <div class="row">
@@ -398,7 +452,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-1">คำนำหน้า</div>
         <div class="col-lg-2">
-            <asp:DropDownList ID="ddl_prefix" runat="server" DataTextField="thanm" DataValueField="prefixcd" Width="100%"></asp:DropDownList>
+            <asp:DropDownList ID="ddl_emc_prefix" runat="server" DataTextField="thanm" DataValueField="prefixcd" Width="100%"></asp:DropDownList>
         </div>
         <%--      <div class="col-lg-1">ชื่อ</div>
         <div class="col-lg-2">

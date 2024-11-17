@@ -25,7 +25,7 @@ Imports System.Xml.Serialization
 Namespace WS_DATA_CENTER
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
      System.Web.Services.WebServiceBindingAttribute(Name:="WS_DATA_CENTERSoap", [Namespace]:="http://tempuri.org/")>  _
@@ -45,6 +45,12 @@ Namespace WS_DATA_CENTER
         Private GET_DATA_IDENTIFY_DTOperationCompleted As System.Threading.SendOrPostCallback
         
         Private GET_DATA_IDEMOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private GET_DATA_IDEM_NEWOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private GET_DATA_IDEM_JSONOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private GET_DATA_IDEM_ORGOperationCompleted As System.Threading.SendOrPostCallback
         
         Private useDefaultCredentialsSetExplicitly As Boolean
         
@@ -104,6 +110,15 @@ Namespace WS_DATA_CENTER
         
         '''<remarks/>
         Public Event GET_DATA_IDEMCompleted As GET_DATA_IDEMCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event GET_DATA_IDEM_NEWCompleted As GET_DATA_IDEM_NEWCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event GET_DATA_IDEM_JSONCompleted As GET_DATA_IDEM_JSONCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event GET_DATA_IDEM_ORGCompleted As GET_DATA_IDEM_ORGCompletedEventHandler
         
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FDA_HOUSE_NO", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
@@ -295,6 +310,87 @@ Namespace WS_DATA_CENTER
         End Sub
         
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GET_DATA_IDEM_NEW", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function GET_DATA_IDEM_NEW(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String) As String
+            Dim results() As Object = Me.Invoke("GET_DATA_IDEM_NEW", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD})
+            Return CType(results(0),String)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_NEWAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String)
+            Me.GET_DATA_IDEM_NEWAsync(IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_NEWAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String, ByVal userState As Object)
+            If (Me.GET_DATA_IDEM_NEWOperationCompleted Is Nothing) Then
+                Me.GET_DATA_IDEM_NEWOperationCompleted = AddressOf Me.OnGET_DATA_IDEM_NEWOperationCompleted
+            End If
+            Me.InvokeAsync("GET_DATA_IDEM_NEW", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD}, Me.GET_DATA_IDEM_NEWOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnGET_DATA_IDEM_NEWOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GET_DATA_IDEM_NEWCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GET_DATA_IDEM_NEWCompleted(Me, New GET_DATA_IDEM_NEWCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GET_DATA_IDEM_JSON", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function GET_DATA_IDEM_JSON(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String) As String
+            Dim results() As Object = Me.Invoke("GET_DATA_IDEM_JSON", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD})
+            Return CType(results(0),String)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_JSONAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String)
+            Me.GET_DATA_IDEM_JSONAsync(IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_JSONAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String, ByVal userState As Object)
+            If (Me.GET_DATA_IDEM_JSONOperationCompleted Is Nothing) Then
+                Me.GET_DATA_IDEM_JSONOperationCompleted = AddressOf Me.OnGET_DATA_IDEM_JSONOperationCompleted
+            End If
+            Me.InvokeAsync("GET_DATA_IDEM_JSON", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD}, Me.GET_DATA_IDEM_JSONOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnGET_DATA_IDEM_JSONOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GET_DATA_IDEM_JSONCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GET_DATA_IDEM_JSONCompleted(Me, New GET_DATA_IDEM_JSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GET_DATA_IDEM_ORG", RequestNamespace:="http://tempuri.org/", ResponseNamespace:="http://tempuri.org/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function GET_DATA_IDEM_ORG(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String, ByVal ORG As String) As String
+            Dim results() As Object = Me.Invoke("GET_DATA_IDEM_ORG", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD, ORG})
+            Return CType(results(0),String)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_ORGAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String, ByVal ORG As String)
+            Me.GET_DATA_IDEM_ORGAsync(IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD, ORG, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub GET_DATA_IDEM_ORGAsync(ByVal IDENTIFY As String, ByVal CTZNO_CALL As String, ByVal USERNAME As String, ByVal PASSWORD As String, ByVal ORG As String, ByVal userState As Object)
+            If (Me.GET_DATA_IDEM_ORGOperationCompleted Is Nothing) Then
+                Me.GET_DATA_IDEM_ORGOperationCompleted = AddressOf Me.OnGET_DATA_IDEM_ORGOperationCompleted
+            End If
+            Me.InvokeAsync("GET_DATA_IDEM_ORG", New Object() {IDENTIFY, CTZNO_CALL, USERNAME, PASSWORD, ORG}, Me.GET_DATA_IDEM_ORGOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnGET_DATA_IDEM_ORGOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GET_DATA_IDEM_ORGCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GET_DATA_IDEM_ORGCompleted(Me, New GET_DATA_IDEM_ORGCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
         Public Shadows Sub CancelAsync(ByVal userState As Object)
             MyBase.CancelAsync(userState)
         End Sub
@@ -314,11 +410,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub FDA_HOUSE_NOCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_HOUSE_NOCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_HOUSE_NOCompletedEventArgs
@@ -341,11 +437,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub FDA_IDENTIFYCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_IDENTIFYCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_IDENTIFYCompletedEventArgs
@@ -368,11 +464,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub FDA_IDENTIFY_DTCompletedEventHandler(ByVal sender As Object, ByVal e As FDA_IDENTIFY_DTCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FDA_IDENTIFY_DTCompletedEventArgs
@@ -395,11 +491,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub GET_DATA_IDENTIFYCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDENTIFYCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GET_DATA_IDENTIFYCompletedEventArgs
@@ -422,11 +518,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub GET_DATA_IDENTIFY_DSCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDENTIFY_DSCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GET_DATA_IDENTIFY_DSCompletedEventArgs
@@ -449,11 +545,11 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub GET_DATA_IDENTIFY_DTCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDENTIFY_DTCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GET_DATA_IDENTIFY_DTCompletedEventArgs
@@ -476,14 +572,95 @@ Namespace WS_DATA_CENTER
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
     Public Delegate Sub GET_DATA_IDEMCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDEMCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GET_DATA_IDEMCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),String)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub GET_DATA_IDEM_NEWCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDEM_NEWCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GET_DATA_IDEM_NEWCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),String)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub GET_DATA_IDEM_JSONCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDEM_JSONCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GET_DATA_IDEM_JSONCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),String)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")>  _
+    Public Delegate Sub GET_DATA_IDEM_ORGCompletedEventHandler(ByVal sender As Object, ByVal e As GET_DATA_IDEM_ORGCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GET_DATA_IDEM_ORGCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
         
         Private results() As Object

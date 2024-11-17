@@ -102,18 +102,19 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(Request.QueryString("IDA"))
-        If dao.fields.Check_Edit_FileUpload_ID = True Then
-            If check_file() = False Then
+        'If dao.fields.Check_Edit_FileUpload_ID = True Then
+        If check_file() = False Then
                 alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
             Else
-                If dao.fields.Check_Edit_ID = False Then
-                    dao.fields.STATUS_ID = 10
-                    dao.update()
+            'If dao.fields.Check_Edit_ID = False Then
+            dao.fields.STATUS_ID = 32
+            dao.fields.UPDATE_DATE = DateTime.Now
+            dao.update()
                     AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, Request.QueryString("IDA"))
                     alert("บันทึกข้อมูลแล้ว รอเจ้าหน้าที่ตรวจสอบความถูกต้อง")
-                End If
-            End If
+            'End If
         End If
+        'End If
         'If dao.fields.Check_Edit_ID = True Then
         '    Try
         'dao.fields.latitude = txt_latitude.Text
@@ -124,11 +125,11 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         '    'dao.fields.longitude = txt_longitude.Text
         'Catch ex As Exception
         '    dao.fields.longitude = 0
-        'End Try
-        dao.fields.STATUS_ID = 32
-        dao.update()
-        AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, Request.QueryString("IDA"))
-        alert("บันทึกข้อมูลแล้ว รอเจ้าหน้าที่ตรวจสอบความถูกต้อง")
+        ''End Try
+        'dao.fields.STATUS_ID = 32
+        'dao.update()
+        'AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, Request.QueryString("IDA"))
+        'alert("บันทึกข้อมูลแล้ว รอเจ้าหน้าที่ตรวจสอบความถูกต้อง")
         'End If
     End Sub
 
@@ -262,7 +263,7 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
         Dim TR_ID As Integer = dao.fields.TR_ID
 
         Dim dao_check As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
-        dao_check.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _ProcessID, 1)
+        dao_check.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _ProcessID, 2)
 
         Dim ck_file As Boolean = True
 
@@ -292,15 +293,15 @@ Public Class POP_UP_LCN_RENEW_EDIT_REQUEST
                 Dim exten As String = Array_NAME_REAL(Last_Length).ToString()
                 Dim paths As String = BAO._PATH_XML_PDF_LCN_RENREW
                 If exten.ToUpper = "PDF" Then
-
                     Dim dao_f As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
                     dao_f.GetDataby_IDA(IDA)
-                    Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & ".pdf"
+                    Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & "-" & dao_f.fields.IDA & ".pdf"
                     paths = paths & "FILE_UPLOAD\" & Name_fake
                     dao_f.fields.NAME_FAKE = Name_fake
                     dao_f.fields.NAME_REAL = f.FileName
                     dao_f.fields.CREATE_DATE = Date.Now
                     dao_f.fields.FilePath = paths
+                    dao_f.fields.Active = True
                     dao_f.update()
                     f.SaveAs(paths)
                 Else

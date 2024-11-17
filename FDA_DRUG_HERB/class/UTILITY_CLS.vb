@@ -427,7 +427,7 @@ Public Module UTILITY_CLS
         Return province_id
     End Function
     <System.Runtime.CompilerServices.Extension>
-    Public Sub AddLogStatus(ByVal status_id As Integer, ByVal process_id As String, ByVal iden As String, Optional FK_IDA As Integer = 0)
+    Public Sub AddLogStatus(ByVal status_id As Integer, ByVal process_id As String, ByVal iden As String, Optional FK_IDA As Integer = 0, Optional Descrip As String = "")
         Try
             Dim dao As New DAO_DRUG.TB_LOG_STATUS
             dao.fields.IDENTIFY = iden
@@ -435,6 +435,7 @@ Public Module UTILITY_CLS
             dao.fields.STATUS_DATE = Date.Now
             dao.fields.STATUS_ID = status_id
             dao.fields.FK_IDA = FK_IDA
+            dao.fields.DESCRIPTION = Descrip
             dao.insert()
         Catch ex As Exception
 

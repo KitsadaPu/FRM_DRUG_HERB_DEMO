@@ -30,6 +30,8 @@ Public Class FRM_HERB_TABEAN_STAFF_JJ_INAPPROVE
             bind_mas_staff()
             bind_mas_cancel()
 
+            Run_Pdf_Tabean_Herb_JJ2_8()
+
             UC_ATTACH1.NAME = "เอกสารแนบ"
             UC_ATTACH1.BindData("เอกสารแนบ", 1, "pdf", "0", "77")
         End If

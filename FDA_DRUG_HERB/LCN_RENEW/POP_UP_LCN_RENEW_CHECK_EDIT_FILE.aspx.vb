@@ -254,7 +254,7 @@ Public Class POP_UP_LCN_RENEW_CHECK_EDIT_FILE
 
                     Dim dao_f As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
                     dao_f.GetDataby_IDA(IDA)
-                    Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & ".pdf"
+                    Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & "-" & dao_f.fields.IDA & ".pdf"
                     paths = paths & "FILE_UPLOAD\" & Name_fake
                     dao_f.fields.NAME_FAKE = Name_fake
                     dao_f.fields.NAME_REAL = f.FileName

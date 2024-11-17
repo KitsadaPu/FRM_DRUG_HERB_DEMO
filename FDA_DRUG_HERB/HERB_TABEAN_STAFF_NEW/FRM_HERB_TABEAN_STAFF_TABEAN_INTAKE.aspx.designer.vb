@@ -167,6 +167,15 @@ Partial Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
     Protected WithEvents DD_DISCOUNT As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''DDL_COMPLEX control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DDL_COMPLEX As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''TXT_BATH control.
     '''</summary>
     '''<remarks>

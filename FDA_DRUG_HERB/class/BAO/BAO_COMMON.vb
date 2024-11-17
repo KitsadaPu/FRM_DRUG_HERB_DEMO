@@ -768,7 +768,7 @@ Module BAO_COMMON
                 ElseIf PROSESS_ID = "10104" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
                     cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
-                ElseIf PROSESS_ID = "10501" Then
+                ElseIf PROSESS_ID = "10501" Or PROSESS_ID = "10901" Or PROSESS_ID = "10902" Or PROSESS_ID = "10903" Then
                     Dim cls_xml As New CLASS_GEN_XML.DALCN_RENEW
                     cls_xml.GEN_XML_DALCN_RENEW(PATH_XML, LCN_RENEW)
                 ElseIf PROSESS_ID = "10601" Then
@@ -782,12 +782,12 @@ Module BAO_COMMON
                     cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
                     'Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN
                     'cls_xml.GEN_XML_DALCN_PLAN(PATH_XML, LCN_PLAN)
-                ElseIf PROSESS_ID = "10901" Then
-                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
-                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
-                ElseIf PROSESS_ID = "10902" Then
-                    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
-                    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                    'ElseIf PROSESS_ID = "10901" Then
+                    '    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    '    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                    'ElseIf PROSESS_ID = "10902" Then
+                    '    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                    '    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
                 ElseIf PROSESS_ID = "10110" Then
                     'Dim cls_xml As New CLASS_GEN_XML.DALCN_PHR_NEW
                     'cls_xml.GEN_XML_DALCN_PHR(PATH_XML, LCN_PHR)
@@ -1059,7 +1059,7 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf PROSESS_ID = "10501" Then
+            ElseIf PROSESS_ID = "10501" Or PROSESS_ID = "10901" Or PROSESS_ID = "10902" Or PROSESS_ID = "10903" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_RENEW
                 cls_xml.GEN_XML_DALCN_RENEW(PATH_XML, LCN_RENEW)
                 Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
@@ -1091,16 +1091,16 @@ Module BAO_COMMON
                         End Using
                     End Using
                 End Using
-            ElseIf PROSESS_ID = "10901" Or PROSESS_ID = "10902" Then
-                Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
-                cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
-                Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
-                    Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
-                        Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
-                            stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
-                        End Using
-                    End Using
-                End Using
+                'ElseIf PROSESS_ID = "10901" Or PROSESS_ID = "10902" Then
+                '    Dim cls_xml As New CLASS_GEN_XML.DALCN_AUDIT
+                '    cls_xml.GEN_XML_DALCN_AUDIT(PATH_XML, DALCN_AUDIT)
+                '    Using pdfReader__1 = New PdfReader(PATH_PDF_TEMPLATE) 'C:\path\PDF_TEMPLATE\
+                '        Using outputStream = New FileStream(PATH_PDF_OUTPUT, FileMode.Create, FileAccess.Write) '"C:\path\PDF_XML_CLASS\"
+                '            Using stamper = New iTextSharp.text.pdf.PdfStamper(pdfReader__1, outputStream, ControlChars.NullChar, True)
+                '                stamper.AcroFields.Xfa.FillXfaForm(PATH_XML)
+                '            End Using
+                '        End Using
+                '    End Using
 
             ElseIf PROSESS_ID = "10110" Then
                 Dim cls_xml As New CLASS_GEN_XML.DALCN_PLAN

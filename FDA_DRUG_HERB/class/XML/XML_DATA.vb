@@ -34,6 +34,15 @@
             _SYSLCTADDRs = value
         End Set
     End Property
+    Private _DETAIL_HOUSENO As String
+    Public Property DETAIL_HOUSENO() As String
+        Get
+            Return _DETAIL_HOUSENO
+        End Get
+        Set(ByVal value As String)
+            _DETAIL_HOUSENO = value
+        End Set
+    End Property
 
     'Private _PERSON_IDEMs As New PERSON_IDEM
     'Public Property PERSON_IDEMs() As PERSON_IDEM

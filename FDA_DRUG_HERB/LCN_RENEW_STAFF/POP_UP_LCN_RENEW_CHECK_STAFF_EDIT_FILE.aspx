@@ -4,6 +4,14 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/css_rg_herb.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style2 {
+            font-size: 18px;
+            line-height: 1.33;
+            border-radius: 6px;
+            padding: 10px 16px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -78,6 +86,47 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
+            <h3 style="color: red">เงื่อนไขเพิ่มเติม</h3>
+            <h4 style="color: red">&ensp;&ensp;กรณีที่มีการเลือกแก้ไขเงื่อนไขเพิ่มเติม เอกสารแนบที่มาก่อนหน้าจะถูกเคลียร์ออกและจะต้องแนบเอกสารใหม่ทั้งหมด</h4>
+            <div>
+                <asp:RadioButtonList ID="rdl_enterprise" runat="server">
+                    <asp:ListItem Value="1">&ensp;1.จดทะเบียนวิสาหกิจชุมชน</asp:ListItem>
+                    <asp:ListItem Value="2">&ensp;2.จดทะเบียนวิสาหกิจขนาดย่อม (รายย่อย) [small (micro) enterprise]</asp:ListItem>
+                    <asp:ListItem Value="3">&ensp;3.จดทะเบียนวิสาหกิจขนาดย่อม [small enterprise]</asp:ListItem>
+                    <asp:ListItem Value="4">&ensp;4.จดทะเบียนวิสาหกิจขนาดกลาง  [medium enterprise]</asp:ListItem>
+                    <asp:ListItem Value="5">&ensp;5.ไม่ได้จดทะเบียนเป็นวิสาหกิจ</asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
+            <div>
+                <strong>
+                    <p>ได้รับกาารรับรองมาตรฐานสถานที่ผลิตภัณฑ์สมุนไพรจากอย. หรือหน่วยงานที่อย.เห็นชอบ</p>
+                </strong>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <asp:RadioButtonList ID="rdl_CerSD" runat="server" AutoPostBack="true">
+                        <asp:ListItem Value="1">&ensp;1.ได้รับการรับรอง</asp:ListItem>
+                        <asp:ListItem Value="2">&ensp;2.ยังไม่ได้รับการรับรอง</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+                <div class="col-lg-9">
+                    <div id="chk_rad1" runat="server" style="display: none">
+                        <asp:RadioButtonList ID="rdl_cer" runat="server" Visible="true">
+                            <asp:ListItem Value="1">&ensp;PIC/S GMP</asp:ListItem>
+                            <asp:ListItem Value="2">&ensp;ASEAN GMP</asp:ListItem>
+                            <asp:ListItem Value="3">&ensp;เกียรติบัตรระดับเหรียญทอง</asp:ListItem>
+                            <asp:ListItem Value="4">&ensp;เกียรติบัตรระดับเหรียญเงิน</asp:ListItem>
+                            <asp:ListItem Value="5">&ensp;เกียรติบัตรระดับเหรียญทองแดง</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+             <asp:Button ID="BTN_CHANGE_FIEL_UP" runat="server" Text="บันทึกข้อมูลเงื่อนไข" CssClass="auto-style2" Width="15%" />
             <hr />
         </div>
         <div class="col-lg-1"></div>
@@ -218,7 +267,7 @@
             </div>
         </div>
     </div>
-<%--    <div class="row">
+    <%--    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10" style="width: 70%">
             <asp:Literal ID="lr_preview" runat="server"></asp:Literal>

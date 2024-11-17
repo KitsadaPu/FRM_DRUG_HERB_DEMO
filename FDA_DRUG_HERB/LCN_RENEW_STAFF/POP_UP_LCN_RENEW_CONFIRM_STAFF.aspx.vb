@@ -32,15 +32,27 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             bind_mas_staff()
             GetData()
             Bind_PDF()
+
+            'UC_ATTACH2.NAME = "เอกสาร สมพ5 ที่อนุมัติแล้ว"
+            'UC_ATTACH2.BindData("เอกสาร สมพ5 ที่อนุมัติแล้ว", 1, "pdf", "0", "4")
+            'Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB_UPLOAD_FILE_JJ
+            'dao.GetdatabyID_TR_ID_PROCESS_ID(_TR_ID, _ProcessID)
+            'Dim status_upload13 As Integer = dao.fields.TYPE
+            'If status_upload13 = 13 Then
+            '    uc_upload1.Visible = False
+            '    uc_upload1_btn.Visible = False
+            '    uc_upload1_radgrid.Visible = True
+            '    RadGrid4.DataBind()
+            'End If
         End If
     End Sub
     Sub GetData()
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA_RN)
-        Dim STID As Integer = dao.fields.STATUS_ID
+        Dim SSID As Integer = dao.fields.STATUS_ID
         DATE_REQ.Text = Date.Now
-        If STID = 7 Or STID = 77 Or STID = 78 Or STID = 777 Then
-            DD_STATUS.SelectedValue = STID
+        If SSID = 7 Or SSID = 77 Or SSID = 78 Or SSID = 777 Then
+            DD_STATUS.SelectedValue = SSID
             DD_STATUS.Enabled = False
             'DATE_REQ.Text = dao.fields.CancelDate
             DATE_REQ.ReadOnly = True
@@ -48,8 +60,8 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             'DD_OFF_REQ.SelectedValue = dao.fields.Cancel_DDLID
             DD_OFF_REQ.Visible = False
             btn_sumit.Enabled = False
-        ElseIf STID = 76 Then
-            DD_STATUS.SelectedValue = STID
+        ElseIf SSID = 76 Then
+            DD_STATUS.SelectedValue = SSID
             DD_STATUS.Enabled = False
             'DATE_REQ.Text = dao.fields.CancelDate
             DATE_REQ.ReadOnly = False
@@ -58,50 +70,111 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             DD_OFF_REQ.Enabled = False
             btn_sumit.Enabled = False
         End If
+        DD_OFF_REQ.SelectedValue = _CLS.CITIZEN_ID
     End Sub
     Protected Sub btn_sumit_Click(sender As Object, e As EventArgs) Handles btn_sumit.Click
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         Dim bao As New BAO.GenNumber
         Dim RCVNO As String = ""
         Dim RCVNO_HERB_NEW As String = ""
-        Dim STATUS_ID As Integer = DD_STATUS.SelectedValue
-        Dim ddl_id As Integer = 0
-        Dim ddl_name As String = ""
+        Dim ddl_id As Integer = DD_OFF_REQ.SelectedValue
+        Dim ddl_name As String = DD_OFF_REQ.SelectedItem.Text
         dao.GET_DATA_BY_IDA(_IDA_RN)
+        Dim TR_ID As Integer = 0
+        TR_ID = dao.fields.TR_ID
+        Dim STATUS_ID As Integer = 0
+        If dao.fields.STATUS_ID = 21 Then
+            STATUS_ID = 21
+            Dim Status_pay As Integer = 0
+            Dim dao_fee As New DAO_FEE.TB_feedtl
+            dao_fee.Getdata_by_fk_id_process_id_and_ssid(_IDA_RN, _ProcessID, STATUS_ID)
+            If dao_fee.fields.fk_id = _IDA_RN Then Status_pay = 1
+            If Status_pay = 1 Then
+                alert("เนื่องจากมีการออกใบสั่งชำระเงินแล้ว กรุณาทำการยกเลิกใบสั่งชำระแล้วทำรายการใหม่อีกครั้ง")
+            Else
+                dao.fields.Staff_operate_discount_date = DATE_REQ.Text
+                dao.fields.Staff_operate_discount_by = DD_OFF_REQ.SelectedItem.Text
+                dao.fields.Staff_operate_discount = DD_OFF_REQ.SelectedValue
+                dao.fields.ML_FEE = txt_price_fee.Text
+                Dim dao_f As New DAO_LCN.TB_MAS_DALCN_FEE_DISCOUNT
+                dao_f.GET_DATA_BY_ID(ddl_fee_discount.SelectedValue)
+                dao.fields.Fee_discount_ID = ddl_fee_discount.SelectedValue
+                dao.fields.Fee_discount_NM = ddl_fee_discount.SelectedItem.Text
+                dao.fields.Fee_discount_Detail = dao_f.fields.FEE_DETAIL
+                dao.fields.Fee_discount_Note = txt_Fee_discount_Note.Text
+                If ddl_fee_discount.SelectedValue = 2 Then dao.fields.STATUS_ID = 22
+                Bind_PDF()
+                dao.fields.UPDATE_DATE = DateTime.Now
+                dao.update()
+                AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN)
+                AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN, ddl_id, ddl_name)
+                alert("อัพเดทคำขอแล้ว")
+            End If
+        Else
+            STATUS_ID = DD_STATUS.SelectedValue
+            If STATUS_ID = 8 And UC_ATTACH2.CHK_JJ = False Then
+                alert_return("กรุณาแนบไฟล์ สมพ2 ที่ลงนามแล้ว")
+            Else
+                dao.fields.STATUS_ID = STATUS_ID
+                'dao.fields.DATE_COMFIRM = Date.Now
+                If STATUS_ID = 8 Then
+                    dao.fields.appdate = DATE_REQ.Text
+                    dao.fields.app_staff_name = DD_OFF_REQ.SelectedItem.Text
+                    renew_date()
+                    Bind_PDF()
+                    If UC_ATTACH2.CHK_JJ = False Then
+                        alert_return("กรุณาแนบไฟล์ เอกสาร สมพ2 ที่ลงนามแล้ว")
+                    ElseIf UC_ATTACH2.CHK_JJ = False Then
+                        alert_return("กรุณาแนบไฟล์ เอกสาร สมพ2 ที่ลงนามแล้ว")
+                    Else
+                        UC_ATTACH2.insert_renew_lcn(TR_ID, _ProcessID, _IDA_RN, 4)
+                    End If
+                ElseIf STATUS_ID = 23 Then
+                    dao.fields.staff_examine_date = DATE_REQ.Text
+                    dao.fields.staff_examine_nm = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.staff_examine_id = DD_OFF_REQ.SelectedValue
+                ElseIf STATUS_ID = 21 Then
 
-        dao.fields.STATUS_ID = DD_STATUS.SelectedValue
-        'dao.fields.DATE_COMFIRM = Date.Now
-        If dao.fields.STATUS_ID = 8 Then
-            dao.fields.appdate = DATE_REQ.Text
-            dao.fields.app_staff_name = DD_OFF_REQ.SelectedItem.Text
-            renew_date()
-            Bind_PDF()
-        ElseIf dao.fields.STATUS_ID = 6 Then
-            dao.fields.cnsdate = DATE_REQ.Text
-            dao.fields.cnsstaff_name = DD_OFF_REQ.SelectedItem.Text
-            Bind_PDF()
-        ElseIf dao.fields.STATUS_ID = 4 Then
-            RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), dao.fields.pvncd, _ProcessID, _IDA_RN)
-            Dim TR_ID As String = dao.fields.TR_ID
-            Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
-            RCVNO_HERB_NEW = bao.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, _ProcessID, _IDA_RN)
-            Dim RCVNO_FULL As String = "HB" & " " & dao.fields.pvncd & "-" & _ProcessID & "-" & DATE_YEAR & "-" & RCVNO_HERB_NEW
-            dao.fields.RCVNO_NEW = RCVNO_FULL
-            dao.fields.RCVNO = RCVNO
-            dao.fields.rcvdate = DATE_REQ.Text
-            dao.fields.rcv_staff_name = DD_OFF_REQ.SelectedItem.Text
-            Bind_PDF()
-        ElseIf dao.fields.STATUS_ID = 31 Or dao.fields.STATUS_ID = 3 Then
-            dao.fields.staff_edit_name = DD_OFF_REQ.SelectedItem.Text
-            dao.fields.staff_edit_date = DATE_REQ.Text
-            dao.fields.staff_edit_id = DD_OFF_REQ.SelectedValue
-            dao.update()
-            AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN)
-            Response.Redirect("POP_UP_LCN_RENEW_STAFF_EDIT.aspx?IDA=" & _IDA_RN & "&TR_ID=" & dao.fields.TR_ID & "&PROCESS_ID=" & _ProcessID)
+                ElseIf STATUS_ID = 6 Then
+                    dao.fields.cnsdate = DATE_REQ.Text
+                    dao.fields.cnsstaff_name = DD_OFF_REQ.SelectedItem.Text
+                    Bind_PDF()
+                ElseIf STATUS_ID = 4 Then
+                    'RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), dao.fields.pvncd, _ProcessID, _IDA_RN)
+                    'Dim TR_ID As String = dao.fields.TR_ID
+                    'Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+                    'RCVNO_HERB_NEW = bao.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), _CLS.PVCODE, _ProcessID, _IDA_RN)
+                    'Dim RCVNO_FULL As String = "HB" & " " & dao.fields.pvncd & "-" & _ProcessID & "-" & DATE_YEAR & "-" & RCVNO_HERB_NEW
+                    'dao.fields.RCVNO_NEW = RCVNO_FULL
+                    'dao.fields.RCVNO = RCVNO
+                    dao.fields.rcvdate = DATE_REQ.Text
+                    dao.fields.rcv_staff_name = DD_OFF_REQ.SelectedItem.Text
+                    Bind_PDF()
+                ElseIf STATUS_ID = 31 Or STATUS_ID = 3 Or STATUS_ID = 12 Then
+                    dao.fields.staff_edit_name = DD_OFF_REQ.SelectedItem.Text
+                    dao.fields.staff_edit_date = DATE_REQ.Text
+                    dao.fields.staff_edit_id = DD_OFF_REQ.SelectedValue
+                    dao.fields.UPDATE_DATE = DateTime.Now
+                    dao.update()
+                    Dim dao_u As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+                    dao_u.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _ProcessID, 2)
+                    For Each dao_u.fields In dao_u.datas
+                        dao_u.fields.Active = False
+                        dao_u.update()
+                    Next
+                    dao_u.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _ProcessID, 3)
+                    dao_u.fields.Active = False
+                    dao_u.update()
+                    AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN)
+                    Response.Redirect("POP_UP_LCN_RENEW_STAFF_EDIT.aspx?IDA=" & _IDA_RN & "&TR_ID=" & dao.fields.TR_ID & "&PROCESS_ID=" & _ProcessID)
+                End If
+                dao.fields.UPDATE_DATE = DateTime.Now
+                dao.update()
+                AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN)
+                AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN, ddl_id, ddl_name)
+                alert("อัพเดทคำขอแล้ว")
+            End If
         End If
-        dao.update()
-        AddLogStatus_lcn(STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA_RN, ddl_id, ddl_name)
-        alert("อัพเดทคำขอแล้ว")
     End Sub
 
     Sub renew_date()
@@ -172,26 +245,52 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         Dim ss_id2 As Integer = 0
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA_RN)
-        Dim STID As Integer = dao.fields.STATUS_ID
+        Dim SSID As Integer = dao.fields.STATUS_ID
+        Dim SSID_ED As Integer = 0
+        If dao.fields.STATUS_EDIT IsNot Nothing AndAlso dao.fields.STATUS_EDIT <> 0 Then SSID_ED = dao.fields.STATUS_EDIT
         Dim STGroup As Integer = 501
         Dim dao_s As New DAO_DRUG.ClsDBMAS_STATUS
-        dao_s.GetDataBy_StatusGroupAndStatusID(501, STID)
-        If STID = 32 Or STID = 22 Then
+        dao_s.GetDataBy_StatusGroupAndStatusID(501, SSID)
+        If (SSID = 32 Or SSID = 22) And (SSID_ED = 0 Or SSID_ED = 1) Then
+            ss_id = 0
+            ss_id2 = 11
+            'ElseIf SSID = 32 Or SSID = 22 Then
+            '    ss_id = 0
+            '    ss_id2 = 11
+        ElseIf (SSID = 32 Or SSID = 22 Or SSID = 23) And (SSID_ED = 2 Or SSID_ED = 1) Then
             ss_id = 0
             ss_id2 = 1
-        ElseIf STID = 4 Or STID = 61 Or STID = 62 Or STID = 63 Or STID = 64 Or STID = 65 Then
+        ElseIf (SSID = 32 Or SSID = 22 Or SSID = 23) And SSID_ED = 0 Then
+            ss_id = 0
+            ss_id2 = 1
+        ElseIf (SSID = 4 Or SSID = 61 Or SSID = 62 Or SSID = 63 Or SSID = 64 Or SSID = 65 Or SSID = 66 Or SSID = 67) Then
             ss_id = 0
             ss_id2 = 2
+            btn_lcn_edit.Visible = True
+            btn_drug_group_edit.Visible = True
         Else
-            ss_id = dao_s.fields.GROUP_DDL_SHOW
+            ss_id = 0
         End If
-        If STID = 8 Then
+        If SSID = 21 Then
+            dao.GET_DATA_BY_IDA(_IDA_RN)
+            Dim dao_f As New DAO_FEE.TB_feetype
+            Dim process_lcn As Integer = dao.fields.process_lcn
+            dao_f.GetDataby_PROCESS_ID_AND_STATUS_ID(_ProcessID, dao.fields.STATUS_ID)
+            If dao.fields.ML_FEE IsNot Nothing AndAlso dao.fields.ML_FEE <> 0 Then txt_price_fee.Text = dao.fields.ML_FEE Else txt_price_fee.Text = dao_f.fields.value
+            If dao.fields.Fee_discount_ID IsNot Nothing AndAlso dao.fields.Fee_discount_ID <> 0 Then ddl_fee_discount.SelectedValue = dao.fields.Fee_discount_ID
+            If dao.fields.Fee_discount_Note IsNot Nothing AndAlso dao.fields.Fee_discount_Note <> "" Then txt_Fee_discount_Note.Text = dao.fields.Fee_discount_Note
+            DIV_FEE_DISCOUNT.Visible = True
+            DIV_STATUS_DDL.Visible = False
+            bind_ddl_fee_discount()
+        End If
+        If SSID = 8 Then
             P12.Visible = False
             btn_sumit.Visible = False
-            KEEP_PAY.Visible = False
+            'KEEP_PAY.Visible = False
             btn_preview.Visible = True
+            panel_file_att.Visible = True
         End If
-        If STID = 8 OrElse STID = 4 Or STID = 61 Or STID = 62 Or STID = 63 Or STID = 64 Or STID = 65 Then
+        If SSID = 8 OrElse SSID = 4 Or SSID = 61 Or SSID = 62 Or SSID = 63 Or SSID = 64 Or SSID = 65 Then
             btn_preview.Visible = True
         End If
         bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL_V2(STGroup, ss_id, ss_id2, 0)
@@ -201,6 +300,18 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         DD_STATUS.DataTextField = "STATUS_NAME_STAFF"
         DD_STATUS.DataBind()
         DD_STATUS.Items.Insert(0, "-- กรุณาเลือก --")
+    End Sub
+    Public Sub bind_ddl_fee_discount()
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim ss_id As Integer = 0
+        Dim ss_id2 As Integer = 0
+        Dim dao As New DAO_LCN.TB_MAS_DALCN_FEE_DISCOUNT
+        dao.GetDataAll_IsUse()
+        ddl_fee_discount.DataSource = dao.datas
+        ddl_fee_discount.DataValueField = "ID"
+        ddl_fee_discount.DataTextField = "DiscountName"
+        ddl_fee_discount.DataBind()
+        ddl_fee_discount.Items.Insert(0, "-- กรุณาเลือก --")
     End Sub
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
         Response.Write("<script type='text/javascript'>parent.close_modal();</script> ")
@@ -314,9 +425,7 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
             Dim H As HyperLink = e.Item.FindControl("PV_ST")
             H.Target = "_blank"
             H.NavigateUrl = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?ida=" & IDA
-
         End If
-
     End Sub
     Protected Sub btn_preview_Click(sender As Object, e As EventArgs) Handles btn_preview.Click
         Dim _group As Integer = 0
@@ -1588,6 +1697,93 @@ Public Class POP_UP_LCN_RENEW_CONFIRM_STAFF
         _CLS.FILENAME_PDF = NAME_PDF("DA", PROCESS_ID, YEAR, _TR_ID)
     End Sub
 
+    Protected Sub DD_STATUS_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DD_STATUS.SelectedIndexChanged
+        If DD_STATUS.SelectedValue = 8 Then
+            panel_file_upload.Visible = True
+            UC_ATTACH2.NAME = "เอกสาร สมพ2 ที่ลงนามแล้ว"
+            UC_ATTACH2.BindData("เอกสาร สมพ2 ที่ลงนามแล้ว", 1, "pdf", "0", "4")
+        Else
+            panel_file_upload.Visible = False
+        End If
+    End Sub
+    Function bind_data_uploadfile_4()
+        Dim dt As DataTable
+        Dim bao As New BAO.ClsDBSqlcommand
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA_RN)
+
+        dt = bao.SP_DALCN_UPLOAD_FILE_BY_TR_ID_PROCESS_AND_TYPE(dao.fields.TR_ID, _ProcessID, 4)
+        Return dt
+    End Function
+
+    Private Sub RadGrid4_NeedDataSource(sender As Object, e As GridNeedDataSourceEventArgs) Handles RadGrid4.NeedDataSource
+        RadGrid4.DataSource = bind_data_uploadfile_4()
+    End Sub
+    Private Sub RadGrid4_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid4.ItemDataBound
+        If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
+            Dim item As GridDataItem
+            item = e.Item
+            Dim IDA As Integer = item("IDA").Text
+
+            Dim H As HyperLink = e.Item.FindControl("PV_SELECT")
+            H.Target = "_blank"
+            H.NavigateUrl = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?ida=" & IDA
+        End If
+    End Sub
+
+    Protected Sub btn_drug_group_edit_Click(sender As Object, e As EventArgs) Handles btn_drug_group_edit.Click
+        Dim dao_r As New DAO_LCN.TB_DALCN_RENEW
+        dao_r.GET_DATA_BY_IDA(_IDA_RN)
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(dao_r.fields.FK_LCN)
+        Dim IDA_LCN As Integer = dao.fields.IDA
+        Dim TR_LCN As Integer = dao.fields.TR_ID
+        Dim PROCESS_LCN As Integer = dao.fields.PROCESS_ID
+        Response.Redirect("../LCN/POPUP_LCN_DRUG_GROUP_HERB.aspx?ida=" & IDA_LCN & "&TR_ID=" & TR_LCN & "&process=" & PROCESS_LCN)
+    End Sub
+
+    Protected Sub btn_lcn_edit_Click(sender As Object, e As EventArgs) Handles btn_lcn_edit.Click
+        Dim dao_r As New DAO_LCN.TB_DALCN_RENEW
+        dao_r.GET_DATA_BY_IDA(_IDA_RN)
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(dao_r.fields.FK_LCN)
+        Dim _IDEN As String = dao.fields.CITIZEN_ID_AUTHORIZE
+        Dim IDA_LCN As Integer = dao.fields.IDA
+        Dim PROCESS_LCN As Integer = dao.fields.PROCESS_ID
+        Response.Redirect("POP_UP_LCN_RENEW_CHECK_STAFF_EDIT.aspx?IDA=" & _IDA_RN & "&IDA_LCN=" & IDA_LCN & "&PROCESS_ID=" & PROCESS_LCN & "&IDENTIFY=" & _IDEN)
+    End Sub
+
+    Protected Sub ddl_fee_discount_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_fee_discount.SelectedIndexChanged
+        Dim ddl_id As Integer = ddl_fee_discount.SelectedValue
+        Dim dao As New DAO_LCN.TB_MAS_DALCN_FEE_DISCOUNT
+        dao.GET_DATA_BY_ID(ddl_id)
+        If ddl_id <> 0 Then
+            txt_price_fee.Text = SUM_Discount(dao.fields.REQUEST_Fee)
+        End If
+    End Sub
+    Function SUM_Discount(ByVal Discount As Integer)
+        Dim dao As New DAO_LCN.TB_DALCN_RENEW
+        dao.GET_DATA_BY_IDA(_IDA_RN)
+        Dim dao_f As New DAO_FEE.TB_feetype
+        dao_f.GetDataby_PROCESS_ID_AND_STATUS_ID(_ProcessID, dao.fields.STATUS_ID)
+        Dim number1 As Integer = 0
+        Dim number2 As Integer = 0
+        Dim number3 As Integer = 100
+        Dim answer1 As Decimal
+        Dim sum1 As Integer
+        Dim sum2 As Integer
+        If Discount = Nothing Then
+            number2 = 0
+        Else
+            number2 = Discount
+        End If
+        number1 = dao_f.fields.value
+
+        sum1 = number1 * number2
+        sum2 = sum1 / number3
+        answer1 = number1 - sum2
+        Return answer1
+    End Function
     'Protected Sub btn_priview_Click(sender As Object, e As EventArgs) Handles btn_priview.Click
     '    Dim Url As String = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?IDA=" & _IDA_RN '& "&SLDDL=" & DDL_TB2_SELECT.SelectedValue
     '    Response.Write("<script>window.open('" & Url & "','_blank')</script>")

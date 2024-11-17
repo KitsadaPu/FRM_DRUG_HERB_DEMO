@@ -96,13 +96,13 @@
     </div>
 </div>
 <div style="padding-top: 30px"></div>
-<div class="row">
+<div class="row" runat="server" id="incorrect_id" visible="false">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
         <fieldset>
             <legend>รายการที่ข้อมูลไม่ถูกต้อง</legend>
             <div>
-                <asp:CheckBox ID="CheckBox_lcn" runat="server" Text="&ensp;ข้อมูลทั่วไป"/>
+                <asp:CheckBox ID="CheckBox_lcn" runat="server" Text="&ensp;ข้อมูลทั่วไป" />
             </div>
             <div>
                 <asp:CheckBox ID="CheckBox_Bsn" runat="server" Text="&ensp;ข้อมูลผู้ดำเนินกิจการ" />
@@ -111,7 +111,7 @@
                 <asp:CheckBox ID="CheckBox_Phr" runat="server" Text="&ensp;ข้อมูลผู้มีหน้าที่ปฏิบัติการ" />
             </div>
             <div>
-                <asp:CheckBox ID="CheckBox_Location" runat="server" Text="&ensp;ข้อมูลสถานที่ผลิต นาเข้า หรือขายผลิตภัณฑ์สมุนไพร"/>
+                <asp:CheckBox ID="CheckBox_Location" runat="server" Text="&ensp;ข้อมูลสถานที่ผลิต นาเข้า หรือขายผลิตภัณฑ์สมุนไพร" />
             </div>
             <div>
                 <asp:CheckBox ID="CheckBox_Keep" runat="server" Text="&ensp;ข้อมูลสถานที่เก็บรักษาผลิตภัณฑ์สมุนไพร" />
@@ -392,6 +392,45 @@
             </telerik:RadGrid>
         </div>
         <div class="col-lg-1"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <h4 style="color: red">เงื่อนไขเพิ่มเติม</h4>
+        <div>
+            <asp:RadioButtonList ID="rdl_enterprise" runat="server">
+                <asp:ListItem Value="1">&ensp;1.จดทะเบียนวิสาหกิจชุมชน</asp:ListItem>
+                <asp:ListItem Value="2">&ensp;2.จดทะเบียนวิสาหกิจขนาดย่อม (รายย่อย) [small (micro) enterprise]</asp:ListItem>
+                <asp:ListItem Value="3">&ensp;3.จดทะเบียนวิสาหกิจขนาดย่อม [small enterprise]</asp:ListItem>
+                <asp:ListItem Value="4">&ensp;4.จดทะเบียนวิสาหกิจขนาดกลาง  [medium enterprise]</asp:ListItem>
+                <asp:ListItem Value="5">&ensp;5.ไม่ได้จดทะเบียนเป็นวิสาหกิจ</asp:ListItem>
+            </asp:RadioButtonList>
+        </div>
+        <div>
+            <strong>
+                <p>ได้รับกาารรับรองมาตรฐานสถานที่ผลิตภัณฑ์สมุนไพรจากอย. หรือหน่วยงานที่อย.เห็นชอบ</p>
+            </strong>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <asp:RadioButtonList ID="rdl_CerSD" runat="server" AutoPostBack="true">
+                    <asp:ListItem Value="1">&ensp;1.ได้รับการรับรอง</asp:ListItem>
+                    <asp:ListItem Value="2">&ensp;2.ยังไม่ได้รับการรับรอง</asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
+            <div class="col-lg-9">
+                <div id="chk_rad1" runat="server">
+                    <asp:RadioButtonList ID="rdl_cer" runat="server">
+                        <asp:ListItem Value="1">&ensp;PIC/S GMP</asp:ListItem>
+                        <asp:ListItem Value="2">&ensp;ASEAN GMP</asp:ListItem>
+                        <asp:ListItem Value="3">&ensp;เกียรติบัตรระดับเหรียญทอง</asp:ListItem>
+                        <asp:ListItem Value="4">&ensp;เกียรติบัตรระดับเหรียญเงิน</asp:ListItem>
+                        <asp:ListItem Value="5">&ensp;เกียรติบัตรระดับเหรียญทองแดง</asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">

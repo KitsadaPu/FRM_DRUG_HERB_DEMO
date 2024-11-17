@@ -9,8 +9,8 @@
 
     Private _TOKEN As String
     Private Sub RunQuery()
-        '_TOKEN = Request("Token").ToString()
-        _TOKEN = "L9vNfwnzmCeEVR7G7/1/zwUU"
+        _TOKEN = Request("Token").ToString()
+        '_TOKEN = "Xm3456h8LUdMeVsgcgHyeAUU"
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -27,15 +27,15 @@
     Sub token()
         Dim token As String = _TOKEN
         Dim urls As String = ""
-        'Try
-        '    urls = Request.UrlReferrer.AbsoluteUri 'ตรวจสอบว่าเป็นการส่งมาจาก privus หsรือไม่
-        '    If urls.Contains("privus.fda.moph.go.th") Then
-        '    Else 'กรณีต้นทางไม่ใช่มาจาก privus ให้ย้อนกลับไปที่ privus
-        '        Response.Redirect("https://privus.fda.moph.go.th")
-        '    End If
-        'Catch ex As Exception 'กรณีตรวจสอบไม่เจอ url ต้นทางให้ย้อนกลับไปที่ privus
-        '    Response.Redirect("https://privus.fda.moph.go.th")
-        'End Try
+        Try
+            urls = Request.UrlReferrer.AbsoluteUri 'ตรวจสอบว่าเป็นการส่งมาจาก privus หsรือไม่
+            If urls.Contains("privus.fda.moph.go.th") Then
+            Else 'กรณีต้นทางไม่ใช่มาจาก privus ให้ย้อนกลับไปที่ privus
+                Response.Redirect("https://privus.fda.moph.go.th")
+            End If
+        Catch ex As Exception 'กรณีตรวจสอบไม่เจอ url ต้นทางให้ย้อนกลับไปที่ privus
+            Response.Redirect("https://privus.fda.moph.go.th")
+        End Try
 
         Dim ws As New WS_AUTHENTICATION.Authentication
         ' Dim xml As String = ""

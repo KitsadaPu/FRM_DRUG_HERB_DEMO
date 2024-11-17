@@ -36,6 +36,7 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
             bind_data()
             Bind_PRICE_ESTIMATE_REQUEST()
             Bind_DD_Discount()
+            bind_ddl_complex()
 
             UC_ATTACH1.NAME = "เอกสารแนบ"
             UC_ATTACH1.BindData("เอกสารแนบ", 1, "pdf", "0", "77")
@@ -54,6 +55,21 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
         item.Text = "-"
         item.Value = ""
         ddl_tabean_group.Items.Insert(0, item)
+    End Sub
+    Sub bind_ddl_complex()
+        Dim bao As New BAO_TABEAN_HERB.tb_main
+        Dim dt As New DataTable
+        dt = bao.SP_ComplicateDate_Tabean_New(_ProcessID)
+        DDL_COMPLEX.DataSource = dt
+        DDL_COMPLEX.DataValueField = "ID"
+        DDL_COMPLEX.DataTextField = "NAME_COMPLEX"
+        DDL_COMPLEX.DataBind()
+        'DD_DISCOUNT.Items.Insert(0, "-- กรุณาเลือก --")
+
+        Dim item As New RadComboBoxItem
+        item.Text = "-- กรุณาเลือก --"
+        item.Value = "0"
+        DDL_COMPLEX.Items.Insert(0, item)
     End Sub
     'Public Sub bind_mas_cancel(ByVal ID As String)
     '    Dim dt As DataTable
@@ -362,6 +378,20 @@ Public Class FRM_HERB_TABEAN_STAFF_TABEAN_INTAKE
                             End Try
                         End If
 
+                        If DDL_COMPLEX.SelectedValue = "-- กรุณาเลือก --" Then
+                            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก เงื่อนความซับซ้อนของคำขอ');", True)
+                        Else
+                            Try
+                                If DDL_COMPLEX.SelectedValue = "-" Or DDL_COMPLEX.SelectedValue = "" Then
+                                    dao_tabean_herb.fields.COMPLEX_CD = DDL_COMPLEX.SelectedValue
+                                Else
+                                    dao_tabean_herb.fields.COMPLEX_CD = DDL_COMPLEX.SelectedValue
+                                    dao_tabean_herb.fields.COMPLEX_NM = DDL_COMPLEX.SelectedItem.Text
+                                End If
+                            Catch ex As Exception
+
+                            End Try
+                        End If
                         If DD_OFF_REQ.SelectedValue = "-- กรุณาเลือก --" Then
                             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('กรุณาเลือก จนท. ที่รับผิดชอบ');", True)
                         Else

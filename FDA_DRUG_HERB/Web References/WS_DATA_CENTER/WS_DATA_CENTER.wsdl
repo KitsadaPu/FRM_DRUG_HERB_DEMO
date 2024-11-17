@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="FDA_HOUSE_NO">
@@ -144,6 +144,58 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GET_DATA_IDEM_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDENTIFY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CTZNO_CALL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USERNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GET_DATA_IDEM_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GET_DATA_IDEM_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GET_DATA_IDEM_JSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDENTIFY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CTZNO_CALL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USERNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GET_DATA_IDEM_JSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GET_DATA_IDEM_JSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GET_DATA_IDEM_ORG">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDENTIFY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CTZNO_CALL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USERNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ORG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GET_DATA_IDEM_ORGResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GET_DATA_IDEM_ORGResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="FDA_HOUSE_NOSoapIn">
@@ -188,6 +240,24 @@
   <wsdl:message name="GET_DATA_IDEMSoapOut">
     <wsdl:part name="parameters" element="tns:GET_DATA_IDEMResponse" />
   </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_NEW" />
+  </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_JSONSoapIn">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_JSON" />
+  </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_JSONSoapOut">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_JSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_ORGSoapIn">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_ORG" />
+  </wsdl:message>
+  <wsdl:message name="GET_DATA_IDEM_ORGSoapOut">
+    <wsdl:part name="parameters" element="tns:GET_DATA_IDEM_ORGResponse" />
+  </wsdl:message>
   <wsdl:portType name="WS_DATA_CENTERSoap">
     <wsdl:operation name="FDA_HOUSE_NO">
       <wsdl:input message="tns:FDA_HOUSE_NOSoapIn" />
@@ -216,6 +286,18 @@
     <wsdl:operation name="GET_DATA_IDEM">
       <wsdl:input message="tns:GET_DATA_IDEMSoapIn" />
       <wsdl:output message="tns:GET_DATA_IDEMSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_NEW">
+      <wsdl:input message="tns:GET_DATA_IDEM_NEWSoapIn" />
+      <wsdl:output message="tns:GET_DATA_IDEM_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_JSON">
+      <wsdl:input message="tns:GET_DATA_IDEM_JSONSoapIn" />
+      <wsdl:output message="tns:GET_DATA_IDEM_JSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_ORG">
+      <wsdl:input message="tns:GET_DATA_IDEM_ORGSoapIn" />
+      <wsdl:output message="tns:GET_DATA_IDEM_ORGSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WS_DATA_CENTERSoap" type="tns:WS_DATA_CENTERSoap">
@@ -283,6 +365,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_NEW">
+      <soap:operation soapAction="http://tempuri.org/GET_DATA_IDEM_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_JSON">
+      <soap:operation soapAction="http://tempuri.org/GET_DATA_IDEM_JSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_ORG">
+      <soap:operation soapAction="http://tempuri.org/GET_DATA_IDEM_ORG" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WS_DATA_CENTERSoap12" type="tns:WS_DATA_CENTERSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -342,6 +451,33 @@
     </wsdl:operation>
     <wsdl:operation name="GET_DATA_IDEM">
       <soap12:operation soapAction="http://tempuri.org/GET_DATA_IDEM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_NEW">
+      <soap12:operation soapAction="http://tempuri.org/GET_DATA_IDEM_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_JSON">
+      <soap12:operation soapAction="http://tempuri.org/GET_DATA_IDEM_JSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_DATA_IDEM_ORG">
+      <soap12:operation soapAction="http://tempuri.org/GET_DATA_IDEM_ORG" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

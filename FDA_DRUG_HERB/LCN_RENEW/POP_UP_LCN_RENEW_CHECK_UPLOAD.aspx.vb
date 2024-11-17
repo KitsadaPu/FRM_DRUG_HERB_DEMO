@@ -227,7 +227,7 @@
             Else
                 dao.fields.latitude = dao_addr.fields.latitude
                 dao.fields.longitude = dao_addr.fields.longitude
-                dao.fields.STATUS_ID = 8
+                dao.fields.STATUS_ID = 4
                 dao.fields.STATUS_UPLOAD_ID = 1
                 dao.fields.DATE_CONFIRM = DateTime.Now
                 SET_DATA(dao)
@@ -344,7 +344,7 @@
                         Dim dao_f As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
                         dao_f.GetDataby_IDA(IDA)
 
-                        Dim Name_fake As String = "RNW-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & ".pdf"
+                        Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & "-" & dao_f.fields.IDA & ".pdf"
                         dao_f.fields.NAME_FAKE = Name_fake
                         dao_f.fields.NAME_REAL = f.FileName
                         dao_f.fields.CREATE_DATE = Date.Now

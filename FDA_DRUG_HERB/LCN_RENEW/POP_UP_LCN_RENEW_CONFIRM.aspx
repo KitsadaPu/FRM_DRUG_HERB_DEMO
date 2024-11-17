@@ -68,6 +68,8 @@
                 <div class="col-lg-10">
                     <asp:Button ID="btn_confirm" runat="server" Text="ยื่นคำขอ" CausesValidation="true" ValidationGroup="valGroup1" CssClass="btn-lg btn-success" Width="80%" OnClientClick="return confirm('คุณต้องการยื่นคำขอหรือไม่');" />
                     <div style="height: 5px"></div>
+                    <asp:Button ID="btn_download" runat="server" Text="ดาวน์โหลดคำขอ" Width="170px" CssClass="btn-lg " />
+                    <div style="height: 5px"></div>
                     <asp:Button ID="btn_KeepPay" runat="server" Text="ข้ามการจ่ายเงิน" CausesValidation="true"  CssClass="btn-lg btn-primary" Width="80%" OnClientClick="return confirm('คุณต้องการการจ่ายเงินหรือไม่');" />
                     <div style="height: 5px"></div>
                     <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิกคำขอ" CssClass="btn-lg btn-danger" Width="80%" OnClientClick="return confirm('คุณต้องการยกเลิกคำขอหรือไม่');" Visible="false" />

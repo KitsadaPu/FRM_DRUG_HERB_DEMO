@@ -28,6 +28,7 @@ Public Class FRM_HERB_LCN_RENEW_CHECK_STAFF
             RG_RNP.DataSource = dt
         End If
     End Sub
+
     Private Sub RG_RNP_ItemCommand(sender As Object, e As GridCommandEventArgs) Handles RG_RNP.ItemCommand
         If TypeOf e.Item Is GridDataItem Then
             Dim item As GridDataItem = e.Item

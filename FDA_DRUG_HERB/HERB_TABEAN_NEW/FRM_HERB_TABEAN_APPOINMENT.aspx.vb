@@ -41,6 +41,13 @@
 
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_HERB
         dao.GetdatabyID_FK_IDA_DQ(_IDA)
+        Dim complex_cd As Integer = 0
+        If dao.fields.COMPLEX_CD IsNot Nothing AndAlso Not IsDBNull(dao.fields.COMPLEX_CD) Then
+            complex_cd = dao.fields.COMPLEX_CD
+        End If
+
+        Dim dao_c As New DAO_TABEAN_HERB.TB_MAS_COMPLEX_DATE_HERB
+        dao_c.GetdatabyID(complex_cd)
 
         Dim dao_cpn As New DAO_CPN.clsDBsyslcnsid
         dao_cpn.GetDataby_identify(dao.fields.CITIZEN_ID_AUTHORIZE)
@@ -62,6 +69,7 @@
         'Dim date_con_year As Date
         Dim date_con_full As String = ""
         Dim date_appo_full As String = ""
+        Dim Conplicate_name As String = ""
 
         'Dim date_est_day As Date
         'Dim date_est_month As Date
@@ -179,14 +187,21 @@
             dao.fields.EXPECTED_DATE = date_result_end
             dao.Update()
         ElseIf dao.fields.STATUS_ID = 13 Then
-            If _ProcessID = 20101 Or _ProcessID = 20102 Or _ProcessID = 20191 Or _ProcessID = 20192 Then
-                days_est_end = 50
-                days_est_longEnd = 210
-            ElseIf _ProcessID = 20103 Or _ProcessID = 20104 Or _ProcessID = 20105 _
-                Or _ProcessID = 20193 Or _ProcessID = 20194 Or _ProcessID = 20195 Then
-                days_est_end = 64
-                days_est_longEnd = 235
+            If dao_c.fields.ID <> 0 Then
+                days_est_end = dao_c.fields.ESTIMATE_DATE
+                days_est_longEnd = dao_c.fields.FINISH_DATE
+                Conplicate_name = dao_c.fields.NAME_COMPLEX
+            Else
+                If _ProcessID = 20101 Or _ProcessID = 20102 Or _ProcessID = 20191 Or _ProcessID = 20192 Then
+                    days_est_end = 50
+                    days_est_longEnd = 210
+                ElseIf _ProcessID = 20103 Or _ProcessID = 20104 Or _ProcessID = 20105 _
+                    Or _ProcessID = 20193 Or _ProcessID = 20194 Or _ProcessID = 20195 Then
+                    days_est_end = 64
+                    days_est_longEnd = 235
+                End If
             End If
+
 
             'Dim date_pay As Date = dao_deeqt.fields.ESTIMATE_DATE
             Dim date_pay As Date = Date.Now
@@ -239,6 +254,7 @@
         cls.name_thai_name_place = NAME_THAI_NAME_PLACE
         cls.date_req_full = date_con_full
         cls.thanm = thanm
+        cls.COMPLICATE_NAME = Conplicate_name
         'cls.thanm = thanm
         cls.NAME_CONTACT = dao.fields.Appoinment_Contact
         'cls.NAME_CONTACT = NAME_JJ

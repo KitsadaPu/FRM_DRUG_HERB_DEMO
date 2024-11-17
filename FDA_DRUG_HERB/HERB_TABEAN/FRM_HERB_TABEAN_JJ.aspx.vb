@@ -334,13 +334,16 @@ Public Class FRM_HERB_TABEAN_JJ
         'Dim C_ID As String = _CLS.CITIZEN_ID_AUTHORIZE
         'dt = bao.SP_TABEAN_JJ(C_ID) 
 
+        'If Request.QueryString("SID") = "2" Then
+        dt = bao.SP_TABEAN_JJ_WHO(_IDA_LCN, IDEN)
+        'ElseIf Request.QueryString("SID") = "1" Then
+        '    dt = bao.SP_TABEAN_JJ(_IDA_LCN)
+        'End If
         If Request.QueryString("SID") = "2" Then
-            dt = bao.SP_TABEAN_JJ_WHO(_IDA_LCN, IDEN)
-        ElseIf Request.QueryString("SID") = "1" Then
+            dt = bao.SP_TABEAN_JJ_BY_IDEN_WHO(_IDA_LCN, _CLS.CITIZEN_ID_AUTHORIZE)
+        Else
             dt = bao.SP_TABEAN_JJ(_IDA_LCN)
         End If
-
-
         Return dt
     End Function
 

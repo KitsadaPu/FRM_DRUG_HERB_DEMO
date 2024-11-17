@@ -59,14 +59,29 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
 
     End Sub
     Protected Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
+        Dim bao As New BAO.GenNumber
+        Dim RCVNO As String = ""
+        Dim RCVNO_HERB_NEW As String = ""
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
-
+        RCVNO = dao.fields.RCVNO
+        If RCVNO = "" Then
+            RCVNO = bao.GEN_RCVNO_NO(con_year(Date.Now.Year()), dao.fields.pvncd, _ProcessID, _IDA)
+            Dim TR_ID As String = dao.fields.TR_ID
+            Dim DATE_YEAR As String = con_year(Date.Now().Year()).Substring(2, 2)
+            RCVNO_HERB_NEW = bao.GEN_RCVNO_NO_NEW(con_year(Date.Now.Year()), dao.fields.pvncd, _ProcessID, _IDA)
+            Dim RCVNO_FULL As String = "HB" & " " & dao.fields.pvncd & "-" & _ProcessID & "-" & DATE_YEAR & "-" & RCVNO_HERB_NEW
+            dao.fields.RCVNO_NEW = RCVNO_FULL
+            dao.fields.RCVNO = RCVNO
+        End If
         dao.fields.STATUS_ID = 2
         dao.fields.DATE_CONFIRM = Date.Now
+        dao.fields.UPDATE_DATE = DateTime.Now
         dao.update()
         AddLogStatus(dao.fields.STATUS_ID, dao.fields.PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
-        alert("ยื่นคำขอแล้ว")
+        Dim bao2 As New BAO_TABEAN_HERB.tb_dd
+        bao2.SP_INSERT_DRUG_PAYMENT_CENTER_L44(_CLS.CITIZEN_ID_AUTHORIZE, _IDA, dao.fields.PROCESS_ID)
+        alert("ยื่นคำขอแล้ว กรุณาชำระค่าคำขอ")
     End Sub
 
     Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
@@ -162,5 +177,15 @@ Public Class POP_UP_LCN_RENEW_CONFIRM
         dao.fields.DATE_PAY2 = Date.Now
         dao.update()
         alert("ข้ามการชำระเงินแล้ว")
+    End Sub
+
+    Protected Sub btn_download_Click(sender As Object, e As EventArgs) Handles btn_download.Click
+        Dim dao As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+
+        Dim filePath As String = Server.MapPath("~/Path/To/Your/File.pdf") ' ระบุที่อยู่ของไฟล์ที่ต้องการให้ดาวน์โหลด
+        Response.ContentType = "application/pdf"
+        Response.AppendHeader("Content-Disposition", "attachment; filename=YourFile.pdf")
+        Response.TransmitFile(filePath)
+        Response.End()
     End Sub
 End Class

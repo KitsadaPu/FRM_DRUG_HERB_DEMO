@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-8">
             </div>
-            <div class="col-lg-1" >
+            <div class="col-lg-1">
                 <asp:Button ID="btn_add" runat="server" Text="เพิ่มคำรับรอง" CssClass="auto-style1" Height="45px" Width="200px" />
             </div>
 

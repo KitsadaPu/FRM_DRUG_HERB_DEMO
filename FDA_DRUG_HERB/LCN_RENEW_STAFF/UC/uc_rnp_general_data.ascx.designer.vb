@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class uc_rnp_general_data
 
     '''<summary>
+    '''incorrect_id control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents incorrect_id As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''CheckBox_lcn control.
     '''</summary>
     '''<remarks>
@@ -264,6 +273,42 @@ Partial Public Class uc_rnp_general_data
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgkeep As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''rdl_enterprise control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_enterprise As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''rdl_CerSD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_CerSD As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''chk_rad1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_rad1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rdl_cer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_cer As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
     '''UC_LCN_DRUG_GROUP control.

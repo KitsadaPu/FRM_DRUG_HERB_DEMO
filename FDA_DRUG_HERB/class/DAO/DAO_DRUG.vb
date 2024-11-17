@@ -1795,7 +1795,7 @@ Namespace DAO_DRUG
         End Sub
         Public Sub GetDataby_FK_IDA_AND_TR_ID_AND_PROCESS(ByVal FK_IDA As Integer, ByVal TR_ID As Integer, ByVal PROCESS As Integer)
 
-            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS Select p)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID And p.PROCESS_ID = PROCESS And p.Active = True Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1807,7 +1807,7 @@ Namespace DAO_DRUG
         End Sub
         Public Sub GetDataby_FK_IDA_AND_TR_ID(ByVal FK_IDA As Integer, ByVal TR_ID As Integer)
 
-            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID Select p)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.FK_IDA = FK_IDA And p.TR_ID = TR_ID And p.Active = True Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -1824,7 +1824,7 @@ Namespace DAO_DRUG
             Next
         End Sub
         Public Sub GetDaTaby_TR_ID_And_TYPE_AND_FK_IDA(ByVal TR_ID As Integer, ByVal TYPE As String, ByVal IDA As Integer)
-            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA Select p)
+            datas = (From p In db.DALCN_UPLOAD_FILEs Where p.TR_ID = TR_ID And p.TYPE = TYPE And p.FK_IDA = IDA And p.Active = True Select p)
             For Each Me.fields In datas
             Next
         End Sub
@@ -3184,7 +3184,6 @@ Namespace DAO_DRUG
             Next
         End Sub
     End Class
-
     Public Class ClsDBDALCN_PHR_LCN_ADDR
         Inherits MAINCONTEXT
 
@@ -15237,6 +15236,44 @@ Namespace DAO_DRUG
         End Sub
         Public Sub GetData_By_IDA(ByVal IDA As Integer)
             datas = (From p In db.MAS_DRUG_GROUP_HERB_NO3s Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+    End Class
+    '
+    '
+    Public Class TB_MAS_DRUG_GROUP_HERB_OTHER
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_DRUG_GROUP_HERB_OTHER
+        Public Sub GetDataby_IDA(ByVal IDA As Integer)
+
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_OTHERs Where p.IDA = IDA Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+
+        Public Sub insert()
+            db.MAS_DRUG_GROUP_HERB_OTHERs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_DRUG_GROUP_HERB_OTHERs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_OTHERs Select p Order By p.SEQ)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetData_By_IDA(ByVal IDA As Integer)
+            datas = (From p In db.MAS_DRUG_GROUP_HERB_OTHERs Where p.IDA = IDA Select p)
             For Each Me.fields In datas
             Next
         End Sub

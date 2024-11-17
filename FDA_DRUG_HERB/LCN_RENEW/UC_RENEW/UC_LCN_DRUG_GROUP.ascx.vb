@@ -91,6 +91,7 @@ Public Class UC_LCN_DRUG_GROUP
                 Dim cb3 As New CheckBox
                 Dim cb4 As New CheckBox
                 Dim cb5 As New CheckBox
+                Dim cb6 As New CheckBoxlist
                 'Dim cb6 As New CheckBox
                 Dim txt_6 As New HtmlTextArea
                 cb1.ID = "cb1_" & dao.fields.IDA
@@ -422,6 +423,8 @@ Public Class UC_LCN_DRUG_GROUP
 
                 Dim dao_dgh As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_NO3
                 dao_dgh.GetDataAll()
+                Dim dao_dgho As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_OTHER
+                dao_dgho.GetDataAll()
                 ddl.DataSource = dao_dgh.datas
                 ddl.DataTextField = "GROUP_NAME"
                 ddl.DataValueField = "GROUP_ID"
@@ -511,6 +514,77 @@ Public Class UC_LCN_DRUG_GROUP
                 dr.Cells.Add(dc4)
                 dr.Cells.Add(dc5)
                 'dr.Cells.Add(dc7)
+                dr.Cells.Add(dc9)
+                dr.Cells.Add(dc10)
+                Table1.Rows.Add(dr)
+            ElseIf dao.fields.TYPE_SHOW = 5 Then
+                Dim dc1 As New TableCell
+                Dim dc2 As New TableCell
+                Dim dc3 As New TableCell
+                Dim dc4 As New TableCell
+                Dim dc5 As New TableCell
+                Dim dc7 As New TableCell
+                Dim dr As New TableRow
+                Dim chkl As New CheckBoxList
+                Dim dc9 As New TableCell
+                Dim dc10 As New TableCell
+                dc9.Style.Add("display", "none")
+                dc10.Style.Add("display", "none")
+
+                dc1.BorderStyle = BorderStyle.Solid
+                dc1.BorderWidth = 1
+                dc1.Width = 20
+                dc2.BorderStyle = BorderStyle.Solid
+                dc2.BorderWidth = 1
+                dc2.Width = 200
+                dc3.BorderStyle = BorderStyle.Solid
+                dc3.BorderWidth = 1
+                dc3.ColumnSpan = 1
+                dc4.BorderStyle = BorderStyle.Solid
+                dc4.BorderWidth = 1
+                dc5.BorderStyle = BorderStyle.Solid
+                dc5.BorderWidth = 1
+                dc3.HorizontalAlign = HorizontalAlign.Center
+                dc4.HorizontalAlign = HorizontalAlign.Center
+                dc5.HorizontalAlign = HorizontalAlign.Center
+                dc1.Text = dao.fields.COL1
+                dc2.Text = dao.fields.COL2
+                Dim txt1 As New HtmlTextArea
+                txt1.Attributes.Add("readonly", "readonly")
+                Dim dao_dgho As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_OTHER
+                dao_dgho.GetDataAll()
+                chkl.DataSource = dao_dgho.datas
+                chkl.DataTextField = "GROUP_NAME"
+                chkl.DataValueField = "GROUP_ID"
+                chkl.DataBind()
+                chkl.ID = "ddl1_" & dao.fields.IDA
+                'chkl.Enabled = False
+                Dim dao_det As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
+                Try
+                    dao_det.GetDataby_FKLCN_AND_FK_IDA(IDA, dao.fields.IDA)
+                Catch ex As Exception
+
+                End Try
+                Try
+                    If dao_det.fields.COL1 IsNot Nothing Then
+                        txt1.Value = dao_det.fields.COL1
+                    End If
+                Catch ex As Exception
+
+                End Try
+                txt1.ID = "txt_" & dao.fields.IDA
+                txt1.Style.Add("width", "99%")
+                txt1.Style.Add("Height", "100px")
+                'txt1.Attributes.Add("TextMode", "MultiLine")
+                dc3.Controls.Add(chkl)
+                dc9.Text = dao.fields.IDA
+                dc10.Text = dao.fields.TYPE_SHOW
+
+                dr.Cells.Add(dc1)
+                dr.Cells.Add(dc2)
+                dr.Cells.Add(dc3)
+                dr.Cells.Add(dc4)
+                dr.Cells.Add(dc5)
                 dr.Cells.Add(dc9)
                 dr.Cells.Add(dc10)
                 Table1.Rows.Add(dr)

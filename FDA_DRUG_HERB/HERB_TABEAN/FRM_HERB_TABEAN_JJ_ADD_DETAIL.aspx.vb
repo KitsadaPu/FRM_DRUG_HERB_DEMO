@@ -525,7 +525,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
         End Try
         Dim THANM As String = dao_lcn.fields.thanm
         Dim dao_who As New DAO_WHO.TB_WHO_DALCN
-        dao_who.GetdatabyID_FK_LCN(_IDA_LCN)
+        dao_who.GetdatabyID_FK_LCN_IDEN(_IDA_LCN, _CLS.CITIZEN_ID_AUTHORIZE)
         If _SID = "2" Then
             THANM = dao_who.fields.THANM_NAME
             NAME_JJ.Text = THANM
@@ -915,7 +915,19 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL
 
                     End Try
                     dao.GetdatabyID_IDA(_IDA)
-
+                    If Request.QueryString("SID") = 2 Then
+                        'Dim dao_who As New DAO_WHO.TB_WHO_DALCN
+                        dao_who.GetdatabyID_FK_LCN_IDEN(_IDA_LCN, _CLS.CITIZEN_ID_AUTHORIZE)
+                        dao.fields.WHO_ID = True
+                        dao.fields.WHO_IDENTIFY = dao_who.fields.CITIZEN_ID_AUTHORIZE
+                        dao.fields.WHO_ADDR = dao_who.fields.ADDRESSPERSON
+                        dao.fields.WHO_LCN_ID = dao_who.fields.FK_LCN
+                        dao.fields.WHO_NAME = dao_who.fields.LOCATION_NAME
+                        dao.fields.LCN_NAME = dao_who.fields.LOCATION_NAME
+                        Dim dao_lo As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+                        dao_lo.GetDataby_IDA(dao_lcn.fields.FK_IDA)
+                        dao.fields.LCN_THANAMEPLACE = dao_lo.fields.thanameplace
+                    End If
                     ''เก็บสะถานนะทั้ง ระบบไว้
                     Dim TR_ID As String = ""
                     Dim bao_tran As New BAO_TRANSECTION

@@ -921,6 +921,48 @@
         End Sub
 
     End Class
+
+    Public Class TB_MAS_COMPLEX_DATE_HERB
+        Inherits MAINCONTEXT
+
+        Public fields As New MAS_COMPLEX_DATE_HERB
+
+        Public Sub insert()
+            db.MAS_COMPLEX_DATE_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub Delete()
+            db.MAS_COMPLEX_DATE_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetAll()
+            datas = (From p In db.MAS_COMPLEX_DATE_HERBs Select p)
+
+        End Sub
+
+        Public Sub GetdatabyID(ByVal ID As Integer)
+            datas = From p In db.MAS_COMPLEX_DATE_HERBs Where p.ID = ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+        Public Sub GetdatabyID_PRCESS_ID(ByVal PROCESS_ID As Integer)
+            datas = From p In db.MAS_COMPLEX_DATE_HERBs Where p.PROCESS_ID = PROCESS_ID Select p
+
+            For Each Me.fields In datas
+
+            Next
+        End Sub
+
+    End Class
     Public Class TB_TABEAN_HERB_EDIT_REQUEST_TEMPOLARY
         Inherits MAINCONTEXT
 

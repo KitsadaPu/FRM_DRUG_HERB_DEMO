@@ -1,4 +1,5 @@
-﻿Imports Telerik.Web.UI
+﻿Imports System.Globalization
+Imports Telerik.Web.UI
 Imports Telerik.Web.UI.Scheduler.Views
 
 Public Class UC_PHR_DETAIL
@@ -18,6 +19,11 @@ Public Class UC_PHR_DETAIL
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
+        If Not IsPostBack Then
+            Get_data_phr()
+            Search_FN()
+            RadGrid_lcn.Rebind()
+        End If
     End Sub
     Sub bind_ddl_phr_type()
         Try
@@ -337,12 +343,16 @@ Public Class UC_PHR_DETAIL
                 .STUDY_LEVEL = DDL_STUDY_LEVEL.SelectedItem.Text
             Else
                 Try
-                    .STUDY_LEVEL = ddl_phr_type.SelectedItem.Text
+                    If ddl_phr_type.SelectedValue = 32 Then
+                        .STUDY_LEVEL = DDL_STUDY_LEVEL.SelectedItem.Text
+                    Else
+                        .STUDY_LEVEL = ddl_phr_type.SelectedItem.Text
+
+                    End If
                     .PHR_JOB_TYPE = ddl_phr_type.SelectedValue
                 Catch ex As Exception
 
                 End Try
-
             End If
             Try
                 .PHR_VETERINARY_FIELD = ddl_phr_type_other.SelectedItem.Text
@@ -406,6 +416,7 @@ Public Class UC_PHR_DETAIL
             .BSN_ZIPCODE = txt_BN_zipcode.Text
             .BSN_TEL = txt_BN_tel.Text
             .BSN_OPENTIME = txt_BN_Opentime.Text
+            .PHR_Operating_time = txt_PHR_TEXT_WORK_TIME.Text
             .ACTIVE = 1
         End With
     End Sub
@@ -524,8 +535,37 @@ Public Class UC_PHR_DETAIL
 
     Protected Sub btn_save_training_Click(sender As Object, e As EventArgs) Handles btn_save_training.Click
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR_TRAINING
+        Dim dao_m As New DAO_LCN.TB_MAS_DALCN_PHR_TRAINING
+        dao_m.GetDataby_TRAINING_ID(ddl_training_phr.SelectedValue)
+        Dim TRAINING_DATE_START As New Date
+        Dim TRAINING_DATE_START_TH As String
+        Dim TRAINING_DATE_END As New Date
+        Dim TRAINING_DATE_END_TH As String
+        Dim TRAINING_NAME As String = ddl_training_phr.SelectedItem.Text
         With dao.fields
-            .NAME_SIMINAR = ddl_training_phr.SelectedItem.Text
+            If dao_m.fields.TRAINING_DATE_START IsNot Nothing AndAlso Not dao_m.fields.TRAINING_DATE_START = Date.MinValue Then
+                .NAME_SIMINAR = ddl_training_phr.SelectedItem.Text
+            Else
+                If dao_m.fields.TRAINING_DATE_START Is Nothing Then
+                    TRAINING_DATE_START = rdp_SIMINAR_DATE.SelectedDate
+                    TRAINING_DATE_START_TH = date_to_thai(TRAINING_DATE_START)
+                    TRAINING_NAME = TRAINING_NAME & " (" & TRAINING_DATE_START_TH & "-"
+                Else
+                    TRAINING_DATE_START = Date.Now
+                    TRAINING_DATE_START_TH = date_to_thai(TRAINING_DATE_START)
+                    TRAINING_NAME = TRAINING_NAME & " (" & TRAINING_DATE_START_TH & "-"
+                End If
+                If dao_m.fields.TRAINING_DATE_END Is Nothing Then
+                    TRAINING_DATE_END = rdp_SIMINAR_DATE_END.SelectedDate
+                    TRAINING_DATE_END_TH = date_to_thai(TRAINING_DATE_END)
+                    TRAINING_NAME = TRAINING_NAME & TRAINING_DATE_END_TH & ")"
+                Else
+                    TRAINING_DATE_END = Date.Now
+                    TRAINING_DATE_END_TH = date_to_thai(TRAINING_DATE_END)
+                    TRAINING_NAME = TRAINING_NAME & TRAINING_DATE_END_TH & ")"
+                End If
+                .NAME_SIMINAR = TRAINING_NAME
+            End If
             .SIMINAR_DATE = rdp_SIMINAR_DATE.SelectedDate
             .phr_IDA = Request.QueryString("PHR_IDA")
             '.FK_IDA = Request.QueryString("IDA_LCN")
@@ -665,6 +705,140 @@ Public Class UC_PHR_DETAIL
             End If
         End If
     End Sub
+    Sub Get_data_phr()
+        Dim CITIZEN_ID_AUTHORIZE As String = ""
+        Try
+            CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID
+        Catch ex As Exception
+
+        End Try
+        txt_PHR_CTZNO.Text = CITIZEN_ID_AUTHORIZE
+        txt_PHR_CTZNO.ReadOnly = True
+        Dim Nation As String = ""
+        Dim BirthDate As Date
+        Dim Age_Person As Integer
+        Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
+        Dim ws_taxno = ws2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
+
+        Dim dao_syslcnsid As New DAO_CPN.clsDBsyslcnsid
+        dao_syslcnsid.GetDataby_identify(CITIZEN_ID_AUTHORIZE)
+        If dao_syslcnsid.fields.IDA = 0 Then
+            ' Response.Write("<script type='text/javascript'>alert('ไม่พบข้อมูล');</script> ")
+        Else
+            Try
+                If ws_taxno.SYSLCTADDRs.thaaddr = Nothing Then
+                    txt_phr_addr.Text = "-"
+                Else
+                    txt_phr_addr.Text = ws_taxno.SYSLCTADDRs.thaaddr
+                End If
+                'txt_phr_name.Text = ws_taxno.SYSLCNSNMs.thanm & " " & ws_taxno.SYSLCNSNMs.thalnm
+                If ws_taxno.SYSLCTADDRs.mu = Nothing Then
+                    txt_phr_mu.Text = "-"
+                Else
+                    txt_phr_mu.Text = ws_taxno.SYSLCTADDRs.mu
+                End If
+                If ws_taxno.SYSLCTADDRs.building = Nothing Then
+                    txt_phr_Building.Text = "-"
+                Else
+                    txt_phr_Building.Text = ws_taxno.SYSLCTADDRs.building
+                End If
+                If ws_taxno.SYSLCTADDRs.thasoi = Nothing Then
+                    txt_phr_Soi.Text = "-"
+                Else
+                    txt_phr_Soi.Text = ws_taxno.SYSLCTADDRs.thasoi
+                End If
+                If ws_taxno.SYSLCTADDRs.tharoad = Nothing Then
+                    txt_phr_road.Text = "-"
+                Else
+                    txt_phr_road.Text = ws_taxno.SYSLCTADDRs.tharoad
+                End If
+                If ws_taxno.SYSLCTADDRs.thmblnm = Nothing Then
+                    txt_phr_tambol.Text = "-"
+                Else
+                    txt_phr_tambol.Text = ws_taxno.SYSLCTADDRs.thmblnm
+                End If
+                If ws_taxno.SYSLCTADDRs.amphrnm = Nothing Then
+                    txt_phr_ampher.Text = "-"
+                Else
+                    txt_phr_ampher.Text = ws_taxno.SYSLCTADDRs.amphrnm
+                End If
+                If ws_taxno.SYSLCTADDRs.chngwtnm = Nothing Then
+                    txt_phr_changwat.Text = "-"
+                Else
+                    txt_phr_changwat.Text = ws_taxno.SYSLCTADDRs.chngwtnm
+                End If
+                If ws_taxno.SYSLCTADDRs.zipcode Is Nothing Then
+                    txt_phr_zipcode.Text = "-"
+                Else
+                    txt_phr_zipcode.Text = ws_taxno.SYSLCTADDRs.zipcode
+                End If
+                If ws_taxno.SYSLCTADDRs.fax = Nothing Then
+                    txt_phr_fax.Text = "-"
+                Else
+                    txt_phr_fax.Text = ws_taxno.SYSLCTADDRs.fax
+                End If
+                If ws_taxno.SYSLCTADDRs.tel = Nothing Then
+                    txt_phr_phone.Text = "-"
+                Else
+                    txt_phr_phone.Text = ws_taxno.SYSLCTADDRs.tel
+                End If
+
+                'txt_phr_phone.Text = ws_taxno.SYSLCTADDRs.e
+            Catch ex As Exception
+
+            End Try
+            Try
+                Dim citizen_id As String = CITIZEN_ID_AUTHORIZE
+                Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+                Dim obj As New XML_DATA
+                'Dim cls As New CLS_COMMON.convert
+                Dim result As String = ""
+                'result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+                result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
+                obj = ConvertFromXml(Of XML_DATA)(result)
+                Try
+                    BirthDate = obj.SYSLCNSIDs.birthdate
+                    'If BirthDate.Year < 2560 Then con_year(BirthDate.Year)
+                    Dim thaiCalendar As New ThaiBuddhistCalendar()
+                    Dim currentThaiYear As Integer = thaiCalendar.GetYear(DateTime.Now)
+                    ' ปีเกิดที่เป็น พ.ศ. (ตัวอย่างเช่น 2560)
+                    Dim birthYearThai As Integer = thaiCalendar.GetYear(BirthDate)
+                    ' คำนวณอายุ
+                    If birthYearThai > currentThaiYear Then
+                        If birthYearThai > 3000 Then
+                            birthYearThai = birthYearThai - 543
+                        End If
+                    End If
+                    Dim ageThai As Integer
+                    If currentThaiYear > birthYearThai Then ageThai = currentThaiYear - birthYearThai Else ageThai = birthYearThai - currentThaiYear
+                    If ageThai > 120 Then ageThai = ageThai - 543
+                    txt_age.Text = ageThai
+                    Dim TYPE_PERSON As Integer = obj.SYSLCNSIDs.type
+                    If TYPE_PERSON = 1 Then
+                        txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                    ElseIf TYPE_PERSON = 99 Then
+                        txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                    Else
+                        If obj.SYSLCNSNMs.thalnm IsNot Nothing Then
+                            txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
+                        Else
+                            txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
+                        End If
+                    End If
+                    If IsNothing(obj.SYSLCNSIDs.nation) = True Then
+                        Nation = "ไทย"
+                    Else
+                        Nation = obj.SYSLCNSIDs.nation
+                    End If
+                    txt_Nationality.Text = Nation
+                Catch ex As Exception
+
+                End Try
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
     Protected Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
         Dim CITIZEN_ID_AUTHORIZE As String = ""
         Try
@@ -672,7 +846,9 @@ Public Class UC_PHR_DETAIL
         Catch ex As Exception
 
         End Try
-
+        Dim Nation As String = ""
+        Dim BirthDate As Date
+        Dim Age_Person As Integer
         Dim ws2 As New WS_Taxno_TaxnoAuthorize.WebService1
         Dim ws_taxno = ws2.getProfile_byidentify(CITIZEN_ID_AUTHORIZE)
 
@@ -753,6 +929,22 @@ Public Class UC_PHR_DETAIL
                 result = ws_center.GET_DATA_IDENTIFY(citizen_id, citizen_id, "FUSION", "P@ssw0rdfusion440")
                 obj = ConvertFromXml(Of XML_DATA)(result)
                 Try
+                    BirthDate = obj.SYSLCNSIDs.birthdate
+                    'If BirthDate.Year < 2560 Then con_year(BirthDate.Year)
+                    Dim thaiCalendar As New ThaiBuddhistCalendar()
+                    Dim currentThaiYear As Integer = thaiCalendar.GetYear(DateTime.Now)
+                    ' ปีเกิดที่เป็น พ.ศ. (ตัวอย่างเช่น 2560)
+                    Dim birthYearThai As Integer = thaiCalendar.GetYear(BirthDate)
+                    ' คำนวณอายุ
+                    If birthYearThai > currentThaiYear Then
+                        If birthYearThai > 3000 Then
+                            birthYearThai = birthYearThai - 543
+                        End If
+                    End If
+                    Dim ageThai As Integer
+                    If currentThaiYear > birthYearThai Then ageThai = currentThaiYear - birthYearThai Else ageThai = birthYearThai - currentThaiYear
+                    If ageThai > 120 Then ageThai = ageThai - 543
+                    txt_age.Text = ageThai
                     Dim TYPE_PERSON As Integer = obj.SYSLCNSIDs.type
                     If TYPE_PERSON = 1 Then
                         txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm & " " & obj.SYSLCNSNMs.thalnm
@@ -765,6 +957,12 @@ Public Class UC_PHR_DETAIL
                             txt_phr_name.Text = obj.SYSLCNSNMs.prefixnm & obj.SYSLCNSNMs.thanm
                         End If
                     End If
+                    If IsNothing(obj.SYSLCNSIDs.nation) = True Then
+                        Nation = "ไทย"
+                    Else
+                        Nation = obj.SYSLCNSIDs.nation
+                    End If
+                    txt_Nationality.Text = Nation
                 Catch ex As Exception
 
                 End Try
@@ -774,6 +972,11 @@ Public Class UC_PHR_DETAIL
         End If
     End Sub
     Protected Sub ddl_phr_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_phr_type.SelectedIndexChanged
+        If ddl_phr_type.SelectedValue = 0 Then
+            P_Traning_Detail.Style.Add("display", "none")
+        Else
+            P_Traning_Detail.Style.Add("display", "block")
+        End If
         If ddl_phr_type.SelectedValue = 32 Then
             Div_Major.Visible = True
             Div_Qualificate.Visible = True
@@ -783,37 +986,88 @@ Public Class UC_PHR_DETAIL
             Div_Qualificate.Visible = False
             Div_Txt_num.Visible = True
         End If
+        If ddl_phr_type.SelectedValue = 32 Then
+            time_open.Text = "เวลาปฏิบัติการของผู้มีหน้าที่ปฏิบัตการ"
+        End If
     End Sub
     Protected Sub ddl_training_phr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_training_phr.SelectedIndexChanged
         Dim bao As New BAO_SHOW
         Dim dt As DataTable = bao.SP_MAS_DALCN_PHR_TRAINING()
         Dim dao As New DAO_LCN.TB_MAS_DALCN_PHR_TRAINING
         dao.GetDataby_TRAINING_ID(ddl_training_phr.SelectedValue)
-        rdp_SIMINAR_DATE.SelectedDate = dao.fields.TRAINING_DATE_START
-        rdp_SIMINAR_DATE_END.SelectedDate = dao.fields.TRAINING_DATE_END
+        'rdp_SIMINAR_DATE.SelectedDate = dao.fields.TRAINING_DATE_START
+        'rdp_SIMINAR_DATE_END.SelectedDate = dao.fields.TRAINING_DATE_END
+
+        ' ตรวจสอบ TRAINING_DATE_START
+        If dao.fields.TRAINING_DATE_START IsNot Nothing AndAlso Not dao.fields.TRAINING_DATE_START = Date.MinValue Then
+            rdp_SIMINAR_DATE.SelectedDate = dao.fields.TRAINING_DATE_START
+            rdp_SIMINAR_DATE.Enabled = False
+        Else
+            'rdp_SIMINAR_DATE.SelectedDate = Nothing
+            rdp_SIMINAR_DATE.SelectedDate = Date.Now
+            rdp_SIMINAR_DATE.Enabled = True
+        End If
+
+        ' ตรวจสอบ TRAINING_DATE_END
+        If dao.fields.TRAINING_DATE_END IsNot Nothing AndAlso Not dao.fields.TRAINING_DATE_END = Date.MinValue Then
+            rdp_SIMINAR_DATE_END.SelectedDate = dao.fields.TRAINING_DATE_END
+            rdp_SIMINAR_DATE_END.Enabled = False
+        Else
+            'rdp_SIMINAR_DATE_END.SelectedDate = Nothing
+            rdp_SIMINAR_DATE_END.SelectedDate = Date.Now
+            rdp_SIMINAR_DATE_END.Enabled = True
+        End If
     End Sub
 
     Protected Sub BTN_SEARCH_HOME_NO_Click(sender As Object, e As EventArgs) Handles BTN_SEARCH_HOME_NO.Click
         Dim dao As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
         If HOME_NO.Text IsNot Nothing Then
             dao.GetDataby_HOUSE_NO(HOME_NO.Text)
-            txt_Business_Name.Text = dao.fields.thanameplace
-            txt_BN_addr.Text = dao.fields.thaaddr
-            txt_BN_Building.Text = dao.fields.thabuilding
-            txt_BN_mu.Text = dao.fields.thamu
-            txt_BN_Soi.Text = dao.fields.thasoi
-            txt_BN_road.Text = dao.fields.tharoad
-            txt_BN_zipcode.Text = dao.fields.zipcode
-            If dao.fields.chngwtcd IsNot Nothing Then ddl_bn_changwat.SelectedValue = dao.fields.chngwtcd
-            If dao.fields.amphrcd IsNot Nothing Then
-                load_ddl_bn_amp()
-                ddl_bn_ampher.SelectedValue = dao.fields.amphrcd
+            If dao.fields.IDA = 0 Then
+                'Dim HOUSE_NO As String = HOME_NO.Text
+                'Dim ws_center As New WS_DATA_CENTER.WS_DATA_CENTER
+                'Dim obj As New XML_DATA
+                ''Dim cls As New CLS_COMMON.convert
+                'Dim result As String = ""
+                ''result = ws_center.GET_DATA_IDEM(citizen_id, citizen_id, "IDEM", "DPIS")
+                'result = ws_center.FDA_HOUSE_NO(HOUSE_NO, _CLS.CITIZEN_ID, "FUSION", "P@ssw0rdfusion440")
+                'obj = ConvertFromXml(Of XML_DATA)(result)
+                'txt_Business_Name.Text = obj.SYSLCTADDRs.branch
+                'txt_BN_addr.Text = obj.SYSLCTADDRs.thaaddr
+                'txt_BN_Building.Text = obj.SYSLCTADDRs.building
+                'txt_BN_mu.Text = obj.SYSLCTADDRs.mu
+                'txt_BN_Soi.Text = obj.SYSLCTADDRs.thasoi
+                'txt_BN_road.Text = obj.SYSLCTADDRs.tharoad
+                'txt_BN_zipcode.Text = obj.SYSLCTADDRs.zipcode
+                'If dao.fields.chngwtcd IsNot Nothing Then ddl_bn_changwat.SelectedValue = obj.SYSLCTADDRs.chngwtcd
+                'If dao.fields.amphrcd IsNot Nothing Then
+                '    load_ddl_bn_amp()
+                '    ddl_bn_ampher.SelectedValue = obj.SYSLCTADDRs.amphrcd
+                'End If
+                'If dao.fields.thmblcd IsNot Nothing Then
+                '    load_ddl_bn_thambol()
+                '    ddl_bn_tambol.SelectedValue = obj.SYSLCTADDRs.thmblcd
+                'End If
+                'Label_house_no.Visible = False
+            Else
+                txt_Business_Name.Text = dao.fields.thanameplace
+                txt_BN_addr.Text = dao.fields.thaaddr
+                txt_BN_Building.Text = dao.fields.thabuilding
+                txt_BN_mu.Text = dao.fields.thamu
+                txt_BN_Soi.Text = dao.fields.thasoi
+                txt_BN_road.Text = dao.fields.tharoad
+                txt_BN_zipcode.Text = dao.fields.zipcode
+                If dao.fields.chngwtcd IsNot Nothing Then ddl_bn_changwat.SelectedValue = dao.fields.chngwtcd
+                If dao.fields.amphrcd IsNot Nothing Then
+                    load_ddl_bn_amp()
+                    ddl_bn_ampher.SelectedValue = dao.fields.amphrcd
+                End If
+                If dao.fields.thmblcd IsNot Nothing Then
+                    load_ddl_bn_thambol()
+                    ddl_bn_tambol.SelectedValue = dao.fields.thmblcd
+                End If
+                Label_house_no.Visible = False
             End If
-            If dao.fields.thmblcd IsNot Nothing Then
-                load_ddl_bn_thambol()
-                ddl_bn_tambol.SelectedValue = dao.fields.thmblcd
-            End If
-            Label_house_no.Visible = False
         Else
             System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('" & "กรุณากรอกรหัสประจำบ้าน" & "');", True)
             Label_house_no.Visible = True
@@ -827,17 +1081,24 @@ Public Class UC_PHR_DETAIL
         Catch ex As Exception
             Response.Redirect("http://privus.fda.moph.go.th/")
         End Try
+        Dim PHR_IDEN As String = ""
+        If txt_CITIZEN_AUTHORIZE.Text = "" And txt_lcnno_no.Text = "" Then
+            PHR_IDEN = _CLS.CITIZEN_ID
+        End If
         Dim dt As New DataTable
         Dim command As String = " "
+        Dim command2 As String = " "
         Dim bao_aa As New BAO.ClsDBSqlcommand
         command = "select * from dbo.Vw_SP_DALCN_SEARCH_EDIT "
+        command2 = "select * from dbo.Vw_SP_DALCN_PHR_SEARCH "
         Dim str_where As String = ""
         Dim dt2 As New DataTable
         If txt_CITIZEN_AUTHORIZE.Text = "" And txt_lcnno_no.Text = "" Then
-            command &= str_where
+            command2 &= "where PHR_CTZNO='" & PHR_IDEN & "' AND STAT_DA = 'คงอยู่'"
+            dt = bao_aa.Queryds(command2)
         Else
             If txt_CITIZEN_AUTHORIZE.Text <> "" Then
-                str_where = "where CITIZEN_ID_AUTHORIZE='" & txt_CITIZEN_AUTHORIZE.Text & "'"
+                str_where = "where CITIZEN_ID_AUTHORIZE='" & txt_CITIZEN_AUTHORIZE.Text & "' AND STAT_DA = 'คงอยู่'"
                 If txt_lcnno_no.Text <> "" Then
                     If str_where <> "" Then
                         str_where &= " and LCNNO_DISPLAY_NEW like '%" & txt_lcnno_no.Text & "%'"
@@ -868,7 +1129,7 @@ Public Class UC_PHR_DETAIL
                     command &= str_where
                 End If
             End If
-
+            dt = bao_aa.Queryds(command)
         End If
         'If pvncd = 10 Then
         '    If command.Contains("where") Then
@@ -889,7 +1150,10 @@ Public Class UC_PHR_DETAIL
         '        command &= "where lcn_stat=0 and pvncd = '" & pvncd & "'"
         '    End If
         'End If
-        dt = bao_aa.Queryds(command)
+        If dt.Rows.Count > 1 Then
+            rdl_phr.SelectedValue = 1
+            chk_rad.Visible = True
+        End If
         RadGrid_lcn.DataSource = dt
     End Sub
 
@@ -948,8 +1212,90 @@ Public Class UC_PHR_DETAIL
         End If
 
     End Sub
+    Protected Sub rdl_phr_CheckedChanged(sender As Object, e As EventArgs) Handles rdl_phr.SelectedIndexChanged
+        If rdl_phr.SelectedValue = 1 Then
+            chk_rad.Visible = True
+        Else
+            chk_rad.Visible = False
+        End If
+    End Sub
 
-    'Protected Sub btn_search_lcn_Click(sender As Object, e As EventArgs) Handles btn_search_lcn.Click
+    Protected Sub BTN_SEARCH_LCNNO_Click(sender As Object, e As EventArgs) Handles BTN_SEARCH_LCNNO.Click
+        Dim pvncd As Integer = 0
+        Try
+            pvncd = _CLS.PVCODE
+        Catch ex As Exception
+            Response.Redirect("http://privus.fda.moph.go.th/")
+        End Try
+        Dim dt As New DataTable
+        Dim command As String = " "
+        Dim bao_aa As New BAO.ClsDBSqlcommand
+        command = "select * from dbo.Vw_SP_DALCN_SEARCH_EDIT "
+        Dim str_where As String = ""
+        Dim dt2 As New DataTable
+        If txt_lcnno_no.Text = "" Then
+            command &= str_where
+            dt = bao_aa.Queryds(command)
+        Else
+            If str_where = "" Then
+                If txt_lcnno_no.Text <> "" Then
+                    str_where = "where LCNNO_DISPLAY_NEW = '" & BTN_SEARCH_LCNNO.Text & "' or lcnno_no like '%" & BTN_SEARCH_LCNNO.Text & "%' and STAT_DA like N'%คงอยู่%'"
+                End If
+                command &= str_where
+            Else
+                If txt_lcnno_no.Text <> "" Then
+                    str_where = "where lcnno_no = '" & BTN_SEARCH_LCNNO.Text & "' or lcnno_no like '%" & BTN_SEARCH_LCNNO.Text & "%' and STAT_DA like N'%คงอยู่%'"
+                End If
+                command &= str_where
+            End If
+        End If
+        dt = bao_aa.Queryds(command)
+        'RadGrid_lcn2.DataSource = dt
+        Dim IDA As String = String.Empty
+        If dt.Columns.Contains("IDA") Then
+            ' ตรวจสอบว่าแถวแรกมีข้อมูลในคอลัมน์ IDA หรือไม่
+            If dt.Rows.Count > 0 Then
+                IDA = dt.Rows(0)("IDA").ToString()
+            End If
+        End If
+        Dim dao As New DAO_DRUG.ClsDBdalcn
+        dao.GetDataby_IDA(IDA)
+        Dim dao_lo As New DAO_DRUG.TB_DALCN_LOCATION_ADDRESS
+        dao_lo.GetDataby_IDA(dao.fields.FK_IDA)
+        With dao_lo.fields
+            '.MATRA = DDL_Matra.SelectedValue
+            HOME_NO.Text = .HOUSENO
+            txt_Business_Name.Text = .thanameplace
+            txt_BN_addr.Text = .thaaddr
+            txt_BN_Building.Text = .thabuilding
+            txt_BN_mu.Text = .thamu
+            txt_BN_Soi.Text = .thasoi
+            txt_BN_road.Text = .tharoad
+            Try
+                ddl_bn_changwat.SelectedItem.Text = .thachngwtnm
+                ddl_bn_changwat.SelectedValue = .chngwtcd
+            Catch ex As Exception
 
-    'End Sub
+            End Try
+            Try
+                'ddl_amphor.SelectedItem.Text = .thathmblnm
+                ddl_bn_ampher.SelectedValue = .amphrcd
+                load_ddl_amp()
+            Catch ex As Exception
+                '.PHR_AMPHER_BSN = "-"
+            End Try
+
+            Try
+                'ddl_tambol.SelectedItem.Text = .thathmblnm
+                ddl_bn_tambol.SelectedValue = .thmblcd
+                load_ddl_thambol()
+            Catch ex As Exception
+
+            End Try
+
+            txt_BN_zipcode.Text = .zipcode
+            txt_BN_tel.Text = .tel
+            'txt_BSN_Opentime.Text =
+        End With
+    End Sub
 End Class

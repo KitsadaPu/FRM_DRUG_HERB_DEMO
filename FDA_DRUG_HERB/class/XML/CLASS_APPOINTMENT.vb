@@ -165,4 +165,13 @@
             _estimate_date_max = value
         End Set
     End Property
+    Private _COMPLICATE_NAME As String
+    Public Property COMPLICATE_NAME() As String
+        Get
+            Return _COMPLICATE_NAME
+        End Get
+        Set(ByVal value As String)
+            _COMPLICATE_NAME = value
+        End Set
+    End Property
 End Class

@@ -242,6 +242,23 @@
         End If
         Return result
     End Function
+    Public Function insert_renew_lcn(ByVal TR_ID As Integer, ByVal PROCESS_ID As Integer, ByVal IDA_DR As Integer, ByVal TYPE_ID As Integer) As Boolean
+        Dim result As Boolean = True
+        If HiddenField1.Value = 0 Then ' ไม่จำเป็นต้องมี
+            If FileUpload1.HasFile Then
+
+                insert_file_renew(TR_ID, PROCESS_ID, IDA_DR, TYPE_ID)
+            End If
+        Else 'จำเป็นต้องแนบ
+            If FileUpload1.HasFile Then
+                insert_file_renew(TR_ID, PROCESS_ID, IDA_DR, TYPE_ID)
+            Else
+                NAME = Label1.Text
+                result = False
+            End If
+        End If
+        Return result
+    End Function
     Public Function insert_JJ3(ByVal TR_ID As Integer, ByVal PROCESS_ID As Integer, ByVal IDA_DR As Integer, ByVal TYPE_ID As Integer) As Boolean
         Dim result As Boolean = True
         If HiddenField1.Value = 0 Then ' ไม่จำเป็นต้องมี
@@ -596,6 +613,27 @@
         dao_file.fields.ACTIVE = 1
         dao_file.fields.CREATE_DATE = Date.Now
 
+        dao_file.insert()
+
+    End Sub
+    Private Sub insert_file_renew(ByVal TR_ID As Integer, ByVal PROCESS_ID As Integer, ByVal IDA_DR As Integer, ByVal TYPE_ID As Integer)
+        Dim extensionname As String = GetExtension(FileUpload1.FileName)
+        Dim _PATH_FILE As String = System.Configuration.ConfigurationManager.AppSettings("PATH_XML_PDF_LCN_RENREW")
+        FileUpload1.SaveAs(_PATH_FILE & "/FILE_UPLOAD/" & "HB-" & PROCESS_ID & "-" & Date.Now.Year & "-" & TR_ID & "-" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname)
+
+        Dim dao_file As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+
+        'dao_file.fields.NAME_FAKE = "HB_PDF" & TR_ID & "_" & H_TYPE.Value & "." & extensionname
+        dao_file.fields.NAME_FAKE = "HB-" & PROCESS_ID & "_" & con_year(Date.Now.Year) & "_" & TR_ID & "_" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
+        dao_file.fields.NAME_REAL = FileUpload1.FileName
+        dao_file.fields.DOCUMENT_NAME = Label1.Text
+        dao_file.fields.TYPE = H_TYPE.Value
+        dao_file.fields.TR_ID = TR_ID
+        dao_file.fields.FK_IDA = IDA_DR
+        dao_file.fields.PROCESS_ID = PROCESS_ID
+        dao_file.fields.ACTIVE = 1
+        dao_file.fields.FilePath = _PATH_FILE & "/FILE_UPLOAD/" & "HB-" & PROCESS_ID & "-" & Date.Now.Year & "-" & TR_ID & "-" & TYPE_ID & "_" & H_TYPE.Value & "." & extensionname
+        dao_file.fields.CREATE_DATE = Date.Now
         dao_file.insert()
 
     End Sub

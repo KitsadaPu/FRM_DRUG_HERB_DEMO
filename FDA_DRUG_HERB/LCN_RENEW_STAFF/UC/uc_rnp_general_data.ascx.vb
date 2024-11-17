@@ -89,6 +89,14 @@
         If IsNothing(dao.fields.head_menu_lo_keep) = False Then CheckBox_Keep.Checked = dao.fields.head_menu_lo_keep
         If IsNothing(dao.fields.head_menu_drug_group) = False Then CheckBox_Drug_Group.Checked = dao.fields.head_menu_drug_group
         txt_note_edit.Text = dao.fields.Note_Edit
+        If IsNothing(dao.fields.SUB_CerSD_TYPE) = False Then rdl_cer.SelectedValue = dao.fields.SUB_CerSD_TYPE
+        If IsNothing(dao.fields.CerSD_TYPE) = False Then rdl_CerSD.SelectedValue = dao.fields.CerSD_TYPE
+        If IsNothing(dao.fields.EnterpriseType) = False Then rdl_enterprise.SelectedValue = dao.fields.EnterpriseType
+        If Not String.IsNullOrEmpty(dao.fields.Check_Confirm) AndAlso dao.fields.Check_Confirm = "N" Then
+            incorrect_id.Visible = True
+        Else
+            incorrect_id.Visible = False ' Optional: กำหนดค่าอื่นถ้าจำเป็น
+        End If
     End Sub
     Private Sub rg_bsn_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rg_bsn.NeedDataSource
         Dim dt As New DataTable

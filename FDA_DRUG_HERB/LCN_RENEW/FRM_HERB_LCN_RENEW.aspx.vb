@@ -104,14 +104,25 @@ Public Class FRM_HERB_LCN_RENEW
     End Sub
     Protected Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         Try
+            Dim This_Year As String = Date.Now.Year
+            Dim dao As New DAO_LCN.TB_DALCN_RENEW
+            dao.GET_DATA_BY_FK_LCN(_IDA_LCN, True)
+            Dim Renew_Year As String = dao.fields.YEAR
+            If Renew_Year = This_Year And dao.fields.ACTIVEFACT = True Then
+                alert("ไม่สามารถสร้างคำขอได้ เนื่องจากมีคำขออยู่ระบบแล้ว ")
+            Else
+                Dim IDEN As String = Request.QueryString("identify")
+                If IDEN = "" Then
+                    IDEN = _CLS.CITIZEN_ID_AUTHORIZE
+                End If
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POP_UP_LCN_RENEW_ADD.aspx?IDA_LCN=" & _IDA_LCN & "&IDENTIFY=" & IDEN & "&PROCESS_ID=" & _PROCESS_ID & "');", True)
 
-            Dim IDEN As String = Request.QueryString("identify")
-            If IDEN = "" Then
-                IDEN = _CLS.CITIZEN_ID_AUTHORIZE
             End If
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "Popups2('" & "POP_UP_LCN_RENEW_ADD.aspx?IDA_LCN=" & _IDA_LCN & "&IDENTIFY=" & IDEN & "&PROCESS_ID=" & _PROCESS_ID & "');", True)
         Catch ex As Exception
 
         End Try
+    End Sub
+    Private Sub alert(ByVal text As String)
+        Response.Write("<script type='text/javascript'>alert('" + text + "');</script> ")
     End Sub
 End Class

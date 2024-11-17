@@ -769,6 +769,16 @@ Namespace BAO_TABEAN_HERB
 
             Return dt
         End Function '
+        Public Function SP_TABEAN_JJ_BY_IDEN_WHO(ByVal IDA_LCN As String, ByVal CITIZEN_ID_AUTHORIZE As String) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_TABEAN_JJ_BY_IDEN_WHO @IDA_LCN= '" & IDA_LCN & "' " & ",@CITIZEN_ID_AUTHORIZE='" & CITIZEN_ID_AUTHORIZE & "'"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+
         Public Function SP_TABEAN_HERB_WHO(ByVal IDA_LCN As String, ByVal CITIEN_ID As String) As DataTable
             Dim dt As New DataTable
             Dim qstr As String = ""
@@ -1196,6 +1206,15 @@ Namespace BAO_TABEAN_HERB
             Dim qstr As String = ""
 
             qstr = "exec SP_drdrgtype_Tabean_New"
+            dt = Queryds(qstr)
+
+            Return dt
+        End Function
+        Public Function SP_ComplicateDate_Tabean_New(ByVal PROCESS_ID As Integer) As DataTable
+            Dim dt As New DataTable
+            Dim qstr As String = ""
+
+            qstr = "exec SP_ComplicateDate_Tabean_New @PROCESS_ID=" & PROCESS_ID
             dt = Queryds(qstr)
 
             Return dt

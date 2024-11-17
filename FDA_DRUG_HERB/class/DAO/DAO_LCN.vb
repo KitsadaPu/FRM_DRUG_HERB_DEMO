@@ -1551,6 +1551,12 @@
             For Each Me.fields In datas
             Next
         End Sub
+        Public Sub GET_DATA_BY_FK_LCN_AP(ByVal ida As Integer, ByVal active As Boolean)
+
+            datas = (From p In db.DALCN_RENEW_PREs Where p.FK_LCN = ida And p.STATUS_ID = 8 And p.ACTIVEFACT = active Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
 
     End Class
     Public Class TB_LOG_RENEW_HERB
@@ -1584,7 +1590,50 @@
             For Each Me.fields In datas
             Next
         End Sub
+    End Class
+    Public Class TB_MAS_DALCN_FEE_DISCOUNT
+        Inherits MAINCONTEXT
 
+        Public fields As New MAS_FEE_DISCOUNT_DALCN_HERB
+
+
+        Public Sub insert()
+            db.MAS_FEE_DISCOUNT_DALCN_HERBs.InsertOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+        Public Sub update()
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub delete()
+            db.MAS_FEE_DISCOUNT_DALCN_HERBs.DeleteOnSubmit(fields)
+            db.SubmitChanges()
+        End Sub
+
+        Public Sub GetDataAll()
+
+            datas = (From p In db.MAS_FEE_DISCOUNT_DALCN_HERBs Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GetDataAll_IsUse()
+
+            datas = (From p In db.MAS_FEE_DISCOUNT_DALCN_HERBs Where p.IS_USE = True Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_IDA(ByVal ida As Integer)
+
+            datas = (From p In db.MAS_FEE_DISCOUNT_DALCN_HERBs Where p.IDA = ida Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
+        Public Sub GET_DATA_BY_ID(ByVal id As Integer)
+
+            datas = (From p In db.MAS_FEE_DISCOUNT_DALCN_HERBs Where p.ID = id Select p)
+            For Each Me.fields In datas
+            Next
+        End Sub
     End Class
     Public Class TB_DALCN_TRANSFER
         Inherits MAINCONTEXT

@@ -149,6 +149,18 @@
                     <div class="col-lg-1"></div>
                 </div>
 
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">
+                        เงื่อนไขความซับซ้อนของคำขอ :
+                        <%--<p>วันที่อนุมัติ</p>--%>
+                    </div>
+                    <div class="col-lg-6">
+                        <telerik:RadComboBox ID="DDL_COMPLEX" runat="server" Filter="Contains" Width="100%" AutoPostBack="true"></telerik:RadComboBox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+
                 <div class="row" runat="server">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-4">จำนวนเงิน</div>

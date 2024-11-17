@@ -286,42 +286,6 @@
       <Column Name="system_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="fda.syslctaddr" Member="syslctaddrs">
-    <Type Name="syslctaddr">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="identify" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="lcnsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="lctcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="thaaddr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="engaddr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="room" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="mu" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="floor" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="thasoi" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="building" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="engsoi" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="tharoad" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="engroad" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="thmblcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="thmblnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="amphrcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="amphrnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="chngwtcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="chngwtnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="zipcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="tel" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Mobile" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="fax" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="validdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="lstfcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="lmdfdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
-      <Column Name="pvcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="amcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ttcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="branch" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
-      <Column Name="Fulladdr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.sysemail" Member="sysemails">
     <Type Name="sysemail">
       <Column Name="IDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -373,6 +337,51 @@
       <Column Name="standard_description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="register_capital" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="gmail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="nation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="fda.syslctaddr" Member="syslctaddrs">
+    <Type Name="syslctaddr">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="identify" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lcnsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lctcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thaaddr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="engaddr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="room" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="mu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="floor" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="thasoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="engsoi" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="tharoad" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="engroad" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="thmblcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="thmblnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="amphrcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="amphrnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="chngwtcd" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="chngwtnm" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="zipcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="validdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="lstfcd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lmdfdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="pvcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="amcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ttcode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="branch" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Fulladdr" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="engmu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="engroom" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="engfloor" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="engbuilding" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="engthmblnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="engamphrnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="engchngwtnm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="engFulladdr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="fda.syslcnsnm" Member="syslcnsnms">

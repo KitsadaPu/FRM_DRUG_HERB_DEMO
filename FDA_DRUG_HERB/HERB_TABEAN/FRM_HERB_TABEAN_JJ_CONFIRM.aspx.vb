@@ -68,11 +68,12 @@ Public Class FRM_HERB_TABEAN_JJ_CONFIRM
             btn_edit.CssClass = "btn-danger btn-lg"
             btn_editUpload.Enabled = False
             btn_editUpload.CssClass = "btn-danger btn-lg"
-        ElseIf dao.fields.STATUS_ID = 8 Then
-            btn_cancel.Enabled = False
-            btn_cancel.CssClass = "btn-danger btn-lg"
-            'btn_load.CssClass = "btn-danger btn-lg"
         End If
+        If dao.fields.STATUS_ID = 8 Then
+                btn_cancel.Enabled = False
+                btn_cancel.CssClass = "btn-danger btn-lg"
+                'btn_load.CssClass = "btn-danger btn-lg"
+            End If
     End Sub
     Sub set_txt()
         Dim dao As New DAO_TABEAN_HERB.TB_TABEAN_JJ

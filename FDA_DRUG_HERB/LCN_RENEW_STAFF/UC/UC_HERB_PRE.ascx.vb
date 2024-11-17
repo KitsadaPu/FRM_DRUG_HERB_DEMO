@@ -21,7 +21,7 @@ Public Class UC_HERB_PRE
         RunSession()
         get_pvncd()
         If Not IsPostBack Then
-            setdata()
+            'setdata()
         End If
     End Sub
     Sub get_pvncd()
@@ -410,10 +410,8 @@ Public Class UC_HERB_PRE
         dao.GetDataby_Process_ID(_ProcessID)
         Return dao.fields.PROCESS_NAME
     End Function
-    Sub setdata()
-        Dim dao As New DAO_DRUG.ClsDBdalcn
+    Sub setdata(ByRef dao As DAO_DRUG.ClsDBdalcn, ByVal TR_ID As Integer)
         Dim IDA_LCN As Integer = Request.QueryString("IDA_LCN")
-        dao.GetDataby_IDA(IDA_LCN)
         Dim dao_frg As New DAO_DRUG.TB_DALCN_FRGN_DATA
         dao_frg.GetDataby_FK_IDA(IDA_LCN)
         With dao.fields

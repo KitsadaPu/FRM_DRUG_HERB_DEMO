@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage/POPUP.Master" CodeBehind="POP_UP_LCN_RENEW_CONFIRM_STAFF.aspx.vb" Inherits="FDA_DRUG_HERB.POP_UP_LCN_RENEW_CONFIRM_STAFF" %>
 
-
 <%@ Register Src="../UC/UC_ATTACH.ascx" TagName="UC_ATTACH" TagPrefix="uc1" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -65,11 +64,36 @@
             </div>
         </div>
         <div6 class="col-lg-4" style="width: 30%">
+
             <div class="row" runat="server" id="status_update" visible="true">
-                <div class="row" runat="server" id="KEEP_PAY" visible="true">
+                <div runat="server" visible="false" id="DIV_FEE_DISCOUNT">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">เงื่อนไขส่วนลด</div>
+                        <div class="col-lg-6">
+                            <asp:DropDownList ID="ddl_fee_discount" runat="server" DataValueField="ID" DataTextField="DiscountName" Style="width: 100%" AutoPostBack="true"></asp:DropDownList>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">จำนวนเงิน</div>
+                        <div class="col-lg-6">
+                            <asp:TextBox ID="txt_price_fee" runat="server" ReadOnly="true" BorderStyle="none" Style="width: 100%; border-bottom: double"></asp:TextBox>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" runat="server">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">รายละเอียดเพิ่มเติม</div>
+                        <div class="col-lg-6">
+                            <asp:TextBox ID="txt_Fee_discount_Note" TextMode="MultiLine" runat="server" Style="height: 20%; width: 100%"></asp:TextBox>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
                 </div>
                 <div class="row" runat="server" id="P12" visible="true">
-                    <div class="row">
+                    <div class="row" runat="server" id="DIV_STATUS_DDL">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">เลือกสถานะ</div>
                         <div class="col-lg-6">
@@ -80,7 +104,7 @@
 
                     <div class="row" runat="server">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-4">วันที่ตรวจรับคำขอ</div>
+                        <div class="col-lg-4">วันที่ดำเนินการ</div>
                         <div class="col-lg-6">
                             <asp:TextBox ID="DATE_REQ" runat="server" Style="width: 90%"></asp:TextBox>
                         </div>
@@ -91,13 +115,26 @@
                         <div class="col-lg-4">จนท. ที่รับผิดชอบ</div>
                         <div class="col-lg-6">
                             <%--<asp:TextBox ID="OFF_REQ" runat="server" Style="width: 100%"></asp:TextBox>--%>
-                            <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME"></asp:DropDownList>
+                            <asp:DropDownList ID="DD_OFF_REQ" runat="server" DataValueField="IDA" DataTextField="STAFF_NAME" Style="width: 100%"></asp:DropDownList>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
+                    <hr />
+                    <asp:Panel runat="server" ID="panel_file_upload" Visible="false">
+                        <div class="row">
+                            <div class="col-lg-12" style="text-align: center">
+                                <h3>อัพโหลดเอกสาร สมพ5 ที่อนุมัติแล้ว</h3>
+                            </div>
+                        </div>
+                        <div class="row" runat="server" id="uc_upload1" visible="true">
+                            <div class="col-lg-1" style="text-align: center"></div>
+                            <div class="col-lg-10" style="text-align: center">
+                                <uc1:UC_ATTACH ID="UC_ATTACH2" runat="server" />
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
             </div>
-
             <div class="row" runat="server" id="p2" visible="false">
                 <div class="row" runat="server">
                     <div class="col-lg-1"></div>
@@ -122,6 +159,53 @@
                     </div>
                 </div>
             </div>
+            <asp:Panel runat="server" ID="panel_file_att" Visible="false">
+                <div class="row">
+                    <div class="col-lg-12" style="text-align: center">
+                        <h3>เอกสาร สมพ5 ที่อนุมัติแล้ว</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="text-align: center">
+                        <telerik:RadGrid ID="RadGrid4" runat="server">
+                            <MasterTableView AutoGenerateColumns="False" DataKeyNames="IDA">
+                                <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
+                                <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
+                                    <HeaderStyle Width="20px"></HeaderStyle>
+                                </RowIndicatorColumn>
+                                <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
+                                    <HeaderStyle Width="20px"></HeaderStyle>
+                                </ExpandCollapseColumn>
+                                <Columns>
+                                    <telerik:GridBoundColumn DataField="IDA" DataType="System.Int32" FilterControlAltText="Filter IDA column" HeaderText="IDA"
+                                        SortExpression="IDA" UniqueName="IDA" Display="false" AllowFiltering="true">
+                                    </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="FK_IDA" DataType="System.Int32" FilterControlAltText="Filter FK_IDA column" HeaderText="FK_IDA"
+                                        SortExpression="FK_IDA" UniqueName="FK_IDA" Display="false" AllowFiltering="true">
+                                    </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="DOCUMENT_NAME" FilterControlAltText="Filter DOCUMENT_NAME column"
+                                        HeaderText="รายการเอกสาร" SortExpression="DOCUMENT_NAME" UniqueName="DOCUMENT_NAME">
+                                    </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="NAME_REAL" FilterControlAltText="Filter NAME_REAL column"
+                                        HeaderText="ชื่อเอกสารที่อัพโหลด" SortExpression="NAME_REAL" UniqueName="NAME_REAL">
+                                    </telerik:GridBoundColumn>
+                                    <telerik:GridTemplateColumn>
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="PV_SELECT" runat="server">ดูเอกสาร</asp:HyperLink>
+                                        </ItemTemplate>
+                                    </telerik:GridTemplateColumn>
+                                </Columns>
+                                <EditFormSettings>
+                                    <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
+                                </EditFormSettings>
+                                <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                            </MasterTableView>
+                            <PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+                            <FilterMenu EnableImageSprites="False"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
+                </div>
+            </asp:Panel>
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
@@ -140,6 +224,20 @@
                 <div class="col-lg-1"></div>
             </div>
 
+            <div class="row" style="text-align: center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <asp:Button ID="btn_lcn_edit" runat="server" Text="แก้ไขข้อมูลใบอนุญาต" CssClass="btn-lg" Width="80%" Visible="false" />
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row" style="text-align: center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <asp:Button ID="btn_drug_group_edit" runat="server" Text="แก้ไขข้อมูลหมวดยา" CssClass="btn-lg" Width="80%" Visible="false" />
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
             <div class="row" style="text-align: center">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">

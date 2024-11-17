@@ -23,11 +23,13 @@
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         RunSession()
+        UC_LCN_DRUG_GROUP.bind_type(Request.QueryString("IDA_LCN"))
+        UC_LCN_DRUG_GROUP.bind_table(Request.QueryString("IDA_LCN"))
         If Not IsPostBack Then
             Get_data()
             'bind_ddl_prefix()
-            UC_LCN_DRUG_GROUP.bind_type(Request.QueryString("IDA_LCN"))
-            UC_LCN_DRUG_GROUP.bind_table(Request.QueryString("IDA_LCN"))
+            'UC_LCN_DRUG_GROUP.bind_type(Request.QueryString("IDA_LCN"))
+            'UC_LCN_DRUG_GROUP.bind_table(Request.QueryString("IDA_LCN"))
         End If
     End Sub
     'Public Sub bind_ddl_prefix()
@@ -81,6 +83,13 @@
             If dao_lcn.fields.fax IsNot Nothing Then txt_fax.Text = dao_lcn.fields.fax Else txt_fax.Text = "-"
         If dao.fields.CerSD_TYPE IsNot Nothing AndAlso dao.fields.CerSD_TYPE <> 0 Then rdl_CerSD.SelectedValue = dao.fields.CerSD_TYPE
         If dao.fields.EnterpriseType IsNot Nothing AndAlso dao.fields.EnterpriseType <> 0 Then rdl_enterprise.SelectedValue = dao.fields.EnterpriseType
+        If dao.fields.STATUS_ID IsNot Nothing AndAlso dao.fields.STATUS_ID <> 0 Then
+            btn_save.Enabled = False
+            btn_save2.Enabled = False
+            rdl_enterprise.Enabled = False
+            rdl_CerSD.Enabled = False
+            rdl_cer.Enabled = False
+        End If
         'txt_Write_Date.Text = Date.Now.ToString("dd/MM/yyyy")
         'Txt_Write_At.Text = "อย"
         'Else
@@ -199,21 +208,22 @@
                 Dim TR_ID As String = ""
                 Dim dao As New DAO_LCN.TB_DALCN_RENEW_PRE
                 dao.GET_DATA_BY_FK_LCN(_IDA_LCN, True)
+                Dim dao_lcn As New DAO_DRUG.ClsDBdalcn
+                dao_lcn.GetDataby_IDA(_IDA_LCN)
                 Dim dao_licen As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_HERB
                 dao_licen.GetDataby_LCN_IDA(_IDA_LCN)
                 Dim dao_li As New DAO_XML_DRUG_HERB.TB_XML_SEARCH_DRUG_LCN_LICEN_HERB
                 dao_li.GetDataby_LCN_IDA(_IDA_LCN)
                 Data_set(dao)
-                'If _ProcessID Is Nothing Then
-                '    _ProcessID = 10511
-                'End If
                 dao.fields.PROCESS_ID = _ProcessID
                 If dao.fields.IDA = 0 Then
                     Try
                         bao_tran.CITIZEN_ID = _CLS.CITIZEN_ID
                         bao_tran.CITIZEN_ID_AUTHORIZE = _CLS.CITIZEN_ID_AUTHORIZE
                         TR_ID = bao_tran.insert_transection(_ProcessID)
-
+                        dao.fields.FK_LCT = dao_lcn.fields.FK_IDA
+                        dao.fields.process_lcn = dao_licen.fields.PROCESS_ID
+                        dao.fields.pvncd = dao_licen.fields.chngwtcd
                         dao.fields.Newcode_Not = dao_licen.fields.Newcode_not
                         dao.fields.lcnno_display_new = dao_licen.fields.lcnno_display_new
                         dao.fields.Licensee_name = dao_li.fields.licen
@@ -243,7 +253,7 @@
                     INSERT_FILE_ATTACH(1, 1, TR_ID, _ProcessID)
                 End If
                 If rdl_enterprise.SelectedValue = 1 OrElse rdl_enterprise.SelectedValue = 2 OrElse rdl_enterprise.SelectedValue = 3 OrElse
-                   rdl_enterprise.SelectedValue = 4 OrElse rdl_enterprise.SelectedValue = 5 Then
+                   rdl_enterprise.SelectedValue = 4 Then
                     INSERT_FILE_ATTACH(3, 3, TR_ID, _ProcessID)
                 End If
                 If Request.QueryString("staff") <> "" Then
@@ -320,7 +330,7 @@
                     INSERT_FILE_ATTACH(1, 1, TR_ID, _ProcessID)
                 End If
                 If rdl_enterprise.SelectedValue = 1 OrElse rdl_enterprise.SelectedValue = 2 OrElse rdl_enterprise.SelectedValue = 3 OrElse
-                   rdl_enterprise.SelectedValue = 4 OrElse rdl_enterprise.SelectedValue = 5 Then
+                   rdl_enterprise.SelectedValue = 4 Then
                     INSERT_FILE_ATTACH(3, 3, TR_ID, _ProcessID)
                 End If
                 If Request.QueryString("staff") <> "" Then
@@ -358,5 +368,15 @@
                 dao_up.insert()
             Next
         End If
+    End Sub
+
+    Protected Sub rdl_CerSD_SelectIndexChanged(sender As Object, e As EventArgs) Handles rdl_CerSD.SelectedIndexChanged
+        If rdl_CerSD.SelectedValue = 1 Then
+            chk_rad1.Style.Add("display", "block")
+        Else
+            chk_rad1.Style.Add("display", "none")
+        End If
+        'UC_LCN_DRUG_GROUP.bind_type(Request.QueryString("IDA_LCN"))
+        'UC_LCN_DRUG_GROUP.bind_table(Request.QueryString("IDA_LCN"))
     End Sub
 End Class

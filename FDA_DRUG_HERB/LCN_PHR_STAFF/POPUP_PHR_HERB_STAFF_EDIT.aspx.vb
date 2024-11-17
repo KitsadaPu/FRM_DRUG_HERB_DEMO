@@ -144,6 +144,7 @@ Public Class POPUP_PHR_HERB_STAFF_EDIT
             dao_up.fields.TYPE = 2
             'dao_up.fields.a = 1
             dao_up.fields.CREATE_DATE = Date.Now
+            dao_up.fields.Active = True
             dao_up.insert()
         Next
         Dim dao As New DAO_DRUG.ClsDBDALCN_PHR

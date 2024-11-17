@@ -295,7 +295,7 @@ Public Class FRM_HERB_TABEAN_JJ_ADD_DETAIL_UPLOAD_FILE
                     dao_up.fields.ACTIVE = 1
 
                     Try
-                        dao_up.fields.TR_ID = _TR_ID_LCN
+                        dao_up.fields.TR_ID = TR_ID_JJ
                     Catch ex As Exception
 
                     End Try

@@ -1,1 +1,24 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.125" name="LINQ_FEE">
+  <DataContextMoniker Name="/LINQ_FEEDataContext" />
+  <nestedChildShapes>
+    <classShape Id="dd19ca7c-2fd9-40ab-9b5f-170de02b40b4" absoluteBounds="0.75, 0.75, 2, 8.1168440755208326">
+      <DataClassMoniker Name="/LINQ_FEEDataContext/fee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="127a7762-350e-43b0-a72a-84eaa1bbfd6a" absoluteBounds="0.765, 1.21, 1.9700000000000002, 7.556844075520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a0416ba6-174a-4cd2-aef3-27d9e7a4aa9f" absoluteBounds="3.75, 0.75, 2, 6.3861311848958326">
+      <DataClassMoniker Name="/LINQ_FEEDataContext/feedtl" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22fed097-6150-40f9-97b3-55661344af68" absoluteBounds="3.765, 1.21, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="571eb62a-8614-44b5-be4a-3bc21b4a92ba" absoluteBounds="6.625, 0.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/LINQ_FEEDataContext/feetype" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2fa6a8ed-e3d8-4fa4-a90f-7b9b2f3d9130" absoluteBounds="6.64, 1.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

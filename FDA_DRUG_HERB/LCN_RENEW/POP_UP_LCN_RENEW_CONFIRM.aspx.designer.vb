@@ -77,6 +77,15 @@ Partial Public Class POP_UP_LCN_RENEW_CONFIRM
     Protected WithEvents btn_confirm As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btn_download control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_download As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btn_KeepPay control.
     '''</summary>
     '''<remarks>

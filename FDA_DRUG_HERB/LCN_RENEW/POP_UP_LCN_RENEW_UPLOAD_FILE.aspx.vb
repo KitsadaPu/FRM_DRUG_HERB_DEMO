@@ -205,7 +205,15 @@ Public Class POP_UP_LCN_RENEW_UPLOAD_FILE
             tr.Cells.Add(tc)
             tc = New TableCell
             Try
-                tc.Text = Replace(DOCUMENT_NAME, "\n", "<br/>")
+                Dim documentName As String = DOCUMENT_NAME
+                ' Set text and style based on condition
+                If Convert.ToBoolean(dr("Forcible")) = True Then
+                    documentName = Replace(documentName, "\n", "<br/>")
+                    tc.Text = documentName & "<span style='color:red;'>*</span>"
+                Else
+                    documentName = Replace(documentName, "\n", "<br/>")
+                    tc.Text = documentName
+                End If
             Catch ex As Exception
                 tc.Text = DOCUMENT_NAME
             End Try
@@ -289,6 +297,7 @@ Public Class POP_UP_LCN_RENEW_UPLOAD_FILE
                 dao.fields.Check_Confirm_Y = Checked_yes
                 'dao.fields.CREATE_ID = _CLS.CITIZEN_ID
                 dao.fields.CREATE_DATE = Date.Now
+                dao.fields.UPDATE_DATE = DateTime.Now
                 dao.update()
                 alert_summit("กรุณาตรวจสอบข้อมูลก่อนยื่นคำขอ", _IDA, dao.fields.FK_LCN)
                 'End If
@@ -307,9 +316,17 @@ Public Class POP_UP_LCN_RENEW_UPLOAD_FILE
     Protected Sub btn_add_upload_Click(sender As Object, e As EventArgs) Handles btn_add_upload.Click
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
-        dao.fields.STATUS_UPLOAD_ID = 1
-        dao.update()
-        alert_summit("กรุณาตรวจสอบข้อมูลก่อนยื่นคำขอ", _IDA, dao.fields.FK_LCN)
+        If check_file() = False Then
+            alert_no_file("กรุณาแนบไฟล์ให้ครบทุกข้อ")
+        Else
+            dao.fields.STATUS_UPLOAD_ID = 1
+            dao.fields.STATUS_ID = 1
+            dao.fields.CREATE_DATE = Date.Now
+            dao.fields.UPDATE_DATE = DateTime.Now
+            dao.update()
+            alert_summit("กรุณาตรวจสอบข้อมูลก่อนยื่นคำขอ", _IDA, dao.fields.FK_LCN)
+        End If
+
         'Dim script As String = "showCustomDialog();"
         'ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "ShowModal", script, True)
         'Dim Checked_yes As Boolean = RDO_YES.Checked
@@ -384,7 +401,7 @@ Public Class POP_UP_LCN_RENEW_UPLOAD_FILE
         Dim ck_file As Boolean = True
 
         For Each dao_check.fields In dao_check.datas
-            If dao_check.fields.Forcible = 1 And dao_check.fields.NAME_FAKE Is Nothing Then
+            If dao_check.fields.Forcible = True And dao_check.fields.NAME_FAKE Is Nothing Then
                 ck_file = False
                 Exit For
                 'ElseIf dao_check.fields.Forcible = 0 Then
@@ -419,11 +436,12 @@ Public Class POP_UP_LCN_RENEW_UPLOAD_FILE
                         Dim dao_f As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
                         dao_f.GetDataby_IDA(IDA)
 
-                        Dim Name_fake As String = "RNW-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & ".pdf"
+                        Dim Name_fake As String = "HB-" & _ProcessID & "-" & Date.Now.Year & "-" & tr_id & "-" & dao_f.fields.IDA & ".pdf"
                         dao_f.fields.NAME_FAKE = Name_fake
                         dao_f.fields.NAME_REAL = f.FileName
                         dao_f.fields.CREATE_DATE = Date.Now
                         dao_f.fields.FilePath = paths & "FILE_UPLOAD\" & Name_fake
+                        dao_f.fields.Active = True
                         dao_f.update()
                         f.SaveAs(paths & "FILE_UPLOAD\" & Name_fake)
                     Else

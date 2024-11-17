@@ -257,7 +257,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10" style="text-align: center">
             <asp:Button ID="btn_sumit" runat="server" Text="บันทึก" CssClass="btn-lg" Width="10%" />
-            <asp:Button ID="btn_cancel" runat="server" Text="ยกเลิก" CssClass="btn-lg" Width="10%" />
+            <asp:Button ID="btn_cancel" runat="server" Text="ปิดหน้ารายการ" CssClass="btn-lg" Width="10%" />
         </div>
         <div class="col-lg-1"></div>
     </div>

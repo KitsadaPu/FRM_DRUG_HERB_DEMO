@@ -4,12 +4,12 @@ Imports System.Web
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.IO
-
+Imports System.Data.SqlClient
 Imports System.Data
 Imports iTextSharp.text
 Imports iTextSharp.text.html.simpleparser
 Imports iTextSharp.text.pdf
-
+Imports ListItem = System.Web.UI.WebControls.ListItem
 
 Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
     Inherits System.Web.UI.UserControl
@@ -494,6 +494,111 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                 dr.Cells.Add(dc9)
                 dr.Cells.Add(dc10)
                 Table1.Rows.Add(dr)
+                'ElseIf dao.fields.TYPE_SHOW = 5 Then
+                '    Dim dc1 As New TableCell
+                '    Dim dc2 As New TableCell
+                '    Dim dc3 As New TableCell
+                '    Dim dc4 As New TableCell
+                '    Dim dc5 As New TableCell
+                '    Dim dc7 As New TableCell
+                '    'Dim dc8 As New TableCell
+                '    Dim dr As New TableRow
+                '    Dim ddl As New DropDownList
+                '    Dim dc9 As New TableCell
+                '    Dim dc10 As New TableCell
+                '    dc9.Style.Add("display", "none")
+                '    dc10.Style.Add("display", "none")
+
+                '    dc1.BorderStyle = BorderStyle.Solid
+                '    dc1.BorderWidth = 1
+                '    dc1.Width = 20
+                '    dc2.BorderStyle = BorderStyle.Solid
+                '    dc2.BorderWidth = 1
+                '    dc2.Width = 200
+                '    dc3.BorderStyle = BorderStyle.Solid
+                '    dc3.BorderWidth = 1
+                '    dc4.BorderStyle = BorderStyle.Solid
+                '    dc4.BorderWidth = 1
+                '    dc5.BorderStyle = BorderStyle.Solid
+                '    dc5.BorderWidth = 1
+                '    'dc3.ColumnSpan = 6
+                '    dc1.Text = dao.fields.COL1
+                '    dc2.Text = dao.fields.COL2
+                '    dc4.BorderStyle = BorderStyle.Solid
+                '    dc4.BorderWidth = 1
+                '    dc5.BorderStyle = BorderStyle.Solid
+                '    dc5.BorderWidth = 1
+                '    'dc8.BorderStyle = BorderStyle.Solid
+                '    'dc8.BorderWidth = 1
+                '    dc3.HorizontalAlign = HorizontalAlign.Center
+                '    dc4.HorizontalAlign = HorizontalAlign.Center
+                '    dc5.HorizontalAlign = HorizontalAlign.Center
+
+                '    Dim dao_dgh As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_NO5
+                '    dao_dgh.GetDataAll()
+                '    ddl.DataSource = dao_dgh.datas
+                '    ddl.DataTextField = "GROUP_NAME"
+                '    ddl.DataValueField = "GROUP_ID"
+                '    ddl.DataBind()
+                '    ddl.ID = "ddl1_" & dao.fields.IDA
+                '    DropDownInsertDataFirstRow2(ddl, "-----กรุณาเลือก-----", "0")
+                '    Dim cb1 As New CheckBox
+                '    Dim cb2 As New CheckBox
+                '    Dim cb3 As New CheckBox
+                '    'Dim cb6 As New CheckBox
+                '    Dim txt_6 As New HtmlTextArea
+                '    cb1.ID = "cb1_" & dao.fields.IDA
+                '    cb2.ID = "cb2_" & dao.fields.IDA
+                '    cb3.ID = "cb3_" & dao.fields.IDA
+
+                '    Dim txt1 As New HtmlTextArea
+                '    Dim dao_det As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
+                '    Try
+                '        dao_det.GetDataby_FKLCN_AND_FK_IDA(IDA, dao.fields.IDA)
+                '    Catch ex As Exception
+
+                '    End Try
+                '    Try
+                '        If dao_det.fields.COL5 IsNot Nothing Then
+                '            ddl.SelectedValue = dao_det.fields.COL5
+                '        End If
+
+                '    Catch ex As Exception
+
+                '    End Try
+                '    Try
+                '        If dao_det.fields.COL5 <> 0 Then
+                '            cb1.Checked = True
+                '        End If
+                '    Catch ex As Exception
+
+                '    End Try
+                '    Try
+                '        txt1.Value = dao_det.fields.COL1
+                '    Catch ex As Exception
+
+                '    End Try
+                '    txt1.ID = "txt_" & dao.fields.IDA
+                '    txt1.Style.Add("width", "99%")
+                '    dc2.Controls.Add(ddl)
+                '    dc2.Controls.Add(txt1)
+
+                '    If rdl_drug_type.SelectedValue = "3" Then
+                '        dc3.Controls.Add(cb1)
+                '    End If
+                '    dc9.Text = dao.fields.IDA
+                '    dc10.Text = dao.fields.TYPE_SHOW
+
+                '    dr.Cells.Add(dc1)
+                '    dr.Cells.Add(dc2)
+                '    dr.Cells.Add(dc3)
+
+                '    dr.Cells.Add(dc4)
+                '    dr.Cells.Add(dc5)
+                '    'dr.Cells.Add(dc7)
+                '    dr.Cells.Add(dc9)
+                '    dr.Cells.Add(dc10)
+                '    Table1.Rows.Add(dr)
             ElseIf dao.fields.TYPE_SHOW = 5 Then
                 Dim dc1 As New TableCell
                 Dim dc2 As New TableCell
@@ -501,9 +606,8 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                 Dim dc4 As New TableCell
                 Dim dc5 As New TableCell
                 Dim dc7 As New TableCell
-                'Dim dc8 As New TableCell
                 Dim dr As New TableRow
-                Dim ddl As New DropDownList
+                Dim chkl As New CheckBoxList
                 Dim dc9 As New TableCell
                 Dim dc10 As New TableCell
                 dc9.Style.Add("display", "none")
@@ -517,85 +621,69 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                 dc2.Width = 200
                 dc3.BorderStyle = BorderStyle.Solid
                 dc3.BorderWidth = 1
+                dc3.ColumnSpan = 1
                 dc4.BorderStyle = BorderStyle.Solid
                 dc4.BorderWidth = 1
                 dc5.BorderStyle = BorderStyle.Solid
                 dc5.BorderWidth = 1
-                'dc3.ColumnSpan = 6
-                dc1.Text = dao.fields.COL1
-                dc2.Text = dao.fields.COL2
-                dc4.BorderStyle = BorderStyle.Solid
-                dc4.BorderWidth = 1
-                dc5.BorderStyle = BorderStyle.Solid
-                dc5.BorderWidth = 1
-                'dc8.BorderStyle = BorderStyle.Solid
-                'dc8.BorderWidth = 1
                 dc3.HorizontalAlign = HorizontalAlign.Center
                 dc4.HorizontalAlign = HorizontalAlign.Center
                 dc5.HorizontalAlign = HorizontalAlign.Center
-
-                Dim dao_dgh As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_NO5
-                dao_dgh.GetDataAll()
-                ddl.DataSource = dao_dgh.datas
-                ddl.DataTextField = "GROUP_NAME"
-                ddl.DataValueField = "GROUP_ID"
-                ddl.DataBind()
-                ddl.ID = "ddl1_" & dao.fields.IDA
-                DropDownInsertDataFirstRow2(ddl, "-----กรุณาเลือก-----", "0")
-                Dim cb1 As New CheckBox
-                Dim cb2 As New CheckBox
-                Dim cb3 As New CheckBox
-                'Dim cb6 As New CheckBox
-                Dim txt_6 As New HtmlTextArea
-                cb1.ID = "cb1_" & dao.fields.IDA
-                cb2.ID = "cb2_" & dao.fields.IDA
-                cb3.ID = "cb3_" & dao.fields.IDA
-
+                dc1.Text = dao.fields.COL1
+                dc2.Text = dao.fields.COL2
                 Dim txt1 As New HtmlTextArea
+                txt1.Attributes.Add("readonly", "readonly")
+                Dim dao_dgho As New DAO_DRUG.TB_MAS_DRUG_GROUP_HERB_OTHER
+                dao_dgho.GetDataAll()
+
+                ' ล้างรายการเดิมก่อนที่จะเพิ่มข้อมูลใหม่
+                chkl.Items.Clear()
+
+                ' ใช้ For วนลูปเพิ่มข้อมูลลงใน CheckBoxList
+                For Each dataRow In dao_dgho.datas
+                    ' สร้าง ListItem ใหม่สำหรับแต่ละแถวข้อมูล
+                    Dim item As New ListItem(dataRow.GROUP_NAME, dataRow.GROUP_ID.ToString())
+                    chkl.Items.Add(item)
+                Next
+
+                chkl.ID = "chkl1_" & dao.fields.IDA
+
+                ' วนลูปเพื่อเช็คและตั้งค่า selected item
                 Dim dao_det As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
                 Try
                     dao_det.GetDataby_FKLCN_AND_FK_IDA(IDA, dao.fields.IDA)
                 Catch ex As Exception
-
+                    ' คุณอาจเพิ่มการแสดงข้อผิดพลาดหรือ logging ที่นี่
                 End Try
-                Try
-                    If dao_det.fields.COL5 IsNot Nothing Then
-                        ddl.SelectedValue = dao_det.fields.COL5
+
+                For Each detail In dao_det.datas
+                    ' ตัวอย่างการเข้าถึงแต่ละแถวใน dao_det.datas
+                    Dim col1Value As String = detail.COL1
+                    Dim col2Value As String = detail.COL2 ' หรือคอลัมน์อื่นๆ ที่คุณต้องการใช้
+
+                    ' นำค่า COL1 ไปตั้งค่า selected ให้กับ CheckBoxList
+                    If col1Value IsNot Nothing Then
+                        For Each item As ListItem In chkl.Items
+                            If item.Value = col1Value Then
+                                item.Selected = True
+                                Exit For
+                            End If
+                        Next
                     End If
-
-                Catch ex As Exception
-
-                End Try
-                Try
-                    If dao_det.fields.COL5 <> 0 Then
-                        cb1.Checked = True
-                    End If
-                Catch ex As Exception
-
-                End Try
-                Try
-                    txt1.Value = dao_det.fields.COL1
-                Catch ex As Exception
-
-                End Try
+                Next
                 txt1.ID = "txt_" & dao.fields.IDA
                 txt1.Style.Add("width", "99%")
-                dc2.Controls.Add(ddl)
-                dc2.Controls.Add(txt1)
-
-                If rdl_drug_type.SelectedValue = "3" Then
-                    dc3.Controls.Add(cb1)
-                End If
+                txt1.Style.Add("Height", "100px")
+                'txt1.Attributes.Add("TextMode", "MultiLine")
+                dc3.Controls.Add(chkl)
                 dc9.Text = dao.fields.IDA
                 dc10.Text = dao.fields.TYPE_SHOW
 
                 dr.Cells.Add(dc1)
                 dr.Cells.Add(dc2)
                 dr.Cells.Add(dc3)
-
                 dr.Cells.Add(dc4)
                 dr.Cells.Add(dc5)
-                'dr.Cells.Add(dc7)
                 dr.Cells.Add(dc9)
                 dr.Cells.Add(dc10)
                 Table1.Rows.Add(dr)
@@ -1264,41 +1352,51 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                     Dim jj As Integer = 0
 
                     Try
-                        If cb1.Checked Then
-                            dao.fields.COL1 = 1
-                            jj += 1
+                        If cb1 IsNot Nothing AndAlso cb1.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL1 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb2.Checked Then
-                            dao.fields.COL2 = 1
-                            jj += 1
+                        If cb2 IsNot Nothing AndAlso cb2.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL2 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb3.Checked Then
-                            dao.fields.COL3 = 1
-                            jj += 1
+                        If cb3 IsNot Nothing AndAlso cb3.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL3 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb4.Checked Then
-                            dao.fields.COL4 = 1
-                            jj += 1
+                        If cb4 IsNot Nothing AndAlso cb4.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL4 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb5.Checked Then
-                            dao.fields.COL5 = 1
-                            jj += 1
+                        If cb5 IsNot Nothing AndAlso cb5.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL5 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
@@ -1346,41 +1444,51 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                     Dim jj As Integer = 0
 
                     Try
-                        If cb1.Checked Then
-                            dao.fields.COL1 = 1
-                            jj += 1
+                        If cb1 IsNot Nothing AndAlso cb1.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL1 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb2.Checked Then
-                            dao.fields.COL2 = 1
-                            jj += 1
+                        If cb2 IsNot Nothing AndAlso cb2.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL2 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb3.Checked Then
-                            dao.fields.COL3 = 1
-                            jj += 1
+                        If cb3 IsNot Nothing AndAlso cb3.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL3 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb4.Checked Then
-                            dao.fields.COL4 = 1
-                            jj += 1
+                        If cb4 IsNot Nothing AndAlso cb4.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL4 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb5.Checked Then
-                            dao.fields.COL5 = 1
-                            jj += 1
+                        If cb5 IsNot Nothing AndAlso cb5.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL5 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
@@ -1424,43 +1532,52 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                         'cb6 = tr.Cells(7).FindControl("cb6_" & FK_IDA)
                     End If
                     Dim jj As Integer = 0
-
                     Try
-                        If cb1.Checked Then
-                            dao.fields.COL1 = 1
-                            jj += 1
+                        If cb1 IsNot Nothing AndAlso cb1.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL1 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb2.Checked Then
-                            dao.fields.COL2 = 1
-                            jj += 1
+                        If cb2 IsNot Nothing AndAlso cb2.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL2 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb3.Checked Then
-                            dao.fields.COL3 = 1
-                            jj += 1
+                        If cb3 IsNot Nothing AndAlso cb3.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL3 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb4.Checked Then
-                            dao.fields.COL4 = 1
-                            jj += 1
+                        If cb4 IsNot Nothing AndAlso cb4.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL4 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb5.Checked Then
-                            dao.fields.COL5 = 1
-                            jj += 1
+                        If cb5 IsNot Nothing AndAlso cb5.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL5 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
@@ -1516,45 +1633,52 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                         'cb6 = tr.Cells(7).FindControl("cb6_" & FK_IDA)
                     End If
                     Dim jj As Integer = 0
-
                     Try
-                        If cb1.Checked Then
-                            dao.fields.COL1 = 1
-                            jj += 1
-                        Else
-                            dao.fields.COL1 = 0
+                        If cb1 IsNot Nothing AndAlso cb1.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL1 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb2.Checked Then
-                            dao.fields.COL2 = 1
-                            jj += 1
+                        If cb2 IsNot Nothing AndAlso cb2.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL2 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb3.Checked Then
-                            dao.fields.COL3 = 1
-                            jj += 1
+                        If cb3 IsNot Nothing AndAlso cb3.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL3 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb4.Checked Then
-                            dao.fields.COL4 = 1
-                            jj += 1
+                        If cb4 IsNot Nothing AndAlso cb4.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL4 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
                     End Try
                     Try
-                        If cb5.Checked Then
-                            dao.fields.COL5 = 1
-                            jj += 1
+                        If cb5 IsNot Nothing AndAlso cb5.Checked Then
+                            If dao IsNot Nothing AndAlso dao.fields IsNot Nothing Then
+                                dao.fields.COL5 = 1
+                                jj += 1
+                            End If
                         End If
                     Catch ex As Exception
 
@@ -1586,8 +1710,34 @@ Public Class UC_TABLE_DRUG_GROUP_CHANGE_HERB
                     If jj > 0 Then
                         dao.insert()
                     End If
+                ElseIf TYPE_SHOW = 5 Then
+                    Dim chkl As CheckBoxList = TryCast(tr.Cells(5).FindControl("chkl1_" & FK_IDA), CheckBoxList)
+                    ' ตรวจสอบว่าพบ CheckBoxList หรือไม่
+                    If chkl IsNot Nothing Then
+                        ' วนลูปผ่าน CheckBoxList
+                        For Each item As WebControls.ListItem In chkl.Items
+                            If item.Selected Then ' ตรวจสอบว่าถูกเลือกหรือไม่
+                                ' สร้าง DAO
+                                Dim dao_i As New DAO_DRUG.TB_DALCN_IMPORT_DRUG_GROUP_HERB_DETAIL
+                                dao_i.fields.LCN_IDA = IDA
+                                dao_i.fields.FK_IDA = FK_IDA
+                                dao_i.fields.COL1 = item.Value ' กำหนดค่าให้กับ COL5 เป็น DataValueField
+                                dao_i.fields.COL2 = item.Text ' กำหนดค่าให้กับ COL6 เป็น DataTextField
+                                dao_i.fields.COL3 = item.Selected ' กำหนดค่าให้กับ COL6 เป็น DataTextField
 
-
+                                ' บันทึกลงฐานข้อมูล
+                                Try
+                                    dao_i.insert() ' เรียกฟังก์ชัน insert เพื่อบันทึกข้อมูล
+                                Catch ex As Exception
+                                    ' จัดการข้อผิดพลาด
+                                    'MessageBox.Show("Error: " & ex.Message)
+                                End Try
+                            End If
+                        Next
+                    Else
+                        ' กรณีไม่พบ CheckBoxList
+                        'MessageBox.Show("CheckBoxList not found.")
+                    End If
                 End If
             End If
             i += 1

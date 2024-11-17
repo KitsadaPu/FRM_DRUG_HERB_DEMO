@@ -115,8 +115,8 @@
                     dao_att.fields.TYPE_PERSON_NAME = type_p
                     dao_att.fields.TYPE_LOCAL_NAME = type_l
                     dao_att.fields.TYPE_BSN_NAME = type_b
+                    dao_att.fields.Active = True
                     dao_att.insert()
-
                 Next
             Catch ex As Exception
 

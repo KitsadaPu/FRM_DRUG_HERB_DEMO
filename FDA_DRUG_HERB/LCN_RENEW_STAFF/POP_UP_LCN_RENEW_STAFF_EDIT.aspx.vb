@@ -68,7 +68,15 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
             '    DIV_EDIT_UPLOAD2.Visible = True
             rgat_edit.Rebind()
             rgat.Rebind()
-            NOTE_EDIT.Text = dao.fields.Note_Edit_FileUpload
+            Dim status_ed As Integer = 0
+            Dim status_id As Integer = dao.fields.STATUS_ID
+            If dao.fields.STATUS_EDIT IsNot Nothing AndAlso dao.fields.STATUS_EDIT <> 0 Then status_ed = dao.fields.STATUS_EDIT
+            If status_id = 12 Or status_ed = 1 Then
+                NOTE_EDIT.Text = dao.fields.Note_Edit
+            Else
+                NOTE_EDIT.Text = dao.fields.NOTE_EDIT2
+            End If
+
             'NOTE_EDIT.ReadOnly = True
             'CHK_UPLOAD_EDIT.Checked = dao.fields.Check_Edit_FileUpload_ID
             'CHK_UPLOAD_EDIT.Enabled = True
@@ -115,7 +123,6 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         Else
             rgat_edit.Visible = False
             'RadGrid4.Visible = True
-
             btn_sumit.Enabled = False
             btn_sumit.CssClass = "btn-danger btn-lg"
             btn_add_upload.Enabled = False
@@ -151,11 +158,19 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
             dao_up.fields.TYPE = 2
             'dao_up.fields.a = 1
             dao_up.fields.CREATE_DATE = Date.Now
+            dao_up.fields.Active = True
             dao_up.insert()
         Next
         Dim dao As New DAO_LCN.TB_DALCN_RENEW
         dao.GET_DATA_BY_IDA(_IDA)
-        dao.fields.Note_Edit = NOTE_EDIT.Text
+        If dao.fields.STATUS_ID = 12 Then
+            dao.fields.Note_Edit = NOTE_EDIT.Text
+            dao.fields.STATUS_EDIT = 1
+        Else
+            dao.fields.NOTE_EDIT2 = NOTE_EDIT.Text
+            dao.fields.STATUS_EDIT = 2
+        End If
+
         'If CHK_TB1_EDIT.Checked = True Then
         'dao.fields.Check_Edit_ID = CHK_TB1_EDIT.Checked
         '    dao.fields.Note_Edit = TXT_EDIT_NOTE_TB1.Text
@@ -166,19 +181,20 @@ Public Class POP_UP_LCN_RENEW_STAFF_EDIT
         '    dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
         dao.fields.Note_Edit_FileUpload = NOTE_EDIT.Text
         dao.fields.STATUS_ID = 31
+        dao.fields.UPDATE_DATE = DateTime.Now
         'Else
         '    dao.fields.Check_Edit_FileUpload_ID = CHK_UPLOAD_EDIT.Checked
         'End If
         Try
-            dao.fields.staff_edit_id = _CLS.CITIZEN_ID
-            dao.fields.staff_edit_name = _CLS.NAME
-            dao.fields.staff_edit_name = Date.Now
+            'dao.fields.staff_edit_id = _CLS.CITIZEN_ID
+            'dao.fields.staff_edit_name = _CLS.NAME
+            'dao.fields.staff_edit_name = Date.Now
         Catch ex As Exception
 
         End Try
         dao.update()
 
-        AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA)
+        AddLogStatus(dao.fields.STATUS_ID, _ProcessID, _CLS.CITIZEN_ID, _IDA, NOTE_EDIT.Text)
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(Page), "ใส่ไรก็ได้", "alert('บันทึกเรียบร้อย');parent.close_modal();", True)
     End Sub
 

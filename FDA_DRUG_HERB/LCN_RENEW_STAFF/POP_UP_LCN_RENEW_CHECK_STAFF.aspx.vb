@@ -48,6 +48,24 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF
             btn_edit.Enabled = False
             btn_edit.CssClass = "btn-danger btn-lg"
         End If
+        If dao.fields.STATUS_ID = 5 Then
+            DD_STATUS.SelectedValue = dao.fields.STATUS_ID
+            DD_STATUS.Enabled = False
+            DD_OFF_REQ.SelectedValue = dao.fields.Completed_StaffID
+            DD_OFF_REQ.Enabled = False
+            Try
+                DATE_REQ.Text = dao.fields.Completed_date
+            Catch ex As Exception
+                'DATE_REQ.Text = dao.fields.DATE_CONFIRM
+            End Try
+            DATE_REQ.ReadOnly = False
+            DATE_REQ.Enabled = False
+            btn_sumit.Enabled = False
+            'btn_sumit.CssClass = "btn-danger btn-lg"
+            btn_edit.Enabled = False
+            'btn_edit.CssClass = "btn-danger btn-lg"
+        End If
+        DD_OFF_REQ.SelectedValue = _CLS.CITIZEN_ID
     End Sub
     Public Sub bind_status()
         Dim dt As DataTable
@@ -55,7 +73,7 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF
         Dim ss_id As Integer = 0
         Dim dao As New DAO_LCN.TB_DALCN_RENEW_PRE
         dao.GET_DATA_BY_IDA(_IDA)
-        If dao.fields.STATUS_ID = 2 Or dao.fields.STATUS_ID = 51 Then
+        If dao.fields.STATUS_ID = 2 Or dao.fields.STATUS_ID = 4 Or dao.fields.STATUS_ID = 51 Then
             ss_id = 1
         End If
         bao.SP_MAS_STATUS_STAFF_BY_GROUP_DDL(10511, ss_id)
@@ -115,9 +133,10 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF
         Dim bao As New BAO.GenNumber
         Dim STATUS_ID As Integer = DD_STATUS.SelectedValue
         Dim ddl_id As Integer = 0
+        Dim TR_ID As Integer = 0
         Dim ddl_name As String = ""
         dao.GET_DATA_BY_IDA(_IDA)
-
+        TR_ID = dao.fields.TR_ID
         dao.fields.STATUS_ID = DD_STATUS.SelectedValue
         If dao.fields.STATUS_ID = 8 Then
             dao.fields.Completed_date = DATE_REQ.Text
@@ -128,6 +147,15 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF
             dao.fields.SendEditStaffNM = DD_OFF_REQ.SelectedItem.Text
             dao.fields.SendEditStaffID = DD_OFF_REQ.SelectedValue
             dao.update()
+            Dim dao_u As New DAO_DRUG.TB_DALCN_UPLOAD_FILE
+            dao_u.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _PROCESS_ID, 2)
+            For Each dao_u.fields In dao_u.datas
+                dao_u.fields.Active = False
+                dao_u.update()
+            Next
+            dao_u.GetDataby_TR_ID_AND_PROCESS_AND_TYPE(TR_ID, _PROCESS_ID, 3)
+            dao_u.fields.Active = False
+            dao_u.update()
             AddLogStatus(dao.fields.STATUS_ID, _PROCESS_ID, _CLS.CITIZEN_ID, _IDA)
             Response.Redirect("POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE.aspx?IDA=" & _IDA & "&IDA_LCN=" & _IDA_LCN & "&PROCESS_ID=" & _PROCESS_ID & "&TR_ID=" & dao.fields.TR_ID & "&IDENTIFY=" & _IDEN)
         End If
@@ -158,9 +186,7 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF
             Dim H As HyperLink = e.Item.FindControl("PV_ST")
             H.Target = "_blank"
             H.NavigateUrl = "../LCN_RENEW/FRM_HERB_LCN_RENEW_PREVIEW.aspx?ida=" & IDA
-
         End If
-
     End Sub
     Private Sub alert(ByVal text As String)
         Response.Write("<script type='text/javascript'>alert('" + text + "');parent.close_modal();</script> ")

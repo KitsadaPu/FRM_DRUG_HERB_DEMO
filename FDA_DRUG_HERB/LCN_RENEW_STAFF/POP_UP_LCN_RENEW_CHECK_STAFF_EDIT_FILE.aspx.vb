@@ -109,6 +109,7 @@ Public Class POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE
             dao_up.fields.TYPE = 2
             'dao_up.fields.a = 1
             dao_up.fields.CREATE_DATE = Date.Now
+            dao_up.fields.Active = True
             dao_up.insert()
         Next
         dao.fields.Note_Edit_Staff = NOTE_EDIT.Text

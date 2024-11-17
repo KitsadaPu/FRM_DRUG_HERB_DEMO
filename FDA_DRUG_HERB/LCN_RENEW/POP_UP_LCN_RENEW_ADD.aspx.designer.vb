@@ -248,6 +248,15 @@ Partial Public Class POP_UP_LCN_RENEW_ADD
     Protected WithEvents rdl_enterprise As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
+    '''panel_cer_lcn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panel_cer_lcn As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''rdl_CerSD control.
     '''</summary>
     '''<remarks>
@@ -257,13 +266,31 @@ Partial Public Class POP_UP_LCN_RENEW_ADD
     Protected WithEvents rdl_CerSD As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''ddl_prefix control.
+    '''chk_rad control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddl_prefix As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents chk_rad As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rdl_cer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_cer As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''ddl_emc_prefix control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_emc_prefix As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''txt_emc_name control.

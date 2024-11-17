@@ -95,6 +95,51 @@ Partial Public Class POP_UP_LCN_RENEW_CHECK_STAFF_EDIT_FILE
     Protected WithEvents btn_add_upload As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''rdl_enterprise control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_enterprise As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''rdl_CerSD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_CerSD As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''chk_rad1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_rad1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rdl_cer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdl_cer As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''BTN_CHANGE_FIEL_UP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BTN_CHANGE_FIEL_UP As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''DIV_EDIT_UPLOAD2 control.
     '''</summary>
     '''<remarks>
